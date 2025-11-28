@@ -1,0 +1,78 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Repository {
+  id            String       @id @default(uuid())
+  githubId      String?      @unique // Changed to String to be safe, or BigInt if supported well in SQLite/Prisma
+  name          String
+  fullName      String
+  nameWithOwner String
+  url           String
+  description   String?
+  isPrivate     Boolean      @default(false)
+  createdAt     DateTime     @default(now())
+  updatedAt     DateTime     @updatedAt
+  pushedAt      DateTime?
+  language      String?
+  defaultBranch String?
+  
+  technologies  Technology[]
+  interfaces    Interface[]
+  deployments   Deployment[]
+  health        RepoHealth?
+}
+
+model Deployment {
+  id           String     @id @default(uuid())
+  repositoryId String
+  repository   Repository @relation(fields: [repositoryId], references: [id], onDelete: Cascade)
+  provider     String     // vercel, fly, lovable, cloudflare, other
+  url          String?
+  status       String?    // active, building, failed
+  lastDeployedAt DateTime?
+  detectedAt   DateTime   @default(now())
+}
+
+model Technology {
+  id           String     @id @default(uuid())
+  repositoryId String
+  repository   Repository @relation(fields: [repositoryId], references: [id], onDelete: Cascade)
+  name         String
+  category     String?    // language, framework, tool, etc.
+  version      String?
+  detectedAt   DateTime   @default(now())
+}
+
+model Interface {
+  id           String     @id @default(uuid())
+  repositoryId String
+  repository   Repository @relation(fields: [repositoryId], references: [id], onDelete: Cascade)
+  type         String?    // rest_api, graphql, etc.
+  direction    String?    // inbound, outbound
+  details      String?    // JSON string
+  detectedAt   DateTime   @default(now())
+}
+
+model RepoHealth {
+  id                        String     @id @default(uuid())
+  repositoryId              String     @unique
+  repository                Repository @relation(fields: [repositoryId], references: [id], onDelete: Cascade)
+  outdatedDependenciesCount Int        @default(0)
+  vulnerabilitiesCount      Int        @default(0)
+  lastCheckedAt             DateTime   @default(now())
+  healthScore               Int?
+}
+
+model CostSnapshot {
+  id                  String   @id @default(uuid())
+  date                DateTime @default(now())
+  totalMonthlyCostEst Decimal?
+  supabaseCostEst     Decimal?
+  details             String?  // JSON string
+}
