@@ -1,0 +1,5055 @@
+[
+  {
+    "repo": {
+      "description": "",
+      "id": "R_kgDOO8Ln5w",
+      "isPrivate": true,
+      "languages": [
+        {
+          "size": 869,
+          "node": {
+            "name": "JavaScript"
+          }
+        },
+        {
+          "size": 912,
+          "node": {
+            "name": "HTML"
+          }
+        },
+        {
+          "size": 176053,
+          "node": {
+            "name": "TypeScript"
+          }
+        },
+        {
+          "size": 1746,
+          "node": {
+            "name": "CSS"
+          }
+        }
+      ],
+      "name": "birdie-flight-revamp",
+      "nameWithOwner": "skquievreux/birdie-flight-revamp",
+      "pushedAt": "2025-11-29T19:17:10Z",
+      "updatedAt": "2025-11-29T19:17:14Z",
+      "url": "https://github.com/skquievreux/birdie-flight-revamp"
+    },
+    "technologies": [
+      {
+        "name": "React",
+        "category": "framework",
+        "version": "^19.2.0"
+      },
+      {
+        "name": "TypeScript",
+        "category": "language",
+        "version": "^5.8.2"
+      },
+      {
+        "name": "Tailwind CSS",
+        "category": "tool",
+        "version": "^3.4.11"
+      },
+      {
+        "name": "Supabase",
+        "category": "database",
+        "version": "^2.49.4"
+      },
+      {
+        "name": "Node.js",
+        "category": "language",
+        "version": ">=20.9.0"
+      }
+    ],
+    "interfaces": [
+      {
+        "type": "database_connection",
+        "direction": "outbound",
+        "details": {
+          "service": "Supabase"
+        }
+      },
+      {
+        "type": "cloud_service",
+        "direction": "outbound",
+        "details": {
+          "service": "AWS",
+          "variable": "S3"
+        }
+      }
+    ],
+    "env_vars": [
+      "GITHUB_TOKEN",
+      "DASHBOARD_API_KEY",
+      "S3",
+      "SUPABASE",
+      "YOUR_GIT_URL",
+      "SIDEBAR_KEY",
+      "SUPABASE_PUBLISHABLE_KEY",
+      "DASHBOARD_URL",
+      "SUPABASE_URL"
+    ]
+  },
+  {
+    "repo": {
+      "description": "",
+      "id": "R_kgDOPSwsaQ",
+      "isPrivate": true,
+      "languages": [
+        {
+          "size": 869,
+          "node": {
+            "name": "JavaScript"
+          }
+        },
+        {
+          "size": 902,
+          "node": {
+            "name": "HTML"
+          }
+        },
+        {
+          "size": 4221,
+          "node": {
+            "name": "CSS"
+          }
+        },
+        {
+          "size": 969792,
+          "node": {
+            "name": "TypeScript"
+          }
+        },
+        {
+          "size": 987,
+          "node": {
+            "name": "Dockerfile"
+          }
+        },
+        {
+          "size": 41450,
+          "node": {
+            "name": "PLpgSQL"
+          }
+        },
+        {
+          "size": 17577,
+          "node": {
+            "name": "Shell"
+          }
+        }
+      ],
+      "name": "inspect-whisper",
+      "nameWithOwner": "skquievreux/inspect-whisper",
+      "pushedAt": "2025-11-29T19:16:50Z",
+      "updatedAt": "2025-11-29T19:16:54Z",
+      "url": "https://github.com/skquievreux/inspect-whisper"
+    },
+    "technologies": [
+      {
+        "name": "React",
+        "category": "framework",
+        "version": "^19.2.0"
+      },
+      {
+        "name": "TypeScript",
+        "category": "language",
+        "version": "^5.8.2"
+      },
+      {
+        "name": "Tailwind CSS",
+        "category": "tool",
+        "version": "^3.4.11"
+      },
+      {
+        "name": "Supabase",
+        "category": "database",
+        "version": "^2.49.4"
+      },
+      {
+        "name": "Node.js",
+        "category": "language",
+        "version": ">=20.9.0"
+      },
+      {
+        "name": "Docker",
+        "category": "tool",
+        "version": null
+      }
+    ],
+    "interfaces": [
+      {
+        "type": "database_connection",
+        "direction": "outbound",
+        "details": {
+          "service": "Supabase"
+        }
+      },
+      {
+        "type": "cloud_service",
+        "direction": "hosting",
+        "details": {
+          "service": "Fly.io",
+          "variable": "fly.toml"
+        }
+      },
+      {
+        "type": "rest_api",
+        "direction": "outbound",
+        "details": {
+          "snippet": "fetch() calls detected"
+        }
+      },
+      {
+        "type": "cloud_service",
+        "direction": "outbound",
+        "details": {
+          "service": "AWS",
+          "variable": "AWS"
+        }
+      }
+    ],
+    "env_vars": [
+      "SUPABASE_DB_URL",
+      "SUPABASE_ANON_KEY",
+      "SIDEBAR_KEY",
+      "SUPABASE_SERVICE_ROLE_KEY",
+      "R2_ACCESS_KEY",
+      "S3",
+      "R2_SECRET_ACCESS_KEY",
+      "VITE_SUPABASE_ANON_KEY",
+      "SUPABASE_URL",
+      "DASHBOARD_API_KEY",
+      "YOUR_GIT_URL",
+      "R2_PUBLIC_URL",
+      "GITHUB_TOKEN",
+      "AWS",
+      "VITE_SUPABASE_PUBLISHABLE_KEY",
+      "VITE_SUPABASE_URL",
+      "RESEND_API_KEY",
+      "SUPABASE",
+      "SUPABASE_PUBLISHABLE_KEY",
+      "DASHBOARD_URL"
+    ]
+  },
+  {
+    "repo": {
+      "description": "",
+      "id": "R_kgDOP9ZQkA",
+      "isPrivate": true,
+      "languages": [
+        {
+          "size": 27087,
+          "node": {
+            "name": "TypeScript"
+          }
+        },
+        {
+          "size": 5967,
+          "node": {
+            "name": "CSS"
+          }
+        },
+        {
+          "size": 1244,
+          "node": {
+            "name": "JavaScript"
+          }
+        }
+      ],
+      "name": "techeroes-quiz",
+      "nameWithOwner": "skquievreux/techeroes-quiz",
+      "pushedAt": "2025-11-29T19:16:29Z",
+      "updatedAt": "2025-11-29T19:16:34Z",
+      "url": "https://github.com/skquievreux/techeroes-quiz"
+    },
+    "technologies": [
+      {
+        "name": "React",
+        "category": "framework",
+        "version": "^19.2.0"
+      },
+      {
+        "name": "Next.js",
+        "category": "framework",
+        "version": "^15.5.0"
+      },
+      {
+        "name": "TypeScript",
+        "category": "language",
+        "version": "^5.8.2"
+      },
+      {
+        "name": "Tailwind CSS",
+        "category": "tool",
+        "version": "^4.0.0"
+      },
+      {
+        "name": "Node.js",
+        "category": "language",
+        "version": ">=20.9.0"
+      }
+    ],
+    "interfaces": [
+      {
+        "type": "rest_api",
+        "direction": "outbound",
+        "details": {
+          "snippet": "fetch() calls detected"
+        }
+      },
+      {
+        "type": "cloud_service",
+        "direction": "outbound",
+        "details": {
+          "service": "AWS",
+          "variable": "S3"
+        }
+      },
+      {
+        "type": "database_connection",
+        "direction": "outbound",
+        "details": {
+          "service": "Supabase",
+          "variable": "SUPABASE"
+        }
+      }
+    ],
+    "env_vars": [
+      "GITHUB_TOKEN",
+      "DASHBOARD_API_KEY",
+      "S3",
+      "SUPABASE",
+      "DASHBOARD_URL"
+    ]
+  },
+  {
+    "repo": {
+      "description": "\u00dcbersicht aller Voice Agenten",
+      "id": "R_kgDOP04gSQ",
+      "isPrivate": true,
+      "languages": [
+        {
+          "size": 34855,
+          "node": {
+            "name": "TypeScript"
+          }
+        },
+        {
+          "size": 1129,
+          "node": {
+            "name": "CSS"
+          }
+        },
+        {
+          "size": 1159,
+          "node": {
+            "name": "JavaScript"
+          }
+        },
+        {
+          "size": 517876,
+          "node": {
+            "name": "HTML"
+          }
+        }
+      ],
+      "name": "VoiceStage",
+      "nameWithOwner": "skquievreux/VoiceStage",
+      "pushedAt": "2025-11-29T19:13:52Z",
+      "updatedAt": "2025-11-29T19:13:56Z",
+      "url": "https://github.com/skquievreux/VoiceStage"
+    },
+    "technologies": [
+      {
+        "name": "React",
+        "category": "framework",
+        "version": "^19.2.0"
+      },
+      {
+        "name": "Next.js",
+        "category": "framework",
+        "version": "^15.5.0"
+      },
+      {
+        "name": "TypeScript",
+        "category": "language",
+        "version": "^5.8.2"
+      },
+      {
+        "name": "Tailwind CSS",
+        "category": "tool",
+        "version": "^4.0.0"
+      },
+      {
+        "name": "Node.js",
+        "category": "language",
+        "version": ">=20.9.0"
+      }
+    ],
+    "interfaces": [
+      {
+        "type": "rest_api",
+        "direction": "outbound",
+        "details": {
+          "snippet": "fetch() calls detected"
+        }
+      },
+      {
+        "type": "cloud_service",
+        "direction": "outbound",
+        "details": {
+          "service": "AWS",
+          "variable": "S3"
+        }
+      },
+      {
+        "type": "database_connection",
+        "direction": "outbound",
+        "details": {
+          "service": "Supabase",
+          "variable": "SUPABASE"
+        }
+      }
+    ],
+    "env_vars": [
+      "GITHUB_TOKEN",
+      "DASHBOARD_API_KEY",
+      "DEFAULT_MINIMUM_TOKEN",
+      "S3",
+      "SUPABASE",
+      "DASHBOARD_URL"
+    ]
+  },
+  {
+    "repo": {
+      "description": "",
+      "id": "R_kgDOO7lpiA",
+      "isPrivate": true,
+      "languages": [
+        {
+          "size": 869,
+          "node": {
+            "name": "JavaScript"
+          }
+        },
+        {
+          "size": 1259,
+          "node": {
+            "name": "HTML"
+          }
+        },
+        {
+          "size": 1201,
+          "node": {
+            "name": "CSS"
+          }
+        },
+        {
+          "size": 166317,
+          "node": {
+            "name": "TypeScript"
+          }
+        }
+      ],
+      "name": "bit-blast-studio",
+      "nameWithOwner": "skquievreux/bit-blast-studio",
+      "pushedAt": "2025-11-29T19:11:10Z",
+      "updatedAt": "2025-11-29T19:11:13Z",
+      "url": "https://github.com/skquievreux/bit-blast-studio"
+    },
+    "technologies": [
+      {
+        "name": "React",
+        "category": "framework",
+        "version": "^19.2.0"
+      },
+      {
+        "name": "TypeScript",
+        "category": "language",
+        "version": "^5.8.2"
+      },
+      {
+        "name": "Tailwind CSS",
+        "category": "tool",
+        "version": "^3.4.11"
+      },
+      {
+        "name": "Node.js",
+        "category": "language",
+        "version": ">=20.9.0"
+      }
+    ],
+    "interfaces": [
+      {
+        "type": "rest_api",
+        "direction": "outbound",
+        "details": {
+          "snippet": "fetch() calls detected"
+        }
+      },
+      {
+        "type": "cloud_service",
+        "direction": "outbound",
+        "details": {
+          "service": "AWS",
+          "variable": "S3"
+        }
+      },
+      {
+        "type": "database_connection",
+        "direction": "outbound",
+        "details": {
+          "service": "Supabase",
+          "variable": "SUPABASE"
+        }
+      }
+    ],
+    "env_vars": [
+      "GITHUB_TOKEN",
+      "DASHBOARD_API_KEY",
+      "S3",
+      "SUPABASE",
+      "SIDEBAR_KEY",
+      "DASHBOARD_URL",
+      "YOUR_GIT_URL"
+    ]
+  },
+  {
+    "repo": {
+      "description": "",
+      "id": "R_kgDOQXbTiA",
+      "isPrivate": true,
+      "languages": [
+        {
+          "size": 846,
+          "node": {
+            "name": "JavaScript"
+          }
+        },
+        {
+          "size": 1684,
+          "node": {
+            "name": "HTML"
+          }
+        },
+        {
+          "size": 717191,
+          "node": {
+            "name": "TypeScript"
+          }
+        },
+        {
+          "size": 1655,
+          "node": {
+            "name": "CSS"
+          }
+        },
+        {
+          "size": 4958,
+          "node": {
+            "name": "PLpgSQL"
+          }
+        }
+      ],
+      "name": "art-vibe-gen",
+      "nameWithOwner": "skquievreux/art-vibe-gen",
+      "pushedAt": "2025-11-29T19:10:36Z",
+      "updatedAt": "2025-11-29T19:10:40Z",
+      "url": "https://github.com/skquievreux/art-vibe-gen"
+    },
+    "technologies": [
+      {
+        "name": "React",
+        "category": "framework",
+        "version": "^19.2.0"
+      },
+      {
+        "name": "TypeScript",
+        "category": "language",
+        "version": "^5.8.2"
+      },
+      {
+        "name": "Tailwind CSS",
+        "category": "tool",
+        "version": "^3.4.17"
+      },
+      {
+        "name": "Supabase",
+        "category": "database",
+        "version": "^2.49.4"
+      },
+      {
+        "name": "Node.js",
+        "category": "language",
+        "version": ">=20.9.0"
+      }
+    ],
+    "interfaces": [
+      {
+        "type": "database_connection",
+        "direction": "outbound",
+        "details": {
+          "service": "Supabase"
+        }
+      },
+      {
+        "type": "cloud_service",
+        "direction": "hosting",
+        "details": {
+          "service": "Vercel",
+          "variable": "vercel.json"
+        }
+      },
+      {
+        "type": "rest_api",
+        "direction": "outbound",
+        "details": {
+          "snippet": "fetch() calls detected"
+        }
+      },
+      {
+        "type": "cloud_service",
+        "direction": "outbound",
+        "details": {
+          "service": "AWS",
+          "variable": "S3"
+        }
+      }
+    ],
+    "env_vars": [
+      "SUPABASE_SERVICE_ROLE_KEY",
+      "GITHUB_TOKEN",
+      "DASHBOARD_API_KEY",
+      "CDN_URL",
+      "LOVABLE_API_KEY",
+      "UNLOCK_YOUR_SONG_API_KEY",
+      "VITE_SUPABASE_PUBLISHABLE_KEY",
+      "VITE_SUPABASE_URL",
+      "S3",
+      "STORAGE_KEY",
+      "SUPABASE",
+      "YOUR_GIT_URL",
+      "SIDEBAR_KEY",
+      "SUPABASE_PUBLISHABLE_KEY",
+      "DASHBOARD_URL",
+      "SUPABASE_URL"
+    ]
+  },
+  {
+    "repo": {
+      "description": "",
+      "id": "R_kgDOO7lqbQ",
+      "isPrivate": true,
+      "languages": [
+        {
+          "size": 869,
+          "node": {
+            "name": "JavaScript"
+          }
+        },
+        {
+          "size": 1227,
+          "node": {
+            "name": "HTML"
+          }
+        },
+        {
+          "size": 262730,
+          "node": {
+            "name": "TypeScript"
+          }
+        },
+        {
+          "size": 2761,
+          "node": {
+            "name": "CSS"
+          }
+        },
+        {
+          "size": 1073,
+          "node": {
+            "name": "Dockerfile"
+          }
+        },
+        {
+          "size": 7498,
+          "node": {
+            "name": "PLpgSQL"
+          }
+        }
+      ],
+      "name": "sound-bowl-echoes",
+      "nameWithOwner": "skquievreux/sound-bowl-echoes",
+      "pushedAt": "2025-11-29T19:08:10Z",
+      "updatedAt": "2025-11-29T19:08:13Z",
+      "url": "https://github.com/skquievreux/sound-bowl-echoes"
+    },
+    "technologies": [
+      {
+        "name": "React",
+        "category": "framework",
+        "version": "^19.2.0"
+      },
+      {
+        "name": "TypeScript",
+        "category": "language",
+        "version": "^5.8.2"
+      },
+      {
+        "name": "Tailwind CSS",
+        "category": "tool",
+        "version": "^3.4.11"
+      },
+      {
+        "name": "Supabase",
+        "category": "database",
+        "version": "^2.49.4"
+      },
+      {
+        "name": "Node.js",
+        "category": "language",
+        "version": ">=20.9.0"
+      },
+      {
+        "name": "Docker",
+        "category": "tool",
+        "version": null
+      }
+    ],
+    "interfaces": [
+      {
+        "type": "database_connection",
+        "direction": "outbound",
+        "details": {
+          "service": "Supabase"
+        }
+      },
+      {
+        "type": "cloud_service",
+        "direction": "hosting",
+        "details": {
+          "service": "Fly.io",
+          "variable": "fly.toml"
+        }
+      },
+      {
+        "type": "cloud_service",
+        "direction": "outbound",
+        "details": {
+          "service": "AWS",
+          "variable": "S3"
+        }
+      }
+    ],
+    "env_vars": [
+      "GITHUB_TOKEN",
+      "DASHBOARD_API_KEY",
+      "S3",
+      "SUPABASE",
+      "YOUR_GIT_URL",
+      "SIDEBAR_KEY",
+      "SUPABASE_PUBLISHABLE_KEY",
+      "DASHBOARD_URL",
+      "SUPABASE_URL"
+    ]
+  },
+  {
+    "repo": {
+      "description": "",
+      "id": "R_kgDOO-ormQ",
+      "isPrivate": true,
+      "languages": [
+        {
+          "size": 869,
+          "node": {
+            "name": "JavaScript"
+          }
+        },
+        {
+          "size": 1338,
+          "node": {
+            "name": "HTML"
+          }
+        },
+        {
+          "size": 2938,
+          "node": {
+            "name": "CSS"
+          }
+        },
+        {
+          "size": 380463,
+          "node": {
+            "name": "TypeScript"
+          }
+        },
+        {
+          "size": 11399,
+          "node": {
+            "name": "PLpgSQL"
+          }
+        },
+        {
+          "size": 1061,
+          "node": {
+            "name": "Dockerfile"
+          }
+        }
+      ],
+      "name": "broetchen-wochenende-bestellung",
+      "nameWithOwner": "skquievreux/broetchen-wochenende-bestellung",
+      "pushedAt": "2025-11-29T19:07:45Z",
+      "updatedAt": "2025-11-29T19:07:48Z",
+      "url": "https://github.com/skquievreux/broetchen-wochenende-bestellung"
+    },
+    "technologies": [
+      {
+        "name": "React",
+        "category": "framework",
+        "version": "^19.2.0"
+      },
+      {
+        "name": "TypeScript",
+        "category": "language",
+        "version": "^5.8.2"
+      },
+      {
+        "name": "Tailwind CSS",
+        "category": "tool",
+        "version": "^3.4.11"
+      },
+      {
+        "name": "Supabase",
+        "category": "database",
+        "version": "^2.49.4"
+      },
+      {
+        "name": "Node.js",
+        "category": "language",
+        "version": ">=20.9.0"
+      },
+      {
+        "name": "Docker",
+        "category": "tool",
+        "version": null
+      }
+    ],
+    "interfaces": [
+      {
+        "type": "database_connection",
+        "direction": "outbound",
+        "details": {
+          "service": "Supabase"
+        }
+      },
+      {
+        "type": "cloud_service",
+        "direction": "hosting",
+        "details": {
+          "service": "Fly.io",
+          "variable": "fly.toml"
+        }
+      },
+      {
+        "type": "rest_api",
+        "direction": "outbound",
+        "details": {
+          "snippet": "fetch() calls detected"
+        }
+      },
+      {
+        "type": "cloud_service",
+        "direction": "outbound",
+        "details": {
+          "service": "AWS",
+          "variable": "S3"
+        }
+      }
+    ],
+    "env_vars": [
+      "SUPABASE_SERVICE_ROLE_KEY",
+      "GITHUB_TOKEN",
+      "DASHBOARD_API_KEY",
+      "SUPABASE_ANON_KEY",
+      "VITE_SUPABASE_PUBLISHABLE_KEY",
+      "VITE_SUPABASE_URL",
+      "S3",
+      "SUPABASE",
+      "YOUR_GIT_URL",
+      "SIDEBAR_KEY",
+      "SUPABASE_PUBLISHABLE_KEY",
+      "DASHBOARD_URL",
+      "SUPABASE_URL"
+    ]
+  },
+  {
+    "repo": {
+      "description": "",
+      "id": "R_kgDOPwKNsg",
+      "isPrivate": true,
+      "languages": [
+        {
+          "size": 1382,
+          "node": {
+            "name": "Dockerfile"
+          }
+        },
+        {
+          "size": 24207,
+          "node": {
+            "name": "JavaScript"
+          }
+        },
+        {
+          "size": 4946,
+          "node": {
+            "name": "HTML"
+          }
+        },
+        {
+          "size": 7522,
+          "node": {
+            "name": "CSS"
+          }
+        },
+        {
+          "size": 181006,
+          "node": {
+            "name": "TypeScript"
+          }
+        }
+      ],
+      "name": "visual-flyer-snap",
+      "nameWithOwner": "skquievreux/visual-flyer-snap",
+      "pushedAt": "2025-11-29T19:07:32Z",
+      "updatedAt": "2025-11-29T19:07:36Z",
+      "url": "https://github.com/skquievreux/visual-flyer-snap"
+    },
+    "technologies": [
+      {
+        "name": "React",
+        "category": "framework",
+        "version": "^19.2.0"
+      },
+      {
+        "name": "TypeScript",
+        "category": "language",
+        "version": "^5.8.2"
+      },
+      {
+        "name": "Tailwind CSS",
+        "category": "tool",
+        "version": "^3.4.17"
+      },
+      {
+        "name": "Node.js",
+        "category": "language",
+        "version": ">=20.9.0"
+      }
+    ],
+    "interfaces": [
+      {
+        "type": "cloud_service",
+        "direction": "hosting",
+        "details": {
+          "service": "Fly.io",
+          "variable": "fly.toml"
+        }
+      },
+      {
+        "type": "rest_api",
+        "direction": "outbound",
+        "details": {
+          "snippet": "fetch() calls detected"
+        }
+      },
+      {
+        "type": "cloud_service",
+        "direction": "outbound",
+        "details": {
+          "service": "AWS",
+          "variable": "S3"
+        }
+      },
+      {
+        "type": "database_connection",
+        "direction": "outbound",
+        "details": {
+          "service": "Supabase",
+          "variable": "SUPABASE"
+        }
+      }
+    ],
+    "env_vars": [
+      "API_KEY",
+      "GITHUB_TOKEN",
+      "DASHBOARD_API_KEY",
+      "S3",
+      "SUPABASE",
+      "SIDEBAR_KEY",
+      "DASHBOARD_URL"
+    ]
+  },
+  {
+    "repo": {
+      "description": "",
+      "id": "R_kgDOPI5l6A",
+      "isPrivate": true,
+      "languages": [
+        {
+          "size": 1075,
+          "node": {
+            "name": "JavaScript"
+          }
+        },
+        {
+          "size": 3628,
+          "node": {
+            "name": "HTML"
+          }
+        },
+        {
+          "size": 7407,
+          "node": {
+            "name": "CSS"
+          }
+        },
+        {
+          "size": 249700,
+          "node": {
+            "name": "TypeScript"
+          }
+        },
+        {
+          "size": 887,
+          "node": {
+            "name": "Dockerfile"
+          }
+        }
+      ],
+      "name": "ai-portfolio-fly-website",
+      "nameWithOwner": "skquievreux/ai-portfolio-fly-website",
+      "pushedAt": "2025-11-29T19:06:54Z",
+      "updatedAt": "2025-11-29T19:06:58Z",
+      "url": "https://github.com/skquievreux/ai-portfolio-fly-website"
+    },
+    "technologies": [
+      {
+        "name": "React",
+        "category": "framework",
+        "version": "^19.2.0"
+      },
+      {
+        "name": "TypeScript",
+        "category": "language",
+        "version": "^5.8.2"
+      },
+      {
+        "name": "Tailwind CSS",
+        "category": "tool",
+        "version": "^3.4.11"
+      },
+      {
+        "name": "Node.js",
+        "category": "language",
+        "version": ">=20.9.0"
+      },
+      {
+        "name": "Docker",
+        "category": "tool",
+        "version": null
+      }
+    ],
+    "interfaces": [
+      {
+        "type": "cloud_service",
+        "direction": "hosting",
+        "details": {
+          "service": "Fly.io",
+          "variable": "fly.toml"
+        }
+      },
+      {
+        "type": "cloud_service",
+        "direction": "outbound",
+        "details": {
+          "service": "AWS",
+          "variable": "S3"
+        }
+      },
+      {
+        "type": "database_connection",
+        "direction": "outbound",
+        "details": {
+          "service": "Supabase",
+          "variable": "SUPABASE"
+        }
+      }
+    ],
+    "env_vars": [
+      "GITHUB_TOKEN",
+      "DASHBOARD_API_KEY",
+      "S3",
+      "SUPABASE",
+      "SIDEBAR_KEY",
+      "DASHBOARD_URL",
+      "YOUR_GIT_URL"
+    ]
+  },
+  {
+    "repo": {
+      "description": "",
+      "id": "R_kgDOQTz1pA",
+      "isPrivate": true,
+      "languages": [
+        {
+          "size": 435136,
+          "node": {
+            "name": "TypeScript"
+          }
+        },
+        {
+          "size": 9531,
+          "node": {
+            "name": "JavaScript"
+          }
+        },
+        {
+          "size": 652,
+          "node": {
+            "name": "CSS"
+          }
+        },
+        {
+          "size": 30133,
+          "node": {
+            "name": "HTML"
+          }
+        }
+      ],
+      "name": "albumpromotion",
+      "nameWithOwner": "skquievreux/albumpromotion",
+      "pushedAt": "2025-11-29T19:06:28Z",
+      "updatedAt": "2025-11-29T19:06:31Z",
+      "url": "https://github.com/skquievreux/albumpromotion"
+    },
+    "technologies": [
+      {
+        "name": "React",
+        "category": "framework",
+        "version": "^19.2.0"
+      },
+      {
+        "name": "Next.js",
+        "category": "framework",
+        "version": "^15.5.0"
+      },
+      {
+        "name": "TypeScript",
+        "category": "language",
+        "version": "^5.8.2"
+      },
+      {
+        "name": "Tailwind CSS",
+        "category": "tool",
+        "version": "^3.4.18"
+      },
+      {
+        "name": "Node.js",
+        "category": "language",
+        "version": ">=20.9.0"
+      }
+    ],
+    "interfaces": [
+      {
+        "type": "cloud_service",
+        "direction": "hosting",
+        "details": {
+          "service": "Vercel",
+          "variable": "vercel.json"
+        }
+      },
+      {
+        "type": "rest_api",
+        "direction": "outbound",
+        "details": {
+          "snippet": "fetch() calls detected"
+        }
+      },
+      {
+        "type": "cloud_service",
+        "direction": "outbound",
+        "details": {
+          "service": "AWS",
+          "variable": "AWS"
+        }
+      },
+      {
+        "type": "database_connection",
+        "direction": "outbound",
+        "details": {
+          "service": "Supabase",
+          "variable": "SUPABASE"
+        }
+      }
+    ],
+    "env_vars": [
+      "CLOUD_STORAGE_URL",
+      "GITHUB_TOKEN",
+      "NEXT_PUBLIC_APP_URL",
+      "DASHBOARD_API_KEY",
+      "AWS",
+      "DEFAULT_MINIMUM_TOKEN",
+      "S3",
+      "SUPABASE",
+      "DASHBOARD_URL"
+    ]
+  },
+  {
+    "repo": {
+      "description": "",
+      "id": "R_kgDOPJlwqw",
+      "isPrivate": true,
+      "languages": [
+        {
+          "size": 3882,
+          "node": {
+            "name": "JavaScript"
+          }
+        },
+        {
+          "size": 2403,
+          "node": {
+            "name": "HTML"
+          }
+        },
+        {
+          "size": 7259,
+          "node": {
+            "name": "CSS"
+          }
+        },
+        {
+          "size": 1066447,
+          "node": {
+            "name": "TypeScript"
+          }
+        },
+        {
+          "size": 58133,
+          "node": {
+            "name": "PLpgSQL"
+          }
+        },
+        {
+          "size": 1060,
+          "node": {
+            "name": "Dockerfile"
+          }
+        }
+      ],
+      "name": "agent-dialogue-manager",
+      "nameWithOwner": "skquievreux/agent-dialogue-manager",
+      "pushedAt": "2025-11-29T19:05:45Z",
+      "updatedAt": "2025-11-29T19:05:49Z",
+      "url": "https://github.com/skquievreux/agent-dialogue-manager"
+    },
+    "technologies": [
+      {
+        "name": "React",
+        "category": "framework",
+        "version": "^19.2.0"
+      },
+      {
+        "name": "TypeScript",
+        "category": "language",
+        "version": "^5.8.2"
+      },
+      {
+        "name": "Tailwind CSS",
+        "category": "tool",
+        "version": "^3.4.11"
+      },
+      {
+        "name": "Supabase",
+        "category": "database",
+        "version": "^2.49.4"
+      },
+      {
+        "name": "Node.js",
+        "category": "language",
+        "version": ">=20.9.0"
+      },
+      {
+        "name": "Docker",
+        "category": "tool",
+        "version": null
+      }
+    ],
+    "interfaces": [
+      {
+        "type": "database_connection",
+        "direction": "outbound",
+        "details": {
+          "service": "Supabase"
+        }
+      },
+      {
+        "type": "cloud_service",
+        "direction": "hosting",
+        "details": {
+          "service": "Fly.io",
+          "variable": "fly.toml"
+        }
+      },
+      {
+        "type": "rest_api",
+        "direction": "outbound",
+        "details": {
+          "snippet": "fetch() calls detected"
+        }
+      },
+      {
+        "type": "api_integration",
+        "direction": "outbound",
+        "details": {
+          "service": "OpenAI",
+          "variable": "OPENAI_API_KEY"
+        }
+      },
+      {
+        "type": "cloud_service",
+        "direction": "outbound",
+        "details": {
+          "service": "AWS",
+          "variable": "S3"
+        }
+      }
+    ],
+    "env_vars": [
+      "OPENAI_API_KEY",
+      "SUPABASE_ANON_KEY",
+      "SIDEBAR_KEY",
+      "SUPABASE_SERVICE_ROLE_KEY",
+      "TEST_SUPABASE_ANON_KEY",
+      "S3",
+      "MASTER_ENCRYPTION_KEY",
+      "VITE_SUPABASE_ANON_KEY",
+      "SUPABASE_URL",
+      "DASHBOARD_API_KEY",
+      "YOUR_GIT_URL",
+      "TEST_SUPABASE_URL",
+      "GITHUB_TOKEN",
+      "VITE_SUPABASE_PUBLISHABLE_KEY",
+      "VITE_SUPABASE_URL",
+      "RESEND_API_KEY",
+      "SUPABASE",
+      "SUPABASE_PUBLISHABLE_KEY",
+      "DASHBOARD_URL"
+    ]
+  },
+  {
+    "repo": {
+      "description": "",
+      "id": "R_kgDOO743Qg",
+      "isPrivate": true,
+      "languages": [
+        {
+          "size": 10669,
+          "node": {
+            "name": "JavaScript"
+          }
+        },
+        {
+          "size": 910,
+          "node": {
+            "name": "HTML"
+          }
+        },
+        {
+          "size": 346951,
+          "node": {
+            "name": "TypeScript"
+          }
+        },
+        {
+          "size": 1560,
+          "node": {
+            "name": "CSS"
+          }
+        },
+        {
+          "size": 3126,
+          "node": {
+            "name": "PLpgSQL"
+          }
+        }
+      ],
+      "name": "inspect-sync-scribe",
+      "nameWithOwner": "skquievreux/inspect-sync-scribe",
+      "pushedAt": "2025-11-29T19:05:26Z",
+      "updatedAt": "2025-11-29T19:05:31Z",
+      "url": "https://github.com/skquievreux/inspect-sync-scribe"
+    },
+    "technologies": [
+      {
+        "name": "React",
+        "category": "framework",
+        "version": "^19.2.0"
+      },
+      {
+        "name": "TypeScript",
+        "category": "language",
+        "version": "^5.8.2"
+      },
+      {
+        "name": "Tailwind CSS",
+        "category": "tool",
+        "version": "^3.4.11"
+      },
+      {
+        "name": "Supabase",
+        "category": "database",
+        "version": "^2.49.4"
+      },
+      {
+        "name": "Node.js",
+        "category": "language",
+        "version": ">=20.9.0"
+      }
+    ],
+    "interfaces": [
+      {
+        "type": "database_connection",
+        "direction": "outbound",
+        "details": {
+          "service": "Supabase"
+        }
+      },
+      {
+        "type": "cloud_service",
+        "direction": "hosting",
+        "details": {
+          "service": "Vercel",
+          "variable": "vercel.json"
+        }
+      },
+      {
+        "type": "rest_api",
+        "direction": "outbound",
+        "details": {
+          "snippet": "fetch() calls detected"
+        }
+      },
+      {
+        "type": "cloud_service",
+        "direction": "outbound",
+        "details": {
+          "service": "AWS",
+          "variable": "AWS"
+        }
+      },
+      {
+        "type": "api_integration",
+        "direction": "outbound",
+        "details": {
+          "service": "OpenAI",
+          "variable": "OPENAI_API_KEY"
+        }
+      }
+    ],
+    "env_vars": [
+      "AWS_ACCESS_KEY",
+      "OPENAI_API_KEY",
+      "SUPABASE_DB_URL",
+      "SUPABASE_ANON_KEY",
+      "SIDEBAR_KEY",
+      "AWS_ENDPOINT_URL",
+      "SUPABASE_SERVICE_ROLE_KEY",
+      "R2_ACCESS_KEY",
+      "S3",
+      "AWS_SECRET_ACCESS_KEY",
+      "R2_SECRET_ACCESS_KEY",
+      "SUPABASE_URL",
+      "DASHBOARD_API_KEY",
+      "DEFAULT_MINIMUM_TOKEN",
+      "R2_PUBLIC_URL",
+      "GITHUB_TOKEN",
+      "AWS",
+      "SUPABASE",
+      "SUPABASE_PUBLISHABLE_KEY",
+      "DASHBOARD_URL"
+    ]
+  },
+  {
+    "repo": {
+      "description": "",
+      "id": "R_kgDOQIWOrA",
+      "isPrivate": true,
+      "languages": [
+        {
+          "size": 6044,
+          "node": {
+            "name": "PLpgSQL"
+          }
+        },
+        {
+          "size": 61251,
+          "node": {
+            "name": "JavaScript"
+          }
+        },
+        {
+          "size": 232060,
+          "node": {
+            "name": "TypeScript"
+          }
+        },
+        {
+          "size": 12102,
+          "node": {
+            "name": "CSS"
+          }
+        },
+        {
+          "size": 99,
+          "node": {
+            "name": "Batchfile"
+          }
+        }
+      ],
+      "name": "melody-maker",
+      "nameWithOwner": "skquievreux/melody-maker",
+      "pushedAt": "2025-11-29T19:02:23Z",
+      "updatedAt": "2025-11-29T19:01:23Z",
+      "url": "https://github.com/skquievreux/melody-maker"
+    },
+    "technologies": [
+      {
+        "name": "React",
+        "category": "framework",
+        "version": "^19.2.0"
+      },
+      {
+        "name": "Next.js",
+        "category": "framework",
+        "version": "^15.5.6"
+      },
+      {
+        "name": "TypeScript",
+        "category": "language",
+        "version": "^5"
+      },
+      {
+        "name": "Tailwind CSS",
+        "category": "tool",
+        "version": "^4.1.16"
+      },
+      {
+        "name": "Supabase",
+        "category": "database",
+        "version": "^2.49.4"
+      },
+      {
+        "name": "Node.js",
+        "category": "language",
+        "version": ">=20.9.0"
+      }
+    ],
+    "interfaces": [
+      {
+        "type": "database_connection",
+        "direction": "outbound",
+        "details": {
+          "service": "Supabase"
+        }
+      },
+      {
+        "type": "cloud_service",
+        "direction": "hosting",
+        "details": {
+          "service": "Vercel",
+          "variable": "vercel.json"
+        }
+      },
+      {
+        "type": "rest_api",
+        "direction": "outbound",
+        "details": {
+          "snippet": "fetch() calls detected"
+        }
+      },
+      {
+        "type": "cloud_service",
+        "direction": "outbound",
+        "details": {
+          "service": "AWS",
+          "variable": "AWS"
+        }
+      },
+      {
+        "type": "payment_gateway",
+        "direction": "outbound",
+        "details": {
+          "service": "Stripe",
+          "variable": "NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY"
+        }
+      }
+    ],
+    "env_vars": [
+      "NEXT_PUBLIC_SUPABASE_URL",
+      "NEXT_PUBLIC_SUPABASE_ANON_KEY",
+      "NEXT_PUBLIC_APP_URL",
+      "BASE_URL",
+      "MAKE_WEBHOOK_URL",
+      "FAL_API_KEY",
+      "LANDING_PAGE_API_KEY",
+      "KIAI_API_KEY",
+      "NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY",
+      "DASHBOARD_API_KEY",
+      "DEFAULT_MINIMUM_TOKEN",
+      "ELEVENLABS_API_KEY",
+      "LANDING_PAGE_API_URL",
+      "CLOUDFLARE_R2_ACCESS_KEY",
+      "FAL_KEY",
+      "CLOUDFLARE_R2_SECRET_ACCESS_KEY",
+      "GITHUB_TOKEN",
+      "AWS",
+      "APP_URL",
+      "DASHBOARD_URL"
+    ]
+  },
+  {
+    "repo": {
+      "description": "",
+      "id": "R_kgDOO7lroQ",
+      "isPrivate": true,
+      "languages": [
+        {
+          "size": 869,
+          "node": {
+            "name": "JavaScript"
+          }
+        },
+        {
+          "size": 1059,
+          "node": {
+            "name": "HTML"
+          }
+        },
+        {
+          "size": 2817,
+          "node": {
+            "name": "CSS"
+          }
+        },
+        {
+          "size": 377121,
+          "node": {
+            "name": "TypeScript"
+          }
+        },
+        {
+          "size": 44611,
+          "node": {
+            "name": "PLpgSQL"
+          }
+        },
+        {
+          "size": 987,
+          "node": {
+            "name": "Dockerfile"
+          }
+        }
+      ],
+      "name": "clip-sync-collab",
+      "nameWithOwner": "skquievreux/clip-sync-collab",
+      "pushedAt": "2025-11-29T19:01:57Z",
+      "updatedAt": "2025-11-29T19:02:01Z",
+      "url": "https://github.com/skquievreux/clip-sync-collab"
+    },
+    "technologies": [
+      {
+        "name": "React",
+        "category": "framework",
+        "version": "^19.2.0"
+      },
+      {
+        "name": "TypeScript",
+        "category": "language",
+        "version": "^5.8.2"
+      },
+      {
+        "name": "Tailwind CSS",
+        "category": "tool",
+        "version": "^3.4.11"
+      },
+      {
+        "name": "Supabase",
+        "category": "database",
+        "version": "^2.49.4"
+      },
+      {
+        "name": "Node.js",
+        "category": "language",
+        "version": ">=20.9.0"
+      },
+      {
+        "name": "Docker",
+        "category": "tool",
+        "version": null
+      }
+    ],
+    "interfaces": [
+      {
+        "type": "database_connection",
+        "direction": "outbound",
+        "details": {
+          "service": "Supabase"
+        }
+      },
+      {
+        "type": "cloud_service",
+        "direction": "hosting",
+        "details": {
+          "service": "Fly.io",
+          "variable": "fly.toml"
+        }
+      },
+      {
+        "type": "cloud_service",
+        "direction": "outbound",
+        "details": {
+          "service": "AWS",
+          "variable": "S3"
+        }
+      }
+    ],
+    "env_vars": [
+      "GITHUB_TOKEN",
+      "DASHBOARD_API_KEY",
+      "VITE_SUPABASE_PUBLISHABLE_KEY",
+      "VITE_SUPABASE_URL",
+      "S3",
+      "SUPABASE",
+      "YOUR_GIT_URL",
+      "SIDEBAR_KEY",
+      "SUPABASE_PUBLISHABLE_KEY",
+      "DASHBOARD_URL",
+      "SUPABASE_URL"
+    ]
+  },
+  {
+    "repo": {
+      "description": "",
+      "id": "R_kgDOP350CA",
+      "isPrivate": true,
+      "languages": [
+        {
+          "size": 8209,
+          "node": {
+            "name": "JavaScript"
+          }
+        },
+        {
+          "size": 377719,
+          "node": {
+            "name": "TypeScript"
+          }
+        },
+        {
+          "size": 15615,
+          "node": {
+            "name": "CSS"
+          }
+        }
+      ],
+      "name": "youtube-landing-page",
+      "nameWithOwner": "skquievreux/youtube-landing-page",
+      "pushedAt": "2025-11-29T18:59:16Z",
+      "updatedAt": "2025-11-29T18:58:12Z",
+      "url": "https://github.com/skquievreux/youtube-landing-page"
+    },
+    "technologies": [
+      {
+        "name": "React",
+        "category": "framework",
+        "version": "^19.2.0"
+      },
+      {
+        "name": "Next.js",
+        "category": "framework",
+        "version": "15.5.4"
+      },
+      {
+        "name": "TypeScript",
+        "category": "language",
+        "version": "^5.8.2"
+      },
+      {
+        "name": "Tailwind CSS",
+        "category": "tool",
+        "version": "^4"
+      },
+      {
+        "name": "Supabase",
+        "category": "database",
+        "version": "^2.49.4"
+      },
+      {
+        "name": "Node.js",
+        "category": "language",
+        "version": ">=20.9.0"
+      }
+    ],
+    "interfaces": [
+      {
+        "type": "database_connection",
+        "direction": "outbound",
+        "details": {
+          "service": "Supabase"
+        }
+      },
+      {
+        "type": "cloud_service",
+        "direction": "hosting",
+        "details": {
+          "service": "Vercel",
+          "variable": "vercel.json"
+        }
+      },
+      {
+        "type": "rest_api",
+        "direction": "outbound",
+        "details": {
+          "snippet": "fetch() calls detected"
+        }
+      },
+      {
+        "type": "cloud_service",
+        "direction": "outbound",
+        "details": {
+          "service": "AWS",
+          "variable": "AWS"
+        }
+      }
+    ],
+    "env_vars": [
+      "SUPABASE_SERVICE_ROLE_KEY",
+      "GITHUB_TOKEN",
+      "DEIN_API_KEY",
+      "AWS",
+      "DASHBOARD_API_KEY",
+      "NEXT_PUBLIC_API_URL",
+      "SENDFOX_BASE_URL",
+      "YOUR_API_KEY",
+      "API_BASE_URL",
+      "S3",
+      "SENDFOX_API_KEY",
+      "SUPABASE",
+      "NEXT_PUBLIC_SUPABASE_URL",
+      "DASHBOARD_URL",
+      "NEXT_PUBLIC_SUPABASE_ANON_KEY",
+      "YOUR_SERVICE_ROLE_KEY"
+    ]
+  },
+  {
+    "repo": {
+      "description": "Github Review of all deployed vibe coded apps",
+      "id": "R_kgDOQfSXfg",
+      "isPrivate": false,
+      "languages": [
+        {
+          "size": 212172,
+          "node": {
+            "name": "TypeScript"
+          }
+        },
+        {
+          "size": 967,
+          "node": {
+            "name": "CSS"
+          }
+        },
+        {
+          "size": 96199,
+          "node": {
+            "name": "JavaScript"
+          }
+        },
+        {
+          "size": 796,
+          "node": {
+            "name": "Shell"
+          }
+        }
+      ],
+      "name": "vibecoder-architect-reviewer",
+      "nameWithOwner": "skquievreux/vibecoder-architect-reviewer",
+      "pushedAt": "2025-11-29T18:41:13Z",
+      "updatedAt": "2025-11-29T18:41:17Z",
+      "url": "https://github.com/skquievreux/vibecoder-architect-reviewer"
+    },
+    "technologies": [
+      {
+        "name": "React",
+        "category": "framework",
+        "version": "19.2.0"
+      },
+      {
+        "name": "Next.js",
+        "category": "framework",
+        "version": "16.0.5"
+      },
+      {
+        "name": "TypeScript",
+        "category": "language",
+        "version": "^5.8.2"
+      },
+      {
+        "name": "Tailwind CSS",
+        "category": "tool",
+        "version": "^3.4.18"
+      },
+      {
+        "name": "Supabase",
+        "category": "database",
+        "version": "^2.49.4"
+      },
+      {
+        "name": "Node.js",
+        "category": "language",
+        "version": ">=20.9.0"
+      }
+    ],
+    "interfaces": [
+      {
+        "type": "database_connection",
+        "direction": "outbound",
+        "details": {
+          "service": "Supabase"
+        }
+      },
+      {
+        "type": "rest_api",
+        "direction": "outbound",
+        "details": {
+          "snippet": "fetch() calls detected"
+        }
+      },
+      {
+        "type": "cloud_service",
+        "direction": "outbound",
+        "details": {
+          "service": "AWS",
+          "variable": "AWS"
+        }
+      },
+      {
+        "type": "database_connection",
+        "direction": "outbound",
+        "details": {
+          "service": "Database",
+          "variable": "DATABASE_URL"
+        }
+      },
+      {
+        "type": "api_integration",
+        "direction": "outbound",
+        "details": {
+          "service": "OpenAI",
+          "variable": "OPENAI_API_KEY"
+        }
+      }
+    ],
+    "env_vars": [
+      "OPENAI_API_KEY",
+      "SPOTIFY_CLIENT_SECRET",
+      "GITHUB_TOKEN",
+      "VERCEL_TOKEN",
+      "YOUR_DASHBOARD_URL",
+      "DASHBOARD_API_KEY",
+      "AWS",
+      "BASE_URL",
+      "NPM_TOKEN",
+      "PERPLEXITY_API_KEY",
+      "S3",
+      "SUPABASE",
+      "DASHBOARD_URL",
+      "VERCEL_API_TOKEN",
+      "CLOUDFLARE_API_TOKEN",
+      "PERPLEXITY_API_TOKEN",
+      "DATABASE_URL"
+    ]
+  },
+  {
+    "repo": {
+      "description": "Erstellung und bearbeitung von Bildern f\u00fcr Social Media",
+      "id": "R_kgDOPy52AQ",
+      "isPrivate": true,
+      "languages": [
+        {
+          "size": 127703,
+          "node": {
+            "name": "JavaScript"
+          }
+        },
+        {
+          "size": 1121,
+          "node": {
+            "name": "Shell"
+          }
+        },
+        {
+          "size": 3522,
+          "node": {
+            "name": "PLpgSQL"
+          }
+        }
+      ],
+      "name": "DreamEdit",
+      "nameWithOwner": "skquievreux/DreamEdit",
+      "pushedAt": "2025-11-29T18:13:41Z",
+      "updatedAt": "2025-11-29T18:13:43Z",
+      "url": "https://github.com/skquievreux/DreamEdit"
+    },
+    "technologies": [
+      {
+        "name": "React",
+        "category": "framework",
+        "version": "^19.2.0"
+      },
+      {
+        "name": "Next.js",
+        "category": "framework",
+        "version": "^16.0.1"
+      },
+      {
+        "name": "Supabase",
+        "category": "database",
+        "version": "^2.49.4"
+      },
+      {
+        "name": "Node.js",
+        "category": "language",
+        "version": ">=20.9.0"
+      }
+    ],
+    "interfaces": [
+      {
+        "type": "database_connection",
+        "direction": "outbound",
+        "details": {
+          "service": "Supabase"
+        }
+      },
+      {
+        "type": "cloud_service",
+        "direction": "hosting",
+        "details": {
+          "service": "Vercel",
+          "variable": "vercel.json"
+        }
+      },
+      {
+        "type": "rest_api",
+        "direction": "outbound",
+        "details": {
+          "snippet": "fetch() calls detected"
+        }
+      },
+      {
+        "type": "cloud_service",
+        "direction": "outbound",
+        "details": {
+          "service": "AWS",
+          "variable": "AWS"
+        }
+      }
+    ],
+    "env_vars": [
+      "CSRF_TOKEN",
+      "NEXT_PUBLIC_BASE_URL",
+      "ENCRYPTION_KEY",
+      "NEXT_PUBLIC_SUPABASE_URL",
+      "NEXT_PUBLIC_SUPABASE_ANON_KEY",
+      "STAGING_SUPABASE_URL",
+      "SESSION_KEY",
+      "STAGING_SUPABASE_ANON_KEY",
+      "NEXT_PUBLIC_APP_URL",
+      "S3",
+      "FAL_API_KEY",
+      "CSRF_SECRET",
+      "DASHBOARD_API_KEY",
+      "SLACK_WEBHOOK_URL",
+      "FAL_KEY",
+      "DATADOG_API_KEY",
+      "GITHUB_TOKEN",
+      "AWS",
+      "SUPABASE",
+      "DASHBOARD_URL"
+    ]
+  },
+  {
+    "repo": {
+      "description": "",
+      "id": "R_kgDOPLUY6A",
+      "isPrivate": true,
+      "languages": [
+        {
+          "size": 2398,
+          "node": {
+            "name": "HTML"
+          }
+        },
+        {
+          "size": 110306,
+          "node": {
+            "name": "JavaScript"
+          }
+        },
+        {
+          "size": 18709,
+          "node": {
+            "name": "CSS"
+          }
+        },
+        {
+          "size": 2924,
+          "node": {
+            "name": "Shell"
+          }
+        }
+      ],
+      "name": "OsteoConnect",
+      "nameWithOwner": "skquievreux/OsteoConnect",
+      "pushedAt": "2025-11-29T17:19:23Z",
+      "updatedAt": "2025-11-29T17:11:04Z",
+      "url": "https://github.com/skquievreux/OsteoConnect"
+    },
+    "technologies": [
+      {
+        "name": "React",
+        "category": "framework",
+        "version": "^19.2.0"
+      },
+      {
+        "name": "Next.js",
+        "category": "framework",
+        "version": "^15.5.4"
+      },
+      {
+        "name": "Supabase",
+        "category": "database",
+        "version": "^2.49.4"
+      },
+      {
+        "name": "Node.js",
+        "category": "language",
+        "version": ">=20.9.0"
+      }
+    ],
+    "interfaces": [
+      {
+        "type": "database_connection",
+        "direction": "outbound",
+        "details": {
+          "service": "Supabase"
+        }
+      },
+      {
+        "type": "rest_api",
+        "direction": "outbound",
+        "details": {
+          "snippet": "fetch() calls detected"
+        }
+      },
+      {
+        "type": "cloud_service",
+        "direction": "outbound",
+        "details": {
+          "service": "AWS",
+          "variable": "AWS"
+        }
+      }
+    ],
+    "env_vars": [
+      "SUPABASE_SERVICE_ROLE_KEY",
+      "GITHUB_TOKEN",
+      "DASHBOARD_API_KEY",
+      "AWS",
+      "PRAXIS_URL",
+      "BASE_URL",
+      "CACHE_URL",
+      "ELEVENLABS_API_KEY",
+      "NEXT_PUBLIC_BASE_URL",
+      "S3",
+      "SESSION_SECRET",
+      "SUPABASE",
+      "NEXT_PUBLIC_SUPABASE_URL",
+      "DASHBOARD_URL",
+      "NEXT_PUBLIC_SUPABASE_ANON_KEY"
+    ]
+  },
+  {
+    "repo": {
+      "description": "Erstellung von Bildern mit den neuen Nano Banana Modell",
+      "id": "R_kgDOQenEvQ",
+      "isPrivate": true,
+      "languages": [
+        {
+          "size": 79204,
+          "node": {
+            "name": "TypeScript"
+          }
+        },
+        {
+          "size": 1125,
+          "node": {
+            "name": "HTML"
+          }
+        }
+      ],
+      "name": "Google-Visual-Story-Generator-",
+      "nameWithOwner": "skquievreux/Google-Visual-Story-Generator-",
+      "pushedAt": "2025-11-29T17:12:56Z",
+      "updatedAt": "2025-11-29T17:13:01Z",
+      "url": "https://github.com/skquievreux/Google-Visual-Story-Generator-"
+    },
+    "technologies": [
+      {
+        "name": "React",
+        "category": "framework",
+        "version": "^19.2.0"
+      },
+      {
+        "name": "TypeScript",
+        "category": "language",
+        "version": "~5.8.2"
+      },
+      {
+        "name": "Node.js",
+        "category": "language",
+        "version": null
+      }
+    ],
+    "interfaces": [
+      {
+        "type": "cloud_service",
+        "direction": "outbound",
+        "details": {
+          "service": "AWS",
+          "variable": "S3"
+        }
+      }
+    ],
+    "env_vars": [
+      "API_KEY",
+      "DASHBOARD_API_KEY",
+      "S3",
+      "STORAGE_KEY",
+      "DASHBOARD_URL"
+    ]
+  },
+  {
+    "repo": {
+      "description": "",
+      "id": "R_kgDOQbTIJQ",
+      "isPrivate": true,
+      "languages": [
+        {
+          "size": 7245,
+          "node": {
+            "name": "JavaScript"
+          }
+        },
+        {
+          "size": 394427,
+          "node": {
+            "name": "TypeScript"
+          }
+        },
+        {
+          "size": 2946,
+          "node": {
+            "name": "Shell"
+          }
+        },
+        {
+          "size": 348,
+          "node": {
+            "name": "CSS"
+          }
+        },
+        {
+          "size": 558447,
+          "node": {
+            "name": "HTML"
+          }
+        }
+      ],
+      "name": "playlist_generator",
+      "nameWithOwner": "skquievreux/playlist_generator",
+      "pushedAt": "2025-11-29T17:12:55Z",
+      "updatedAt": "2025-11-29T17:11:53Z",
+      "url": "https://github.com/skquievreux/playlist_generator"
+    },
+    "technologies": [
+      {
+        "name": "React",
+        "category": "framework",
+        "version": "^19.2.0"
+      },
+      {
+        "name": "Next.js",
+        "category": "framework",
+        "version": "^15.0.0"
+      },
+      {
+        "name": "TypeScript",
+        "category": "language",
+        "version": "^5.8.2"
+      },
+      {
+        "name": "Tailwind CSS",
+        "category": "tool",
+        "version": "^3.4.0"
+      },
+      {
+        "name": "Node.js",
+        "category": "language",
+        "version": ">=20.9.0"
+      }
+    ],
+    "interfaces": [
+      {
+        "type": "cloud_service",
+        "direction": "hosting",
+        "details": {
+          "service": "Vercel",
+          "variable": "vercel.json"
+        }
+      },
+      {
+        "type": "rest_api",
+        "direction": "outbound",
+        "details": {
+          "snippet": "fetch() calls detected"
+        }
+      },
+      {
+        "type": "cloud_service",
+        "direction": "outbound",
+        "details": {
+          "service": "AWS",
+          "variable": "AWS"
+        }
+      },
+      {
+        "type": "database_connection",
+        "direction": "outbound",
+        "details": {
+          "service": "Database",
+          "variable": "DATABASE_URL"
+        }
+      },
+      {
+        "type": "payment_gateway",
+        "direction": "outbound",
+        "details": {
+          "service": "Stripe",
+          "variable": "NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY"
+        }
+      },
+      {
+        "type": "api_integration",
+        "direction": "outbound",
+        "details": {
+          "service": "OpenAI",
+          "variable": "OPENAI_API_KEY"
+        }
+      },
+      {
+        "type": "database_connection",
+        "direction": "outbound",
+        "details": {
+          "service": "Supabase",
+          "variable": "SUPABASE"
+        }
+      }
+    ],
+    "env_vars": [
+      "OPENAI_API_KEY",
+      "STRIPE_WEBHOOK_SECRET",
+      "YOUR_SECRET",
+      "GITHUB_CLIENT_SECRET",
+      "STRIPE_SECRET_KEY",
+      "S3",
+      "GOOGLE_CLIENT_SECRET",
+      "NEXTAUTH_URL",
+      "DATABASE_URL",
+      "SPOTIFY_CLIENT_SECRET",
+      "NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY",
+      "DASHBOARD_API_KEY",
+      "DEFAULT_MINIMUM_TOKEN",
+      "REPLICATE_API_TOKEN",
+      "GITHUB_TOKEN",
+      "NEXTAUTH_SECRET",
+      "AWS",
+      "RESEND_API_KEY",
+      "SUPABASE",
+      "DASHBOARD_URL"
+    ]
+  },
+  {
+    "repo": {
+      "description": "",
+      "id": "R_kgDOP0fDbQ",
+      "isPrivate": true,
+      "languages": [
+        {
+          "size": 605,
+          "node": {
+            "name": "JavaScript"
+          }
+        },
+        {
+          "size": 70481,
+          "node": {
+            "name": "TypeScript"
+          }
+        },
+        {
+          "size": 488,
+          "node": {
+            "name": "CSS"
+          }
+        },
+        {
+          "size": 986,
+          "node": {
+            "name": "PLpgSQL"
+          }
+        }
+      ],
+      "name": "Audio-Transkriptor",
+      "nameWithOwner": "skquievreux/Audio-Transkriptor",
+      "pushedAt": "2025-11-29T17:11:28Z",
+      "updatedAt": "2025-11-29T17:10:30Z",
+      "url": "https://github.com/skquievreux/Audio-Transkriptor"
+    },
+    "technologies": [
+      {
+        "name": "React",
+        "category": "framework",
+        "version": "^19.2.0"
+      },
+      {
+        "name": "Next.js",
+        "category": "framework",
+        "version": "15.5.3"
+      },
+      {
+        "name": "TypeScript",
+        "category": "language",
+        "version": "^5.8.2"
+      },
+      {
+        "name": "Tailwind CSS",
+        "category": "tool",
+        "version": "^4"
+      },
+      {
+        "name": "Supabase",
+        "category": "database",
+        "version": "^2.49.4"
+      },
+      {
+        "name": "Node.js",
+        "category": "language",
+        "version": ">=20.9.0"
+      }
+    ],
+    "interfaces": [
+      {
+        "type": "database_connection",
+        "direction": "outbound",
+        "details": {
+          "service": "Supabase"
+        }
+      },
+      {
+        "type": "rest_api",
+        "direction": "outbound",
+        "details": {
+          "snippet": "fetch() calls detected"
+        }
+      },
+      {
+        "type": "api_integration",
+        "direction": "outbound",
+        "details": {
+          "service": "OpenAI",
+          "variable": "OPENAI_API_KEY"
+        }
+      },
+      {
+        "type": "cloud_service",
+        "direction": "outbound",
+        "details": {
+          "service": "AWS",
+          "variable": "S3"
+        }
+      },
+      {
+        "type": "cache",
+        "direction": "outbound",
+        "details": {
+          "service": "Redis",
+          "variable": "UPSTASH_REDIS_REST_TOKEN"
+        }
+      }
+    ],
+    "env_vars": [
+      "OPENAI_API_KEY",
+      "SUPABASE_SERVICE_ROLE_KEY",
+      "GITHUB_TOKEN",
+      "DASHBOARD_API_KEY",
+      "S3",
+      "SUPABASE",
+      "UPSTASH_REDIS_REST_TOKEN",
+      "NEXT_PUBLIC_SUPABASE_URL",
+      "DASHBOARD_URL",
+      "NEXT_PUBLIC_SUPABASE_ANON_KEY",
+      "UPSTASH_REDIS_REST_URL"
+    ]
+  },
+  {
+    "repo": {
+      "description": "",
+      "id": "R_kgDOP63A0g",
+      "isPrivate": true,
+      "languages": [
+        {
+          "size": 3752,
+          "node": {
+            "name": "JavaScript"
+          }
+        },
+        {
+          "size": 150365,
+          "node": {
+            "name": "TypeScript"
+          }
+        },
+        {
+          "size": 488,
+          "node": {
+            "name": "CSS"
+          }
+        },
+        {
+          "size": 8347,
+          "node": {
+            "name": "PLpgSQL"
+          }
+        }
+      ],
+      "name": "visualimagecomposer",
+      "nameWithOwner": "skquievreux/visualimagecomposer",
+      "pushedAt": "2025-11-29T17:03:35Z",
+      "updatedAt": "2025-11-29T17:02:33Z",
+      "url": "https://github.com/skquievreux/visualimagecomposer"
+    },
+    "technologies": [
+      {
+        "name": "React",
+        "category": "framework",
+        "version": "^19.2.0"
+      },
+      {
+        "name": "Next.js",
+        "category": "framework",
+        "version": "15.5.4"
+      },
+      {
+        "name": "TypeScript",
+        "category": "language",
+        "version": "^5.8.2"
+      },
+      {
+        "name": "Tailwind CSS",
+        "category": "tool",
+        "version": "^4"
+      },
+      {
+        "name": "Supabase",
+        "category": "database",
+        "version": "^2.49.4"
+      },
+      {
+        "name": "Node.js",
+        "category": "language",
+        "version": ">=20.9.0"
+      }
+    ],
+    "interfaces": [
+      {
+        "type": "database_connection",
+        "direction": "outbound",
+        "details": {
+          "service": "Supabase"
+        }
+      },
+      {
+        "type": "rest_api",
+        "direction": "outbound",
+        "details": {
+          "snippet": "fetch() calls detected"
+        }
+      },
+      {
+        "type": "cloud_service",
+        "direction": "outbound",
+        "details": {
+          "service": "AWS",
+          "variable": "S3"
+        }
+      }
+    ],
+    "env_vars": [
+      "YOUR_REPLICATE_API_TOKEN",
+      "REPLICATE_API_TOKEN",
+      "GITHUB_TOKEN",
+      "ASPECT_RATIO_KEY",
+      "DASHBOARD_API_KEY",
+      "DEFAULT_MINIMUM_TOKEN",
+      "YOUR_FAL_KEY",
+      "STYLES_KEY",
+      "S3",
+      "MODEL_KEY",
+      "CAMERAS_KEY",
+      "GENERATION_LOGS_KEY",
+      "SUPABASE",
+      "NEXT_PUBLIC_SUPABASE_URL",
+      "DASHBOARD_URL",
+      "NEXT_PUBLIC_SUPABASE_ANON_KEY",
+      "FAL_KEY",
+      "PROMPT_KEY"
+    ]
+  },
+  {
+    "repo": {
+      "description": "",
+      "id": "R_kgDOQBDhtw",
+      "isPrivate": false,
+      "languages": [
+        {
+          "size": 85323,
+          "node": {
+            "name": "Python"
+          }
+        },
+        {
+          "size": 12653,
+          "node": {
+            "name": "HTML"
+          }
+        }
+      ],
+      "name": "audio-mastering",
+      "nameWithOwner": "skquievreux/audio-mastering",
+      "pushedAt": "2025-11-29T16:52:00Z",
+      "updatedAt": "2025-11-29T16:52:03Z",
+      "url": "https://github.com/skquievreux/audio-mastering"
+    },
+    "technologies": [
+      {
+        "name": "Node.js",
+        "category": "language",
+        "version": "v20.18.0"
+      },
+      {
+        "name": "Python",
+        "category": "language",
+        "version": null
+      },
+      {
+        "name": "Flask",
+        "category": "framework",
+        "version": null
+      }
+    ],
+    "interfaces": [
+      {
+        "type": "rest_api",
+        "direction": "outbound",
+        "details": {
+          "snippet": "fetch() calls detected"
+        }
+      },
+      {
+        "type": "cloud_service",
+        "direction": "outbound",
+        "details": {
+          "service": "AWS",
+          "variable": "S3"
+        }
+      },
+      {
+        "type": "database_connection",
+        "direction": "outbound",
+        "details": {
+          "service": "Supabase",
+          "variable": "SUPABASE"
+        }
+      }
+    ],
+    "env_vars": [
+      "GITHUB_TOKEN",
+      "DASHBOARD_API_KEY",
+      "S3",
+      "SUPABASE",
+      "DASHBOARD_URL"
+    ]
+  },
+  {
+    "repo": {
+      "description": "",
+      "id": "R_kgDOPi1iDQ",
+      "isPrivate": true,
+      "languages": [
+        {
+          "size": 120335,
+          "node": {
+            "name": "JavaScript"
+          }
+        }
+      ],
+      "name": "ballermanni-video-generator",
+      "nameWithOwner": "skquievreux/ballermanni-video-generator",
+      "pushedAt": "2025-11-29T16:51:50Z",
+      "updatedAt": "2025-11-29T16:51:53Z",
+      "url": "https://github.com/skquievreux/ballermanni-video-generator"
+    },
+    "technologies": [
+      {
+        "name": "Node.js",
+        "category": "language",
+        "version": ">=20.9.0"
+      }
+    ],
+    "interfaces": [
+      {
+        "type": "rest_api",
+        "direction": "outbound",
+        "details": {
+          "snippet": "fetch() calls detected"
+        }
+      },
+      {
+        "type": "database_connection",
+        "direction": "outbound",
+        "details": {
+          "service": "Supabase",
+          "variable": "SUPABASE"
+        }
+      }
+    ],
+    "env_vars": [
+      "REPLICATE_API_TOKEN",
+      "GITHUB_TOKEN",
+      "DASHBOARD_API_KEY",
+      "BASE_URL",
+      "SUPABASE",
+      "DASHBOARD_URL",
+      "YOUR_REPLICATE_TOKEN",
+      "YOUR_API_TOKEN"
+    ]
+  },
+  {
+    "repo": {
+      "description": "",
+      "id": "R_kgDOQLb6AQ",
+      "isPrivate": false,
+      "languages": [
+        {
+          "size": 98319,
+          "node": {
+            "name": "Python"
+          }
+        }
+      ],
+      "name": "colab-monk-generator",
+      "nameWithOwner": "skquievreux/colab-monk-generator",
+      "pushedAt": "2025-11-29T16:51:45Z",
+      "updatedAt": "2025-11-29T16:51:48Z",
+      "url": "https://github.com/skquievreux/colab-monk-generator"
+    },
+    "technologies": [
+      {
+        "name": "Node.js",
+        "category": "language",
+        "version": "v20.18.0"
+      },
+      {
+        "name": "Python",
+        "category": "language",
+        "version": null
+      }
+    ],
+    "interfaces": [
+      {
+        "type": "database_connection",
+        "direction": "outbound",
+        "details": {
+          "service": "Supabase",
+          "variable": "SUPABASE"
+        }
+      }
+    ],
+    "env_vars": [
+      "API_KEY",
+      "DEMO_AUDIO_URL",
+      "GITHUB_TOKEN",
+      "DASHBOARD_API_KEY",
+      "DEFAULT_MINIMUM_TOKEN",
+      "REPO_URL",
+      "ELEVENLABS_API_KEY",
+      "SUPABASE",
+      "DASHBOARD_URL"
+    ]
+  },
+  {
+    "repo": {
+      "description": "",
+      "id": "R_kgDOOu1oqw",
+      "isPrivate": true,
+      "languages": [
+        {
+          "size": 693,
+          "node": {
+            "name": "HTML"
+          }
+        },
+        {
+          "size": 3636,
+          "node": {
+            "name": "JavaScript"
+          }
+        },
+        {
+          "size": 2938,
+          "node": {
+            "name": "CSS"
+          }
+        }
+      ],
+      "name": "comicgenerator",
+      "nameWithOwner": "skquievreux/comicgenerator",
+      "pushedAt": "2025-11-29T16:51:42Z",
+      "updatedAt": "2025-11-29T16:51:45Z",
+      "url": "https://github.com/skquievreux/comicgenerator"
+    },
+    "technologies": [
+      {
+        "name": "Node.js",
+        "category": "language",
+        "version": "v20.18.0"
+      }
+    ],
+    "interfaces": [
+      {
+        "type": "rest_api",
+        "direction": "outbound",
+        "details": {
+          "snippet": "fetch() calls detected"
+        }
+      },
+      {
+        "type": "database_connection",
+        "direction": "outbound",
+        "details": {
+          "service": "Supabase",
+          "variable": "SUPABASE"
+        }
+      }
+    ],
+    "env_vars": [
+      "SUPABASE",
+      "GITHUB_TOKEN",
+      "DASHBOARD_URL",
+      "DASHBOARD_API_KEY"
+    ]
+  },
+  {
+    "repo": {
+      "description": "",
+      "id": "R_kgDOO0kTkw",
+      "isPrivate": true,
+      "languages": [
+        {
+          "size": 6071,
+          "node": {
+            "name": "HTML"
+          }
+        },
+        {
+          "size": 36494,
+          "node": {
+            "name": "JavaScript"
+          }
+        },
+        {
+          "size": 14456,
+          "node": {
+            "name": "CSS"
+          }
+        },
+        {
+          "size": 25274,
+          "node": {
+            "name": "Python"
+          }
+        },
+        {
+          "size": 3504,
+          "node": {
+            "name": "Shell"
+          }
+        }
+      ],
+      "name": "comicgenerator-techeroes",
+      "nameWithOwner": "skquievreux/comicgenerator-techeroes",
+      "pushedAt": "2025-11-29T16:51:39Z",
+      "updatedAt": "2025-11-29T16:51:43Z",
+      "url": "https://github.com/skquievreux/comicgenerator-techeroes"
+    },
+    "technologies": [
+      {
+        "name": "Node.js",
+        "category": "language",
+        "version": ">=20.9.0"
+      }
+    ],
+    "interfaces": [
+      {
+        "type": "cloud_service",
+        "direction": "hosting",
+        "details": {
+          "service": "Vercel",
+          "variable": "vercel.json"
+        }
+      },
+      {
+        "type": "rest_api",
+        "direction": "outbound",
+        "details": {
+          "snippet": "fetch() calls detected"
+        }
+      },
+      {
+        "type": "cloud_service",
+        "direction": "outbound",
+        "details": {
+          "service": "AWS",
+          "variable": "AWS"
+        }
+      },
+      {
+        "type": "database_connection",
+        "direction": "outbound",
+        "details": {
+          "service": "Supabase",
+          "variable": "SUPABASE"
+        }
+      }
+    ],
+    "env_vars": [
+      "AWS_ACCESS_KEY",
+      "ENDPOINT_URL",
+      "BACKEND_BASE_URL",
+      "ACCESS_KEY",
+      "YOUR_AWS_ACCESS_KEY",
+      "R2_ACCESS_KEY",
+      "SECRET_ACCESS_KEY",
+      "S3",
+      "AWS_SECRET_ACCESS_KEY",
+      "R2_SECRET_ACCESS_KEY",
+      "VERCEL_TOKEN",
+      "DASHBOARD_API_KEY",
+      "DEFAULT_MINIMUM_TOKEN",
+      "B2_APPLICATION_KEY",
+      "GITHUB_TOKEN",
+      "AWS",
+      "COGNITO_CLIENT_SECRET",
+      "CLIENT_SECRET",
+      "SUPABASE",
+      "DASHBOARD_URL"
+    ]
+  },
+  {
+    "repo": {
+      "description": "",
+      "id": "R_kgDOQVh7dw",
+      "isPrivate": true,
+      "languages": [
+        {
+          "size": 23891,
+          "node": {
+            "name": "JavaScript"
+          }
+        }
+      ],
+      "name": "drawio-mcp-vercel",
+      "nameWithOwner": "skquievreux/drawio-mcp-vercel",
+      "pushedAt": "2025-11-29T16:51:37Z",
+      "updatedAt": "2025-11-29T16:51:40Z",
+      "url": "https://github.com/skquievreux/drawio-mcp-vercel"
+    },
+    "technologies": [
+      {
+        "name": "Node.js",
+        "category": "language",
+        "version": ">=20.9.0"
+      }
+    ],
+    "interfaces": [
+      {
+        "type": "cloud_service",
+        "direction": "hosting",
+        "details": {
+          "service": "Vercel",
+          "variable": "vercel.json"
+        }
+      },
+      {
+        "type": "rest_api",
+        "direction": "outbound",
+        "details": {
+          "snippet": "fetch() calls detected"
+        }
+      },
+      {
+        "type": "database_connection",
+        "direction": "outbound",
+        "details": {
+          "service": "Supabase",
+          "variable": "SUPABASE"
+        }
+      }
+    ],
+    "env_vars": [
+      "SUPABASE",
+      "GITHUB_TOKEN",
+      "DASHBOARD_URL",
+      "DASHBOARD_API_KEY"
+    ]
+  },
+  {
+    "repo": {
+      "description": "Epdf framework",
+      "id": "R_kgDOP_eT-Q",
+      "isPrivate": true,
+      "languages": [
+        {
+          "size": 1060668,
+          "node": {
+            "name": "HTML"
+          }
+        },
+        {
+          "size": 44117,
+          "node": {
+            "name": "CSS"
+          }
+        },
+        {
+          "size": 168156,
+          "node": {
+            "name": "JavaScript"
+          }
+        }
+      ],
+      "name": "epdfframework",
+      "nameWithOwner": "skquievreux/epdfframework",
+      "pushedAt": "2025-11-29T16:51:35Z",
+      "updatedAt": "2025-11-29T16:51:38Z",
+      "url": "https://github.com/skquievreux/epdfframework"
+    },
+    "technologies": [
+      {
+        "name": "Node.js",
+        "category": "language",
+        "version": ">=20.9.0"
+      }
+    ],
+    "interfaces": [
+      {
+        "type": "cloud_service",
+        "direction": "hosting",
+        "details": {
+          "service": "Vercel",
+          "variable": "vercel.json"
+        }
+      },
+      {
+        "type": "rest_api",
+        "direction": "outbound",
+        "details": {
+          "snippet": "fetch() calls detected"
+        }
+      },
+      {
+        "type": "cloud_service",
+        "direction": "outbound",
+        "details": {
+          "service": "AWS",
+          "variable": "S3"
+        }
+      },
+      {
+        "type": "database_connection",
+        "direction": "outbound",
+        "details": {
+          "service": "Supabase",
+          "variable": "SUPABASE"
+        }
+      }
+    ],
+    "env_vars": [
+      "GITHUB_TOKEN",
+      "DASHBOARD_API_KEY",
+      "DEMO_KEY",
+      "S3",
+      "SUPABASE",
+      "DASHBOARD_URL"
+    ]
+  },
+  {
+    "repo": {
+      "description": "",
+      "id": "R_kgDON1Zx0g",
+      "isPrivate": true,
+      "languages": [
+        {
+          "size": 7802,
+          "node": {
+            "name": "JavaScript"
+          }
+        },
+        {
+          "size": 2727,
+          "node": {
+            "name": "CSS"
+          }
+        },
+        {
+          "size": 1582,
+          "node": {
+            "name": "HTML"
+          }
+        }
+      ],
+      "name": "Essensbestellung",
+      "nameWithOwner": "skquievreux/Essensbestellung",
+      "pushedAt": "2025-11-29T16:51:31Z",
+      "updatedAt": "2025-11-29T16:51:35Z",
+      "url": "https://github.com/skquievreux/Essensbestellung"
+    },
+    "technologies": [
+      {
+        "name": "Node.js",
+        "category": "language",
+        "version": ">=20.9.0"
+      }
+    ],
+    "interfaces": [
+      {
+        "type": "rest_api",
+        "direction": "outbound",
+        "details": {
+          "snippet": "fetch() calls detected"
+        }
+      },
+      {
+        "type": "cloud_service",
+        "direction": "outbound",
+        "details": {
+          "service": "AWS",
+          "variable": "S3"
+        }
+      },
+      {
+        "type": "database_connection",
+        "direction": "outbound",
+        "details": {
+          "service": "Supabase",
+          "variable": "SUPABASE"
+        }
+      }
+    ],
+    "env_vars": [
+      "GITHUB_TOKEN",
+      "DASHBOARD_API_KEY",
+      "S3",
+      "SUPABASE",
+      "DASHBOARD_URL",
+      "WEBHOOK_URL"
+    ]
+  },
+  {
+    "repo": {
+      "description": "",
+      "id": "R_kgDONzH50Q",
+      "isPrivate": true,
+      "languages": [
+        {
+          "size": 4313,
+          "node": {
+            "name": "HTML"
+          }
+        },
+        {
+          "size": 6592,
+          "node": {
+            "name": "JavaScript"
+          }
+        },
+        {
+          "size": 4232,
+          "node": {
+            "name": "CSS"
+          }
+        }
+      ],
+      "name": "hashimoto",
+      "nameWithOwner": "skquievreux/hashimoto",
+      "pushedAt": "2025-11-29T16:51:29Z",
+      "updatedAt": "2025-11-29T16:51:32Z",
+      "url": "https://github.com/skquievreux/hashimoto"
+    },
+    "technologies": [
+      {
+        "name": "Node.js",
+        "category": "language",
+        "version": "v20.18.0"
+      }
+    ],
+    "interfaces": [
+      {
+        "type": "cloud_service",
+        "direction": "outbound",
+        "details": {
+          "service": "AWS",
+          "variable": "S3"
+        }
+      },
+      {
+        "type": "database_connection",
+        "direction": "outbound",
+        "details": {
+          "service": "Supabase",
+          "variable": "SUPABASE"
+        }
+      }
+    ],
+    "env_vars": [
+      "GITHUB_TOKEN",
+      "DASHBOARD_API_KEY",
+      "S3",
+      "SUPABASE",
+      "DASHBOARD_URL"
+    ]
+  },
+  {
+    "repo": {
+      "description": "",
+      "id": "MDEwOlJlcG9zaXRvcnkxNzg5NDEzNzg=",
+      "isPrivate": false,
+      "languages": [],
+      "name": "hugofirebase",
+      "nameWithOwner": "skquievreux/hugofirebase",
+      "pushedAt": "2025-11-29T16:51:27Z",
+      "updatedAt": "2025-11-29T16:51:30Z",
+      "url": "https://github.com/skquievreux/hugofirebase"
+    },
+    "technologies": [
+      {
+        "name": "Node.js",
+        "category": "language",
+        "version": "v20.18.0"
+      }
+    ],
+    "interfaces": [
+      {
+        "type": "database_connection",
+        "direction": "outbound",
+        "details": {
+          "service": "Supabase",
+          "variable": "SUPABASE"
+        }
+      }
+    ],
+    "env_vars": [
+      "SUPABASE",
+      "GITHUB_TOKEN",
+      "DASHBOARD_URL",
+      "DASHBOARD_API_KEY"
+    ]
+  },
+  {
+    "repo": {
+      "description": "",
+      "id": "R_kgDOOBfnuA",
+      "isPrivate": false,
+      "languages": [
+        {
+          "size": 19249,
+          "node": {
+            "name": "HTML"
+          }
+        },
+        {
+          "size": 131156,
+          "node": {
+            "name": "JavaScript"
+          }
+        },
+        {
+          "size": 20335,
+          "node": {
+            "name": "CSS"
+          }
+        }
+      ],
+      "name": "heldenquiz",
+      "nameWithOwner": "skquievreux/heldenquiz",
+      "pushedAt": "2025-11-29T16:51:24Z",
+      "updatedAt": "2025-11-29T16:51:27Z",
+      "url": "https://github.com/skquievreux/heldenquiz"
+    },
+    "technologies": [
+      {
+        "name": "Node.js",
+        "category": "language",
+        "version": ">=20.9.0"
+      }
+    ],
+    "interfaces": [
+      {
+        "type": "cloud_service",
+        "direction": "hosting",
+        "details": {
+          "service": "Vercel",
+          "variable": "vercel.json"
+        }
+      },
+      {
+        "type": "rest_api",
+        "direction": "outbound",
+        "details": {
+          "snippet": "fetch() calls detected"
+        }
+      },
+      {
+        "type": "cloud_service",
+        "direction": "outbound",
+        "details": {
+          "service": "AWS",
+          "variable": "S3"
+        }
+      },
+      {
+        "type": "database_connection",
+        "direction": "outbound",
+        "details": {
+          "service": "Supabase",
+          "variable": "SUPABASE"
+        }
+      }
+    ],
+    "env_vars": [
+      "GITHUB_TOKEN",
+      "DASHBOARD_API_KEY",
+      "VITE_API_URL",
+      "S3",
+      "SUPABASE",
+      "DASHBOARD_URL",
+      "ANTHROPIC_API_URL",
+      "ANTHROPIC_API_KEY"
+    ]
+  },
+  {
+    "repo": {
+      "description": "",
+      "id": "R_kgDOPPOs3Q",
+      "isPrivate": true,
+      "languages": [
+        {
+          "size": 1822199,
+          "node": {
+            "name": "HTML"
+          }
+        },
+        {
+          "size": 486875,
+          "node": {
+            "name": "JavaScript"
+          }
+        },
+        {
+          "size": 77416,
+          "node": {
+            "name": "CSS"
+          }
+        },
+        {
+          "size": 515,
+          "node": {
+            "name": "Dockerfile"
+          }
+        }
+      ],
+      "name": "kitools",
+      "nameWithOwner": "skquievreux/kitools",
+      "pushedAt": "2025-11-29T16:51:21Z",
+      "updatedAt": "2025-11-29T16:51:24Z",
+      "url": "https://github.com/skquievreux/kitools"
+    },
+    "technologies": [
+      {
+        "name": "Node.js",
+        "category": "language",
+        "version": ">=20.9.0"
+      },
+      {
+        "name": "Docker",
+        "category": "tool",
+        "version": null
+      }
+    ],
+    "interfaces": [
+      {
+        "type": "cloud_service",
+        "direction": "hosting",
+        "details": {
+          "service": "Vercel",
+          "variable": "vercel.json"
+        }
+      },
+      {
+        "type": "rest_api",
+        "direction": "outbound",
+        "details": {
+          "snippet": "fetch() calls detected"
+        }
+      },
+      {
+        "type": "cloud_service",
+        "direction": "outbound",
+        "details": {
+          "service": "AWS",
+          "variable": "AWS"
+        }
+      },
+      {
+        "type": "database_connection",
+        "direction": "outbound",
+        "details": {
+          "service": "Supabase",
+          "variable": "SUPABASE"
+        }
+      }
+    ],
+    "env_vars": [
+      "API_KEY",
+      "GITHUB_TOKEN",
+      "DASHBOARD_API_KEY",
+      "AWS",
+      "NETLIFY_AUTH_TOKEN",
+      "NOTION_API_KEY",
+      "PERPLEXITY_API_KEY",
+      "S3",
+      "SUPABASE",
+      "DASHBOARD_URL",
+      "FIRECRAWL_API_KEY"
+    ]
+  },
+  {
+    "repo": {
+      "description": "",
+      "id": "R_kgDONygjCQ",
+      "isPrivate": true,
+      "languages": [
+        {
+          "size": 5211,
+          "node": {
+            "name": "JavaScript"
+          }
+        },
+        {
+          "size": 3390,
+          "node": {
+            "name": "HTML"
+          }
+        },
+        {
+          "size": 3310,
+          "node": {
+            "name": "CSS"
+          }
+        }
+      ],
+      "name": "leadmagnet-question",
+      "nameWithOwner": "skquievreux/leadmagnet-question",
+      "pushedAt": "2025-11-29T16:51:16Z",
+      "updatedAt": "2025-11-29T16:51:19Z",
+      "url": "https://github.com/skquievreux/leadmagnet-question"
+    },
+    "technologies": [
+      {
+        "name": "Node.js",
+        "category": "language",
+        "version": "v20.18.0"
+      }
+    ],
+    "interfaces": [
+      {
+        "type": "rest_api",
+        "direction": "outbound",
+        "details": {
+          "snippet": "fetch() calls detected"
+        }
+      },
+      {
+        "type": "database_connection",
+        "direction": "outbound",
+        "details": {
+          "service": "Supabase",
+          "variable": "SUPABASE"
+        }
+      }
+    ],
+    "env_vars": [
+      "GITHUB_TOKEN",
+      "DASHBOARD_API_KEY",
+      "SUPABASE",
+      "DASHBOARD_URL",
+      "IHRE_WEBHOOK_URL"
+    ]
+  },
+  {
+    "repo": {
+      "description": "",
+      "id": "R_kgDONylD0A",
+      "isPrivate": true,
+      "languages": [
+        {
+          "size": 6974,
+          "node": {
+            "name": "JavaScript"
+          }
+        },
+        {
+          "size": 4084,
+          "node": {
+            "name": "HTML"
+          }
+        },
+        {
+          "size": 3877,
+          "node": {
+            "name": "CSS"
+          }
+        }
+      ],
+      "name": "leadmagnet-quiz-mitochondrien",
+      "nameWithOwner": "skquievreux/leadmagnet-quiz-mitochondrien",
+      "pushedAt": "2025-11-29T16:51:13Z",
+      "updatedAt": "2025-11-29T16:51:17Z",
+      "url": "https://github.com/skquievreux/leadmagnet-quiz-mitochondrien"
+    },
+    "technologies": [
+      {
+        "name": "Node.js",
+        "category": "language",
+        "version": "v20.18.0"
+      }
+    ],
+    "interfaces": [
+      {
+        "type": "rest_api",
+        "direction": "outbound",
+        "details": {
+          "snippet": "fetch() calls detected"
+        }
+      },
+      {
+        "type": "database_connection",
+        "direction": "outbound",
+        "details": {
+          "service": "Supabase",
+          "variable": "SUPABASE"
+        }
+      }
+    ],
+    "env_vars": [
+      "GITHUB_TOKEN",
+      "DASHBOARD_API_KEY",
+      "SUPABASE",
+      "DASHBOARD_URL",
+      "IHRE_WEBHOOK_URL"
+    ]
+  },
+  {
+    "repo": {
+      "description": "",
+      "id": "R_kgDOO6vGYA",
+      "isPrivate": true,
+      "languages": [
+        {
+          "size": 203052,
+          "node": {
+            "name": "HTML"
+          }
+        },
+        {
+          "size": 100,
+          "node": {
+            "name": "Dockerfile"
+          }
+        }
+      ],
+      "name": "loopcraft",
+      "nameWithOwner": "skquievreux/loopcraft",
+      "pushedAt": "2025-11-29T16:51:11Z",
+      "updatedAt": "2025-11-29T16:51:14Z",
+      "url": "https://github.com/skquievreux/loopcraft"
+    },
+    "technologies": [
+      {
+        "name": "Node.js",
+        "category": "language",
+        "version": "v20.18.0"
+      },
+      {
+        "name": "Docker",
+        "category": "tool",
+        "version": null
+      }
+    ],
+    "interfaces": [
+      {
+        "type": "cloud_service",
+        "direction": "hosting",
+        "details": {
+          "service": "Fly.io",
+          "variable": "fly.toml"
+        }
+      },
+      {
+        "type": "database_connection",
+        "direction": "outbound",
+        "details": {
+          "service": "Supabase",
+          "variable": "SUPABASE"
+        }
+      }
+    ],
+    "env_vars": [
+      "SUPABASE",
+      "GITHUB_TOKEN",
+      "DASHBOARD_URL",
+      "DASHBOARD_API_KEY"
+    ]
+  },
+  {
+    "repo": {
+      "description": "",
+      "id": "R_kgDOQVGPGg",
+      "isPrivate": true,
+      "languages": [
+        {
+          "size": 5648,
+          "node": {
+            "name": "JavaScript"
+          }
+        },
+        {
+          "size": 35519,
+          "node": {
+            "name": "HTML"
+          }
+        }
+      ],
+      "name": "network-architect",
+      "nameWithOwner": "skquievreux/network-architect",
+      "pushedAt": "2025-11-29T16:51:09Z",
+      "updatedAt": "2025-11-29T16:51:12Z",
+      "url": "https://github.com/skquievreux/network-architect"
+    },
+    "technologies": [
+      {
+        "name": "Node.js",
+        "category": "language",
+        "version": ">=20.9.0"
+      }
+    ],
+    "interfaces": [
+      {
+        "type": "cloud_service",
+        "direction": "hosting",
+        "details": {
+          "service": "Vercel",
+          "variable": "vercel.json"
+        }
+      },
+      {
+        "type": "rest_api",
+        "direction": "outbound",
+        "details": {
+          "snippet": "fetch() calls detected"
+        }
+      },
+      {
+        "type": "cloud_service",
+        "direction": "outbound",
+        "details": {
+          "service": "AWS",
+          "variable": "S3"
+        }
+      },
+      {
+        "type": "database_connection",
+        "direction": "outbound",
+        "details": {
+          "service": "Supabase",
+          "variable": "SUPABASE"
+        }
+      }
+    ],
+    "env_vars": [
+      "GITHUB_TOKEN",
+      "DASHBOARD_API_KEY",
+      "S3",
+      "SUPABASE",
+      "DASHBOARD_URL"
+    ]
+  },
+  {
+    "repo": {
+      "description": "",
+      "id": "R_kgDONx6yQQ",
+      "isPrivate": true,
+      "languages": [
+        {
+          "size": 2659,
+          "node": {
+            "name": "HTML"
+          }
+        },
+        {
+          "size": 10088,
+          "node": {
+            "name": "JavaScript"
+          }
+        },
+        {
+          "size": 4431,
+          "node": {
+            "name": "CSS"
+          }
+        }
+      ],
+      "name": "numerorologie",
+      "nameWithOwner": "skquievreux/numerorologie",
+      "pushedAt": "2025-11-29T16:51:07Z",
+      "updatedAt": "2025-11-29T16:51:10Z",
+      "url": "https://github.com/skquievreux/numerorologie"
+    },
+    "technologies": [
+      {
+        "name": "Node.js",
+        "category": "language",
+        "version": "v20.18.0"
+      }
+    ],
+    "interfaces": [
+      {
+        "type": "rest_api",
+        "direction": "outbound",
+        "details": {
+          "snippet": "fetch() calls detected"
+        }
+      },
+      {
+        "type": "cloud_service",
+        "direction": "outbound",
+        "details": {
+          "service": "AWS",
+          "variable": "S3"
+        }
+      },
+      {
+        "type": "database_connection",
+        "direction": "outbound",
+        "details": {
+          "service": "Supabase",
+          "variable": "SUPABASE"
+        }
+      }
+    ],
+    "env_vars": [
+      "GITHUB_TOKEN",
+      "DASHBOARD_API_KEY",
+      "S3",
+      "SUPABASE",
+      "DASHBOARD_URL"
+    ]
+  },
+  {
+    "repo": {
+      "description": "Website f\u00fcr Preisanfrage",
+      "id": "R_kgDOOk4Fng",
+      "isPrivate": true,
+      "languages": [
+        {
+          "size": 2769,
+          "node": {
+            "name": "HTML"
+          }
+        },
+        {
+          "size": 1705,
+          "node": {
+            "name": "JavaScript"
+          }
+        }
+      ],
+      "name": "Preisanfrage",
+      "nameWithOwner": "skquievreux/Preisanfrage",
+      "pushedAt": "2025-11-29T16:51:02Z",
+      "updatedAt": "2025-11-29T16:51:06Z",
+      "url": "https://github.com/skquievreux/Preisanfrage"
+    },
+    "technologies": [
+      {
+        "name": "Node.js",
+        "category": "language",
+        "version": "v20.18.0"
+      }
+    ],
+    "interfaces": [
+      {
+        "type": "rest_api",
+        "direction": "outbound",
+        "details": {
+          "snippet": "fetch() calls detected"
+        }
+      },
+      {
+        "type": "database_connection",
+        "direction": "outbound",
+        "details": {
+          "service": "Supabase",
+          "variable": "SUPABASE"
+        }
+      }
+    ],
+    "env_vars": [
+      "SUPABASE",
+      "GITHUB_TOKEN",
+      "DASHBOARD_URL",
+      "DASHBOARD_API_KEY"
+    ]
+  },
+  {
+    "repo": {
+      "description": "",
+      "id": "R_kgDOQFMWNw",
+      "isPrivate": false,
+      "languages": [
+        {
+          "size": 89468,
+          "node": {
+            "name": "JavaScript"
+          }
+        },
+        {
+          "size": 275,
+          "node": {
+            "name": "HTML"
+          }
+        }
+      ],
+      "name": "runninggame",
+      "nameWithOwner": "skquievreux/runninggame",
+      "pushedAt": "2025-11-29T16:51:00Z",
+      "updatedAt": "2025-11-29T16:51:03Z",
+      "url": "https://github.com/skquievreux/runninggame"
+    },
+    "technologies": [
+      {
+        "name": "Node.js",
+        "category": "language",
+        "version": ">=20.9.0"
+      }
+    ],
+    "interfaces": [
+      {
+        "type": "cloud_service",
+        "direction": "hosting",
+        "details": {
+          "service": "Vercel",
+          "variable": "vercel.json"
+        }
+      },
+      {
+        "type": "cloud_service",
+        "direction": "outbound",
+        "details": {
+          "service": "AWS",
+          "variable": "S3"
+        }
+      },
+      {
+        "type": "database_connection",
+        "direction": "outbound",
+        "details": {
+          "service": "Supabase",
+          "variable": "SUPABASE"
+        }
+      }
+    ],
+    "env_vars": [
+      "GITHUB_TOKEN",
+      "DASHBOARD_API_KEY",
+      "DEFAULT_MINIMUM_TOKEN",
+      "S3",
+      "SUPABASE",
+      "DASHBOARD_URL"
+    ]
+  },
+  {
+    "repo": {
+      "description": "",
+      "id": "R_kgDOO77row",
+      "isPrivate": true,
+      "languages": [
+        {
+          "size": 1082,
+          "node": {
+            "name": "Dockerfile"
+          }
+        },
+        {
+          "size": 1631,
+          "node": {
+            "name": "Batchfile"
+          }
+        },
+        {
+          "size": 1548,
+          "node": {
+            "name": "Shell"
+          }
+        },
+        {
+          "size": 14530,
+          "node": {
+            "name": "JavaScript"
+          }
+        }
+      ],
+      "name": "s3-mcp-server",
+      "nameWithOwner": "skquievreux/s3-mcp-server",
+      "pushedAt": "2025-11-29T16:50:58Z",
+      "updatedAt": "2025-11-29T16:51:01Z",
+      "url": "https://github.com/skquievreux/s3-mcp-server"
+    },
+    "technologies": [
+      {
+        "name": "TypeScript",
+        "category": "language",
+        "version": "^5.8.2"
+      },
+      {
+        "name": "Node.js",
+        "category": "language",
+        "version": ">=20.9.0"
+      },
+      {
+        "name": "Docker",
+        "category": "tool",
+        "version": null
+      }
+    ],
+    "interfaces": [
+      {
+        "type": "cloud_service",
+        "direction": "outbound",
+        "details": {
+          "service": "AWS",
+          "variable": "AWS"
+        }
+      },
+      {
+        "type": "database_connection",
+        "direction": "outbound",
+        "details": {
+          "service": "Supabase",
+          "variable": "SUPABASE"
+        }
+      }
+    ],
+    "env_vars": [
+      "AWS_ACCESS_KEY",
+      "AWS_ENDPOINT_URL",
+      "GITHUB_TOKEN",
+      "DASHBOARD_API_KEY",
+      "AWS",
+      "S3",
+      "AWS_SECRET_ACCESS_KEY",
+      "SUPABASE",
+      "DASHBOARD_URL"
+    ]
+  },
+  {
+    "repo": {
+      "description": "",
+      "id": "R_kgDON_jMpQ",
+      "isPrivate": false,
+      "languages": [
+        {
+          "size": 58789,
+          "node": {
+            "name": "JavaScript"
+          }
+        },
+        {
+          "size": 36953,
+          "node": {
+            "name": "HTML"
+          }
+        },
+        {
+          "size": 8776,
+          "node": {
+            "name": "CSS"
+          }
+        }
+      ],
+      "name": "shader",
+      "nameWithOwner": "skquievreux/shader",
+      "pushedAt": "2025-11-29T16:50:56Z",
+      "updatedAt": "2025-11-29T16:50:59Z",
+      "url": "https://github.com/skquievreux/shader"
+    },
+    "technologies": [
+      {
+        "name": "Node.js",
+        "category": "language",
+        "version": ">=20.9.0"
+      }
+    ],
+    "interfaces": [
+      {
+        "type": "cloud_service",
+        "direction": "outbound",
+        "details": {
+          "service": "AWS",
+          "variable": "S3"
+        }
+      },
+      {
+        "type": "database_connection",
+        "direction": "outbound",
+        "details": {
+          "service": "Supabase",
+          "variable": "SUPABASE"
+        }
+      }
+    ],
+    "env_vars": [
+      "GITHUB_TOKEN",
+      "DASHBOARD_API_KEY",
+      "S3",
+      "SUPABASE",
+      "DASHBOARD_URL"
+    ]
+  },
+  {
+    "repo": {
+      "description": "",
+      "id": "R_kgDOPxM7MA",
+      "isPrivate": true,
+      "languages": [
+        {
+          "size": 69202,
+          "node": {
+            "name": "JavaScript"
+          }
+        }
+      ],
+      "name": "screenshotgallerysystem",
+      "nameWithOwner": "skquievreux/screenshotgallerysystem",
+      "pushedAt": "2025-11-29T16:50:54Z",
+      "updatedAt": "2025-11-29T16:50:57Z",
+      "url": "https://github.com/skquievreux/screenshotgallerysystem"
+    },
+    "technologies": [
+      {
+        "name": "React",
+        "category": "framework",
+        "version": "^19.2.0"
+      },
+      {
+        "name": "Next.js",
+        "category": "framework",
+        "version": "^15.5.4"
+      },
+      {
+        "name": "Node.js",
+        "category": "language",
+        "version": ">=20.9.0"
+      }
+    ],
+    "interfaces": [
+      {
+        "type": "cloud_service",
+        "direction": "hosting",
+        "details": {
+          "service": "Vercel",
+          "variable": "vercel.json"
+        }
+      },
+      {
+        "type": "rest_api",
+        "direction": "outbound",
+        "details": {
+          "snippet": "fetch() calls detected"
+        }
+      },
+      {
+        "type": "database_connection",
+        "direction": "outbound",
+        "details": {
+          "service": "Database",
+          "variable": "DATABASE_URL"
+        }
+      },
+      {
+        "type": "cloud_service",
+        "direction": "outbound",
+        "details": {
+          "service": "AWS",
+          "variable": "S3"
+        }
+      },
+      {
+        "type": "database_connection",
+        "direction": "outbound",
+        "details": {
+          "service": "Supabase",
+          "variable": "SUPABASE"
+        }
+      }
+    ],
+    "env_vars": [
+      "API_KEY",
+      "GITHUB_TOKEN",
+      "STM_TAB_ID_KEY",
+      "DASHBOARD_API_KEY",
+      "S3",
+      "SUPABASE",
+      "DASHBOARD_URL",
+      "FLY_API_TOKEN",
+      "DATABASE_URL"
+    ]
+  },
+  {
+    "repo": {
+      "description": "",
+      "id": "R_kgDOQaHi5A",
+      "isPrivate": true,
+      "languages": [
+        {
+          "size": 10402,
+          "node": {
+            "name": "HTML"
+          }
+        }
+      ],
+      "name": "simplehosting",
+      "nameWithOwner": "skquievreux/simplehosting",
+      "pushedAt": "2025-11-29T16:50:51Z",
+      "updatedAt": "2025-11-29T16:50:54Z",
+      "url": "https://github.com/skquievreux/simplehosting"
+    },
+    "technologies": [
+      {
+        "name": "Node.js",
+        "category": "language",
+        "version": "v20.18.0"
+      }
+    ],
+    "interfaces": [
+      {
+        "type": "cloud_service",
+        "direction": "hosting",
+        "details": {
+          "service": "Vercel",
+          "variable": "vercel.json"
+        }
+      },
+      {
+        "type": "database_connection",
+        "direction": "outbound",
+        "details": {
+          "service": "Supabase",
+          "variable": "SUPABASE"
+        }
+      }
+    ],
+    "env_vars": [
+      "SUPABASE",
+      "GITHUB_TOKEN",
+      "DASHBOARD_URL",
+      "DASHBOARD_API_KEY"
+    ]
+  },
+  {
+    "repo": {
+      "description": "I created some songs wiht chat gpt have a look",
+      "id": "R_kgDOJFfxRA",
+      "isPrivate": false,
+      "languages": [],
+      "name": "sonic-pi-chat-gpt",
+      "nameWithOwner": "skquievreux/sonic-pi-chat-gpt",
+      "pushedAt": "2025-11-29T16:50:48Z",
+      "updatedAt": "2025-11-29T16:50:52Z",
+      "url": "https://github.com/skquievreux/sonic-pi-chat-gpt"
+    },
+    "technologies": [
+      {
+        "name": "Node.js",
+        "category": "language",
+        "version": "v20.18.0"
+      }
+    ],
+    "interfaces": [
+      {
+        "type": "database_connection",
+        "direction": "outbound",
+        "details": {
+          "service": "Supabase",
+          "variable": "SUPABASE"
+        }
+      }
+    ],
+    "env_vars": [
+      "SUPABASE",
+      "GITHUB_TOKEN",
+      "DASHBOARD_URL",
+      "DASHBOARD_API_KEY"
+    ]
+  },
+  {
+    "repo": {
+      "description": "",
+      "id": "R_kgDOQJXD_w",
+      "isPrivate": false,
+      "languages": [
+        {
+          "size": 298876,
+          "node": {
+            "name": "Python"
+          }
+        },
+        {
+          "size": 18476,
+          "node": {
+            "name": "NSIS"
+          }
+        },
+        {
+          "size": 1102,
+          "node": {
+            "name": "AutoHotkey"
+          }
+        }
+      ],
+      "name": "Speechering",
+      "nameWithOwner": "skquievreux/Speechering",
+      "pushedAt": "2025-11-29T16:50:46Z",
+      "updatedAt": "2025-11-29T16:50:49Z",
+      "url": "https://github.com/skquievreux/Speechering"
+    },
+    "technologies": [
+      {
+        "name": "Node.js",
+        "category": "language",
+        "version": "v20.18.0"
+      },
+      {
+        "name": "Python",
+        "category": "language",
+        "version": null
+      }
+    ],
+    "interfaces": [
+      {
+        "type": "api_integration",
+        "direction": "outbound",
+        "details": {
+          "service": "OpenAI",
+          "variable": "OPENAI_API_KEY"
+        }
+      },
+      {
+        "type": "cloud_service",
+        "direction": "outbound",
+        "details": {
+          "service": "AWS",
+          "variable": "S3"
+        }
+      },
+      {
+        "type": "database_connection",
+        "direction": "outbound",
+        "details": {
+          "service": "Supabase",
+          "variable": "SUPABASE"
+        }
+      }
+    ],
+    "env_vars": [
+      "OPENAI_API_KEY",
+      "R2_PUBLIC_URL",
+      "GITHUB_TOKEN",
+      "R2_ACCESS_KEY",
+      "DASHBOARD_API_KEY",
+      "DEFAULT_MINIMUM_TOKEN",
+      "R2_ACCESS_TOKEN",
+      "R2_BASE_URL",
+      "S3",
+      "SUPABASE",
+      "R2_SECRET_ACCESS_KEY",
+      "DASHBOARD_URL"
+    ]
+  },
+  {
+    "repo": {
+      "description": "Sonic Pi 2.4 programming sounds",
+      "id": "MDEwOlJlcG9zaXRvcnkzMjY0MjE4NQ==",
+      "isPrivate": false,
+      "languages": [
+        {
+          "size": 781,
+          "node": {
+            "name": "Ruby"
+          }
+        }
+      ],
+      "name": "steffenquievreux",
+      "nameWithOwner": "skquievreux/steffenquievreux",
+      "pushedAt": "2025-11-29T16:50:44Z",
+      "updatedAt": "2025-11-29T16:50:47Z",
+      "url": "https://github.com/skquievreux/steffenquievreux"
+    },
+    "technologies": [
+      {
+        "name": "Node.js",
+        "category": "language",
+        "version": "v20.18.0"
+      }
+    ],
+    "interfaces": [
+      {
+        "type": "database_connection",
+        "direction": "outbound",
+        "details": {
+          "service": "Supabase",
+          "variable": "SUPABASE"
+        }
+      }
+    ],
+    "env_vars": [
+      "SUPABASE",
+      "GITHUB_TOKEN",
+      "DASHBOARD_URL",
+      "DASHBOARD_API_KEY"
+    ]
+  },
+  {
+    "repo": {
+      "description": "",
+      "id": "R_kgDOQPwiuQ",
+      "isPrivate": false,
+      "languages": [
+        {
+          "size": 37445,
+          "node": {
+            "name": "HTML"
+          }
+        },
+        {
+          "size": 10382,
+          "node": {
+            "name": "JavaScript"
+          }
+        },
+        {
+          "size": 6575,
+          "node": {
+            "name": "RouterOS Script"
+          }
+        },
+        {
+          "size": 105127,
+          "node": {
+            "name": "TypeScript"
+          }
+        },
+        {
+          "size": 3527,
+          "node": {
+            "name": "CSS"
+          }
+        }
+      ],
+      "name": "svg-grafik-generator",
+      "nameWithOwner": "skquievreux/svg-grafik-generator",
+      "pushedAt": "2025-11-29T16:50:41Z",
+      "updatedAt": "2025-11-29T16:50:45Z",
+      "url": "https://github.com/skquievreux/svg-grafik-generator"
+    },
+    "technologies": [
+      {
+        "name": "Supabase",
+        "category": "database",
+        "version": "^2.49.4"
+      },
+      {
+        "name": "Node.js",
+        "category": "language",
+        "version": ">=20.9.0"
+      },
+      {
+        "name": "Python",
+        "category": "language",
+        "version": null
+      },
+      {
+        "name": "Supabase",
+        "category": "database",
+        "version": null
+      }
+    ],
+    "interfaces": [
+      {
+        "type": "database_connection",
+        "direction": "outbound",
+        "details": {
+          "service": "Supabase"
+        }
+      },
+      {
+        "type": "rest_api",
+        "direction": "outbound",
+        "details": {
+          "snippet": "fetch() calls detected"
+        }
+      },
+      {
+        "type": "cloud_service",
+        "direction": "outbound",
+        "details": {
+          "service": "AWS",
+          "variable": "AWS"
+        }
+      }
+    ],
+    "env_vars": [
+      "SUPABASE_ANON_KEY",
+      "VERCEL_PROJECT_PRODUCTION_URL",
+      "PAGE_SEGMENT_KEY",
+      "VERCEL_BRANCH_URL",
+      "VERCEL_URL",
+      "S3",
+      "SUPABASE_URL",
+      "ROOT_SEGMENT_REQUEST_KEY",
+      "DASHBOARD_API_KEY",
+      "ROOT_SEGMENT_CACHE_KEY",
+      "NEXT_URL",
+      "GITHUB_TOKEN",
+      "AWS",
+      "NEXT_CACHE_REVALIDATE_TAG_TOKEN",
+      "NEXT_PUBLIC_API_URL",
+      "DEFAULT_SEGMENT_KEY",
+      "__WEBPACK_IMPORT_KEY",
+      "SUPABASE",
+      "DASHBOARD_URL",
+      "NEXT_SERVER_ACTIONS_ENCRYPTION_KEY"
+    ]
+  },
+  {
+    "repo": {
+      "description": "",
+      "id": "R_kgDOQN9udQ",
+      "isPrivate": true,
+      "languages": [
+        {
+          "size": 61033,
+          "node": {
+            "name": "HTML"
+          }
+        }
+      ],
+      "name": "veridex",
+      "nameWithOwner": "skquievreux/veridex",
+      "pushedAt": "2025-11-29T16:50:36Z",
+      "updatedAt": "2025-11-29T16:50:40Z",
+      "url": "https://github.com/skquievreux/veridex"
+    },
+    "technologies": [
+      {
+        "name": "Node.js",
+        "category": "language",
+        "version": "v20.18.0"
+      }
+    ],
+    "interfaces": [
+      {
+        "type": "database_connection",
+        "direction": "outbound",
+        "details": {
+          "service": "Database",
+          "variable": "DATABASE_URL"
+        }
+      }
+    ],
+    "env_vars": [
+      "OPEN_AI_KEY",
+      "HELIUS_API_KEY",
+      "COINGECKO_API_KEY",
+      "KV_REST_API_URL",
+      "DEXSCREENER_API_KEY",
+      "NEXT_PUBLIC_APP_URL",
+      "API_SECRET_KEY",
+      "DATABASE_URL",
+      "DASHBOARD_API_KEY",
+      "BSCSCAN_API_KEY",
+      "DEFAULT_MINIMUM_TOKEN",
+      "KV_URL",
+      "KV_REST_API_READ_ONLY_TOKEN",
+      "GITHUB_TOKEN",
+      "MORALIS_API_KEY",
+      "HONEYPOT_API_KEY",
+      "NEXT_PUBLIC_API_URL",
+      "BASESCAN_API_KEY",
+      "DASHBOARD_URL",
+      "KV_REST_API_TOKEN"
+    ]
+  },
+  {
+    "repo": {
+      "description": "",
+      "id": "R_kgDOP-y5Jw",
+      "isPrivate": false,
+      "languages": [],
+      "name": "vibesdk-production",
+      "nameWithOwner": "skquievreux/vibesdk-production",
+      "pushedAt": "2025-11-29T16:50:32Z",
+      "updatedAt": "2025-11-29T16:50:36Z",
+      "url": "https://github.com/skquievreux/vibesdk-production"
+    },
+    "technologies": [
+      {
+        "name": "Node.js",
+        "category": "language",
+        "version": "v20.18.0"
+      }
+    ],
+    "interfaces": [
+      {
+        "type": "database_connection",
+        "direction": "outbound",
+        "details": {
+          "service": "Supabase",
+          "variable": "SUPABASE"
+        }
+      }
+    ],
+    "env_vars": [
+      "SUPABASE",
+      "GITHUB_TOKEN",
+      "DASHBOARD_URL",
+      "DASHBOARD_API_KEY"
+    ]
+  },
+  {
+    "repo": {
+      "description": "",
+      "id": "R_kgDON3NePg",
+      "isPrivate": false,
+      "languages": [
+        {
+          "size": 5214,
+          "node": {
+            "name": "JavaScript"
+          }
+        },
+        {
+          "size": 2140,
+          "node": {
+            "name": "HTML"
+          }
+        },
+        {
+          "size": 1452,
+          "node": {
+            "name": "CSS"
+          }
+        }
+      ],
+      "name": "Videoedidshare",
+      "nameWithOwner": "skquievreux/Videoedidshare",
+      "pushedAt": "2025-11-29T16:50:29Z",
+      "updatedAt": "2025-11-29T16:50:32Z",
+      "url": "https://github.com/skquievreux/Videoedidshare"
+    },
+    "technologies": [
+      {
+        "name": "Node.js",
+        "category": "language",
+        "version": "v20.18.0"
+      }
+    ],
+    "interfaces": [
+      {
+        "type": "cloud_service",
+        "direction": "outbound",
+        "details": {
+          "service": "AWS",
+          "variable": "S3"
+        }
+      },
+      {
+        "type": "database_connection",
+        "direction": "outbound",
+        "details": {
+          "service": "Supabase",
+          "variable": "SUPABASE"
+        }
+      }
+    ],
+    "env_vars": [
+      "GITHUB_TOKEN",
+      "DASHBOARD_API_KEY",
+      "VIDEO_URL",
+      "NO_BASE_URL",
+      "S3",
+      "SUPABASE",
+      "DASHBOARD_URL"
+    ]
+  },
+  {
+    "repo": {
+      "description": "",
+      "id": "R_kgDOP8Rw_Q",
+      "isPrivate": true,
+      "languages": [],
+      "name": "visual-image-composer",
+      "nameWithOwner": "skquievreux/visual-image-composer",
+      "pushedAt": "2025-11-29T16:50:26Z",
+      "updatedAt": "2025-11-29T16:50:30Z",
+      "url": "https://github.com/skquievreux/visual-image-composer"
+    },
+    "technologies": [
+      {
+        "name": "Node.js",
+        "category": "language",
+        "version": "v20.18.0"
+      }
+    ],
+    "interfaces": [
+      {
+        "type": "database_connection",
+        "direction": "outbound",
+        "details": {
+          "service": "Supabase",
+          "variable": "SUPABASE"
+        }
+      }
+    ],
+    "env_vars": [
+      "SUPABASE",
+      "GITHUB_TOKEN",
+      "DASHBOARD_URL",
+      "DASHBOARD_API_KEY"
+    ]
+  },
+  {
+    "repo": {
+      "description": "",
+      "id": "R_kgDOO6txBA",
+      "isPrivate": true,
+      "languages": [
+        {
+          "size": 41155,
+          "node": {
+            "name": "HTML"
+          }
+        }
+      ],
+      "name": "vr-fingers",
+      "nameWithOwner": "skquievreux/vr-fingers",
+      "pushedAt": "2025-11-29T16:50:21Z",
+      "updatedAt": "2025-11-29T16:50:24Z",
+      "url": "https://github.com/skquievreux/vr-fingers"
+    },
+    "technologies": [
+      {
+        "name": "Node.js",
+        "category": "language",
+        "version": "v20.18.0"
+      }
+    ],
+    "interfaces": [
+      {
+        "type": "rest_api",
+        "direction": "outbound",
+        "details": {
+          "snippet": "fetch() calls detected"
+        }
+      },
+      {
+        "type": "cloud_service",
+        "direction": "outbound",
+        "details": {
+          "service": "AWS",
+          "variable": "S3"
+        }
+      },
+      {
+        "type": "database_connection",
+        "direction": "outbound",
+        "details": {
+          "service": "Supabase",
+          "variable": "SUPABASE"
+        }
+      }
+    ],
+    "env_vars": [
+      "GITHUB_TOKEN",
+      "DASHBOARD_API_KEY",
+      "S3",
+      "SUPABASE",
+      "DASHBOARD_URL"
+    ]
+  },
+  {
+    "repo": {
+      "description": "",
+      "id": "R_kgDONy10fA",
+      "isPrivate": true,
+      "languages": [
+        {
+          "size": 25161,
+          "node": {
+            "name": "HTML"
+          }
+        }
+      ],
+      "name": "Waldessenz",
+      "nameWithOwner": "skquievreux/Waldessenz",
+      "pushedAt": "2025-11-29T16:50:19Z",
+      "updatedAt": "2025-11-29T16:50:22Z",
+      "url": "https://github.com/skquievreux/Waldessenz"
+    },
+    "technologies": [
+      {
+        "name": "Node.js",
+        "category": "language",
+        "version": "v20.18.0"
+      }
+    ],
+    "interfaces": [
+      {
+        "type": "cloud_service",
+        "direction": "hosting",
+        "details": {
+          "service": "Vercel",
+          "variable": "vercel.json"
+        }
+      },
+      {
+        "type": "cloud_service",
+        "direction": "outbound",
+        "details": {
+          "service": "AWS",
+          "variable": "S3"
+        }
+      },
+      {
+        "type": "database_connection",
+        "direction": "outbound",
+        "details": {
+          "service": "Supabase",
+          "variable": "SUPABASE"
+        }
+      }
+    ],
+    "env_vars": [
+      "GITHUB_TOKEN",
+      "DASHBOARD_API_KEY",
+      "S3",
+      "SUPABASE",
+      "DASHBOARD_URL"
+    ]
+  },
+  {
+    "repo": {
+      "description": "",
+      "id": "R_kgDOQKplyw",
+      "isPrivate": true,
+      "languages": [
+        {
+          "size": 559,
+          "node": {
+            "name": "JavaScript"
+          }
+        },
+        {
+          "size": 37805,
+          "node": {
+            "name": "TypeScript"
+          }
+        },
+        {
+          "size": 472,
+          "node": {
+            "name": "CSS"
+          }
+        }
+      ],
+      "name": "ACID-MONK-GENERATOR",
+      "nameWithOwner": "skquievreux/ACID-MONK-GENERATOR",
+      "pushedAt": "2025-11-29T16:50:06Z",
+      "updatedAt": "2025-11-29T16:50:09Z",
+      "url": "https://github.com/skquievreux/ACID-MONK-GENERATOR"
+    },
+    "technologies": [
+      {
+        "name": "React",
+        "category": "framework",
+        "version": "19.2.0"
+      },
+      {
+        "name": "Next.js",
+        "category": "framework",
+        "version": "16.0.1"
+      },
+      {
+        "name": "TypeScript",
+        "category": "language",
+        "version": "^5.8.2"
+      },
+      {
+        "name": "Tailwind CSS",
+        "category": "tool",
+        "version": "^4"
+      },
+      {
+        "name": "Node.js",
+        "category": "language",
+        "version": ">=20.9.0"
+      }
+    ],
+    "interfaces": [
+      {
+        "type": "cloud_service",
+        "direction": "hosting",
+        "details": {
+          "service": "Vercel",
+          "variable": "vercel.json"
+        }
+      },
+      {
+        "type": "rest_api",
+        "direction": "outbound",
+        "details": {
+          "snippet": "fetch() calls detected"
+        }
+      },
+      {
+        "type": "cloud_service",
+        "direction": "outbound",
+        "details": {
+          "service": "AWS",
+          "variable": "AWS"
+        }
+      },
+      {
+        "type": "database_connection",
+        "direction": "outbound",
+        "details": {
+          "service": "Database",
+          "variable": "DATABASE_URL"
+        }
+      },
+      {
+        "type": "database_connection",
+        "direction": "outbound",
+        "details": {
+          "service": "Supabase",
+          "variable": "SUPABASE"
+        }
+      }
+    ],
+    "env_vars": [
+      "KV_REST_API_URL",
+      "LEMON_WEBHOOK_SECRET",
+      "NEXT_PUBLIC_APP_URL",
+      "R2_ACCESS_KEY",
+      "S3",
+      "R2_SECRET_ACCESS_KEY",
+      "DATABASE_URL",
+      "DASHBOARD_API_KEY",
+      "DEFAULT_MINIMUM_TOKEN",
+      "JWT_SECRET",
+      "ELEVENLABS_API_KEY",
+      "KV_URL",
+      "ELEVEN_API_KEY",
+      "KV_REST_API_READ_ONLY_TOKEN",
+      "R2_PUBLIC_URL",
+      "GITHUB_TOKEN",
+      "AWS",
+      "SUPABASE",
+      "DASHBOARD_URL",
+      "KV_REST_API_TOKEN"
+    ]
+  },
+  {
+    "repo": {
+      "description": "vibe codes visualizer",
+      "id": "R_kgDOQfUo4w",
+      "isPrivate": true,
+      "languages": [
+        {
+          "size": 83071,
+          "node": {
+            "name": "TypeScript"
+          }
+        },
+        {
+          "size": 1778,
+          "node": {
+            "name": "HTML"
+          }
+        }
+      ],
+      "name": "Artheria-Healing-Visualizer",
+      "nameWithOwner": "skquievreux/Artheria-Healing-Visualizer",
+      "pushedAt": "2025-11-29T16:49:43Z",
+      "updatedAt": "2025-11-29T16:49:46Z",
+      "url": "https://github.com/skquievreux/Artheria-Healing-Visualizer"
+    },
+    "technologies": [
+      {
+        "name": "React",
+        "category": "framework",
+        "version": "^19.2.0"
+      },
+      {
+        "name": "TypeScript",
+        "category": "language",
+        "version": "~5.8.2"
+      },
+      {
+        "name": "Node.js",
+        "category": "language",
+        "version": null
+      }
+    ],
+    "interfaces": [],
+    "env_vars": [
+      "API_KEY",
+      "GEMINI_API_KEY",
+      "DASHBOARD_URL",
+      "DASHBOARD_API_KEY"
+    ]
+  },
+  {
+    "repo": {
+      "description": "A minimalistic photo gallery with images stored on Amazon S3 and just the features you want.",
+      "id": "R_kgDOPFZCAg",
+      "isPrivate": false,
+      "languages": [
+        {
+          "size": 32025,
+          "node": {
+            "name": "JavaScript"
+          }
+        },
+        {
+          "size": 5934,
+          "node": {
+            "name": "CSS"
+          }
+        },
+        {
+          "size": 8858,
+          "node": {
+            "name": "Pug"
+          }
+        }
+      ],
+      "name": "noobgallery",
+      "nameWithOwner": "skquievreux/noobgallery",
+      "pushedAt": "2025-11-29T13:28:26Z",
+      "updatedAt": "2025-11-29T13:28:30Z",
+      "url": "https://github.com/skquievreux/noobgallery"
+    },
+    "technologies": [
+      {
+        "name": "Node.js",
+        "category": "language",
+        "version": ">=20.9.0"
+      }
+    ],
+    "interfaces": [
+      {
+        "type": "cloud_service",
+        "direction": "outbound",
+        "details": {
+          "service": "AWS",
+          "variable": "AWS"
+        }
+      },
+      {
+        "type": "database_connection",
+        "direction": "outbound",
+        "details": {
+          "service": "Supabase",
+          "variable": "SUPABASE"
+        }
+      }
+    ],
+    "env_vars": [
+      "AWS_ACCESS_KEY",
+      "YOUR_AWS_ACCESS_KEY",
+      "GITHUB_TOKEN",
+      "AWS",
+      "S3",
+      "AWS_SECRET_ACCESS_KEY",
+      "SUPABASE",
+      "YOUR_AWS_SECRET_ACCESS_KEY"
+    ]
+  }
+]
