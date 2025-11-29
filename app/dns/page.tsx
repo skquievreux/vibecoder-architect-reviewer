@@ -29,10 +29,48 @@ export default function DnsManager() {
     const [loadingRecords, setLoadingRecords] = useState(false);
     const [error, setError] = useState<string | null>(null);
     const [searchTerm, setSearchTerm] = useState("");
+    const [repoMap, setRepoMap] = useState<Record<string, string>>({});
+    const [domainMap, setDomainMap] = useState<Record<string, string>>({});
+    const [nameMap, setNameMap] = useState<Record<string, string>>({});
 
     useEffect(() => {
         fetchZones();
+        fetchRepos();
     }, []);
+
+    const fetchRepos = async () => {
+        try {
+            const res = await fetch('/api/repos');
+            const data = await res.json();
+            if (Array.isArray(data)) {
+                const rMap: Record<string, string> = {};
+                const dMap: Record<string, string> = {};
+                const nMap: Record<string, string> = {};
+
+                data.forEach((r: any) => {
+                    // Map Deployment URLs
+                    r.deployments.forEach((d: any) => {
+                        const cleanUrl = d.url.replace(/^https?:\/\//, '').replace(/\/$/, '');
+                        rMap[cleanUrl] = r.repo.name;
+                    });
+
+                    // Map Custom URL
+                    if (r.repo.customUrl) {
+                        const cleanCustom = r.repo.customUrl.replace(/^https?:\/\//, '').replace(/\/$/, '');
+                        dMap[cleanCustom] = r.repo.name;
+                    }
+
+                    // Map Repo Name (for subdomain matching)
+                    nMap[r.repo.name.toLowerCase()] = r.repo.name;
+                });
+                setRepoMap(rMap);
+                setDomainMap(dMap);
+                setNameMap(nMap);
+            }
+        } catch (e) {
+            console.error("Failed to fetch repos for linking", e);
+        }
+    };
 
     useEffect(() => {
         if (selectedZone) {
@@ -174,6 +212,7 @@ export default function DnsManager() {
                                         <TableHeaderCell className="text-slate-400">Type</TableHeaderCell>
                                         <TableHeaderCell className="text-slate-400">Name</TableHeaderCell>
                                         <TableHeaderCell className="text-slate-400">Content</TableHeaderCell>
+                                        <TableHeaderCell className="text-slate-400">Linked Repo</TableHeaderCell>
                                         <TableHeaderCell className="text-slate-400">Proxy</TableHeaderCell>
                                         <TableHeaderCell className="text-slate-400">TTL</TableHeaderCell>
                                     </TableRow>
@@ -187,6 +226,32 @@ export default function DnsManager() {
                                             <TableCell className="font-medium text-slate-300">{record.name}</TableCell>
                                             <TableCell className="max-w-xs truncate text-slate-400" title={record.content}>{record.content}</TableCell>
                                             <TableCell>
+                                                {(() => {
+                                                    // 1. Direct Content Match (Target URL)
+                                                    let linkedRepo = repoMap[record.content];
+
+                                                    // 2. Custom Domain Match (Record Name)
+                                                    if (!linkedRepo) {
+                                                        linkedRepo = domainMap[record.name];
+                                                    }
+
+                                                    // 3. Subdomain Match (Repo Name)
+                                                    if (!linkedRepo) {
+                                                        const subdomain = record.name.split('.')[0].toLowerCase();
+                                                        linkedRepo = nameMap[subdomain];
+                                                    }
+
+                                                    return linkedRepo ? (
+                                                        <Link href={`/repo/${linkedRepo}`} className="text-violet-400 hover:underline flex items-center gap-1">
+                                                            <Globe size={12} />
+                                                            {linkedRepo}
+                                                        </Link>
+                                                    ) : (
+                                                        <span className="text-slate-600">-</span>
+                                                    );
+                                                })()}
+                                            </TableCell>
+                                            <TableCell>
                                                 {record.proxied ? (
                                                     <Badge size="xs" color="orange">Proxied</Badge>
                                                 ) : (
@@ -198,7 +263,7 @@ export default function DnsManager() {
                                     ))}
                                     {filteredRecords.length === 0 && (
                                         <TableRow>
-                                            <TableCell colSpan={5} className="text-center text-slate-500 py-4">
+                                            <TableCell colSpan={6} className="text-center text-slate-500 py-4">
                                                 No records found matching search.
                                             </TableCell>
                                         </TableRow>

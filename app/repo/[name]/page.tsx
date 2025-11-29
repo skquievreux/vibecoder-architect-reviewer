@@ -178,6 +178,8 @@ export default function RepoDetail() {
             });
     }, [repoName]);
 
+    const [dnsRecords, setDnsRecords] = useState<any[]>([]);
+
     useEffect(() => {
         if (repoData?.deployments && repoData.deployments.length > 0) {
             // Check for custom domain (Cloudflare)
@@ -185,8 +187,11 @@ export default function RepoDetail() {
             fetch(`/api/dns?target=${target}`)
                 .then(res => res.json())
                 .then(data => {
-                    if (Array.isArray(data) && data.length > 0) {
-                        setCustomDomain(data[0].name);
+                    if (Array.isArray(data)) {
+                        setDnsRecords(data);
+                        if (data.length > 0) {
+                            setCustomDomain(data[0].name);
+                        }
                     }
                 })
                 .catch(err => console.error("Failed to check custom domain", err));
@@ -524,6 +529,43 @@ export default function RepoDetail() {
                                     );
                                 })}
                             </List>
+                        )}
+                    </Card>
+
+                    {/* DNS & Domains */}
+                    <Card className="glass-card">
+                        <div className="flex justify-between items-center mb-4">
+                            <Title className="text-white">DNS & Domains</Title>
+                            {deployments.length > 0 && (
+                                <button
+                                    onClick={() => {
+                                        setTargetDeployment(deployments[0]);
+                                        setIsDnsModalOpen(true);
+                                    }}
+                                    className="text-xs px-2 py-1 bg-violet-900/30 text-violet-300 border border-violet-500/30 rounded hover:bg-violet-900/50 transition-colors"
+                                >
+                                    + Add Record
+                                </button>
+                            )}
+                        </div>
+
+                        {dnsRecords.length === 0 ? (
+                            <Text className="text-slate-500">No custom domains linked.</Text>
+                        ) : (
+                            <div className="space-y-2">
+                                {dnsRecords.map((record: any) => (
+                                    <div key={record.id} className="flex justify-between items-center p-3 bg-slate-900/50 rounded-lg border border-slate-800">
+                                        <div className="flex items-center gap-3">
+                                            <Globe size={16} className="text-emerald-400" />
+                                            <div>
+                                                <div className="font-medium text-slate-200">{record.name}</div>
+                                                <div className="text-xs text-slate-500">{record.type} • {record.proxied ? 'Proxied' : 'DNS Only'}</div>
+                                            </div>
+                                        </div>
+                                        <Badge size="xs" color="emerald">Active</Badge>
+                                    </div>
+                                ))}
+                            </div>
                         )}
                     </Card>
 
