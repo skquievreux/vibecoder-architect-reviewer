@@ -236,38 +236,38 @@ function MaintenanceContent() {
                             <button
                                 onClick={() => runScript('standardize-ts.js')}
                                 disabled={!!running}
-                                className="flex flex-col items-center p-4 border border-slate-200 rounded-lg hover:bg-slate-50 transition-colors text-center"
+                                className="flex flex-col items-center p-4 border border-slate-700 rounded-lg hover:bg-slate-800 transition-colors text-center"
                             >
                                 <Code size={24} className="mb-2 text-violet-500" />
-                                <span className="font-medium text-slate-900">Fix TypeScript</span>
-                                <span className="text-xs text-slate-500 mt-1">Set v5.8.2</span>
+                                <span className="font-medium text-slate-200">Fix TypeScript</span>
+                                <span className="text-xs text-slate-400 mt-1">Set v5.8.2</span>
                             </button>
                             <button
                                 onClick={() => runScript('standardize-supabase')}
                                 disabled={!!running}
-                                className="flex flex-col items-center p-4 border border-slate-200 rounded-lg hover:bg-slate-50 transition-colors text-center"
+                                className="flex flex-col items-center p-4 border border-slate-700 rounded-lg hover:bg-slate-800 transition-colors text-center"
                             >
                                 <Database size={24} className="mb-2 text-emerald-500" />
-                                <span className="font-medium text-slate-900">Fix Supabase</span>
-                                <span className="text-xs text-slate-500 mt-1">Set v2.49.4</span>
+                                <span className="font-medium text-slate-200">Fix Supabase</span>
+                                <span className="text-xs text-slate-400 mt-1">Set v2.49.4</span>
                             </button>
                             <button
                                 onClick={() => runScript('upgrade-react')}
                                 disabled={!!running}
-                                className="flex flex-col items-center p-4 border border-slate-200 rounded-lg hover:bg-slate-50 transition-colors text-center col-span-2 md:col-span-1"
+                                className="flex flex-col items-center p-4 border border-slate-700 rounded-lg hover:bg-slate-800 transition-colors text-center col-span-2 md:col-span-1"
                             >
                                 <Sparkles size={24} className="mb-2 text-blue-500" />
-                                <span className="font-medium text-slate-900">Upgrade Tier 2</span>
-                                <span className="text-xs text-slate-500 mt-1">React 19.2 (Safe)</span>
+                                <span className="font-medium text-slate-200">Upgrade Tier 2</span>
+                                <span className="text-xs text-slate-400 mt-1">React 19.2 (Safe)</span>
                             </button>
                             <button
                                 onClick={() => runScript('sync-vercel-domains')}
                                 disabled={!!running}
-                                className="flex flex-col items-center p-4 border border-slate-200 rounded-lg hover:bg-slate-50 transition-colors text-center col-span-2 md:col-span-1"
+                                className="flex flex-col items-center p-4 border border-slate-700 rounded-lg hover:bg-slate-800 transition-colors text-center col-span-2 md:col-span-1"
                             >
                                 <Globe size={24} className="mb-2 text-violet-500" />
-                                <span className="font-medium text-slate-900">Sync Domains</span>
-                                <span className="text-xs text-slate-500 mt-1">Vercel &rarr; DB</span>
+                                <span className="font-medium text-slate-200">Sync Domains</span>
+                                <span className="text-xs text-slate-400 mt-1">Vercel &rarr; DB</span>
                             </button>
                         </div>
                     </div>
