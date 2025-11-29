@@ -27,6 +27,7 @@ model Repository {
   technologies  Technology[]
   interfaces    Interface[]
   deployments   Deployment[]
+  tasks         RepoTask[]
   health        RepoHealth?
 }
 
@@ -92,4 +93,16 @@ model AIReport {
   id        String   @id @default(uuid())
   content   String
   createdAt DateTime @default(now())
+}
+
+model RepoTask {
+  id           String     @id @default(uuid())
+  repositoryId String
+  repository   Repository @relation(fields: [repositoryId], references: [id], onDelete: Cascade)
+  title        String
+  status       String     @default("OPEN") // OPEN, COMPLETED, IGNORED
+  priority     String     @default("MEDIUM") // HIGH, MEDIUM, LOW
+  type         String     @default("MAINTENANCE") // SECURITY, MAINTENANCE, FEATURE
+  createdAt    DateTime   @default(now())
+  updatedAt    DateTime   @updatedAt
 }

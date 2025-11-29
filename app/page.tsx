@@ -42,6 +42,7 @@ type Repository = {
   technologies: Technology[];
   interfaces: Interface[];
   deployments: Deployment[];
+  tasks: { id: string; title: string; priority: string; status: string }[];
 };
 
 export default function Dashboard() {
@@ -51,7 +52,7 @@ export default function Dashboard() {
   const [selectedProviders, setSelectedProviders] = useState<string[]>([]);
   // Replace sortOption with sortConfig
   const [sortConfig, setSortConfig] = useState<{ key: string; direction: 'asc' | 'desc' }>({ key: 'updated', direction: 'desc' });
-  const [filterStatus, setFilterStatus] = useState<'all' | 'private' | 'supabase' | 'outdated'>('all');
+  const [filterStatus, setFilterStatus] = useState<'all' | 'private' | 'supabase' | 'outdated' | 'critical'>('all');
   const [syncing, setSyncing] = useState(false);
 
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
@@ -113,6 +114,14 @@ export default function Dashboard() {
     return date < oneYearAgo;
   };
 
+  const getPriorityScore = (tasks: { priority: string }[]) => {
+    if (!tasks || tasks.length === 0) return 0;
+    if (tasks.some(t => t.priority === 'HIGH')) return 3;
+    if (tasks.some(t => t.priority === 'MEDIUM')) return 2;
+    if (tasks.some(t => t.priority === 'LOW')) return 1;
+    return 0;
+  };
+
   const filteredRepos = repos.filter(r => {
     const matchesSearch = r.repo.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
       r.technologies.some(t => t.name.toLowerCase().includes(searchTerm.toLowerCase()));
@@ -124,6 +133,7 @@ export default function Dashboard() {
     if (filterStatus === 'private') matchesStatus = r.repo.isPrivate;
     if (filterStatus === 'supabase') matchesStatus = r.technologies.some(t => t.name.toLowerCase() === 'supabase');
     if (filterStatus === 'outdated') matchesStatus = isOutdated(r.repo.updatedAt.toString());
+    if (filterStatus === 'critical') matchesStatus = r.tasks && r.tasks.some(t => t.priority === 'HIGH');
 
     return matchesSearch && matchesProvider && matchesStatus;
   }).sort((a, b) => {
@@ -136,6 +146,10 @@ export default function Dashboard() {
       const statusA = a.repo.isPrivate ? 1 : 0;
       const statusB = b.repo.isPrivate ? 1 : 0;
       comparison = statusA - statusB;
+    } else if (sortConfig.key === 'priority') {
+      const scoreA = getPriorityScore(a.tasks);
+      const scoreB = getPriorityScore(b.tasks);
+      comparison = scoreA - scoreB;
     }
 
     return sortConfig.direction === 'asc' ? comparison : -comparison;
@@ -232,6 +246,14 @@ export default function Dashboard() {
             >
               Outdated
             </Badge>
+            <Badge
+              color={filterStatus === 'critical' ? "red" : "slate"}
+              icon={AlertTriangle}
+              className="cursor-pointer hover:opacity-80"
+              onClick={() => setFilterStatus('critical')}
+            >
+              Critical Tasks
+            </Badge>
             <a href="/tech" className="no-underline">
               <Badge color="violet" icon={Code} className="cursor-pointer hover:opacity-80">
                 Tech Overview
@@ -293,6 +315,7 @@ export default function Dashboard() {
             >
               <SelectItem value="updated">Last Updated</SelectItem>
               <SelectItem value="name">Name</SelectItem>
+              <SelectItem value="priority">Task Priority</SelectItem>
             </Select>
           </div>
           {/* View Toggle */}
@@ -402,10 +425,30 @@ export default function Dashboard() {
                   </div >
 
                   <div className="mt-4 pt-4 border-t border-slate-100 flex justify-between items-center text-xs text-slate-500">
-                    <span>Created: {new Date(item.repo.pushedAt || item.repo.updatedAt).toLocaleDateString()}</span>
-                    <a href={item.repo.url} target="_blank" className="flex items-center gap-1 text-blue-600 hover:underline">
-                      GitHub <ExternalLink size={12} />
-                    </a>
+                    <div className="flex gap-2">
+                      {/* Task Indicators */}
+                      {item.tasks && item.tasks.filter(t => t.priority === 'HIGH').length > 0 && (
+                        <Badge size="xs" color="red" icon={AlertTriangle}>
+                          {item.tasks.filter(t => t.priority === 'HIGH').length} Critical
+                        </Badge>
+                      )}
+                      {item.tasks && item.tasks.filter(t => t.priority === 'MEDIUM').length > 0 && (
+                        <Badge size="xs" color="orange">
+                          {item.tasks.filter(t => t.priority === 'MEDIUM').length} Medium
+                        </Badge>
+                      )}
+                      {item.tasks && item.tasks.filter(t => t.priority === 'LOW').length > 0 && (
+                        <Badge size="xs" color="blue">
+                          {item.tasks.filter(t => t.priority === 'LOW').length} Low
+                        </Badge>
+                      )}
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <span>Created: {new Date(item.repo.pushedAt || item.repo.updatedAt).toLocaleDateString()}</span>
+                      <a href={item.repo.url} target="_blank" className="flex items-center gap-1 text-blue-600 hover:underline">
+                        GitHub <ExternalLink size={12} />
+                      </a>
+                    </div>
                   </div>
                 </Card >
               );
@@ -434,6 +477,17 @@ export default function Dashboard() {
                     <div className="flex items-center gap-1">
                       Status
                       {sortConfig.key === 'status' && (
+                        sortConfig.direction === 'asc' ? <ArrowUp size={14} /> : <ArrowDown size={14} />
+                      )}
+                    </div>
+                  </TableHeaderCell>
+                  <TableHeaderCell
+                    className="cursor-pointer hover:bg-slate-50 transition-colors"
+                    onClick={() => handleSort('priority')}
+                  >
+                    <div className="flex items-center gap-1">
+                      Tasks
+                      {sortConfig.key === 'priority' && (
                         sortConfig.direction === 'asc' ? <ArrowUp size={14} /> : <ArrowDown size={14} />
                       )}
                     </div>
@@ -477,6 +531,25 @@ export default function Dashboard() {
                         <Badge color={item.repo.isPrivate ? "slate" : "blue"} size="xs">
                           {item.repo.isPrivate ? "Private" : "Public"}
                         </Badge>
+                      </TableCell>
+                      <TableCell>
+                        <div className="flex gap-1 flex-wrap max-w-[150px]">
+                          {item.tasks && item.tasks.filter(t => t.priority === 'HIGH').length > 0 && (
+                            <Badge size="xs" color="red" icon={AlertTriangle}>
+                              {item.tasks.filter(t => t.priority === 'HIGH').length}
+                            </Badge>
+                          )}
+                          {item.tasks && item.tasks.filter(t => t.priority === 'MEDIUM').length > 0 && (
+                            <Badge size="xs" color="orange">
+                              {item.tasks.filter(t => t.priority === 'MEDIUM').length}
+                            </Badge>
+                          )}
+                          {item.tasks && item.tasks.filter(t => t.priority === 'LOW').length > 0 && (
+                            <Badge size="xs" color="blue">
+                              {item.tasks.filter(t => t.priority === 'LOW').length}
+                            </Badge>
+                          )}
+                        </div>
                       </TableCell>
                       <TableCell>
                         <div className="flex flex-wrap gap-1 max-w-xs">

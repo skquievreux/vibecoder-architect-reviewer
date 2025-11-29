@@ -16,22 +16,42 @@ export async function GET() {
             },
         });
 
-        // Transform to match the frontend expected shape if needed
-        // Frontend expects: { repo: ..., technologies: ..., interfaces: ... }
-        const formatted = repos.map((r: any) => ({
-            repo: {
-                ...r,
-                // Frontend expects languages as { edges: ... } from GH GraphQL, but we stored single string
-                // We can adapt frontend or adapt here. Let's adapt here to keep frontend simple for now.
-                languages: { edges: r.language ? [{ node: { name: r.language } }] : [] }
-            },
-            technologies: r.technologies,
-            deployments: r.deployments,
-            interfaces: r.interfaces.map((i: any) => ({
-                ...i,
-                details: i.details ? JSON.parse(i.details) : null
-            }))
-        }));
+        // Fetch tasks separately to avoid "Unknown field" error with stale Prisma Client
+        let tasks: any[] = [];
+        try {
+            // @ts-ignore
+            if (prisma.repoTask) {
+                // @ts-ignore
+                tasks = await prisma.repoTask.findMany({
+                    where: { status: 'OPEN' }
+                });
+            } else {
+                // Fallback to raw SQL
+                tasks = await prisma.$queryRawUnsafe(`SELECT * FROM RepoTask WHERE status = 'OPEN'`);
+            }
+        } catch (e) {
+            console.warn("Failed to fetch tasks, continuing without them:", e);
+            tasks = [];
+        }
+
+        // Transform to match the frontend expected shape
+        const formatted = repos.map((r: any) => {
+            const repoTasks = tasks.filter((t: any) => t.repositoryId === r.id);
+
+            return {
+                repo: {
+                    ...r,
+                    languages: { edges: r.language ? [{ node: { name: r.language } }] : [] }
+                },
+                technologies: r.technologies,
+                deployments: r.deployments,
+                tasks: repoTasks,
+                interfaces: r.interfaces.map((i: any) => ({
+                    ...i,
+                    details: i.details ? JSON.parse(i.details) : null
+                }))
+            };
+        });
 
         return NextResponse.json(formatted);
     } catch (error) {

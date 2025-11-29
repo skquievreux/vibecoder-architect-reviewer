@@ -14,13 +14,13 @@ export async function POST() {
 
         if (fs.existsSync(envPath)) {
             const envContent = fs.readFileSync(envPath, 'utf-8');
-            const match = envContent.match(/PERPLEXITY_API_KEY=(.*)/) || envContent.match(/OPENAI_API_KEY=(.*)/);
+            const match = envContent.match(/PERPLEXITY_API_KEY=(.*)/) || envContent.match(/PERPLEXITY_API_TOKEN=(.*)/) || envContent.match(/OPENAI_API_KEY=(.*)/);
             if (match && match[1]) {
                 fileKey = match[1].trim().replace(/["']/g, '');
             }
         }
 
-        const apiKey = fileKey || process.env.PERPLEXITY_API_KEY || process.env.OPENAI_API_KEY;
+        const apiKey = fileKey || process.env.PERPLEXITY_API_KEY || process.env.PERPLEXITY_API_TOKEN || process.env.OPENAI_API_KEY;
         if (!apiKey) {
             return NextResponse.json({ error: 'AI API Key not configured (Set PERPLEXITY_API_KEY or OPENAI_API_KEY)' }, { status: 500 });
         }
@@ -79,7 +79,7 @@ export async function POST() {
 
         // 3. Call AI (Perplexity)
         const completion = await openai.chat.completions.create({
-            model: "llama-3.1-sonar-large-128k-online", // Perplexity Model
+            model: "sonar-pro", // Perplexity Model
             messages: [
                 { role: "system", content: systemPrompt },
                 { role: "user", content: userPrompt }

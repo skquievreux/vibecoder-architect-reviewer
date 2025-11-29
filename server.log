@@ -851,3 +851,870 @@ AIReport model missing in Prisma Client. Using raw SQL fallback.
  GET /api/ai/reports 200 in 21ms (compile: 7ms, render: 14ms)
 [dotenv@17.2.3] injecting env (3) from .env -- tip: 📡 add observability to secrets: https://dotenvx.com/ops
  POST /api/ai/generate 500 in 346ms (compile: 316ms, render: 30ms)
+ GET / 200 in 911ms (compile: 662ms, render: 249ms)
+ GET /report 200 in 1074ms (compile: 1001ms, render: 74ms)
+ GET /report 200 in 87ms (compile: 6ms, render: 81ms)
+ GET / 200 in 88ms (compile: 5ms, render: 83ms)
+ GET / 200 in 151ms (compile: 85ms, render: 66ms)
+ GET /report 200 in 155ms (compile: 7ms, render: 148ms)
+ GET / 200 in 138ms (compile: 11ms, render: 127ms)
+ GET /report 200 in 138ms (compile: 76ms, render: 62ms)
+ GET /report 200 in 106ms (compile: 4ms, render: 103ms)
+ GET / 200 in 119ms (compile: 50ms, render: 68ms)
+ GET /report 200 in 134ms (compile: 13ms, render: 121ms)
+ GET / 200 in 132ms (compile: 68ms, render: 63ms)
+ GET / 200 in 494ms (compile: 6ms, render: 489ms)
+ GET /report 200 in 501ms (compile: 53ms, render: 448ms)
+ GET / 200 in 868ms (compile: 88ms, render: 780ms)
+ GET /report 200 in 631ms (compile: 130ms, render: 500ms)
+ GET / 200 in 93ms (compile: 7ms, render: 86ms)
+ GET /report 200 in 93ms (compile: 51ms, render: 43ms)
+ GET /report 200 in 143ms (compile: 8ms, render: 135ms)
+ GET / 200 in 166ms (compile: 7ms, render: 160ms)
+ GET /report 200 in 141ms (compile: 8ms, render: 133ms)
+ GET / 200 in 92ms (compile: 20ms, render: 72ms)
+ GET / 200 in 80ms (compile: 4ms, render: 75ms)
+ GET /report 200 in 83ms (compile: 40ms, render: 42ms)
+ GET /report 200 in 158ms (compile: 4ms, render: 155ms)
+ GET / 200 in 162ms (compile: 86ms, render: 76ms)
+ GET / 200 in 231ms (compile: 19ms, render: 212ms)
+ GET /report 200 in 233ms (compile: 118ms, render: 114ms)
+ GET / 200 in 51ms (compile: 5ms, render: 45ms)
+ GET /report 200 in 129ms (compile: 20ms, render: 109ms)
+ GET / 200 in 56ms (compile: 6ms, render: 50ms)
+ GET /report 200 in 65ms (compile: 38ms, render: 27ms)
+ GET / 200 in 69ms (compile: 5ms, render: 64ms)
+ GET / 200 in 106ms (compile: 4ms, render: 102ms)
+ GET /report 200 in 42ms (compile: 4ms, render: 38ms)
+ GET / 200 in 102ms (compile: 10ms, render: 92ms)
+ GET /report 200 in 54ms (compile: 12ms, render: 42ms)
+ GET / 200 in 169ms (compile: 7ms, render: 162ms)
+ GET /report 200 in 126ms (compile: 5ms, render: 121ms)
+ GET / 200 in 236ms (compile: 13ms, render: 223ms)
+ GET /report 200 in 243ms (compile: 100ms, render: 144ms)
+ GET /report 200 in 121ms (compile: 5ms, render: 116ms)
+ GET / 200 in 86ms (compile: 6ms, render: 80ms)
+ GET / 200 in 265ms (compile: 14ms, render: 252ms)
+ GET / 200 in 138ms (compile: 7ms, render: 132ms)
+ GET /report 200 in 241ms (compile: 85ms, render: 157ms)
+ GET / 200 in 228ms (compile: 19ms, render: 209ms)
+ GET / 200 in 195ms (compile: 4ms, render: 191ms)
+ GET / 200 in 152ms (compile: 9ms, render: 142ms)
+ GET / 200 in 108ms (compile: 12ms, render: 97ms)
+ GET / 200 in 243ms (compile: 14ms, render: 229ms)
+ GET / 200 in 245ms (compile: 65ms, render: 180ms)
+ GET / 200 in 141ms (compile: 15ms, render: 126ms)
+ GET /api/repos 200 in 470ms (compile: 267ms, render: 203ms)
+ GET / 200 in 575ms (compile: 10ms, render: 565ms)
+ GET / 200 in 329ms (compile: 16ms, render: 313ms)
+ GET / 200 in 299ms (compile: 6ms, render: 292ms)
+ GET / 200 in 300ms (compile: 27ms, render: 273ms)
+ GET /api/repos 200 in 118ms (compile: 15ms, render: 103ms)
+ GET / 200 in 74ms (compile: 11ms, render: 63ms)
+ GET / 200 in 49ms (compile: 6ms, render: 43ms)
+ GET / 200 in 134ms (compile: 5ms, render: 130ms)
+ GET / 200 in 156ms (compile: 4ms, render: 152ms)
+ GET / 200 in 125ms (compile: 19ms, render: 106ms)
+ GET / 200 in 78ms (compile: 6ms, render: 72ms)
+ GET / 200 in 563ms (compile: 459ms, render: 104ms)
+ GET / 200 in 575ms (compile: 503ms, render: 72ms)
+ GET / 200 in 125ms (compile: 5ms, render: 119ms)
+ GET / 200 in 115ms (compile: 4ms, render: 112ms)
+ GET / 200 in 117ms (compile: 31ms, render: 86ms)
+ GET / 200 in 43ms (compile: 5ms, render: 38ms)
+ GET / 200 in 80ms (compile: 8ms, render: 72ms)
+ GET / 200 in 80ms (compile: 33ms, render: 46ms)
+ GET / 200 in 96ms (compile: 4ms, render: 93ms)
+ GET / 200 in 116ms (compile: 5ms, render: 111ms)
+ GET / 200 in 90ms (compile: 4ms, render: 86ms)
+ GET / 200 in 113ms (compile: 4ms, render: 109ms)
+ GET / 200 in 102ms (compile: 6ms, render: 96ms)
+ GET / 200 in 103ms (compile: 31ms, render: 72ms)
+ GET / 200 in 94ms (compile: 3ms, render: 91ms)
+ GET / 200 in 99ms (compile: 4ms, render: 95ms)
+ GET / 200 in 100ms (compile: 27ms, render: 73ms)
+ GET / 200 in 88ms (compile: 5ms, render: 83ms)
+ GET / 200 in 93ms (compile: 12ms, render: 81ms)
+ GET / 200 in 93ms (compile: 33ms, render: 61ms)
+ GET / 200 in 38ms (compile: 8ms, render: 30ms)
+ GET / 200 in 98ms (compile: 25ms, render: 74ms)
+ GET / 200 in 101ms (compile: 4ms, render: 97ms)
+ GET / 200 in 149ms (compile: 3ms, render: 146ms)
+ GET / 200 in 125ms (compile: 9ms, render: 116ms)
+ GET / 200 in 126ms (compile: 41ms, render: 84ms)
+ GET / 200 in 44ms (compile: 4ms, render: 40ms)
+ GET / 200 in 83ms (compile: 6ms, render: 77ms)
+ GET / 200 in 84ms (compile: 24ms, render: 59ms)
+ GET / 200 in 39ms (compile: 3ms, render: 36ms)
+ GET / 200 in 78ms (compile: 5ms, render: 72ms)
+ GET / 200 in 79ms (compile: 25ms, render: 54ms)
+ GET / 200 in 44ms (compile: 4ms, render: 41ms)
+ GET / 200 in 101ms (compile: 6ms, render: 95ms)
+ GET / 200 in 102ms (compile: 25ms, render: 77ms)
+ GET / 200 in 51ms (compile: 4ms, render: 47ms)
+ GET / 200 in 101ms (compile: 4ms, render: 98ms)
+ GET / 200 in 110ms (compile: 30ms, render: 80ms)
+ GET / 200 in 126ms (compile: 4ms, render: 121ms)
+ GET / 200 in 140ms (compile: 38ms, render: 102ms)
+ GET / 200 in 145ms (compile: 6ms, render: 138ms)
+ GET / 200 in 120ms (compile: 10ms, render: 110ms)
+ GET / 200 in 82ms (compile: 27ms, render: 55ms)
+ GET / 200 in 85ms (compile: 5ms, render: 80ms)
+ GET / 200 in 41ms (compile: 4ms, render: 37ms)
+ GET / 200 in 119ms (compile: 32ms, render: 88ms)
+ GET / 200 in 129ms (compile: 3ms, render: 125ms)
+ GET / 200 in 81ms (compile: 4ms, render: 78ms)
+ GET / 200 in 84ms (compile: 7ms, render: 77ms)
+ GET / 200 in 87ms (compile: 42ms, render: 45ms)
+ GET / 200 in 128ms (compile: 20ms, render: 107ms)
+ GET / 200 in 78ms (compile: 5ms, render: 72ms)
+ GET / 200 in 116ms (compile: 5ms, render: 111ms)
+ GET / 200 in 215ms (compile: 6ms, render: 209ms)
+ GET / 200 in 216ms (compile: 81ms, render: 135ms)
+ GET / 200 in 82ms (compile: 15ms, render: 67ms)
+ GET / 200 in 118ms (compile: 5ms, render: 113ms)
+ GET / 200 in 128ms (compile: 34ms, render: 94ms)
+ GET / 200 in 56ms (compile: 5ms, render: 51ms)
+ GET / 200 in 83ms (compile: 8ms, render: 75ms)
+ GET / 200 in 82ms (compile: 39ms, render: 43ms)
+ GET / 200 in 43ms (compile: 8ms, render: 35ms)
+ GET / 200 in 44ms (compile: 5ms, render: 39ms)
+ GET / 200 in 31ms (compile: 8ms, render: 24ms)
+ GET / 200 in 41ms (compile: 7ms, render: 34ms)
+ GET / 200 in 56ms (compile: 4ms, render: 52ms)
+ GET / 200 in 32ms (compile: 4ms, render: 29ms)
+ GET / 200 in 59ms (compile: 11ms, render: 48ms)
+ GET / 200 in 46ms (compile: 12ms, render: 34ms)
+ GET / 200 in 28ms (compile: 3ms, render: 25ms)
+ GET / 200 in 20ms (compile: 3ms, render: 17ms)
+ GET / 200 in 55ms (compile: 4ms, render: 51ms)
+ GET / 200 in 57ms (compile: 4ms, render: 53ms)
+ GET / 200 in 65ms (compile: 6ms, render: 59ms)
+ GET / 200 in 199ms (compile: 6ms, render: 193ms)
+ GET / 200 in 60ms (compile: 3ms, render: 57ms)
+ GET / 200 in 47ms (compile: 4ms, render: 43ms)
+ GET / 200 in 58ms (compile: 9ms, render: 48ms)
+ GET /repo/Google-Visual-Story-Generator- 200 in 103ms (compile: 82ms, render: 21ms)
+ GET /api/repos/Google-Visual-Story-Generator- 200 in 109ms (compile: 93ms, render: 15ms)
+ GET /api/repos/Google-Visual-Story-Generator- 200 in 12ms (compile: 3ms, render: 9ms)
+ GET / 200 in 25ms (compile: 4ms, render: 21ms)
+ GET /api/repos 200 in 56ms (compile: 31ms, render: 24ms)
+ GET /api/repos 200 in 43ms (compile: 2ms, render: 40ms)
+ ✓ Compiled in 492ms
+ ✓ Compiled in 299ms
+ GET /repo/Google-Visual-Story-Generator- 200 in 208ms (compile: 160ms, render: 47ms)
+ GET /api/repos/Google-Visual-Story-Generator- 200 in 119ms (compile: 86ms, render: 33ms)
+ GET /api/repos/Google-Visual-Story-Generator- 200 in 22ms (compile: 4ms, render: 18ms)
+ GET / 200 in 45ms (compile: 6ms, render: 40ms)
+ GET /api/repos 200 in 25ms (compile: 5ms, render: 20ms)
+ GET /api/repos 200 in 25ms (compile: 3ms, render: 22ms)
+ ✓ Compiled in 335ms
+ ✓ Compiled in 1051ms
+ GET / 200 in 580ms (compile: 10ms, render: 570ms)
+ GET /api/repos 200 in 67ms (compile: 9ms, render: 59ms)
+ ✓ Compiled in 3.3s
+Starting Analyzer...
+ POST /api/system/sync 200 in 5.6s (compile: 311ms, render: 5.3s)
+ GET /report 200 in 2.2s (compile: 268ms, render: 1937ms)
+AIReport model missing in Prisma Client. Using raw SQL fallback.
+ GET /api/ai/reports 200 in 1062ms (compile: 622ms, render: 441ms)
+ POST /api/ai/generate 500 in 4.0s (compile: 3.7s, render: 236ms)
+ GET / 200 in 83ms (compile: 19ms, render: 64ms)
+ GET /api/repos 200 in 198ms (compile: 27ms, render: 171ms)
+ GET /api/repos 200 in 94ms (compile: 26ms, render: 68ms)
+ GET /repo/Google-Visual-Story-Generator- 200 in 452ms (compile: 363ms, render: 90ms)
+ GET /api/repos/Google-Visual-Story-Generator- 200 in 138ms (compile: 98ms, render: 40ms)
+ GET /api/repos/Google-Visual-Story-Generator- 200 in 55ms (compile: 19ms, render: 36ms)
+ GET /api/tasks?repositoryId=5d0ed312-adaa-420f-abf9-26e9da8aff15 200 in 2.1s (compile: 2.1s, render: 42ms)
+ GET /api/tasks?repositoryId=5d0ed312-adaa-420f-abf9-26e9da8aff15 200 in 19ms (compile: 6ms, render: 13ms)
+ POST /api/ai/tasks 500 in 761ms (compile: 744ms, render: 17ms)
+ GET / 200 in 68ms (compile: 8ms, render: 60ms)
+ GET /api/repos 200 in 45ms (compile: 4ms, render: 41ms)
+ GET /api/repos 200 in 65ms (compile: 4ms, render: 60ms)
+ GET /repo/colab-monk-generator 200 in 127ms (compile: 65ms, render: 62ms)
+ GET /api/repos/colab-monk-generator 200 in 68ms (compile: 49ms, render: 18ms)
+ GET /api/tasks?repositoryId=b42c4f76-2b6c-4f86-891f-71e59661c451 200 in 34ms (compile: 12ms, render: 22ms)
+ GET /api/repos/colab-monk-generator 200 in 32ms (compile: 13ms, render: 19ms)
+ GET /api/tasks?repositoryId=b42c4f76-2b6c-4f86-891f-71e59661c451 200 in 21ms (compile: 4ms, render: 17ms)
+ POST /api/ai/tasks 500 in 22ms (compile: 5ms, render: 17ms)
+ POST /api/ai/tasks 500 in 14ms (compile: 3ms, render: 10ms)
+ GET / 200 in 65ms (compile: 5ms, render: 60ms)
+ GET /api/repos 200 in 40ms (compile: 5ms, render: 34ms)
+ GET /api/repos 200 in 28ms (compile: 4ms, render: 23ms)
+ GET /report 200 in 174ms (compile: 13ms, render: 161ms)
+AIReport model missing in Prisma Client. Using raw SQL fallback.
+ GET /api/ai/reports 200 in 29ms (compile: 10ms, render: 19ms)
+Analyzer finished.
+Starting Seeder...
+Seeder finished.
+ GET / 200 in 39ms (compile: 5ms, render: 34ms)
+ GET /api/repos 200 in 43ms (compile: 8ms, render: 35ms)
+ GET /api/repos 200 in 67ms (compile: 7ms, render: 59ms)
+ GET /report 200 in 122ms (compile: 7ms, render: 115ms)
+AIReport model missing in Prisma Client. Using raw SQL fallback.
+ GET /api/ai/reports 200 in 20ms (compile: 4ms, render: 16ms)
+AI Generation Error: Error: 400 Invalid model 'llama-3.1-sonar-large-128k-online'. Permitted models can be found in the documentation at https://docs.perplexity.ai/getting-started/models.
+    at async POST (app/api/ai/generate/route.ts:81:28)
+  79 |
+  80 |         // 3. Call AI (Perplexity)
+> 81 |         const completion = await openai.chat.completions.create({
+     |                            ^
+  82 |             model: "llama-3.1-sonar-large-128k-online", // Perplexity Model
+  83 |             messages: [
+  84 |                 { role: "system", content: systemPrompt }, {
+  status: 400,
+  headers: Headers {
+    date: 'Sat, 29 Nov 2025 11:07:15 GMT',
+    'content-type': 'application/json',
+    'content-length': '213',
+    connection: 'keep-alive',
+    'cf-ray': '9a61a3ef8d327185-FRA',
+    'cf-cache-status': 'DYNAMIC',
+    'set-cookie': '__cf_bm=de00Zw9a7C2LmPWRDzbbTJRPZSRu_foRtkdlO60Mc2c-1764414435-1.0.1.1-Jr4U_uHGFOjKwDqRsyH9yn2jCsmg0.SA4ZjBUhhB5ipWy2DgoyMir2i.bij1T3X0WxnoptzAKqSbKp9Q4CiX1_.tdhteCMIMLyrI0E0SrgU; path=/; expires=Sat, 29-Nov-25 11:37:15 GMT; domain=.perplexity.ai; HttpOnly; Secure; SameSite=None',
+    'strict-transport-security': 'max-age=15552000; includeSubDomains; preload',
+    server: 'cloudflare'
+  },
+  requestID: null,
+  error: [Object],
+  code: 400,
+  param: undefined,
+  type: 'invalid_model'
+}
+ POST /api/ai/generate 500 in 1318ms (compile: 356ms, render: 961ms)
+AI Generation Error: Error: 400 Invalid model 'llama-3.1-sonar-small-128k-online'. Permitted models can be found in the documentation at https://docs.perplexity.ai/getting-started/models.
+    at async POST (app/api/ai/generate/route.ts:81:28)
+  79 |
+  80 |         // 3. Call AI (Perplexity)
+> 81 |         const completion = await openai.chat.completions.create({
+     |                            ^
+  82 |             model: "llama-3.1-sonar-small-128k-online", // Perplexity Model
+  83 |             messages: [
+  84 |                 { role: "system", content: systemPrompt }, {
+  status: 400,
+  headers: Headers {
+    date: 'Sat, 29 Nov 2025 11:08:23 GMT',
+    'content-type': 'application/json',
+    'content-length': '213',
+    connection: 'keep-alive',
+    'cf-ray': '9a61a5967e48d2e4-FRA',
+    'cf-cache-status': 'DYNAMIC',
+    'set-cookie': '__cf_bm=7C9RL0yuV0PNo3FA2fJ5VwEKzFJ57d2rz.WrdexDHEo-1764414503-1.0.1.1-5pYf761rfprcZtWP86o5.LTtybUeL1NprKn74_H9k6LS.5r_wl9WLYcxe.35aWfWW7A7bmrkh8zqa38AqCZ79fq8NVAathWIKQXbeRU7J5E; path=/; expires=Sat, 29-Nov-25 11:38:23 GMT; domain=.perplexity.ai; HttpOnly; Secure; SameSite=None',
+    'strict-transport-security': 'max-age=15552000; includeSubDomains; preload',
+    server: 'cloudflare'
+  },
+  requestID: null,
+  error: [Object],
+  code: 400,
+  param: undefined,
+  type: 'invalid_model'
+}
+ POST /api/ai/generate 500 in 657ms (compile: 156ms, render: 500ms)
+ GET /report 200 in 160ms (compile: 5ms, render: 155ms)
+AIReport model missing in Prisma Client. Using raw SQL fallback.
+ GET /api/ai/reports 200 in 22ms (compile: 4ms, render: 18ms)
+AI Generation Error: Error: 400 Invalid model 'llama-3.1-sonar-small-128k-online'. Permitted models can be found in the documentation at https://docs.perplexity.ai/getting-started/models.
+    at async POST (app/api/ai/generate/route.ts:81:28)
+  79 |
+  80 |         // 3. Call AI (Perplexity)
+> 81 |         const completion = await openai.chat.completions.create({
+     |                            ^
+  82 |             model: "llama-3.1-sonar-small-128k-online", // Perplexity Model
+  83 |             messages: [
+  84 |                 { role: "system", content: systemPrompt }, {
+  status: 400,
+  headers: Headers {
+    date: 'Sat, 29 Nov 2025 11:08:29 GMT',
+    'content-type': 'application/json',
+    'content-length': '213',
+    connection: 'keep-alive',
+    'cf-ray': '9a61a5bdd8cce7b4-FRA',
+    'cf-cache-status': 'DYNAMIC',
+    'set-cookie': '__cf_bm=ahms9PRPLdDGo.Q7PY_iR85o9wal7DinRJ28Kv8WtGo-1764414509-1.0.1.1-Hy4pujTCKij2HrIgBcTzwa07TxwPnWbuhv_kEHOUiL.m30Xngyde0oXHtdSRn_3v8ihjYxK6m7_OzQ3m5tp9LR4WxDkakAKU_g1RoAAEfz8; path=/; expires=Sat, 29-Nov-25 11:38:29 GMT; domain=.perplexity.ai; HttpOnly; Secure; SameSite=None',
+    'strict-transport-security': 'max-age=15552000; includeSubDomains; preload',
+    server: 'cloudflare'
+  },
+  requestID: null,
+  error: [Object],
+  code: 400,
+  param: undefined,
+  type: 'invalid_model'
+}
+ POST /api/ai/generate 500 in 375ms (compile: 3ms, render: 372ms)
+AI Generation Error: Error: 400 Invalid model 'llama-3.1-sonar-small-128k-online'. Permitted models can be found in the documentation at https://docs.perplexity.ai/getting-started/models.
+    at async POST (app/api/ai/generate/route.ts:81:28)
+  79 |
+  80 |         // 3. Call AI (Perplexity)
+> 81 |         const completion = await openai.chat.completions.create({
+     |                            ^
+  82 |             model: "llama-3.1-sonar-small-128k-online", // Perplexity Model
+  83 |             messages: [
+  84 |                 { role: "system", content: systemPrompt }, {
+  status: 400,
+  headers: Headers {
+    date: 'Sat, 29 Nov 2025 11:08:34 GMT',
+    'content-type': 'application/json',
+    'content-length': '213',
+    connection: 'keep-alive',
+    'cf-ray': '9a61a5dcf96d65a6-FRA',
+    'cf-cache-status': 'DYNAMIC',
+    'set-cookie': '__cf_bm=RGG.bZaA1nJ5ZkbIl7gnzTz6HXy1IgdN8DrzFkTl7BQ-1764414514-1.0.1.1-PRh4UnvnsETlx_tEzBq4g3R8T.1Ba44DlGyJhFko2MmXsG0.FbcMr91ZqSqcQs9QIYPB_9bY8I22B_y83SO7oXQS8zJrhy8qwe3yF8Vz1.E; path=/; expires=Sat, 29-Nov-25 11:38:34 GMT; domain=.perplexity.ai; HttpOnly; Secure; SameSite=None',
+    'strict-transport-security': 'max-age=15552000; includeSubDomains; preload',
+    server: 'cloudflare'
+  },
+  requestID: null,
+  error: [Object],
+  code: 400,
+  param: undefined,
+  type: 'invalid_model'
+}
+ POST /api/ai/generate 500 in 492ms (compile: 3ms, render: 489ms)
+ POST /api/ai/generate 200 in 26.2s (compile: 162ms, render: 26.0s)
+ GET / 200 in 53ms (compile: 13ms, render: 40ms)
+ GET /api/repos 200 in 67ms (compile: 26ms, render: 41ms)
+ GET /api/repos 200 in 43ms (compile: 17ms, render: 26ms)
+ GET /logs 200 in 564ms (compile: 215ms, render: 349ms)
+ GET /api/logs?page=1&limit=20&status=ALL 200 in 137ms (compile: 113ms, render: 24ms)
+ GET / 200 in 22ms (compile: 4ms, render: 18ms)
+ GET /api/repos 200 in 22ms (compile: 5ms, render: 17ms)
+ GET /api/repos 200 in 16ms (compile: 2ms, render: 14ms)
+ GET /report 200 in 106ms (compile: 6ms, render: 101ms)
+AIReport model missing in Prisma Client. Using raw SQL fallback.
+ GET /api/ai/reports 200 in 22ms (compile: 5ms, render: 17ms)
+ POST /api/ai/generate 200 in 37.1s (compile: 3ms, render: 37.1s)
+ GET /report 200 in 953ms (compile: 781ms, render: 172ms)
+ GET / 200 in 908ms (compile: 838ms, render: 70ms)
+ GET / 200 in 929ms (compile: 889ms, render: 40ms)
+ GET /report 200 in 93ms (compile: 6ms, render: 87ms)
+ GET / 200 in 112ms (compile: 6ms, render: 106ms)
+ GET /report 200 in 66ms (compile: 5ms, render: 61ms)
+ GET / 200 in 68ms (compile: 26ms, render: 42ms)
+ GET / 200 in 80ms (compile: 5ms, render: 75ms)
+ GET /report 200 in 61ms (compile: 10ms, render: 51ms)
+ GET / 200 in 56ms (compile: 27ms, render: 29ms)
+ GET / 200 in 112ms (compile: 29ms, render: 83ms)
+ GET /report 200 in 115ms (compile: 5ms, render: 110ms)
+ GET / 200 in 179ms (compile: 9ms, render: 170ms)
+ GET / 200 in 348ms (compile: 11ms, render: 337ms)
+ GET /report 200 in 365ms (compile: 50ms, render: 315ms)
+ GET / 200 in 288ms (compile: 15ms, render: 273ms)
+ GET / 200 in 322ms (compile: 231ms, render: 91ms)
+ GET / 200 in 354ms (compile: 312ms, render: 42ms)
+ GET /report 200 in 348ms (compile: 269ms, render: 78ms)
+ GET /report 200 in 108ms (compile: 6ms, render: 102ms)
+ GET / 200 in 109ms (compile: 28ms, render: 81ms)
+ GET / 200 in 68ms (compile: 4ms, render: 64ms)
+ GET /report 200 in 104ms (compile: 5ms, render: 99ms)
+ GET / 200 in 105ms (compile: 31ms, render: 74ms)
+ GET / 200 in 51ms (compile: 5ms, render: 46ms)
+ GET / 200 in 101ms (compile: 4ms, render: 97ms)
+ GET /report 200 in 102ms (compile: 23ms, render: 79ms)
+ GET / 200 in 52ms (compile: 4ms, render: 48ms)
+ GET / 200 in 118ms (compile: 11ms, render: 107ms)
+ GET /report 200 in 115ms (compile: 48ms, render: 68ms)
+ GET / 200 in 41ms (compile: 3ms, render: 38ms)
+ GET / 200 in 157ms (compile: 7ms, render: 150ms)
+ GET /report 200 in 161ms (compile: 62ms, render: 99ms)
+ GET / 200 in 69ms (compile: 6ms, render: 63ms)
+ GET / 200 in 104ms (compile: 6ms, render: 99ms)
+ GET /report 200 in 105ms (compile: 34ms, render: 71ms)
+ GET / 200 in 44ms (compile: 3ms, render: 41ms)
+ GET / 200 in 93ms (compile: 5ms, render: 89ms)
+ GET /report 200 in 94ms (compile: 25ms, render: 68ms)
+ GET / 200 in 30ms (compile: 5ms, render: 25ms)
+ GET / 200 in 78ms (compile: 8ms, render: 70ms)
+ GET /report 200 in 50ms (compile: 5ms, render: 45ms)
+ GET / 200 in 51ms (compile: 22ms, render: 30ms)
+ GET / 200 in 78ms (compile: 7ms, render: 71ms)
+ GET /report 200 in 76ms (compile: 25ms, render: 51ms)
+ GET / 200 in 42ms (compile: 4ms, render: 37ms)
+ GET / 200 in 71ms (compile: 11ms, render: 61ms)
+ GET /report 200 in 73ms (compile: 27ms, render: 46ms)
+ GET / 200 in 71ms (compile: 40ms, render: 31ms)
+ GET /report 200 in 71ms (compile: 3ms, render: 68ms)
+ GET / 200 in 75ms (compile: 20ms, render: 54ms)
+ GET / 200 in 78ms (compile: 45ms, render: 33ms)
+ GET /report 200 in 65ms (compile: 5ms, render: 61ms)
+ GET / 200 in 66ms (compile: 21ms, render: 44ms)
+ GET / 200 in 28ms (compile: 4ms, render: 24ms)
+ GET /report 200 in 105ms (compile: 5ms, render: 101ms)
+ GET / 200 in 80ms (compile: 4ms, render: 76ms)
+ GET / 200 in 86ms (compile: 36ms, render: 50ms)
+ GET /report 200 in 63ms (compile: 9ms, render: 54ms)
+ GET / 200 in 58ms (compile: 19ms, render: 39ms)
+ GET / 200 in 34ms (compile: 4ms, render: 31ms)
+ GET / 200 in 73ms (compile: 5ms, render: 68ms)
+ GET / 200 in 74ms (compile: 38ms, render: 36ms)
+ GET /report 200 in 76ms (compile: 21ms, render: 55ms)
+ GET / 200 in 65ms (compile: 4ms, render: 61ms)
+ GET /report 200 in 66ms (compile: 17ms, render: 49ms)
+ GET / 200 in 35ms (compile: 5ms, render: 30ms)
+ GET / 200 in 94ms (compile: 5ms, render: 90ms)
+ GET /report 200 in 96ms (compile: 31ms, render: 65ms)
+ GET / 200 in 70ms (compile: 4ms, render: 66ms)
+ GET / 200 in 96ms (compile: 6ms, render: 90ms)
+ GET /report 200 in 81ms (compile: 6ms, render: 75ms)
+ GET / 200 in 82ms (compile: 35ms, render: 47ms)
+ GET / 200 in 84ms (compile: 4ms, render: 81ms)
+ GET /report 200 in 96ms (compile: 28ms, render: 68ms)
+ GET / 200 in 76ms (compile: 26ms, render: 50ms)
+ GET / 200 in 74ms (compile: 5ms, render: 69ms)
+ GET /report 200 in 74ms (compile: 26ms, render: 48ms)
+ GET / 200 in 35ms (compile: 5ms, render: 30ms)
+ GET / 200 in 77ms (compile: 5ms, render: 72ms)
+ GET /report 200 in 78ms (compile: 22ms, render: 56ms)
+ GET / 200 in 62ms (compile: 27ms, render: 35ms)
+ GET / 200 in 65ms (compile: 7ms, render: 58ms)
+ GET /report 200 in 64ms (compile: 21ms, render: 43ms)
+ GET / 200 in 49ms (compile: 22ms, render: 27ms)
+ GET / 200 in 69ms (compile: 5ms, render: 64ms)
+ GET /report 200 in 70ms (compile: 21ms, render: 49ms)
+ GET / 200 in 70ms (compile: 38ms, render: 33ms)
+ GET / 200 in 59ms (compile: 4ms, render: 55ms)
+ GET /report 200 in 60ms (compile: 22ms, render: 38ms)
+ GET / 200 in 45ms (compile: 19ms, render: 27ms)
+ GET / 200 in 80ms (compile: 3ms, render: 76ms)
+ GET /report 200 in 82ms (compile: 22ms, render: 59ms)
+ GET / 200 in 67ms (compile: 23ms, render: 44ms)
+ GET / 200 in 39ms (compile: 4ms, render: 35ms)
+ GET / 200 in 40ms (compile: 19ms, render: 20ms)
+ GET / 200 in 64ms (compile: 3ms, render: 62ms)
+ GET / 200 in 67ms (compile: 18ms, render: 49ms)
+ GET /report 200 in 115ms (compile: 79ms, render: 36ms)
+ GET /report 200 in 82ms (compile: 9ms, render: 74ms)
+ GET / 200 in 81ms (compile: 35ms, render: 46ms)
+ GET / 200 in 34ms (compile: 4ms, render: 30ms)
+ GET / 200 in 90ms (compile: 4ms, render: 85ms)
+ GET /report 200 in 91ms (compile: 39ms, render: 51ms)
+ GET / 200 in 95ms (compile: 69ms, render: 26ms)
+ GET /report 200 in 75ms (compile: 21ms, render: 54ms)
+ GET / 200 in 78ms (compile: 7ms, render: 71ms)
+ GET / 200 in 77ms (compile: 50ms, render: 27ms)
+ GET / 200 in 73ms (compile: 5ms, render: 68ms)
+ GET /report 200 in 73ms (compile: 22ms, render: 51ms)
+ GET / 200 in 38ms (compile: 3ms, render: 35ms)
+ GET / 200 in 85ms (compile: 4ms, render: 81ms)
+ GET /report 200 in 86ms (compile: 22ms, render: 64ms)
+ GET / 200 in 87ms (compile: 44ms, render: 43ms)
+ GET / 200 in 740ms (compile: 601ms, render: 138ms)
+ GET /report 200 in 754ms (compile: 679ms, render: 75ms)
+ GET / 200 in 763ms (compile: 713ms, render: 51ms)
+ GET / 200 in 127ms (compile: 9ms, render: 118ms)
+ GET / 200 in 87ms (compile: 4ms, render: 83ms)
+ GET /report 200 in 88ms (compile: 35ms, render: 53ms)
+ GET / 200 in 114ms (compile: 9ms, render: 105ms)
+ GET /report 200 in 111ms (compile: 38ms, render: 73ms)
+ GET / 200 in 63ms (compile: 5ms, render: 58ms)
+ GET / 200 in 212ms (compile: 19ms, render: 193ms)
+ GET /report 200 in 202ms (compile: 63ms, render: 139ms)
+ GET / 200 in 98ms (compile: 5ms, render: 92ms)
+ GET / 200 in 116ms (compile: 5ms, render: 111ms)
+ GET /report 200 in 92ms (compile: 9ms, render: 83ms)
+ GET / 200 in 92ms (compile: 32ms, render: 60ms)
+ GET / 200 in 96ms (compile: 5ms, render: 91ms)
+ GET /report 200 in 102ms (compile: 61ms, render: 41ms)
+ GET / 200 in 98ms (compile: 38ms, render: 60ms)
+ GET / 200 in 74ms (compile: 8ms, render: 67ms)
+ GET /report 200 in 75ms (compile: 24ms, render: 51ms)
+ GET / 200 in 43ms (compile: 6ms, render: 37ms)
+ GET /report 200 in 80ms (compile: 25ms, render: 55ms)
+ GET / 200 in 83ms (compile: 8ms, render: 75ms)
+ GET / 200 in 82ms (compile: 47ms, render: 35ms)
+ GET /report 200 in 53ms (compile: 18ms, render: 35ms)
+ GET / 200 in 55ms (compile: 4ms, render: 51ms)
+ GET / 200 in 55ms (compile: 33ms, render: 21ms)
+ GET / 200 in 78ms (compile: 4ms, render: 74ms)
+ GET /report 200 in 62ms (compile: 3ms, render: 59ms)
+ GET / 200 in 65ms (compile: 22ms, render: 43ms)
+ GET / 200 in 81ms (compile: 4ms, render: 77ms)
+ GET /report 200 in 70ms (compile: 7ms, render: 63ms)
+ GET / 200 in 70ms (compile: 23ms, render: 47ms)
+ GET / 200 in 70ms (compile: 4ms, render: 67ms)
+ GET /report 200 in 53ms (compile: 4ms, render: 49ms)
+ GET / 200 in 38ms (compile: 3ms, render: 35ms)
+ GET / 200 in 62ms (compile: 5ms, render: 56ms)
+ GET /report 200 in 62ms (compile: 21ms, render: 41ms)
+ GET / 200 in 48ms (compile: 22ms, render: 26ms)
+ GET / 200 in 70ms (compile: 6ms, render: 64ms)
+ GET /report 200 in 75ms (compile: 19ms, render: 56ms)
+ GET / 200 in 63ms (compile: 21ms, render: 42ms)
+ GET / 200 in 77ms (compile: 3ms, render: 73ms)
+ GET /report 200 in 78ms (compile: 26ms, render: 52ms)
+ GET / 200 in 35ms (compile: 4ms, render: 31ms)
+ GET / 200 in 105ms (compile: 3ms, render: 101ms)
+ GET /report 200 in 86ms (compile: 5ms, render: 80ms)
+ GET / 200 in 88ms (compile: 33ms, render: 55ms)
+ GET /report 200 in 129ms (compile: 17ms, render: 111ms)
+ GET / 200 in 130ms (compile: 46ms, render: 84ms)
+ GET / 200 in 42ms (compile: 6ms, render: 36ms)
+ GET /report 200 in 112ms (compile: 6ms, render: 106ms)
+ GET / 200 in 99ms (compile: 6ms, render: 93ms)
+ GET / 200 in 83ms (compile: 8ms, render: 75ms)
+ GET /report 200 in 145ms (compile: 10ms, render: 135ms)
+ GET / 200 in 145ms (compile: 47ms, render: 98ms)
+ GET / 200 in 225ms (compile: 4ms, render: 221ms)
+ GET /report 200 in 74ms (compile: 6ms, render: 68ms)
+ GET / 200 in 75ms (compile: 26ms, render: 49ms)
+ GET / 200 in 32ms (compile: 3ms, render: 29ms)
+ GET / 200 in 64ms (compile: 6ms, render: 59ms)
+ GET /report 200 in 65ms (compile: 21ms, render: 44ms)
+ GET / 200 in 37ms (compile: 4ms, render: 33ms)
+ GET / 200 in 69ms (compile: 4ms, render: 65ms)
+ GET /report 200 in 44ms (compile: 3ms, render: 42ms)
+ GET / 200 in 46ms (compile: 21ms, render: 24ms)
+ GET /report 200 in 65ms (compile: 22ms, render: 43ms)
+ GET / 200 in 68ms (compile: 3ms, render: 65ms)
+ GET / 200 in 34ms (compile: 4ms, render: 30ms)
+ GET /report 200 in 84ms (compile: 27ms, render: 57ms)
+ GET / 200 in 90ms (compile: 6ms, render: 84ms)
+ GET / 200 in 30ms (compile: 4ms, render: 26ms)
+ GET / 200 in 62ms (compile: 3ms, render: 59ms)
+ GET /report 200 in 63ms (compile: 21ms, render: 42ms)
+ GET / 200 in 47ms (compile: 22ms, render: 25ms)
+ GET /report 200 in 59ms (compile: 4ms, render: 55ms)
+ GET / 200 in 80ms (compile: 31ms, render: 49ms)
+ GET / 200 in 68ms (compile: 7ms, render: 61ms)
+ GET / 200 in 43ms (compile: 20ms, render: 23ms)
+ GET /report 200 in 46ms (compile: 4ms, render: 42ms)
+ GET / 200 in 64ms (compile: 5ms, render: 59ms)
+ GET /report 200 in 65ms (compile: 20ms, render: 45ms)
+ GET / 200 in 31ms (compile: 4ms, render: 27ms)
+ GET / 200 in 58ms (compile: 5ms, render: 53ms)
+ GET /report 200 in 58ms (compile: 18ms, render: 40ms)
+ GET / 200 in 48ms (compile: 20ms, render: 29ms)
+ GET / 200 in 69ms (compile: 3ms, render: 66ms)
+ GET /report 200 in 70ms (compile: 18ms, render: 52ms)
+ GET / 200 in 60ms (compile: 26ms, render: 34ms)
+ GET /report 200 in 64ms (compile: 7ms, render: 57ms)
+ GET / 200 in 61ms (compile: 37ms, render: 23ms)
+ GET / 200 in 65ms (compile: 22ms, render: 42ms)
+ GET / 200 in 61ms (compile: 4ms, render: 57ms)
+ GET /report 200 in 63ms (compile: 18ms, render: 45ms)
+ GET / 200 in 72ms (compile: 39ms, render: 33ms)
+ GET /report 200 in 63ms (compile: 21ms, render: 42ms)
+ GET / 200 in 66ms (compile: 5ms, render: 61ms)
+ GET / 200 in 65ms (compile: 40ms, render: 25ms)
+ GET / 200 in 86ms (compile: 3ms, render: 84ms)
+ GET /report 200 in 94ms (compile: 21ms, render: 74ms)
+ GET / 200 in 81ms (compile: 38ms, render: 43ms)
+ GET / 200 in 78ms (compile: 6ms, render: 72ms)
+ GET /report 200 in 79ms (compile: 33ms, render: 47ms)
+ GET / 200 in 29ms (compile: 2ms, render: 27ms)
+ GET / 200 in 75ms (compile: 6ms, render: 69ms)
+ GET /report 200 in 75ms (compile: 19ms, render: 56ms)
+ GET / 200 in 37ms (compile: 6ms, render: 31ms)
+ GET /report 200 in 60ms (compile: 22ms, render: 38ms)
+ GET / 200 in 63ms (compile: 8ms, render: 55ms)
+ GET / 200 in 28ms (compile: 3ms, render: 25ms)
+ GET / 200 in 63ms (compile: 7ms, render: 56ms)
+ GET /report 200 in 66ms (compile: 19ms, render: 46ms)
+ GET / 200 in 66ms (compile: 33ms, render: 33ms)
+ GET / 200 in 63ms (compile: 5ms, render: 58ms)
+ GET / 200 in 64ms (compile: 37ms, render: 26ms)
+ GET /report 200 in 67ms (compile: 22ms, render: 44ms)
+ GET / 200 in 79ms (compile: 5ms, render: 74ms)
+ GET /report 200 in 79ms (compile: 23ms, render: 56ms)
+ GET / 200 in 61ms (compile: 24ms, render: 37ms)
+ GET / 200 in 24ms (compile: 3ms, render: 21ms)
+ GET / 200 in 47ms (compile: 4ms, render: 42ms)
+ GET /api/repos 200 in 107ms (compile: 71ms, render: 36ms)
+ GET /api/repos 200 in 19ms (compile: 3ms, render: 16ms)
+ GET /report 200 in 464ms (compile: 4ms, render: 460ms)
+AIReport model missing in Prisma Client. Using raw SQL fallback.
+ GET /api/ai/reports 200 in 84ms (compile: 67ms, render: 17ms)
+ ✓ Compiled in 2.4s
+ GET / 200 in 58ms (compile: 14ms, render: 45ms)
+ GET /api/repos 200 in 51ms (compile: 11ms, render: 40ms)
+ GET /api/repos 200 in 55ms (compile: 4ms, render: 51ms)
+ GET / 200 in 201ms (compile: 5ms, render: 196ms)
+ GET /api/repos 200 in 44ms (compile: 2ms, render: 42ms)
+ GET /maintenance 200 in 3.1s (compile: 3.0s, render: 150ms)
+ GET /api/logs 200 in 175ms (compile: 158ms, render: 17ms)
+ POST /api/scripts/run 200 in 694ms (compile: 540ms, render: 154ms)
+ GET /api/logs 200 in 15ms (compile: 4ms, render: 11ms)
+ POST /api/scripts/run 200 in 155ms (compile: 3ms, render: 152ms)
+ GET /api/logs 200 in 12ms (compile: 3ms, render: 9ms)
+ POST /api/scripts/run 200 in 226ms (compile: 5ms, render: 220ms)
+ GET /api/logs 200 in 51ms (compile: 8ms, render: 43ms)
+ POST /api/scripts/run 200 in 142ms (compile: 5ms, render: 137ms)
+ GET /api/logs 200 in 9ms (compile: 2ms, render: 7ms)
+ GET /maintenance 200 in 769ms (compile: 614ms, render: 155ms)
+ GET / 200 in 800ms (compile: 761ms, render: 39ms)
+ GET / 200 in 769ms (compile: 683ms, render: 86ms)
+ GET /maintenance 200 in 323ms (compile: 6ms, render: 318ms)
+ GET / 200 in 335ms (compile: 70ms, render: 265ms)
+ GET /maintenance 200 in 709ms (compile: 480ms, render: 228ms)
+ GET / 200 in 891ms (compile: 818ms, render: 73ms)
+ GET / 200 in 698ms (compile: 548ms, render: 150ms)
+ GET / 200 in 195ms (compile: 5ms, render: 190ms)
+ GET /maintenance 200 in 196ms (compile: 68ms, render: 128ms)
+ GET / 200 in 58ms (compile: 10ms, render: 48ms)
+ GET /maintenance 200 in 146ms (compile: 47ms, render: 99ms)
+ GET / 200 in 153ms (compile: 8ms, render: 145ms)
+ GET / 200 in 140ms (compile: 8ms, render: 132ms)
+ GET / 200 in 102ms (compile: 6ms, render: 96ms)
+ GET /maintenance 200 in 103ms (compile: 38ms, render: 66ms)
+ GET /maintenance 200 in 202ms (compile: 53ms, render: 149ms)
+ GET / 200 in 209ms (compile: 17ms, render: 192ms)
+ GET / 200 in 122ms (compile: 6ms, render: 116ms)
+ GET / 200 in 80ms (compile: 10ms, render: 70ms)
+ GET /maintenance 200 in 83ms (compile: 45ms, render: 39ms)
+ GET /maintenance 200 in 107ms (compile: 6ms, render: 101ms)
+ GET / 200 in 109ms (compile: 45ms, render: 64ms)
+ GET / 200 in 47ms (compile: 9ms, render: 38ms)
+ GET / 200 in 148ms (compile: 6ms, render: 142ms)
+ GET /maintenance 200 in 155ms (compile: 31ms, render: 124ms)
+ GET / 200 in 76ms (compile: 9ms, render: 67ms)
+ GET / 200 in 276ms (compile: 13ms, render: 263ms)
+ GET /maintenance 200 in 346ms (compile: 15ms, render: 331ms)
+ GET / 200 in 298ms (compile: 56ms, render: 242ms)
+ GET / 200 in 217ms (compile: 24ms, render: 192ms)
+ GET /maintenance 200 in 167ms (compile: 17ms, render: 150ms)
+ GET / 200 in 155ms (compile: 12ms, render: 142ms)
+ GET / 200 in 155ms (compile: 31ms, render: 123ms)
+ GET /maintenance 200 in 124ms (compile: 19ms, render: 105ms)
+ GET / 200 in 79ms (compile: 10ms, render: 69ms)
+ GET / 200 in 79ms (compile: 34ms, render: 45ms)
+ GET / 200 in 107ms (compile: 12ms, render: 95ms)
+ GET /maintenance 200 in 109ms (compile: 34ms, render: 75ms)
+ GET / 200 in 105ms (compile: 68ms, render: 37ms)
+ GET / 200 in 80ms (compile: 7ms, render: 73ms)
+ GET /maintenance 200 in 56ms (compile: 4ms, render: 52ms)
+ GET / 200 in 66ms (compile: 3ms, render: 62ms)
+ GET / 200 in 81ms (compile: 6ms, render: 75ms)
+ GET /maintenance 200 in 84ms (compile: 25ms, render: 59ms)
+ GET / 200 in 87ms (compile: 45ms, render: 43ms)
+ GET / 200 in 100ms (compile: 9ms, render: 91ms)
+ GET /maintenance 200 in 107ms (compile: 32ms, render: 76ms)
+ GET / 200 in 111ms (compile: 53ms, render: 58ms)
+ GET / 200 in 92ms (compile: 8ms, render: 84ms)
+ GET /maintenance 200 in 93ms (compile: 24ms, render: 69ms)
+ GET / 200 in 79ms (compile: 28ms, render: 51ms)
+ GET / 200 in 83ms (compile: 11ms, render: 72ms)
+ GET /maintenance 200 in 85ms (compile: 28ms, render: 56ms)
+ GET / 200 in 67ms (compile: 25ms, render: 42ms)
+ GET / 200 in 108ms (compile: 5ms, render: 103ms)
+ GET /maintenance 200 in 111ms (compile: 38ms, render: 73ms)
+ GET / 200 in 51ms (compile: 4ms, render: 47ms)
+ GET / 200 in 88ms (compile: 5ms, render: 83ms)
+ GET / 200 in 88ms (compile: 44ms, render: 45ms)
+ GET /maintenance 200 in 93ms (compile: 24ms, render: 69ms)
+ GET / 200 in 79ms (compile: 5ms, render: 75ms)
+ GET /maintenance 200 in 80ms (compile: 22ms, render: 58ms)
+ GET / 200 in 82ms (compile: 42ms, render: 40ms)
+ GET / 200 in 82ms (compile: 9ms, render: 74ms)
+ GET /maintenance 200 in 83ms (compile: 35ms, render: 48ms)
+ GET / 200 in 86ms (compile: 54ms, render: 33ms)
+ GET / 200 in 75ms (compile: 3ms, render: 72ms)
+ GET /maintenance 200 in 80ms (compile: 23ms, render: 57ms)
+ GET / 200 in 66ms (compile: 25ms, render: 41ms)
+ GET /maintenance 200 in 79ms (compile: 25ms, render: 54ms)
+ GET / 200 in 83ms (compile: 6ms, render: 77ms)
+ GET / 200 in 83ms (compile: 48ms, render: 35ms)
+ GET / 200 in 96ms (compile: 9ms, render: 86ms)
+ GET /maintenance 200 in 94ms (compile: 30ms, render: 65ms)
+ GET / 200 in 47ms (compile: 6ms, render: 40ms)
+ GET / 200 in 85ms (compile: 7ms, render: 78ms)
+ GET /maintenance 200 in 86ms (compile: 34ms, render: 52ms)
+ GET / 200 in 58ms (compile: 26ms, render: 32ms)
+ GET / 200 in 84ms (compile: 6ms, render: 78ms)
+ GET /maintenance 200 in 85ms (compile: 24ms, render: 61ms)
+ GET / 200 in 46ms (compile: 7ms, render: 39ms)
+ GET /maintenance 200 in 75ms (compile: 32ms, render: 43ms)
+ GET / 200 in 79ms (compile: 5ms, render: 74ms)
+ GET / 200 in 124ms (compile: 21ms, render: 103ms)
+ GET / 200 in 79ms (compile: 7ms, render: 72ms)
+ GET /maintenance 200 in 56ms (compile: 4ms, render: 51ms)
+ GET / 200 in 88ms (compile: 6ms, render: 82ms)
+ GET /maintenance 200 in 89ms (compile: 25ms, render: 64ms)
+ GET / 200 in 92ms (compile: 60ms, render: 32ms)
+ GET /maintenance 200 in 77ms (compile: 25ms, render: 53ms)
+ GET / 200 in 80ms (compile: 7ms, render: 73ms)
+ GET / 200 in 81ms (compile: 48ms, render: 34ms)
+ GET / 200 in 52ms (compile: 10ms, render: 42ms)
+ GET /maintenance 200 in 113ms (compile: 24ms, render: 89ms)
+ GET / 200 in 116ms (compile: 4ms, render: 112ms)
+ GET / 200 in 92ms (compile: 4ms, render: 88ms)
+ GET /maintenance 200 in 95ms (compile: 30ms, render: 64ms)
+ GET / 200 in 46ms (compile: 4ms, render: 42ms)
+ GET / 200 in 116ms (compile: 18ms, render: 98ms)
+ GET / 200 in 115ms (compile: 73ms, render: 41ms)
+ GET /maintenance 200 in 118ms (compile: 47ms, render: 71ms)
+ GET / 200 in 92ms (compile: 3ms, render: 89ms)
+ GET /maintenance 200 in 100ms (compile: 30ms, render: 69ms)
+ GET / 200 in 81ms (compile: 38ms, render: 43ms)
+ GET / 200 in 108ms (compile: 12ms, render: 96ms)
+ GET /maintenance 200 in 117ms (compile: 38ms, render: 80ms)
+ GET / 200 in 116ms (compile: 60ms, render: 57ms)
+ GET /maintenance 200 in 97ms (compile: 31ms, render: 66ms)
+ GET / 200 in 103ms (compile: 9ms, render: 94ms)
+ GET / 200 in 49ms (compile: 4ms, render: 45ms)
+ GET / 200 in 110ms (compile: 35ms, render: 75ms)
+ GET /maintenance 200 in 116ms (compile: 8ms, render: 107ms)
+ GET / 200 in 63ms (compile: 6ms, render: 57ms)
+ GET / 200 in 83ms (compile: 9ms, render: 74ms)
+ GET /maintenance 200 in 85ms (compile: 25ms, render: 60ms)
+ GET / 200 in 65ms (compile: 27ms, render: 39ms)
+ GET / 200 in 91ms (compile: 4ms, render: 87ms)
+ GET /maintenance 200 in 92ms (compile: 27ms, render: 66ms)
+ GET / 200 in 94ms (compile: 50ms, render: 44ms)
+ GET /maintenance 200 in 78ms (compile: 4ms, render: 74ms)
+ GET / 200 in 44ms (compile: 7ms, render: 37ms)
+ GET / 200 in 47ms (compile: 9ms, render: 39ms)
+ GET / 200 in 41ms (compile: 8ms, render: 32ms)
+ GET / 200 in 40ms (compile: 4ms, render: 36ms)
+ GET / 200 in 54ms (compile: 4ms, render: 51ms)
+ ✓ Compiled in 342ms
+ GET /api/logs 200 in 116ms (compile: 93ms, render: 23ms)
+ GET /api/files/content?file=ecosystem-audit.csv 200 in 210ms (compile: 205ms, render: 5ms)
+ GET /api/files/content?file=ecosystem-audit.csv 200 in 6ms (compile: 2ms, render: 4ms)
+ POST /api/scripts/run 200 in 149ms (compile: 42ms, render: 107ms)
+ GET /api/logs 200 in 13ms (compile: 4ms, render: 9ms)
+ POST /api/scripts/run 200 in 96ms (compile: 2ms, render: 93ms)
+ GET /api/logs 200 in 10ms (compile: 2ms, render: 8ms)
+ GET / 200 in 87ms (compile: 23ms, render: 65ms)
+ GET /api/repos 200 in 190ms (compile: 119ms, render: 71ms)
+ GET /api/repos 200 in 36ms (compile: 4ms, render: 32ms)
+ GET /api/logs 200 in 16ms (compile: 7ms, render: 10ms)
+ GET /api/logs 200 in 13ms (compile: 4ms, render: 9ms)
+ GET /api/files/content?file=ecosystem-audit.csv 200 in 11ms (compile: 5ms, render: 6ms)
+ GET / 200 in 40ms (compile: 6ms, render: 35ms)
+ GET /api/repos 200 in 30ms (compile: 5ms, render: 24ms)
+ GET /api/repos 200 in 20ms (compile: 3ms, render: 17ms)
+ GET /report 200 in 622ms (compile: 120ms, render: 501ms)
+AIReport model missing in Prisma Client. Using raw SQL fallback.
+ GET /api/ai/reports 200 in 101ms (compile: 74ms, render: 27ms)
+ POST /api/ai/generate 200 in 26.9s (compile: 178ms, render: 26.7s)
+ GET /logs 200 in 263ms (compile: 77ms, render: 186ms)
+ GET /api/logs?page=1&limit=20&status=ALL 200 in 21ms (compile: 10ms, render: 12ms)
+ GET / 200 in 45ms (compile: 4ms, render: 41ms)
+ GET /api/repos 200 in 22ms (compile: 4ms, render: 17ms)
+ GET /api/repos 200 in 25ms (compile: 4ms, render: 21ms)
+ GET /logs 200 in 70ms (compile: 6ms, render: 64ms)
+ GET /api/logs?page=1&limit=20&status=ALL 200 in 106ms (compile: 29ms, render: 77ms)
+ GET / 200 in 60ms (compile: 10ms, render: 50ms)
+ GET /api/repos 200 in 47ms (compile: 9ms, render: 37ms)
+ GET /api/repos 200 in 27ms (compile: 4ms, render: 23ms)
+ ✓ Compiled in 636ms
+ ✓ Compiled in 768ms
+ GET / 200 in 402ms (compile: 179ms, render: 223ms)
+API Error: Error [PrismaClientValidationError]: 
+Invalid `prisma.repository.findMany()` invocation in
+/home/ladmin/Desktop/GIT/ArchitekturReview/dashboard/.next/dev/server/chunks/[root-of-the-server]__73e00310._.js:64:47
+
+  61 const prisma = new __TURBOPACK__imported__module__$5b$externals$5d2f40$prisma$2f$client__$5b$external$5d$__$2840$prisma$2f$client$2c$__cjs$29$__["PrismaClient"]();
+  62 async function GET() {
+  63     try {
+→ 64         const repos = await prisma.repository.findMany({
+               include: {
+                 technologies: true,
+                 interfaces: true,
+                 deployments: true,
+                 tasks: {
+                 ~~~~~
+                   where: {
+                     status: "OPEN"
+                   }
+                 },
+             ?   health?: true
+               },
+               orderBy: {
+                 updatedAt: "desc"
+               }
+             })
+
+Unknown field `tasks` for include statement on model `Repository`. Available options are marked with ?.
+    at <unknown> (app/api/repos/route.ts:8:47)
+    at async GET (app/api/repos/route.ts:8:23)
+   6 | export async function GET() {
+   7 |     try {
+>  8 |         const repos = await prisma.repository.findMany({
+     |                                               ^
+   9 |             include: {
+  10 |                 technologies: true,
+  11 |                 interfaces: true, {
+  clientVersion: '5.22.0'
+}
+ GET /api/repos 500 in 388ms (compile: 113ms, render: 275ms)
+ GET / 200 in 74ms (compile: 5ms, render: 69ms)
+API Error: Error [PrismaClientValidationError]: 
+Invalid `prisma.repository.findMany()` invocation in
+/home/ladmin/Desktop/GIT/ArchitekturReview/dashboard/.next/dev/server/chunks/[root-of-the-server]__73e00310._.js:64:47
+
+  61 const prisma = new __TURBOPACK__imported__module__$5b$externals$5d2f40$prisma$2f$client__$5b$external$5d$__$2840$prisma$2f$client$2c$__cjs$29$__["PrismaClient"]();
+  62 async function GET() {
+  63     try {
+→ 64         const repos = await prisma.repository.findMany({
+               include: {
+                 technologies: true,
+                 interfaces: true,
+                 deployments: true,
+                 tasks: {
+                 ~~~~~
+                   where: {
+                     status: "OPEN"
+                   }
+                 },
+             ?   health?: true
+               },
+               orderBy: {
+                 updatedAt: "desc"
+               }
+             })
+
+Unknown field `tasks` for include statement on model `Repository`. Available options are marked with ?.
+    at <unknown> (app/api/repos/route.ts:8:47)
+    at async GET (app/api/repos/route.ts:8:23)
+   6 | export async function GET() {
+   7 |     try {
+>  8 |         const repos = await prisma.repository.findMany({
+     |                                               ^
+   9 |             include: {
+  10 |                 technologies: true,
+  11 |                 interfaces: true, {
+  clientVersion: '5.22.0'
+}
+ GET /api/repos 500 in 143ms (compile: 7ms, render: 136ms)
+ GET / 200 in 78ms (compile: 5ms, render: 72ms)
+ GET /api/repos 200 in 270ms (compile: 218ms, render: 52ms)
+ GET /repo/Google-Visual-Story-Generator- 200 in 167ms (compile: 138ms, render: 29ms)
+ GET /api/repos/Google-Visual-Story-Generator- 200 in 123ms (compile: 96ms, render: 27ms)
+ GET /api/repos/Google-Visual-Story-Generator- 200 in 72ms (compile: 6ms, render: 67ms)
+ GET /api/tasks?repositoryId=5d0ed312-adaa-420f-abf9-26e9da8aff15 200 in 84ms (compile: 58ms, render: 26ms)
+ GET /api/tasks?repositoryId=5d0ed312-adaa-420f-abf9-26e9da8aff15 200 in 11ms (compile: 3ms, render: 8ms)
+ GET / 200 in 22ms (compile: 4ms, render: 19ms)
+ GET /api/repos 200 in 30ms (compile: 5ms, render: 24ms)
+ GET /api/repos 200 in 32ms (compile: 3ms, render: 29ms)
+ GET /repo/albumpromotion 200 in 82ms (compile: 52ms, render: 30ms)
+ GET /api/repos/albumpromotion 200 in 116ms (compile: 97ms, render: 18ms)
+ GET /api/tasks?repositoryId=2e64d3bb-8e72-407f-8d60-a4d3e1e00499 200 in 56ms (compile: 7ms, render: 49ms)
+ GET /api/repos/albumpromotion 200 in 144ms (compile: 7ms, render: 138ms)
+ GET /api/tasks?repositoryId=2e64d3bb-8e72-407f-8d60-a4d3e1e00499 200 in 13ms (compile: 3ms, render: 11ms)
+ GET /api/check-link?url=https%3A%2F%2Falbumpromotion.vercel.app 200 in 1012ms (compile: 748ms, render: 265ms)
+ GET /api/check-link?url=https%3A%2F%2Falbumpromotion.vercel.app 200 in 102ms (compile: 18ms, render: 83ms)
+ GET /api/dns?target=albumpromotion.vercel.app 200 in 1982ms (compile: 118ms, render: 1864ms)
+ GET /api/dns?target=albumpromotion.vercel.app 200 in 1746ms (compile: 2ms, render: 1744ms)
+ POST /api/ai/tasks 200 in 7.7s (compile: 302ms, render: 7.4s)
+ GET /api/tasks?repositoryId=albumpromotion 200 in 8ms (compile: 4ms, render: 5ms)
+ GET /repo/albumpromotion 200 in 245ms (compile: 47ms, render: 197ms)
+ GET /api/repos/albumpromotion 200 in 132ms (compile: 55ms, render: 78ms)
+ GET /api/tasks?repositoryId=2e64d3bb-8e72-407f-8d60-a4d3e1e00499 200 in 14ms (compile: 3ms, render: 11ms)
+ GET /api/check-link?url=https%3A%2F%2Falbumpromotion.vercel.app 200 in 101ms (compile: 12ms, render: 89ms)
+ GET /api/dns?target=albumpromotion.vercel.app 200 in 1611ms (compile: 4ms, render: 1607ms)
+ GET / 200 in 25ms (compile: 4ms, render: 21ms)
+ GET /api/repos 200 in 28ms (compile: 6ms, render: 22ms)
+ GET /api/repos 200 in 23ms (compile: 5ms, render: 19ms)
+ ✓ Compiled in 429ms
+ GET /logs 200 in 106ms (compile: 8ms, render: 98ms)
+ GET /api/logs?page=1&limit=20&status=ALL 200 in 26ms (compile: 13ms, render: 13ms)
+ GET / 200 in 215ms (compile: 183ms, render: 32ms)
+ GET /api/repos 200 in 20ms (compile: 3ms, render: 16ms)
+ GET /api/repos 200 in 23ms (compile: 3ms, render: 21ms)
+ GET /report 200 in 88ms (compile: 10ms, render: 78ms)
+AIReport model missing in Prisma Client. Using raw SQL fallback.
+ GET /api/ai/reports 200 in 47ms (compile: 12ms, render: 36ms)
+ ✓ Compiled in 316ms
+ ✓ Compiled in 1226ms
+ ✓ Compiled in 1941ms
+ GET / 200 in 200ms (compile: 161ms, render: 39ms)
+ GET /api/repos 200 in 61ms (compile: 19ms, render: 42ms)
+ GET /api/repos 200 in 63ms (compile: 7ms, render: 55ms)

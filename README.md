@@ -32,8 +32,15 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 ## Features
 
 ### 🧠 AI Architecture Reporting (New in v0.2.0)
-- **Automated Analysis**: Generates comprehensive architecture reports using Perplexity AI.
-- **Actionable Insights**: Identifies security risks, outdated dependencies, and strategic recommendations.
+- **Automated Analysis- **AI Architecture Reporting**: Generate actionable reports using Perplexity AI.
+- **System Maintenance**:
+    - Audit ecosystem versions (Node.js, TypeScript, Next.js).
+    - Auto-fix configuration drifts.
+    - View logs and audit reports directly in the UI.
+- **Automated Task Management**:
+    - AI-generated tasks for migrations and security.
+    - Priority tracking with visual dashboard indicators.
+- **CI/CD Integration**: Automated linting and building workflows. security risks, outdated dependencies, and strategic recommendations.
 - **Interactive Reports**: Reports contain clickable links to specific repositories, logs, and settings within the dashboard.
 - **History**: Access past reports to track improvements over time.
 

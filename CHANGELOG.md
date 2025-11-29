@@ -5,6 +5,26 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.3.0] - 2025-11-29
+### Added
+- **System Maintenance UI**: New page `/maintenance` for running ecosystem standardization scripts (Node.js, TypeScript, Next.js Audit).
+    - **Audit Report Viewer**: View generated CSV audit reports directly in the browser.
+    - **Auto-Fixers**: One-click standardization for Node.js engines and TypeScript versions.
+    - **System Logs**: Real-time logging of script executions.
+- **Task Management**:
+    - **Dashboard Indicators**: Colored badges (Red/Orange/Blue) on repository cards showing open tasks by priority.
+    - **Priority Filter**: Filter repositories to show only those with "Critical" tasks.
+    - **Priority Sort**: Sort repositories by task priority.
+    - **List View Support**: Task indicators added to the table view.
+- **API**:
+    - `api/scripts/run`: Endpoint to execute maintenance scripts.
+    - `api/logs`: Endpoint to fetch system logs.
+    - `api/files/content`: Endpoint to safely read report files.
+
+### Changed
+- **Resilience**: Refactored `api/repos` to fetch tasks separately, preventing dashboard crashes when database schema is out of sync.
+- **Scripts**: Updated standardization scripts to support non-interactive mode (`--yes`) for API usage.
+
 ## [0.2.0] - 2025-11-29
 ### Added
 - **AI Architecture Reporting**: New module `/report` that uses Perplexity AI (via OpenAI client) to analyze system metadata and generate actionable architecture reports in German.

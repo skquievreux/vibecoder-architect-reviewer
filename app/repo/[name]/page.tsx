@@ -2,7 +2,7 @@
 
 import { Card, Title, Text, Badge, Grid, DonutChart, List, ListItem } from "@tremor/react";
 import { useState, useEffect } from "react";
-import { ArrowLeft, Github, Globe, ExternalLink, Calendar, Code, Database, Server, Shield } from "lucide-react";
+import { ArrowLeft, Github, Globe, ExternalLink, Calendar, Code, Database, Server, Shield, CheckCircle, Circle, Play, AlertTriangle } from "lucide-react";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 
@@ -11,6 +11,14 @@ type Technology = {
     name: string;
     category: string;
     version: string | null;
+};
+
+type Task = {
+    id: string;
+    title: string;
+    status: 'OPEN' | 'COMPLETED' | 'IGNORED';
+    priority: 'HIGH' | 'MEDIUM' | 'LOW';
+    type: 'SECURITY' | 'MAINTENANCE' | 'FEATURE';
 };
 
 type Interface = {
@@ -79,6 +87,70 @@ export default function RepoDetail() {
     const [linkStatus, setLinkStatus] = useState<{ reachable: boolean; status: number; latency: number } | null>(null);
     const [checkingLink, setCheckingLink] = useState(false);
 
+    // Task Management State
+    const [tasks, setTasks] = useState<Task[]>([]);
+    const [loadingTasks, setLoadingTasks] = useState(false);
+    const [generatingTasks, setGeneratingTasks] = useState(false);
+
+    const fetchTasks = async (repoId: string) => {
+        setLoadingTasks(true);
+        try {
+            const res = await fetch(`/api/tasks?repositoryId=${repoId}`);
+            const data = await res.json();
+            if (data.tasks) setTasks(data.tasks);
+        } catch (e) {
+            console.error("Failed to fetch tasks", e);
+        } finally {
+            setLoadingTasks(false);
+        }
+    };
+
+    const generateTasks = async () => {
+        if (!repoData) return;
+        setGeneratingTasks(true);
+        try {
+            // Trigger AI generation (global, but we filter for this repo in UI or backend could be optimized)
+            // Ideally backend should accept a single repo ID to optimize, but our current implementation scans all.
+            // For simplicity/demo, we call the main endpoint.
+            const res = await fetch('/api/ai/tasks', { method: 'POST' });
+            if (res.ok) {
+                await fetchTasks(repoData.repo.name); // Re-fetch tasks. Wait, backend uses ID, but our API uses repoId query param which matches DB field.
+                // Actually fetchTasks needs the ID from repoData which we have.
+                // But wait, repoData.repo doesn't have ID in the type definition above?
+                // Let's check the type definition. It's missing 'id' in 'repo' object in type Repository.
+                // However, the API returns the full object.
+                // We should use the ID if available, or fetch by name if we adjusted the API.
+                // The API /api/tasks uses repositoryId.
+                // Let's assume repoData has the ID at the top level or inside repo.
+                // Looking at the API /api/repos/[name], it returns { repo: ... }.
+                // Let's reload the page to be safe or just fetch.
+                window.location.reload();
+            }
+        } catch (e) {
+            alert("Failed to generate tasks");
+        } finally {
+            setGeneratingTasks(false);
+        }
+    };
+
+    const toggleTaskStatus = async (task: Task) => {
+        const newStatus = task.status === 'OPEN' ? 'COMPLETED' : 'OPEN';
+        // Optimistic update
+        setTasks(prev => prev.map(t => t.id === task.id ? { ...t, status: newStatus } : t));
+
+        try {
+            await fetch('/api/tasks', {
+                method: 'PATCH',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ id: task.id, status: newStatus })
+            });
+        } catch (e) {
+            console.error("Failed to update task", e);
+            // Revert
+            setTasks(prev => prev.map(t => t.id === task.id ? { ...t, status: task.status } : t));
+        }
+    };
+
     useEffect(() => {
         if (!repoName) return;
 
@@ -92,6 +164,12 @@ export default function RepoDetail() {
                 setLoading(false);
                 if (data.repo.customUrl) {
                     setManualUrl(data.repo.customUrl);
+                }
+                // Fetch tasks using the ID from the response (we need to cast or trust it's there)
+                // The API /api/repos/[name] returns the repo object which likely has the ID.
+                // Let's verify the API response structure if needed, but usually it returns the full Prisma object.
+                if ((data.repo as any).id) {
+                    fetchTasks((data.repo as any).id);
                 }
             })
             .catch((err) => {
@@ -334,6 +412,64 @@ export default function RepoDetail() {
                                 ))
                             )}
                         </div>
+                    </Card>
+                </Grid>
+
+                <Grid numItems={1} className="gap-6">
+                    <Card>
+                        <div className="flex justify-between items-center mb-4">
+                            <Title>Automated Tasks</Title>
+                            <button
+                                onClick={generateTasks}
+                                disabled={generatingTasks}
+                                className="flex items-center gap-2 px-3 py-1.5 bg-violet-100 text-violet-700 rounded-lg hover:bg-violet-200 transition-colors text-sm font-medium disabled:opacity-50"
+                            >
+                                <Play size={14} />
+                                {generatingTasks ? "Generating..." : "Generate Tasks"}
+                            </button>
+                        </div>
+
+                        {loadingTasks ? (
+                            <Text>Loading tasks...</Text>
+                        ) : tasks.length === 0 ? (
+                            <div className="text-center py-8 text-slate-500">
+                                <CheckCircle size={32} className="mx-auto mb-2 opacity-20" />
+                                <Text>No open tasks. Good job!</Text>
+                            </div>
+                        ) : (
+                            <div className="space-y-2">
+                                {tasks.map(task => (
+                                    <div
+                                        key={task.id}
+                                        className={`flex items-center justify-between p-3 rounded-lg border transition-all ${task.status === 'COMPLETED' ? 'bg-slate-50 border-slate-100 opacity-60' : 'bg-white border-slate-200 hover:border-violet-300'
+                                            }`}
+                                    >
+                                        <div className="flex items-center gap-3">
+                                            <button
+                                                onClick={() => toggleTaskStatus(task)}
+                                                className={`p-1 rounded-full transition-colors ${task.status === 'COMPLETED' ? 'text-green-500' : 'text-slate-300 hover:text-violet-500'
+                                                    }`}
+                                            >
+                                                {task.status === 'COMPLETED' ? <CheckCircle size={20} /> : <Circle size={20} />}
+                                            </button>
+                                            <div>
+                                                <div className={`font-medium ${task.status === 'COMPLETED' ? 'line-through text-slate-500' : 'text-slate-900'}`}>
+                                                    {task.title}
+                                                </div>
+                                                <div className="flex items-center gap-2 mt-1">
+                                                    <Badge size="xs" color={task.priority === 'HIGH' ? 'red' : task.priority === 'MEDIUM' ? 'orange' : 'slate'}>
+                                                        {task.priority}
+                                                    </Badge>
+                                                    <Badge size="xs" color="slate">
+                                                        {task.type}
+                                                    </Badge>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        )}
                     </Card>
                 </Grid>
 
