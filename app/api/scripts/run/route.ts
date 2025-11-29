@@ -8,7 +8,8 @@ const prisma = new PrismaClient();
 const ALLOWED_SCRIPTS = {
     'audit': 'audit-ecosystem.js',
     'standardize-node': 'standardize-node.js',
-    'standardize-ts': 'standardize-ts.js'
+    'standardize-ts': 'standardize-ts.js',
+    'standardize-supabase': 'standardize-supabase.js',
 };
 
 export async function POST(request: Request) {

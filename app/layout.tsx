@@ -21,6 +21,8 @@ import VersionDisplay from "./components/VersionDisplay";
 
 // ... (imports)
 
+import Navbar from "./components/Navbar";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -29,10 +31,13 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-slate-50`}
         suppressHydrationWarning
       >
-        {children}
+        <Navbar />
+        <main className="min-h-screen">
+          {children}
+        </main>
         <VersionDisplay />
       </body>
     </html>

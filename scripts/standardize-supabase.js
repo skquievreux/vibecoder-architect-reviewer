@@ -5,7 +5,7 @@ const readline = require('readline');
 const targetDir = process.argv[2] || '../';
 const absoluteTarget = path.resolve(targetDir);
 
-const TARGET_TS_VERSION = "^5.8.2";
+const TARGET_SUPABASE_VERSION = "^2.49.4";
 
 let rl;
 if (!process.argv.includes('--yes')) {
@@ -15,9 +15,8 @@ if (!process.argv.includes('--yes')) {
     });
 }
 
-
-console.log(`🔧 Standardizing TypeScript versions in: ${absoluteTarget}`);
-console.log(`Target TypeScript: ${TARGET_TS_VERSION}`);
+console.log(`🔧 Standardizing Supabase versions in: ${absoluteTarget}`);
+console.log(`Target Supabase: ${TARGET_SUPABASE_VERSION}`);
 
 const run = () => {
     const repos = fs.readdirSync(absoluteTarget, { withFileTypes: true })
@@ -34,14 +33,19 @@ const run = () => {
             try {
                 const pkgContent = fs.readFileSync(packageJsonPath, 'utf-8');
                 const pkg = JSON.parse(pkgContent);
+                let modified = false;
 
-                if (pkg.devDependencies && pkg.devDependencies.typescript) {
-                    if (pkg.devDependencies.typescript !== TARGET_TS_VERSION) {
-                        pkg.devDependencies.typescript = TARGET_TS_VERSION;
-                        fs.writeFileSync(packageJsonPath, JSON.stringify(pkg, null, 2) + '\n');
-                        console.log(`[${repo}] Updated TypeScript to ${TARGET_TS_VERSION}`);
-                        updatedCount++;
+                if (pkg.dependencies && pkg.dependencies['@supabase/supabase-js']) {
+                    if (pkg.dependencies['@supabase/supabase-js'] !== TARGET_SUPABASE_VERSION) {
+                        pkg.dependencies['@supabase/supabase-js'] = TARGET_SUPABASE_VERSION;
+                        modified = true;
                     }
+                }
+
+                if (modified) {
+                    fs.writeFileSync(packageJsonPath, JSON.stringify(pkg, null, 2) + '\n');
+                    console.log(`[${repo}] Updated @supabase/supabase-js to ${TARGET_SUPABASE_VERSION}`);
+                    updatedCount++;
                 }
             } catch (e) {
                 console.error(`[${repo}] Failed to parse package.json`);

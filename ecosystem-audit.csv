@@ -1,4 +1,4 @@
-Repo,NodeEngine,Nvmrc,TypeScript,NextJS
-analysis,NO_PKG_JSON,v20.18.0,MISSING,MISSING
-dashboard,>=20.9.0,v20.18.0,^5.3.0,16.0.5
-supabase,NO_PKG_JSON,v20.18.0,MISSING,MISSING
+Repo,NodeEngine,Nvmrc,TypeScript,NextJS,Supabase
+analysis,NO_PKG_JSON,v20.18.0,MISSING,MISSING,MISSING
+dashboard,>=20.9.0,v20.18.0,^5.8.2,16.0.5,^2.49.4
+supabase,NO_PKG_JSON,v20.18.0,MISSING,MISSING,MISSING

@@ -1,7 +1,7 @@
 "use client";
 
 import { Card, Title, Text, Badge, Table, TableHead, TableHeaderCell, TableBody, TableRow, TableCell, Select, SelectItem } from "@tremor/react";
-import { useState, useEffect } from "react";
+import { useState, useEffect, Fragment } from "react";
 import { ArrowLeft, CheckCircle, XCircle, Info, ChevronLeft, ChevronRight } from "lucide-react";
 import Link from "next/link";
 
@@ -100,8 +100,8 @@ export default function LogsPage() {
                                         </TableRow>
                                     ) : (
                                         logs.map((log) => (
-                                            <>
-                                                <TableRow key={log.id} className="hover:bg-slate-50 cursor-pointer" onClick={() => setExpandedLog(expandedLog === log.id ? null : log.id)}>
+                                            <Fragment key={log.id}>
+                                                <TableRow className="hover:bg-slate-50 cursor-pointer" onClick={() => setExpandedLog(expandedLog === log.id ? null : log.id)}>
                                                     <TableCell>{new Date(log.createdAt).toLocaleString()}</TableCell>
                                                     <TableCell>{getStatusBadge(log.status)}</TableCell>
                                                     <TableCell>{log.message}</TableCell>
@@ -124,7 +124,7 @@ export default function LogsPage() {
                                                         </TableCell>
                                                     </TableRow>
                                                 )}
-                                            </>
+                                            </Fragment>
                                         ))
                                     )}
                                 </TableBody>

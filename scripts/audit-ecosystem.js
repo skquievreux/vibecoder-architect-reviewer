@@ -29,6 +29,8 @@ repos.forEach(repo => {
     let tsVersion = 'MISSING';
     let nextVersion = 'MISSING';
 
+    let supabaseVersion = 'MISSING';
+
     if (fs.existsSync(packageJsonPath)) {
         try {
             const pkg = JSON.parse(fs.readFileSync(packageJsonPath, 'utf-8'));
@@ -42,6 +44,10 @@ repos.forEach(repo => {
 
             if (pkg.dependencies && pkg.dependencies.next) {
                 nextVersion = pkg.dependencies.next;
+            }
+
+            if (pkg.dependencies && pkg.dependencies['@supabase/supabase-js']) {
+                supabaseVersion = pkg.dependencies['@supabase/supabase-js'];
             }
         } catch (e) {
             nodeEngine = 'ERROR';
@@ -59,7 +65,8 @@ repos.forEach(repo => {
         NodeEngine: nodeEngine,
         Nvmrc: nvmrc,
         TypeScript: tsVersion,
-        NextJS: nextVersion
+        NextJS: nextVersion,
+        Supabase: supabaseVersion
     });
 });
 
@@ -68,8 +75,8 @@ console.table(results);
 
 // Save to CSV
 const csvContent = [
-    'Repo,NodeEngine,Nvmrc,TypeScript,NextJS',
-    ...results.map(r => `${r.Repo},${r.NodeEngine},${r.Nvmrc},${r.TypeScript},${r.NextJS}`)
+    'Repo,NodeEngine,Nvmrc,TypeScript,NextJS,Supabase',
+    ...results.map(r => `${r.Repo},${r.NodeEngine},${r.Nvmrc},${r.TypeScript},${r.NextJS},${r.Supabase}`)
 ].join('\n');
 
 const outputPath = path.join(process.cwd(), 'ecosystem-audit.csv');

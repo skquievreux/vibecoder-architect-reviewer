@@ -2,7 +2,7 @@
 
 import { Card, Title, Text, Badge, Grid, Select, SelectItem, MultiSelect, MultiSelectItem, Table, TableHead, TableHeaderCell, TableBody, TableRow, TableCell } from "@tremor/react";
 import { useState, useEffect } from "react";
-import { Search, Server, Database, Code, Globe, ExternalLink, AlertTriangle, RefreshCw, LayoutGrid, List, ChevronLeft, ChevronRight, ArrowUp, ArrowDown, Sparkles } from "lucide-react";
+import { Search, Server, Database, Code, Globe, ExternalLink, AlertTriangle, RefreshCw, LayoutGrid, List, ChevronLeft, ChevronRight, ArrowUp, ArrowDown, Sparkles, Activity } from "lucide-react";
 import Link from "next/link";
 
 // Types based on our analysis script output
@@ -214,6 +214,11 @@ export default function Dashboard() {
             <Text>Overview of {totalRepos} repositories</Text>
           </div>
           <div className="flex gap-2">
+            <Link href="/maintenance?view=audit" className="no-underline">
+              <Badge color="emerald" icon={Activity} className="cursor-pointer hover:opacity-80 animate-pulse">
+                Live Ecosystem Status
+              </Badge>
+            </Link>
             <Badge
               color={filterStatus === 'all' ? "blue" : "slate"}
               icon={Code}
