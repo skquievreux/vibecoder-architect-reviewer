@@ -17,6 +17,7 @@ const scripts = [
     { id: 'standardize-node', name: 'Standardize Node.js', description: 'Enforce Node v20.9.0+ and .nvmrc' },
     { id: 'standardize-ts', name: 'Standardize TypeScript', description: 'Enforce TypeScript v5.8.2' },
     { id: 'standardize-supabase', name: 'Standardize Supabase', description: 'Enforce Supabase v2.49.4' },
+    { id: 'analyze-next-migration', name: 'Analyze Next.js Migration', description: 'Check for v16 breaking changes' },
     { id: 'audit-ecosystem', name: 'Audit Ecosystem', description: 'Check all repos for compliance' },
 ];
 
@@ -29,6 +30,7 @@ function MaintenanceContent() {
     const [status, setStatus] = useState<Record<string, string>>({});
     const [running, setRunning] = useState<string | null>(null);
     const [output, setOutput] = useState<string>("");
+    const [csvUrl, setCsvUrl] = useState<string | null>(null);
     const [targetDir, setTargetDir] = useState("../");
     const [reportData, setReportData] = useState<any[] | null>(null);
     const [showReport, setShowReport] = useState(false);
@@ -52,6 +54,9 @@ function MaintenanceContent() {
 
     const runScript = async (scriptId: string) => {
         setStatus(prev => ({ ...prev, [scriptId]: 'running' }));
+        setOutput("Running...");
+        setCsvUrl(null); // Reset download link
+
         try {
             const res = await fetch('/api/scripts/run', {
                 method: 'POST',
@@ -59,6 +64,15 @@ function MaintenanceContent() {
                 body: JSON.stringify({ script: scriptId })
             });
             const data = await res.json();
+
+            if (data.output) {
+                setOutput(data.output);
+            }
+
+            if (data.csvUrl) {
+                setCsvUrl(data.csvUrl);
+            }
+
             if (data.success) {
                 setStatus(prev => ({ ...prev, [scriptId]: 'success' }));
             } else {
@@ -67,6 +81,7 @@ function MaintenanceContent() {
             fetchLogs(); // Refresh logs
         } catch (e) {
             setStatus(prev => ({ ...prev, [scriptId]: 'error' }));
+            setOutput("Failed to execute script (Network Error)");
         }
     };
 
@@ -238,35 +253,48 @@ function MaintenanceContent() {
                         </div>
                     </div>
 
-                    <Card className="bg-slate-900 text-slate-200 font-mono text-sm min-h-[300px] max-h-[500px] overflow-y-auto">
-                        <div className="flex items-center gap-2 mb-2 pb-2 border-b border-slate-700 text-slate-400">
-                            <Terminal size={14} />
-                            <span>Console Output</span>
+                    {/* Console Output */}
+                    <div className="bg-slate-950 rounded-lg border border-slate-800 p-4 font-mono text-sm min-h-[300px] max-h-[500px] overflow-y-auto shadow-inner">
+                        <div className="flex items-center justify-between mb-2 pb-2 border-b border-slate-800">
+                            <div className="flex items-center gap-2 text-violet-400 font-bold">
+                                <Terminal size={14} />
+                                <span>Console Output</span>
+                            </div>
+                            {csvUrl && (
+                                <a
+                                    href={csvUrl}
+                                    download="ecosystem-audit.csv"
+                                    className="flex items-center gap-2 px-3 py-1 text-xs font-medium text-emerald-400 bg-emerald-900/30 border border-emerald-500/30 rounded hover:bg-emerald-900/50 transition-colors"
+                                >
+                                    <FileText size={12} />
+                                    Download Report (CSV)
+                                </a>
+                            )}
                         </div>
-                        <pre className="whitespace-pre-wrap">{output || "Ready..."}</pre>
-                    </Card>
+                        <pre className="whitespace-pre-wrap text-slate-300">{output || "Ready..."}</pre>
+                    </div>
                 </div>
 
                 {/* Logs Sidebar */}
-                <Card className="h-fit max-h-[80vh] overflow-y-auto">
-                    <Title className="mb-4">System Logs</Title>
+                <Card className="h-fit max-h-[80vh] overflow-y-auto glass-card">
+                    <Title className="mb-4 text-white">System Logs</Title>
                     <div className="space-y-3">
                         {logs.length === 0 ? (
-                            <Text className="italic text-slate-400">No logs found.</Text>
+                            <Text className="italic text-slate-500">No logs found.</Text>
                         ) : (
                             logs.map(log => (
-                                <div key={log.id} className="p-3 bg-slate-50 rounded-lg border border-slate-100 text-sm">
+                                <div key={log.id} className="p-3 bg-slate-900/50 rounded-lg border border-slate-800 text-sm">
                                     <div className="flex items-center justify-between mb-1">
-                                        <Badge size="xs" color={log.status === 'SUCCESS' ? 'green' : log.status === 'ERROR' ? 'red' : 'blue'}>
+                                        <Badge size="xs" color={log.status === 'SUCCESS' ? 'emerald' : log.status === 'ERROR' ? 'rose' : 'blue'}>
                                             {log.status}
                                         </Badge>
-                                        <span className="text-xs text-slate-400">{new Date(log.createdAt).toLocaleTimeString()}</span>
+                                        <span className="text-xs text-slate-500">{new Date(log.createdAt).toLocaleTimeString()}</span>
                                     </div>
-                                    <div className="font-medium text-slate-800">{log.message}</div>
+                                    <div className="font-medium text-slate-200">{log.message}</div>
                                     {log.details && (
-                                        <details className="mt-1">
-                                            <summary className="text-xs text-slate-500 cursor-pointer hover:text-slate-700">View Details</summary>
-                                            <pre className="mt-1 p-2 bg-white border border-slate-200 rounded text-xs overflow-x-auto">
+                                        <details className="mt-2">
+                                            <summary className="text-xs text-violet-400 cursor-pointer hover:text-violet-300 transition-colors">View Details</summary>
+                                            <pre className="mt-2 p-3 bg-slate-950 border border-slate-800 rounded text-xs text-slate-300 overflow-x-auto">
                                                 {log.details}
                                             </pre>
                                         </details>

@@ -39,6 +39,29 @@ export async function POST() {
             prisma.deployment.findMany()
         ]);
 
+        // 1.5 Fetch Previous Report
+        let previousReportContent = "";
+        try {
+            // @ts-ignore
+            if (prisma.aIReport) {
+                // @ts-ignore
+                const lastReport = await prisma.aIReport.findFirst({
+                    orderBy: { createdAt: 'desc' }
+                });
+                if (lastReport) {
+                    previousReportContent = lastReport.content;
+                }
+            } else {
+                // Fallback raw query
+                const reports = await prisma.$queryRawUnsafe('SELECT content FROM AIReport ORDER BY createdAt DESC LIMIT 1');
+                if (Array.isArray(reports) && reports.length > 0) {
+                    previousReportContent = (reports[0] as any).content;
+                }
+            }
+        } catch (e) {
+            console.warn("Failed to fetch previous report for comparison", e);
+        }
+
         // 2. Construct Prompt
         const systemPrompt = `Du bist ein Senior Software Architekt, der einen "Projekt-Überblick" für ein Portfolio von Softwareprojekten erstellt.
     
@@ -54,9 +77,10 @@ export async function POST() {
     
     **Berichtsstruktur:**
     1.  **Management Summary**: 2-3 Sätze zur Gesundheit des Systems.
-    2.  **Portfolio Statistiken**: Anzahl Repos, Tech-Stack Verteilung.
-    3.  **Kritische Risiken**: Nur die dringendsten Sicherheits- oder Wartungsrisiken (z.B. veraltete Frameworks, exponierte Secrets).
-    4.  **Strategische Empfehlungen**: Was sind die Top 3 Initiativen? (z.B. "Standardisierung auf Node 20", "Migration zu Fly.io").
+    2.  **Veränderungen seit dem letzten Bericht**: Vergleiche den aktuellen Zustand mit dem "Previous Report". Was ist neu? Was hat sich geändert? (Nur wenn ein vorheriger Bericht existiert).
+    3.  **Portfolio Statistiken**: Anzahl Repos, Tech-Stack Verteilung.
+    4.  **Kritische Risiken**: Nur die dringendsten Sicherheits- oder Wartungsrisiken.
+    5.  **Strategische Empfehlungen**: Top 3 Initiativen.
     
     **Ton:** Professionell, strategisch und handlungsorientiert.
     **Format:** Sauberes Markdown.`;
@@ -75,6 +99,9 @@ export async function POST() {
             tech: r.technologies.map(t => t.name),
             interfaces: r.interfaces.map(i => i.type)
         })), null, 2)}
+    
+    === PREVIOUS REPORT CONTENT (For Comparison) ===
+    ${previousReportContent ? previousReportContent : "No previous report available."}
     `;
 
         // 3. Call AI (Perplexity)

@@ -6,10 +6,11 @@ import path from 'path';
 const prisma = new PrismaClient();
 
 const ALLOWED_SCRIPTS = {
-    'audit': 'audit-ecosystem.js',
+    'audit-ecosystem': 'audit-ecosystem.js',
     'standardize-node': 'standardize-node.js',
     'standardize-ts': 'standardize-ts.js',
     'standardize-supabase': 'standardize-supabase.js',
+    'analyze-next-migration': 'analyze-next-migration.js',
 };
 
 export async function POST(request: Request) {
@@ -26,7 +27,7 @@ export async function POST(request: Request) {
 
         // Construct command
         let command = `node ${scriptPath} ${targetDir}`;
-        if (script !== 'audit') {
+        if (script !== 'audit-ecosystem') {
             command += ' --yes'; // Auto-confirm for fixers
         }
 
@@ -63,7 +64,7 @@ export async function POST(request: Request) {
                 resolve(NextResponse.json({
                     success: !error,
                     output,
-                    csvUrl: script === 'audit' ? '/api/scripts/download-audit' : null
+                    csvUrl: script === 'audit-ecosystem' ? '/api/scripts/download-audit' : null
                 }));
             });
         });
