@@ -227,3 +227,388 @@ The table `main.SyncLog` does not exist in the current database.
   meta: [Object]
 }
  POST /api/system/sync 500 in 475ms (compile: 147ms, render: 328ms)
+ GET /logs 200 in 122ms (compile: 24ms, render: 98ms)
+Logs API Error: Error [PrismaClientKnownRequestError]: 
+Invalid `prisma.syncLog.findMany()` invocation in
+/home/ladmin/Desktop/GIT/ArchitekturReview/dashboard/.next/dev/server/chunks/[root-of-the-server]__d86f98ac._.js:73:28
+
+  70 } : {};
+  71 try {
+  72     const [logs, total] = await prisma.$transaction([
+→ 73         prisma.syncLog.findMany(
+The table `main.SyncLog` does not exist in the current database.
+    at <unknown> (app/api/logs/route.ts:17:28)
+  15 |     try {
+  16 |         const [logs, total] = await prisma.$transaction([
+> 17 |             prisma.syncLog.findMany({
+     |                            ^
+  18 |                 where,
+  19 |                 skip,
+  20 |                 take: limit, {
+  code: 'P2021',
+  clientVersion: '5.22.0',
+  meta: [Object]
+}
+ GET /api/logs?page=1&limit=20&status=ALL 500 in 48ms (compile: 6ms, render: 42ms)
+ GET / 200 in 35ms (compile: 5ms, render: 30ms)
+ GET /api/repos 200 in 21ms (compile: 3ms, render: 18ms)
+ GET /api/repos 200 in 22ms (compile: 2ms, render: 19ms)
+ GET /tech 200 in 1536ms (compile: 1269ms, render: 267ms)
+ GET /api/repos 200 in 44ms (compile: 8ms, render: 36ms)
+ GET / 200 in 39ms (compile: 3ms, render: 36ms)
+ GET /api/repos 200 in 34ms (compile: 13ms, render: 22ms)
+ GET /api/repos 200 in 18ms (compile: 3ms, render: 14ms)
+ GET / 200 in 470ms (compile: 366ms, render: 105ms)
+ GET / 200 in 464ms (compile: 403ms, render: 61ms)
+ GET / 200 in 48ms (compile: 5ms, render: 43ms)
+ GET / 200 in 30ms (compile: 3ms, render: 27ms)
+ GET / 200 in 46ms (compile: 6ms, render: 39ms)
+ GET / 200 in 23ms (compile: 3ms, render: 21ms)
+ GET / 200 in 50ms (compile: 5ms, render: 45ms)
+ GET / 200 in 50ms (compile: 25ms, render: 25ms)
+ GET / 200 in 56ms (compile: 5ms, render: 51ms)
+ GET / 200 in 57ms (compile: 26ms, render: 31ms)
+ GET / 200 in 46ms (compile: 22ms, render: 24ms)
+ GET / 200 in 48ms (compile: 4ms, render: 44ms)
+ GET / 200 in 64ms (compile: 4ms, render: 60ms)
+ GET / 200 in 65ms (compile: 31ms, render: 35ms)
+ GET / 200 in 78ms (compile: 5ms, render: 73ms)
+ GET / 200 in 78ms (compile: 56ms, render: 22ms)
+ GET / 200 in 94ms (compile: 4ms, render: 90ms)
+ GET / 200 in 95ms (compile: 49ms, render: 46ms)
+ GET / 200 in 98ms (compile: 4ms, render: 95ms)
+ GET / 200 in 48ms (compile: 4ms, render: 44ms)
+ GET / 200 in 86ms (compile: 4ms, render: 82ms)
+ GET / 200 in 52ms (compile: 5ms, render: 48ms)
+ GET / 200 in 67ms (compile: 6ms, render: 62ms)
+ GET / 200 in 74ms (compile: 28ms, render: 46ms)
+ GET / 200 in 58ms (compile: 4ms, render: 54ms)
+ GET / 200 in 58ms (compile: 24ms, render: 34ms)
+ GET / 200 in 68ms (compile: 5ms, render: 63ms)
+ GET / 200 in 70ms (compile: 31ms, render: 39ms)
+ GET / 200 in 61ms (compile: 6ms, render: 55ms)
+ GET / 200 in 61ms (compile: 27ms, render: 34ms)
+ GET / 200 in 79ms (compile: 8ms, render: 71ms)
+ GET / 200 in 80ms (compile: 37ms, render: 43ms)
+ GET / 200 in 107ms (compile: 11ms, render: 96ms)
+ GET / 200 in 103ms (compile: 58ms, render: 45ms)
+ GET / 200 in 54ms (compile: 3ms, render: 50ms)
+ GET / 200 in 33ms (compile: 7ms, render: 26ms)
+ GET / 200 in 53ms (compile: 6ms, render: 47ms)
+ GET / 200 in 55ms (compile: 24ms, render: 31ms)
+ GET / 200 in 67ms (compile: 4ms, render: 63ms)
+ GET / 200 in 68ms (compile: 39ms, render: 29ms)
+ GET / 200 in 39ms (compile: 4ms, render: 35ms)
+ GET / 200 in 42ms (compile: 18ms, render: 23ms)
+ GET / 200 in 41ms (compile: 3ms, render: 38ms)
+ GET / 200 in 42ms (compile: 19ms, render: 23ms)
+ GET / 200 in 48ms (compile: 5ms, render: 44ms)
+ GET / 200 in 54ms (compile: 17ms, render: 37ms)
+ GET / 200 in 93ms (compile: 4ms, render: 89ms)
+ GET / 200 in 27ms (compile: 3ms, render: 24ms)
+ GET / 200 in 40ms (compile: 3ms, render: 37ms)
+ GET / 200 in 43ms (compile: 22ms, render: 21ms)
+ GET / 200 in 37ms (compile: 2ms, render: 35ms)
+ GET / 200 in 42ms (compile: 18ms, render: 24ms)
+ GET / 200 in 54ms (compile: 3ms, render: 51ms)
+ GET / 200 in 41ms (compile: 4ms, render: 37ms)
+ GET / 200 in 59ms (compile: 5ms, render: 54ms)
+ GET / 200 in 59ms (compile: 30ms, render: 29ms)
+ GET / 200 in 1000ms (compile: 961ms, render: 39ms)
+ GET / 200 in 768ms (compile: 638ms, render: 130ms)
+ GET / 200 in 105ms (compile: 9ms, render: 96ms)
+ GET / 200 in 44ms (compile: 4ms, render: 40ms)
+ GET / 200 in 77ms (compile: 8ms, render: 69ms)
+ GET / 200 in 90ms (compile: 4ms, render: 85ms)
+ GET / 200 in 88ms (compile: 4ms, render: 84ms)
+ GET / 200 in 98ms (compile: 6ms, render: 93ms)
+ GET / 200 in 63ms (compile: 4ms, render: 59ms)
+ GET / 200 in 61ms (compile: 18ms, render: 43ms)
+ GET / 200 in 102ms (compile: 9ms, render: 93ms)
+ GET / 200 in 104ms (compile: 51ms, render: 52ms)
+ GET / 200 in 99ms (compile: 7ms, render: 92ms)
+ GET / 200 in 55ms (compile: 4ms, render: 51ms)
+ GET / 200 in 89ms (compile: 6ms, render: 83ms)
+ GET / 200 in 44ms (compile: 4ms, render: 40ms)
+ GET / 200 in 52ms (compile: 4ms, render: 48ms)
+ GET / 200 in 112ms (compile: 13ms, render: 99ms)
+ GET / 200 in 55ms (compile: 7ms, render: 48ms)
+ GET / 200 in 64ms (compile: 4ms, render: 59ms)
+ GET / 200 in 65ms (compile: 4ms, render: 61ms)
+ GET / 200 in 90ms (compile: 7ms, render: 83ms)
+ GET / 200 in 90ms (compile: 41ms, render: 49ms)
+ GET / 200 in 66ms (compile: 5ms, render: 60ms)
+ GET / 200 in 45ms (compile: 7ms, render: 38ms)
+ GET / 200 in 103ms (compile: 3ms, render: 99ms)
+ GET / 200 in 99ms (compile: 14ms, render: 85ms)
+ GET / 200 in 84ms (compile: 4ms, render: 79ms)
+ GET / 200 in 45ms (compile: 4ms, render: 42ms)
+ GET / 200 in 78ms (compile: 7ms, render: 71ms)
+ GET / 200 in 40ms (compile: 4ms, render: 36ms)
+ GET / 200 in 101ms (compile: 4ms, render: 97ms)
+ GET / 200 in 61ms (compile: 13ms, render: 48ms)
+ GET / 200 in 125ms (compile: 12ms, render: 113ms)
+ GET / 200 in 66ms (compile: 4ms, render: 62ms)
+ GET / 200 in 120ms (compile: 4ms, render: 116ms)
+ GET / 200 in 63ms (compile: 4ms, render: 59ms)
+ GET / 200 in 93ms (compile: 4ms, render: 89ms)
+ GET / 200 in 49ms (compile: 4ms, render: 45ms)
+ GET / 200 in 145ms (compile: 4ms, render: 141ms)
+ GET / 200 in 90ms (compile: 4ms, render: 86ms)
+ GET / 200 in 104ms (compile: 4ms, render: 100ms)
+ GET / 200 in 43ms (compile: 4ms, render: 39ms)
+ GET / 200 in 45ms (compile: 3ms, render: 42ms)
+ GET / 200 in 102ms (compile: 9ms, render: 93ms)
+ GET / 200 in 55ms (compile: 6ms, render: 49ms)
+ GET / 200 in 185ms (compile: 13ms, render: 172ms)
+ GET / 200 in 81ms (compile: 10ms, render: 72ms)
+ GET / 200 in 163ms (compile: 11ms, render: 152ms)
+ GET / 200 in 42ms (compile: 3ms, render: 38ms)
+ GET / 200 in 78ms (compile: 5ms, render: 73ms)
+ GET / 200 in 43ms (compile: 4ms, render: 39ms)
+ GET / 200 in 170ms (compile: 3ms, render: 166ms)
+ GET / 200 in 103ms (compile: 4ms, render: 99ms)
+ GET / 200 in 94ms (compile: 4ms, render: 90ms)
+ GET / 200 in 48ms (compile: 4ms, render: 45ms)
+ GET / 200 in 38ms (compile: 5ms, render: 33ms)
+ GET / 200 in 27ms (compile: 3ms, render: 24ms)
+ GET / 200 in 34ms (compile: 3ms, render: 30ms)
+ GET / 200 in 33ms (compile: 5ms, render: 28ms)
+Starting Analyzer...
+ GET / 200 in 419ms (compile: 331ms, render: 87ms)
+ GET / 200 in 423ms (compile: 382ms, render: 41ms)
+ GET / 200 in 61ms (compile: 8ms, render: 53ms)
+ GET / 200 in 33ms (compile: 4ms, render: 29ms)
+ GET / 200 in 55ms (compile: 4ms, render: 52ms)
+ GET / 200 in 31ms (compile: 3ms, render: 27ms)
+ GET / 200 in 72ms (compile: 4ms, render: 68ms)
+ GET / 200 in 49ms (compile: 8ms, render: 41ms)
+ GET / 200 in 72ms (compile: 4ms, render: 68ms)
+ GET / 200 in 34ms (compile: 5ms, render: 29ms)
+ GET / 200 in 92ms (compile: 45ms, render: 47ms)
+ GET / 200 in 90ms (compile: 6ms, render: 84ms)
+ GET / 200 in 124ms (compile: 5ms, render: 119ms)
+ GET / 200 in 81ms (compile: 6ms, render: 75ms)
+ GET / 200 in 49ms (compile: 5ms, render: 44ms)
+ GET / 200 in 27ms (compile: 2ms, render: 25ms)
+ GET / 200 in 57ms (compile: 3ms, render: 54ms)
+ GET / 200 in 58ms (compile: 24ms, render: 35ms)
+ GET / 200 in 51ms (compile: 5ms, render: 47ms)
+ GET / 200 in 56ms (compile: 22ms, render: 34ms)
+ GET / 200 in 75ms (compile: 5ms, render: 70ms)
+ GET / 200 in 76ms (compile: 39ms, render: 37ms)
+ GET / 200 in 78ms (compile: 5ms, render: 73ms)
+ GET / 200 in 43ms (compile: 3ms, render: 39ms)
+ GET / 200 in 73ms (compile: 4ms, render: 69ms)
+ GET / 200 in 73ms (compile: 31ms, render: 42ms)
+ GET / 200 in 74ms (compile: 4ms, render: 71ms)
+ GET / 200 in 76ms (compile: 36ms, render: 40ms)
+ GET / 200 in 97ms (compile: 4ms, render: 93ms)
+ GET / 200 in 98ms (compile: 38ms, render: 60ms)
+ POST /api/system/sync 200 in 13.9s (compile: 63ms, render: 13.9s)
+ GET /logs 200 in 494ms (compile: 59ms, render: 435ms)
+ GET / 200 in 138ms (compile: 45ms, render: 93ms)
+ GET / 200 in 37ms (compile: 5ms, render: 31ms)
+ GET / 200 in 27ms (compile: 6ms, render: 21ms)
+ GET / 200 in 30ms (compile: 3ms, render: 27ms)
+ GET / 200 in 32ms (compile: 6ms, render: 26ms)
+ GET / 200 in 22ms (compile: 4ms, render: 19ms)
+ GET / 200 in 49ms (compile: 2ms, render: 46ms)
+ GET / 200 in 28ms (compile: 4ms, render: 25ms)
+ GET / 200 in 24ms (compile: 3ms, render: 20ms)
+ GET / 200 in 26ms (compile: 2ms, render: 24ms)
+ GET / 200 in 29ms (compile: 4ms, render: 25ms)
+ GET / 200 in 23ms (compile: 3ms, render: 19ms)
+ GET / 200 in 69ms (compile: 6ms, render: 63ms)
+ GET / 200 in 82ms (compile: 6ms, render: 76ms)
+ GET / 200 in 31ms (compile: 7ms, render: 24ms)
+ GET / 200 in 25ms (compile: 4ms, render: 21ms)
+ GET / 200 in 28ms (compile: 4ms, render: 24ms)
+ GET /api/logs?page=1&limit=20&status=ALL 200 in 112ms (compile: 86ms, render: 26ms)
+ ✓ Compiled in 300ms
+ GET / 200 in 43ms (compile: 5ms, render: 37ms)
+ GET /api/repos 200 in 59ms (compile: 35ms, render: 24ms)
+ GET /api/repos 200 in 18ms (compile: 2ms, render: 16ms)
+ GET /logs 200 in 92ms (compile: 5ms, render: 87ms)
+ GET /api/logs?page=1&limit=20&status=ALL 200 in 21ms (compile: 3ms, render: 18ms)
+ GET / 200 in 20ms (compile: 3ms, render: 17ms)
+ GET /api/repos 200 in 23ms (compile: 4ms, render: 19ms)
+ GET /api/repos 200 in 28ms (compile: 4ms, render: 24ms)
+ GET / 200 in 89ms (compile: 3ms, render: 87ms)
+ GET / 200 in 49ms (compile: 4ms, render: 45ms)
+ GET /repo/playlist_generator 200 in 289ms (compile: 75ms, render: 214ms)
+ ✓ Compiled in 2.2s
+Starting Analyzer...
+ POST /api/system/sync 200 in 4.2s (compile: 51ms, render: 4.2s)
+ GET /logs 200 in 146ms (compile: 6ms, render: 140ms)
+ GET /api/logs?page=1&limit=20&status=ALL 200 in 28ms (compile: 5ms, render: 23ms)
+Analyzer finished.
+Starting Seeder...
+ GET / 200 in 55ms (compile: 6ms, render: 49ms)
+ GET /api/repos 200 in 47ms (compile: 11ms, render: 36ms)
+ GET /api/repos 200 in 43ms (compile: 4ms, render: 40ms)
+Seeder finished.
+ GET /repo/Google-Visual-Story-Generator- 200 in 77ms (compile: 37ms, render: 39ms)
+ GET /api/repos/Google-Visual-Story-Generator- 200 in 990ms (compile: 968ms, render: 21ms)
+ GET /api/repos/Google-Visual-Story-Generator- 200 in 39ms (compile: 27ms, render: 12ms)
+ GET / 200 in 27ms (compile: 3ms, render: 24ms)
+ GET /api/repos 200 in 30ms (compile: 5ms, render: 25ms)
+ GET /api/repos 200 in 22ms (compile: 3ms, render: 20ms)
+ GET /reports 404 in 755ms (compile: 616ms, render: 139ms)
+Analyzer finished.
+Starting Seeder...
+Seeder finished.
+ ✓ Compiled in 381ms
+ GET / 200 in 452ms (compile: 205ms, render: 247ms)
+ GET / 200 in 213ms (compile: 8ms, render: 204ms)
+ GET /repo/playlist_generator 200 in 101ms (compile: 48ms, render: 52ms)
+   Reload env: .env
+ GET /reports 404 in 533ms (compile: 157ms, render: 376ms)
+ GET / 200 in 529ms (compile: 86ms, render: 443ms)
+ GET /reports 404 in 298ms (compile: 24ms, render: 274ms)
+ GET /api/repos 200 in 172ms (compile: 88ms, render: 84ms)
+ GET / 200 in 90ms (compile: 5ms, render: 85ms)
+ GET / 200 in 136ms (compile: 7ms, render: 128ms)
+ GET /api/repos 200 in 55ms (compile: 5ms, render: 50ms)
+ GET / 200 in 100ms (compile: 5ms, render: 95ms)
+ GET /api/repos 200 in 35ms (compile: 3ms, render: 32ms)
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ ✓ Compiled in 923ms
+ GET / 200 in 503ms (compile: 191ms, render: 313ms)
+ GET / 200 in 142ms (compile: 8ms, render: 135ms)
+ GET /api/repos 200 in 47ms (compile: 17ms, render: 30ms)
+ GET /api/repos 200 in 45ms (compile: 3ms, render: 42ms)
+ GET /report 200 in 3.2s (compile: 2.7s, render: 464ms)
+ GET / 200 in 66ms (compile: 6ms, render: 60ms)
+Fetch Reports Error: TypeError: Cannot read properties of undefined (reading 'findMany')
+    at GET (app/api/ai/reports/route.ts:8:47)
+   6 | export async function GET() {
+   7 |     try {
+>  8 |         const reports = await prisma.aIReport.findMany({
+     |                                               ^
+   9 |             orderBy: {
+  10 |                 createdAt: 'desc'
+  11 |             }
+ GET /api/ai/reports 500 in 708ms (compile: 565ms, render: 143ms)
+ GET / 200 in 556ms (compile: 4ms, render: 552ms)
+ GET /repo/playlist_generator 200 in 483ms (compile: 105ms, render: 378ms)
+ GET / 200 in 29ms (compile: 4ms, render: 25ms)
+ GET /api/repos 200 in 39ms (compile: 4ms, render: 35ms)
+ GET /api/repos 200 in 48ms (compile: 10ms, render: 38ms)
+ GET /repo/Google-Visual-Story-Generator- 200 in 83ms (compile: 45ms, render: 38ms)
+ GET /api/repos/Google-Visual-Story-Generator- 200 in 105ms (compile: 89ms, render: 16ms)
+ GET /api/repos/Google-Visual-Story-Generator- 200 in 12ms (compile: 3ms, render: 9ms)
+ GET / 200 in 21ms (compile: 3ms, render: 18ms)
+ GET /api/repos 200 in 27ms (compile: 4ms, render: 23ms)
+ GET /api/repos 200 in 19ms (compile: 3ms, render: 16ms)
+ GET /report 200 in 84ms (compile: 4ms, render: 80ms)
+Fetch Reports Error: TypeError: Cannot read properties of undefined (reading 'findMany')
+    at GET (app/api/ai/reports/route.ts:8:47)
+   6 | export async function GET() {
+   7 |     try {
+>  8 |         const reports = await prisma.aIReport.findMany({
+     |                                               ^
+   9 |             orderBy: {
+  10 |                 createdAt: 'desc'
+  11 |             }
+ GET /api/ai/reports 500 in 103ms (compile: 4ms, render: 100ms)
+ GET / 200 in 33ms (compile: 4ms, render: 29ms)
+ GET /api/repos 200 in 20ms (compile: 4ms, render: 16ms)
+ GET /api/repos 200 in 24ms (compile: 3ms, render: 21ms)
+ GET /report 200 in 67ms (compile: 4ms, render: 63ms)
+Fetch Reports Error: TypeError: Cannot read properties of undefined (reading 'findMany')
+    at GET (app/api/ai/reports/route.ts:8:47)
+   6 | export async function GET() {
+   7 |     try {
+>  8 |         const reports = await prisma.aIReport.findMany({
+     |                                               ^
+   9 |             orderBy: {
+  10 |                 createdAt: 'desc'
+  11 |             }
+ GET /api/ai/reports 500 in 99ms (compile: 4ms, render: 95ms)
+ GET / 200 in 74ms (compile: 6ms, render: 68ms)
+ GET /api/repos 200 in 51ms (compile: 11ms, render: 40ms)
+ GET /api/repos 200 in 62ms (compile: 4ms, render: 59ms)
+ POST /api/ai/generate 500 in 1378ms (compile: 1369ms, render: 9ms)
+ GET /report 200 in 88ms (compile: 4ms, render: 84ms)
+Fetch Reports Error: TypeError: Cannot read properties of undefined (reading 'findMany')
+    at GET (app/api/ai/reports/route.ts:8:47)
+   6 | export async function GET() {
+   7 |     try {
+>  8 |         const reports = await prisma.aIReport.findMany({
+     |                                               ^
+   9 |             orderBy: {
+  10 |                 createdAt: 'desc'
+  11 |             }
+ GET /api/ai/reports 500 in 135ms (compile: 5ms, render: 130ms)
+ GET / 200 in 26ms (compile: 3ms, render: 23ms)
+ GET /api/repos 200 in 25ms (compile: 5ms, render: 21ms)
+ GET /api/repos 200 in 22ms (compile: 4ms, render: 19ms)
+ GET /report 200 in 75ms (compile: 5ms, render: 71ms)
+Fetch Reports Error: TypeError: Cannot read properties of undefined (reading 'findMany')
+    at GET (app/api/ai/reports/route.ts:8:47)
+   6 | export async function GET() {
+   7 |     try {
+>  8 |         const reports = await prisma.aIReport.findMany({
+     |                                               ^
+   9 |             orderBy: {
+  10 |                 createdAt: 'desc'
+  11 |             }
+ GET /api/ai/reports 500 in 127ms (compile: 2ms, render: 125ms)
+ GET /report 200 in 67ms (compile: 4ms, render: 63ms)
+Fetch Reports Error: TypeError: Cannot read properties of undefined (reading 'findMany')
+    at GET (app/api/ai/reports/route.ts:8:47)
+   6 | export async function GET() {
+   7 |     try {
+>  8 |         const reports = await prisma.aIReport.findMany({
+     |                                               ^
+   9 |             orderBy: {
+  10 |                 createdAt: 'desc'
+  11 |             }
+ GET /api/ai/reports 500 in 81ms (compile: 3ms, render: 77ms)
+ GET / 200 in 22ms (compile: 4ms, render: 18ms)
+ GET /api/repos 200 in 26ms (compile: 4ms, render: 22ms)
+ GET /api/repos 200 in 37ms (compile: 3ms, render: 33ms)
+ GET /report 200 in 140ms (compile: 4ms, render: 136ms)
+Fetch Reports Error: TypeError: Cannot read properties of undefined (reading 'findMany')
+    at GET (app/api/ai/reports/route.ts:8:47)
+   6 | export async function GET() {
+   7 |     try {
+>  8 |         const reports = await prisma.aIReport.findMany({
+     |                                               ^
+   9 |             orderBy: {
+  10 |                 createdAt: 'desc'
+  11 |             }
+ GET /api/ai/reports 500 in 103ms (compile: 9ms, render: 94ms)
+ GET / 200 in 60ms (compile: 6ms, render: 54ms)
+ GET / 200 in 172ms (compile: 5ms, render: 167ms)
+ GET /repo/playlist_generator 200 in 114ms (compile: 44ms, render: 71ms)
+ GET / 200 in 59ms (compile: 4ms, render: 55ms)
+ GET /api/repos 200 in 124ms (compile: 21ms, render: 104ms)
+ GET /api/repos 200 in 64ms (compile: 15ms, render: 49ms)
+ GET /report 200 in 76ms (compile: 4ms, render: 72ms)
+Fetch Reports Error: TypeError: Cannot read properties of undefined (reading 'findMany')
+    at GET (app/api/ai/reports/route.ts:8:47)
+   6 | export async function GET() {
+   7 |     try {
+>  8 |         const reports = await prisma.aIReport.findMany({
+     |                                               ^
+   9 |             orderBy: {
+  10 |                 createdAt: 'desc'
+  11 |             }
+ GET /api/ai/reports 500 in 77ms (compile: 2ms, render: 74ms)
+ GET / 200 in 157ms (compile: 8ms, render: 149ms)
+ GET /api/repos 200 in 369ms (compile: 174ms, render: 195ms)
+ GET /api/repos 200 in 47ms (compile: 12ms, render: 35ms)
+ GET /report 200 in 128ms (compile: 7ms, render: 120ms)
+Fetch Reports Error: TypeError: Cannot read properties of undefined (reading 'findMany')
+    at GET (app/api/ai/reports/route.ts:8:47)
+   6 | export async function GET() {
+   7 |     try {
+>  8 |         const reports = await prisma.aIReport.findMany({
+     |                                               ^
+   9 |             orderBy: {
+  10 |                 createdAt: 'desc'
+  11 |             }
+ GET /api/ai/reports 500 in 165ms (compile: 6ms, render: 159ms)

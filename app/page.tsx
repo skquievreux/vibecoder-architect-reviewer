@@ -2,7 +2,7 @@
 
 import { Card, Title, Text, Badge, Grid, Select, SelectItem, MultiSelect, MultiSelectItem, Table, TableHead, TableHeaderCell, TableBody, TableRow, TableCell } from "@tremor/react";
 import { useState, useEffect } from "react";
-import { Search, Server, Database, Code, Globe, ExternalLink, AlertTriangle, RefreshCw, LayoutGrid, List, ChevronLeft, ChevronRight, ArrowUp, ArrowDown } from "lucide-react";
+import { Search, Server, Database, Code, Globe, ExternalLink, AlertTriangle, RefreshCw, LayoutGrid, List, ChevronLeft, ChevronRight, ArrowUp, ArrowDown, Sparkles } from "lucide-react";
 import Link from "next/link";
 
 // Types based on our analysis script output
@@ -247,6 +247,11 @@ export default function Dashboard() {
                 Logs
               </Badge>
             </a>
+            <a href="/report" className="no-underline">
+              <Badge color="fuchsia" icon={Sparkles} className="cursor-pointer hover:opacity-80">
+                AI Report
+              </Badge>
+            </a>
             <Badge
               color="slate"
               icon={RefreshCw}
@@ -339,8 +344,8 @@ export default function Dashboard() {
                   <div className="space-y-4 flex-grow">
                     <div className="flex items-center gap-2 text-xs">
                       <div className={`w-3 h-3 rounded-full ${new Date(item.repo.updatedAt) > new Date(Date.now() - 30 * 24 * 60 * 60 * 1000) ? 'bg-green-500' :
-                          new Date(item.repo.updatedAt) > new Date(Date.now() - 180 * 24 * 60 * 60 * 1000) ? 'bg-yellow-500' :
-                            'bg-red-500'
+                        new Date(item.repo.updatedAt) > new Date(Date.now() - 180 * 24 * 60 * 60 * 1000) ? 'bg-yellow-500' :
+                          'bg-red-500'
                         }`} />
                       <span className="text-slate-500">
                         Last updated: {new Date(item.repo.updatedAt).toLocaleDateString()}

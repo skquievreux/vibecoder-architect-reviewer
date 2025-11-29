@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-require-imports */
 const tremor = require('@tremor/react');
 const requiredComponents = ['Table', 'TableHead', 'TableHeaderCell', 'TableBody', 'TableRow', 'TableCell'];
 

@@ -87,3 +87,9 @@ model SyncLog {
   details   String?
   createdAt DateTime @default(now())
 }
+
+model AIReport {
+  id        String   @id @default(uuid())
+  content   String
+  createdAt DateTime @default(now())
+}
