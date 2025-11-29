@@ -236,53 +236,53 @@ function MaintenanceContent() {
                             <button
                                 onClick={() => runScript('standardize-ts.js')}
                                 disabled={!!running}
-                                className="glass-card p-6 rounded-xl hover:scale-105 transition-all duration-300 group"
+                                className="bg-gradient-to-br from-slate-800 to-slate-900 p-6 rounded-2xl shadow-lg hover:shadow-xl hover:shadow-violet-500/20 hover:scale-105 transition-all duration-300 group border border-slate-700"
                             >
                                 <div className="flex flex-col items-center text-center">
-                                    <div className="p-3 rounded-full bg-violet-500/20 group-hover:bg-violet-500/30 transition-colors mb-3">
-                                        <Code size={28} className="text-violet-400" />
+                                    <div className="p-4 rounded-full bg-gradient-to-br from-violet-500/20 to-violet-600/20 group-hover:from-violet-500/30 group-hover:to-violet-600/30 transition-all mb-4 shadow-inner">
+                                        <Code size={32} className="text-violet-300" />
                                     </div>
-                                    <span className="font-semibold text-slate-200 mb-1">Fix TypeScript</span>
-                                    <span className="text-xs text-slate-400">Set v5.8.2</span>
+                                    <span className="font-bold text-slate-100 mb-2 text-lg">Fix TypeScript</span>
+                                    <span className="text-sm text-slate-400 bg-slate-800/50 px-3 py-1 rounded-full">Set v5.8.2</span>
                                 </div>
                             </button>
                             <button
                                 onClick={() => runScript('standardize-supabase')}
                                 disabled={!!running}
-                                className="glass-card p-6 rounded-xl hover:scale-105 transition-all duration-300 group"
+                                className="bg-gradient-to-br from-slate-800 to-slate-900 p-6 rounded-2xl shadow-lg hover:shadow-xl hover:shadow-emerald-500/20 hover:scale-105 transition-all duration-300 group border border-slate-700"
                             >
                                 <div className="flex flex-col items-center text-center">
-                                    <div className="p-3 rounded-full bg-emerald-500/20 group-hover:bg-emerald-500/30 transition-colors mb-3">
-                                        <Database size={28} className="text-emerald-400" />
+                                    <div className="p-4 rounded-full bg-gradient-to-br from-emerald-500/20 to-emerald-600/20 group-hover:from-emerald-500/30 group-hover:to-emerald-600/30 transition-all mb-4 shadow-inner">
+                                        <Database size={32} className="text-emerald-300" />
                                     </div>
-                                    <span className="font-semibold text-slate-200 mb-1">Fix Supabase</span>
-                                    <span className="text-xs text-slate-400">Set v2.49.4</span>
+                                    <span className="font-bold text-slate-100 mb-2 text-lg">Fix Supabase</span>
+                                    <span className="text-sm text-slate-400 bg-slate-800/50 px-3 py-1 rounded-full">Set v2.49.4</span>
                                 </div>
                             </button>
                             <button
                                 onClick={() => runScript('upgrade-react')}
                                 disabled={!!running}
-                                className="glass-card p-6 rounded-xl hover:scale-105 transition-all duration-300 group col-span-2 md:col-span-1"
+                                className="bg-gradient-to-br from-slate-800 to-slate-900 p-6 rounded-2xl shadow-lg hover:shadow-xl hover:shadow-blue-500/20 hover:scale-105 transition-all duration-300 group border border-slate-700 col-span-2 md:col-span-1"
                             >
                                 <div className="flex flex-col items-center text-center">
-                                    <div className="p-3 rounded-full bg-blue-500/20 group-hover:bg-blue-500/30 transition-colors mb-3">
-                                        <Sparkles size={28} className="text-blue-400" />
+                                    <div className="p-4 rounded-full bg-gradient-to-br from-blue-500/20 to-blue-600/20 group-hover:from-blue-500/30 group-hover:to-blue-600/30 transition-all mb-4 shadow-inner">
+                                        <Sparkles size={32} className="text-blue-300" />
                                     </div>
-                                    <span className="font-semibold text-slate-200 mb-1">Upgrade Tier 2</span>
-                                    <span className="text-xs text-slate-400">React 19.2 (Safe)</span>
+                                    <span className="font-bold text-slate-100 mb-2 text-lg">Upgrade Tier 2</span>
+                                    <span className="text-sm text-slate-400 bg-slate-800/50 px-3 py-1 rounded-full">React 19.2 (Safe)</span>
                                 </div>
                             </button>
                             <button
                                 onClick={() => runScript('sync-vercel-domains')}
                                 disabled={!!running}
-                                className="glass-card p-6 rounded-xl hover:scale-105 transition-all duration-300 group col-span-2 md:col-span-1"
+                                className="bg-gradient-to-br from-slate-800 to-slate-900 p-6 rounded-2xl shadow-lg hover:shadow-xl hover:shadow-violet-500/20 hover:scale-105 transition-all duration-300 group border border-slate-700 col-span-2 md:col-span-1"
                             >
                                 <div className="flex flex-col items-center text-center">
-                                    <div className="p-3 rounded-full bg-violet-500/20 group-hover:bg-violet-500/30 transition-colors mb-3">
-                                        <Globe size={28} className="text-violet-400" />
+                                    <div className="p-4 rounded-full bg-gradient-to-br from-violet-500/20 to-violet-600/20 group-hover:from-violet-500/30 group-hover:to-violet-600/30 transition-all mb-4 shadow-inner">
+                                        <Globe size={32} className="text-violet-300" />
                                     </div>
-                                    <span className="font-semibold text-slate-200 mb-1">Sync Domains</span>
-                                    <span className="text-xs text-slate-400">Vercel &rarr; DB</span>
+                                    <span className="font-bold text-slate-100 mb-2 text-lg">Sync Domains</span>
+                                    <span className="text-sm text-slate-400 bg-slate-800/50 px-3 py-1 rounded-full">Vercel &rarr; DB</span>
                                 </div>
                             </button>
                         </div>
