@@ -1,8 +1,6 @@
-@reference "tailwindcss";
+@import 'tailwindcss';
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@reference "tailwindcss";
 
 :root {
   --background: #0f172a;
@@ -38,7 +36,7 @@ body {
 
 /* Neon Text Gradients */
 .text-gradient-electric {
-  @apply bg-clip-text text-transparent bg-gradient-to-r from-violet-400 via-fuchsia-400 to-cyan-400;
+  @apply bg-clip-text text-transparent bg-linear-to-r from-violet-400 via-fuchsia-400 to-cyan-400;
 }
 
 /* Scrollbar for Dark Mode */
