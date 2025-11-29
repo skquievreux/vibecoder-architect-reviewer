@@ -19,11 +19,21 @@ body {
 
 /* Glassmorphism Utilities */
 .glass-panel {
-  @apply bg-slate-900/60 backdrop-blur-md border border-slate-800 shadow-xl;
+  background-color: rgba(15, 23, 42, 0.6);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgb(30, 41, 59);
+  box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
 }
 
 .glass-card {
-  @apply bg-slate-800/40 backdrop-blur-sm border border-slate-700/50 hover:border-violet-500/50 transition-all duration-300;
+  background-color: rgba(30, 41, 59, 0.4);
+  backdrop-filter: blur(4px);
+  border: 1px solid rgba(51, 65, 85, 0.5);
+  transition: all 0.3s;
+}
+
+.glass-card:hover {
+  border-color: rgba(139, 92, 246, 0.5);
 }
 
 /* Neon Text Gradients */
