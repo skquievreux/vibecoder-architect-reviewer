@@ -31,8 +31,8 @@ async function main() {
                 isPrivate: repoData.isPrivate,
                 updatedAt: new Date(repoData.updatedAt),
                 pushedAt: repoData.pushedAt ? new Date(repoData.pushedAt) : null,
-                language: repoData.languages?.edges?.[0]?.node?.name || null,
-                defaultBranch: repoData.defaultBranchRef?.name || 'main', // Adjust based on actual JSON structure
+                language: repoData.languages?.[0]?.node?.name || null,
+                defaultBranch: repoData.defaultBranchRef?.name || 'main',
             },
             create: {
                 githubId: String(repoData.id),
@@ -42,10 +42,10 @@ async function main() {
                 url: repoData.url,
                 description: repoData.description || '',
                 isPrivate: repoData.isPrivate,
-                createdAt: new Date(repoData.createdAt || new Date()), // Fallback if missing
+                createdAt: repoData.createdAt ? new Date(repoData.createdAt) : new Date(),
                 updatedAt: new Date(repoData.updatedAt),
                 pushedAt: repoData.pushedAt ? new Date(repoData.pushedAt) : null,
-                language: repoData.languages?.edges?.[0]?.node?.name || null,
+                language: repoData.languages?.[0]?.node?.name || null,
                 defaultBranch: repoData.defaultBranchRef?.name || 'main',
             },
         });

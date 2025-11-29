@@ -1,0 +1,229 @@
+
+> dashboard@0.1.3 dev
+> next dev
+
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+   ▲ Next.js 16.0.5 (Turbopack)
+   - Local:         http://localhost:3000
+   - Network:       http://10.255.255.254:3000
+   - Environments: .env
+
+ ✓ Starting...
+ ✓ Ready in 1951ms
+ ○ Compiling / ...
+ ⨯ ./app/page.tsx:254:27
+Parsing ecmascript source code failed
+[0m [90m 252 |[39m [32m              color="slate"[39m
+ [90m 253 |[39m [32m              icon={RefreshCw}[39m
+[31m[1m>[22m[39m[90m 254 |[39m [32m              className={`[39mcursor [33m-[39m pointer hover[33m:[39m opacity [33m-[39m [35m80[39m ${ syncing [33m?[39m [32m'animate-pulse'[39m [33m:[39m [32m''[39m } [32m`}[39m
+ [90m     |[39m                           [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 255 |[39m [32m              onClick={handleSync}[39m
+ [90m 256 |[39m [32m            >[39m
+ [90m 257 |[39m [32m              {syncing ? 'Syncing...' : 'Refresh Data'}[39m[0m
+
+Expected ';', '}' or <eof>
+
+
+ GET / 500 in 6.4s (compile: 6.2s, render: 211ms)
+ ⨯ ./app/page.tsx:254:27
+Parsing ecmascript source code failed
+[0m [90m 252 |[39m [32m              color="slate"[39m
+ [90m 253 |[39m [32m              icon={RefreshCw}[39m
+[31m[1m>[22m[39m[90m 254 |[39m [32m              className={`[39mcursor [33m-[39m pointer hover[33m:[39m opacity [33m-[39m [35m80[39m ${ syncing [33m?[39m [32m'animate-pulse'[39m [33m:[39m [32m''[39m } [32m`}[39m
+ [90m     |[39m                           [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 255 |[39m [32m              onClick={handleSync}[39m
+ [90m 256 |[39m [32m            >[39m
+ [90m 257 |[39m [32m              {syncing ? 'Syncing...' : 'Refresh Data'}[39m[0m
+
+Expected ';', '}' or <eof>
+
+
+ GET / 500 in 65ms (compile: 44ms, render: 21ms)
+ GET /repo/playlist_generator 200 in 2.5s (compile: 2.1s, render: 365ms)
+ GET /repo/simplehosting 200 in 2.5s (compile: 2.1s, render: 383ms)
+ GET /api/repos/simplehosting 500 in 438ms (compile: 421ms, render: 17ms)
+ GET /repo/simplehosting 200 in 147ms (compile: 61ms, render: 86ms)
+ GET /api/repos/simplehosting 500 in 40ms (compile: 19ms, render: 22ms)
+ ⨯ ./app/page.tsx:254:27
+Parsing ecmascript source code failed
+[0m [90m 252 |[39m [32m              color="slate"[39m
+ [90m 253 |[39m [32m              icon={RefreshCw}[39m
+[31m[1m>[22m[39m[90m 254 |[39m [32m              className={`[39mcursor [33m-[39m pointer hover[33m:[39m opacity [33m-[39m [35m80[39m ${ syncing [33m?[39m [32m'animate-pulse'[39m [33m:[39m [32m''[39m } [32m`}[39m
+ [90m     |[39m                           [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 255 |[39m [32m              onClick={handleSync}[39m
+ [90m 256 |[39m [32m            >[39m
+ [90m 257 |[39m [32m              {syncing ? 'Syncing...' : 'Refresh Data'}[39m[0m
+
+Expected ';', '}' or <eof>
+
+
+ GET / 500 in 61ms (compile: 48ms, render: 13ms)
+ ⨯ ./app/page.tsx:254:27
+Parsing ecmascript source code failed
+[0m [90m 252 |[39m [32m              color="slate"[39m
+ [90m 253 |[39m [32m              icon={RefreshCw}[39m
+[31m[1m>[22m[39m[90m 254 |[39m [32m              className={`[39mcursor [33m-[39m pointer hover[33m:[39m opacity [33m-[39m [35m80[39m ${ syncing [33m?[39m [32m'animate-pulse'[39m [33m:[39m [32m''[39m } [32m`}[39m
+ [90m     |[39m                           [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 255 |[39m [32m              onClick={handleSync}[39m
+ [90m 256 |[39m [32m            >[39m
+ [90m 257 |[39m [32m              {syncing ? 'Syncing...' : 'Refresh Data'}[39m[0m
+
+Expected ';', '}' or <eof>
+
+
+ GET / 500 in 130ms (compile: 27ms, render: 103ms)
+ GET /repo/playlist_generator 200 in 133ms (compile: 37ms, render: 96ms)
+ GET /repo/simplehosting 200 in 131ms (compile: 30ms, render: 100ms)
+ GET /api/repos/simplehosting 500 in 82ms (compile: 38ms, render: 44ms)
+ GET /repo/simplehosting 200 in 124ms (compile: 34ms, render: 90ms)
+ GET /api/repos/simplehosting 500 in 38ms (compile: 16ms, render: 22ms)
+ ⨯ ./app/page.tsx:254:27
+Parsing ecmascript source code failed
+[0m [90m 252 |[39m [32m              color="slate"[39m
+ [90m 253 |[39m [32m              icon={RefreshCw}[39m
+[31m[1m>[22m[39m[90m 254 |[39m [32m              className={`[39mcursor [33m-[39m pointer hover[33m:[39m opacity [33m-[39m [35m80[39m ${ syncing [33m?[39m [32m'animate-pulse'[39m [33m:[39m [32m''[39m } [32m`}[39m
+ [90m     |[39m                           [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 255 |[39m [32m              onClick={handleSync}[39m
+ [90m 256 |[39m [32m            >[39m
+ [90m 257 |[39m [32m              {syncing ? 'Syncing...' : 'Refresh Data'}[39m[0m
+
+Expected ';', '}' or <eof>
+
+
+ GET / 500 in 46ms (compile: 24ms, render: 23ms)
+ ⨯ ./app/page.tsx:254:27
+Parsing ecmascript source code failed
+[0m [90m 252 |[39m [32m              color="slate"[39m
+ [90m 253 |[39m [32m              icon={RefreshCw}[39m
+[31m[1m>[22m[39m[90m 254 |[39m [32m              className={`[39mcursor [33m-[39m pointer hover[33m:[39m opacity [33m-[39m [35m80[39m ${ syncing [33m?[39m [32m'animate-pulse'[39m [33m:[39m [32m''[39m } [32m`}[39m
+ [90m     |[39m                           [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 255 |[39m [32m              onClick={handleSync}[39m
+ [90m 256 |[39m [32m            >[39m
+ [90m 257 |[39m [32m              {syncing ? 'Syncing...' : 'Refresh Data'}[39m[0m
+
+Expected ';', '}' or <eof>
+
+
+ GET / 500 in 24ms (compile: 14ms, render: 10ms)
+ ⨯ ./app/page.tsx:254:27
+Parsing ecmascript source code failed
+[0m [90m 252 |[39m [32m              color="slate"[39m
+ [90m 253 |[39m [32m              icon={RefreshCw}[39m
+[31m[1m>[22m[39m[90m 254 |[39m [32m              className={`[39mcursor [33m-[39m pointer hover[33m:[39m opacity [33m-[39m [35m80[39m ${ syncing [33m?[39m [32m'animate-pulse'[39m [33m:[39m [32m''[39m } [32m`}[39m
+ [90m     |[39m                           [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 255 |[39m [32m              onClick={handleSync}[39m
+ [90m 256 |[39m [32m            >[39m
+ [90m 257 |[39m [32m              {syncing ? 'Syncing...' : 'Refresh Data'}[39m[0m
+
+Expected ';', '}' or <eof>
+
+
+ GET / 500 in 136ms (compile: 99ms, render: 37ms)
+ GET /repo/playlist_generator 200 in 127ms (compile: 39ms, render: 88ms)
+ ⨯ ./app/page.tsx:254:27
+Parsing ecmascript source code failed
+[0m [90m 252 |[39m [32m              color="slate"[39m
+ [90m 253 |[39m [32m              icon={RefreshCw}[39m
+[31m[1m>[22m[39m[90m 254 |[39m [32m              className={`[39mcursor [33m-[39m pointer hover[33m:[39m opacity [33m-[39m [35m80[39m ${ syncing [33m?[39m [32m'animate-pulse'[39m [33m:[39m [32m''[39m } [32m`}[39m
+ [90m     |[39m                           [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 255 |[39m [32m              onClick={handleSync}[39m
+ [90m 256 |[39m [32m            >[39m
+ [90m 257 |[39m [32m              {syncing ? 'Syncing...' : 'Refresh Data'}[39m[0m
+
+Expected ';', '}' or <eof>
+
+
+ GET / 500 in 27ms (compile: 14ms, render: 13ms)
+ ⨯ ./app/page.tsx:254:27
+Parsing ecmascript source code failed
+[0m [90m 252 |[39m [32m              color="slate"[39m
+ [90m 253 |[39m [32m              icon={RefreshCw}[39m
+[31m[1m>[22m[39m[90m 254 |[39m [32m              className={`[39mcursor [33m-[39m pointer hover[33m:[39m opacity [33m-[39m [35m80[39m ${ syncing [33m?[39m [32m'animate-pulse'[39m [33m:[39m [32m''[39m } [32m`}[39m
+ [90m     |[39m                           [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 255 |[39m [32m              onClick={handleSync}[39m
+ [90m 256 |[39m [32m            >[39m
+ [90m 257 |[39m [32m              {syncing ? 'Syncing...' : 'Refresh Data'}[39m[0m
+
+Expected ';', '}' or <eof>
+
+
+ GET / 500 in 87ms (compile: 73ms, render: 14ms)
+ ✓ Compiled in 1348ms
+ GET / 200 in 1274ms (compile: 570ms, render: 704ms)
+ GET / 200 in 1309ms (compile: 637ms, render: 672ms)
+ GET / 200 in 553ms (compile: 19ms, render: 534ms)
+ GET /repo/playlist_generator 200 in 133ms (compile: 70ms, render: 62ms)
+ GET / 200 in 335ms (compile: 20ms, render: 315ms)
+ GET /api/repos 200 in 685ms (compile: 527ms, render: 158ms)
+ GET /api/repos 200 in 728ms (compile: 538ms, render: 190ms)
+ GET /logs 200 in 945ms (compile: 839ms, render: 106ms)
+Logs API Error: Error [PrismaClientKnownRequestError]: 
+Invalid `prisma.syncLog.findMany()` invocation in
+/home/ladmin/Desktop/GIT/ArchitekturReview/dashboard/.next/dev/server/chunks/[root-of-the-server]__d86f98ac._.js:73:28
+
+  70 } : {};
+  71 try {
+  72     const [logs, total] = await prisma.$transaction([
+→ 73         prisma.syncLog.findMany(
+The table `main.SyncLog` does not exist in the current database.
+    at <unknown> (app/api/logs/route.ts:17:28)
+  15 |     try {
+  16 |         const [logs, total] = await prisma.$transaction([
+> 17 |             prisma.syncLog.findMany({
+     |                            ^
+  18 |                 where,
+  19 |                 skip,
+  20 |                 take: limit, {
+  code: 'P2021',
+  clientVersion: '5.22.0',
+  meta: [Object]
+}
+ GET /api/logs?page=1&limit=20&status=ALL 500 in 203ms (compile: 171ms, render: 32ms)
+ GET / 200 in 44ms (compile: 6ms, render: 38ms)
+ GET /api/repos 200 in 19ms (compile: 3ms, render: 17ms)
+ GET /api/repos 200 in 17ms (compile: 2ms, render: 15ms)
+Sync Error: Error [PrismaClientKnownRequestError]: 
+Invalid `prisma.syncLog.create()` invocation in
+/home/ladmin/Desktop/GIT/ArchitekturReview/dashboard/.next/dev/server/chunks/[root-of-the-server]__c4c57077._.js:93:30
+
+  90 const rootDir = __TURBOPACK__imported__module__$5b$externals$5d2f$path__$5b$external$5d$__$28$path$2c$__cjs$29$__["default"].resolve(dashboardDir, '..');
+  91 const analyzerScript = __TURBOPACK__imported__module__$5b$externals$5d2f$path__$5b$external$5d$__$28$path$2c$__cjs$29$__["default"].join(rootDir, 'analysis', 'analyzer.py');
+  92 // Log Start
+→ 93 await prisma.syncLog.create(
+The table `main.SyncLog` does not exist in the current database.
+    at <unknown> (app/api/system/sync/route.ts:17:30)
+    at async POST (app/api/system/sync/route.ts:17:9)
+  15 |
+  16 |         // Log Start
+> 17 |         await prisma.syncLog.create({
+     |                              ^
+  18 |             data: {
+  19 |                 status: 'INFO',
+  20 |                 message: 'Sync started', {
+  code: 'P2021',
+  clientVersion: '5.22.0',
+  meta: [Object]
+}
+Error [PrismaClientKnownRequestError]: 
+Invalid `prisma.syncLog.create()` invocation in
+/home/ladmin/Desktop/GIT/ArchitekturReview/dashboard/.next/dev/server/chunks/[root-of-the-server]__c4c57077._.js:127:30
+
+  124 } catch (error) {
+  125     console.error('Sync Error:', error);
+  126     // Log Failure
+→ 127     await prisma.syncLog.create(
+The table `main.SyncLog` does not exist in the current database.
+    at <unknown> (app/api/system/sync/route.ts:49:30)
+    at async POST (app/api/system/sync/route.ts:49:9)
+  47 |
+  48 |         // Log Failure
+> 49 |         await prisma.syncLog.create({
+     |                              ^
+  50 |             data: {
+  51 |                 status: 'ERROR',
+  52 |                 message: 'Sync failed', {
+  code: 'P2021',
+  clientVersion: '5.22.0',
+  meta: [Object]
+}
+ POST /api/system/sync 500 in 475ms (compile: 147ms, render: 328ms)

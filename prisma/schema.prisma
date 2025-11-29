@@ -15,12 +15,14 @@ model Repository {
   nameWithOwner String
   url           String
   description   String?
+  homepageUrl   String?
   isPrivate     Boolean      @default(false)
   createdAt     DateTime     @default(now())
   updatedAt     DateTime     @updatedAt
   pushedAt      DateTime?
   language      String?
   defaultBranch String?
+  customUrl     String?   // Manual override for the live site URL
   
   technologies  Technology[]
   interfaces    Interface[]
@@ -74,5 +76,14 @@ model CostSnapshot {
   date                DateTime @default(now())
   totalMonthlyCostEst Decimal?
   supabaseCostEst     Decimal?
+
   details             String?  // JSON string
+}
+
+model SyncLog {
+  id        String   @id @default(uuid())
+  status    String   // SUCCESS, ERROR, INFO
+  message   String
+  details   String?
+  createdAt DateTime @default(now())
 }
