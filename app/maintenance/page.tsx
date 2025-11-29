@@ -130,7 +130,7 @@ function MaintenanceContent() {
                             </div>
                             <div className="space-y-4">
                                 {scripts.map((script) => (
-                                    <div key={script.id} className="flex items-center justify-between p-4 rounded-lg bg-slate-900/50 border border-slate-800 hover:border-violet-500/30 transition-colors">
+                                    <div key={script.id} className="flex items-center justify-between p-4 rounded-lg bg-slate-900 border border-slate-800 hover:border-violet-500 transition-colors">
                                         <div className="flex items-center gap-3">
                                             <div className="p-2 rounded-lg bg-slate-800 text-violet-400">
                                                 <Terminal size={20} />
@@ -190,7 +190,7 @@ function MaintenanceContent() {
                                                 if (row.status === 'NO_PKG') return null;
 
                                                 return (
-                                                    <tr key={i} className="border-b border-slate-800 hover:bg-slate-800/50 transition-colors">
+                                                    <tr key={i} className="border-b border-slate-800 hover:bg-slate-800 transition-colors">
                                                         <td className="py-2 px-2 font-medium text-violet-400">
                                                             <a href={row.url} target="_blank" rel="noreferrer" className="hover:underline">{row.repo}</a>
                                                         </td>
@@ -283,7 +283,7 @@ function MaintenanceContent() {
                                 <a
                                     href={csvUrl}
                                     download="ecosystem-audit.csv"
-                                    className="flex items-center gap-2 px-3 py-1 text-xs font-medium text-emerald-400 bg-emerald-900/30 border border-emerald-500/30 rounded hover:bg-emerald-900/50 transition-colors"
+                                    className="flex items-center gap-2 px-3 py-1 text-xs font-medium text-emerald-400 bg-emerald-900 border border-emerald-500 rounded hover:bg-emerald-900 transition-colors"
                                 >
                                     <FileText size={12} />
                                     Download Report (CSV)
@@ -302,7 +302,7 @@ function MaintenanceContent() {
                             <Text className="italic text-slate-500">No logs found.</Text>
                         ) : (
                             logs.map(log => (
-                                <div key={log.id} className="p-3 bg-slate-900/50 rounded-lg border border-slate-800 text-sm">
+                                <div key={log.id} className="p-3 bg-slate-900 rounded-lg border border-slate-800 text-sm">
                                     <div className="flex items-center justify-between mb-1">
                                         <Badge size="xs" color={log.status === 'SUCCESS' ? 'emerald' : log.status === 'ERROR' ? 'rose' : 'blue'}>
                                             {log.status}
