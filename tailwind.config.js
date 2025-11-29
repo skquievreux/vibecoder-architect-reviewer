@@ -14,6 +14,25 @@ module.exports = {
         current: "currentColor",
         extend: {
             colors: {
+                background: "var(--background)",
+                foreground: "var(--foreground)",
+                slate: {
+                    850: '#1e293b', // Custom dark shade
+                    950: '#0f172a', // Deep background
+                },
+                violet: {
+                    400: '#a78bfa',
+                    500: '#8b5cf6',
+                    600: '#7c3aed',
+                },
+                cyan: {
+                    400: '#22d3ee',
+                    500: '#06b6d4',
+                },
+                fuchsia: {
+                    400: '#e879f9',
+                    500: '#d946ef',
+                },
                 tremor: {
                     brand: {
                         faint: colors.blue[50],

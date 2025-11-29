@@ -54,6 +54,7 @@ export default function Dashboard() {
   const [sortConfig, setSortConfig] = useState<{ key: string; direction: 'asc' | 'desc' }>({ key: 'updated', direction: 'desc' });
   const [filterStatus, setFilterStatus] = useState<'all' | 'private' | 'supabase' | 'outdated' | 'critical'>('all');
   const [syncing, setSyncing] = useState(false);
+  const [enriching, setEnriching] = useState(false);
 
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
   const [currentPage, setCurrentPage] = useState(1);
@@ -75,6 +76,25 @@ export default function Dashboard() {
       alert('Sync failed: Network error');
     } finally {
       setSyncing(false);
+    }
+  };
+
+  const handleEnrich = async () => {
+    if (enriching) return;
+    setEnriching(true);
+    try {
+      const res = await fetch('/api/ai/describe', { method: 'POST' });
+      const data = await res.json();
+      if (res.ok) {
+        alert(data.message);
+        window.location.reload();
+      } else {
+        alert('Enrichment failed: ' + data.error);
+      }
+    } catch (err) {
+      alert('Enrichment failed: Network error');
+    } finally {
+      setEnriching(false);
     }
   };
 
@@ -206,21 +226,21 @@ export default function Dashboard() {
   if (loading) return <div className="p-10">Loading analysis...</div>;
 
   return (
-    <main className="p-10 bg-slate-50 min-h-screen">
+    <main className="p-10 bg-slate-950 min-h-screen">
       <div className="max-w-7xl mx-auto space-y-6">
         <div className="flex justify-between items-center">
           <div>
-            <Title className="text-3xl font-bold text-slate-900">Repository Maintenance Dashboard</Title>
-            <Text>Overview of {totalRepos} repositories</Text>
+            <Title className="text-3xl font-bold text-white">Repository Maintenance Dashboard</Title>
+            <Text className="text-slate-400">Overview of {totalRepos} repositories</Text>
           </div>
           <div className="flex gap-2">
             <Link href="/maintenance?view=audit" className="no-underline">
-              <Badge color="emerald" icon={Activity} className="cursor-pointer hover:opacity-80 animate-pulse">
+              <Badge color="emerald" icon={Activity} className="cursor-pointer hover:opacity-80 animate-pulse ring-1 ring-emerald-500/50 shadow-[0_0_10px_rgba(16,185,129,0.3)]">
                 Live Ecosystem Status
               </Badge>
             </Link>
             <Badge
-              color={filterStatus === 'all' ? "blue" : "slate"}
+              color={filterStatus === 'all' ? "violet" : "slate"}
               icon={Code}
               className="cursor-pointer hover:opacity-80"
               onClick={() => setFilterStatus('all')}
@@ -228,7 +248,7 @@ export default function Dashboard() {
               {totalRepos} Total
             </Badge>
             <Badge
-              color={filterStatus === 'private' ? "blue" : "slate"}
+              color={filterStatus === 'private' ? "violet" : "slate"}
               icon={Server}
               className="cursor-pointer hover:opacity-80"
               onClick={() => setFilterStatus('private')}
@@ -236,7 +256,7 @@ export default function Dashboard() {
               {privateRepos} Private
             </Badge>
             <Badge
-              color={filterStatus === 'supabase' ? "green" : "slate"}
+              color={filterStatus === 'supabase' ? "cyan" : "slate"}
               icon={Database}
               className="cursor-pointer hover:opacity-80"
               onClick={() => setFilterStatus('supabase')}
@@ -244,7 +264,7 @@ export default function Dashboard() {
               {supabaseRepos} Supabase
             </Badge>
             <Badge
-              color={filterStatus === 'outdated' ? "orange" : "slate"}
+              color={filterStatus === 'outdated' ? "amber" : "slate"}
               icon={AlertTriangle}
               className="cursor-pointer hover:opacity-80"
               onClick={() => setFilterStatus('outdated')}
@@ -252,7 +272,7 @@ export default function Dashboard() {
               Outdated
             </Badge>
             <Badge
-              color={filterStatus === 'critical' ? "red" : "slate"}
+              color={filterStatus === 'critical' ? "rose" : "slate"}
               icon={AlertTriangle}
               className="cursor-pointer hover:opacity-80"
               onClick={() => setFilterStatus('critical')}
@@ -287,16 +307,24 @@ export default function Dashboard() {
             >
               {syncing ? 'Syncing...' : 'Refresh Data'}
             </Badge>
+            <Badge
+              color="indigo"
+              icon={Sparkles}
+              className={`cursor-pointer hover:opacity-80 ${enriching ? 'animate-pulse' : ''}`}
+              onClick={handleEnrich}
+            >
+              {enriching ? 'Enriching...' : 'Enrich Data'}
+            </Badge>
           </div>
         </div>
 
         <div className="flex flex-col md:flex-row gap-4">
           <div className="relative flex-grow">
-            <Search className="absolute left-3 top-3 text-slate-400" size={20} />
+            <Search className="absolute left-3 top-3 text-slate-500" size={20} />
             <input
               type="text"
               placeholder="Search repositories or technologies..."
-              className="w-full pl-10 pr-4 py-2 rounded-lg border border-slate-200 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full pl-10 pr-4 py-2 rounded-lg bg-slate-900 border border-slate-700 text-slate-200 focus:outline-none focus:ring-2 focus:ring-violet-500 placeholder-slate-600"
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
             />
@@ -324,17 +352,17 @@ export default function Dashboard() {
             </Select>
           </div>
           {/* View Toggle */}
-          <div className="flex items-center bg-white rounded-lg border border-slate-200 p-1">
+          <div className="flex items-center bg-slate-900 rounded-lg border border-slate-700 p-1">
             <button
               onClick={() => setViewMode('grid')}
-              className={`p-2 rounded ${viewMode === 'grid' ? 'bg-slate-100 text-blue-600' : 'text-slate-400 hover:text-slate-600'}`}
+              className={`p-2 rounded ${viewMode === 'grid' ? 'bg-slate-800 text-violet-400' : 'text-slate-500 hover:text-slate-300'}`}
               title="Grid View"
             >
               <LayoutGrid size={20} />
             </button>
             <button
               onClick={() => setViewMode('list')}
-              className={`p-2 rounded ${viewMode === 'list' ? 'bg-slate-100 text-blue-600' : 'text-slate-400 hover:text-slate-600'}`}
+              className={`p-2 rounded ${viewMode === 'list' ? 'bg-slate-800 text-violet-400' : 'text-slate-500 hover:text-slate-300'}`}
               title="List View"
             >
               <List size={20} />
@@ -353,29 +381,29 @@ export default function Dashboard() {
               });
 
               return (
-                <Card key={item.repo.name} className={`hover:shadow-lg transition-shadow flex flex-col h-full ${isRepoOutdated ? 'border-orange-200 bg-orange-50/30' : ''}`}>
+                <Card key={item.repo.name} className={`glass-card flex flex-col h-full ${isRepoOutdated ? 'border-amber-500/30 bg-amber-900/10' : ''}`}>
                   <div className="flex justify-between items-start mb-4">
                     <div>
                       <div className="flex items-center gap-2">
                         <Link href={`/repo/${item.repo.name}`} className="hover:underline">
-                          <Title className="truncate w-48" title={item.repo.name}>{item.repo.name}</Title>
+                          <Title className="truncate w-48 text-slate-200" title={item.repo.name}>{item.repo.name}</Title>
                         </Link>
-                        {isRepoOutdated && <Badge color="orange" size="xs">Stale</Badge>}
+                        {isRepoOutdated && <Badge color="amber" size="xs">Stale</Badge>}
                       </div>
-                      <Text className="truncate w-48 text-xs">{item.repo.description || "No description"}</Text>
+                      <Text className="truncate w-48 text-xs text-slate-400">{item.repo.description || "No description"}</Text>
                     </div>
-                    <Badge color={item.repo.isPrivate ? "slate" : "blue"}>
+                    <Badge color={item.repo.isPrivate ? "slate" : "violet"}>
                       {item.repo.isPrivate ? "Private" : "Public"}
                     </Badge>
                   </div>
 
                   <div className="space-y-4 flex-grow">
                     <div className="flex items-center gap-2 text-xs">
-                      <div className={`w-3 h-3 rounded-full ${new Date(item.repo.updatedAt) > new Date(Date.now() - 30 * 24 * 60 * 60 * 1000) ? 'bg-green-500' :
-                        new Date(item.repo.updatedAt) > new Date(Date.now() - 180 * 24 * 60 * 60 * 1000) ? 'bg-yellow-500' :
-                          'bg-red-500'
+                      <div className={`w-3 h-3 rounded-full shadow-[0_0_8px] ${new Date(item.repo.updatedAt) > new Date(Date.now() - 30 * 24 * 60 * 60 * 1000) ? 'bg-emerald-500 shadow-emerald-500/50' :
+                        new Date(item.repo.updatedAt) > new Date(Date.now() - 180 * 24 * 60 * 60 * 1000) ? 'bg-amber-500 shadow-amber-500/50' :
+                          'bg-rose-500 shadow-rose-500/50'
                         }`} />
-                      <span className="text-slate-500">
+                      <span className="text-slate-400">
                         Last updated: {new Date(item.repo.updatedAt).toLocaleDateString()}
                       </span>
                     </div>
@@ -398,7 +426,7 @@ export default function Dashboard() {
                     {
                       item.interfaces.length > 0 && (
                         <div>
-                          <Text className="font-medium text-xs mb-1">Interfaces:</Text>
+                          <Text className="font-medium text-xs mb-1 text-slate-500">Interfaces:</Text>
                           <div className="flex flex-wrap gap-1">
                             {item.interfaces.map((iface, idx) => (
                               <Badge key={idx} color="neutral" size="xs" icon={ExternalLink}>
@@ -411,7 +439,7 @@ export default function Dashboard() {
                     }
 
                     <div>
-                      <Text className="font-medium text-xs mb-1">Technologies:</Text>
+                      <Text className="font-medium text-xs mb-1 text-slate-500">Technologies:</Text>
                       <div className="flex flex-wrap gap-1">
                         {visibleTechnologies.slice(0, 5).map(t => (
                           <span
@@ -423,22 +451,22 @@ export default function Dashboard() {
                           </span>
                         ))}
                         {visibleTechnologies.length > 5 && (
-                          <span className="text-xs text-slate-400">+{visibleTechnologies.length - 5}</span>
+                          <span className="text-xs text-slate-500">+{visibleTechnologies.length - 5}</span>
                         )}
                       </div>
                     </div>
                   </div >
 
-                  <div className="mt-4 pt-4 border-t border-slate-100 flex justify-between items-center text-xs text-slate-500">
+                  <div className="mt-4 pt-4 border-t border-slate-800 flex justify-between items-center text-xs text-slate-500">
                     <div className="flex gap-2">
                       {/* Task Indicators */}
                       {item.tasks && item.tasks.filter(t => t.priority === 'HIGH').length > 0 && (
-                        <Badge size="xs" color="red" icon={AlertTriangle}>
+                        <Badge size="xs" color="rose" icon={AlertTriangle}>
                           {item.tasks.filter(t => t.priority === 'HIGH').length} Critical
                         </Badge>
                       )}
                       {item.tasks && item.tasks.filter(t => t.priority === 'MEDIUM').length > 0 && (
-                        <Badge size="xs" color="orange">
+                        <Badge size="xs" color="amber">
                           {item.tasks.filter(t => t.priority === 'MEDIUM').length} Medium
                         </Badge>
                       )}
@@ -450,7 +478,7 @@ export default function Dashboard() {
                     </div>
                     <div className="flex items-center gap-2">
                       <span>Created: {new Date(item.repo.pushedAt || item.repo.updatedAt).toLocaleDateString()}</span>
-                      <a href={item.repo.url} target="_blank" className="flex items-center gap-1 text-blue-600 hover:underline">
+                      <a href={item.repo.url} target="_blank" className="flex items-center gap-1 text-violet-400 hover:text-violet-300 hover:underline">
                         GitHub <ExternalLink size={12} />
                       </a>
                     </div>
@@ -460,12 +488,12 @@ export default function Dashboard() {
             })}
           </Grid >
         ) : (
-          <Card className="p-0 overflow-hidden">
+          <Card className="p-0 overflow-hidden glass-card">
             <Table>
               <TableHead>
                 <TableRow>
                   <TableHeaderCell
-                    className="cursor-pointer hover:bg-slate-50 transition-colors"
+                    className="cursor-pointer hover:bg-slate-800 transition-colors text-slate-300"
                     onClick={() => handleSort('name')}
                   >
                     <div className="flex items-center gap-1">
@@ -476,7 +504,7 @@ export default function Dashboard() {
                     </div>
                   </TableHeaderCell>
                   <TableHeaderCell
-                    className="cursor-pointer hover:bg-slate-50 transition-colors"
+                    className="cursor-pointer hover:bg-slate-800 transition-colors text-slate-300"
                     onClick={() => handleSort('status')}
                   >
                     <div className="flex items-center gap-1">
@@ -487,7 +515,7 @@ export default function Dashboard() {
                     </div>
                   </TableHeaderCell>
                   <TableHeaderCell
-                    className="cursor-pointer hover:bg-slate-50 transition-colors"
+                    className="cursor-pointer hover:bg-slate-800 transition-colors text-slate-300"
                     onClick={() => handleSort('priority')}
                   >
                     <div className="flex items-center gap-1">
@@ -497,9 +525,9 @@ export default function Dashboard() {
                       )}
                     </div>
                   </TableHeaderCell>
-                  <TableHeaderCell>Technologies</TableHeaderCell>
+                  <TableHeaderCell className="text-slate-300">Technologies</TableHeaderCell>
                   <TableHeaderCell
-                    className="cursor-pointer hover:bg-slate-50 transition-colors"
+                    className="cursor-pointer hover:bg-slate-800 transition-colors text-slate-300"
                     onClick={() => handleSort('updated')}
                   >
                     <div className="flex items-center gap-1">
@@ -509,7 +537,7 @@ export default function Dashboard() {
                       )}
                     </div>
                   </TableHeaderCell>
-                  <TableHeaderCell>Links</TableHeaderCell>
+                  <TableHeaderCell className="text-slate-300">Links</TableHeaderCell>
                 </TableRow>
               </TableHead>
               <TableBody>
@@ -522,30 +550,30 @@ export default function Dashboard() {
                   });
 
                   return (
-                    <TableRow key={item.repo.name} className="hover:bg-slate-50">
+                    <TableRow key={item.repo.name} className="hover:bg-slate-800/50 transition-colors border-b border-slate-800">
                       <TableCell>
                         <div className="flex flex-col">
-                          <Link href={`/repo/${item.repo.name}`} className="font-medium text-blue-600 hover:underline flex items-center gap-2">
+                          <Link href={`/repo/${item.repo.name}`} className="font-medium text-violet-400 hover:underline flex items-center gap-2">
                             {item.repo.name}
-                            {isRepoOutdated && <Badge color="orange" size="xs">Stale</Badge>}
+                            {isRepoOutdated && <Badge color="amber" size="xs">Stale</Badge>}
                           </Link>
                           <span className="text-xs text-slate-500 truncate max-w-xs">{item.repo.description}</span>
                         </div>
                       </TableCell>
                       <TableCell>
-                        <Badge color={item.repo.isPrivate ? "slate" : "blue"} size="xs">
+                        <Badge color={item.repo.isPrivate ? "slate" : "violet"} size="xs">
                           {item.repo.isPrivate ? "Private" : "Public"}
                         </Badge>
                       </TableCell>
                       <TableCell>
                         <div className="flex gap-1 flex-wrap max-w-[150px]">
                           {item.tasks && item.tasks.filter(t => t.priority === 'HIGH').length > 0 && (
-                            <Badge size="xs" color="red" icon={AlertTriangle}>
+                            <Badge size="xs" color="rose" icon={AlertTriangle}>
                               {item.tasks.filter(t => t.priority === 'HIGH').length}
                             </Badge>
                           )}
                           {item.tasks && item.tasks.filter(t => t.priority === 'MEDIUM').length > 0 && (
-                            <Badge size="xs" color="orange">
+                            <Badge size="xs" color="amber">
                               {item.tasks.filter(t => t.priority === 'MEDIUM').length}
                             </Badge>
                           )}
@@ -567,15 +595,15 @@ export default function Dashboard() {
                             </span>
                           ))}
                           {visibleTechnologies.length > 3 && (
-                            <span className="text-xs text-slate-400">+{visibleTechnologies.length - 3}</span>
+                            <span className="text-xs text-slate-500">+{visibleTechnologies.length - 3}</span>
                           )}
                         </div>
                       </TableCell>
                       <TableCell>
-                        <div className="flex items-center gap-2">
-                          <div className={`w-2 h-2 rounded-full ${new Date(item.repo.updatedAt) > new Date(Date.now() - 30 * 24 * 60 * 60 * 1000) ? 'bg-green-500' :
-                            new Date(item.repo.updatedAt) > new Date(Date.now() - 180 * 24 * 60 * 60 * 1000) ? 'bg-yellow-500' :
-                              'bg-red-500'
+                        <div className="flex items-center gap-2 text-slate-300">
+                          <div className={`w-2 h-2 rounded-full ${new Date(item.repo.updatedAt) > new Date(Date.now() - 30 * 24 * 60 * 60 * 1000) ? 'bg-emerald-500' :
+                            new Date(item.repo.updatedAt) > new Date(Date.now() - 180 * 24 * 60 * 60 * 1000) ? 'bg-amber-500' :
+                              'bg-rose-500'
                             }`} />
                           {new Date(item.repo.updatedAt).toLocaleDateString()}
                         </div>
@@ -585,12 +613,12 @@ export default function Dashboard() {
                           {item.deployments.map(d => {
                             const href = d.url.startsWith('http') ? d.url : `https://${d.url}`;
                             return (
-                              <a key={d.id} href={href} target="_blank" rel="noopener noreferrer" className="text-slate-500 hover:text-blue-600" title={d.provider}>
+                              <a key={d.id} href={href} target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-violet-400" title={d.provider}>
                                 <Globe size={16} />
                               </a>
                             );
                           })}
-                          <a href={item.repo.url} target="_blank" className="text-slate-500 hover:text-black" title="GitHub">
+                          <a href={item.repo.url} target="_blank" className="text-slate-400 hover:text-white" title="GitHub">
                             <ExternalLink size={16} />
                           </a>
                         </div>
@@ -604,23 +632,23 @@ export default function Dashboard() {
         )}
 
         {/* Pagination Controls */}
-        <div className="flex justify-between items-center pt-4 border-t border-slate-200">
-          <Text>Showing {paginatedRepos.length > 0 ? (currentPage - 1) * itemsPerPage + 1 : 0} - {Math.min(currentPage * itemsPerPage, filteredRepos.length)} of {filteredRepos.length}</Text>
+        <div className="flex justify-between items-center pt-4 border-t border-slate-800 text-slate-400">
+          <Text className="text-slate-400">Showing {paginatedRepos.length > 0 ? (currentPage - 1) * itemsPerPage + 1 : 0} - {Math.min(currentPage * itemsPerPage, filteredRepos.length)} of {filteredRepos.length}</Text>
           <div className="flex gap-2">
             <button
               disabled={currentPage <= 1}
               onClick={() => setCurrentPage(p => p - 1)}
-              className="p-2 border rounded hover:bg-slate-50 disabled:opacity-50 disabled:cursor-not-allowed"
+              className="p-2 border border-slate-700 rounded hover:bg-slate-800 disabled:opacity-50 disabled:cursor-not-allowed text-slate-300"
             >
               <ChevronLeft size={16} />
             </button>
             <div className="flex items-center px-2">
-              <span className="text-sm font-medium">{currentPage} / {totalPages || 1}</span>
+              <span className="text-sm font-medium text-slate-300">{currentPage} / {totalPages || 1}</span>
             </div>
             <button
               disabled={currentPage >= totalPages}
               onClick={() => setCurrentPage(p => p + 1)}
-              className="p-2 border rounded hover:bg-slate-50 disabled:opacity-50 disabled:cursor-not-allowed"
+              className="p-2 border border-slate-700 rounded hover:bg-slate-800 disabled:opacity-50 disabled:cursor-not-allowed text-slate-300"
             >
               <ChevronRight size={16} />
             </button>

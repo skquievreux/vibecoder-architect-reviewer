@@ -88,34 +88,34 @@ export default function DnsManager() {
     );
 
     return (
-        <main className="p-10 bg-slate-50 min-h-screen">
+        <main className="p-10 bg-slate-950 min-h-screen">
             <div className="max-w-7xl mx-auto space-y-6">
-                <div className="flex items-center gap-4 mb-6">
-                    <Link href="/" className="p-2 hover:bg-slate-200 rounded-full transition-colors">
-                        <ArrowLeft size={24} className="text-slate-600" />
+                <div className="flex items-center gap-4 mb-8">
+                    <Link href="/" className="p-2 rounded-full hover:bg-slate-800 text-slate-400 hover:text-white transition-colors">
+                        <ArrowLeft size={24} />
                     </Link>
                     <div>
-                        <Title className="text-3xl font-bold text-slate-900">DNS Management</Title>
-                        <Text>Manage Cloudflare DNS records</Text>
+                        <Title className="text-3xl font-bold text-white">DNS Management</Title>
+                        <Text className="text-slate-400">Manage Cloudflare DNS records</Text>
                     </div>
                 </div>
 
                 {error && (
-                    <Card decoration="top" decorationColor="red" className="mb-6">
-                        <div className="flex items-center gap-2 text-red-600">
+                    <Card decoration="top" decorationColor="rose" className="mb-6 glass-card bg-rose-950/20 border-rose-900/50">
+                        <div className="flex items-center gap-2 text-rose-400">
                             <Shield size={20} />
-                            <Text className="text-red-600 font-medium">{error}</Text>
+                            <Text className="text-rose-400 font-medium">{error}</Text>
                         </div>
-                        <Text className="mt-2 text-sm">Make sure CLOUDFLARE_API_TOKEN is set in .env</Text>
+                        <Text className="mt-2 text-sm text-rose-300/70">Make sure CLOUDFLARE_API_TOKEN is set in .env</Text>
                     </Card>
                 )}
 
                 <Grid numItems={1} numItemsMd={3} className="gap-6">
                     {/* Sidebar / Zone Selector */}
-                    <Card className="h-fit">
-                        <Title className="mb-4">Select Zone</Title>
+                    <Card className="h-fit glass-card">
+                        <Title className="mb-4 text-white">Select Zone</Title>
                         {loadingZones ? (
-                            <Text>Loading zones...</Text>
+                            <Text className="text-slate-400">Loading zones...</Text>
                         ) : (
                             <div className="space-y-2">
                                 {zones.map(zone => (
@@ -123,39 +123,39 @@ export default function DnsManager() {
                                         key={zone.id}
                                         onClick={() => setSelectedZone(zone.id)}
                                         className={`w-full text-left p-3 rounded-lg border transition-colors flex items-center justify-between ${selectedZone === zone.id
-                                            ? "bg-blue-50 border-blue-200 text-blue-700"
-                                            : "bg-white border-slate-200 hover:bg-slate-50 text-slate-700"
+                                            ? "bg-violet-900/30 border-violet-500/50 text-violet-300"
+                                            : "bg-slate-900/50 border-slate-800 hover:bg-slate-800 text-slate-400"
                                             }`}
                                     >
                                         <span className="font-medium">{zone.name}</span>
-                                        <Badge size="xs" color={zone.status === 'active' ? 'green' : 'yellow'}>
+                                        <Badge size="xs" color={zone.status === 'active' ? 'emerald' : 'amber'}>
                                             {zone.status}
                                         </Badge>
                                     </button>
                                 ))}
-                                {zones.length === 0 && !error && <Text>No zones found.</Text>}
+                                {zones.length === 0 && !error && <Text className="text-slate-500">No zones found.</Text>}
                             </div>
                         )}
                     </Card>
 
                     {/* Main Content / Records */}
-                    <Card className="md:col-span-2">
+                    <Card className="md:col-span-2 glass-card">
                         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
-                            <Title>DNS Records</Title>
+                            <Title className="text-white">DNS Records</Title>
                             <div className="flex gap-2 w-full sm:w-auto">
                                 <div className="relative w-full sm:w-64">
-                                    <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" size={16} />
+                                    <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-500" size={16} />
                                     <input
                                         type="text"
                                         placeholder="Search records..."
-                                        className="w-full pl-9 pr-4 py-2 rounded-lg border border-slate-200 focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
+                                        className="w-full pl-9 pr-4 py-2 rounded-lg bg-slate-900/50 border border-slate-700 focus:outline-none focus:ring-2 focus:ring-violet-500 text-sm text-slate-200 placeholder-slate-600"
                                         value={searchTerm}
                                         onChange={(e) => setSearchTerm(e.target.value)}
                                     />
                                 </div>
                                 <button
                                     onClick={() => selectedZone && fetchRecords(selectedZone)}
-                                    className="p-2 bg-slate-100 hover:bg-slate-200 rounded-lg text-slate-600 transition-colors"
+                                    className="p-2 bg-slate-800 hover:bg-slate-700 rounded-lg text-slate-400 hover:text-white transition-colors"
                                     title="Refresh"
                                 >
                                     <RefreshCw size={18} className={loadingRecords ? "animate-spin" : ""} />
@@ -166,26 +166,26 @@ export default function DnsManager() {
                         {loadingRecords ? (
                             <div className="py-10 text-center text-slate-500">Loading records...</div>
                         ) : !selectedZone ? (
-                            <div className="py-10 text-center text-slate-400">Select a zone to view records</div>
+                            <div className="py-10 text-center text-slate-500">Select a zone to view records</div>
                         ) : (
                             <Table>
                                 <TableHead>
-                                    <TableRow>
-                                        <TableHeaderCell>Type</TableHeaderCell>
-                                        <TableHeaderCell>Name</TableHeaderCell>
-                                        <TableHeaderCell>Content</TableHeaderCell>
-                                        <TableHeaderCell>Proxy</TableHeaderCell>
-                                        <TableHeaderCell>TTL</TableHeaderCell>
+                                    <TableRow className="border-b border-slate-800">
+                                        <TableHeaderCell className="text-slate-400">Type</TableHeaderCell>
+                                        <TableHeaderCell className="text-slate-400">Name</TableHeaderCell>
+                                        <TableHeaderCell className="text-slate-400">Content</TableHeaderCell>
+                                        <TableHeaderCell className="text-slate-400">Proxy</TableHeaderCell>
+                                        <TableHeaderCell className="text-slate-400">TTL</TableHeaderCell>
                                     </TableRow>
                                 </TableHead>
                                 <TableBody>
                                     {filteredRecords.map((record) => (
-                                        <TableRow key={record.id}>
+                                        <TableRow key={record.id} className="hover:bg-slate-800/30 transition-colors border-b border-slate-800/50">
                                             <TableCell>
-                                                <Badge size="xs" color="slate">{record.type}</Badge>
+                                                <Badge size="xs" color="slate" className="bg-slate-800 text-slate-300">{record.type}</Badge>
                                             </TableCell>
-                                            <TableCell className="font-medium text-slate-700">{record.name}</TableCell>
-                                            <TableCell className="max-w-xs truncate" title={record.content}>{record.content}</TableCell>
+                                            <TableCell className="font-medium text-slate-300">{record.name}</TableCell>
+                                            <TableCell className="max-w-xs truncate text-slate-400" title={record.content}>{record.content}</TableCell>
                                             <TableCell>
                                                 {record.proxied ? (
                                                     <Badge size="xs" color="orange">Proxied</Badge>
@@ -193,7 +193,7 @@ export default function DnsManager() {
                                                     <Badge size="xs" color="slate">DNS Only</Badge>
                                                 )}
                                             </TableCell>
-                                            <TableCell>{record.ttl === 1 ? 'Auto' : record.ttl}</TableCell>
+                                            <TableCell className="text-slate-500">{record.ttl === 1 ? 'Auto' : record.ttl}</TableCell>
                                         </TableRow>
                                     ))}
                                     {filteredRecords.length === 0 && (

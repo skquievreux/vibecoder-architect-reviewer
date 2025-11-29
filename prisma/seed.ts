@@ -19,6 +19,21 @@ async function main() {
     for (const item of data) {
         const repoData = item.repo;
 
+        // Check for new repo
+        const existing = await prisma.repository.findUnique({
+            where: { githubId: String(repoData.id) }
+        });
+
+        if (!existing) {
+            await prisma.syncLog.create({
+                data: {
+                    status: 'INFO',
+                    message: `New Repository Discovered: ${repoData.name}`,
+                    details: `URL: ${repoData.url}`
+                }
+            });
+        }
+
         // Upsert Repository
         const repo = await prisma.repository.upsert({
             where: { githubId: String(repoData.id) }, // Assuming we map github id to string

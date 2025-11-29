@@ -3,19 +3,47 @@
 @tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --background: #0f172a;
+  /* Slate 950 */
+  --foreground: #f8fafc;
+  /* Slate 50 */
 }
 
 body {
-  background: var(--background);
   color: var(--foreground);
+  background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Glassmorphism Utilities */
+.glass-panel {
+  @apply bg-slate-900/60 backdrop-blur-md border border-slate-800 shadow-xl;
+}
+
+.glass-card {
+  @apply bg-slate-800/40 backdrop-blur-sm border border-slate-700/50 hover:border-violet-500/50 transition-all duration-300;
+}
+
+/* Neon Text Gradients */
+.text-gradient-electric {
+  @apply bg-clip-text text-transparent bg-gradient-to-r from-violet-400 via-fuchsia-400 to-cyan-400;
+}
+
+/* Scrollbar for Dark Mode */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0f172a;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #334155;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #475569;
 }

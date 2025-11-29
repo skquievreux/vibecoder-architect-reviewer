@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-require-imports */
-const fetch = require('node-fetch');
+// const fetch = require('node-fetch'); // Native fetch is available in Node 20+
 
 const BASE_URL = 'http://localhost:3000';
 const MAX_RETRIES = 30;

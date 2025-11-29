@@ -44,7 +44,7 @@ export async function POST() {
             });
         }
 
-        const repoData = repos.map((r: any) => ({
+        const repoData = (repos as any[]).map((r: any) => ({
             name: r.name,
             description: r.description,
             tech: r.technologies ? r.technologies.map((t: any) => t.name).join(', ') : '',
@@ -101,7 +101,7 @@ export async function POST() {
         // 4. Save to Database
         let createdCount = 0;
         for (const task of tasks) {
-            const repo = repos.find((r: any) => r.name === task.repoName);
+            const repo = (repos as any[]).find((r: any) => r.name === task.repoName);
             if (repo) {
                 // @ts-ignore
                 if (!prisma.repoTask) {

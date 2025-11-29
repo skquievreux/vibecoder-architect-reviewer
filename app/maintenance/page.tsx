@@ -2,7 +2,7 @@
 
 import { Card, Title, Text, Badge, Grid } from "@tremor/react";
 import { useState, useEffect } from "react";
-import { ArrowLeft, Terminal, Play, FileText, AlertTriangle, CheckCircle, XCircle, Database, Code } from "lucide-react";
+import { ArrowLeft, Terminal, Play, FileText, AlertTriangle, CheckCircle, XCircle, Database, Code, Activity } from "lucide-react";
 import Link from "next/link";
 
 type Log = {
@@ -13,12 +13,20 @@ type Log = {
     createdAt: string;
 };
 
+const scripts = [
+    { id: 'standardize-node', name: 'Standardize Node.js', description: 'Enforce Node v20.9.0+ and .nvmrc' },
+    { id: 'standardize-ts', name: 'Standardize TypeScript', description: 'Enforce TypeScript v5.8.2' },
+    { id: 'standardize-supabase', name: 'Standardize Supabase', description: 'Enforce Supabase v2.49.4' },
+    { id: 'audit-ecosystem', name: 'Audit Ecosystem', description: 'Check all repos for compliance' },
+];
+
 import { Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 
 function MaintenanceContent() {
     const searchParams = useSearchParams();
     const [logs, setLogs] = useState<Log[]>([]);
+    const [status, setStatus] = useState<Record<string, string>>({});
     const [running, setRunning] = useState<string | null>(null);
     const [output, setOutput] = useState<string>("");
     const [targetDir, setTargetDir] = useState("../");
@@ -42,22 +50,23 @@ function MaintenanceContent() {
         }
     };
 
-    const runScript = async (script: string) => {
-        setRunning(script);
-        setOutput(`Running ${script}...\n`);
+    const runScript = async (scriptId: string) => {
+        setStatus(prev => ({ ...prev, [scriptId]: 'running' }));
         try {
             const res = await fetch('/api/scripts/run', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ script, target: targetDir })
+                body: JSON.stringify({ script: scriptId })
             });
             const data = await res.json();
-            setOutput(prev => prev + (data.output || "No output") + "\n\nDone.");
+            if (data.success) {
+                setStatus(prev => ({ ...prev, [scriptId]: 'success' }));
+            } else {
+                setStatus(prev => ({ ...prev, [scriptId]: 'error' }));
+            }
             fetchLogs(); // Refresh logs
         } catch (e) {
-            setOutput(prev => prev + "\nError executing script.");
-        } finally {
-            setRunning(null);
+            setStatus(prev => ({ ...prev, [scriptId]: 'error' }));
         }
     };
 
@@ -78,52 +87,81 @@ function MaintenanceContent() {
     };
 
     return (
-        <div className="max-w-7xl mx-auto space-y-6">
-            <div className="flex items-center gap-4 mb-6">
-                <Link href="/" className="p-2 hover:bg-slate-200 rounded-full transition-colors">
-                    <ArrowLeft size={24} className="text-slate-600" />
-                </Link>
-                <div>
-                    <Title className="text-3xl font-bold text-slate-900">System Maintenance</Title>
-                    <Text>Run standardization scripts and view system logs.</Text>
+        <main className="p-10 bg-slate-950 min-h-screen">
+            <div className="max-w-7xl mx-auto space-y-6">
+                <div className="flex items-center gap-4 mb-8">
+                    <Link href="/" className="p-2 rounded-full hover:bg-slate-800 text-slate-400 hover:text-white transition-colors">
+                        <ArrowLeft size={24} />
+                    </Link>
+                    <div>
+                        <Title className="text-3xl font-bold text-white">System Maintenance</Title>
+                        <Text className="text-slate-400">Run standardization scripts and view system logs.</Text>
+                    </div>
                 </div>
-            </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                {/* Script Runner */}
-                <div className="md:col-span-2 space-y-6">
-                    <Card>
-                        <div className="flex justify-between items-center mb-4">
-                            <Title>Standardization Scripts</Title>
-                            <button
-                                onClick={viewReport}
-                                className="text-sm text-blue-600 hover:underline flex items-center gap-1"
-                            >
-                                <FileText size={14} /> View Live Status (GitHub)
-                            </button>
-                        </div>
+                <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                    {/* Scripts Column */}
+                    <div className="lg:col-span-2 space-y-6">
+                        <Card className="glass-card">
+                            <div className="flex justify-between items-center mb-4">
+                                <Title className="text-white">Standardization Scripts</Title>
+                                <button
+                                    onClick={viewReport}
+                                    className="text-sm text-violet-400 hover:text-violet-300 flex items-center gap-1"
+                                >
+                                    <Activity size={14} /> View Live Status (GitHub)
+                                </button>
+                            </div>
+                            <div className="space-y-4">
+                                {scripts.map((script) => (
+                                    <div key={script.id} className="flex items-center justify-between p-4 rounded-lg bg-slate-900/50 border border-slate-800 hover:border-violet-500/30 transition-colors">
+                                        <div className="flex items-center gap-3">
+                                            <div className="p-2 rounded-lg bg-slate-800 text-violet-400">
+                                                <Terminal size={20} />
+                                            </div>
+                                            <div>
+                                                <div className="font-medium text-slate-200">{script.name}</div>
+                                                <div className="text-xs text-slate-500">{script.description}</div>
+                                            </div>
+                                        </div>
+                                        <div className="flex items-center gap-3">
+                                            {status[script.id] === 'running' && <Badge color="amber">Running...</Badge>}
+                                            {status[script.id] === 'success' && <Badge color="emerald">Success</Badge>}
+                                            {status[script.id] === 'error' && <Badge color="rose">Error</Badge>}
+                                            <button
+                                                onClick={() => runScript(script.id)}
+                                                disabled={status[script.id] === 'running'}
+                                                className="px-3 py-1.5 text-sm font-medium text-white bg-violet-600 rounded-md hover:bg-violet-500 disabled:opacity-50 disabled:cursor-not-allowed transition-colors shadow-[0_0_10px_rgba(124,58,237,0.3)]"
+                                            >
+                                                Run
+                                            </button>
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        </Card>
 
                         {showReport && (
-                            <div className="mb-6 p-4 bg-white border border-slate-200 rounded-lg shadow-sm overflow-x-auto">
+                            <div className="mb-6 p-4 glass-card overflow-x-auto">
                                 <div className="flex justify-between items-center mb-2">
                                     <div className="flex items-center gap-2">
-                                        <h3 className="font-bold text-slate-700">Live Ecosystem Status (GitHub)</h3>
-                                        <Badge size="xs" color="green">Live</Badge>
+                                        <h3 className="font-bold text-slate-200">Live Ecosystem Status (GitHub)</h3>
+                                        <Badge size="xs" color="emerald" className="animate-pulse">Live</Badge>
                                     </div>
-                                    <button onClick={() => setShowReport(false)} className="text-slate-400 hover:text-slate-600"><XCircle size={18} /></button>
+                                    <button onClick={() => setShowReport(false)} className="text-slate-400 hover:text-white"><XCircle size={18} /></button>
                                 </div>
                                 {reportData ? (
                                     <table className="w-full text-sm text-left">
                                         <thead>
-                                            <tr className="border-b border-slate-200">
-                                                <th className="py-2 px-2 font-semibold text-slate-600">Repository</th>
-                                                <th className="py-2 px-2 font-semibold text-slate-600">Node.js</th>
-                                                <th className="py-2 px-2 font-semibold text-slate-600">TypeScript</th>
-                                                <th className="py-2 px-2 font-semibold text-slate-600">Supabase</th>
-                                                <th className="py-2 px-2 font-semibold text-slate-600">Build</th>
-                                                <th className="py-2 px-2 font-semibold text-slate-600">Docs</th>
-                                                <th className="py-2 px-2 font-semibold text-slate-600">Ver</th>
-                                                <th className="py-2 px-2 font-semibold text-slate-600">Status</th>
+                                            <tr className="border-b border-slate-700">
+                                                <th className="py-2 px-2 font-semibold text-slate-400">Repository</th>
+                                                <th className="py-2 px-2 font-semibold text-slate-400">Node.js</th>
+                                                <th className="py-2 px-2 font-semibold text-slate-400">TypeScript</th>
+                                                <th className="py-2 px-2 font-semibold text-slate-400">Supabase</th>
+                                                <th className="py-2 px-2 font-semibold text-slate-400">Build</th>
+                                                <th className="py-2 px-2 font-semibold text-slate-400">Docs</th>
+                                                <th className="py-2 px-2 font-semibold text-slate-400">Ver</th>
+                                                <th className="py-2 px-2 font-semibold text-slate-400">Status</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -136,23 +174,23 @@ function MaintenanceContent() {
                                                 if (row.status === 'NO_PKG') return null;
 
                                                 return (
-                                                    <tr key={i} className="border-b border-slate-100 hover:bg-slate-50">
-                                                        <td className="py-2 px-2 font-medium text-blue-600">
+                                                    <tr key={i} className="border-b border-slate-800 hover:bg-slate-800/50 transition-colors">
+                                                        <td className="py-2 px-2 font-medium text-violet-400">
                                                             <a href={row.url} target="_blank" rel="noreferrer" className="hover:underline">{row.repo}</a>
                                                         </td>
-                                                        <td className={`py-2 px-2 font-mono text-xs ${row.node?.includes('20') ? 'text-green-600' : 'text-red-500'}`}>{row.node}</td>
-                                                        <td className={`py-2 px-2 font-mono text-xs ${row.ts === '^5.8.2' ? 'text-green-600' : 'text-amber-500'}`}>{row.ts}</td>
-                                                        <td className={`py-2 px-2 font-mono text-xs ${row.supabase === '^2.49.4' ? 'text-green-600' : 'text-amber-500'}`}>{row.supabase}</td>
+                                                        <td className={`py-2 px-2 font-mono text-xs ${row.node?.includes('20') ? 'text-emerald-400' : 'text-rose-400'}`}>{row.node}</td>
+                                                        <td className={`py-2 px-2 font-mono text-xs ${row.ts === '^5.8.2' ? 'text-emerald-400' : 'text-amber-400'}`}>{row.ts}</td>
+                                                        <td className={`py-2 px-2 font-mono text-xs ${row.supabase === '^2.49.4' ? 'text-emerald-400' : 'text-amber-400'}`}>{row.supabase}</td>
                                                         <td className="py-2 px-2">
-                                                            {row.build === 'success' ? <Badge size="xs" color="green">Pass</Badge> :
-                                                                row.build === 'failure' ? <Badge size="xs" color="red">Fail</Badge> :
+                                                            {row.build === 'success' ? <Badge size="xs" color="emerald">Pass</Badge> :
+                                                                row.build === 'failure' ? <Badge size="xs" color="rose">Fail</Badge> :
                                                                     <Badge size="xs" color="slate">-</Badge>}
                                                         </td>
                                                         <td className="py-2 px-2">
                                                             <div className="flex gap-1">
                                                                 {row.docs?.readme === 'OK' ?
-                                                                    <Badge size="xs" color="blue" title="README OK">Doc</Badge> :
-                                                                    <Badge size="xs" color="red" title="README Missing/Short">No Doc</Badge>
+                                                                    <Badge size="xs" color="cyan" title="README OK">Doc</Badge> :
+                                                                    <Badge size="xs" color="rose" title="README Missing/Short">No Doc</Badge>
                                                                 }
                                                                 {row.docs?.lang && row.docs.lang !== 'UNKNOWN' && (
                                                                     <Badge size="xs" color="slate">{row.docs.lang}</Badge>
@@ -162,11 +200,11 @@ function MaintenanceContent() {
                                                                 )}
                                                             </div>
                                                         </td>
-                                                        <td className="py-2 px-2 font-mono text-xs text-slate-600">
-                                                            {row.version !== 'NONE' ? row.version : <span className="text-slate-300">-</span>}
+                                                        <td className="py-2 px-2 font-mono text-xs text-slate-400">
+                                                            {row.version !== 'NONE' ? row.version : <span className="text-slate-600">-</span>}
                                                         </td>
                                                         <td className="py-2 px-2">
-                                                            {isStandard ? <Badge size="xs" color="green">OK</Badge> : <Badge size="xs" color="orange">Fix</Badge>}
+                                                            {isStandard ? <Badge size="xs" color="emerald">OK</Badge> : <Badge size="xs" color="amber">Fix</Badge>}
                                                         </td>
                                                     </tr>
                                                 );
@@ -178,39 +216,9 @@ function MaintenanceContent() {
                                 )}
                             </div>
                         )}
-
-                        <div className="mb-4">
-                            <label className="block text-sm font-medium text-slate-700 mb-1">Target Directory</label>
-                            <input
-                                type="text"
-                                value={targetDir}
-                                onChange={e => setTargetDir(e.target.value)}
-                                className="w-full p-2 border border-slate-200 rounded-lg font-mono text-sm"
-                            />
-                            <p className="text-xs text-slate-500 mt-1">Relative to dashboard root (default: ../)</p>
-                        </div>
-
-                        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                        <div className="grid grid-cols-2 gap-4">
                             <button
-                                onClick={() => runScript('audit')}
-                                disabled={!!running}
-                                className="flex flex-col items-center p-4 border border-slate-200 rounded-lg hover:bg-slate-50 transition-colors text-center"
-                            >
-                                <FileText size={24} className="mb-2 text-blue-500" />
-                                <span className="font-medium text-slate-900">Audit Ecosystem</span>
-                                <span className="text-xs text-slate-500 mt-1">Check versions</span>
-                            </button>
-                            <button
-                                onClick={() => runScript('standardize-node')}
-                                disabled={!!running}
-                                className="flex flex-col items-center p-4 border border-slate-200 rounded-lg hover:bg-slate-50 transition-colors text-center"
-                            >
-                                <Terminal size={24} className="mb-2 text-green-500" />
-                                <span className="font-medium text-slate-900">Fix Node.js</span>
-                                <span className="text-xs text-slate-500 mt-1">Set engines & .nvmrc</span>
-                            </button>
-                            <button
-                                onClick={() => runScript('standardize-ts')}
+                                onClick={() => runScript('standardize-ts.js')}
                                 disabled={!!running}
                                 className="flex flex-col items-center p-4 border border-slate-200 rounded-lg hover:bg-slate-50 transition-colors text-center"
                             >
@@ -228,7 +236,7 @@ function MaintenanceContent() {
                                 <span className="text-xs text-slate-500 mt-1">Set v2.49.4</span>
                             </button>
                         </div>
-                    </Card>
+                    </div>
 
                     <Card className="bg-slate-900 text-slate-200 font-mono text-sm min-h-[300px] max-h-[500px] overflow-y-auto">
                         <div className="flex items-center gap-2 mb-2 pb-2 border-b border-slate-700 text-slate-400">
@@ -269,7 +277,7 @@ function MaintenanceContent() {
                     </div>
                 </Card>
             </div>
-        </div>
+        </main>
     );
 }
 
@@ -282,5 +290,3 @@ export default function MaintenancePage() {
         </main>
     );
 }
-
-

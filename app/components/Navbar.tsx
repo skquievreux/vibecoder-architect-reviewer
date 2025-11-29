@@ -24,21 +24,23 @@ export default function Navbar() {
     ];
 
     return (
-        <nav className="bg-white border-b border-slate-200 sticky top-0 z-50">
+        <nav className="glass-panel sticky top-0 z-50 border-b-0">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex justify-between h-16">
                     <div className="flex">
                         <div className="flex-shrink-0 flex items-center">
-                            <span className="font-bold text-xl text-slate-900">ArchitekturReview</span>
+                            <span className="font-bold text-xl text-gradient-electric">
+                                VibeCoder Architect Reviewer
+                            </span>
                         </div>
                         <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
                             {navItems.map((item) => (
                                 <Link
                                     key={item.name}
                                     href={item.href}
-                                    className={`inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium ${isActive(item.href)
-                                        ? 'border-blue-500 text-slate-900'
-                                        : 'border-transparent text-slate-500 hover:border-slate-300 hover:text-slate-700'
+                                    className={`inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium transition-colors ${isActive(item.href)
+                                        ? 'border-violet-500 text-violet-400'
+                                        : 'border-transparent text-slate-400 hover:border-slate-600 hover:text-slate-200'
                                         }`}
                                 >
                                     <item.icon className="w-4 h-4 mr-2" />
@@ -47,7 +49,7 @@ export default function Navbar() {
                             ))}
 
                             {/* Admin Dropdown */}
-                            <div className="relative inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium text-slate-500 hover:text-slate-700 cursor-pointer group">
+                            <div className="relative inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium text-slate-400 hover:text-slate-200 cursor-pointer group">
                                 <button
                                     className="inline-flex items-center focus:outline-none"
                                     onClick={() => setIsAdminOpen(!isAdminOpen)}
@@ -59,15 +61,15 @@ export default function Navbar() {
                                 </button>
 
                                 {/* Dropdown Menu */}
-                                <div className={`absolute top-full left-0 mt-1 w-48 bg-white rounded-md shadow-lg py-1 ring-1 ring-black ring-opacity-5 transition-all duration-200 ${isAdminOpen || 'group-hover:block hidden'} `}>
+                                <div className={`absolute top-full left-0 mt-1 w-48 bg-slate-900 border border-slate-700 rounded-md shadow-lg py-1 ring-1 ring-black ring-opacity-5 transition-all duration-200 ${isAdminOpen || 'group-hover:block hidden'} `}>
                                     {adminItems.map((item) => (
                                         <Link
                                             key={item.name}
                                             href={item.href}
-                                            className="block px-4 py-2 text-sm text-slate-700 hover:bg-slate-100"
+                                            className="block px-4 py-2 text-sm text-slate-300 hover:bg-slate-800 hover:text-white"
                                         >
                                             <div className="flex items-center">
-                                                <item.icon className="w-4 h-4 mr-2 text-slate-400" />
+                                                <item.icon className="w-4 h-4 mr-2 text-slate-500" />
                                                 {item.name}
                                             </div>
                                         </Link>
@@ -81,7 +83,7 @@ export default function Navbar() {
                     <div className="-mr-2 flex items-center sm:hidden">
                         <button
                             onClick={() => setIsMenuOpen(!isMenuOpen)}
-                            className="inline-flex items-center justify-center p-2 rounded-md text-slate-400 hover:text-slate-500 hover:bg-slate-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500"
+                            className="inline-flex items-center justify-center p-2 rounded-md text-slate-400 hover:text-white hover:bg-slate-800 focus:outline-none"
                         >
                             <span className="sr-only">Open main menu</span>
                             {isMenuOpen ? (
@@ -96,15 +98,15 @@ export default function Navbar() {
 
             {/* Mobile menu */}
             {isMenuOpen && (
-                <div className="sm:hidden">
+                <div className="sm:hidden bg-slate-900 border-b border-slate-800">
                     <div className="pt-2 pb-3 space-y-1">
                         {navItems.map((item) => (
                             <Link
                                 key={item.name}
                                 href={item.href}
                                 className={`block pl-3 pr-4 py-2 border-l-4 text-base font-medium ${isActive(item.href)
-                                    ? 'bg-blue-50 border-blue-500 text-blue-700'
-                                    : 'border-transparent text-slate-500 hover:bg-slate-50 hover:border-slate-300 hover:text-slate-700'
+                                    ? 'bg-slate-800 border-violet-500 text-violet-400'
+                                    : 'border-transparent text-slate-400 hover:bg-slate-800 hover:border-slate-600 hover:text-slate-200'
                                     }`}
                             >
                                 <div className="flex items-center">
@@ -113,16 +115,16 @@ export default function Navbar() {
                                 </div>
                             </Link>
                         ))}
-                        <div className="border-t border-slate-200 pt-4 pb-3">
+                        <div className="border-t border-slate-700 pt-4 pb-3">
                             <div className="px-4 flex items-center">
-                                <div className="font-medium text-slate-500">Admin</div>
+                                <div className="font-medium text-slate-400">Admin</div>
                             </div>
                             <div className="mt-3 space-y-1">
                                 {adminItems.map((item) => (
                                     <Link
                                         key={item.name}
                                         href={item.href}
-                                        className="block pl-3 pr-4 py-2 border-l-4 border-transparent text-base font-medium text-slate-500 hover:bg-slate-50 hover:border-slate-300 hover:text-slate-700"
+                                        className="block pl-3 pr-4 py-2 border-l-4 border-transparent text-base font-medium text-slate-400 hover:bg-slate-800 hover:border-slate-600 hover:text-slate-200"
                                     >
                                         <div className="flex items-center">
                                             <item.icon className="w-4 h-4 mr-2" />

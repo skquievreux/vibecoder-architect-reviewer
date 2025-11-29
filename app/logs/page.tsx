@@ -55,16 +55,16 @@ export default function LogsPage() {
     };
 
     return (
-        <main className="p-10 bg-slate-50 min-h-screen">
+        <main className="p-10 bg-slate-950 min-h-screen">
             <div className="max-w-7xl mx-auto space-y-6">
                 <div className="flex items-center justify-between">
                     <div className="flex items-center gap-4">
-                        <Link href="/" className="p-2 hover:bg-slate-200 rounded-full transition-colors">
-                            <ArrowLeft size={24} className="text-slate-600" />
+                        <Link href="/" className="p-2 rounded-full hover:bg-slate-800 text-slate-400 hover:text-white transition-colors">
+                            <ArrowLeft size={24} />
                         </Link>
                         <div>
-                            <Title className="text-3xl font-bold text-slate-900">Sync Logs</Title>
-                            <Text>History of data synchronization events.</Text>
+                            <Title className="text-3xl font-bold text-white">Sync Logs</Title>
+                            <Text className="text-slate-400">History of data synchronization events.</Text>
                         </div>
                     </div>
                     <div className="w-48">
@@ -77,18 +77,18 @@ export default function LogsPage() {
                     </div>
                 </div>
 
-                <Card>
+                <Card className="glass-card">
                     {loading ? (
-                        <div className="p-10 text-center text-slate-500">Loading logs...</div>
+                        <div className="p-10 text-center text-slate-400">Loading logs...</div>
                     ) : (
                         <>
                             <Table>
                                 <TableHead>
-                                    <TableRow>
-                                        <TableHeaderCell>Time</TableHeaderCell>
-                                        <TableHeaderCell>Status</TableHeaderCell>
-                                        <TableHeaderCell>Message</TableHeaderCell>
-                                        <TableHeaderCell>Details</TableHeaderCell>
+                                    <TableRow className="border-b border-slate-800">
+                                        <TableHeaderCell className="text-slate-400">Time</TableHeaderCell>
+                                        <TableHeaderCell className="text-slate-400">Status</TableHeaderCell>
+                                        <TableHeaderCell className="text-slate-400">Message</TableHeaderCell>
+                                        <TableHeaderCell className="text-slate-400">Details</TableHeaderCell>
                                     </TableRow>
                                 </TableHead>
                                 <TableBody>
@@ -101,24 +101,24 @@ export default function LogsPage() {
                                     ) : (
                                         logs.map((log) => (
                                             <Fragment key={log.id}>
-                                                <TableRow className="hover:bg-slate-50 cursor-pointer" onClick={() => setExpandedLog(expandedLog === log.id ? null : log.id)}>
-                                                    <TableCell>{new Date(log.createdAt).toLocaleString()}</TableCell>
+                                                <TableRow className="hover:bg-slate-800/30 cursor-pointer transition-colors border-b border-slate-800/50" onClick={() => setExpandedLog(expandedLog === log.id ? null : log.id)}>
+                                                    <TableCell className="text-slate-300">{new Date(log.createdAt).toLocaleString()}</TableCell>
                                                     <TableCell>{getStatusBadge(log.status)}</TableCell>
-                                                    <TableCell>{log.message}</TableCell>
+                                                    <TableCell className="text-slate-300">{log.message}</TableCell>
                                                     <TableCell>
                                                         {log.details ? (
-                                                            <span className="text-blue-600 text-xs underline">
+                                                            <span className="text-violet-400 text-xs underline hover:text-violet-300">
                                                                 {expandedLog === log.id ? "Hide" : "Show"} Details
                                                             </span>
                                                         ) : (
-                                                            <span className="text-slate-400 text-xs">None</span>
+                                                            <span className="text-slate-500 text-xs">None</span>
                                                         )}
                                                     </TableCell>
                                                 </TableRow>
                                                 {expandedLog === log.id && log.details && (
                                                     <TableRow>
-                                                        <TableCell colSpan={4} className="bg-slate-50 p-4">
-                                                            <pre className="whitespace-pre-wrap text-xs font-mono bg-slate-900 text-slate-50 p-4 rounded-lg overflow-x-auto max-h-96">
+                                                        <TableCell colSpan={4} className="bg-slate-900/50 p-4 border-b border-slate-800">
+                                                            <pre className="whitespace-pre-wrap text-xs font-mono bg-slate-950 text-slate-400 p-4 rounded-lg overflow-x-auto max-h-96 border border-slate-800">
                                                                 {log.details}
                                                             </pre>
                                                         </TableCell>
@@ -131,20 +131,20 @@ export default function LogsPage() {
                             </Table>
 
                             {/* Pagination */}
-                            <div className="flex justify-between items-center mt-6 pt-4 border-t border-slate-100">
-                                <Text>Page {page} of {totalPages}</Text>
+                            <div className="flex justify-between items-center mt-6 pt-4 border-t border-slate-800">
+                                <Text className="text-slate-400">Page {page} of {totalPages}</Text>
                                 <div className="flex gap-2">
                                     <button
                                         disabled={page <= 1}
                                         onClick={() => setPage(p => p - 1)}
-                                        className="p-2 border rounded hover:bg-slate-50 disabled:opacity-50 disabled:cursor-not-allowed"
+                                        className="p-2 border border-slate-700 rounded hover:bg-slate-800 text-slate-400 disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
                                     >
                                         <ChevronLeft size={16} />
                                     </button>
                                     <button
                                         disabled={page >= totalPages}
                                         onClick={() => setPage(p => p + 1)}
-                                        className="p-2 border rounded hover:bg-slate-50 disabled:opacity-50 disabled:cursor-not-allowed"
+                                        className="p-2 border border-slate-700 rounded hover:bg-slate-800 text-slate-400 disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
                                     >
                                         <ChevronRight size={16} />
                                     </button>

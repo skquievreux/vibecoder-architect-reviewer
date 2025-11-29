@@ -16,11 +16,11 @@ export async function POST(request: Request) {
     try {
         const { script, target } = await request.json();
 
-        if (!ALLOWED_SCRIPTS[script]) {
+        if (!ALLOWED_SCRIPTS[script as keyof typeof ALLOWED_SCRIPTS]) {
             return NextResponse.json({ error: 'Invalid script' }, { status: 400 });
         }
 
-        const scriptName = ALLOWED_SCRIPTS[script];
+        const scriptName = ALLOWED_SCRIPTS[script as keyof typeof ALLOWED_SCRIPTS];
         const scriptPath = path.join(process.cwd(), 'scripts', scriptName);
         const targetDir = target || '../'; // Default to parent dir
 
@@ -31,7 +31,7 @@ export async function POST(request: Request) {
         }
 
         // Execute
-        return new Promise((resolve) => {
+        const result = await new Promise<Response>((resolve) => {
             exec(command, async (error, stdout, stderr) => {
                 const output = stdout + (stderr ? `\nERRORS:\n${stderr}` : '');
                 const status = error ? 'ERROR' : 'SUCCESS';
@@ -67,6 +67,8 @@ export async function POST(request: Request) {
                 }));
             });
         });
+
+        return result;
 
     } catch (error) {
         return NextResponse.json({ error: 'Failed to run script' }, { status: 500 });

@@ -282,25 +282,25 @@ export default function RepoDetail() {
     };
 
     return (
-        <main className="p-10 bg-slate-50 min-h-screen relative">
+        <main className="p-10 bg-slate-950 min-h-screen relative">
             <div className="max-w-7xl mx-auto space-y-6">
                 {/* ... Header ... */}
                 <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
                     <div className="flex items-center gap-4">
-                        <Link href="/" className="p-2 hover:bg-slate-200 rounded-full transition-colors">
-                            <ArrowLeft size={24} className="text-slate-600" />
+                        <Link href="/" className="p-2 rounded-full hover:bg-slate-800 text-slate-400 hover:text-white transition-colors">
+                            <ArrowLeft size={24} />
                         </Link>
                         <div>
                             <div className="flex items-center gap-3">
-                                <Title className="text-3xl font-bold text-slate-900">{repo.name}</Title>
-                                <Badge color={repo.isPrivate ? "slate" : "blue"}>{repo.isPrivate ? "Private" : "Public"}</Badge>
-                                {isOutdated && <Badge color="orange">Outdated</Badge>}
+                                <Title className="text-3xl font-bold text-white">{repo.name}</Title>
+                                <Badge color={repo.isPrivate ? "slate" : "violet"}>{repo.isPrivate ? "Private" : "Public"}</Badge>
+                                {isOutdated && <Badge color="amber">Outdated</Badge>}
                             </div>
-                            <Text className="mt-1">{repo.description || "No description provided."}</Text>
+                            <Text className="mt-1 text-slate-400">{repo.description || "No description provided."}</Text>
                         </div>
                     </div>
                     <div className="flex gap-3">
-                        <a href={repo.url} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-4 py-2 bg-white border border-slate-200 rounded-lg hover:bg-slate-50 transition-colors text-slate-700 font-medium">
+                        <a href={repo.url} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-4 py-2 bg-slate-800 border border-slate-700 rounded-lg hover:bg-slate-700 transition-colors text-slate-200 font-medium">
                             <Github size={18} />
                             GitHub
                         </a>
@@ -311,19 +311,19 @@ export default function RepoDetail() {
                                         href={activeUrl}
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className={`flex items-center gap-2 px-4 py-2 text-white rounded-lg transition-colors font-medium ${repo.customUrl ? 'bg-indigo-600 hover:bg-indigo-700' : (customDomain ? 'bg-emerald-600 hover:bg-emerald-700' : 'bg-blue-600 hover:bg-blue-700')}`}
+                                        className={`flex items-center gap-2 px-4 py-2 text-white rounded-lg transition-colors font-medium shadow-[0_0_10px_rgba(124,58,237,0.3)] ${repo.customUrl ? 'bg-violet-600 hover:bg-violet-700' : (customDomain ? 'bg-emerald-600 hover:bg-emerald-700' : 'bg-cyan-600 hover:bg-cyan-700')}`}
                                     >
                                         <Globe size={18} />
                                         {repo.customUrl ? "Custom Link" : (customDomain ? customDomain : "Live Site")}
 
                                         {/* Status Dot */}
                                         {linkStatus && (
-                                            <span className={`absolute -top-1 -right-1 w-3 h-3 rounded-full border-2 border-white ${linkStatus.reachable ? 'bg-green-400' : 'bg-red-500'}`} />
+                                            <span className={`absolute -top-1 -right-1 w-3 h-3 rounded-full border-2 border-slate-900 ${linkStatus.reachable ? 'bg-emerald-400' : 'bg-rose-500'}`} />
                                         )}
                                     </a>
                                     {/* Tooltip */}
                                     {linkStatus && (
-                                        <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-2 py-1 bg-slate-800 text-white text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">
+                                        <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-2 py-1 bg-slate-800 text-white text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none border border-slate-700">
                                             {linkStatus.reachable ? `Online (${linkStatus.status})` : `Offline (${linkStatus.status})`} • {linkStatus.latency}ms
                                         </div>
                                     )}
@@ -334,7 +334,7 @@ export default function RepoDetail() {
                                         setManualUrl(repo.customUrl || activeUrl || "");
                                         setIsEditUrlModalOpen(true);
                                     }}
-                                    className="p-2 text-slate-400 hover:text-slate-600 hover:bg-slate-100 rounded-lg transition-colors"
+                                    className="p-2 text-slate-400 hover:text-white hover:bg-slate-800 rounded-lg transition-colors"
                                     title="Edit Link"
                                 >
                                     <Code size={18} />
@@ -346,7 +346,7 @@ export default function RepoDetail() {
                                             setTargetDeployment(deployments[0]);
                                             setIsDnsModalOpen(true);
                                         }}
-                                        className="flex items-center gap-2 px-4 py-2 bg-amber-500 text-white rounded-lg hover:bg-amber-600 transition-colors font-medium"
+                                        className="flex items-center gap-2 px-4 py-2 bg-amber-600 text-white rounded-lg hover:bg-amber-500 transition-colors font-medium shadow-[0_0_10px_rgba(245,158,11,0.3)]"
                                     >
                                         <Shield size={18} />
                                         Connect Domain
@@ -360,27 +360,27 @@ export default function RepoDetail() {
                 {/* ... Grids ... */}
                 <Grid numItems={1} numItemsMd={3} className="gap-6">
                     {/* Stats Card */}
-                    <Card>
-                        <Title className="mb-4">Statistics</Title>
+                    <Card className="glass-card">
+                        <Title className="mb-4 text-white">Statistics</Title>
                         <div className="space-y-4">
-                            <div className="flex items-center gap-3 text-sm text-slate-600">
-                                <Calendar size={16} />
+                            <div className="flex items-center gap-3 text-sm text-slate-400">
+                                <Calendar size={16} className="text-violet-400" />
                                 <span>Created: {new Date(repo.createdAt).toLocaleDateString()}</span>
                             </div>
-                            <div className="flex items-center gap-3 text-sm text-slate-600">
-                                <Calendar size={16} />
+                            <div className="flex items-center gap-3 text-sm text-slate-400">
+                                <Calendar size={16} className="text-violet-400" />
                                 <span>Last Push: {new Date(repo.pushedAt).toLocaleDateString()}</span>
                             </div>
-                            <div className="flex items-center gap-3 text-sm text-slate-600">
-                                <Calendar size={16} />
+                            <div className="flex items-center gap-3 text-sm text-slate-400">
+                                <Calendar size={16} className="text-violet-400" />
                                 <span>Updated: {new Date(repo.updatedAt).toLocaleDateString()}</span>
                             </div>
 
-                            <div className="pt-4 border-t border-slate-100">
-                                <Text className="mb-2 font-medium">Languages</Text>
+                            <div className="pt-4 border-t border-slate-800">
+                                <Text className="mb-2 font-medium text-slate-300">Languages</Text>
                                 <div className="flex flex-wrap gap-2">
                                     {repo.languages && repo.languages.map((l, i) => (
-                                        <Badge key={i} color="slate" size="xs">{l.node.name}</Badge>
+                                        <Badge key={i} color="slate" size="xs" className="bg-slate-800 text-slate-300">{l.node.name}</Badge>
                                     ))}
                                 </div>
                             </div>
@@ -388,25 +388,25 @@ export default function RepoDetail() {
                     </Card>
 
                     {/* Tech Stack */}
-                    <Card className="md:col-span-2">
-                        <Title className="mb-4">Technology Stack</Title>
+                    <Card className="md:col-span-2 glass-card">
+                        <Title className="mb-4 text-white">Technology Stack</Title>
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                             {technologies.length === 0 ? (
-                                <Text>No technologies detected.</Text>
+                                <Text className="text-slate-500">No technologies detected.</Text>
                             ) : (
                                 technologies.map(tech => (
-                                    <div key={tech.id} className="flex justify-between items-center p-3 bg-slate-50 rounded-lg border border-slate-100">
+                                    <div key={tech.id} className="flex justify-between items-center p-3 bg-slate-900/50 rounded-lg border border-slate-800 hover:border-violet-500/30 transition-colors">
                                         <div className="flex items-center gap-3">
-                                            <div className="p-2 bg-white rounded-md border border-slate-200">
-                                                <Code size={16} className="text-slate-500" />
+                                            <div className="p-2 bg-slate-800 rounded-md border border-slate-700 text-violet-400">
+                                                <Code size={16} />
                                             </div>
                                             <div>
-                                                <div className="font-medium text-slate-900">{tech.name}</div>
+                                                <div className="font-medium text-slate-200">{tech.name}</div>
                                                 <div className="text-xs text-slate-500 capitalize">{tech.category || "Tool"}</div>
                                             </div>
                                         </div>
                                         {tech.version && (
-                                            <Badge color="blue" size="xs">v{tech.version}</Badge>
+                                            <Badge color="violet" size="xs">v{tech.version}</Badge>
                                         )}
                                     </div>
                                 ))
@@ -416,13 +416,13 @@ export default function RepoDetail() {
                 </Grid>
 
                 <Grid numItems={1} className="gap-6">
-                    <Card>
+                    <Card className="glass-card">
                         <div className="flex justify-between items-center mb-4">
-                            <Title>Automated Tasks</Title>
+                            <Title className="text-white">Automated Tasks</Title>
                             <button
                                 onClick={generateTasks}
                                 disabled={generatingTasks}
-                                className="flex items-center gap-2 px-3 py-1.5 bg-violet-100 text-violet-700 rounded-lg hover:bg-violet-200 transition-colors text-sm font-medium disabled:opacity-50"
+                                className="flex items-center gap-2 px-3 py-1.5 bg-violet-900/30 text-violet-300 border border-violet-500/30 rounded-lg hover:bg-violet-900/50 transition-colors text-sm font-medium disabled:opacity-50"
                             >
                                 <Play size={14} />
                                 {generatingTasks ? "Generating..." : "Generate Tasks"}
@@ -430,37 +430,37 @@ export default function RepoDetail() {
                         </div>
 
                         {loadingTasks ? (
-                            <Text>Loading tasks...</Text>
+                            <Text className="text-slate-400">Loading tasks...</Text>
                         ) : tasks.length === 0 ? (
                             <div className="text-center py-8 text-slate-500">
                                 <CheckCircle size={32} className="mx-auto mb-2 opacity-20" />
-                                <Text>No open tasks. Good job!</Text>
+                                <Text className="text-slate-500">No open tasks. Good job!</Text>
                             </div>
                         ) : (
                             <div className="space-y-2">
                                 {tasks.map(task => (
                                     <div
                                         key={task.id}
-                                        className={`flex items-center justify-between p-3 rounded-lg border transition-all ${task.status === 'COMPLETED' ? 'bg-slate-50 border-slate-100 opacity-60' : 'bg-white border-slate-200 hover:border-violet-300'
+                                        className={`flex items-center justify-between p-3 rounded-lg border transition-all ${task.status === 'COMPLETED' ? 'bg-slate-900/30 border-slate-800 opacity-60' : 'bg-slate-900/50 border-slate-800 hover:border-violet-500/50'
                                             }`}
                                     >
                                         <div className="flex items-center gap-3">
                                             <button
                                                 onClick={() => toggleTaskStatus(task)}
-                                                className={`p-1 rounded-full transition-colors ${task.status === 'COMPLETED' ? 'text-green-500' : 'text-slate-300 hover:text-violet-500'
+                                                className={`p-1 rounded-full transition-colors ${task.status === 'COMPLETED' ? 'text-emerald-500' : 'text-slate-500 hover:text-violet-400'
                                                     }`}
                                             >
                                                 {task.status === 'COMPLETED' ? <CheckCircle size={20} /> : <Circle size={20} />}
                                             </button>
                                             <div>
-                                                <div className={`font-medium ${task.status === 'COMPLETED' ? 'line-through text-slate-500' : 'text-slate-900'}`}>
+                                                <div className={`font-medium ${task.status === 'COMPLETED' ? 'line-through text-slate-600' : 'text-slate-200'}`}>
                                                     {task.title}
                                                 </div>
                                                 <div className="flex items-center gap-2 mt-1">
-                                                    <Badge size="xs" color={task.priority === 'HIGH' ? 'red' : task.priority === 'MEDIUM' ? 'orange' : 'slate'}>
+                                                    <Badge size="xs" color={task.priority === 'HIGH' ? 'rose' : task.priority === 'MEDIUM' ? 'amber' : 'slate'}>
                                                         {task.priority}
                                                     </Badge>
-                                                    <Badge size="xs" color="slate">
+                                                    <Badge size="xs" color="slate" className="bg-slate-800 text-slate-400">
                                                         {task.type}
                                                     </Badge>
                                                 </div>
@@ -475,10 +475,10 @@ export default function RepoDetail() {
 
                 <Grid numItems={1} numItemsMd={2} className="gap-6">
                     {/* Interfaces */}
-                    <Card>
-                        <Title className="mb-4">Detected Interfaces</Title>
+                    <Card className="glass-card">
+                        <Title className="mb-4 text-white">Detected Interfaces</Title>
                         {interfaces.length === 0 ? (
-                            <Text>No external interfaces detected.</Text>
+                            <Text className="text-slate-500">No external interfaces detected.</Text>
                         ) : (
                             <List>
                                 {interfaces.map((iface, idx) => {
@@ -488,14 +488,14 @@ export default function RepoDetail() {
                                     const content = (
                                         <div className="flex items-start gap-3 w-full">
                                             <div className="mt-1">
-                                                {iface.type === 'database_connection' ? <Database size={16} className="text-blue-500" /> :
-                                                    iface.type === 'cloud_service' ? <Server size={16} className="text-orange-500" /> :
-                                                        <Globe size={16} className="text-green-500" />}
+                                                {iface.type === 'database_connection' ? <Database size={16} className="text-cyan-400" /> :
+                                                    iface.type === 'cloud_service' ? <Server size={16} className="text-amber-400" /> :
+                                                        <Globe size={16} className="text-emerald-400" />}
                                             </div>
                                             <div className="flex-1">
-                                                <div className="font-medium text-slate-900 flex items-center gap-2">
+                                                <div className="font-medium text-slate-200 flex items-center gap-2">
                                                     {iface.details?.service || iface.type.replace('_', ' ')}
-                                                    {dashboardUrl && <ExternalLink size={12} className="text-slate-400" />}
+                                                    {dashboardUrl && <ExternalLink size={12} className="text-slate-500" />}
                                                 </div>
                                                 <div className="text-xs text-slate-500">
                                                     {iface.direction} • {iface.details?.variable ? `Via ${iface.details.variable}` : 'Inferred'}
@@ -505,13 +505,13 @@ export default function RepoDetail() {
                                     );
 
                                     return (
-                                        <ListItem key={idx} className="p-0">
+                                        <ListItem key={idx} className="p-0 border-slate-800">
                                             {dashboardUrl ? (
                                                 <a
                                                     href={dashboardUrl}
                                                     target="_blank"
                                                     rel="noopener noreferrer"
-                                                    className="flex w-full p-4 hover:bg-slate-50 transition-colors rounded-lg -m-4"
+                                                    className="flex w-full p-4 hover:bg-slate-800/50 transition-colors rounded-lg -m-4"
                                                 >
                                                     {content}
                                                 </a>
@@ -528,19 +528,19 @@ export default function RepoDetail() {
                     </Card>
 
                     {/* Environment Variables (Inferred) */}
-                    <Card>
-                        <Title className="mb-4">Environment Signals</Title>
+                    <Card className="glass-card">
+                        <Title className="mb-4 text-white">Environment Signals</Title>
                         <Text className="mb-4 text-xs text-slate-500">
                             These variables were detected in the codebase and suggest potential configuration or secrets.
                             Values are NOT stored, only variable names.
                         </Text>
                         <div className="flex flex-wrap gap-2">
                             {interfaces.filter(i => i.details?.variable).map((iface, idx) => (
-                                <code key={idx} className="px-2 py-1 bg-slate-100 border border-slate-200 rounded text-xs text-slate-700 font-mono">
+                                <code key={idx} className="px-2 py-1 bg-slate-900 border border-slate-800 rounded text-xs text-violet-300 font-mono">
                                     {iface.details.variable}
                                 </code>
                             ))}
-                            {interfaces.length === 0 && <Text className="italic text-slate-400">No specific variables detected.</Text>}
+                            {interfaces.length === 0 && <Text className="italic text-slate-600">No specific variables detected.</Text>}
                         </div>
                     </Card>
                 </Grid>
@@ -548,17 +548,17 @@ export default function RepoDetail() {
 
             {/* DNS Connection Modal */}
             {isDnsModalOpen && (
-                <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4" onClick={() => setIsDnsModalOpen(false)}>
-                    <div className="bg-white rounded-xl shadow-2xl max-w-md w-full" onClick={e => e.stopPropagation()}>
-                        <div className="p-6 border-b border-slate-100">
-                            <Title>Connect Custom Domain</Title>
-                            <Text>Create a CNAME record pointing to this deployment.</Text>
+                <div className="fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center z-50 p-4" onClick={() => setIsDnsModalOpen(false)}>
+                    <div className="bg-slate-900 border border-slate-800 rounded-xl shadow-2xl max-w-md w-full" onClick={e => e.stopPropagation()}>
+                        <div className="p-6 border-b border-slate-800">
+                            <Title className="text-white">Connect Custom Domain</Title>
+                            <Text className="text-slate-400">Create a CNAME record pointing to this deployment.</Text>
                         </div>
                         <div className="p-6 space-y-4">
                             <div>
-                                <label className="block text-sm font-medium text-slate-700 mb-1">Select Zone</label>
+                                <label className="block text-sm font-medium text-slate-300 mb-1">Select Zone</label>
                                 <select
-                                    className="w-full p-2 border border-slate-200 rounded-lg"
+                                    className="w-full p-2 bg-slate-950 border border-slate-700 rounded-lg text-slate-200 focus:outline-none focus:border-violet-500"
                                     value={selectedZone}
                                     onChange={(e) => setSelectedZone(e.target.value)}
                                 >
@@ -569,36 +569,36 @@ export default function RepoDetail() {
                                 </select>
                             </div>
                             <div>
-                                <label className="block text-sm font-medium text-slate-700 mb-1">Subdomain</label>
+                                <label className="block text-sm font-medium text-slate-300 mb-1">Subdomain</label>
                                 <div className="flex items-center">
                                     <input
                                         type="text"
-                                        className="flex-1 p-2 border border-slate-200 rounded-l-lg"
+                                        className="flex-1 p-2 bg-slate-950 border border-slate-700 rounded-l-lg text-slate-200 focus:outline-none focus:border-violet-500"
                                         placeholder="app"
                                         value={subdomain}
                                         onChange={(e) => setSubdomain(e.target.value)}
                                     />
-                                    <span className="p-2 bg-slate-100 border border-l-0 border-slate-200 rounded-r-lg text-slate-500 text-sm">
+                                    <span className="p-2 bg-slate-800 border border-l-0 border-slate-700 rounded-r-lg text-slate-400 text-sm">
                                         .{zones.find(z => z.id === selectedZone)?.name || '...'}
                                     </span>
                                 </div>
                             </div>
-                            <div className="p-3 bg-blue-50 rounded-lg text-sm text-blue-800">
+                            <div className="p-3 bg-slate-800/50 rounded-lg text-sm text-slate-300 border border-slate-700">
                                 <p><strong>Target:</strong> {targetDeployment?.url}</p>
                                 <p><strong>Record:</strong> CNAME {subdomain}.{zones.find(z => z.id === selectedZone)?.name}</p>
                             </div>
                         </div>
-                        <div className="p-4 border-t border-slate-100 bg-slate-50 rounded-b-xl flex justify-end gap-2">
+                        <div className="p-4 border-t border-slate-800 bg-slate-900/50 rounded-b-xl flex justify-end gap-2">
                             <button
                                 onClick={() => setIsDnsModalOpen(false)}
-                                className="px-4 py-2 bg-white border border-slate-300 rounded-lg text-sm font-medium text-slate-700 hover:bg-slate-50"
+                                className="px-4 py-2 bg-slate-800 border border-slate-700 rounded-lg text-sm font-medium text-slate-300 hover:bg-slate-700 transition-colors"
                             >
                                 Cancel
                             </button>
                             <button
                                 onClick={handleConnectDomain}
                                 disabled={!selectedZone || !subdomain || creatingRecord}
-                                className="px-4 py-2 bg-blue-600 text-white rounded-lg text-sm font-medium hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed"
+                                className="px-4 py-2 bg-violet-600 text-white rounded-lg text-sm font-medium hover:bg-violet-500 disabled:opacity-50 disabled:cursor-not-allowed shadow-[0_0_10px_rgba(124,58,237,0.3)]"
                             >
                                 {creatingRecord ? "Creating..." : "Create Record"}
                             </button>
@@ -609,18 +609,18 @@ export default function RepoDetail() {
 
             {/* Edit URL Modal */}
             {isEditUrlModalOpen && (
-                <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4" onClick={() => setIsEditUrlModalOpen(false)}>
-                    <div className="bg-white rounded-xl shadow-2xl max-w-md w-full" onClick={e => e.stopPropagation()}>
-                        <div className="p-6 border-b border-slate-100">
-                            <Title>Edit Live Site URL</Title>
-                            <Text>Manually override the live site link for this repository.</Text>
+                <div className="fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center z-50 p-4" onClick={() => setIsEditUrlModalOpen(false)}>
+                    <div className="bg-slate-900 border border-slate-800 rounded-xl shadow-2xl max-w-md w-full" onClick={e => e.stopPropagation()}>
+                        <div className="p-6 border-b border-slate-800">
+                            <Title className="text-white">Edit Live Site URL</Title>
+                            <Text className="text-slate-400">Manually override the live site link for this repository.</Text>
                         </div>
                         <div className="p-6 space-y-4">
                             <div>
-                                <label className="block text-sm font-medium text-slate-700 mb-1">URL</label>
+                                <label className="block text-sm font-medium text-slate-300 mb-1">URL</label>
                                 <input
                                     type="text"
-                                    className="w-full p-2 border border-slate-200 rounded-lg"
+                                    className="w-full p-2 bg-slate-950 border border-slate-700 rounded-lg text-slate-200 focus:outline-none focus:border-violet-500"
                                     placeholder="https://example.com"
                                     value={manualUrl}
                                     onChange={(e) => setManualUrl(e.target.value)}
@@ -628,16 +628,16 @@ export default function RepoDetail() {
                                 <p className="text-xs text-slate-500 mt-1">Leave empty to use auto-detected URL.</p>
                             </div>
                         </div>
-                        <div className="p-4 border-t border-slate-100 bg-slate-50 rounded-b-xl flex justify-end gap-2">
+                        <div className="p-4 border-t border-slate-800 bg-slate-900/50 rounded-b-xl flex justify-end gap-2">
                             <button
                                 onClick={() => setIsEditUrlModalOpen(false)}
-                                className="px-4 py-2 bg-white border border-slate-300 rounded-lg text-sm font-medium text-slate-700 hover:bg-slate-50"
+                                className="px-4 py-2 bg-slate-800 border border-slate-700 rounded-lg text-sm font-medium text-slate-300 hover:bg-slate-700 transition-colors"
                             >
                                 Cancel
                             </button>
                             <button
                                 onClick={handleSaveUrl}
-                                className="px-4 py-2 bg-blue-600 text-white rounded-lg text-sm font-medium hover:bg-blue-700"
+                                className="px-4 py-2 bg-violet-600 text-white rounded-lg text-sm font-medium hover:bg-violet-500 shadow-[0_0_10px_rgba(124,58,237,0.3)]"
                             >
                                 Save
                             </button>
