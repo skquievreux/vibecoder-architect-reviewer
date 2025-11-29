@@ -2,7 +2,7 @@
 
 import { Card, Title, Text, Badge, Grid } from "@tremor/react";
 import { useState, useEffect } from "react";
-import { ArrowLeft, Terminal, Play, FileText, AlertTriangle, CheckCircle, XCircle, Database, Code, Activity } from "lucide-react";
+import { ArrowLeft, Terminal, Play, FileText, AlertTriangle, CheckCircle, XCircle, Database, Code, Activity, Sparkles, Globe } from "lucide-react";
 import Link from "next/link";
 
 type Log = {
@@ -18,6 +18,7 @@ const scripts = [
     { id: 'standardize-ts', name: 'Standardize TypeScript', description: 'Enforce TypeScript v5.8.2' },
     { id: 'standardize-supabase', name: 'Standardize Supabase', description: 'Enforce Supabase v2.49.4' },
     { id: 'analyze-next-migration', name: 'Analyze Next.js Migration', description: 'Check for v16 breaking changes' },
+    { id: 'analyze-react-upgrade', name: 'Analyze React Upgrade', description: 'Identify React 18.x vs 19.2 candidates' },
     { id: 'audit-ecosystem', name: 'Audit Ecosystem', description: 'Check all repos for compliance' },
 ];
 
@@ -249,6 +250,24 @@ function MaintenanceContent() {
                                 <Database size={24} className="mb-2 text-emerald-500" />
                                 <span className="font-medium text-slate-900">Fix Supabase</span>
                                 <span className="text-xs text-slate-500 mt-1">Set v2.49.4</span>
+                            </button>
+                            <button
+                                onClick={() => runScript('upgrade-react')}
+                                disabled={!!running}
+                                className="flex flex-col items-center p-4 border border-slate-200 rounded-lg hover:bg-slate-50 transition-colors text-center col-span-2 md:col-span-1"
+                            >
+                                <Sparkles size={24} className="mb-2 text-blue-500" />
+                                <span className="font-medium text-slate-900">Upgrade Tier 2</span>
+                                <span className="text-xs text-slate-500 mt-1">React 19.2 (Safe)</span>
+                            </button>
+                            <button
+                                onClick={() => runScript('sync-vercel-domains')}
+                                disabled={!!running}
+                                className="flex flex-col items-center p-4 border border-slate-200 rounded-lg hover:bg-slate-50 transition-colors text-center col-span-2 md:col-span-1"
+                            >
+                                <Globe size={24} className="mb-2 text-violet-500" />
+                                <span className="font-medium text-slate-900">Sync Domains</span>
+                                <span className="text-xs text-slate-500 mt-1">Vercel &rarr; DB</span>
                             </button>
                         </div>
                     </div>

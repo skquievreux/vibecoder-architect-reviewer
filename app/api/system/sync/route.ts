@@ -32,12 +32,18 @@ export async function POST() {
         const seederRes = await execAsync('npx prisma db seed', { cwd: dashboardDir });
         console.log('Seeder finished.');
 
+        // 3. Auto-Verify Tasks
+        console.log('Starting Auto-Verify Tasks...');
+        const verifyScript = path.join(dashboardDir, 'scripts', 'verify-tasks.js');
+        const verifyRes = await execAsync(`node "${verifyScript}"`, { cwd: dashboardDir });
+        console.log('Task verification finished.');
+
         // Log Success
         await prisma.syncLog.create({
             data: {
                 status: 'SUCCESS',
                 message: 'Sync completed successfully',
-                details: `Analyzer:\n${analyzerRes.stdout}\n\nSeeder:\n${seederRes.stdout}`
+                details: `Analyzer:\n${analyzerRes.stdout}\n\nSeeder:\n${seederRes.stdout}\n\nTask Verification:\n${verifyRes.stdout}`
             }
         });
 

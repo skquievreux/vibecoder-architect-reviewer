@@ -271,14 +271,15 @@ export default function Dashboard() {
             >
               Outdated
             </Badge>
-            <Badge
-              color={filterStatus === 'critical' ? "rose" : "slate"}
-              icon={AlertTriangle}
-              className="cursor-pointer hover:opacity-80"
-              onClick={() => setFilterStatus('critical')}
-            >
-              Critical Tasks
-            </Badge>
+            <Link href="/tasks" className="no-underline">
+              <Badge
+                color={filterStatus === 'critical' ? "rose" : "slate"}
+                icon={AlertTriangle}
+                className="cursor-pointer hover:opacity-80"
+              >
+                Tasks
+              </Badge>
+            </Link>
             <a href="/tech" className="no-underline">
               <Badge color="violet" icon={Code} className="cursor-pointer hover:opacity-80">
                 Tech Overview

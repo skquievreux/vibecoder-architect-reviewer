@@ -11,6 +11,10 @@ const ALLOWED_SCRIPTS = {
     'standardize-ts': 'standardize-ts.js',
     'standardize-supabase': 'standardize-supabase.js',
     'analyze-next-migration': 'analyze-next-migration.js',
+    'analyze-react-upgrade': 'analyze-react-upgrade.js',
+    'upgrade-react': 'upgrade-react.js',
+    'verify-tasks': 'verify-tasks.js',
+    'sync-vercel-domains': 'sync-vercel-domains.js',
 };
 
 export async function POST(request: Request) {
@@ -27,7 +31,12 @@ export async function POST(request: Request) {
 
         // Construct command
         let command = `node ${scriptPath} ${targetDir}`;
-        if (script !== 'audit-ecosystem') {
+
+        if (script === 'upgrade-react') {
+            command += ' tier2';
+        }
+
+        if (script !== 'audit-ecosystem' && script !== 'upgrade-react') {
             command += ' --yes'; // Auto-confirm for fixers
         }
 

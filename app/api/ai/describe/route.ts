@@ -7,7 +7,21 @@ const prisma = new PrismaClient();
 export async function POST() {
     try {
         // 1. Setup AI Client
-        const apiKey = process.env.PERPLEXITY_API_KEY || process.env.OPENAI_API_KEY;
+        // Force read .env from filesystem to bypass Next.js/Node process.env cache
+        const fs = require('fs');
+        const path = require('path');
+        const envPath = path.join(process.cwd(), '.env');
+        let fileKey = null;
+
+        if (fs.existsSync(envPath)) {
+            const envContent = fs.readFileSync(envPath, 'utf-8');
+            const match = envContent.match(/PERPLEXITY_API_KEY=(.*)/) || envContent.match(/PERPLEXITY_API_TOKEN=(.*)/) || envContent.match(/OPENAI_API_KEY=(.*)/);
+            if (match && match[1]) {
+                fileKey = match[1].trim().replace(/["']/g, '');
+            }
+        }
+
+        const apiKey = fileKey || process.env.PERPLEXITY_API_KEY || process.env.OPENAI_API_KEY;
         if (!apiKey) {
             return NextResponse.json({ error: 'AI API Key not configured' }, { status: 500 });
         }

@@ -24,6 +24,7 @@ export async function GET(request: Request) {
             // @ts-ignore
             tasks = await prisma.repoTask.findMany({
                 where,
+                include: { repository: true },
                 orderBy: [
                     { priority: 'asc' }, // HIGH, LOW, MEDIUM - wait, enum strings sort alphabetically. HIGH < LOW < MEDIUM. Ideally we want HIGH first.
                     // If we want custom sort we need to map it. For now let's just sort by date.

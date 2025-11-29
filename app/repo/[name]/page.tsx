@@ -558,7 +558,9 @@ export default function RepoDetail() {
                                         <div className="flex items-center gap-3">
                                             <Globe size={16} className="text-emerald-400" />
                                             <div>
-                                                <div className="font-medium text-slate-200">{record.name}</div>
+                                                <a href={`https://${record.name}`} target="_blank" rel="noopener noreferrer" className="font-medium text-slate-200 hover:text-violet-400 hover:underline transition-colors">
+                                                    {record.name}
+                                                </a>
                                                 <div className="text-xs text-slate-500">{record.type} • {record.proxied ? 'Proxied' : 'DNS Only'}</div>
                                             </div>
                                         </div>
