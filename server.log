@@ -612,3 +612,242 @@ Fetch Reports Error: TypeError: Cannot read properties of undefined (reading 'fi
   10 |                 createdAt: 'desc'
   11 |             }
  GET /api/ai/reports 500 in 165ms (compile: 6ms, render: 159ms)
+Fetch Reports Error: TypeError: Cannot read properties of undefined (reading 'findMany')
+    at GET (app/api/ai/reports/route.ts:8:47)
+   6 | export async function GET() {
+   7 |     try {
+>  8 |         const reports = await prisma.aIReport.findMany({
+     |                                               ^
+   9 |             orderBy: {
+  10 |                 createdAt: 'desc'
+  11 |             }
+ GET /api/ai/reports 500 in 173ms (compile: 12ms, render: 162ms)
+Fetch Reports Error: TypeError: Cannot read properties of undefined (reading 'findMany')
+    at GET (app/api/ai/reports/route.ts:8:47)
+   6 | export async function GET() {
+   7 |     try {
+>  8 |         const reports = await prisma.aIReport.findMany({
+     |                                               ^
+   9 |             orderBy: {
+  10 |                 createdAt: 'desc'
+  11 |             }
+ GET /api/ai/reports 500 in 330ms (compile: 221ms, render: 109ms)
+Fetch Reports Error: TypeError: Cannot read properties of undefined (reading 'findMany')
+    at GET (app/api/ai/reports/route.ts:8:47)
+   6 | export async function GET() {
+   7 |     try {
+>  8 |         const reports = await prisma.aIReport.findMany({
+     |                                               ^
+   9 |             orderBy: {
+  10 |                 createdAt: 'desc'
+  11 |             }
+ GET /api/ai/reports 500 in 248ms (compile: 153ms, render: 95ms)
+AIReport model missing in Prisma Client. Using raw SQL fallback.
+ GET /api/ai/reports 200 in 164ms (compile: 120ms, render: 44ms)
+ GET / 200 in 33ms (compile: 5ms, render: 28ms)
+ GET /api/repos 200 in 43ms (compile: 8ms, render: 36ms)
+ GET /api/repos 200 in 39ms (compile: 5ms, render: 34ms)
+ GET /report 200 in 80ms (compile: 6ms, render: 74ms)
+AIReport model missing in Prisma Client. Using raw SQL fallback.
+ GET /api/ai/reports 200 in 10ms (compile: 4ms, render: 7ms)
+AIReport model missing in Prisma Client. Using raw SQL fallback.
+ GET /api/ai/reports 200 in 19ms (compile: 3ms, render: 16ms)
+ GET /report 200 in 83ms (compile: 6ms, render: 77ms)
+AIReport model missing in Prisma Client. Using raw SQL fallback.
+ GET /api/ai/reports 200 in 19ms (compile: 4ms, render: 15ms)
+ GET /dns 200 in 3.1s (compile: 3.0s, render: 139ms)
+ GET /api/dns 200 in 1659ms (compile: 268ms, render: 1391ms)
+ GET /api/dns?zone_id=10864037a5579e03076c46cc1fe14d08 200 in 775ms (compile: 4ms, render: 772ms)
+ GET / 200 in 43ms (compile: 5ms, render: 39ms)
+ GET /api/repos 200 in 31ms (compile: 5ms, render: 27ms)
+ GET /api/repos 200 in 20ms (compile: 3ms, render: 17ms)
+ GET /report 200 in 100ms (compile: 8ms, render: 91ms)
+AIReport model missing in Prisma Client. Using raw SQL fallback.
+ GET /api/ai/reports 200 in 39ms (compile: 5ms, render: 35ms)
+ ✓ Compiled in 344ms
+ ✓ Compiled in 1844ms
+ GET / 200 in 38ms (compile: 7ms, render: 31ms)
+ GET /api/repos 200 in 55ms (compile: 11ms, render: 43ms)
+ GET /api/repos 200 in 50ms (compile: 4ms, render: 46ms)
+ GET /report 200 in 573ms (compile: 171ms, render: 402ms)
+AIReport model missing in Prisma Client. Using raw SQL fallback.
+ GET /api/ai/reports 200 in 28ms (compile: 15ms, render: 13ms)
+ POST /api/ai/generate 500 in 376ms (compile: 356ms, render: 20ms)
+ GET / 200 in 26ms (compile: 4ms, render: 22ms)
+ GET /api/repos 200 in 71ms (compile: 7ms, render: 64ms)
+ GET /api/repos 200 in 36ms (compile: 5ms, render: 31ms)
+ GET /report 200 in 67ms (compile: 4ms, render: 63ms)
+AIReport model missing in Prisma Client. Using raw SQL fallback.
+ GET /api/ai/reports 200 in 21ms (compile: 5ms, render: 16ms)
+ ✓ Compiled in 870ms
+ GET / 200 in 40ms (compile: 5ms, render: 35ms)
+ GET /api/repos 200 in 37ms (compile: 5ms, render: 32ms)
+ GET /api/repos 200 in 23ms (compile: 4ms, render: 19ms)
+ GET /tech 200 in 237ms (compile: 72ms, render: 165ms)
+ GET /api/repos 200 in 43ms (compile: 11ms, render: 31ms)
+ GET / 200 in 23ms (compile: 3ms, render: 19ms)
+ GET /api/repos 200 in 21ms (compile: 3ms, render: 17ms)
+ GET /api/repos 200 in 19ms (compile: 2ms, render: 17ms)
+Starting Analyzer...
+ POST /api/system/sync 200 in 2.3s (compile: 85ms, render: 2.2s)
+ GET /report 200 in 631ms (compile: 145ms, render: 485ms)
+AIReport model missing in Prisma Client. Using raw SQL fallback.
+ GET /api/ai/reports 200 in 20ms (compile: 3ms, render: 17ms)
+ ✓ Compiled in 1881ms
+ ⚠ ./app/api/ai/generate/route.ts:11:13
+Module not found: Can't resolve 'dotenv'
+[0m [90m  9 |[39m         [90m// Try to reload env vars if missing (hot-fix for dev mode)[39m
+ [90m 10 |[39m         [36mif[39m ([33m![39mprocess[33m.[39menv[33m.[39m[33mPERPLEXITY_API_KEY[39m [33m&&[39m [33m![39mprocess[33m.[39menv[33m.[39m[33mOPENAI_API_KEY[39m) {
+[31m[1m>[22m[39m[90m 11 |[39m             require([32m'dotenv'[39m)[33m.[39mconfig({ override[33m:[39m [36mtrue[39m })[33m;[39m
+ [90m    |[39m             [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 12 |[39m         }
+ [90m 13 |[39m
+ [90m 14 |[39m         [36mconst[39m apiKey [33m=[39m process[33m.[39menv[33m.[39m[33mPERPLEXITY_API_KEY[39m [33m||[39m process[33m.[39menv[33m.[39m[33mOPENAI_API_KEY[39m[33m;[39m[0m
+
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+AI Generation Error: Error: Cannot find module 'dotenv'
+    at <unknown> (.next/dev/server/chunks/[root-of-the-server]__ee1a296e._.js:76:27)
+    at POST (.next/dev/server/chunks/[root-of-the-server]__ee1a296e._.js:79:15) {
+  code: 'MODULE_NOT_FOUND'
+}
+ POST /api/ai/generate 500 in 272ms (compile: 165ms, render: 107ms)
+Analyzer finished.
+Starting Seeder...
+ GET /tech?q=Fly.io 200 in 136ms (compile: 31ms, render: 106ms)
+ ⚠ ./app/api/ai/generate/route.ts:11:13
+Module not found: Can't resolve 'dotenv'
+[0m [90m  9 |[39m         [90m// Try to reload env vars if missing (hot-fix for dev mode)[39m
+ [90m 10 |[39m         [36mif[39m ([33m![39mprocess[33m.[39menv[33m.[39m[33mPERPLEXITY_API_KEY[39m [33m&&[39m [33m![39mprocess[33m.[39menv[33m.[39m[33mOPENAI_API_KEY[39m) {
+[31m[1m>[22m[39m[90m 11 |[39m             require([32m'dotenv'[39m)[33m.[39mconfig({ override[33m:[39m [36mtrue[39m })[33m;[39m
+ [90m    |[39m             [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 12 |[39m         }
+ [90m 13 |[39m
+ [90m 14 |[39m         [36mconst[39m apiKey [33m=[39m process[33m.[39menv[33m.[39m[33mPERPLEXITY_API_KEY[39m [33m||[39m process[33m.[39menv[33m.[39m[33mOPENAI_API_KEY[39m[33m;[39m[0m
+
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+ ⚠ ./app/api/ai/generate/route.ts:11:13
+Module not found: Can't resolve 'dotenv'
+[0m [90m  9 |[39m         [90m// Try to reload env vars if missing (hot-fix for dev mode)[39m
+ [90m 10 |[39m         [36mif[39m ([33m![39mprocess[33m.[39menv[33m.[39m[33mPERPLEXITY_API_KEY[39m [33m&&[39m [33m![39mprocess[33m.[39menv[33m.[39m[33mOPENAI_API_KEY[39m) {
+[31m[1m>[22m[39m[90m 11 |[39m             require([32m'dotenv'[39m)[33m.[39mconfig({ override[33m:[39m [36mtrue[39m })[33m;[39m
+ [90m    |[39m             [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 12 |[39m         }
+ [90m 13 |[39m
+ [90m 14 |[39m         [36mconst[39m apiKey [33m=[39m process[33m.[39menv[33m.[39m[33mPERPLEXITY_API_KEY[39m [33m||[39m process[33m.[39menv[33m.[39m[33mOPENAI_API_KEY[39m[33m;[39m[0m
+
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+ GET /api/repos 200 in 96ms (compile: 22ms, render: 74ms)
+Seeder finished.
+ GET /repo/audio-mastering 200 in 131ms (compile: 92ms, render: 39ms)
+ ⚠ ./app/api/ai/generate/route.ts:11:13
+Module not found: Can't resolve 'dotenv'
+[0m [90m  9 |[39m         [90m// Try to reload env vars if missing (hot-fix for dev mode)[39m
+ [90m 10 |[39m         [36mif[39m ([33m![39mprocess[33m.[39menv[33m.[39m[33mPERPLEXITY_API_KEY[39m [33m&&[39m [33m![39mprocess[33m.[39menv[33m.[39m[33mOPENAI_API_KEY[39m) {
+[31m[1m>[22m[39m[90m 11 |[39m             require([32m'dotenv'[39m)[33m.[39mconfig({ override[33m:[39m [36mtrue[39m })[33m;[39m
+ [90m    |[39m             [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 12 |[39m         }
+ [90m 13 |[39m
+ [90m 14 |[39m         [36mconst[39m apiKey [33m=[39m process[33m.[39menv[33m.[39m[33mPERPLEXITY_API_KEY[39m [33m||[39m process[33m.[39menv[33m.[39m[33mOPENAI_API_KEY[39m[33m;[39m[0m
+
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+ GET /api/repos/audio-mastering 200 in 45ms (compile: 32ms, render: 14ms)
+ ⚠ ./app/api/ai/generate/route.ts:11:13
+Module not found: Can't resolve 'dotenv'
+[0m [90m  9 |[39m         [90m// Try to reload env vars if missing (hot-fix for dev mode)[39m
+ [90m 10 |[39m         [36mif[39m ([33m![39mprocess[33m.[39menv[33m.[39m[33mPERPLEXITY_API_KEY[39m [33m&&[39m [33m![39mprocess[33m.[39menv[33m.[39m[33mOPENAI_API_KEY[39m) {
+[31m[1m>[22m[39m[90m 11 |[39m             require([32m'dotenv'[39m)[33m.[39mconfig({ override[33m:[39m [36mtrue[39m })[33m;[39m
+ [90m    |[39m             [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 12 |[39m         }
+ [90m 13 |[39m
+ [90m 14 |[39m         [36mconst[39m apiKey [33m=[39m process[33m.[39menv[33m.[39m[33mPERPLEXITY_API_KEY[39m [33m||[39m process[33m.[39menv[33m.[39m[33mOPENAI_API_KEY[39m[33m;[39m[0m
+
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+ GET /api/repos/audio-mastering 200 in 11ms (compile: 5ms, render: 6ms)
+ GET / 200 in 28ms (compile: 4ms, render: 24ms)
+ ⚠ ./app/api/ai/generate/route.ts:11:13
+Module not found: Can't resolve 'dotenv'
+[0m [90m  9 |[39m         [90m// Try to reload env vars if missing (hot-fix for dev mode)[39m
+ [90m 10 |[39m         [36mif[39m ([33m![39mprocess[33m.[39menv[33m.[39m[33mPERPLEXITY_API_KEY[39m [33m&&[39m [33m![39mprocess[33m.[39menv[33m.[39m[33mOPENAI_API_KEY[39m) {
+[31m[1m>[22m[39m[90m 11 |[39m             require([32m'dotenv'[39m)[33m.[39mconfig({ override[33m:[39m [36mtrue[39m })[33m;[39m
+ [90m    |[39m             [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 12 |[39m         }
+ [90m 13 |[39m
+ [90m 14 |[39m         [36mconst[39m apiKey [33m=[39m process[33m.[39menv[33m.[39m[33mPERPLEXITY_API_KEY[39m [33m||[39m process[33m.[39menv[33m.[39m[33mOPENAI_API_KEY[39m[33m;[39m[0m
+
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+ GET /api/repos 200 in 35ms (compile: 5ms, render: 30ms)
+ ⚠ ./app/api/ai/generate/route.ts:11:13
+Module not found: Can't resolve 'dotenv'
+[0m [90m  9 |[39m         [90m// Try to reload env vars if missing (hot-fix for dev mode)[39m
+ [90m 10 |[39m         [36mif[39m ([33m![39mprocess[33m.[39menv[33m.[39m[33mPERPLEXITY_API_KEY[39m [33m&&[39m [33m![39mprocess[33m.[39menv[33m.[39m[33mOPENAI_API_KEY[39m) {
+[31m[1m>[22m[39m[90m 11 |[39m             require([32m'dotenv'[39m)[33m.[39mconfig({ override[33m:[39m [36mtrue[39m })[33m;[39m
+ [90m    |[39m             [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 12 |[39m         }
+ [90m 13 |[39m
+ [90m 14 |[39m         [36mconst[39m apiKey [33m=[39m process[33m.[39menv[33m.[39m[33mPERPLEXITY_API_KEY[39m [33m||[39m process[33m.[39menv[33m.[39m[33mOPENAI_API_KEY[39m[33m;[39m[0m
+
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+ GET /api/repos 200 in 25ms (compile: 4ms, render: 20ms)
+ GET /report 200 in 89ms (compile: 6ms, render: 83ms)
+ ⚠ ./app/api/ai/generate/route.ts:11:13
+Module not found: Can't resolve 'dotenv'
+[0m [90m  9 |[39m         [90m// Try to reload env vars if missing (hot-fix for dev mode)[39m
+ [90m 10 |[39m         [36mif[39m ([33m![39mprocess[33m.[39menv[33m.[39m[33mPERPLEXITY_API_KEY[39m [33m&&[39m [33m![39mprocess[33m.[39menv[33m.[39m[33mOPENAI_API_KEY[39m) {
+[31m[1m>[22m[39m[90m 11 |[39m             require([32m'dotenv'[39m)[33m.[39mconfig({ override[33m:[39m [36mtrue[39m })[33m;[39m
+ [90m    |[39m             [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 12 |[39m         }
+ [90m 13 |[39m
+ [90m 14 |[39m         [36mconst[39m apiKey [33m=[39m process[33m.[39menv[33m.[39m[33mPERPLEXITY_API_KEY[39m [33m||[39m process[33m.[39menv[33m.[39m[33mOPENAI_API_KEY[39m[33m;[39m[0m
+
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+ ⚠ ./app/api/ai/generate/route.ts:11:13
+Module not found: Can't resolve 'dotenv'
+[0m [90m  9 |[39m         [90m// Try to reload env vars if missing (hot-fix for dev mode)[39m
+ [90m 10 |[39m         [36mif[39m ([33m![39mprocess[33m.[39menv[33m.[39m[33mPERPLEXITY_API_KEY[39m [33m&&[39m [33m![39mprocess[33m.[39menv[33m.[39m[33mOPENAI_API_KEY[39m) {
+[31m[1m>[22m[39m[90m 11 |[39m             require([32m'dotenv'[39m)[33m.[39mconfig({ override[33m:[39m [36mtrue[39m })[33m;[39m
+ [90m    |[39m             [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 12 |[39m         }
+ [90m 13 |[39m
+ [90m 14 |[39m         [36mconst[39m apiKey [33m=[39m process[33m.[39menv[33m.[39m[33mPERPLEXITY_API_KEY[39m [33m||[39m process[33m.[39menv[33m.[39m[33mOPENAI_API_KEY[39m[33m;[39m[0m
+
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+AIReport model missing in Prisma Client. Using raw SQL fallback.
+ GET /api/ai/reports 200 in 21ms (compile: 7ms, render: 14ms)
+[dotenv@17.2.3] injecting env (3) from .env -- tip: 📡 add observability to secrets: https://dotenvx.com/ops
+ POST /api/ai/generate 500 in 346ms (compile: 316ms, render: 30ms)

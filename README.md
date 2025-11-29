@@ -29,6 +29,25 @@ To learn more about Next.js, take a look at the following resources:
 
 You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
+## Features
+
+### 🧠 AI Architecture Reporting (New in v0.2.0)
+- **Automated Analysis**: Generates comprehensive architecture reports using Perplexity AI.
+- **Actionable Insights**: Identifies security risks, outdated dependencies, and strategic recommendations.
+- **Interactive Reports**: Reports contain clickable links to specific repositories, logs, and settings within the dashboard.
+- **History**: Access past reports to track improvements over time.
+
+### 🚀 CI/CD & Automation
+- **GitHub Actions**: Standardized pipeline for Linting, Building, and Verification.
+- **Automated Versioning**: Builds automatically increment patch versions.
+- **Health Checks**: Post-deployment verification scripts ensure system stability.
+
+### 📊 Core Dashboard
+- **Repository Management**: Track 50+ repositories, their tech stacks, and health status.
+- **Interface Visualization**: Map dependencies between services (Spotify, OpenAI, Supabase).
+- **DNS & Hosting**: Manage Cloudflare DNS records and link them to Vercel/Fly.io deployments.
+- **Cost Estimation**: Track estimated monthly infrastructure costs.
+
 ## Deploy on Vercel
 
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.

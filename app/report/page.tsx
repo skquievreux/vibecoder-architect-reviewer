@@ -71,14 +71,14 @@ export default function ReportPage() {
                             <Text>Automated analysis and recommendations.</Text>
                         </div>
                     </div>
-                    <Button
-                        icon={Sparkles}
-                        loading={generating}
+                    <button
                         onClick={generateReport}
-                        color="violet"
+                        disabled={generating}
+                        className="flex items-center gap-2 px-4 py-2 bg-violet-600 text-white rounded-lg hover:bg-violet-700 active:bg-violet-800 transition-all shadow-md font-medium disabled:opacity-50 disabled:cursor-not-allowed"
                     >
-                        {generating ? "Analyzing System..." : "Generate New Report"}
-                    </Button>
+                        <Sparkles size={18} />
+                        {generating ? "Analysiere System..." : "Neuen Bericht generieren"}
+                    </button>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
@@ -96,8 +96,8 @@ export default function ReportPage() {
                                         key={report.id}
                                         onClick={() => setCurrentReport(report)}
                                         className={`p-3 rounded-lg cursor-pointer transition-colors border ${currentReport?.id === report.id
-                                                ? "bg-violet-50 border-violet-200"
-                                                : "hover:bg-slate-50 border-transparent"
+                                            ? "bg-violet-50 border-violet-200"
+                                            : "hover:bg-slate-50 border-transparent"
                                             }`}
                                     >
                                         <div className="flex items-center gap-2 mb-1">
@@ -126,7 +126,26 @@ export default function ReportPage() {
                                     </div>
                                     <Badge color="violet" icon={Sparkles}>AI Generated</Badge>
                                 </div>
-                                <ReactMarkdown>{currentReport.content}</ReactMarkdown>
+                                <ReactMarkdown
+                                    components={{
+                                        a: ({ node, ...props }) => (
+                                            <a
+                                                {...props}
+                                                className="text-violet-600 hover:text-violet-800 underline decoration-violet-300 hover:decoration-violet-800 transition-colors font-medium"
+                                                target={props.href?.startsWith('/') ? "_self" : "_blank"}
+                                                rel={props.href?.startsWith('/') ? "" : "noopener noreferrer"}
+                                            />
+                                        ),
+                                        ul: ({ node, ...props }) => <ul {...props} className="list-disc pl-5 space-y-1" />,
+                                        ol: ({ node, ...props }) => <ol {...props} className="list-decimal pl-5 space-y-1" />,
+                                        h1: ({ node, ...props }) => <h1 {...props} className="text-2xl font-bold mt-6 mb-4 text-slate-900" />,
+                                        h2: ({ node, ...props }) => <h2 {...props} className="text-xl font-semibold mt-5 mb-3 text-slate-800" />,
+                                        h3: ({ node, ...props }) => <h3 {...props} className="text-lg font-medium mt-4 mb-2 text-slate-800" />,
+                                        blockquote: ({ node, ...props }) => <blockquote {...props} className="border-l-4 border-violet-200 pl-4 italic text-slate-600 my-4" />,
+                                    }}
+                                >
+                                    {currentReport.content}
+                                </ReactMarkdown>
                             </div>
                         ) : (
                             <div className="flex flex-col items-center justify-center h-full text-slate-400 py-20">

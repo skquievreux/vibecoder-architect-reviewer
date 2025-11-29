@@ -6,7 +6,21 @@ const prisma = new PrismaClient();
 
 export async function POST() {
     try {
-        const apiKey = process.env.PERPLEXITY_API_KEY || process.env.OPENAI_API_KEY;
+        // Force read .env from filesystem to bypass Next.js/Node process.env cache
+        const fs = require('fs');
+        const path = require('path');
+        const envPath = path.join(process.cwd(), '.env');
+        let fileKey = null;
+
+        if (fs.existsSync(envPath)) {
+            const envContent = fs.readFileSync(envPath, 'utf-8');
+            const match = envContent.match(/PERPLEXITY_API_KEY=(.*)/) || envContent.match(/OPENAI_API_KEY=(.*)/);
+            if (match && match[1]) {
+                fileKey = match[1].trim().replace(/["']/g, '');
+            }
+        }
+
+        const apiKey = fileKey || process.env.PERPLEXITY_API_KEY || process.env.OPENAI_API_KEY;
         if (!apiKey) {
             return NextResponse.json({ error: 'AI API Key not configured (Set PERPLEXITY_API_KEY or OPENAI_API_KEY)' }, { status: 500 });
         }
@@ -26,19 +40,26 @@ export async function POST() {
         ]);
 
         // 2. Construct Prompt
-        const systemPrompt = `You are a Senior Software Architect providing a high-level "Project Overview" for a portfolio of software projects.
+        const systemPrompt = `Du bist ein Senior Software Architekt, der einen "Projekt-Überblick" für ein Portfolio von Softwareprojekten erstellt.
     
-    **Objective:**
-    Create a comprehensive executive summary of the entire system landscape. Do not get lost in minor details of every single repo unless critical.
+    **Ziel:**
+    Erstelle eine umfassende Zusammenfassung der gesamten Systemlandschaft auf DEUTSCH.
     
-    **Report Structure:**
-    1.  **Executive Summary**: A 2-3 sentence high-level assessment of the system's health.
-    2.  **Portfolio Statistics**: Total repos, tech stack distribution, deployment health.
-    3.  **Critical Risks**: Highlight only the most urgent security or maintenance risks (e.g., outdated frameworks, exposed secrets).
-    4.  **Strategic Recommendations**: What are the top 3 initiatives the team should focus on next? (e.g., "Standardize on Node 20", "Migrate all Python apps to Fly.io").
+    **WICHTIG - Verlinkungen:**
+    Wenn du Module, Repositories oder Technologien erwähnst, verlinke sie bitte direkt im Dashboard:
+    - Repository: \`[Name](/repo/Name)\` (z.B. [playlist_generator](/repo/playlist_generator))
+    - Technologien: \`[Tech](/tech?q=Tech)\`
+    - Logs: \`[Logs](/logs)\`
+    - DNS/Domains: \`[DNS](/dns)\`
     
-    **Tone:** Professional, strategic, and actionable.
-    **Format:** Clean Markdown.`;
+    **Berichtsstruktur:**
+    1.  **Management Summary**: 2-3 Sätze zur Gesundheit des Systems.
+    2.  **Portfolio Statistiken**: Anzahl Repos, Tech-Stack Verteilung.
+    3.  **Kritische Risiken**: Nur die dringendsten Sicherheits- oder Wartungsrisiken (z.B. veraltete Frameworks, exponierte Secrets).
+    4.  **Strategische Empfehlungen**: Was sind die Top 3 Initiativen? (z.B. "Standardisierung auf Node 20", "Migration zu Fly.io").
+    
+    **Ton:** Professionell, strategisch und handlungsorientiert.
+    **Format:** Sauberes Markdown.`;
 
         const userPrompt = `System Data:
     - Repositories: ${repos.length}
@@ -68,13 +89,25 @@ export async function POST() {
         const reportContent = completion.choices[0].message.content || "No report generated.";
 
         // 4. Save to Database
-        const report = await prisma.aIReport.create({
-            data: {
-                content: reportContent
-            }
-        });
-
-        return NextResponse.json({ report });
+        if (!prisma.aIReport) {
+            // Fallback for stale Prisma Client
+            const crypto = require('crypto');
+            const id = crypto.randomUUID();
+            const now = new Date().toISOString();
+            await prisma.$executeRawUnsafe(
+                'INSERT INTO AIReport (id, content, createdAt) VALUES (?, ?, ?)',
+                id, reportContent, now
+            );
+            // Return mock object since we can't return the prisma result
+            return NextResponse.json({ report: { id, content: reportContent, createdAt: now } });
+        } else {
+            const report = await prisma.aIReport.create({
+                data: {
+                    content: reportContent
+                }
+            });
+            return NextResponse.json({ report });
+        }
     } catch (error: any) {
         console.error("AI Generation Error:", error);
         return NextResponse.json({ error: error.message || 'Failed to generate report' }, { status: 500 });
