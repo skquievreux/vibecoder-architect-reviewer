@@ -116,6 +116,7 @@ export async function POST() {
         const reportContent = completion.choices[0].message.content || "No report generated.";
 
         // 4. Save to Database
+        let report;
         if (!prisma.aIReport) {
             // Fallback for stale Prisma Client
             const crypto = require('crypto');
@@ -125,16 +126,60 @@ export async function POST() {
                 'INSERT INTO AIReport (id, content, createdAt) VALUES (?, ?, ?)',
                 id, reportContent, now
             );
-            // Return mock object since we can't return the prisma result
-            return NextResponse.json({ report: { id, content: reportContent, createdAt: now } });
+            report = { id, content: reportContent, createdAt: now };
         } else {
-            const report = await prisma.aIReport.create({
+            report = await prisma.aIReport.create({
                 data: {
                     content: reportContent
                 }
             });
-            return NextResponse.json({ report });
         }
+
+        // 5. Create Health Snapshot
+        try {
+            // Calculate metrics
+            const totalRepositories = repos.length;
+
+            // Calculate outdated dependencies (mock logic based on available data or real if Health model populated)
+            // For now, let's assume we can derive some "health score" or count from the data we have.
+            // In a real scenario, we'd query RepoHealth.
+
+            let outdatedCount = 0;
+            let vulnerabilitiesCount = 0;
+            let totalHealthScore = 0;
+
+            // Simple heuristic if RepoHealth is empty: check for old updates
+            const sixMonthsAgo = new Date();
+            sixMonthsAgo.setMonth(sixMonthsAgo.getMonth() - 6);
+
+            repos.forEach(r => {
+                if (new Date(r.updatedAt) < sixMonthsAgo) {
+                    outdatedCount++;
+                }
+                // Mock score: 100 - (10 * outdated)
+                totalHealthScore += 100;
+            });
+
+            const avgHealthScore = totalRepositories > 0
+                ? Math.max(0, Math.round((totalHealthScore - (outdatedCount * 20)) / totalRepositories))
+                : 100;
+
+            if (prisma.healthSnapshot) {
+                await prisma.healthSnapshot.create({
+                    data: {
+                        totalRepositories,
+                        outdatedDependenciesCount: outdatedCount,
+                        vulnerabilitiesCount: vulnerabilitiesCount,
+                        healthScore: avgHealthScore
+                    }
+                });
+            }
+        } catch (snapshotError) {
+            console.error("Failed to create health snapshot:", snapshotError);
+            // Don't fail the request if snapshot fails
+        }
+
+        return NextResponse.json({ report });
     } catch (error: any) {
         console.error("AI Generation Error:", error);
         return NextResponse.json({ error: error.message || 'Failed to generate report' }, { status: 500 });

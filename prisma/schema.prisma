@@ -81,6 +81,15 @@ model CostSnapshot {
   details             String?  // JSON string
 }
 
+model HealthSnapshot {
+  id                        String   @id @default(uuid())
+  date                      DateTime @default(now())
+  totalRepositories         Int
+  outdatedDependenciesCount Int
+  vulnerabilitiesCount      Int
+  healthScore               Int      @default(0)
+}
+
 model SyncLog {
   id        String   @id @default(uuid())
   status    String   // SUCCESS, ERROR, INFO
@@ -100,6 +109,8 @@ model RepoTask {
   repositoryId String
   repository   Repository @relation(fields: [repositoryId], references: [id], onDelete: Cascade)
   title        String
+  description  String?
+  reference    String?    // Link to report or external URL
   status       String     @default("OPEN") // OPEN, COMPLETED, IGNORED
   priority     String     @default("MEDIUM") // HIGH, MEDIUM, LOW
   type         String     @default("MAINTENANCE") // SECURITY, MAINTENANCE, FEATURE
