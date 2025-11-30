@@ -29,6 +29,10 @@ model Repository {
   deployments   Deployment[]
   tasks         RepoTask[]
   health        RepoHealth?
+  capabilities  Capability[]
+  outgoingConnections RepoConnection[] @relation("SourceRepo")
+  incomingConnections RepoConnection[] @relation("TargetRepo")
+  businessCanvas BusinessCanvas?
 }
 
 model Deployment {
@@ -116,4 +120,39 @@ model RepoTask {
   type         String     @default("MAINTENANCE") // SECURITY, MAINTENANCE, FEATURE
   createdAt    DateTime   @default(now())
   updatedAt    DateTime   @updatedAt
+}
+
+model Capability {
+  id           String     @id @default(uuid())
+  repositoryId String
+  repository   Repository @relation(fields: [repositoryId], references: [id], onDelete: Cascade)
+  name         String     // e.g. AI_TEXT_GEN
+  category     String?    // e.g. AI, MEDIA
+  source       String?    // e.g. package:openai
+  confidence   Float      @default(1.0)
+  detectedAt   DateTime   @default(now())
+}
+
+model RepoConnection {
+  sourceRepoId String
+  targetRepoId String
+  sourceRepo   Repository @relation("SourceRepo", fields: [sourceRepoId], references: [id], onDelete: Cascade)
+  targetRepo   Repository @relation("TargetRepo", fields: [targetRepoId], references: [id], onDelete: Cascade)
+  type         String     // API_CALL, DATABASE_LINK, ETC
+  detectedAt   DateTime   @default(now())
+
+  @@id([sourceRepoId, targetRepoId])
+}
+
+model BusinessCanvas {
+  id           String     @id @default(uuid())
+  repositoryId String     @unique
+  repository   Repository @relation(fields: [repositoryId], references: [id], onDelete: Cascade)
+  
+  valueProposition String? // JSON array
+  customerSegments String? // JSON array
+  revenueStreams   String? // JSON array
+  costStructure    String? // JSON array
+  
+  updatedAt    DateTime   @default(now())
 }

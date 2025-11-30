@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useState } from 'react';
-import { LayoutDashboard, FileText, Settings, Activity, Database, Menu, X, ChevronDown } from 'lucide-react';
+import { LayoutDashboard, FileText, Settings, Activity, Database, Menu, X, ChevronDown, Layers } from 'lucide-react';
 
 export default function Navbar() {
     const pathname = usePathname();
@@ -14,6 +14,7 @@ export default function Navbar() {
 
     const navItems = [
         { name: 'Dashboard', href: '/', icon: LayoutDashboard },
+        { name: 'Portfolio', href: '/portfolio', icon: Layers },
         { name: 'AI Report', href: '/report', icon: FileText },
     ];
 
