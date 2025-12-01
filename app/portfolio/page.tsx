@@ -510,55 +510,123 @@ export default function PortfolioPage() {
                             <div className="mt-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                                 {portfolio && Object.values(portfolio).flatMap(cat => Object.values(cat)).flat().filter((r, i, a) => a.findIndex(t => t.repoName === r.repoName) === i && r.canvas).map((repo) => {
                                     const canvas = repo.canvas;
-                                    const valueProp = JSON.parse(canvas.valueProposition || '[]');
-                                    const customers = JSON.parse(canvas.customerSegments || '[]');
-                                    const revenue = JSON.parse(canvas.revenueStreams || '[]');
-                                    const costs = JSON.parse(canvas.costStructure || '[]');
+
+                                    // Safe parsing with type checking
+                                    const valueProp = (() => {
+                                        try {
+                                            const parsed = JSON.parse(canvas.valueProposition || '[]');
+                                            return Array.isArray(parsed) ? parsed.map(p => typeof p === 'string' ? p : JSON.stringify(p)) : [];
+                                        } catch { return []; }
+                                    })();
+
+                                    const customers = (() => {
+                                        try {
+                                            const parsed = JSON.parse(canvas.customerSegments || '[]');
+                                            return Array.isArray(parsed) ? parsed : [];
+                                        } catch { return []; }
+                                    })();
+
+                                    const revenue = (() => {
+                                        try {
+                                            const parsed = JSON.parse(canvas.revenueStreams || '[]');
+                                            return Array.isArray(parsed) ? parsed : [];
+                                        } catch { return []; }
+                                    })();
+
+                                    const costs = (() => {
+                                        try {
+                                            const parsed = JSON.parse(canvas.costStructure || '[]');
+                                            return Array.isArray(parsed) ? parsed : [];
+                                        } catch { return []; }
+                                    })();
 
                                     return (
-                                        <Card key={repo.repoName} className="glass-card border-t-4 border-t-violet-500">
-                                            <div className="mb-4">
-                                                <h3 className="text-lg font-bold text-white">{repo.repoName}</h3>
-                                                <p className="text-xs text-slate-400 line-clamp-2">{repo.description}</p>
+                                        <Card key={repo.repoName} className="glass-card border-t-4 border-t-violet-500 flex flex-col h-full">
+                                            <div className="mb-4 flex justify-between items-start">
+                                                <div>
+                                                    <h3 className="text-lg font-bold text-white">{repo.repoName}</h3>
+                                                    <p className="text-xs text-slate-400 line-clamp-2">{repo.description}</p>
+                                                </div>
+                                                <Link href={`/report/portfolio?repoId=${repo.id || ''}`} className="p-1.5 rounded bg-slate-800 hover:bg-violet-600 text-slate-400 hover:text-white transition-colors">
+                                                    <Briefcase size={14} />
+                                                </Link>
                                             </div>
 
-                                            <div className="space-y-4 text-sm">
+                                            <div className="space-y-5 text-sm flex-1">
+                                                {/* Value Proposition */}
                                                 <div>
-                                                    <div className="text-xs font-semibold text-violet-400 uppercase tracking-wider mb-1">Value Proposition</div>
-                                                    <ul className="list-disc list-inside text-slate-300 space-y-0.5">
-                                                        {valueProp.length > 0 ? valueProp.map((v: string) => <li key={v}>{v}</li>) : <li className="text-slate-600 italic">None detected</li>}
+                                                    <div className="text-xs font-semibold text-violet-400 uppercase tracking-wider mb-2 flex items-center gap-2">
+                                                        <Box size={12} /> Value Proposition
+                                                    </div>
+                                                    <ul className="list-disc list-inside text-slate-300 space-y-1">
+                                                        {valueProp.length > 0 ? valueProp.map((v: string, i: number) => <li key={i} className="text-xs">{v}</li>) : <li className="text-slate-600 italic text-xs">None detected</li>}
                                                     </ul>
                                                 </div>
 
+                                                {/* Customer Segments */}
                                                 <div>
-                                                    <div className="text-xs font-semibold text-blue-400 uppercase tracking-wider mb-1">Customer Segments</div>
-                                                    <div className="flex flex-wrap gap-1">
-                                                        {customers.length > 0 ? customers.map((c: string) => <Badge key={c} size="xs" color="blue">{c}</Badge>) : <span className="text-slate-600 italic">Unknown</span>}
+                                                    <div className="text-xs font-semibold text-blue-400 uppercase tracking-wider mb-2 flex items-center gap-2">
+                                                        <Globe size={12} /> Customer Segments
+                                                    </div>
+                                                    <div className="space-y-2">
+                                                        {customers.length > 0 ? customers.map((c: any, idx: number) => (
+                                                            <div key={idx} className="bg-slate-800/50 p-2 rounded border border-slate-700/50">
+                                                                <div className="flex justify-between items-start">
+                                                                    <span className="text-blue-300 font-medium text-xs block">
+                                                                        {typeof c.name === 'string' ? c.name : 'Unknown Segment'}
+                                                                    </span>
+                                                                    {c.willingness_to_pay && (
+                                                                        <span className="text-[10px] text-slate-500">
+                                                                            {typeof c.willingness_to_pay === 'string' ? c.willingness_to_pay : JSON.stringify(c.willingness_to_pay)}
+                                                                        </span>
+                                                                    )}
+                                                                </div>
+                                                                {c.pain_points && Array.isArray(c.pain_points) && c.pain_points.length > 0 && (
+                                                                    <div className="mt-1 text-[10px] text-slate-400">
+                                                                        <span className="opacity-50">Pain: </span>
+                                                                        {typeof c.pain_points[0] === 'string' ? c.pain_points[0] : JSON.stringify(c.pain_points[0])}
+                                                                    </div>
+                                                                )}
+                                                            </div>
+                                                        )) : <span className="text-slate-600 italic text-xs">Unknown</span>}
                                                     </div>
                                                 </div>
 
-                                                <div className="grid grid-cols-2 gap-2 pt-2 border-t border-slate-800">
+                                                <div className="grid grid-cols-1 gap-4 pt-2 border-t border-slate-800">
+                                                    {/* Revenue */}
                                                     <div>
-                                                        <div className="text-xs font-semibold text-emerald-400 uppercase tracking-wider mb-1">Revenue</div>
-                                                        <ul className="space-y-0.5">
-                                                            {revenue.length > 0 ? revenue.map((r: string) => (
-                                                                <li key={r} className="text-emerald-300 text-xs flex items-center">
-                                                                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 mr-1.5"></span>
-                                                                    {r}
-                                                                </li>
-                                                            )) : <li className="text-slate-600 italic text-xs">None</li>}
-                                                        </ul>
+                                                        <div className="text-xs font-semibold text-emerald-400 uppercase tracking-wider mb-2 flex items-center gap-2">
+                                                            <Briefcase size={12} /> Revenue Opportunities
+                                                        </div>
+                                                        <div className="space-y-2">
+                                                            {revenue.length > 0 ? revenue.map((r: any, idx: number) => (
+                                                                <div key={idx} className="flex flex-col gap-1">
+                                                                    <div className="flex items-center justify-between text-xs">
+                                                                        <span className="text-emerald-300 font-medium">{r.source}</span>
+                                                                        {r.potential_arr && <span className="text-emerald-500 font-bold">${(r.potential_arr / 1000).toFixed(1)}k ARR</span>}
+                                                                    </div>
+                                                                    <div className="text-[10px] text-slate-500 flex justify-between">
+                                                                        <span>{r.model}</span>
+                                                                        {r.effort && <span className="text-slate-600">Effort: {r.effort}</span>}
+                                                                    </div>
+                                                                </div>
+                                                            )) : <li className="text-slate-600 italic text-xs list-none">None detected</li>}
+                                                        </div>
                                                     </div>
+
+                                                    {/* Costs */}
                                                     <div>
-                                                        <div className="text-xs font-semibold text-rose-400 uppercase tracking-wider mb-1">Costs</div>
-                                                        <ul className="space-y-0.5">
-                                                            {costs.length > 0 ? costs.map((c: string) => (
-                                                                <li key={c} className="text-rose-300 text-xs flex items-center">
-                                                                    <span className="w-1.5 h-1.5 rounded-full bg-rose-500 mr-1.5"></span>
-                                                                    {c}
-                                                                </li>
-                                                            )) : <li className="text-slate-600 italic text-xs">Unknown</li>}
-                                                        </ul>
+                                                        <div className="text-xs font-semibold text-rose-400 uppercase tracking-wider mb-2 flex items-center gap-2">
+                                                            <Database size={12} /> Cost Structure
+                                                        </div>
+                                                        <div className="space-y-1">
+                                                            {costs.length > 0 ? costs.map((c: any, idx: number) => (
+                                                                <div key={idx} className={`flex justify-between items-center text-xs ${c.isTotal ? 'pt-2 mt-1 border-t border-slate-800 font-bold' : ''}`}>
+                                                                    <span className={c.isTotal ? 'text-slate-200' : 'text-rose-300'}>{c.service}</span>
+                                                                    <span className={c.isTotal ? 'text-slate-200' : 'text-slate-400'}>${c.amount}/mo</span>
+                                                                </div>
+                                                            )) : <li className="text-slate-600 italic text-xs list-none">Unknown</li>}
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>

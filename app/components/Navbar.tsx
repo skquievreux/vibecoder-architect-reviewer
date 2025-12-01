@@ -15,6 +15,7 @@ export default function Navbar() {
     const navItems = [
         { name: 'Dashboard', href: '/', icon: LayoutDashboard },
         { name: 'Portfolio', href: '/portfolio', icon: Layers },
+        { name: 'Canvas Editor', href: '/report/portfolio', icon: FileText },
         { name: 'AI Report', href: '/report', icon: FileText },
     ];
 
@@ -25,7 +26,7 @@ export default function Navbar() {
     ];
 
     return (
-        <nav className="glass-panel sticky top-0 z-50 border-b-0">
+        <nav className="glass-panel sticky top-0 z-50 border-b-0" suppressHydrationWarning>
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex justify-between h-16">
                     <div className="flex">

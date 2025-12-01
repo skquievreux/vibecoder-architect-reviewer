@@ -10,6 +10,7 @@ export async function GET() {
                 technologies: true,
                 interfaces: true,
                 deployments: true,
+                businessCanvas: true,
             },
             orderBy: {
                 updatedAt: 'desc',
@@ -49,7 +50,8 @@ export async function GET() {
                 interfaces: r.interfaces.map((i: any) => ({
                     ...i,
                     details: i.details ? JSON.parse(i.details) : null
-                }))
+                })),
+                businessCanvas: r.businessCanvas
             };
         });
 
