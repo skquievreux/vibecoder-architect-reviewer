@@ -1,6 +1,6 @@
 {
   "name": "dashboard",
-  "version": "0.8.0",
+  "version": "0.8.1",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -30,7 +30,9 @@
     "react-markdown": "^10.1.0",
     "reactflow": "^11.11.4",
     "remark-gfm": "^4.0.1",
-    "tailwind-merge": "^3.4.0"
+    "swagger-ui-react": "^5.30.3",
+    "tailwind-merge": "^3.4.0",
+    "zod": "^4.1.13"
   },
   "devDependencies": {
     "@prisma/client": "^5.22.0",
@@ -38,6 +40,7 @@
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
+    "@types/swagger-ui-react": "^5.18.0",
     "autoprefixer": "^10.4.22",
     "eslint": "^9",
     "eslint-config-next": "16.0.5",

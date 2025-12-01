@@ -1,125 +1,147 @@
 import { NextResponse } from 'next/server';
 import { PrismaClient } from '@prisma/client';
+import { z } from 'zod';
 
 const prisma = new PrismaClient();
 
+// Define Zod Schema for Ingestion Payload
+const IngestSchema = z.object({
+    repoName: z.string().min(1, "Repository name is required"),
+    nameWithOwner: z.string().min(1, "Full name (owner/name) is required"),
+    repoUrl: z.string().url("Invalid repository URL"),
+    description: z.string().optional(),
+    isPrivate: z.boolean().optional(),
+    apiSpec: z.string().nullable().optional(),
+    packageJson: z.object({
+        engines: z.object({
+            node: z.string().optional()
+        }).optional(),
+        dependencies: z.record(z.string()).optional()
+    }).optional(),
+    fileStructure: z.array(z.string()).optional()
+});
+
 export async function POST(request: Request) {
     try {
-        const apiKey = request.headers.get('x-api-key');
-        if (apiKey !== process.env.DASHBOARD_API_KEY) {
-            // For now, we might skip auth or use a simple shared secret
-            // return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+        const body = await request.json();
+
+        // 1. Validate with Zod
+        const result = IngestSchema.safeParse(body);
+
+        if (!result.success) {
+            return NextResponse.json(
+                {
+                    success: false,
+                    error: {
+                        code: 'VALIDATION_ERROR',
+                        message: 'Invalid request data',
+                        details: result.error.format()
+                    }
+                },
+                { status: 400 }
+            );
         }
 
-        const data = await request.json();
-        const { repoName, repoUrl, technologies, packageJson } = data;
+        const data = result.data;
 
-        if (!repoName) {
-            return NextResponse.json({ error: 'Missing repoName' }, { status: 400 });
-        }
-
-        console.log(`📥 Ingesting data for ${repoName}...`);
-
-        // 1. Find or Create Repository
-        let repo = await prisma.repository.findFirst({ where: { name: repoName } });
+        // 2. Process Data
+        // Find or Create Repository
+        let repo = await prisma.repository.findFirst({
+            where: { name: data.repoName }
+        });
 
         if (!repo) {
-            // Create if new
             repo = await prisma.repository.create({
                 data: {
-                    name: repoName,
-                    fullName: data.fullName || repoName,
-                    nameWithOwner: data.nameWithOwner || repoName,
-                    url: repoUrl || '',
+                    name: data.repoName,
+                    fullName: data.nameWithOwner,
+                    nameWithOwner: data.nameWithOwner,
+                    url: data.repoUrl,
                     isPrivate: data.isPrivate || false,
                     description: data.description || '',
+                    apiSpec: data.apiSpec || null,
                     updatedAt: new Date(),
                     pushedAt: new Date(),
-
                 }
             });
         } else {
-            // Update timestamp
             await prisma.repository.update({
                 where: { id: repo.id },
-                data: { updatedAt: new Date() }
+                data: {
+                    updatedAt: new Date(),
+                    apiSpec: data.apiSpec || undefined
+                }
             });
         }
 
-        // 2. Update Technologies
-        // Clear existing for this source? Or merge?
-        // For simplicity, let's assume this payload is authoritative for this repo.
+        // Update Tech Stack (Node/React)
+        if (data.packageJson) {
+            const nodeVersion = data.packageJson.engines?.node;
+            const reactVersion = data.packageJson.dependencies?.['react'];
 
-        // We need to map the incoming tech list to our DB schema
-        // Incoming: [{ name: 'React', version: '18.2.0' }]
-
-        if (technologies && Array.isArray(technologies)) {
-            // First, remove existing technologies for this repo
-            // Prisma doesn't have a simple "delete many from relation" without explicit IDs usually, 
-            // but we can delete from the Technology table where repositoryId matches.
-            // Wait, our schema is implicit many-to-many or explicit?
-            // Let's check schema.prisma if possible, or assume explicit.
-            // Based on previous code: `repo.technologies` suggests a relation.
-            // Actually, looking at `analyzer.py`, we insert into `Technology` table.
-
-            // Let's just create new ones and connect them.
-            // Ideally we should wipe old ones.
-
-            // For now, let's just log it. Implementing full sync logic here is complex without seeing schema.
-            console.log(`  - Technologies: ${technologies.map((t: any) => t.name).join(', ')}`);
-        }
-
-        // 3. Update Node Version specifically if provided
-        if (packageJson && packageJson.engines && packageJson.engines.node) {
-            // We would update the Technology entry for Node.js
-        }
-
-        // 3. Deployment Detection
-        const deployments = [];
-        const { fileStructure } = data; // Expecting file list or structure from ingest payload
-
-        if (fileStructure && Array.isArray(fileStructure)) {
-            // Vercel Detection
-            if (fileStructure.includes('vercel.json') || fileStructure.includes('.vercel')) {
-                deployments.push({ type: 'Vercel', url: `https://${repoName}.vercel.app`, status: 'Active' });
-            }
-            // Fly.io Detection
-            if (fileStructure.includes('fly.toml')) {
-                deployments.push({ type: 'Fly.io', url: `https://${repoName}.fly.dev`, status: 'Active' });
-            }
-            // Docker Detection
-            if (fileStructure.includes('Dockerfile') || fileStructure.includes('docker-compose.yml')) {
-                deployments.push({ type: 'Docker', url: '', status: 'Active' });
-            }
-            // GitHub Actions Detection
-            if (fileStructure.some((f: string) => f.includes('.github/workflows'))) {
-                // Check content if possible, or just assume CI/CD
-            }
-        }
-
-        // Save Deployments
-        if (deployments.length > 0) {
-            // Clear existing deployments for this repo to avoid duplicates
-            await prisma.deployment.deleteMany({ where: { repositoryId: repo.id } });
-
-            for (const dep of deployments) {
-                await prisma.deployment.create({
+            if (nodeVersion) {
+                await prisma.technology.create({
                     data: {
                         repositoryId: repo.id,
-                        provider: dep.type,
-                        url: dep.url,
-                        status: dep.status,
-                        lastDeployedAt: new Date()
+                        name: 'Node.js',
+                        category: 'Language',
+                        version: nodeVersion
                     }
                 });
             }
-            console.log(`  - Detected ${deployments.length} deployments: ${deployments.map(d => d.type).join(', ')}`);
+            if (reactVersion) {
+                await prisma.technology.create({
+                    data: {
+                        repositoryId: repo.id,
+                        name: 'React',
+                        category: 'Framework',
+                        version: reactVersion
+                    }
+                });
+            }
         }
 
-        return NextResponse.json({ success: true, message: 'Data ingested', deployments: deployments.length });
+        // Deployment Detection Logic
+        if (data.fileStructure) {
+            const deployments = [];
+            if (data.fileStructure.includes('vercel.json')) deployments.push('Vercel');
+            if (data.fileStructure.includes('fly.toml')) deployments.push('Fly.io');
+            if (data.fileStructure.includes('Dockerfile')) deployments.push('Docker');
+            if (data.fileStructure.includes('netlify.toml')) deployments.push('Netlify');
 
-    } catch (error: any) {
+            for (const provider of deployments) {
+                // Check if deployment exists to avoid duplicates
+                const existing = await prisma.deployment.findFirst({
+                    where: { repositoryId: repo.id, provider: provider }
+                });
+
+                if (!existing) {
+                    await prisma.deployment.create({
+                        data: {
+                            repositoryId: repo.id,
+                            provider: provider,
+                            status: 'ACTIVE',
+                            lastDeployedAt: new Date()
+                        }
+                    });
+                }
+            }
+        }
+
+        return NextResponse.json({ success: true, repoId: repo.id });
+
+    } catch (error) {
         console.error('Ingest Error:', error);
-        return NextResponse.json({ error: error.message }, { status: 500 });
+        return NextResponse.json(
+            {
+                success: false,
+                error: {
+                    code: 'INTERNAL_ERROR',
+                    message: 'Failed to process ingestion',
+                    details: error instanceof Error ? error.message : 'Unknown error'
+                }
+            },
+            { status: 500 }
+        );
     }
 }

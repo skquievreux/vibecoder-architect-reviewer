@@ -22,6 +22,8 @@ export default function ProvidersPage() {
     const [providers, setProviders] = useState<Provider[]>([]);
     const [loading, setLoading] = useState(true);
 
+    const [costBasis, setCostBasis] = useState<'monthly' | 'yearly'>('monthly');
+
     useEffect(() => {
         fetch('/api/portfolio/providers')
             .then(res => res.json())
@@ -36,8 +38,6 @@ export default function ProvidersPage() {
     }, []);
 
     if (loading) return <div className="p-10 text-slate-400">Loading provider data...</div>;
-
-    const [costBasis, setCostBasis] = useState<'monthly' | 'yearly'>('monthly');
 
     const multiplier = costBasis === 'yearly' ? 12 : 1;
     const totalCost = providers.reduce((acc, p) => acc + p.totalEstimatedCost, 0) * multiplier;

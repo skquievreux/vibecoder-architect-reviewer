@@ -1,48 +1,51 @@
 const fs = require('fs');
 const path = require('path');
 
-// Configuration
-const SOURCE_WORKFLOW = path.join(__dirname, '../.github/workflows/ecosystem-guard.yml');
-const WORKFLOW_FILENAME = 'ecosystem-guard.yml';
-const TARGET_ROOT = path.resolve(__dirname, '../../'); // Assuming dashboard is in a folder next to others
+const GIT_ROOT = '/home/ladmin/Desktop/GIT';
+const SOURCE_FILE = '/home/ladmin/Desktop/GIT/ArchitekturReview/dashboard/.github/workflows/dashboard-sync.yml';
 
-console.log(`🚀 Starting Ecosystem Distribution from ${TARGET_ROOT}`);
+async function main() {
+    console.log('🚀 Distributing GitHub Action: dashboard-sync.yml ...');
 
-if (!fs.existsSync(SOURCE_WORKFLOW)) {
-    console.error(`❌ Source workflow not found at ${SOURCE_WORKFLOW}`);
-    process.exit(1);
-}
+    if (!fs.existsSync(SOURCE_FILE)) {
+        console.error('❌ Source file not found:', SOURCE_FILE);
+        return;
+    }
 
-const workflowContent = fs.readFileSync(SOURCE_WORKFLOW, 'utf-8');
+    const content = fs.readFileSync(SOURCE_FILE, 'utf-8');
+    const repos = fs.readdirSync(GIT_ROOT);
+    let successCount = 0;
+    let skipCount = 0;
 
-// Get all directories in the parent folder
-const repos = fs.readdirSync(TARGET_ROOT, { withFileTypes: true })
-    .filter(dirent => dirent.isDirectory() && !dirent.name.startsWith('.'))
-    .map(dirent => dirent.name);
-
-let updatedCount = 0;
-
-repos.forEach(repo => {
-    const repoPath = path.join(TARGET_ROOT, repo);
-    const packageJsonPath = path.join(repoPath, 'package.json');
-
-    // Only target JS/TS projects (those with package.json)
-    if (fs.existsSync(packageJsonPath)) {
-        const workflowsDir = path.join(repoPath, '.github', 'workflows');
-
-        // Ensure .github/workflows exists
-        if (!fs.existsSync(workflowsDir)) {
-            fs.mkdirSync(workflowsDir, { recursive: true });
+    for (const repo of repos) {
+        if (repo.startsWith('.') || repo === 'ArchitekturReview') { // Skip self and hidden
+            skipCount++;
+            continue;
         }
 
-        const targetFile = path.join(workflowsDir, WORKFLOW_FILENAME);
-        fs.writeFileSync(targetFile, workflowContent);
-        console.log(`✅ Installed guard in: ${repo}`);
-        updatedCount++;
-    } else {
-        console.log(`Skipping ${repo} (no package.json)`);
-    }
-});
+        const repoPath = path.join(GIT_ROOT, repo);
+        if (!fs.lstatSync(repoPath).isDirectory()) continue;
 
-console.log(`\n🎉 Distribution complete! Updated ${updatedCount} repositories.`);
-console.log(`Next step: Commit and push changes in each repository.`);
+        const workflowsDir = path.join(repoPath, '.github', 'workflows');
+
+        try {
+            // Ensure .github/workflows exists
+            if (!fs.existsSync(workflowsDir)) {
+                fs.mkdirSync(workflowsDir, { recursive: true });
+            }
+
+            const targetFile = path.join(workflowsDir, 'dashboard-sync.yml');
+            fs.writeFileSync(targetFile, content);
+            console.log(`✅ Synced to: ${repo}`);
+            successCount++;
+        } catch (e) {
+            console.error(`❌ Failed to sync to ${repo}:`, e.message);
+        }
+    }
+
+    console.log(`\n🎉 Distribution Complete.`);
+    console.log(`   - Updated: ${successCount} repos`);
+    console.log(`   - Skipped: ${skipCount} repos`);
+}
+
+main();

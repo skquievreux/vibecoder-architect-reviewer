@@ -38,6 +38,7 @@ model Repository {
   defaultBranch       String?
   homepageUrl         String?
   customUrl           String?
+  apiSpec             String? // OpenAPI JSON content
   businessCanvas      BusinessCanvas?
   capabilities        Capability[]
   deployments         Deployment[]
