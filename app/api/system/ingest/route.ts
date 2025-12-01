@@ -74,7 +74,49 @@ export async function POST(request: Request) {
             // We would update the Technology entry for Node.js
         }
 
-        return NextResponse.json({ success: true, message: 'Data ingested' });
+        // 3. Deployment Detection
+        const deployments = [];
+        const { fileStructure } = data; // Expecting file list or structure from ingest payload
+
+        if (fileStructure && Array.isArray(fileStructure)) {
+            // Vercel Detection
+            if (fileStructure.includes('vercel.json') || fileStructure.includes('.vercel')) {
+                deployments.push({ type: 'Vercel', url: `https://${repoName}.vercel.app`, status: 'Active' });
+            }
+            // Fly.io Detection
+            if (fileStructure.includes('fly.toml')) {
+                deployments.push({ type: 'Fly.io', url: `https://${repoName}.fly.dev`, status: 'Active' });
+            }
+            // Docker Detection
+            if (fileStructure.includes('Dockerfile') || fileStructure.includes('docker-compose.yml')) {
+                deployments.push({ type: 'Docker', url: '', status: 'Active' });
+            }
+            // GitHub Actions Detection
+            if (fileStructure.some((f: string) => f.includes('.github/workflows'))) {
+                // Check content if possible, or just assume CI/CD
+            }
+        }
+
+        // Save Deployments
+        if (deployments.length > 0) {
+            // Clear existing deployments for this repo to avoid duplicates
+            await prisma.deployment.deleteMany({ where: { repositoryId: repo.id } });
+
+            for (const dep of deployments) {
+                await prisma.deployment.create({
+                    data: {
+                        repositoryId: repo.id,
+                        provider: dep.type,
+                        url: dep.url,
+                        status: dep.status,
+                        lastDeployedAt: new Date()
+                    }
+                });
+            }
+            console.log(`  - Detected ${deployments.length} deployments: ${deployments.map(d => d.type).join(', ')}`);
+        }
+
+        return NextResponse.json({ success: true, message: 'Data ingested', deployments: deployments.length });
 
     } catch (error: any) {
         console.error('Ingest Error:', error);

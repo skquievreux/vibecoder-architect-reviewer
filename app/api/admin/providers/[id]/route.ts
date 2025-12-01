@@ -3,11 +3,12 @@ import { PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient();
 
-export async function PATCH(req: Request, { params }: { params: { id: string } }) {
+export async function PATCH(req: Request, { params }: { params: Promise<{ id: string }> }) {
     try {
+        const { id } = await params;
         const body = await req.json();
         const provider = await prisma.provider.update({
-            where: { id: params.id },
+            where: { id },
             data: {
                 slug: body.slug,
                 name: body.name,
@@ -25,10 +26,11 @@ export async function PATCH(req: Request, { params }: { params: { id: string } }
     }
 }
 
-export async function DELETE(req: Request, { params }: { params: { id: string } }) {
+export async function DELETE(req: Request, { params }: { params: Promise<{ id: string }> }) {
     try {
+        const { id } = await params;
         await prisma.provider.delete({
-            where: { id: params.id }
+            where: { id }
         });
         return NextResponse.json({ success: true });
     } catch (error) {

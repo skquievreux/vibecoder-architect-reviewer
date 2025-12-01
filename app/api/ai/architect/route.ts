@@ -44,6 +44,21 @@ async function generateArchitectResponse(message: string, context: any) {
         recommendations.push("Use **Eleven Labs** for voice synthesis.");
     }
 
+    // 4. Check against Architecture Decisions
+    if (context.decisions && context.decisions.length > 0) {
+        context.decisions.forEach((d: any) => {
+            // Simple keyword matching for demo purposes
+            const tags = JSON.parse(d.tags || '[]');
+            const matchesTag = tags.some((t: string) => lowerMsg.includes(t.toLowerCase()));
+            const matchesTitle = lowerMsg.includes(d.title.toLowerCase());
+
+            if (matchesTag || matchesTitle) {
+                const date = new Date(d.createdAt).toLocaleDateString('de-DE');
+                recommendations.push(`**Policy Check**: ${d.title} (Entscheidung vom: ${date}) - ${d.decision.slice(0, 100)}...`);
+            }
+        });
+    }
+
     // 3. Generate ADR Content (HTML format for simplicity in this demo)
     const adrContent = `
 <div class="space-y-4">
@@ -112,21 +127,23 @@ export async function POST(req: Request) {
             return NextResponse.json({ error: 'Message is required' }, { status: 400 });
         }
 
-        // Fetch context (Providers, Technologies)
-        // In a real implementation, we would feed this to the LLM
+        // Fetch context (Providers, Technologies, Decisions)
         const providers = await prisma.deployment.findMany({ select: { provider: true } });
         const technologies = await prisma.technology.findMany({ select: { name: true, version: true } });
+        const decisions = await prisma.architectureDecision.findMany({
+            where: { status: 'ACCEPTED' },
+            select: { title: true, decision: true, tags: true, createdAt: true }
+        });
 
         const context = {
             providers: [...new Set(providers.map(p => p.provider))],
-            technologies: technologies
+            technologies: technologies,
+            decisions: decisions
         };
 
         console.log('[AI Architect] Context loaded. Generating response...');
 
         // Generate Response
-        // For this demo, we use the rule-based mock function
-        // In production, this would be: await callLLM(systemPrompt, message, context);
         const response = await generateArchitectResponse(message, context);
 
         console.log(`[AI Architect] Response generated. Type: ${response.type}`);

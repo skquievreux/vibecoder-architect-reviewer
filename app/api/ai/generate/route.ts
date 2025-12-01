@@ -32,11 +32,12 @@ export async function POST() {
         });
 
         // 1. Fetch System Context
-        const [repos, technologies, interfaces, deployments] = await Promise.all([
+        const [repos, technologies, interfaces, deployments, decisions] = await Promise.all([
             prisma.repository.findMany({ include: { technologies: true, interfaces: true, deployments: true } }),
             prisma.technology.findMany(),
             prisma.interface.findMany(),
-            prisma.deployment.findMany()
+            prisma.deployment.findMany(),
+            prisma.architectureDecision.findMany({ where: { status: 'ACCEPTED' } })
         ]);
 
         // 1.5 Fetch Previous Report
@@ -74,30 +75,35 @@ export async function POST() {
     - Technologien: \`[Tech](/tech?q=Tech)\`
     - Logs: \`[Logs](/logs)\`
     - DNS/Domains: \`[DNS](/dns)\`
+    - Policies: \`[Policy](/architect/decisions/ID)\`
     
     **Berichtsstruktur:**
     1.  **Management Summary**: 2-3 Sätze zur Gesundheit des Systems.
     2.  **Veränderungen seit dem letzten Bericht**: Vergleiche den aktuellen Zustand mit dem "Previous Report". Was ist neu? Was hat sich geändert? (Nur wenn ein vorheriger Bericht existiert).
     3.  **Portfolio Statistiken**: Anzahl Repos, Tech-Stack Verteilung.
-    4.  **Kritische Risiken**: Nur die dringendsten Sicherheits- oder Wartungsrisiken.
-    5.  **Strategische Empfehlungen**: Top 3 Initiativen.
+    4.  **Compliance Check**: Prüfe, ob die Projekte den "Architecture Decisions" entsprechen (siehe unten). Warne bei Verstößen.
+    5.  **Kritische Risiken**: Nur die dringendsten Sicherheits- oder Wartungsrisiken.
+    6.  **Strategische Empfehlungen**: Top 3 Initiativen.
     
     **Ton:** Professionell, strategisch und handlungsorientiert.
     **Format:** Sauberes Markdown.`;
 
         const userPrompt = `System Data:
     - Repositories: ${repos.length}
-    - Technologies: ${technologies.map(t => `${t.name} (${t.version || 'unknown'})`).join(', ')}
+    - Technologies: ${technologies.map((t: any) => `${t.name} (${t.version || 'unknown'})`).join(', ')}
     - Interfaces: ${interfaces.length} detected
     - Deployments: ${deployments.length} active
 
+    Architecture Decisions (Policies):
+    ${decisions.map((d: any) => `- [${d.title}](/architect/decisions/${d.id}): ${d.decision} (Tags: ${d.tags})`).join('\n')}
+
     Detailed Repo List:
-    ${JSON.stringify(repos.map(r => ({
+    ${JSON.stringify(repos.map((r: any) => ({
             name: r.name,
             private: r.isPrivate,
             updated: r.updatedAt,
-            tech: r.technologies.map(t => t.name),
-            interfaces: r.interfaces.map(i => i.type)
+            tech: r.technologies.map((t: any) => t.name),
+            interfaces: r.interfaces.map((i: any) => i.type)
         })), null, 2)}
     
     === PREVIOUS REPORT CONTENT (For Comparison) ===
@@ -152,7 +158,7 @@ export async function POST() {
             const sixMonthsAgo = new Date();
             sixMonthsAgo.setMonth(sixMonthsAgo.getMonth() - 6);
 
-            repos.forEach(r => {
+            repos.forEach((r: any) => {
                 if (new Date(r.updatedAt) < sixMonthsAgo) {
                     outdatedCount++;
                 }

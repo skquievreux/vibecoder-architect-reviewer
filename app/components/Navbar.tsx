@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useState } from 'react';
-import { LayoutDashboard, FileText, Settings, Activity, Database, Menu, X, ChevronDown, Layers, Cloud, Sparkles } from 'lucide-react';
+import { LayoutDashboard, FileText, Settings, Activity, Database, Menu, X, ChevronDown, Layers, Cloud, Sparkles, BookOpen } from 'lucide-react';
 
 export default function Navbar() {
     const pathname = usePathname();
@@ -19,6 +19,7 @@ export default function Navbar() {
         { name: 'Strategy', href: '/report/strategy', icon: FileText },
         { name: 'Providers', href: '/report/providers', icon: Cloud },
         { name: 'Advisor', href: '/architect/chat', icon: Sparkles },
+        { name: 'Knowledge Base', href: '/architect/decisions', icon: BookOpen },
         { name: 'AI Report', href: '/report', icon: FileText },
     ];
 

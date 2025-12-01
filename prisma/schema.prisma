@@ -8,92 +8,86 @@ datasource db {
 }
 
 model Provider {
-  id            String   @id @default(uuid())
-  slug          String   @unique // e.g. 'vercel', 'aws'
-  name          String
-  description   String?
-  website       String?
-  
-  // Metadata
-  category      String   @default("other") // hosting, service, infrastructure
-  tags          String   // JSON array of strings
-  capabilities  String   // JSON array of strings
-  pricingModel  String?  // e.g. "$20/user/month", "Usage based"
-  
-  // Status
-  isApproved    Boolean  @default(true)
-  
-  createdAt     DateTime @default(now())
-  updatedAt     DateTime @updatedAt
+  id           String   @id @default(uuid())
+  slug         String   @unique
+  name         String
+  description  String?
+  website      String?
+  category     String   @default("other")
+  tags         String
+  capabilities String
+  isApproved   Boolean  @default(true)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  pricingModel String?
 }
 
 model Repository {
-  id            String       @id @default(uuid())
-  githubId      String?      @unique // Changed to String to be safe, or BigInt if supported well in SQLite/Prisma
-  name          String
-  fullName      String
-  nameWithOwner String
-  url           String
-  description   String?
-  homepageUrl   String?
-  isPrivate     Boolean      @default(false)
-  createdAt     DateTime     @default(now())
-  updatedAt     DateTime     @updatedAt
-  pushedAt      DateTime?
-  language      String?
-  defaultBranch String?
-  customUrl     String?   // Manual override for the live site URL
-  
-  technologies  Technology[]
-  interfaces    Interface[]
-  deployments   Deployment[]
-  tasks         RepoTask[]
-  health        RepoHealth?
-  capabilities  Capability[]
-  outgoingConnections RepoConnection[] @relation("SourceRepo")
+  id                  String           @id @default(uuid())
+  githubId            String?          @unique
+  name                String
+  fullName            String
+  nameWithOwner       String
+  url                 String
+  description         String?
+  isPrivate           Boolean          @default(false)
+  createdAt           DateTime         @default(now())
+  updatedAt           DateTime         @updatedAt
+  pushedAt            DateTime?
+  language            String?
+  defaultBranch       String?
+  homepageUrl         String?
+  customUrl           String?
+  businessCanvas      BusinessCanvas?
+  capabilities        Capability[]
+  deployments         Deployment[]
+  interfaces          Interface[]
   incomingConnections RepoConnection[] @relation("TargetRepo")
-  businessCanvas BusinessCanvas?
+  outgoingConnections RepoConnection[] @relation("SourceRepo")
+  health              RepoHealth?
+  tasks               RepoTask[]
+  technologies        Technology[]
 }
 
 model Deployment {
-  id           String     @id @default(uuid())
-  repositoryId String
-  repository   Repository @relation(fields: [repositoryId], references: [id], onDelete: Cascade)
-  provider     String     // vercel, fly, lovable, cloudflare, other
-  url          String?
-  status       String?    // active, building, failed
+  id             String     @id @default(uuid())
+  repositoryId   String
+  provider       String
+  url            String?
+  status         String?
   lastDeployedAt DateTime?
-  detectedAt   DateTime   @default(now())
+  detectedAt     DateTime   @default(now())
+  repository     Repository @relation(fields: [repositoryId], references: [id], onDelete: Cascade)
 }
 
 model Technology {
   id           String     @id @default(uuid())
   repositoryId String
-  repository   Repository @relation(fields: [repositoryId], references: [id], onDelete: Cascade)
   name         String
-  category     String?    // language, framework, tool, etc.
+  category     String?
   version      String?
   detectedAt   DateTime   @default(now())
+  repository   Repository @relation(fields: [repositoryId], references: [id], onDelete: Cascade)
 }
 
 model Interface {
   id           String     @id @default(uuid())
   repositoryId String
-  repository   Repository @relation(fields: [repositoryId], references: [id], onDelete: Cascade)
-  type         String?    // rest_api, graphql, etc.
-  direction    String?    // inbound, outbound
-  details      String?    // JSON string
+  type         String?
+  direction    String?
+  details      String?
   detectedAt   DateTime   @default(now())
+  repository   Repository @relation(fields: [repositoryId], references: [id], onDelete: Cascade)
 }
 
 model RepoHealth {
   id                        String     @id @default(uuid())
   repositoryId              String     @unique
-  repository                Repository @relation(fields: [repositoryId], references: [id], onDelete: Cascade)
   outdatedDependenciesCount Int        @default(0)
   vulnerabilitiesCount      Int        @default(0)
   lastCheckedAt             DateTime   @default(now())
   healthScore               Int?
+  repository                Repository @relation(fields: [repositoryId], references: [id], onDelete: Cascade)
 }
 
 model CostSnapshot {
@@ -101,8 +95,7 @@ model CostSnapshot {
   date                DateTime @default(now())
   totalMonthlyCostEst Decimal?
   supabaseCostEst     Decimal?
-
-  details             String?  // JSON string
+  details             String?
 }
 
 model HealthSnapshot {
@@ -116,7 +109,7 @@ model HealthSnapshot {
 
 model SyncLog {
   id        String   @id @default(uuid())
-  status    String   // SUCCESS, ERROR, INFO
+  status    String
   message   String
   details   String?
   createdAt DateTime @default(now())
@@ -131,48 +124,58 @@ model AIReport {
 model RepoTask {
   id           String     @id @default(uuid())
   repositoryId String
-  repository   Repository @relation(fields: [repositoryId], references: [id], onDelete: Cascade)
   title        String
   description  String?
-  reference    String?    // Link to report or external URL
-  status       String     @default("OPEN") // OPEN, COMPLETED, IGNORED
-  priority     String     @default("MEDIUM") // HIGH, MEDIUM, LOW
-  type         String     @default("MAINTENANCE") // SECURITY, MAINTENANCE, FEATURE
+  reference    String?
+  status       String     @default("OPEN")
+  priority     String     @default("MEDIUM")
+  type         String     @default("MAINTENANCE")
   createdAt    DateTime   @default(now())
   updatedAt    DateTime   @updatedAt
+  repository   Repository @relation(fields: [repositoryId], references: [id], onDelete: Cascade)
 }
 
 model Capability {
   id           String     @id @default(uuid())
   repositoryId String
-  repository   Repository @relation(fields: [repositoryId], references: [id], onDelete: Cascade)
-  name         String     // e.g. AI_TEXT_GEN
-  category     String?    // e.g. AI, MEDIA
-  source       String?    // e.g. package:openai
+  name         String
+  category     String?
+  source       String?
   confidence   Float      @default(1.0)
   detectedAt   DateTime   @default(now())
+  repository   Repository @relation(fields: [repositoryId], references: [id], onDelete: Cascade)
 }
 
 model RepoConnection {
   sourceRepoId String
   targetRepoId String
-  sourceRepo   Repository @relation("SourceRepo", fields: [sourceRepoId], references: [id], onDelete: Cascade)
-  targetRepo   Repository @relation("TargetRepo", fields: [targetRepoId], references: [id], onDelete: Cascade)
-  type         String     // API_CALL, DATABASE_LINK, ETC
+  type         String
   detectedAt   DateTime   @default(now())
+  targetRepo   Repository @relation("TargetRepo", fields: [targetRepoId], references: [id], onDelete: Cascade)
+  sourceRepo   Repository @relation("SourceRepo", fields: [sourceRepoId], references: [id], onDelete: Cascade)
 
   @@id([sourceRepoId, targetRepoId])
 }
 
 model BusinessCanvas {
-  id           String     @id @default(uuid())
-  repositoryId String     @unique
-  repository   Repository @relation(fields: [repositoryId], references: [id], onDelete: Cascade)
-  
-  valueProposition String? // JSON array
-  customerSegments String? // JSON array
-  revenueStreams   String? // JSON array
-  costStructure    String? // JSON array
-  
-  updatedAt    DateTime   @default(now())
+  id               String     @id @default(uuid())
+  repositoryId     String     @unique
+  valueProposition String?
+  customerSegments String?
+  revenueStreams   String?
+  costStructure    String?
+  updatedAt        DateTime   @default(now())
+  repository       Repository @relation(fields: [repositoryId], references: [id], onDelete: Cascade)
+}
+
+model ArchitectureDecision {
+  id           String   @id @default(uuid())
+  title        String
+  status       String   @default("PROPOSED")
+  context      String
+  decision     String
+  consequences String
+  tags         String
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
 }
