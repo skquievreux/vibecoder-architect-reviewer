@@ -56,6 +56,10 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 - **DNS & Hosting**: Manage Cloudflare DNS records and link them to Vercel/Fly.io deployments.
 - **Cost Estimation**: Track estimated monthly infrastructure costs.
 
+## API Documentation
+The API is documented using OpenAPI 3.0. You can find the specification file at:
+- [openapi.json](app/api/openapi.json)
+
 ## Deploy on Vercel
 
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
