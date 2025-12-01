@@ -395,7 +395,9 @@ export default function PortfolioReportPage() {
                     <Card className="bg-slate-900/50 border-l-4 border-l-violet-500">
                         <div className="flex justify-between items-start">
                             <div>
-                                <h2 className="text-xl font-bold text-white mb-1">{activeRepo.name}</h2>
+                                <Link href={`/repo/${activeRepo.name}`} className="hover:underline decoration-violet-500 underline-offset-4">
+                                    <h2 className="text-xl font-bold text-white mb-1">{activeRepo.name}</h2>
+                                </Link>
                                 <p className="text-slate-400 text-sm max-w-3xl">{activeRepo.description || "No description available."}</p>
                             </div>
                             <div className="text-right">

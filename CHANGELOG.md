@@ -5,6 +5,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.6.2] - 2025-12-01
+### Added
+- **Portfolio View Enhancements**:
+    - **Business Canvas First**: Made Business Canvas the default tab in Portfolio view.
+    - **Search & Sort**: Added toolbar to search repos by name/content and sort by Name, Revenue, or Cost.
+- **Navigation**:
+    - **Bidirectional Linking**: Added links from Portfolio Editor to Repo Detail and back ("Edit Canvas" button).
+
 ## [0.6.1] - 2025-12-01
 ### Added
 - **Portfolio Management Report**: A new interactive page (`/report/portfolio`) for managing Business Canvas data.

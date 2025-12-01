@@ -2,7 +2,7 @@
 
 import { Card, Title, Text, Badge, Grid, Tab, TabList, TabGroup, TabPanels, TabPanel } from "@tremor/react";
 import { useState, useEffect, useCallback, useMemo } from "react";
-import { ArrowLeft, Layers, Box, Cpu, Image as ImageIcon, Music, Globe, Database, Share2, Briefcase } from "lucide-react";
+import { ArrowLeft, Layers, Box, Cpu, Image as ImageIcon, Music, Globe, Database, Share2, Briefcase, Search, ArrowUpDown } from "lucide-react";
 import Link from "next/link";
 import ReactFlow, {
     Background,
@@ -24,6 +24,7 @@ type RepoInfo = {
     url: string;
     source: string;
     canvas?: any;
+    id?: string;
 };
 
 type PortfolioData = Record<string, Record<string, RepoInfo[]>>;
@@ -170,6 +171,10 @@ export default function PortfolioPage() {
     // Store initial graph data to reset to
     const [initialNodes, setInitialNodes] = useState<any[]>([]);
     const [initialEdges, setInitialEdges] = useState<any[]>([]);
+
+    // Business Canvas State
+    const [canvasSearch, setCanvasSearch] = useState("");
+    const [canvasSort, setCanvasSort] = useState<'name' | 'revenue' | 'cost'>('name');
 
 
 
@@ -336,11 +341,170 @@ export default function PortfolioPage() {
 
                 <TabGroup>
                     <TabList className="mt-8">
+                        <Tab icon={Briefcase}>Business Canvas</Tab>
                         <Tab icon={Layers}>Capability Matrix</Tab>
                         <Tab icon={Share2}>Interconnection Graph</Tab>
-                        <Tab icon={Briefcase}>Business Canvas</Tab>
                     </TabList>
                     <TabPanels>
+                        <TabPanel>
+                            {/* Business Canvas View */}
+                            <div className="mt-6 space-y-6">
+                                {/* Toolbar */}
+                                <div className="flex flex-col sm:flex-row gap-4 justify-between items-center bg-slate-900/50 p-4 rounded-lg border border-slate-800 backdrop-blur-sm">
+                                    <div className="relative w-full sm:w-96">
+                                        <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" size={18} />
+                                        <input
+                                            type="text"
+                                            placeholder="Search repos, segments, or value props..."
+                                            className="w-full pl-10 pr-4 py-2 bg-slate-800 border border-slate-700 rounded-lg text-slate-200 focus:outline-none focus:border-violet-500 transition-colors"
+                                            value={canvasSearch}
+                                            onChange={(e) => setCanvasSearch(e.target.value)}
+                                        />
+                                    </div>
+                                    <div className="flex items-center gap-3 w-full sm:w-auto">
+                                        <span className="text-sm text-slate-400 whitespace-nowrap">Sort by:</span>
+                                        <div className="flex bg-slate-800 rounded-lg p-1 w-full sm:w-auto">
+                                            <button
+                                                onClick={() => setCanvasSort('name')}
+                                                className={`flex-1 sm:flex-none px-3 py-1.5 text-sm font-medium rounded-md transition-colors ${canvasSort === 'name' ? 'bg-violet-600 text-white' : 'text-slate-400 hover:text-white'}`}
+                                            >
+                                                Name
+                                            </button>
+                                            <button
+                                                onClick={() => setCanvasSort('revenue')}
+                                                className={`flex-1 sm:flex-none px-3 py-1.5 text-sm font-medium rounded-md transition-colors ${canvasSort === 'revenue' ? 'bg-emerald-600 text-white' : 'text-slate-400 hover:text-white'}`}
+                                            >
+                                                Revenue
+                                            </button>
+                                            <button
+                                                onClick={() => setCanvasSort('cost')}
+                                                className={`flex-1 sm:flex-none px-3 py-1.5 text-sm font-medium rounded-md transition-colors ${canvasSort === 'cost' ? 'bg-rose-600 text-white' : 'text-slate-400 hover:text-white'}`}
+                                            >
+                                                Cost
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                                    {portfolio && Object.values(portfolio)
+                                        .flatMap(cat => Object.values(cat))
+                                        .flat()
+                                        .filter((r, i, a) => a.findIndex(t => t.repoName === r.repoName) === i && r.canvas)
+                                        .map((repo) => {
+                                            const canvas = repo.canvas;
+                                            // Safe parsing
+                                            const valueProp = (() => { try { const p = JSON.parse(canvas.valueProposition || '[]'); return Array.isArray(p) ? p.map(v => typeof v === 'string' ? v : JSON.stringify(v)) : []; } catch { return []; } })();
+                                            const customers = (() => { try { const p = JSON.parse(canvas.customerSegments || '[]'); return Array.isArray(p) ? p : []; } catch { return []; } })();
+                                            const revenue = (() => { try { const p = JSON.parse(canvas.revenueStreams || '[]'); return Array.isArray(p) ? p : []; } catch { return []; } })();
+                                            const costs = (() => { try { const p = JSON.parse(canvas.costStructure || '[]'); return Array.isArray(p) ? p : []; } catch { return []; } })();
+
+                                            // Calculate totals for sorting
+                                            const totalRevenue = revenue.reduce((acc: number, r: any) => acc + (r.potential_arr || 0), 0);
+                                            const totalCost = costs.reduce((acc: number, c: any) => acc + (c.amount || 0), 0);
+
+                                            return { ...repo, valueProp, customers, revenue, costs, totalRevenue, totalCost };
+                                        })
+                                        .filter(repo => {
+                                            if (!canvasSearch) return true;
+                                            const searchLower = canvasSearch.toLowerCase();
+                                            return (
+                                                repo.repoName.toLowerCase().includes(searchLower) ||
+                                                repo.description?.toLowerCase().includes(searchLower) ||
+                                                repo.valueProp.some((v: string) => v.toLowerCase().includes(searchLower)) ||
+                                                repo.customers.some((c: any) => (c.name || '').toLowerCase().includes(searchLower))
+                                            );
+                                        })
+                                        .sort((a, b) => {
+                                            if (canvasSort === 'revenue') return b.totalRevenue - a.totalRevenue;
+                                            if (canvasSort === 'cost') return b.totalCost - a.totalCost;
+                                            return a.repoName.localeCompare(b.repoName);
+                                        })
+                                        .map((repo) => (
+                                            <Card key={repo.repoName} className="glass-card border-t-4 border-t-violet-500 flex flex-col h-full">
+                                                <div className="mb-4 flex justify-between items-start">
+                                                    <div>
+                                                        <h3 className="text-lg font-bold text-white">{repo.repoName}</h3>
+                                                        <p className="text-xs text-slate-400 line-clamp-2">{repo.description}</p>
+                                                    </div>
+                                                    <Link href={`/report/portfolio?repoId=${repo.id || ''}`} className="p-1.5 rounded bg-slate-800 hover:bg-violet-600 text-slate-400 hover:text-white transition-colors">
+                                                        <Briefcase size={14} />
+                                                    </Link>
+                                                </div>
+
+                                                <div className="space-y-5 text-sm flex-1">
+                                                    {/* Value Proposition */}
+                                                    <div>
+                                                        <div className="text-xs font-semibold text-violet-400 uppercase tracking-wider mb-2 flex items-center gap-2">
+                                                            <Box size={12} /> Value Proposition
+                                                        </div>
+                                                        <ul className="list-disc list-inside text-slate-300 space-y-1">
+                                                            {repo.valueProp.length > 0 ? repo.valueProp.slice(0, 3).map((v: string, i: number) => <li key={i} className="text-xs line-clamp-1">{v}</li>) : <li className="text-slate-600 italic text-xs">None detected</li>}
+                                                        </ul>
+                                                    </div>
+
+                                                    {/* Customer Segments */}
+                                                    <div>
+                                                        <div className="text-xs font-semibold text-blue-400 uppercase tracking-wider mb-2 flex items-center gap-2">
+                                                            <Globe size={12} /> Customer Segments
+                                                        </div>
+                                                        <div className="space-y-2">
+                                                            {repo.customers.length > 0 ? repo.customers.slice(0, 2).map((c: any, idx: number) => (
+                                                                <div key={idx} className="bg-slate-800/50 p-2 rounded border border-slate-700/50">
+                                                                    <div className="flex justify-between items-start">
+                                                                        <span className="text-blue-300 font-medium text-xs block truncate">
+                                                                            {typeof c.name === 'string' ? c.name : 'Unknown Segment'}
+                                                                        </span>
+                                                                        {c.willingness_to_pay && (
+                                                                            <span className="text-[10px] text-slate-500 whitespace-nowrap ml-2">
+                                                                                {typeof c.willingness_to_pay === 'string' ? c.willingness_to_pay : JSON.stringify(c.willingness_to_pay)}
+                                                                            </span>
+                                                                        )}
+                                                                    </div>
+                                                                </div>
+                                                            )) : <span className="text-slate-600 italic text-xs">Unknown</span>}
+                                                        </div>
+                                                    </div>
+
+                                                    <div className="grid grid-cols-1 gap-4 pt-2 border-t border-slate-800">
+                                                        {/* Revenue */}
+                                                        <div>
+                                                            <div className="text-xs font-semibold text-emerald-400 uppercase tracking-wider mb-2 flex items-center gap-2">
+                                                                <Briefcase size={12} /> Revenue Opportunities
+                                                            </div>
+                                                            <div className="space-y-2">
+                                                                {repo.revenue.length > 0 ? repo.revenue.slice(0, 2).map((r: any, idx: number) => (
+                                                                    <div key={idx} className="flex flex-col gap-1">
+                                                                        <div className="flex items-center justify-between text-xs">
+                                                                            <span className="text-emerald-300 font-medium truncate">{r.source}</span>
+                                                                            {r.potential_arr && <span className="text-emerald-500 font-bold whitespace-nowrap ml-2">${(r.potential_arr / 1000).toFixed(1)}k ARR</span>}
+                                                                        </div>
+                                                                    </div>
+                                                                )) : <li className="text-slate-600 italic text-xs list-none">None detected</li>}
+                                                            </div>
+                                                        </div>
+
+                                                        {/* Costs */}
+                                                        <div>
+                                                            <div className="text-xs font-semibold text-rose-400 uppercase tracking-wider mb-2 flex items-center gap-2">
+                                                                <Database size={12} /> Cost Structure
+                                                            </div>
+                                                            <div className="space-y-1">
+                                                                {repo.costs.length > 0 ? repo.costs.slice(0, 2).map((c: any, idx: number) => (
+                                                                    <div key={idx} className={`flex justify-between items-center text-xs ${c.isTotal ? 'pt-2 mt-1 border-t border-slate-800 font-bold' : ''}`}>
+                                                                        <span className={c.isTotal ? 'text-slate-200' : 'text-rose-300'}>{c.service}</span>
+                                                                        <span className={c.isTotal ? 'text-slate-200' : 'text-slate-400'}>${c.amount}/mo</span>
+                                                                    </div>
+                                                                )) : <li className="text-slate-600 italic text-xs list-none">Unknown</li>}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </Card>
+                                        ))}
+                                </div>
+                            </div>
+                        </TabPanel>
                         <TabPanel>
                             {/* List View */}
                             <div className="space-y-10 mt-6">
@@ -503,136 +667,6 @@ export default function PortfolioPage() {
                                         <p>🖱️ Drag to pan • 📜 Scroll to zoom</p>
                                     </div>
                                 </div>
-                            </div>
-                        </TabPanel>
-                        <TabPanel>
-                            {/* Business Canvas View */}
-                            <div className="mt-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                                {portfolio && Object.values(portfolio).flatMap(cat => Object.values(cat)).flat().filter((r, i, a) => a.findIndex(t => t.repoName === r.repoName) === i && r.canvas).map((repo) => {
-                                    const canvas = repo.canvas;
-
-                                    // Safe parsing with type checking
-                                    const valueProp = (() => {
-                                        try {
-                                            const parsed = JSON.parse(canvas.valueProposition || '[]');
-                                            return Array.isArray(parsed) ? parsed.map(p => typeof p === 'string' ? p : JSON.stringify(p)) : [];
-                                        } catch { return []; }
-                                    })();
-
-                                    const customers = (() => {
-                                        try {
-                                            const parsed = JSON.parse(canvas.customerSegments || '[]');
-                                            return Array.isArray(parsed) ? parsed : [];
-                                        } catch { return []; }
-                                    })();
-
-                                    const revenue = (() => {
-                                        try {
-                                            const parsed = JSON.parse(canvas.revenueStreams || '[]');
-                                            return Array.isArray(parsed) ? parsed : [];
-                                        } catch { return []; }
-                                    })();
-
-                                    const costs = (() => {
-                                        try {
-                                            const parsed = JSON.parse(canvas.costStructure || '[]');
-                                            return Array.isArray(parsed) ? parsed : [];
-                                        } catch { return []; }
-                                    })();
-
-                                    return (
-                                        <Card key={repo.repoName} className="glass-card border-t-4 border-t-violet-500 flex flex-col h-full">
-                                            <div className="mb-4 flex justify-between items-start">
-                                                <div>
-                                                    <h3 className="text-lg font-bold text-white">{repo.repoName}</h3>
-                                                    <p className="text-xs text-slate-400 line-clamp-2">{repo.description}</p>
-                                                </div>
-                                                <Link href={`/report/portfolio?repoId=${repo.id || ''}`} className="p-1.5 rounded bg-slate-800 hover:bg-violet-600 text-slate-400 hover:text-white transition-colors">
-                                                    <Briefcase size={14} />
-                                                </Link>
-                                            </div>
-
-                                            <div className="space-y-5 text-sm flex-1">
-                                                {/* Value Proposition */}
-                                                <div>
-                                                    <div className="text-xs font-semibold text-violet-400 uppercase tracking-wider mb-2 flex items-center gap-2">
-                                                        <Box size={12} /> Value Proposition
-                                                    </div>
-                                                    <ul className="list-disc list-inside text-slate-300 space-y-1">
-                                                        {valueProp.length > 0 ? valueProp.map((v: string, i: number) => <li key={i} className="text-xs">{v}</li>) : <li className="text-slate-600 italic text-xs">None detected</li>}
-                                                    </ul>
-                                                </div>
-
-                                                {/* Customer Segments */}
-                                                <div>
-                                                    <div className="text-xs font-semibold text-blue-400 uppercase tracking-wider mb-2 flex items-center gap-2">
-                                                        <Globe size={12} /> Customer Segments
-                                                    </div>
-                                                    <div className="space-y-2">
-                                                        {customers.length > 0 ? customers.map((c: any, idx: number) => (
-                                                            <div key={idx} className="bg-slate-800/50 p-2 rounded border border-slate-700/50">
-                                                                <div className="flex justify-between items-start">
-                                                                    <span className="text-blue-300 font-medium text-xs block">
-                                                                        {typeof c.name === 'string' ? c.name : 'Unknown Segment'}
-                                                                    </span>
-                                                                    {c.willingness_to_pay && (
-                                                                        <span className="text-[10px] text-slate-500">
-                                                                            {typeof c.willingness_to_pay === 'string' ? c.willingness_to_pay : JSON.stringify(c.willingness_to_pay)}
-                                                                        </span>
-                                                                    )}
-                                                                </div>
-                                                                {c.pain_points && Array.isArray(c.pain_points) && c.pain_points.length > 0 && (
-                                                                    <div className="mt-1 text-[10px] text-slate-400">
-                                                                        <span className="opacity-50">Pain: </span>
-                                                                        {typeof c.pain_points[0] === 'string' ? c.pain_points[0] : JSON.stringify(c.pain_points[0])}
-                                                                    </div>
-                                                                )}
-                                                            </div>
-                                                        )) : <span className="text-slate-600 italic text-xs">Unknown</span>}
-                                                    </div>
-                                                </div>
-
-                                                <div className="grid grid-cols-1 gap-4 pt-2 border-t border-slate-800">
-                                                    {/* Revenue */}
-                                                    <div>
-                                                        <div className="text-xs font-semibold text-emerald-400 uppercase tracking-wider mb-2 flex items-center gap-2">
-                                                            <Briefcase size={12} /> Revenue Opportunities
-                                                        </div>
-                                                        <div className="space-y-2">
-                                                            {revenue.length > 0 ? revenue.map((r: any, idx: number) => (
-                                                                <div key={idx} className="flex flex-col gap-1">
-                                                                    <div className="flex items-center justify-between text-xs">
-                                                                        <span className="text-emerald-300 font-medium">{r.source}</span>
-                                                                        {r.potential_arr && <span className="text-emerald-500 font-bold">${(r.potential_arr / 1000).toFixed(1)}k ARR</span>}
-                                                                    </div>
-                                                                    <div className="text-[10px] text-slate-500 flex justify-between">
-                                                                        <span>{r.model}</span>
-                                                                        {r.effort && <span className="text-slate-600">Effort: {r.effort}</span>}
-                                                                    </div>
-                                                                </div>
-                                                            )) : <li className="text-slate-600 italic text-xs list-none">None detected</li>}
-                                                        </div>
-                                                    </div>
-
-                                                    {/* Costs */}
-                                                    <div>
-                                                        <div className="text-xs font-semibold text-rose-400 uppercase tracking-wider mb-2 flex items-center gap-2">
-                                                            <Database size={12} /> Cost Structure
-                                                        </div>
-                                                        <div className="space-y-1">
-                                                            {costs.length > 0 ? costs.map((c: any, idx: number) => (
-                                                                <div key={idx} className={`flex justify-between items-center text-xs ${c.isTotal ? 'pt-2 mt-1 border-t border-slate-800 font-bold' : ''}`}>
-                                                                    <span className={c.isTotal ? 'text-slate-200' : 'text-rose-300'}>{c.service}</span>
-                                                                    <span className={c.isTotal ? 'text-slate-200' : 'text-slate-400'}>${c.amount}/mo</span>
-                                                                </div>
-                                                            )) : <li className="text-slate-600 italic text-xs list-none">Unknown</li>}
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </Card>
-                                    );
-                                })}
                             </div>
                         </TabPanel>
                     </TabPanels>

@@ -2,7 +2,7 @@
 
 import { Card, Title, Text, Badge, Grid, DonutChart, List, ListItem } from "@tremor/react";
 import { useState, useEffect } from "react";
-import { ArrowLeft, Github, Globe, ExternalLink, Calendar, Code, Database, Server, Shield, CheckCircle, Circle, Play, AlertTriangle } from "lucide-react";
+import { ArrowLeft, Github, Globe, ExternalLink, Calendar, Code, Database, Server, Shield, CheckCircle, Circle, Play, AlertTriangle, FileText } from "lucide-react";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 
@@ -309,6 +309,13 @@ export default function RepoDetail() {
                             <Github size={18} />
                             GitHub
                         </a>
+                        <Link
+                            href={`/report/portfolio?repoId=${(repo as any).id}`}
+                            className="flex items-center gap-2 px-4 py-2 bg-violet-600/20 border border-violet-500/50 text-violet-300 rounded-lg hover:bg-violet-600/30 transition-colors font-medium"
+                        >
+                            <FileText size={18} />
+                            Edit Canvas
+                        </Link>
                         {activeUrl && (
                             <div className="flex gap-2 items-center">
                                 <div className="relative group">

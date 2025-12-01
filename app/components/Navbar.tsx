@@ -16,6 +16,7 @@ export default function Navbar() {
         { name: 'Dashboard', href: '/', icon: LayoutDashboard },
         { name: 'Portfolio', href: '/portfolio', icon: Layers },
         { name: 'Canvas Editor', href: '/report/portfolio', icon: FileText },
+        { name: 'Strategy', href: '/report/strategy', icon: FileText },
         { name: 'AI Report', href: '/report', icon: FileText },
     ];
 
