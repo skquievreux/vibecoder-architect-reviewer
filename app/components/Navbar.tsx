@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useState } from 'react';
-import { LayoutDashboard, FileText, Settings, Activity, Database, Menu, X, ChevronDown, Layers } from 'lucide-react';
+import { LayoutDashboard, FileText, Settings, Activity, Database, Menu, X, ChevronDown, Layers, Cloud, Sparkles } from 'lucide-react';
 
 export default function Navbar() {
     const pathname = usePathname();
@@ -17,10 +17,13 @@ export default function Navbar() {
         { name: 'Portfolio', href: '/portfolio', icon: Layers },
         { name: 'Canvas Editor', href: '/report/portfolio', icon: FileText },
         { name: 'Strategy', href: '/report/strategy', icon: FileText },
+        { name: 'Providers', href: '/report/providers', icon: Cloud },
+        { name: 'Advisor', href: '/architect/chat', icon: Sparkles },
         { name: 'AI Report', href: '/report', icon: FileText },
     ];
 
     const adminItems = [
+        { name: 'Provider Management', href: '/admin/providers', icon: Cloud },
         { name: 'Maintenance', href: '/maintenance', icon: Settings },
         { name: 'System Logs', href: '/logs', icon: Activity },
         { name: 'Ecosystem Audit', href: '/maintenance?view=audit', icon: Database },
@@ -41,10 +44,10 @@ export default function Navbar() {
                                 <Link
                                     key={item.name}
                                     href={item.href}
-                                    className={`inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium transition-colors ${isActive(item.href)
+                                    className={`inline - flex items - center px - 1 pt - 1 border - b - 2 text - sm font - medium transition - colors ${isActive(item.href)
                                         ? 'border-violet-500 text-violet-400'
                                         : 'border-transparent text-slate-400 hover:border-slate-600 hover:text-slate-200'
-                                        }`}
+                                        } `}
                                 >
                                     <item.icon className="w-4 h-4 mr-2" />
                                     {item.name}
@@ -64,7 +67,7 @@ export default function Navbar() {
                                 </button>
 
                                 {/* Dropdown Menu */}
-                                <div className={`absolute top-full left-0 mt-1 w-48 bg-slate-900 border border-slate-700 rounded-md shadow-lg py-1 ring-1 ring-black ring-opacity-5 transition-all duration-200 ${isAdminOpen || 'group-hover:block hidden'} `}>
+                                <div className={`absolute top - full left - 0 mt - 1 w - 48 bg - slate - 900 border border - slate - 700 rounded - md shadow - lg py - 1 ring - 1 ring - black ring - opacity - 5 transition - all duration - 200 ${isAdminOpen || 'group-hover:block hidden'} `}>
                                     {adminItems.map((item) => (
                                         <Link
                                             key={item.name}
@@ -107,10 +110,10 @@ export default function Navbar() {
                             <Link
                                 key={item.name}
                                 href={item.href}
-                                className={`block pl-3 pr-4 py-2 border-l-4 text-base font-medium ${isActive(item.href)
+                                className={`block pl - 3 pr - 4 py - 2 border - l - 4 text - base font - medium ${isActive(item.href)
                                     ? 'bg-slate-800 border-violet-500 text-violet-400'
                                     : 'border-transparent text-slate-400 hover:bg-slate-800 hover:border-slate-600 hover:text-slate-200'
-                                    }`}
+                                    } `}
                             >
                                 <div className="flex items-center">
                                     <item.icon className="w-4 h-4 mr-2" />

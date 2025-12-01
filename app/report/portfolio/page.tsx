@@ -155,6 +155,14 @@ export default function PortfolioReportPage() {
     const [saving, setSaving] = useState(false);
     const [activeId, setActiveId] = useState<string | null>(null);
     const [draggedLibraryItem, setDraggedLibraryItem] = useState<{ content: string, category: string } | null>(null);
+    const [providers, setProviders] = useState<any[]>([]);
+
+    useEffect(() => {
+        fetch('/api/admin/providers')
+            .then(res => res.json())
+            .then(data => setProviders(Array.isArray(data) ? data : []))
+            .catch(err => console.error("Failed to fetch providers for canvas:", err));
+    }, []);
 
     const sensors = useSensors(
         useSensor(PointerSensor),
@@ -459,6 +467,18 @@ export default function PortfolioReportPage() {
                                 <Text className="text-xs text-slate-500 mb-4">Drag items to the canvas to add them.</Text>
 
                                 <div className="space-y-6">
+                                    {/* Dynamic Providers Section */}
+                                    <div>
+                                        <h4 className="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">
+                                            Cloud Providers
+                                        </h4>
+                                        <div className="flex flex-wrap gap-2">
+                                            {providers.map((p: any) => (
+                                                <LibraryItem key={p.id} content={p.name} category="costStructure" />
+                                            ))}
+                                        </div>
+                                    </div>
+
                                     {(Object.keys(STANDARD_ITEMS) as Array<keyof typeof STANDARD_ITEMS>).map(category => (
                                         <div key={category}>
                                             <h4 className="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">
