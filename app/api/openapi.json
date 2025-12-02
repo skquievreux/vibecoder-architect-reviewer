@@ -709,6 +709,34 @@
         }
       }
     },
+    "/api/portfolio/insights": {
+      "get": {
+        "tags": [
+          "Public"
+        ],
+        "summary": "[Public] GET /api/portfolio/insights",
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      }
+    },
     "/api/portfolio/providers": {
       "get": {
         "tags": [

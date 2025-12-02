@@ -20,6 +20,10 @@ model Provider {
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
   pricingModel String?
+  developerUrl String?
+  docsUrl      String?
+  billingUrl   String?
+  repositories Repository[]
 }
 
 model Repository {
@@ -38,7 +42,7 @@ model Repository {
   defaultBranch       String?
   homepageUrl         String?
   customUrl           String?
-  apiSpec             String? // OpenAPI JSON content
+  apiSpec             String?
   businessCanvas      BusinessCanvas?
   capabilities        Capability[]
   deployments         Deployment[]
@@ -48,6 +52,7 @@ model Repository {
   health              RepoHealth?
   tasks               RepoTask[]
   technologies        Technology[]
+  providers           Provider[]
 }
 
 model Deployment {
@@ -159,23 +164,23 @@ model RepoConnection {
 }
 
 model BusinessCanvas {
-  id               String     @id @default(uuid())
-  repositoryId     String     @unique
-  valueProposition String?
-  customerSegments String?
-  revenueStreams   String?
-  costStructure    String?
-  estimatedARR         Decimal?
-  monetizationPotential String? // HIGH, MEDIUM, LOW
-  marketSize           String?
-  consolidationGroup   String?
-  updatedAt        DateTime   @default(now())
-  repository       Repository @relation(fields: [repositoryId], references: [id], onDelete: Cascade)
+  id                    String     @id @default(uuid())
+  repositoryId          String     @unique
+  valueProposition      String?
+  customerSegments      String?
+  revenueStreams        String?
+  costStructure         String?
+  updatedAt             DateTime   @default(now())
+  consolidationGroup    String?
+  estimatedARR          Decimal?
+  marketSize            String?
+  monetizationPotential String?
+  repository            Repository @relation(fields: [repositoryId], references: [id], onDelete: Cascade)
 }
 
 model ArchitectureDecision {
   id           String   @id @default(uuid())
-  title        String
+  title        String   @unique
   status       String   @default("PROPOSED")
   context      String
   decision     String

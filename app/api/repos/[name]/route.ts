@@ -18,6 +18,7 @@ export async function GET(
                 technologies: true,
                 interfaces: true,
                 deployments: true,
+                providers: true,
             },
         });
 
@@ -33,6 +34,7 @@ export async function GET(
             },
             technologies: repo.technologies,
             deployments: repo.deployments,
+            providers: repo.providers,
             interfaces: repo.interfaces.map((i: any) => ({
                 ...i,
                 details: i.details ? JSON.parse(i.details) : null

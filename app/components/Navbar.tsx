@@ -36,10 +36,10 @@ const NAVIGATION = {
     },
     operations: {
         name: 'Operations',
-        href: '/report/providers',
+        href: '/providers',
         icon: Cloud,
         items: [
-            { name: 'Service Catalog', href: '/report/providers', icon: Cloud },
+            { name: 'Service Catalog', href: '/providers', icon: Cloud },
             { name: 'System Logs', href: '/logs', icon: Activity },
             { name: 'Audit', href: '/maintenance?view=audit', icon: ShieldCheck },
         ]
@@ -74,7 +74,7 @@ export default function Navbar() {
             setActiveContext('portfolio');
         } else if (pathname.startsWith('/architect') || pathname.startsWith('/developer')) {
             setActiveContext('architecture');
-        } else if (pathname.startsWith('/report/providers') || pathname.startsWith('/logs')) {
+        } else if (pathname.startsWith('/providers') || pathname.startsWith('/report/providers') || pathname.startsWith('/logs')) {
             setActiveContext('operations');
         } else if (pathname.startsWith('/admin') || pathname.startsWith('/maintenance')) {
             setActiveContext('settings');

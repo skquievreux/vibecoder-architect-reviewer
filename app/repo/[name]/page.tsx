@@ -35,6 +35,13 @@ type Deployment = {
     lastDeployedAt: string;
 };
 
+type Provider = {
+    id: string;
+    name: string;
+    slug: string;
+    category: string;
+};
+
 type Repository = {
     repo: {
         name: string;
@@ -52,6 +59,14 @@ type Repository = {
     technologies: Technology[];
     interfaces: Interface[];
     deployments: Deployment[];
+    providers: Provider[];
+};
+
+type Provider = {
+    id: string;
+    name: string;
+    slug: string;
+    category: string;
 };
 
 const DASHBOARD_URLS: Record<string, string> = {
@@ -286,6 +301,71 @@ export default function RepoDetail() {
         }
     };
 
+    // Provider Management
+    const [allProviders, setAllProviders] = useState<Provider[]>([]);
+    const [selectedProvider, setSelectedProvider] = useState("");
+    const [addingProvider, setAddingProvider] = useState(false);
+
+    useEffect(() => {
+        fetch('/api/providers')
+            .then(res => res.json())
+            .then(data => setAllProviders(data))
+            .catch(err => console.error("Failed to load providers", err));
+    }, []);
+
+    const handleAddProvider = async () => {
+        if (!selectedProvider || !repoData) return;
+        setAddingProvider(true);
+        try {
+            const res = await fetch(`/api/repos/${repoName}/providers`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ providerId: selectedProvider })
+            });
+            if (res.ok) {
+                const provider = allProviders.find(p => p.id === selectedProvider);
+                if (provider) {
+                    setRepoData(prev => prev ? {
+                        ...prev,
+                        providers: [...(prev.providers || []), provider]
+                    } : null);
+                }
+                setSelectedProvider("");
+            } else {
+                alert("Failed to add provider");
+            }
+        } catch (e) {
+            console.error(e);
+            alert("Error adding provider");
+        } finally {
+            setAddingProvider(false);
+        }
+    };
+
+    const handleRemoveProvider = async (providerId: string) => {
+        if (!confirm("Are you sure you want to remove this provider?")) return;
+        try {
+            const res = await fetch(`/api/repos/${repoName}/providers`, {
+                method: 'DELETE',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ providerId })
+            });
+            if (res.ok) {
+                setRepoData(prev => prev ? {
+                    ...prev,
+                    providers: prev.providers.filter(p => p.id !== providerId)
+                } : null);
+            } else {
+                alert("Failed to remove provider");
+            }
+        } catch (e) {
+            console.error(e);
+            alert("Error removing provider");
+        }
+    };
+
+
+
     return (
         <main className="p-10 bg-slate-950 min-h-screen relative">
             <div className="max-w-7xl mx-auto space-y-6">
@@ -423,6 +503,57 @@ export default function RepoDetail() {
                                     </div>
                                 ))
                             )}
+                        </div>
+                    </Card>
+                </Grid>
+
+
+
+                <Grid numItems={1} className="gap-6">
+                    {/* Connected Providers */}
+                    <Card className="glass-card">
+                        <Title className="mb-4 text-white">Connected Providers</Title>
+                        <div className="space-y-4">
+                            <div className="flex flex-wrap gap-2">
+                                {repoData.providers && repoData.providers.length > 0 ? (
+                                    repoData.providers.map(provider => (
+                                        <div key={provider.id} className="flex items-center gap-2 px-3 py-1.5 bg-slate-900 border border-slate-800 rounded-lg group">
+                                            <span className="text-slate-200 text-sm font-medium">{provider.name}</span>
+                                            <button
+                                                onClick={() => handleRemoveProvider(provider.id)}
+                                                className="text-slate-500 hover:text-rose-400 opacity-0 group-hover:opacity-100 transition-all"
+                                                title="Remove"
+                                            >
+                                                &times;
+                                            </button>
+                                        </div>
+                                    ))
+                                ) : (
+                                    <Text className="text-slate-500 text-sm">No providers linked manually.</Text>
+                                )}
+                            </div>
+
+                            <div className="flex gap-2 pt-4 border-t border-slate-800">
+                                <select
+                                    className="flex-1 p-2 bg-slate-950 border border-slate-700 rounded-lg text-slate-200 text-sm focus:outline-none focus:border-violet-500"
+                                    value={selectedProvider}
+                                    onChange={(e) => setSelectedProvider(e.target.value)}
+                                >
+                                    <option value="">+ Link Provider...</option>
+                                    {allProviders
+                                        .filter(p => !repoData.providers?.some(rp => rp.id === p.id))
+                                        .map(p => (
+                                            <option key={p.id} value={p.id}>{p.name}</option>
+                                        ))}
+                                </select>
+                                <button
+                                    onClick={handleAddProvider}
+                                    disabled={!selectedProvider || addingProvider}
+                                    className="px-3 py-2 bg-violet-600 text-white rounded-lg text-sm font-medium hover:bg-violet-500 disabled:opacity-50 disabled:cursor-not-allowed"
+                                >
+                                    Add
+                                </button>
+                            </div>
                         </div>
                     </Card>
                 </Grid>
@@ -598,104 +729,108 @@ export default function RepoDetail() {
             </div>
 
             {/* DNS Connection Modal */}
-            {isDnsModalOpen && (
-                <div className="fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center z-50 p-4" onClick={() => setIsDnsModalOpen(false)}>
-                    <div className="bg-slate-900 border border-slate-800 rounded-xl shadow-2xl max-w-md w-full" onClick={e => e.stopPropagation()}>
-                        <div className="p-6 border-b border-slate-800">
-                            <Title className="text-white">Connect Custom Domain</Title>
-                            <Text className="text-slate-400">Create a CNAME record pointing to this deployment.</Text>
-                        </div>
-                        <div className="p-6 space-y-4">
-                            <div>
-                                <label className="block text-sm font-medium text-slate-300 mb-1">Select Zone</label>
-                                <select
-                                    className="w-full p-2 bg-slate-950 border border-slate-700 rounded-lg text-slate-200 focus:outline-none focus:border-violet-500"
-                                    value={selectedZone}
-                                    onChange={(e) => setSelectedZone(e.target.value)}
-                                >
-                                    <option value="">-- Select a domain --</option>
-                                    {zones.map(z => (
-                                        <option key={z.id} value={z.id}>{z.name}</option>
-                                    ))}
-                                </select>
+            {
+                isDnsModalOpen && (
+                    <div className="fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center z-50 p-4" onClick={() => setIsDnsModalOpen(false)}>
+                        <div className="bg-slate-900 border border-slate-800 rounded-xl shadow-2xl max-w-md w-full" onClick={e => e.stopPropagation()}>
+                            <div className="p-6 border-b border-slate-800">
+                                <Title className="text-white">Connect Custom Domain</Title>
+                                <Text className="text-slate-400">Create a CNAME record pointing to this deployment.</Text>
                             </div>
-                            <div>
-                                <label className="block text-sm font-medium text-slate-300 mb-1">Subdomain</label>
-                                <div className="flex items-center">
-                                    <input
-                                        type="text"
-                                        className="flex-1 p-2 bg-slate-950 border border-slate-700 rounded-l-lg text-slate-200 focus:outline-none focus:border-violet-500"
-                                        placeholder="app"
-                                        value={subdomain}
-                                        onChange={(e) => setSubdomain(e.target.value)}
-                                    />
-                                    <span className="p-2 bg-slate-800 border border-l-0 border-slate-700 rounded-r-lg text-slate-400 text-sm">
-                                        .{zones.find(z => z.id === selectedZone)?.name || '...'}
-                                    </span>
+                            <div className="p-6 space-y-4">
+                                <div>
+                                    <label className="block text-sm font-medium text-slate-300 mb-1">Select Zone</label>
+                                    <select
+                                        className="w-full p-2 bg-slate-950 border border-slate-700 rounded-lg text-slate-200 focus:outline-none focus:border-violet-500"
+                                        value={selectedZone}
+                                        onChange={(e) => setSelectedZone(e.target.value)}
+                                    >
+                                        <option value="">-- Select a domain --</option>
+                                        {zones.map(z => (
+                                            <option key={z.id} value={z.id}>{z.name}</option>
+                                        ))}
+                                    </select>
+                                </div>
+                                <div>
+                                    <label className="block text-sm font-medium text-slate-300 mb-1">Subdomain</label>
+                                    <div className="flex items-center">
+                                        <input
+                                            type="text"
+                                            className="flex-1 p-2 bg-slate-950 border border-slate-700 rounded-l-lg text-slate-200 focus:outline-none focus:border-violet-500"
+                                            placeholder="app"
+                                            value={subdomain}
+                                            onChange={(e) => setSubdomain(e.target.value)}
+                                        />
+                                        <span className="p-2 bg-slate-800 border border-l-0 border-slate-700 rounded-r-lg text-slate-400 text-sm">
+                                            .{zones.find(z => z.id === selectedZone)?.name || '...'}
+                                        </span>
+                                    </div>
+                                </div>
+                                <div className="p-3 bg-slate-800/50 rounded-lg text-sm text-slate-300 border border-slate-700">
+                                    <p><strong>Target:</strong> {targetDeployment?.url}</p>
+                                    <p><strong>Record:</strong> CNAME {subdomain}.{zones.find(z => z.id === selectedZone)?.name}</p>
                                 </div>
                             </div>
-                            <div className="p-3 bg-slate-800/50 rounded-lg text-sm text-slate-300 border border-slate-700">
-                                <p><strong>Target:</strong> {targetDeployment?.url}</p>
-                                <p><strong>Record:</strong> CNAME {subdomain}.{zones.find(z => z.id === selectedZone)?.name}</p>
+                            <div className="p-4 border-t border-slate-800 bg-slate-900/50 rounded-b-xl flex justify-end gap-2">
+                                <button
+                                    onClick={() => setIsDnsModalOpen(false)}
+                                    className="px-4 py-2 bg-slate-800 border border-slate-700 rounded-lg text-sm font-medium text-slate-300 hover:bg-slate-700 transition-colors"
+                                >
+                                    Cancel
+                                </button>
+                                <button
+                                    onClick={handleConnectDomain}
+                                    disabled={!selectedZone || !subdomain || creatingRecord}
+                                    className="px-4 py-2 bg-violet-600 text-white rounded-lg text-sm font-medium hover:bg-violet-500 disabled:opacity-50 disabled:cursor-not-allowed shadow-[0_0_10px_rgba(124,58,237,0.3)]"
+                                >
+                                    {creatingRecord ? "Creating..." : "Create Record"}
+                                </button>
                             </div>
                         </div>
-                        <div className="p-4 border-t border-slate-800 bg-slate-900/50 rounded-b-xl flex justify-end gap-2">
-                            <button
-                                onClick={() => setIsDnsModalOpen(false)}
-                                className="px-4 py-2 bg-slate-800 border border-slate-700 rounded-lg text-sm font-medium text-slate-300 hover:bg-slate-700 transition-colors"
-                            >
-                                Cancel
-                            </button>
-                            <button
-                                onClick={handleConnectDomain}
-                                disabled={!selectedZone || !subdomain || creatingRecord}
-                                className="px-4 py-2 bg-violet-600 text-white rounded-lg text-sm font-medium hover:bg-violet-500 disabled:opacity-50 disabled:cursor-not-allowed shadow-[0_0_10px_rgba(124,58,237,0.3)]"
-                            >
-                                {creatingRecord ? "Creating..." : "Create Record"}
-                            </button>
-                        </div>
                     </div>
-                </div>
-            )}
+                )
+            }
 
             {/* Edit URL Modal */}
-            {isEditUrlModalOpen && (
-                <div className="fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center z-50 p-4" onClick={() => setIsEditUrlModalOpen(false)}>
-                    <div className="bg-slate-900 border border-slate-800 rounded-xl shadow-2xl max-w-md w-full" onClick={e => e.stopPropagation()}>
-                        <div className="p-6 border-b border-slate-800">
-                            <Title className="text-white">Edit Live Site URL</Title>
-                            <Text className="text-slate-400">Manually override the live site link for this repository.</Text>
-                        </div>
-                        <div className="p-6 space-y-4">
-                            <div>
-                                <label className="block text-sm font-medium text-slate-300 mb-1">URL</label>
-                                <input
-                                    type="text"
-                                    className="w-full p-2 bg-slate-950 border border-slate-700 rounded-lg text-slate-200 focus:outline-none focus:border-violet-500"
-                                    placeholder="https://example.com"
-                                    value={manualUrl}
-                                    onChange={(e) => setManualUrl(e.target.value)}
-                                />
-                                <p className="text-xs text-slate-500 mt-1">Leave empty to use auto-detected URL.</p>
+            {
+                isEditUrlModalOpen && (
+                    <div className="fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center z-50 p-4" onClick={() => setIsEditUrlModalOpen(false)}>
+                        <div className="bg-slate-900 border border-slate-800 rounded-xl shadow-2xl max-w-md w-full" onClick={e => e.stopPropagation()}>
+                            <div className="p-6 border-b border-slate-800">
+                                <Title className="text-white">Edit Live Site URL</Title>
+                                <Text className="text-slate-400">Manually override the live site link for this repository.</Text>
+                            </div>
+                            <div className="p-6 space-y-4">
+                                <div>
+                                    <label className="block text-sm font-medium text-slate-300 mb-1">URL</label>
+                                    <input
+                                        type="text"
+                                        className="w-full p-2 bg-slate-950 border border-slate-700 rounded-lg text-slate-200 focus:outline-none focus:border-violet-500"
+                                        placeholder="https://example.com"
+                                        value={manualUrl}
+                                        onChange={(e) => setManualUrl(e.target.value)}
+                                    />
+                                    <p className="text-xs text-slate-500 mt-1">Leave empty to use auto-detected URL.</p>
+                                </div>
+                            </div>
+                            <div className="p-4 border-t border-slate-800 bg-slate-900/50 rounded-b-xl flex justify-end gap-2">
+                                <button
+                                    onClick={() => setIsEditUrlModalOpen(false)}
+                                    className="px-4 py-2 bg-slate-800 border border-slate-700 rounded-lg text-sm font-medium text-slate-300 hover:bg-slate-700 transition-colors"
+                                >
+                                    Cancel
+                                </button>
+                                <button
+                                    onClick={handleSaveUrl}
+                                    className="px-4 py-2 bg-violet-600 text-white rounded-lg text-sm font-medium hover:bg-violet-500 shadow-[0_0_10px_rgba(124,58,237,0.3)]"
+                                >
+                                    Save
+                                </button>
                             </div>
                         </div>
-                        <div className="p-4 border-t border-slate-800 bg-slate-900/50 rounded-b-xl flex justify-end gap-2">
-                            <button
-                                onClick={() => setIsEditUrlModalOpen(false)}
-                                className="px-4 py-2 bg-slate-800 border border-slate-700 rounded-lg text-sm font-medium text-slate-300 hover:bg-slate-700 transition-colors"
-                            >
-                                Cancel
-                            </button>
-                            <button
-                                onClick={handleSaveUrl}
-                                className="px-4 py-2 bg-violet-600 text-white rounded-lg text-sm font-medium hover:bg-violet-500 shadow-[0_0_10px_rgba(124,58,237,0.3)]"
-                            >
-                                Save
-                            </button>
-                        </div>
                     </div>
-                </div>
-            )}
-        </main>
+                )
+            }
+        </main >
     );
 }

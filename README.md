@@ -59,8 +59,9 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
     - **Consolidation Engine**: Detect redundant stacks and cluster similar projects for optimization.
     - **Business Canvas**: Interactive canvas for Value Prop, Customer Segments, and Cost Structure.
 - **Repository Management**: Track 50+ repositories, their tech stacks, and health status.
-- **Interface Visualization**: Map dependencies between services (Spotify, OpenAI, Supabase).
-- **DNS & Hosting**: Manage Cloudflare DNS records and link them to Vercel/Fly.io deployments.
+    - **Interface Visualization**: Map dependencies between services (Spotify, OpenAI, Supabase).
+    - **Manual Provider Linking**: Manually link services (e.g., Lemon Squeezy) that cannot be auto-detected.
+    - **DNS & Hosting**: Manage Cloudflare DNS records and link them to Vercel/Fly.io deployments.
 - **Cost Estimation**: Track estimated monthly infrastructure costs.
 
 ## API Documentation

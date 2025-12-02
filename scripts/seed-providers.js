@@ -9,6 +9,9 @@ const PROVIDERS = [
         capabilities: ['Serverless Functions', 'Edge Middleware', 'Global CDN', 'Preview Deployments'],
         tags: ['hosting', 'serverless'],
         website: 'https://vercel.com',
+        developerUrl: 'https://vercel.com/dashboard',
+        docsUrl: 'https://vercel.com/docs',
+        billingUrl: 'https://vercel.com/dashboard/billing',
         category: 'hosting'
     },
     {
@@ -18,6 +21,9 @@ const PROVIDERS = [
         capabilities: ['Docker Runtime', 'Global Anycast', 'Persistent Volumes', 'Internal Private Network'],
         tags: ['hosting', 'docker'],
         website: 'https://fly.io',
+        developerUrl: 'https://fly.io/dashboard',
+        docsUrl: 'https://fly.io/docs',
+        billingUrl: 'https://fly.io/dashboard/billing',
         category: 'hosting'
     },
     {
@@ -27,6 +33,9 @@ const PROVIDERS = [
         capabilities: ['Dedicated Servers', 'Cloud VPS', 'Load Balancers', 'Managed Kubernetes'],
         tags: ['hosting', 'docker', 'storage'],
         website: 'https://hetzner.com',
+        developerUrl: 'https://console.hetzner.cloud',
+        docsUrl: 'https://docs.hetzner.com',
+        billingUrl: 'https://accounts.hetzner.com/invoice',
         category: 'hosting'
     },
     {
@@ -36,6 +45,9 @@ const PROVIDERS = [
         capabilities: ['PostgreSQL Database', 'Authentication', 'Realtime Subscriptions', 'Storage', 'Edge Functions'],
         tags: ['database', 'auth', 'storage', 'serverless'],
         website: 'https://supabase.com',
+        developerUrl: 'https://supabase.com/dashboard',
+        docsUrl: 'https://supabase.com/docs',
+        billingUrl: 'https://supabase.com/dashboard/org/_/billing',
         category: 'service'
     },
     {
@@ -45,6 +57,9 @@ const PROVIDERS = [
         capabilities: ['S3 Storage', 'EC2 Compute', 'Lambda Serverless', 'RDS Databases'],
         tags: ['hosting', 'storage', 'database', 'serverless', 'ai'],
         website: 'https://aws.amazon.com',
+        developerUrl: 'https://console.aws.amazon.com',
+        docsUrl: 'https://docs.aws.amazon.com',
+        billingUrl: 'https://console.aws.amazon.com/billing',
         category: 'infrastructure'
     },
     {
@@ -54,6 +69,9 @@ const PROVIDERS = [
         capabilities: ['GPT-4 Model', 'Embeddings', 'DALL-E Image Gen', 'Whisper Audio'],
         tags: ['ai'],
         website: 'https://openai.com',
+        developerUrl: 'https://platform.openai.com',
+        docsUrl: 'https://platform.openai.com/docs',
+        billingUrl: 'https://platform.openai.com/account/billing',
         category: 'service'
     },
     {
@@ -63,6 +81,9 @@ const PROVIDERS = [
         capabilities: ['Music Generation', 'Lyrics Generation', 'Vocal Synthesis'],
         tags: ['ai'],
         website: 'https://suno.ai',
+        developerUrl: 'https://suno.com/create',
+        docsUrl: 'https://suno-ai.notion.site/Wiki-5e92e52e92c2492997b418b7f739e86b',
+        billingUrl: 'https://suno.com/account',
         category: 'service'
     },
     {
@@ -72,6 +93,9 @@ const PROVIDERS = [
         capabilities: ['Voice Synthesis', 'Voice Cloning', 'Dubbing'],
         tags: ['ai'],
         website: 'https://elevenlabs.io',
+        developerUrl: 'https://elevenlabs.io/app',
+        docsUrl: 'https://elevenlabs.io/docs',
+        billingUrl: 'https://elevenlabs.io/app/subscription',
         category: 'service'
     },
     {
@@ -81,6 +105,9 @@ const PROVIDERS = [
         capabilities: ['Stable Diffusion', 'Video Generation', 'LoRA Training'],
         tags: ['ai', 'gpu'],
         website: 'https://fal.ai',
+        developerUrl: 'https://fal.ai/dashboard',
+        docsUrl: 'https://fal.ai/docs',
+        billingUrl: 'https://fal.ai/dashboard/billing',
         category: 'service'
     },
     {
@@ -90,7 +117,82 @@ const PROVIDERS = [
         capabilities: ['Image Generation', 'LLM Hosting', 'Video Generation'],
         tags: ['ai', 'gpu'],
         website: 'https://replicate.com',
+        developerUrl: 'https://replicate.com/dashboard',
+        docsUrl: 'https://replicate.com/docs',
+        billingUrl: 'https://replicate.com/account/billing',
         category: 'service'
+    },
+    {
+        id: 'stripe',
+        name: 'Stripe',
+        description: 'Financial infrastructure platform for the internet.',
+        capabilities: ['Payments', 'Billing', 'Invoicing', 'Connect'],
+        tags: ['payment', 'fintech'],
+        website: 'https://stripe.com',
+        developerUrl: 'https://dashboard.stripe.com',
+        docsUrl: 'https://stripe.com/docs',
+        billingUrl: 'https://dashboard.stripe.com/settings/billing',
+        category: 'service'
+    },
+    {
+        id: 'openrouter',
+        name: 'OpenRouter',
+        description: 'Unified interface for LLMs.',
+        capabilities: ['Model Aggregation', 'Unified API', 'Cost Comparison'],
+        tags: ['ai', 'llm'],
+        website: 'https://openrouter.ai',
+        developerUrl: 'https://openrouter.ai/activity',
+        docsUrl: 'https://openrouter.ai/docs',
+        billingUrl: 'https://openrouter.ai/credits',
+        category: 'service'
+    },
+    {
+        id: 'perplexity',
+        name: 'Perplexity',
+        description: 'AI-powered answer engine and API.',
+        capabilities: ['Online Search', 'LLM Inference', 'Sonar Models'],
+        tags: ['ai', 'search'],
+        website: 'https://perplexity.ai',
+        developerUrl: 'https://www.perplexity.ai/settings/api',
+        docsUrl: 'https://docs.perplexity.ai',
+        billingUrl: 'https://www.perplexity.ai/settings/subscription',
+        category: 'service'
+    },
+    {
+        id: 'lovable',
+        name: 'Lovable',
+        description: 'AI-powered full-stack application builder.',
+        capabilities: ['No-Code/Low-Code', 'React Generation', 'Supabase Integration'],
+        tags: ['ai', 'tool', 'nocode'],
+        website: 'https://lovable.dev',
+        developerUrl: 'https://lovable.dev/projects',
+        docsUrl: 'https://docs.lovable.dev',
+        billingUrl: 'https://lovable.dev/settings/billing',
+        category: 'tool'
+    },
+    {
+        id: 'lemon-squeezy',
+        name: 'Lemon Squeezy',
+        description: 'Payments, tax, and subscriptions for software companies.',
+        capabilities: ['Merchant of Record', 'Subscriptions', 'Global Tax'],
+        tags: ['payment', 'fintech'],
+        website: 'https://lemonsqueezy.com',
+        developerUrl: 'https://app.lemonsqueezy.com/products',
+        docsUrl: 'https://docs.lemonsqueezy.com',
+        billingUrl: 'https://app.lemonsqueezy.com/billing',
+        category: 'service'
+    },
+    {
+        id: 'cloudflare',
+        name: 'Cloudflare',
+        description: 'Web performance and security company.',
+        capabilities: ['CDN', 'DDoS Protection', 'Workers', 'R2 Storage'],
+        tags: ['infrastructure', 'cdn', 'serverless'],
+        website: 'https://cloudflare.com',
+        developerUrl: 'https://dash.cloudflare.com',
+        docsUrl: 'https://developers.cloudflare.com',
+        billingUrl: 'https://dash.cloudflare.com/billing',
+        category: 'infrastructure'
     }
 ];
 
@@ -103,6 +205,9 @@ async function main() {
                 name: p.name,
                 description: p.description,
                 website: p.website,
+                developerUrl: p.developerUrl,
+                docsUrl: p.docsUrl,
+                billingUrl: p.billingUrl,
                 category: p.category,
                 tags: JSON.stringify(p.tags),
                 capabilities: JSON.stringify(p.capabilities),
@@ -112,6 +217,9 @@ async function main() {
                 name: p.name,
                 description: p.description,
                 website: p.website,
+                developerUrl: p.developerUrl,
+                docsUrl: p.docsUrl,
+                billingUrl: p.billingUrl,
                 category: p.category,
                 tags: JSON.stringify(p.tags),
                 capabilities: JSON.stringify(p.capabilities),
