@@ -16,7 +16,7 @@ const IngestSchema = z.object({
         engines: z.object({
             node: z.string().optional()
         }).optional(),
-        dependencies: z.record(z.string()).optional()
+        dependencies: z.record(z.string(), z.string()).optional()
     }).optional(),
     fileStructure: z.array(z.string()).optional()
 });
@@ -26,6 +26,15 @@ export async function POST(request: Request) {
         const body = await request.json();
 
         // 1. Validate with Zod
+        console.log('IngestSchema:', IngestSchema);
+        console.log('IngestSchema type:', typeof IngestSchema);
+        if (IngestSchema && typeof IngestSchema.safeParse === 'function') {
+            const result = IngestSchema.safeParse(body);
+            // ... rest of logic
+        } else {
+            console.error('IngestSchema is invalid or safeParse is missing');
+            throw new Error('Zod Schema Error');
+        }
         const result = IngestSchema.safeParse(body);
 
         if (!result.success) {

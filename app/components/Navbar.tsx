@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useState, useEffect } from 'react';
-import { LayoutDashboard, FileText, Settings, Activity, Database, Menu, X, Layers, Cloud, Sparkles, BookOpen, Code, ShieldCheck } from 'lucide-react';
+import { LayoutDashboard, FileText, Settings, Activity, Database, Menu, X, Layers, Cloud, Sparkles, BookOpen, Code, ShieldCheck, HelpCircle } from 'lucide-react';
 
 // Define Navigation Structure
 const NAVIGATION = {
@@ -52,6 +52,12 @@ const NAVIGATION = {
             { name: 'Provider Admin', href: '/admin/providers', icon: Database },
             { name: 'Maintenance', href: '/maintenance', icon: Settings },
         ]
+    },
+    help: {
+        name: 'Help',
+        href: '/help',
+        icon: HelpCircle,
+        items: []
     }
 };
 
@@ -72,6 +78,8 @@ export default function Navbar() {
             setActiveContext('operations');
         } else if (pathname.startsWith('/admin') || pathname.startsWith('/maintenance')) {
             setActiveContext('settings');
+        } else if (pathname.startsWith('/help')) {
+            setActiveContext('help');
         }
     }, [pathname]);
 
@@ -164,8 +172,8 @@ export default function Navbar() {
                                         if (item.items.length === 0) setIsMenuOpen(false);
                                     }}
                                     className={`w-full text-left block pl-3 pr-4 py-2 border-l-4 text-base font-medium ${isContextActive(key)
-                                            ? 'bg-slate-800 border-violet-500 text-violet-400'
-                                            : 'border-transparent text-slate-400 hover:bg-slate-800 hover:border-slate-600 hover:text-slate-200'
+                                        ? 'bg-slate-800 border-violet-500 text-violet-400'
+                                        : 'border-transparent text-slate-400 hover:bg-slate-800 hover:border-slate-600 hover:text-slate-200'
                                         }`}
                                 >
                                     <div className="flex items-center">

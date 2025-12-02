@@ -1,8 +1,8 @@
 'use client';
 
-import { Card, Title, Text, Button, TextInput, Grid, Badge, Table, TableHead, TableHeaderCell, TableBody, TableRow, TableCell } from "@tremor/react";
+import { Card, Title, Text, Button, TextInput, Badge, Table, TableHead, TableHeaderCell, TableBody, TableRow, TableCell } from "@tremor/react";
 import { useState, useEffect } from "react";
-import { Plus, Save, Trash, Edit2, X } from "lucide-react";
+import { Plus, Save, Trash, Edit2 } from "lucide-react";
 
 type Provider = {
     id: string;
@@ -21,18 +21,16 @@ export default function AdminProvidersPage() {
     const [providers, setProviders] = useState<Provider[]>([]);
     const [editingId, setEditingId] = useState<string | null>(null);
     const [formData, setFormData] = useState<Partial<Provider>>({});
-    const [loading, setLoading] = useState(true);
-
-    useEffect(() => {
-        fetchProviders();
-    }, []);
 
     const fetchProviders = async () => {
         const res = await fetch('/api/admin/providers');
         const data = await res.json();
         setProviders(data);
-        setLoading(false);
     };
+
+    useEffect(() => {
+        fetchProviders();
+    }, []);
 
     const handleEdit = (provider: Provider) => {
         setEditingId(provider.id);

@@ -43,6 +43,9 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 - **Automated Task Management**:
     - AI-generated tasks for migrations and security.
     - Priority tracking with visual dashboard indicators.
+- **Help System**:
+    - Centralized documentation for all features.
+    - Integrated "How-To" guides for maintenance and architecture decisions.
 - **CI/CD Integration**: Automated linting and building workflows.
 
 ### 🚀 CI/CD & Automation
@@ -51,6 +54,10 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 - **Health Checks**: Post-deployment verification scripts ensure system stability.
 
 ### 📊 Core Dashboard
+- **Strategic Portfolio Intelligence**:
+    - **Revenue Scoring**: Identify top revenue-generating candidates with estimated ARR.
+    - **Consolidation Engine**: Detect redundant stacks and cluster similar projects for optimization.
+    - **Business Canvas**: Interactive canvas for Value Prop, Customer Segments, and Cost Structure.
 - **Repository Management**: Track 50+ repositories, their tech stacks, and health status.
 - **Interface Visualization**: Map dependencies between services (Spotify, OpenAI, Supabase).
 - **DNS & Hosting**: Manage Cloudflare DNS records and link them to Vercel/Fly.io deployments.

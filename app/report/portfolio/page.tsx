@@ -1,5 +1,7 @@
 "use client";
 
+export const dynamic = 'force-dynamic';
+
 import { Card, Title, Text, Button, Select, SelectItem, Badge } from "@tremor/react";
 import { useState, useEffect } from "react";
 import { DndContext, closestCenter, KeyboardSensor, PointerSensor, useSensor, useSensors, DragOverlay, useDraggable, useDroppable } from '@dnd-kit/core';
@@ -142,7 +144,7 @@ function CanvasColumn({ category, items, onDelete }: { category: keyof CanvasDat
 }
 
 // --- Main Page Component ---
-export default function PortfolioReportPage() {
+function PortfolioReportPageContent() {
     const [repos, setRepos] = useState<any[]>([]);
     const [selectedRepoId, setSelectedRepoId] = useState<string>("");
     const [canvasData, setCanvasData] = useState<CanvasData>({
@@ -512,5 +514,15 @@ export default function PortfolioReportPage() {
                 </DndContext>
             </div>
         </main>
+    );
+}
+
+import { Suspense } from 'react';
+
+export default function PortfolioReportPage() {
+    return (
+        <Suspense fallback={<div>Loading...</div>}>
+            <PortfolioReportPageContent />
+        </Suspense>
     );
 }

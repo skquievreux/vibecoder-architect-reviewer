@@ -165,6 +165,10 @@ model BusinessCanvas {
   customerSegments String?
   revenueStreams   String?
   costStructure    String?
+  estimatedARR         Decimal?
+  monetizationPotential String? // HIGH, MEDIUM, LOW
+  marketSize           String?
+  consolidationGroup   String?
   updatedAt        DateTime   @default(now())
   repository       Repository @relation(fields: [repositoryId], references: [id], onDelete: Cascade)
 }

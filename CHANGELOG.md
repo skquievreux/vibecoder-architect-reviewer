@@ -5,6 +5,26 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.9.0] - 2025-12-02
+### Added
+- **Help System**:
+    - **Centralized Help Page**: New `/help` page with detailed guides for all system modules (Dashboard, Portfolio, Architecture, Operations, Settings).
+    - **Context-Aware Navigation**: "Help" link added to the main navbar and linked from the version display.
+    - **Documentation Workflow**: Established `WORKFLOW.md` to keep documentation in sync with code.
+- **Portfolio Stability**:
+    - **Robust JSON Parsing**: Implemented safe parsing for Business Canvas data to prevent dashboard crashes on malformed JSON.
+    - **Database Verification**: Added scripts to verify data integrity and fix invalid JSON entries.
+
+## [0.7.0] - 2025-12-01
+### Added
+- **Strategic Portfolio Insights**:
+    - **Revenue Opportunities**: Automated analysis of repositories to identify high-potential monetization candidates (e.g., SaaS, Enterprise) and estimate ARR.
+    - **Consolidation Clusters**: Intelligent grouping of repositories with similar tech stacks and capabilities to identify consolidation and cost-saving opportunities.
+    - **Dedicated Insights Tab**: New "Strategic Insights" view in the Portfolio Dashboard displaying these metrics.
+- **Data Intelligence**:
+    - **Business Canvas Auto-Population**: Logic to infer Value Proposition, Customer Segments, and Revenue Streams from repository metadata.
+    - **Capability Detection**: Automated classification of repositories into capabilities (e.g., 'Auth', 'Database', 'UI').
+
 ## [0.6.2] - 2025-12-01
 ### Added
 - **Portfolio View Enhancements**:

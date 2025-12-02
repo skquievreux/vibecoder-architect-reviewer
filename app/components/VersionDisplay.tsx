@@ -36,11 +36,11 @@ export default function VersionDisplay() {
 
     return (
         <div className="fixed bottom-2 right-2 z-50 opacity-50 hover:opacity-100 transition-opacity">
-            <div className="bg-slate-900/80 backdrop-blur text-white text-[10px] px-2 py-1 rounded-md shadow-lg flex items-center gap-2 border border-slate-700">
+            <a href="/help" className="bg-slate-900/80 backdrop-blur text-white text-[10px] px-2 py-1 rounded-md shadow-lg flex items-center gap-2 border border-slate-700 hover:border-violet-500 transition-colors cursor-pointer">
                 <span className="font-bold text-blue-400">v{buildInfo.version}</span>
                 <span className="text-slate-400">|</span>
                 <span className="font-mono text-slate-300">{buildInfo.commitHash}</span>
-            </div>
+            </a>
         </div>
     );
 }

@@ -225,8 +225,16 @@ export default function PortfolioPage() {
         }
     }, [processGraph, initialNodes, initialEdges, setNodes, setEdges]);
 
+    const [insights, setInsights] = useState<any>(null);
+
     useEffect(() => {
-        // Fetch List Data
+        // Fetch Insights
+        fetch('/api/portfolio/insights')
+            .then(res => res.json())
+            .then(setInsights)
+            .catch(console.error);
+
+        // ... existing fetches
         fetch('/api/portfolio')
             .then(res => res.json())
             .then(data => {
@@ -234,16 +242,12 @@ export default function PortfolioPage() {
             })
             .catch(console.error);
 
-        // Fetch Graph Data
         fetch('/api/portfolio/graph')
             .then(res => res.json())
             .then(data => {
-                console.log("Graph Data Fetched:", data);
                 if (data.nodes && data.edges) {
-                    console.log("Setting Initial Nodes:", data.nodes.length);
                     setInitialNodes(data.nodes);
                     setInitialEdges(data.edges);
-                    // Initial Layout happens in the useEffect above
                 }
                 setLoading(false);
             })
@@ -251,7 +255,7 @@ export default function PortfolioPage() {
                 console.error("Graph Fetch Error:", err);
                 setLoading(false);
             });
-    }, [setNodes, setEdges]); // eslint-disable-line react-hooks/exhaustive-deps
+    }, [setNodes, setEdges]);
 
     // Handle Node Click
     const onNodeClick = useCallback((event: any, node: any) => {
@@ -341,11 +345,92 @@ export default function PortfolioPage() {
 
                 <TabGroup>
                     <TabList className="mt-8">
-                        <Tab icon={Briefcase}>Business Canvas</Tab>
-                        <Tab icon={Layers}>Capability Matrix</Tab>
+                        <Tab icon={Briefcase}>Strategic Insights</Tab>
+                        <Tab icon={Layers}>Business Canvas</Tab>
+                        <Tab icon={Box}>Capability Matrix</Tab>
                         <Tab icon={Share2}>Interconnection Graph</Tab>
                     </TabList>
                     <TabPanels>
+                        <TabPanel>
+                            {/* Strategic Insights View */}
+                            <div className="mt-6 space-y-8">
+                                {/* Revenue Opportunities */}
+                                <section>
+                                    <div className="flex items-center gap-3 mb-4">
+                                        <div className="p-2 rounded-lg bg-emerald-500/10 text-emerald-400">
+                                            <Briefcase size={24} />
+                                        </div>
+                                        <div>
+                                            <h2 className="text-xl font-bold text-white">Revenue Opportunities</h2>
+                                            <p className="text-sm text-slate-400">Top projects with high monetization potential.</p>
+                                        </div>
+                                    </div>
+                                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                                        {insights?.revenueOpportunities?.map((opp: any, idx: number) => (
+                                            <Card key={idx} className="glass-card border-t-4 border-t-emerald-500">
+                                                <div className="flex justify-between items-start mb-4">
+                                                    <h3 className="text-lg font-bold text-white">{opp.repoName}</h3>
+                                                    <Badge color={opp.potential === 'HIGH' ? 'emerald' : 'yellow'}>{opp.potential} Potential</Badge>
+                                                </div>
+                                                <div className="space-y-2">
+                                                    <div className="flex justify-between text-sm">
+                                                        <span className="text-slate-400">Est. ARR</span>
+                                                        <span className="text-emerald-400 font-bold">${(opp.arr / 1000).toFixed(1)}k</span>
+                                                    </div>
+                                                    <div className="flex justify-between text-sm">
+                                                        <span className="text-slate-400">Model</span>
+                                                        <span className="text-slate-200">{opp.model || 'N/A'}</span>
+                                                    </div>
+                                                </div>
+                                                <div className="mt-4 pt-4 border-t border-slate-800">
+                                                    <Link href={`/repo/${opp.repoName}`} className="text-sm text-violet-400 hover:text-violet-300 flex items-center gap-1">
+                                                        View Details <ArrowLeft className="rotate-180" size={14} />
+                                                    </Link>
+                                                </div>
+                                            </Card>
+                                        ))}
+                                    </div>
+                                </section>
+
+                                {/* Consolidation Clusters */}
+                                <section>
+                                    <div className="flex items-center gap-3 mb-4">
+                                        <div className="p-2 rounded-lg bg-blue-500/10 text-blue-400">
+                                            <Layers size={24} />
+                                        </div>
+                                        <div>
+                                            <h2 className="text-xl font-bold text-white">Consolidation Clusters</h2>
+                                            <p className="text-sm text-slate-400">Groups of similar projects suitable for unification.</p>
+                                        </div>
+                                    </div>
+                                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                                        {insights?.consolidationClusters?.map((cluster: any, idx: number) => (
+                                            <Card key={idx} className="glass-card border-l-4 border-l-blue-500">
+                                                <div className="flex justify-between items-center mb-4">
+                                                    <h3 className="text-lg font-bold text-white">Cluster #{idx + 1}</h3>
+                                                    <Badge color="blue">{cluster.size} Repositories</Badge>
+                                                </div>
+                                                <div className="bg-slate-900/50 rounded-lg p-4 border border-slate-800">
+                                                    <ul className="space-y-2">
+                                                        {cluster.repos.map((repo: string, rIdx: number) => (
+                                                            <li key={rIdx} className="flex items-center gap-2 text-sm text-slate-300">
+                                                                <Box size={14} className="text-slate-500" />
+                                                                {repo}
+                                                            </li>
+                                                        ))}
+                                                    </ul>
+                                                </div>
+                                                <div className="mt-4 flex justify-end">
+                                                    <button className="text-sm text-blue-400 hover:text-blue-300 font-medium">
+                                                        Analyze Synergy &rarr;
+                                                    </button>
+                                                </div>
+                                            </Card>
+                                        ))}
+                                    </div>
+                                </section>
+                            </div>
+                        </TabPanel>
                         <TabPanel>
                             {/* Business Canvas View */}
                             <div className="mt-6 space-y-6">
@@ -393,11 +478,23 @@ export default function PortfolioPage() {
                                         .filter((r, i, a) => a.findIndex(t => t.repoName === r.repoName) === i && r.canvas)
                                         .map((repo) => {
                                             const canvas = repo.canvas;
-                                            // Safe parsing
-                                            const valueProp = (() => { try { const p = JSON.parse(canvas.valueProposition || '[]'); return Array.isArray(p) ? p.map(v => typeof v === 'string' ? v : JSON.stringify(v)) : []; } catch { return []; } })();
-                                            const customers = (() => { try { const p = JSON.parse(canvas.customerSegments || '[]'); return Array.isArray(p) ? p : []; } catch { return []; } })();
-                                            const revenue = (() => { try { const p = JSON.parse(canvas.revenueStreams || '[]'); return Array.isArray(p) ? p : []; } catch { return []; } })();
-                                            const costs = (() => { try { const p = JSON.parse(canvas.costStructure || '[]'); return Array.isArray(p) ? p : []; } catch { return []; } })();
+
+                                            // Helper for safe parsing
+                                            const safeParseArray = (jsonString: string | null, defaultValue: any[] = []) => {
+                                                if (!jsonString) return defaultValue;
+                                                try {
+                                                    const parsed = JSON.parse(jsonString);
+                                                    return Array.isArray(parsed) ? parsed : defaultValue;
+                                                } catch (e) {
+                                                    console.warn(`Failed to parse JSON for repo ${repo.repoName}:`, jsonString);
+                                                    return defaultValue;
+                                                }
+                                            };
+
+                                            const valueProp = safeParseArray(canvas.valueProposition).map(v => typeof v === 'string' ? v : JSON.stringify(v));
+                                            const customers = safeParseArray(canvas.customerSegments);
+                                            const revenue = safeParseArray(canvas.revenueStreams);
+                                            const costs = safeParseArray(canvas.costStructure);
 
                                             // Calculate totals for sorting
                                             const totalRevenue = revenue.reduce((acc: number, r: any) => acc + (r.potential_arr || 0), 0);
