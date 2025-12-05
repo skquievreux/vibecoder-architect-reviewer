@@ -18,6 +18,7 @@ export const metadata: Metadata = {
 };
 
 import VersionDisplay from "./components/VersionDisplay";
+import SessionProvider from "./components/SessionProvider";
 
 // ... (imports)
 
@@ -34,11 +35,13 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-slate-50`}
         suppressHydrationWarning
       >
-        <Navbar />
-        <main className="min-h-screen">
-          {children}
-        </main>
-        <VersionDisplay />
+        <SessionProvider>
+          <Navbar />
+          <main className="min-h-screen">
+            {children}
+          </main>
+          <VersionDisplay />
+        </SessionProvider>
       </body>
     </html>
   );

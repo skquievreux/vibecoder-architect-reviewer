@@ -3,7 +3,9 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useState, useEffect } from 'react';
-import { LayoutDashboard, FileText, Settings, Activity, Database, Menu, X, Layers, Cloud, Sparkles, BookOpen, Code, ShieldCheck, HelpCircle } from 'lucide-react';
+import { useSession, signOut } from 'next-auth/react';
+import { LayoutDashboard, FileText, Settings, Activity, Database, Menu, X, Layers, Cloud, Sparkles, BookOpen, Code, ShieldCheck, HelpCircle, LogOut, User } from 'lucide-react';
+import NotificationCenter from './NotificationCenter';
 
 // Define Navigation Structure
 const NAVIGATION = {
@@ -64,7 +66,9 @@ const NAVIGATION = {
 export default function Navbar() {
     const pathname = usePathname();
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
     const [activeContext, setActiveContext] = useState<string>('dashboard');
+    const { data: session, status } = useSession();
 
     // Determine active context based on pathname
     useEffect(() => {
@@ -116,19 +120,66 @@ export default function Navbar() {
                             </div>
                         </div>
 
-                        {/* Mobile menu button */}
-                        <div className="-mr-2 flex items-center sm:hidden">
-                            <button
-                                onClick={() => setIsMenuOpen(!isMenuOpen)}
-                                className="inline-flex items-center justify-center p-2 rounded-md text-slate-400 hover:text-white hover:bg-slate-800 focus:outline-none"
-                            >
-                                <span className="sr-only">Open main menu</span>
-                                {isMenuOpen ? (
-                                    <X className="block h-6 w-6" aria-hidden="true" />
-                                ) : (
-                                    <Menu className="block h-6 w-6" aria-hidden="true" />
-                                )}
-                            </button>
+                        {/* User menu and mobile menu button */}
+                        <div className="flex items-center space-x-4">
+                            {/* Notification Center */}
+                            {status === 'authenticated' && session?.user && (
+                                <NotificationCenter />
+                            )}
+
+                            {/* Desktop User Menu */}
+                            {status === 'authenticated' && session?.user ? (
+                                <div className="hidden sm:block relative">
+                                    <button
+                                        onClick={() => setIsUserMenuOpen(!isUserMenuOpen)}
+                                        className="flex items-center space-x-2 px-3 py-2 rounded-md text-sm font-medium text-slate-400 hover:text-white hover:bg-slate-800 focus:outline-none"
+                                    >
+                                        <User className="w-4 h-4" />
+                                        <span>{session.user.name || session.user.email}</span>
+                                        <span className="text-xs text-violet-400 ml-1">
+                                            {(session.user as any).role}
+                                        </span>
+                                    </button>
+                                    {isUserMenuOpen && (
+                                        <div className="absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-slate-800 ring-1 ring-black ring-opacity-5 z-50">
+                                            <div className="py-1">
+                                                <div className="px-4 py-2 text-xs text-slate-400 border-b border-slate-700">
+                                                    {session.user.email}
+                                                </div>
+                                                <button
+                                                    onClick={() => signOut({ callbackUrl: '/auth/signin' })}
+                                                    className="flex items-center w-full px-4 py-2 text-sm text-slate-300 hover:bg-slate-700"
+                                                >
+                                                    <LogOut className="w-4 h-4 mr-2" />
+                                                    Sign out
+                                                </button>
+                                            </div>
+                                        </div>
+                                    )}
+                                </div>
+                            ) : status === 'unauthenticated' ? (
+                                <Link
+                                    href="/auth/signin"
+                                    className="hidden sm:inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-violet-600 hover:bg-violet-700 focus:outline-none"
+                                >
+                                    Sign in
+                                </Link>
+                            ) : null}
+
+                            {/* Mobile menu button */}
+                            <div className="sm:hidden">
+                                <button
+                                    onClick={() => setIsMenuOpen(!isMenuOpen)}
+                                    className="inline-flex items-center justify-center p-2 rounded-md text-slate-400 hover:text-white hover:bg-slate-800 focus:outline-none"
+                                >
+                                    <span className="sr-only">Open main menu</span>
+                                    {isMenuOpen ? (
+                                        <X className="block h-6 w-6" aria-hidden="true" />
+                                    ) : (
+                                        <Menu className="block h-6 w-6" aria-hidden="true" />
+                                    )}
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -161,6 +212,26 @@ export default function Navbar() {
             {isMenuOpen && (
                 <div className="sm:hidden bg-slate-900 border-b border-slate-800 absolute top-16 w-full z-30">
                     <div className="pt-2 pb-3 space-y-1">
+                        {/* User info in mobile menu */}
+                        {status === 'authenticated' && session?.user && (
+                            <div className="px-4 py-3 border-b border-slate-800">
+                                <div className="flex items-center space-x-3">
+                                    <User className="w-8 h-8 text-slate-400" />
+                                    <div>
+                                        <div className="text-sm font-medium text-white">
+                                            {session.user.name || session.user.email}
+                                        </div>
+                                        <div className="text-xs text-slate-400">
+                                            {session.user.email}
+                                        </div>
+                                        <div className="text-xs text-violet-400 mt-1">
+                                            Role: {(session.user as any).role}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        )}
+
                         {Object.entries(NAVIGATION).map(([key, item]) => (
                             <div key={key}>
                                 <Link
@@ -202,6 +273,33 @@ export default function Navbar() {
                                 )}
                             </div>
                         ))}
+
+                        {/* Mobile Sign in/out */}
+                        {status === 'authenticated' ? (
+                            <button
+                                onClick={() => {
+                                    setIsMenuOpen(false);
+                                    signOut({ callbackUrl: '/auth/signin' });
+                                }}
+                                className="w-full text-left pl-3 pr-4 py-2 border-l-4 border-transparent text-base font-medium text-slate-400 hover:bg-slate-800 hover:text-slate-200"
+                            >
+                                <div className="flex items-center">
+                                    <LogOut className="w-4 h-4 mr-2" />
+                                    Sign out
+                                </div>
+                            </button>
+                        ) : status === 'unauthenticated' ? (
+                            <Link
+                                href="/auth/signin"
+                                onClick={() => setIsMenuOpen(false)}
+                                className="w-full text-left block pl-3 pr-4 py-2 border-l-4 border-transparent text-base font-medium text-slate-400 hover:bg-slate-800 hover:text-slate-200"
+                            >
+                                <div className="flex items-center">
+                                    <User className="w-4 h-4 mr-2" />
+                                    Sign in
+                                </div>
+                            </Link>
+                        ) : null}
                     </div>
                 </div>
             )}

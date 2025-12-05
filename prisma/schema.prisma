@@ -189,3 +189,233 @@ model ArchitectureDecision {
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
 }
+
+// Authentication & Authorization Models
+model User {
+  id            String    @id @default(uuid())
+  name          String?
+  email         String    @unique
+  emailVerified DateTime?
+  image         String?
+  password      String?
+  role          String    @default("VIEWER") // ADMIN, DEVELOPER, VIEWER
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  accounts      Account[]
+  sessions      Session[]
+  notifications Notification[]
+  auditLogs     AuditLog[]
+}
+
+model Account {
+  id                String  @id @default(uuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String?
+  access_token      String?
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String?
+  session_state     String?
+  user              User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+
+model Session {
+  id           String   @id @default(uuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+}
+
+// Notification System
+model Notification {
+  id        String   @id @default(uuid())
+  userId    String
+  type      String   // SECURITY, DEPLOYMENT, HEALTH, TASK, SYSTEM
+  severity  String   @default("INFO") // CRITICAL, HIGH, MEDIUM, LOW, INFO
+  title     String
+  message   String
+  metadata  String?  // JSON string for additional data
+  isRead    Boolean  @default(false)
+  link      String?
+  createdAt DateTime @default(now())
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+// Audit Logging
+model AuditLog {
+  id         String   @id @default(uuid())
+  userId     String
+  action     String
+  entity     String
+  entityId   String?
+  changes    String?  // JSON string of what changed
+  ipAddress  String?
+  userAgent  String?
+  createdAt  DateTime @default(now())
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+// Security Dashboard Models
+model SecurityScan {
+  id               String              @id @default(uuid())
+  repositoryId     String
+  scanType         String              // DEPENDENCY, CODE, SECRET, LICENSE
+  status           String              @default("PENDING") // PENDING, RUNNING, COMPLETED, FAILED
+  startedAt        DateTime            @default(now())
+  completedAt      DateTime?
+  vulnerabilities  SecurityVulnerability[]
+  summary          String?             // JSON summary
+}
+
+model SecurityVulnerability {
+  id             String        @id @default(uuid())
+  scanId         String
+  severity       String        // CRITICAL, HIGH, MEDIUM, LOW, INFO
+  type           String        // DEPENDENCY, XSS, SQL_INJECTION, SECRET, etc.
+  title          String
+  description    String
+  affectedPackage String?
+  currentVersion String?
+  fixedVersion   String?
+  cveId          String?
+  cvssScore      Float?
+  status         String        @default("OPEN") // OPEN, ACKNOWLEDGED, FIXED, IGNORED
+  detectedAt     DateTime      @default(now())
+  fixedAt        DateTime?
+  scan           SecurityScan  @relation(fields: [scanId], references: [id], onDelete: Cascade)
+}
+
+// Testing Dashboard Models
+model TestRun {
+  id           String      @id @default(uuid())
+  repositoryId String
+  branch       String?
+  commitSha    String?
+  status       String      // PASSED, FAILED, RUNNING, SKIPPED
+  totalTests   Int         @default(0)
+  passedTests  Int         @default(0)
+  failedTests  Int         @default(0)
+  skippedTests Int         @default(0)
+  coverage     Float?
+  duration     Int?        // milliseconds
+  startedAt    DateTime    @default(now())
+  completedAt  DateTime?
+  results      TestResult[]
+}
+
+model TestResult {
+  id           String   @id @default(uuid())
+  testRunId    String
+  testName     String
+  filePath     String?
+  status       String   // PASSED, FAILED, SKIPPED
+  duration     Int?     // milliseconds
+  errorMessage String?
+  errorStack   String?
+  flakyScore   Float    @default(0) // 0-1, higher = more flaky
+  executedAt   DateTime @default(now())
+  testRun      TestRun  @relation(fields: [testRunId], references: [id], onDelete: Cascade)
+}
+
+// Enhanced Dependency Tracking
+model DependencyNode {
+  id              String                @id @default(uuid())
+  repositoryId    String
+  packageName     String
+  version         String
+  type            String                // DIRECT, TRANSITIVE
+  ecosystem       String                // npm, pip, cargo, etc.
+  latestVersion   String?
+  isOutdated      Boolean               @default(false)
+  hasVulnerability Boolean              @default(false)
+  license         String?
+  detectedAt      DateTime              @default(now())
+  updatedAt       DateTime              @updatedAt
+  dependents      DependencyEdge[]      @relation("DependencySource")
+  dependencies    DependencyEdge[]      @relation("DependencyTarget")
+}
+
+model DependencyEdge {
+  id           String          @id @default(uuid())
+  sourceId     String
+  targetId     String
+  versionRange String?
+  source       DependencyNode  @relation("DependencySource", fields: [sourceId], references: [id], onDelete: Cascade)
+  target       DependencyNode  @relation("DependencyTarget", fields: [targetId], references: [id], onDelete: Cascade)
+
+  @@unique([sourceId, targetId])
+}
+
+// AI Enhanced Features
+model AICodeReview {
+  id           String   @id @default(uuid())
+  repositoryId String
+  prNumber     Int?
+  commitSha    String?
+  language     String?
+  analysis     String   // JSON with findings
+  suggestions  String   // JSON with improvement suggestions
+  securityScore Float?
+  qualityScore  Float?
+  createdAt    DateTime @default(now())
+}
+
+model PredictiveAnalytics {
+  id                   String   @id @default(uuid())
+  repositoryId         String
+  predictionType       String   // MAINTENANCE_NEEDED, CHURN_RISK, COST_TREND
+  confidence           Float    // 0-1
+  prediction           String   // JSON with prediction details
+  actualOutcome        String?  // JSON with what actually happened
+  predictionDate       DateTime @default(now())
+  targetDate           DateTime
+  wasAccurate          Boolean?
+}
+
+// Smart Update Orchestration
+model UpdatePlan {
+  id             String          @id @default(uuid())
+  title          String
+  description    String?
+  status         String          @default("PLANNED") // PLANNED, IN_PROGRESS, COMPLETED, FAILED, CANCELLED
+  priority       String          @default("MEDIUM")
+  affectedRepos  String          // JSON array of repository IDs
+  dependencies   String          // JSON of what needs updating
+  testStrategy   String?
+  rollbackPlan   String?
+  createdAt      DateTime        @default(now())
+  scheduledFor   DateTime?
+  startedAt      DateTime?
+  completedAt    DateTime?
+  updates        UpdateExecution[]
+}
+
+model UpdateExecution {
+  id           String     @id @default(uuid())
+  planId       String
+  repositoryId String
+  packageName  String
+  fromVersion  String
+  toVersion    String
+  status       String     @default("PENDING") // PENDING, RUNNING, SUCCESS, FAILED, ROLLED_BACK
+  prUrl        String?
+  logs         String?
+  startedAt    DateTime?
+  completedAt  DateTime?
+  plan         UpdatePlan @relation(fields: [planId], references: [id], onDelete: Cascade)
+}
