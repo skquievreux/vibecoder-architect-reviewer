@@ -19,6 +19,8 @@ export const metadata: Metadata = {
 
 import VersionDisplay from "./components/VersionDisplay";
 import SessionProvider from "./components/SessionProvider";
+import ThemeProvider from "./components/ThemeProvider";
+import GlobalSearch from "./components/GlobalSearch";
 
 // ... (imports)
 
@@ -32,16 +34,24 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-slate-50`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-slate-50 dark:bg-slate-950`}
         suppressHydrationWarning
       >
-        <SessionProvider>
-          <Navbar />
-          <main className="min-h-screen">
-            {children}
-          </main>
-          <VersionDisplay />
-        </SessionProvider>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <SessionProvider>
+            <GlobalSearch />
+            <Navbar />
+            <main className="min-h-screen">
+              {children}
+            </main>
+            <VersionDisplay />
+          </SessionProvider>
+        </ThemeProvider>
       </body>
     </html>
   );

@@ -6,6 +6,7 @@ import { useState, useEffect } from 'react';
 import { useSession, signOut } from 'next-auth/react';
 import { LayoutDashboard, FileText, Settings, Activity, Database, Menu, X, Layers, Cloud, Sparkles, BookOpen, Code, ShieldCheck, HelpCircle, LogOut, User } from 'lucide-react';
 import NotificationCenter from './NotificationCenter';
+import ThemeToggle from './ThemeToggle';
 
 // Define Navigation Structure
 const NAVIGATION = {
@@ -121,7 +122,10 @@ export default function Navbar() {
                         </div>
 
                         {/* User menu and mobile menu button */}
-                        <div className="flex items-center space-x-4">
+                        <div className="flex items-center space-x-2">
+                            {/* Theme Toggle */}
+                            <ThemeToggle />
+
                             {/* Notification Center */}
                             {status === 'authenticated' && session?.user && (
                                 <NotificationCenter />

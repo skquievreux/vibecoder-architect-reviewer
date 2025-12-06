@@ -190,6 +190,17 @@ model ArchitectureDecision {
   updatedAt    DateTime @updatedAt
 }
 
+// Repository Favorites
+model RepositoryFavorite {
+  id           String     @id @default(uuid())
+  userId       String
+  repositoryId String
+  createdAt    DateTime   @default(now())
+
+  @@unique([userId, repositoryId])
+  @@index([userId, createdAt])
+}
+
 // Authentication & Authorization Models
 model User {
   id            String    @id @default(uuid())
@@ -254,6 +265,10 @@ model Notification {
   link      String?
   createdAt DateTime @default(now())
   user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId, isRead])
+  @@index([userId, createdAt])
+  @@index([type, severity])
 }
 
 // Audit Logging
@@ -280,6 +295,10 @@ model SecurityScan {
   completedAt      DateTime?
   vulnerabilities  SecurityVulnerability[]
   summary          String?             // JSON summary
+
+  @@index([repositoryId, status])
+  @@index([repositoryId, startedAt])
+  @@index([status, scanType])
 }
 
 model SecurityVulnerability {
@@ -298,6 +317,10 @@ model SecurityVulnerability {
   detectedAt     DateTime      @default(now())
   fixedAt        DateTime?
   scan           SecurityScan  @relation(fields: [scanId], references: [id], onDelete: Cascade)
+
+  @@index([scanId, status])
+  @@index([severity, status])
+  @@index([status, detectedAt])
 }
 
 // Testing Dashboard Models
@@ -316,6 +339,10 @@ model TestRun {
   startedAt    DateTime    @default(now())
   completedAt  DateTime?
   results      TestResult[]
+
+  @@index([repositoryId, startedAt])
+  @@index([repositoryId, status])
+  @@index([status, startedAt])
 }
 
 model TestResult {
@@ -330,6 +357,10 @@ model TestResult {
   flakyScore   Float    @default(0) // 0-1, higher = more flaky
   executedAt   DateTime @default(now())
   testRun      TestRun  @relation(fields: [testRunId], references: [id], onDelete: Cascade)
+
+  @@index([testRunId, status])
+  @@index([testName, flakyScore])
+  @@index([status, executedAt])
 }
 
 // Enhanced Dependency Tracking
