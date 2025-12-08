@@ -62,12 +62,7 @@ type Repository = {
     providers: Provider[];
 };
 
-type Provider = {
-    id: string;
-    name: string;
-    slug: string;
-    category: string;
-};
+
 
 const DASHBOARD_URLS: Record<string, string> = {
     "supabase": "https://supabase.com/dashboard",
