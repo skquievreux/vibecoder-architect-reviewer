@@ -38,6 +38,8 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 - **Deployment Detection**: Automatically detect Vercel, Fly.io, and Docker deployments.
 - **System Maintenance**:
     - Audit ecosystem versions (Node.js, TypeScript, Next.js).
+    - Batch merge standardization Pull Requests (`scripts/merge-standardization-prs.js`).
+    - Sync Vercel Custom Domains and `.vercel.app` fallbacks (`scripts/sync-vercel-domains.js`).
     - Auto-fix configuration drifts.
     - View logs and audit reports directly in the UI.
 - **Automated Task Management**:

@@ -56,11 +56,14 @@ async function main() {
 
             // If not found, try to find by link (if Vercel provides repo link info, usually in 'link' field)
             if (!repo && project.link && project.link.type === 'github') {
-                const repoName = project.link.repo; // e.g. "user/repo"
-                const nameOnly = repoName.split('/')[1];
-                repo = await prisma.repository.findFirst({
-                    where: { name: nameOnly }
-                });
+                const repoPath = project.link.repo; // e.g. "user/repo" or "repo"
+                const nameOnly = repoPath.includes('/') ? repoPath.split('/')[1] : repoPath;
+
+                if (nameOnly) {
+                    repo = await prisma.repository.findFirst({
+                        where: { name: nameOnly }
+                    });
+                }
             }
 
             if (!repo) {
@@ -78,23 +81,27 @@ async function main() {
 
                 if (customDomains.length > 0) {
                     const primaryDomain = customDomains[0].name;
-                    const fullUrl = `https://${primaryDomain}`;
-
-                    console.log(`  🔗 Linking ${repo.name} -> ${fullUrl}`);
-
-                    await prisma.repository.update({
-                        where: { id: repo.id },
-                        data: { customUrl: fullUrl }
-                    });
+                    await updateRepoUrl(repo, `https://${primaryDomain}`);
+                } else {
+                    // Fallback to .vercel.app
+                    const vercelDomain = domainsData.domains.find(d => d.name.endsWith('.vercel.app'));
+                    if (vercelDomain) {
+                        await updateRepoUrl(repo, `https://${vercelDomain.name}`);
+                    }
                 }
             }
         }
-
         console.log("✅ Sync Complete.");
+    } catch (e) { console.error("Sync Error:", e); }
+}
 
-    } catch (e) {
-        console.error("Sync Error:", e);
-    }
+async function updateRepoUrl(repo, url) {
+    if (repo.customUrl === url) return;
+    console.log(`  🔗 Linking ${repo.name} -> ${url}`);
+    await prisma.repository.update({
+        where: { id: repo.id },
+        data: { customUrl: url }
+    });
 }
 
 main()

@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.9.15] - 2025-12-08
+### Fixed
+- **Vercel Sync**: Fixed critical bug in `scripts/sync-vercel-domains.js` causing incorrect project linking for repos without user prefixes.
+- **Vercel Sync**: Added support for `.vercel.app` domains as a fallback when no custom domain is present.
+- **Ecosystem**: Added `scripts/merge-standardization-prs.js` to batch merge standardization pull requests.
+
 ## [0.9.14] - 2025-12-08
 ### Added
 - **Vercel Preview**: Integrated preview images for repository links (`/api/preview`).
