@@ -3,6 +3,8 @@
 import { useState, useRef, useEffect } from 'react';
 import { Send, Bot, User, Sparkles, FileText, CheckCircle, AlertTriangle, ArrowRight } from 'lucide-react';
 import { Card, Title, Text, Button } from "@tremor/react";
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 
 type Message = {
     role: 'user' | 'assistant';
@@ -92,11 +94,27 @@ export default function ArchitectChatPage() {
                                 {msg.role === 'assistant' ? <Bot size={18} /> : <User size={18} />}
                             </div>
 
-                            <div className={`max-w-[80%] rounded-2xl p-4 ${msg.role === 'assistant'
-                                    ? 'bg-slate-800/50 border border-slate-700 text-slate-200'
-                                    : 'bg-violet-600 text-white'
+                            <div className={`max-w-[85%] md:max-w-3xl rounded-2xl p-5 ${msg.role === 'assistant'
+                                ? 'bg-slate-800/50 border border-slate-700 text-slate-200'
+                                : 'bg-violet-600 text-white'
                                 }`}>
-                                <div className="whitespace-pre-wrap mb-2">{msg.content}</div>
+                                <div className="mb-2 prose prose-invert prose-sm max-w-none text-slate-200">
+                                    <ReactMarkdown
+                                        remarkPlugins={[remarkGfm]}
+                                        components={{
+                                            h1: ({ node, ...props }) => <h1 className="text-xl font-bold mb-2 mt-4" {...props} />,
+                                            h2: ({ node, ...props }) => <h2 className="text-lg font-bold mb-2 mt-3" {...props} />,
+                                            h3: ({ node, ...props }) => <h3 className="text-md font-bold mb-1 mt-2" {...props} />,
+                                            p: ({ node, ...props }) => <p className="mb-2 last:mb-0 leading-relaxed" {...props} />,
+                                            ul: ({ node, ...props }) => <ul className="list-disc ml-4 mb-2 space-y-1" {...props} />,
+                                            ol: ({ node, ...props }) => <ol className="list-decimal ml-4 mb-2 space-y-1" {...props} />,
+                                            li: ({ node, ...props }) => <li className="mb-0.5" {...props} />,
+                                            code: ({ node, ...props }) => <code className="bg-slate-700/50 rounded px-1 py-0.5 text-sm font-mono text-violet-200" {...props} />,
+                                        }}
+                                    >
+                                        {msg.content}
+                                    </ReactMarkdown>
+                                </div>
                                 {msg.type === 'adr' && msg.html && (
                                     <div className="prose prose-invert prose-sm max-w-none mt-4 pt-4 border-t border-slate-700">
                                         <div className="flex items-center gap-2 mb-3 text-emerald-400 font-bold">

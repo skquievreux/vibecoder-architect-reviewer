@@ -1,6 +1,6 @@
 {
   "name": "dashboard",
-  "version": "0.9.9",
+  "version": "0.9.12",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -24,6 +24,7 @@
     "jspdf": "^3.0.4",
     "lucide-react": "^0.555.0",
     "next": "16.0.5",
+    "next-auth": "^4.24.13",
     "openai": "^6.9.1",
     "puppeteer": "^24.31.0",
     "react": "^18.3.1",
@@ -31,6 +32,7 @@
     "react-markdown": "^10.1.0",
     "reactflow": "^11.11.4",
     "remark-gfm": "^4.0.1",
+    "sharp": "^0.34.5",
     "swagger-ui-react": "^5.30.3",
     "tailwind-merge": "^3.4.0",
     "uuid": "^13.0.0",
@@ -39,7 +41,7 @@
   "devDependencies": {
     "@prisma/client": "^5.22.0",
     "@types/dagre": "^0.7.53",
-    "@types/node": "^20",
+    "@types/node": "^20.19.25",
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "@types/swagger-ui-react": "^5.18.0",

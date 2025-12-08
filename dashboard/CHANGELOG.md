@@ -1,5 +1,16 @@
 # Changelog
 
+## [0.9.12] - 2025-12-08
+
+### Performance & Infrastructure
+- **Image Optimization**: Added `sharp` dependency for production-grade image processing (AVIF/WebP).
+- **Configuration**: Updated `next.config.ts` to enable `reactStrictMode` and optimized package imports.
+- **Strategy**: Added `PERFORMANCE_STRATEGY.md` documentation.
+- **Dependencies**: Fixed missing `next-auth` dependency in root package to resolve build errors.
+
+### Fixed
+- **Chat UI**: Fixed `ReactMarkdown` "unexpected className" runtime assertion error.
+
 ## [0.9.9] - 2025-12-08
 
 ### Fixed
