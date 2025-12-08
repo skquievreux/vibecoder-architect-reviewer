@@ -1,0 +1,191 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Provider {
+  id           String   @id @default(uuid())
+  slug         String   @unique
+  name         String
+  description  String?
+  website      String?
+  category     String   @default("other")
+  tags         String
+  capabilities String
+  isApproved   Boolean  @default(true)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  pricingModel String?
+  developerUrl String?
+  docsUrl      String?
+  billingUrl   String?
+  repositories Repository[]
+}
+
+model Repository {
+  id                  String           @id @default(uuid())
+  githubId            String?          @unique
+  name                String
+  fullName            String
+  nameWithOwner       String
+  url                 String
+  description         String?
+  isPrivate           Boolean          @default(false)
+  createdAt           DateTime         @default(now())
+  updatedAt           DateTime         @updatedAt
+  pushedAt            DateTime?
+  language            String?
+  defaultBranch       String?
+  homepageUrl         String?
+  customUrl           String?
+  apiSpec             String?
+  businessCanvas      BusinessCanvas?
+  capabilities        Capability[]
+  deployments         Deployment[]
+  interfaces          Interface[]
+  incomingConnections RepoConnection[] @relation("TargetRepo")
+  outgoingConnections RepoConnection[] @relation("SourceRepo")
+  health              RepoHealth?
+  tasks               RepoTask[]
+  technologies        Technology[]
+  providers           Provider[]
+}
+
+model Deployment {
+  id             String     @id @default(uuid())
+  repositoryId   String
+  provider       String
+  url            String?
+  status         String?
+  lastDeployedAt DateTime?
+  detectedAt     DateTime   @default(now())
+  repository     Repository @relation(fields: [repositoryId], references: [id], onDelete: Cascade)
+}
+
+model Technology {
+  id           String     @id @default(uuid())
+  repositoryId String
+  name         String
+  category     String?
+  version      String?
+  detectedAt   DateTime   @default(now())
+  repository   Repository @relation(fields: [repositoryId], references: [id], onDelete: Cascade)
+}
+
+model Interface {
+  id           String     @id @default(uuid())
+  repositoryId String
+  type         String?
+  direction    String?
+  details      String?
+  detectedAt   DateTime   @default(now())
+  repository   Repository @relation(fields: [repositoryId], references: [id], onDelete: Cascade)
+}
+
+model RepoHealth {
+  id                        String     @id @default(uuid())
+  repositoryId              String     @unique
+  outdatedDependenciesCount Int        @default(0)
+  vulnerabilitiesCount      Int        @default(0)
+  lastCheckedAt             DateTime   @default(now())
+  healthScore               Int?
+  repository                Repository @relation(fields: [repositoryId], references: [id], onDelete: Cascade)
+}
+
+model CostSnapshot {
+  id                  String   @id @default(uuid())
+  date                DateTime @default(now())
+  totalMonthlyCostEst Decimal?
+  supabaseCostEst     Decimal?
+  details             String?
+}
+
+model HealthSnapshot {
+  id                        String   @id @default(uuid())
+  date                      DateTime @default(now())
+  totalRepositories         Int
+  outdatedDependenciesCount Int
+  vulnerabilitiesCount      Int
+  healthScore               Int      @default(0)
+}
+
+model SyncLog {
+  id        String   @id @default(uuid())
+  status    String
+  message   String
+  details   String?
+  createdAt DateTime @default(now())
+}
+
+model AIReport {
+  id        String   @id @default(uuid())
+  content   String
+  createdAt DateTime @default(now())
+}
+
+model RepoTask {
+  id           String     @id @default(uuid())
+  repositoryId String
+  title        String
+  description  String?
+  reference    String?
+  status       String     @default("OPEN")
+  priority     String     @default("MEDIUM")
+  type         String     @default("MAINTENANCE")
+  createdAt    DateTime   @default(now())
+  updatedAt    DateTime   @updatedAt
+  repository   Repository @relation(fields: [repositoryId], references: [id], onDelete: Cascade)
+}
+
+model Capability {
+  id           String     @id @default(uuid())
+  repositoryId String
+  name         String
+  category     String?
+  source       String?
+  confidence   Float      @default(1.0)
+  detectedAt   DateTime   @default(now())
+  repository   Repository @relation(fields: [repositoryId], references: [id], onDelete: Cascade)
+}
+
+model RepoConnection {
+  sourceRepoId String
+  targetRepoId String
+  type         String
+  detectedAt   DateTime   @default(now())
+  targetRepo   Repository @relation("TargetRepo", fields: [targetRepoId], references: [id], onDelete: Cascade)
+  sourceRepo   Repository @relation("SourceRepo", fields: [sourceRepoId], references: [id], onDelete: Cascade)
+
+  @@id([sourceRepoId, targetRepoId])
+}
+
+model BusinessCanvas {
+  id                    String     @id @default(uuid())
+  repositoryId          String     @unique
+  valueProposition      String?
+  customerSegments      String?
+  revenueStreams        String?
+  costStructure         String?
+  updatedAt             DateTime   @default(now())
+  consolidationGroup    String?
+  estimatedARR          Decimal?
+  marketSize            String?
+  monetizationPotential String?
+  repository            Repository @relation(fields: [repositoryId], references: [id], onDelete: Cascade)
+}
+
+model ArchitectureDecision {
+  id           String   @id @default(uuid())
+  title        String   @unique
+  status       String   @default("PROPOSED")
+  context      String
+  decision     String
+  consequences String
+  tags         String
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
