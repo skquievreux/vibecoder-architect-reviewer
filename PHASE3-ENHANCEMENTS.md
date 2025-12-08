@@ -25,7 +25,7 @@ Phase 3 delivers critical UX improvements, performance optimizations, and develo
 - Optimized dark mode colors for all components
 
 **Implementation:**
-- **Library:** `next-themes@0.3.0`
+- **Library:** `next-themes@0.4.6`
 - **Files:**
   - `/app/components/ThemeProvider.tsx` - Theme context provider
   - `/app/components/ThemeToggle.tsx` - Toggle button component
@@ -66,7 +66,7 @@ dark:bg-slate-950
 - **Beautiful UI:** Command palette styled modal with dark mode support
 
 **Implementation:**
-- **Library:** `cmdk@1.0.4` (Command palette by Vercel)
+- **Library:** `cmdk@1.1.1` (Command palette by Vercel)
 - **Files:**
   - `/app/components/GlobalSearch.tsx` - Main search component
   - `/app/layout.tsx` - Global integration
@@ -238,8 +238,8 @@ const { favorites } = await res.json();
 
 ```json
 {
-  "next-themes": "^0.3.0",
-  "cmdk": "^1.0.4"
+  "next-themes": "^0.4.6",
+  "cmdk": "^1.1.1"
 }
 ```
 
