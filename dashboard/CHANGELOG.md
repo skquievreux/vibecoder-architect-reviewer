@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.9.9] - 2025-12-08
+
+### Fixed
+- **UI Stability**: Resolved "Rules of Hooks" violation in `RepoDetail` component which caused crashes on reload.
+- **Docker Compatibility**: Validated Docker Compose v2 compatibility to resolve `ContainerConfig` Key errors.
+
 ## [0.9.8] - 2025-12-08
 
 ### Fixed

@@ -102,6 +102,18 @@ export default function RepoDetail() {
     const [loadingTasks, setLoadingTasks] = useState(false);
     const [generatingTasks, setGeneratingTasks] = useState(false);
 
+    // Provider Management State
+    const [allProviders, setAllProviders] = useState<Provider[]>([]);
+    const [selectedProvider, setSelectedProvider] = useState("");
+    const [addingProvider, setAddingProvider] = useState(false);
+
+    useEffect(() => {
+        fetch('/api/providers')
+            .then(res => res.json())
+            .then(data => setAllProviders(data))
+            .catch(err => console.error("Failed to load providers", err));
+    }, []);
+
     const fetchTasks = async (repoId: string) => {
         setLoadingTasks(true);
         try {
@@ -296,17 +308,8 @@ export default function RepoDetail() {
         }
     };
 
-    // Provider Management
-    const [allProviders, setAllProviders] = useState<Provider[]>([]);
-    const [selectedProvider, setSelectedProvider] = useState("");
-    const [addingProvider, setAddingProvider] = useState(false);
+    // Provider Management Functions
 
-    useEffect(() => {
-        fetch('/api/providers')
-            .then(res => res.json())
-            .then(data => setAllProviders(data))
-            .catch(err => console.error("Failed to load providers", err));
-    }, []);
 
     const handleAddProvider = async () => {
         if (!selectedProvider || !repoData) return;
