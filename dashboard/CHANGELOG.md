@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.9.14] - 2025-12-08
+### Added
+- **Vercel Preview**: Integrated preview images for repository links (`/api/preview`).
+- **Standardization**: Enforced Open Graph metadata strategy (ADR-009).
+- **Compliance**: Dashboard now fully complies with ADR-009 (`opengraph-image.tsx`).
+- **Workflow**: Automated audit script `scripts/audit-metadata.ts` for ecosystem-wide metadata checks.
+
 ## [0.9.12] - 2025-12-08
 
 ### Performance & Infrastructure

@@ -65,7 +65,15 @@ const adrs = [
         context: "Manual release processes are error-prone and time-consuming. Inconsistent versioning across 60+ repositories makes dependency management difficult.",
         decision: "Implement **Semantic Release** across all repositories. Enforce **Conventional Commits** via `husky` and `commitlint`. automate releases via GitHub Actions.",
         consequences: "Developers must strictly follow commit message conventions. Releases happen automatically on merge to main. No more manual `npm publish`.",
-        tags: JSON.stringify(["Infrastructure", "CI/CD", "Automation", "Release"])
+        tags: "process, versioning, cicd, automation"
+    },
+    {
+        title: "ADR-009: Metadata & Open Graph Strategy",
+        status: "PROPOSED",
+        context: "Applications in the ecosystem lack consistent preview images (Open Graph tags), leading to poor presentation in the dashboard and on social platforms. Manual management of meta-tags is error-prone.",
+        decision: "We will standardize on Next.js App Router's file-based metadata API. All repositories must include an `opengraph-image.tsx` (or .jpg/.png) in the root `app/` directory. For non-Next.js apps, explicit `<meta>` tags are required.",
+        consequences: "Ensures consistent branding and previews. Requires one-time setup per repo. The dashboard can reliably display previews.",
+        tags: "standardization, ux, metadata, seo"
     }
 ];
 

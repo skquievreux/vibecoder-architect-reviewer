@@ -29,8 +29,8 @@ FROM node:20-alpine AS dev
 
 WORKDIR /app
 
-# Install OpenSSL for runtime
-RUN apk add --no-cache openssl
+# Install OpenSSL and Python3 for runtime
+RUN apk add --no-cache openssl python3
 
 # Set database URL
 ENV DATABASE_URL="file:./dev.db"
@@ -51,8 +51,8 @@ FROM node:20-alpine AS runner
 
 WORKDIR /app
 
-# Install OpenSSL for runtime
-RUN apk add --no-cache openssl
+# Install OpenSSL and Python3 for runtime
+RUN apk add --no-cache openssl python3
 
 # Set database URL
 ENV DATABASE_URL="file:./dev.db"

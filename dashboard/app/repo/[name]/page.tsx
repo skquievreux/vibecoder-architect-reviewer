@@ -364,6 +364,35 @@ export default function RepoDetail() {
 
 
 
+
+    // ... existing imports ...
+
+    const WebsitePreview = ({ url }: { url: string }) => {
+        const [preview, setPreview] = useState<{ image: string, title: string } | null>(null);
+
+        useEffect(() => {
+            if (!url) return;
+            fetch(`/api/preview?url=${encodeURIComponent(url)}`)
+                .then(res => res.json())
+                .then(data => {
+                    if (data.image) setPreview(data);
+                })
+                .catch(err => console.error("Failed to load preview", err));
+        }, [url]);
+
+        if (!preview) return null;
+
+        return (
+            <a href={url} target="_blank" rel="noopener noreferrer" className="block group relative w-32 h-20 rounded-lg overflow-hidden border border-slate-700 shadow-lg hover:shadow-violet-500/20 transition-all ml-4 hidden md:block">
+                <img src={preview.image} alt={preview.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors" />
+                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                    <ExternalLink size={16} className="text-white drop-shadow-md" />
+                </div>
+            </a>
+        );
+    };
+
     return (
         <main className="p-10 bg-slate-950 min-h-screen relative">
             <div className="max-w-7xl mx-auto space-y-6">
@@ -381,8 +410,12 @@ export default function RepoDetail() {
                             </div>
                             <Text className="mt-1 text-slate-400">{repo.description || "No description provided."}</Text>
                         </div>
+
+                        {/* Preview Image */}
+                        {activeUrl && <WebsitePreview url={activeUrl} />}
                     </div>
                     <div className="flex gap-3">
+                        {/* ... existing buttons ... */}
                         <a href={repo.url} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-4 py-2 bg-slate-800 border border-slate-700 rounded-lg hover:bg-slate-700 transition-colors text-slate-200 font-medium">
                             <Github size={18} />
                             GitHub
