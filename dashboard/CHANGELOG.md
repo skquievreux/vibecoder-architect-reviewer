@@ -1,5 +1,15 @@
 # Changelog
 
+## [0.9.6] - 2025-12-08
+
+### Added
+- **Tailwind CSS v4.0 Support**: Upgraded the design system to support the latest Tailwind CSS v4.0 features (`feature/upgrade-tailwind-4`).
+- **Dashboard Integration**: Fully integrated the dashboard application into the main repository structure.
+
+### Fixed
+- **Build Stability**: Resolved duplicate type definitions in `app/repo/[name]/page.tsx` and excluded temporary fix files from the build process to ensure a stable release.
+
+
 ## [0.9.2] - 2025-12-02
 
 ### Added

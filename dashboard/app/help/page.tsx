@@ -202,6 +202,15 @@ export default function HelpPage() {
                                         <section>
                                             <h3 className="text-lg font-bold text-violet-400 mb-3">Standardization Scripts</h3>
                                             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                                <div className="p-4 rounded bg-slate-900/50 border border-slate-800 hover:border-cyan-500/50 transition-colors">
+                                                    <div className="flex items-center gap-2 mb-2">
+                                                        <Sparkles size={16} className="text-cyan-400" />
+                                                        <strong className="text-slate-200">Upgrade Tailwind</strong>
+                                                    </div>
+                                                    <p className="text-xs text-slate-400">
+                                                        Migrates projects to <strong>Tailwind CSS v4.0</strong>, updating configuration and style tokens.
+                                                    </p>
+                                                </div>
                                                 <div className="p-4 rounded bg-slate-900/50 border border-slate-800 hover:border-violet-500/50 transition-colors">
                                                     <div className="flex items-center gap-2 mb-2">
                                                         <Code size={16} className="text-violet-400" />

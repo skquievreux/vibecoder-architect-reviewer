@@ -58,6 +58,7 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
     - **Revenue Scoring**: Identify top revenue-generating candidates with estimated ARR.
     - **Consolidation Engine**: Detect redundant stacks and cluster similar projects for optimization.
     - **Business Canvas**: Interactive canvas for Value Prop, Customer Segments, and Cost Structure.
+    - **Modern Designer UI**: Redesigned utilizing Tailwind CSS v4.0 for a premium, responsive experience.
 - **Repository Management**: Track 50+ repositories, their tech stacks, and health status.
     - **Interface Visualization**: Map dependencies between services (Spotify, OpenAI, Supabase).
     - **Manual Provider Linking**: Manually link services (e.g., Lemon Squeezy) that cannot be auto-detected.
