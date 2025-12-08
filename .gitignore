@@ -112,3 +112,10 @@ next-env.d.ts
 
 /app/generated/prisma
 
+
+# Analysis and backups
+analysis/
+analysis_results.json
+*.bak
+package.json.bak
+package-lock.json.bak
