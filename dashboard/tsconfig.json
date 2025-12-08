@@ -37,7 +37,8 @@
     "**/*.mts"
   ],
   "exclude": [
-    "node_modules"
+    "node_modules",
+    "temp_fix_2"
   ],
   "ts-node": {
     "compilerOptions": {
