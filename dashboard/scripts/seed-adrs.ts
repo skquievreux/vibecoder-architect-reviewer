@@ -58,6 +58,14 @@ const adrs = [
         decision: "Use **Vercel** for frontend applications and static sites (Next.js) to leverage Edge Network and easy CI/CD. Use **Hetzner** (Docker/VPS) for long-running backend services, databases, and heavy compute tasks where control and cost-efficiency are paramount.",
         consequences: "Hybrid infrastructure requires clear networking setup. Backend services on Hetzner must be containerized (Docker).",
         tags: JSON.stringify(["Infrastructure", "Hosting", "Cost"])
+    },
+    {
+        title: "ADR-008: Semantic Release Strategy",
+        status: "ACCEPTED",
+        context: "Manual release processes are error-prone and time-consuming. Inconsistent versioning across 60+ repositories makes dependency management difficult.",
+        decision: "Implement **Semantic Release** across all repositories. Enforce **Conventional Commits** via `husky` and `commitlint`. automate releases via GitHub Actions.",
+        consequences: "Developers must strictly follow commit message conventions. Releases happen automatically on merge to main. No more manual `npm publish`.",
+        tags: JSON.stringify(["Infrastructure", "CI/CD", "Automation", "Release"])
     }
 ];
 

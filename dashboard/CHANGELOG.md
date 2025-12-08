@@ -7,6 +7,8 @@
 - **Configuration**: Updated `next.config.ts` to enable `reactStrictMode` and optimized package imports.
 - **Strategy**: Added `PERFORMANCE_STRATEGY.md` documentation.
 - **Dependencies**: Fixed missing `next-auth` dependency in root package to resolve build errors.
+- **Ecosystem Standardization**: Rolled out `semantic-release` and `ecosystem-guard` (compliance check) to all 60+ repositories.
+- **Decision Record**: Documented `ADR-008: Semantic Release Strategy`.
 
 ### Fixed
 - **Chat UI**: Fixed `ReactMarkdown` "unexpected className" runtime assertion error.

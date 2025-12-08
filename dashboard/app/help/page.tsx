@@ -251,16 +251,16 @@ export default function HelpPage() {
                                         </section>
 
                                         <section>
-                                            <h3 className="text-lg font-bold text-slate-200 mb-3">Ecosystem Audit</h3>
+                                            <h3 className="text-lg font-bold text-slate-200 mb-3">Ecosystem Guard</h3>
                                             <div className="bg-slate-900/50 p-4 rounded-lg border border-slate-800">
                                                 <p className="text-slate-300 text-sm mb-2">
-                                                    The <strong>"View Live Status"</strong> button generates a real-time report of all repositories, checking for:
+                                                    The <strong>"Ecosystem Guard"</strong> automatically audits and standardizes all repositories, ensuring:
                                                 </p>
                                                 <ul className="list-disc list-inside text-sm text-slate-400 grid grid-cols-1 sm:grid-cols-2 gap-2">
-                                                    <li>Node.js Version Compliance</li>
-                                                    <li>TypeScript Version Compliance</li>
-                                                    <li>Build Status (Pass/Fail)</li>
-                                                    <li>Documentation Presence (README/Changelog)</li>
+                                                    <li>Node.js (v20) & TypeScript Compliance</li>
+                                                    <li>Supabase Client Versions</li>
+                                                    <li>Auto-Fixing of Version Drifts</li>
+                                                    <li>Release Automation via Semantic Release</li>
                                                 </ul>
                                             </div>
                                         </section>
