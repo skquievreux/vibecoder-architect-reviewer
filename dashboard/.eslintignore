@@ -1,0 +1,3 @@
+scripts/
+*.js
+!next.config.js
