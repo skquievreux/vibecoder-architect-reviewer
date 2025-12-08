@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.9.8] - 2025-12-08
+
+### Fixed
+- **API Connectivity**: Implemented Prisma singleton (`lib/prisma.ts`) to prevent "Failed to fetch" errors caused by connection leaks in development.
+- **Docker Build Performance**: Added `.dockerignore` to significantly reduce build context size and speed up deployments.
+- **Database Sync**: Fixed issue where local SQLite database was not syncing correctly to Docker volume.
+
 ## [0.9.6] - 2025-12-08
 
 ### Added
