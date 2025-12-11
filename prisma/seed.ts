@@ -5,7 +5,7 @@ import path from 'path';
 const prisma = new PrismaClient();
 
 async function main() {
-    const jsonPath = path.join(process.cwd(), '..', 'analysis_results.json');
+    const jsonPath = path.join(process.cwd(), 'analysis_results.json');
 
     if (!fs.existsSync(jsonPath)) {
         console.error('Analysis results not found at', jsonPath);

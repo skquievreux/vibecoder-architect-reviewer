@@ -62,13 +62,6 @@ type Repository = {
     providers: Provider[];
 };
 
-type Provider = {
-    id: string;
-    name: string;
-    slug: string;
-    category: string;
-};
-
 const DASHBOARD_URLS: Record<string, string> = {
     "supabase": "https://supabase.com/dashboard",
     "openai": "https://platform.openai.com",
@@ -106,6 +99,11 @@ export default function RepoDetail() {
     const [tasks, setTasks] = useState<Task[]>([]);
     const [loadingTasks, setLoadingTasks] = useState(false);
     const [generatingTasks, setGeneratingTasks] = useState(false);
+
+    // Provider Management State
+    const [allProviders, setAllProviders] = useState<Provider[]>([]);
+    const [selectedProvider, setSelectedProvider] = useState("");
+    const [addingProvider, setAddingProvider] = useState(false);
 
     const fetchTasks = async (repoId: string) => {
         setLoadingTasks(true);
@@ -301,10 +299,7 @@ export default function RepoDetail() {
         }
     };
 
-    // Provider Management
-    const [allProviders, setAllProviders] = useState<Provider[]>([]);
-    const [selectedProvider, setSelectedProvider] = useState("");
-    const [addingProvider, setAddingProvider] = useState(false);
+    // Provider Management useEffect (state declared at top)
 
     useEffect(() => {
         fetch('/api/providers')

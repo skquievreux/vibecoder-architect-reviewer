@@ -1,75 +1,293 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🏗️ Vibecoder Architect Reviewer
 
-## Getting Started
+**Version:** 0.11.1  
+**Status:** Production Ready  
+**License:** MIT
 
-First, run the development server:
+> Eine umfassende Portfolio-Management- und Architektur-Review-Plattform für GitHub-Repositories mit AI-gestützter Analyse, Business Intelligence und automatisiertem Deployment-Management.
+
+---
+
+## 📋 Inhaltsverzeichnis
+
+- [Überblick](#-überblick)
+- [Features](#-features)
+- [Quick Start](#-quick-start)
+- [Technologie-Stack](#-technologie-stack)
+- [Dokumentation](#-dokumentation)
+- [Projekt-Status](#-projekt-status)
+- [Support](#-support)
+
+---
+
+## 🎯 Überblick
+
+Vibecoder Architect Reviewer ist eine leistungsstarke Plattform zur Verwaltung und Analyse Ihrer GitHub-Repositories. Die Anwendung kombiniert automatische Code-Analyse, Business Intelligence und AI-gestützte Empfehlungen, um Ihnen einen vollständigen Überblick über Ihr Software-Portfolio zu geben.
+
+### Hauptziele
+
+- **📊 Portfolio-Übersicht**: Zentralisierte Ansicht aller Repositories mit Technologie-Stack und Deployment-Status
+- **💼 Business Intelligence**: Bewertung des kommerziellen Potenzials jedes Projekts
+- **🤖 AI-Unterstützung**: Automatische Task-Generierung und Architektur-Beratung
+- **🚀 Deployment-Management**: Verwaltung von Deployments und Custom Domains
+- **📝 Dokumentation**: Architecture Decision Records (ADRs) und automatische Reports
+
+---
+
+## ✨ Features
+
+### 🔍 Repository-Analyse
+- Automatische Technologie-Erkennung (Sprachen, Frameworks, Datenbanken)
+- Interface-Detection (REST APIs, GraphQL, Cloud-Services)
+- **Private Repository Support** - Vollständiger Zugriff auf 63 Repositories (15 öffentlich, 48 privat)
+
+### 💼 Business Canvas Management
+- Value Proposition Analysis
+- Customer Segmentation mit Pain Points
+- Revenue Streams mit ARR-Schätzungen
+- Cost Structure-Tracking und Optimierung
+
+### 🚀 Deployment & DNS
+- Multi-Provider Support (Vercel, Netlify, Fly.io, AWS, etc.)
+- Cloudflare DNS-Management mit automatischer CNAME-Erstellung
+- Link Health Monitoring mit Latency-Messung
+
+### 🤖 AI-Features
+- Automatische Task-Generierung (Security, Maintenance, Features)
+- Architektur-Beratung mit Best Practices
+- Repository-Beschreibungen (SEO-optimiert)
+
+### 📝 Architecture Decision Records
+- 7 vordefinierte ADRs (Next.js 16, TypeScript Strict Mode, etc.)
+- Status-Tracking (Proposed, Accepted, Deprecated)
+- Tag-basierte Kategorisierung
+
+### 📊 Reporting & Analytics
+- Portfolio-Reports mit Technologie-Verteilung
+- AI-generierte Projekt-Übersichten
+- Cost-Übersicht und Health-Scores
+
+---
+
+## 🚀 Quick Start
+
+### Voraussetzungen
+
+- **Node.js** >= 20.9.0
+- **Python** 3.8+
+- **Git**
+- **GitHub Account** mit Personal Access Token
+
+### Installation
+
+#### Option 1: Automatisches Setup (Empfohlen)
+
+```bash
+# Repository klonen
+git clone https://github.com/yourusername/vibecoder-architect-reviewer.git
+cd vibecoder-architect-reviewer
+
+# Automatisches Setup ausführen
+node quick-setup.js
+```
+
+#### Option 2: Manuelles Setup
+
+```bash
+# 1. Dependencies installieren
+npm install
+pip install -r analysis/requirements.txt
+
+# 2. Environment konfigurieren
+cp .env.example .env.local
+# Bearbeiten Sie .env.local und fügen Sie Ihre Credentials hinzu
+
+# 3. Datenbank initialisieren
+npx prisma generate
+npx prisma db push
+
+# 4. Repositories analysieren
+python analysis/analyzer.py
+
+# 5. Datenbank befüllen
+npx prisma db seed
+node scripts/import-portfolio.js
+npx ts-node scripts/seed-adrs.ts
+node scripts/seed-providers.js
+```
+
+### Konfiguration
+
+#### Erforderliche Environment-Variablen
+
+```env
+# Datenbank
+DATABASE_URL="file:./dev.db"
+
+# GitHub (Erforderlich)
+GITHUB_TOKEN="ghp_your_token_here"
+GITHUB_OWNER="your-github-username"
+
+# Authentication (Erforderlich)
+NEXTAUTH_SECRET="generate-with-openssl-rand-base64-32"
+NEXTAUTH_URL="http://localhost:3000"
+
+# AI (Optional, aber empfohlen)
+PERPLEXITY_API_KEY="pplx_your_key"
+OPENAI_API_KEY="sk_your_key"
+
+# Cloudflare (Optional, für DNS-Management)
+CLOUDFLARE_API_TOKEN="your_token"
+```
+
+**GitHub Token erstellen:**
+1. https://github.com/settings/tokens
+2. "Generate new token (classic)"
+3. Scopes: `repo` + `read:org`
+4. Token in `.env.local` einfügen
+
+### Development Server starten
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Öffnen Sie http://localhost:3000 im Browser.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Erste Schritte
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+1. **Environment validieren**: `node check-env.js`
+2. **Repositories synchronisieren**: Klick auf "Sync" im Dashboard
+3. **Business Canvas bearbeiten**: Repository öffnen → "Edit Canvas"
+4. **Tasks generieren**: Klick auf "Generate Tasks"
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
+## 🛠️ Technologie-Stack
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Frontend
+- **Framework**: Next.js 16.0.5 (App Router)
+- **UI**: React 18.3.1 + Tailwind CSS 3.4.18
+- **Components**: Tremor React + Lucide Icons
+- **Visualisierung**: ReactFlow
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Backend
+- **Runtime**: Node.js 20+ LTS
+- **API**: Next.js API Routes
+- **Datenbank**: SQLite (dev) / PostgreSQL (production)
+- **ORM**: Prisma 5.22.0
+- **Auth**: NextAuth.js 4.24.13
 
-## Features
+### Externe Services
+- GitHub API, Cloudflare API
+- Perplexity/OpenAI (AI-Features)
+- Supabase (Optional)
 
-### 🧠 AI Architecture Reporting (v0.7.0)
-- **Automated Analysis**: Generate actionable reports using Perplexity AI.
-- **Knowledge Base (ADRs)**: Manage Architecture Decision Records and Policies.
-- **AI Advisor**: Interactive chat for architectural guidance based on portfolio context.
-- **Deployment Detection**: Automatically detect Vercel, Fly.io, and Docker deployments.
-- **System Maintenance**:
-    - Audit ecosystem versions (Node.js, TypeScript, Next.js).
-    - Auto-fix configuration drifts.
-    - View logs and audit reports directly in the UI.
-- **Automated Task Management**:
-    - AI-generated tasks for migrations and security.
-    - Priority tracking with visual dashboard indicators.
-- **Help System**:
-    - Centralized documentation for all features.
-    - Integrated "How-To" guides for maintenance and architecture decisions.
-- **CI/CD Integration**: Automated linting and building workflows.
+### Analyse-Tools
+- Python 3.8+ (Repository-Analyzer)
+- python-dotenv, requests
 
-### 🚀 CI/CD & Automation
-- **GitHub Actions**: Standardized pipeline for Linting, Building, and Verification.
-- **Automated Versioning**: Builds automatically increment patch versions.
-- **Health Checks**: Post-deployment verification scripts ensure system stability.
+---
 
-### 📊 Core Dashboard
-- **Strategic Portfolio Intelligence**:
-    - **Revenue Scoring**: Identify top revenue-generating candidates with estimated ARR.
-    - **Consolidation Engine**: Detect redundant stacks and cluster similar projects for optimization.
-    - **Business Canvas**: Interactive canvas for Value Prop, Customer Segments, and Cost Structure.
-- **Repository Management**: Track 50+ repositories, their tech stacks, and health status.
-    - **Interface Visualization**: Map dependencies between services (Spotify, OpenAI, Supabase).
-    - **Manual Provider Linking**: Manually link services (e.g., Lemon Squeezy) that cannot be auto-detected.
-    - **DNS & Hosting**: Manage Cloudflare DNS records and link them to Vercel/Fly.io deployments.
-- **Cost Estimation**: Track estimated monthly infrastructure costs.
+## 📚 Dokumentation
 
-## API Documentation
-The API is documented using OpenAPI 3.0. You can find the specification file at:
-- [openapi.json](app/api/openapi.json)
+### Haupt-Dokumentation
+- **[DOCUMENTATION.md](./DOCUMENTATION.md)** - Vollständige Funktions- und API-Dokumentation (10.000+ Wörter)
+- **[SETUP.md](./SETUP.md)** - Detaillierte Setup-Anleitung (Deutsch)
+- **[RELEASE_v0.11.1.md](./RELEASE_v0.11.1.md)** - Release Notes
 
-## Deploy on Vercel
+### Spezifische Guides
+- **[analysis/README.md](./analysis/README.md)** - GitHub Analyzer Dokumentation
+- **[.env.example](./.env.example)** - Environment-Variablen Template
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### API-Dokumentation
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+**Wichtigste Endpoints:**
+- `GET /api/repos/[name]` - Repository-Details
+- `POST /api/ai/tasks` - Task-Generierung
+- `POST /api/dns` - DNS-Record erstellen
+- `PATCH /api/repos/[name]/canvas` - Business Canvas aktualisieren
+
+Vollständige API-Referenz: [DOCUMENTATION.md](./DOCUMENTATION.md#api-dokumentation)
+
+---
+
+## 📊 Projekt-Status
+
+### Statistiken (v0.11.1)
+
+- **Repositories**: 63 (15 öffentlich, 48 privat)
+- **Technologies**: 284 erkannt
+- **Business Canvases**: 26
+- **ADRs**: 7
+- **AI Reports**: 3
+- **Providers**: 16
+
+### Build-Status
+
+[![Build Status](https://img.shields.io/badge/build-passing-brightgreen)]()
+[![Version](https://img.shields.io/badge/version-0.11.1-blue)]()
+[![License](https://img.shields.io/badge/license-MIT-green)](./LICENSE)
+
+---
+
+## 📞 Support
+
+### Hilfe benötigt?
+
+1. **Dokumentation**: [DOCUMENTATION.md](./DOCUMENTATION.md)
+2. **Troubleshooting**: [DOCUMENTATION.md#troubleshooting](./DOCUMENTATION.md#troubleshooting)
+3. **Setup-Guide**: [SETUP.md](./SETUP.md)
+
+### Nützliche Befehle
+
+```bash
+# Status-Check
+node check-env.js          # Environment validieren
+node check-db-counts.js    # Datenbank-Statistiken
+node check-logs.js         # Logs anzeigen
+
+# Sync
+python analysis/analyzer.py  # Repositories analysieren
+npx prisma db seed           # Datenbank befüllen
+
+# Maintenance
+npx prisma studio           # Datenbank-GUI
+npm run build              # Production Build
+```
+
+---
+
+## 🔄 Was ist neu in v0.11.1?
+
+### 🐛 Bug Fixes
+- ✅ Sync-Fehler behoben (`analyzer.py` erstellt)
+- ✅ Private Repository Support (48 private Repos hinzugefügt)
+- ✅ React Hooks-Fehler behoben
+- ✅ Environment Variable Loading in Python
+
+### ✨ Neue Features
+- ✅ Umfassende `.env.example` mit allen Variablen
+- ✅ `check-env.js` - Environment-Validator
+- ✅ `quick-setup.js` - Automatisches Setup
+- ✅ Vollständige Dokumentation (DOCUMENTATION.md)
+
+### 📦 Daten-Wiederherstellung
+- ✅ Business Canvases: 26 importiert
+- ✅ ADRs: 7 wiederhergestellt
+- ✅ AI Reports: 3 wiederhergestellt
+- ✅ Providers: 16 wiederhergestellt
+
+Vollständige Release Notes: [RELEASE_v0.11.1.md](./RELEASE_v0.11.1.md)
+
+---
+
+## 📄 License
+
+MIT License - siehe [LICENSE](./LICENSE)
+
+---
+
+**Made with ❤️ by the Vibecoder Team**
+
+[⬆ Back to top](#-vibecoder-architect-reviewer)

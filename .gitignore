@@ -13,6 +13,7 @@ __pycache__/
 .env.test.local
 .env.production.local
 .env*
+!.env.example
 
 # Logs
 *.log
@@ -114,8 +115,12 @@ next-env.d.ts
 
 
 # Analysis and backups
-analysis/
 analysis_results.json
+analysis/*.json
+analysis/*.csv
+analysis/*.log
+!analysis/analyzer.py
+!analysis/requirements.txt
 *.bak
 package.json.bak
 package-lock.json.bak
