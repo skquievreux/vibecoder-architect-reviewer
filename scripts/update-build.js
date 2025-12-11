@@ -1,5 +1,7 @@
 /* eslint-disable @typescript-eslint/no-require-imports */
 const fs = require('fs');
+require('dotenv').config({ path: path.join(process.cwd(), '.env.local') });
+require('dotenv').config({ path: path.join(process.cwd(), '.env') });
 const path = require('path');
 const { execSync } = require('child_process');
 

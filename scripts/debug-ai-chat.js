@@ -1,4 +1,6 @@
 const OpenAI = require('openai');
+require('dotenv').config({ path: path.join(process.cwd(), '.env.local') });
+require('dotenv').config({ path: path.join(process.cwd(), '.env') });
 const fs = require('fs');
 const path = require('path');
 

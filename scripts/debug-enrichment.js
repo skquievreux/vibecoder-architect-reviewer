@@ -1,4 +1,6 @@
 const { PrismaClient } = require('@prisma/client');
+require('dotenv').config({ path: path.join(process.cwd(), '.env.local') });
+require('dotenv').config({ path: path.join(process.cwd(), '.env') });
 const OpenAI = require('openai');
 const fs = require('fs');
 const path = require('path');
@@ -9,16 +11,7 @@ async function main() {
     console.log("Debugging AI Enrichment...");
 
     // 1. Setup AI Client
-    const envPath = path.join(process.cwd(), '.env');
-    let fileKey = null;
-
-    if (fs.existsSync(envPath)) {
-        const envContent = fs.readFileSync(envPath, 'utf-8');
-        const match = envContent.match(/PERPLEXITY_API_KEY=(.*)/) || envContent.match(/PERPLEXITY_API_TOKEN=(.*)/) || envContent.match(/OPENAI_API_KEY=(.*)/);
-        if (match && match[1]) {
-            fileKey = match[1].trim().replace(/["']/g, '');
-        }
-    }
+    
 
     const apiKey = fileKey || process.env.PERPLEXITY_API_KEY || process.env.OPENAI_API_KEY;
 

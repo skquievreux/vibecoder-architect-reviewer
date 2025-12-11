@@ -1,28 +1,27 @@
 const { PrismaClient } = require('@prisma/client');
 const fs = require('fs');
 const path = require('path');
+require('dotenv').config({ path: path.join(process.cwd(), '.env.local') });
+require('dotenv').config({ path: path.join(process.cwd(), '.env') });
 
 const prisma = new PrismaClient();
 
 async function main() {
-    console.log("🚀 Starting Vercel Domain Sync...");
+    console.log("🚀 Starting Vercel Domain Sync...\n");
 
-    // 1. Get API Token
-    const envPath = path.join(process.cwd(), '.env');
-    let apiToken = null;
-
-    if (fs.existsSync(envPath)) {
-        const envContent = fs.readFileSync(envPath, 'utf-8');
-        const match = envContent.match(/VERCEL_API_TOKEN=(.*)/) || envContent.match(/VERCEL_TOKEN=(.*)/);
-        if (match && match[1]) {
-            apiToken = match[1].trim().replace(/["']/g, '');
-        }
-    }
+    // 1. Get API Token from environment
+    const apiToken = process.env.VERCEL_API_TOKEN || process.env.VERCEL_TOKEN;
 
     if (!apiToken) {
+        console.error("ERRORS:");
         console.error("❌ VERCEL_API_TOKEN not found.");
+        console.error("\nPlease set VERCEL_API_TOKEN in .env.local:");
+        console.error("VERCEL_API_TOKEN=\"your_vercel_token_here\"\n");
+        console.error("Get your token from: https://vercel.com/account/tokens");
         return;
     }
+
+    console.log("✅ Vercel API token found\n");
 
     const HEADERS = {
         'Authorization': `Bearer ${apiToken}`,

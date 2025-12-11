@@ -1,5 +1,7 @@
 
 const { PrismaClient } = require('@prisma/client');
+require('dotenv').config({ path: path.join(process.cwd(), '.env.local') });
+require('dotenv').config({ path: path.join(process.cwd(), '.env') });
 const fs = require('fs');
 const path = require('path');
 require('dotenv').config();

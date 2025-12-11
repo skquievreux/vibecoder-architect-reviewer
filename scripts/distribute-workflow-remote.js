@@ -1,5 +1,7 @@
 require('dotenv').config({ path: '.env' });
 const fs = require('fs');
+require('dotenv').config({ path: path.join(process.cwd(), '.env.local') });
+require('dotenv').config({ path: path.join(process.cwd(), '.env') });
 const path = require('path');
 
 const GITHUB_TOKEN = process.env.GITHUB_TOKEN;

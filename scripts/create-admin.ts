@@ -1,4 +1,7 @@
 import { PrismaClient } from '@prisma/client';
+const path = require('path');
+require('dotenv').config({ path: path.join(process.cwd(), '.env.local') });
+require('dotenv').config({ path: path.join(process.cwd(), '.env') });
 import bcrypt from 'bcryptjs';
 
 const prisma = new PrismaClient();
