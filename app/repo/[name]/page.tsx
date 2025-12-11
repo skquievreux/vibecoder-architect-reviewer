@@ -105,6 +105,9 @@ export default function RepoDetail() {
     const [selectedProvider, setSelectedProvider] = useState("");
     const [addingProvider, setAddingProvider] = useState(false);
 
+    // DNS Records State
+    const [dnsRecords, setDnsRecords] = useState<any[]>([]);
+
     const fetchTasks = async (repoId: string) => {
         setLoadingTasks(true);
         try {
@@ -191,7 +194,7 @@ export default function RepoDetail() {
             });
     }, [repoName]);
 
-    const [dnsRecords, setDnsRecords] = useState<any[]>([]);
+    // DNS Records useEffect (state declared at top)
 
     useEffect(() => {
         if (repoData?.deployments && repoData.deployments.length > 0) {
