@@ -239,6 +239,14 @@ export default function RepoDetail() {
         }
     }, [isDnsModalOpen]);
 
+    // Provider Management useEffect (state declared at top)
+    useEffect(() => {
+        fetch('/api/providers')
+            .then(res => res.json())
+            .then(data => setAllProviders(data))
+            .catch(err => console.error("Failed to load providers", err));
+    }, []);
+
     if (loading) return <div className="p-10">Loading repository details...</div>;
     if (!repoData) return <div className="p-10">Repository not found</div>;
 
@@ -302,14 +310,7 @@ export default function RepoDetail() {
         }
     };
 
-    // Provider Management useEffect (state declared at top)
-
-    useEffect(() => {
-        fetch('/api/providers')
-            .then(res => res.json())
-            .then(data => setAllProviders(data))
-            .catch(err => console.error("Failed to load providers", err));
-    }, []);
+    // Provider Management handlers (useEffect moved before early returns)
 
     const handleAddProvider = async () => {
         if (!selectedProvider || !repoData) return;
