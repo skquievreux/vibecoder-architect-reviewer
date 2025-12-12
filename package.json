@@ -8,7 +8,9 @@
     "verify": "node scripts/verify-deployment.js",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "enrich": "npx tsx scripts/enrich-portfolio.ts",
+    "sync-repos": "npx tsx scripts/fetch-github-repos.ts"
   },
   "dependencies": {
     "@auth/prisma-adapter": "^2.11.1",

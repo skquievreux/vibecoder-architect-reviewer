@@ -11,21 +11,15 @@ export async function POST() {
     try {
         const dashboardDir = process.cwd();
         const rootDir = path.resolve(dashboardDir, '..');
-        const analyzerScript = path.join(rootDir, 'analysis', 'analyzer.py');
-
-        // Log Start
-        await prisma.syncLog.create({
-            data: {
-                status: 'INFO',
-                message: 'Sync started',
-                details: 'Triggered via Dashboard'
-            }
+        // 1. Run GitHub Fetch (replaces Analyzer)
+        console.log('Starting GitHub Fetch...');
+        const fetchScript = path.join(dashboardDir, 'scripts', 'fetch-github-repos.ts');
+        // Use npx -y tsx to execute TS script directly
+        const analyzerRes = await execAsync(`npx -y tsx "${fetchScript}"`, {
+            cwd: dashboardDir,
+            env: { ...process.env, PATH: process.env.PATH }
         });
-
-        // 1. Run Analyzer
-        console.log('Starting Analyzer...');
-        const analyzerRes = await execAsync(`python3 "${analyzerScript}"`, { cwd: rootDir });
-        console.log('Analyzer finished.');
+        console.log('GitHub Fetch finished.');
 
         // 2. Run Seeder
         console.log('Starting Seeder...');

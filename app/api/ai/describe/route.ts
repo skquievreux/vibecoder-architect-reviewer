@@ -1,51 +1,12 @@
 import { NextResponse } from 'next/server';
 import { PrismaClient } from '@prisma/client';
-import OpenAI from 'openai';
+import { safeCompletion } from '@/lib/ai/core';
 
 const prisma = new PrismaClient();
 
 export async function POST() {
     try {
-        // 1. Setup AI Client
-        // Force read .env from filesystem to bypass Next.js/Node process.env cache
-        const fs = require('fs');
-        const path = require('path');
-
-        let fileKey = null;
-
-        // Try .env.local first
-        const localEnvPath = path.join(process.cwd(), '.env.local');
-        if (fs.existsSync(localEnvPath)) {
-            const envContent = fs.readFileSync(localEnvPath, 'utf-8');
-            const match = envContent.match(/PERPLEXITY_API_KEY=(.*)/) || envContent.match(/PERPLEXITY_API_TOKEN=(.*)/);
-            if (match && match[1]) {
-                fileKey = match[1].trim().replace(/["']/g, '');
-            }
-        }
-
-        // Try .env fallback
-        if (!fileKey) {
-            const envPath = path.join(process.cwd(), '.env');
-            if (fs.existsSync(envPath)) {
-                const envContent = fs.readFileSync(envPath, 'utf-8');
-                const match = envContent.match(/PERPLEXITY_API_KEY=(.*)/) || envContent.match(/PERPLEXITY_API_TOKEN=(.*)/) || envContent.match(/OPENAI_API_KEY=(.*)/);
-                if (match && match[1]) {
-                    fileKey = match[1].trim().replace(/["']/g, '');
-                }
-            }
-        }
-
-        const apiKey = fileKey || process.env.PERPLEXITY_API_KEY || process.env.OPENAI_API_KEY;
-
-        if (!apiKey) {
-            console.error("AI API Key missing. Checked .env.local, .env and process.env");
-            return NextResponse.json({ error: 'AI API Key not configured (PERPLEXITY_API_KEY)' }, { status: 500 });
-        }
-
-        const client = new OpenAI({
-            apiKey: apiKey,
-            baseURL: "https://api.perplexity.ai",
-        });
+        // 1. Setup - Handled centrally by safeCompletion
 
         // 2. Find repos without descriptions
         const reposToEnrich = await prisma.repository.findMany({
@@ -80,7 +41,7 @@ export async function POST() {
             `;
 
             try {
-                const completion = await client.chat.completions.create({
+                const completion = await safeCompletion({
                     model: "sonar-pro",
                     messages: [
                         { role: "system", content: "Du bist ein technischer Redakteur." },
