@@ -16,22 +16,51 @@ export async function GET() {
         const nodes: any[] = [];
         const edges: any[] = [];
         const serviceNodes = new Set<string>();
+        const capabilityNodes = new Set<string>();
 
         // 1. Create Repo Nodes
         repos.forEach(repo => {
             nodes.push({
                 id: repo.id,
-                type: 'repoNode', // Custom type we'll define in frontend
+                type: 'repoNode',
                 data: {
                     label: repo.name,
                     description: repo.description,
                     capabilities: repo.capabilities.map(c => c.name),
                     categories: Array.from(new Set(repo.capabilities.map(c => c.category || 'Uncategorized')))
                 },
-                position: { x: 0, y: 0 } // Layout will handle this
+                position: { x: 0, y: 0 }
             });
 
-            // 2. Create Edges for Repo Connections (Shared DB etc)
+            // 2. Create Capability Nodes and connect repos to them
+            repo.capabilities.forEach(cap => {
+                const capId = `capability-${cap.name}`;
+
+                if (!capabilityNodes.has(capId)) {
+                    nodes.push({
+                        id: capId,
+                        type: 'serviceNode',
+                        data: {
+                            label: cap.name,
+                            category: cap.category
+                        },
+                        position: { x: 0, y: 0 }
+                    });
+                    capabilityNodes.add(capId);
+                }
+
+                // Connect repo to capability
+                edges.push({
+                    id: `${repo.id}-${capId}`,
+                    source: repo.id,
+                    target: capId,
+                    type: 'default',
+                    animated: false,
+                    style: { stroke: '#8b5cf6', strokeWidth: 1.5 }
+                });
+            });
+
+            // 3. Create Edges for Repo Connections (Shared DB etc)
             repo.outgoingConnections.forEach(conn => {
                 edges.push({
                     id: `${conn.sourceRepoId}-${conn.targetRepoId}`,
@@ -39,17 +68,17 @@ export async function GET() {
                     target: conn.targetRepoId,
                     type: 'smoothstep',
                     animated: true,
-                    label: conn.type.replace('SHARED_', '')
+                    label: conn.type.replace('SHARED_', ''),
+                    style: { stroke: '#10b981', strokeWidth: 2 }
                 });
             });
 
-            // 3. Create Service Nodes from Interfaces (e.g. OpenAI, Supabase)
-            // This visualizes the "Hub" effect better than just linking repos
+            // 4. Create Service Nodes from Interfaces (e.g. OpenAI, Supabase)
             repo.interfaces.forEach(iface => {
                 let serviceName = 'Unknown';
                 try {
                     const details = JSON.parse(iface.details || '{}');
-                    serviceName = details.service || iface.type;
+                    serviceName = details.service || details.framework || details.orm || iface.type;
                 } catch (e) {
                     serviceName = iface.type || 'Unknown';
                 }
