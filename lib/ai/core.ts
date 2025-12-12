@@ -14,6 +14,7 @@ const MAX_RETRIES = 3;
 function getApiKey(): string | null {
     // 1. Standard process.env
     if (process.env.PERPLEXITY_API_KEY) return process.env.PERPLEXITY_API_KEY;
+    if (process.env.PERPLEXITY_API_TOKEN) return process.env.PERPLEXITY_API_TOKEN;
     if (process.env.OPENAI_API_KEY) return process.env.OPENAI_API_KEY;
 
     console.warn("⚠️ [AI Core] Keys missing in process.env. Attempting manual file load...");
@@ -25,6 +26,7 @@ function getApiKey(): string | null {
             console.log(`[AI Core] Reading ${envLocal}`);
             const envConfig = dotenv.parse(fs.readFileSync(envLocal));
             if (envConfig.PERPLEXITY_API_KEY) return envConfig.PERPLEXITY_API_KEY;
+            if (envConfig.PERPLEXITY_API_TOKEN) return envConfig.PERPLEXITY_API_TOKEN;
             if (envConfig.OPENAI_API_KEY) return envConfig.OPENAI_API_KEY;
         } else {
             console.log(`[AI Core] .env.local not found at ${envLocal}`);
@@ -35,6 +37,7 @@ function getApiKey(): string | null {
             console.log(`[AI Core] Reading ${env}`);
             const envConfig = dotenv.parse(fs.readFileSync(env));
             if (envConfig.PERPLEXITY_API_KEY) return envConfig.PERPLEXITY_API_KEY;
+            if (envConfig.PERPLEXITY_API_TOKEN) return envConfig.PERPLEXITY_API_TOKEN;
             if (envConfig.OPENAI_API_KEY) return envConfig.OPENAI_API_KEY;
         }
     } catch (e: any) {
@@ -69,7 +72,7 @@ const wait = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
 // Simple global lock/queue mechanism
 // We use a promise chain to ensure strict sequential execution if needed, 
 // or a semaphore for concurrency. For Perplexity, sequential + delay is safest to avoid 429.
-let requestChain = Promise.resolve();
+let requestChain: Promise<any> = Promise.resolve();
 
 /**
  * Executes an AI completion request with built-in Rate Limiting and Retry logic.
