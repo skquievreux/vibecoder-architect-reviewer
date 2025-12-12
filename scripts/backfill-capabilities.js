@@ -35,13 +35,51 @@ async function main() {
 
         for (const tech of repo.technologies) {
             const lowerTech = tech.name.toLowerCase();
+
+            // Check capability map
             if (CAPABILITY_MAP[lowerTech]) {
                 capabilities.push({
                     ...CAPABILITY_MAP[lowerTech],
                     source: `package:${lowerTech}`
                 });
-            } else if (lowerTech.includes('openai')) {
+            }
+            // Language-based capabilities
+            else if (lowerTech === 'python') {
+                capabilities.push({ name: 'SCRIPTING', category: 'DEV', source: 'language:Python' });
+            }
+            else if (lowerTech === 'javascript' || lowerTech === 'typescript') {
+                capabilities.push({ name: 'WEB_DEVELOPMENT', category: 'WEB', source: `language:${tech.name}` });
+            }
+            else if (lowerTech === 'html' || lowerTech === 'css') {
+                capabilities.push({ name: 'FRONTEND', category: 'WEB', source: `language:${tech.name}` });
+            }
+            else if (lowerTech === 'ruby') {
+                capabilities.push({ name: 'WEB_FRAMEWORK', category: 'WEB', source: 'language:Ruby' });
+            }
+            else if (lowerTech === 'node.js') {
+                capabilities.push({ name: 'BACKEND', category: 'INFRA', source: 'runtime:Node.js' });
+            }
+            else if (lowerTech === 'express') {
+                capabilities.push({ name: 'API_SERVER', category: 'INFRA', source: 'framework:Express' });
+            }
+            else if (lowerTech === 'dockerfile' || lowerTech === 'docker') {
+                capabilities.push({ name: 'CONTAINERIZATION', category: 'INFRA', source: 'tool:Docker' });
+            }
+            else if (lowerTech === 'shell' || lowerTech === 'powershell' || lowerTech === 'batchfile') {
+                capabilities.push({ name: 'AUTOMATION', category: 'DEV', source: `tool:${tech.name}` });
+            }
+            else if (lowerTech.includes('openai')) {
                 capabilities.push({ name: 'AI_INTEGRATION', category: 'AI', source: `package:${tech.name}` });
+            }
+        }
+
+        // If no capabilities found but has technologies, assign generic capability
+        if (capabilities.length === 0 && repo.technologies.length > 0) {
+            const primaryLang = repo.technologies[0].name;
+            if (primaryLang.toLowerCase().includes('html') || primaryLang.toLowerCase().includes('javascript')) {
+                capabilities.push({ name: 'WEB_APPLICATION', category: 'WEB', source: 'inferred' });
+            } else {
+                capabilities.push({ name: 'SOFTWARE_PROJECT', category: 'DEV', source: 'inferred' });
             }
         }
 

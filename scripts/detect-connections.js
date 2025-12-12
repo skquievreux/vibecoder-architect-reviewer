@@ -2,116 +2,137 @@ const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
 
 async function main() {
-    console.log("🚀 Starting Connection Detection...");
+    console.log("🚀 Starting Connection Detection...\n");
 
-    // 1. Clear existing connections (for clean slate)
+    // 1. Clear existing connections
     await prisma.repoConnection.deleteMany();
-    console.log("Cleared existing connections.");
+    console.log("Cleared existing connections.\n");
 
     // 2. Get all repos with interfaces
     const repos = await prisma.repository.findMany({
         include: { interfaces: true }
     });
 
-    console.log(`Analyzing ${repos.length} repositories...`);
+    console.log(`Analyzing ${repos.length} repositories...\n`);
 
     const connections = [];
-
-    // Strategy: Shared Resources
-    // If Repo A and Repo B both connect to "Supabase", we link them?
-    // Or better: If Repo A is a "Backend" and Repo B is a "Frontend" and they share a resource?
-    // For now, let's just link them if they share a specific resource identifier (like a specific variable name or service details).
-
-    // Group by Service/Resource
     const resourceMap = {};
 
+    // 3. Group repos by shared resources
     repos.forEach(repo => {
         repo.interfaces.forEach(iface => {
-            // We need a unique key for the resource.
-            // analyzer.py stores details as JSON string.
             let details = {};
             try {
                 details = JSON.parse(iface.details || '{}');
             } catch (e) { }
 
-            // Key candidates:
-            // 1. Variable Name (e.g. NEXT_PUBLIC_SUPABASE_URL) - Weak, but okay if consistent
-            // 2. Service Name (e.g. Supabase) - Too broad?
+            // Detect service name from various sources
+            const service = details.service || details.framework || details.orm || iface.type;
 
-            // Let's use Service Name for clustering, but maybe not direct connection yet.
-            // BUT, if we want to show "Repo A -> Supabase -> Repo B", we need to know they share it.
+            // Database connections
+            if (iface.type === 'Database' || iface.type === 'database_connection') {
+                const key = `DB:${service}`;
+                if (!resourceMap[key]) resourceMap[key] = [];
+                resourceMap[key].push(repo.id);
+            }
 
-            // Let's create connections based on "Shared Infrastructure".
-            // We won't create Repo->Repo connections directly unless we are sure.
-            // Instead, we will create Repo->Repo connections if they share a DATABASE or API.
+            // Cloud services
+            if (iface.type === 'Cloud Service' || iface.type === 'cloud_service') {
+                const key = `CLOUD:${service}`;
+                if (!resourceMap[key]) resourceMap[key] = [];
+                resourceMap[key].push(repo.id);
+            }
 
-            if (iface.type === 'database_connection' && details.service === 'Supabase') {
-                const key = 'Supabase'; // Broad clustering
+            // API connections
+            if (iface.type === 'REST API' || iface.type === 'rest_api' ||
+                iface.type === 'GraphQL API' || iface.type === 'graphql_api') {
+                const key = `API:${service}`;
                 if (!resourceMap[key]) resourceMap[key] = [];
                 resourceMap[key].push(repo.id);
             }
         });
     });
 
-    // Create connections for shared resources
-    // If >1 repo shares a resource, they are "connected" in the ecosystem.
-    // We will create a "SHARED_DB" connection between them.
-    // To avoid N^2 connections, we might just want to visualize them connected to a central node in the frontend.
-    // But the user asked for "Project Interconnection Graph".
-
-    // Let's look for explicit "fetch" calls if we had them. We don't have target URLs.
-
-    // Fallback: Create connections based on Naming Convention matching?
-    // e.g. "playlist_generator" (Frontend) might call "playlist-api" (Backend)?
-    // We don't have such clear pairs.
-
-    // Let's stick to the "Shared Resource" logic for now, but store it as Repo->Repo "SHARED_INFRA".
-    // This shows they are part of the same system.
-
+    // 4. Create connections for shared resources
     for (const [resource, repoIds] of Object.entries(resourceMap)) {
         if (repoIds.length > 1) {
             console.log(`Found ${repoIds.length} repos sharing ${resource}`);
-            // Connect all to the first one? Or all-to-all?
-            // All-to-all is messy.
-            // Let's just log them for now.
 
-            // Actually, for the Graph View, we want to see the Service Node.
-            // So we don't strictly need RepoConnection records for Shared Resources if we handle it in the UI.
-            // BUT, the user wants "Dependencies".
+            // Determine connection type
+            let connectionType = 'SHARED_INFRASTRUCTURE';
+            if (resource.startsWith('DB:')) {
+                connectionType = 'SHARED_DATABASE';
+            } else if (resource.startsWith('API:')) {
+                connectionType = 'SHARED_API';
+            } else if (resource.startsWith('CLOUD:')) {
+                connectionType = 'SHARED_CLOUD_SERVICE';
+            }
 
-            // Let's try to find "Frontend -> Backend" pattern.
-            // If Repo A has "Next.js" (Frontend) and Repo B has "Node.js" + "Supabase" (Backend)
-            // And they both use Supabase...
-            // It's likely A calls B or A calls Supabase directly.
-
-            // Let's create a "SHARED_DB" connection between all repos that use Supabase.
-            // This is a valid dependency: they depend on the same data.
+            // Create all-to-all connections
             for (let i = 0; i < repoIds.length; i++) {
                 for (let j = i + 1; j < repoIds.length; j++) {
                     connections.push({
                         sourceRepoId: repoIds[i],
                         targetRepoId: repoIds[j],
-                        type: 'SHARED_DATABASE'
+                        type: connectionType
                     });
                 }
             }
         }
     }
 
-    // Batch insert
+    // 5. Deduplicate and insert
     if (connections.length > 0) {
-        console.log(`Creating ${connections.length} connections...`);
-        await prisma.repoConnection.createMany({
-            data: connections
-        });
+        console.log(`\nCreating ${connections.length} connections...`);
+
+        // Deduplicate
+        const uniqueConnections = [];
+        const seen = new Set();
+
+        for (const conn of connections) {
+            const key = [conn.sourceRepoId, conn.targetRepoId].sort().join('|');
+            if (!seen.has(key)) {
+                seen.add(key);
+                uniqueConnections.push(conn);
+            }
+        }
+
+        console.log(`After deduplication: ${uniqueConnections.length} unique connections`);
+
+        // Insert in batches to avoid issues
+        const batchSize = 10;
+        for (let i = 0; i < uniqueConnections.length; i += batchSize) {
+            const batch = uniqueConnections.slice(i, i + batchSize);
+            try {
+                await prisma.repoConnection.createMany({
+                    data: batch,
+                    skipDuplicates: true
+                });
+                console.log(`  Inserted batch ${Math.floor(i / batchSize) + 1}/${Math.ceil(uniqueConnections.length / batchSize)}`);
+            } catch (e) {
+                console.error(`  Error in batch ${Math.floor(i / batchSize) + 1}:`, e.message);
+                // Try individual inserts for this batch
+                for (const conn of batch) {
+                    try {
+                        await prisma.repoConnection.create({ data: conn });
+                    } catch (err) {
+                        console.error(`    Failed to create connection:`, conn, err.message);
+                    }
+                }
+            }
+        }
+
+        console.log("\n✅ Connections created successfully!");
+    } else {
+        console.log("\nNo connections to create.");
     }
 
-    console.log("🎉 Connection Detection complete!");
+    console.log("\n🎉 Connection Detection complete!");
 }
 
 main()
     .catch(e => {
-        console.error(e);
+        console.error("Error:", e);
         process.exit(1);
     })
     .finally(async () => {

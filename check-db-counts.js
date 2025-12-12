@@ -10,6 +10,8 @@ async function main() {
         const adrs = await prisma.architectureDecision.count();
         const reports = await prisma.aIReport.count();
         const providers = await prisma.provider.count();
+        const connections = await prisma.repoConnection.count();
+        const interfaces = await prisma.interface.count();
 
         console.log(`Repositories: ${repos}`);
         console.log(`Business Canvases: ${canvases}`);
@@ -18,6 +20,8 @@ async function main() {
         console.log(`ADRs: ${adrs}`);
         console.log(`AI Reports: ${reports}`);
         console.log(`Providers: ${providers}`);
+        console.log(`Connections: ${connections}`);
+        console.log(`Interfaces: ${interfaces}`);
     } catch (e) {
         console.error(e);
     } finally {
