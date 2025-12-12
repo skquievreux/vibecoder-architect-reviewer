@@ -1,3 +1,10 @@
+## [1.8.4](https://github.com/skquievreux/vibecoder-architect-reviewer/compare/v1.8.3...v1.8.4) (2025-12-12)
+
+
+### Bug Fixes
+
+* release version 0.11.2 ([568aedf](https://github.com/skquievreux/vibecoder-architect-reviewer/commit/568aedf7d05e599b7be7b2b9c1fc0ddb7ee06bb2))
+
 # Changelog
 
 ## [0.11.1] - 2025-12-11
