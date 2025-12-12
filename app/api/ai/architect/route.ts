@@ -1,26 +1,8 @@
 import { NextResponse } from 'next/server';
 import { PrismaClient } from '@prisma/client';
-import OpenAI from 'openai';
-import fs from 'fs';
-import path from 'path';
+import { safeCompletion } from '@/lib/ai/core';
 
 const prisma = new PrismaClient();
-
-// Helper to get API Key safely
-function getApiKey() {
-    const envPath = path.join(process.cwd(), '.env');
-    let fileKey = null;
-
-    if (fs.existsSync(envPath)) {
-        const envContent = fs.readFileSync(envPath, 'utf-8');
-        const match = envContent.match(/PERPLEXITY_API_KEY=(.*)/) || envContent.match(/PERPLEXITY_API_TOKEN=(.*)/) || envContent.match(/OPENAI_API_KEY=(.*)/);
-        if (match && match[1]) {
-            fileKey = match[1].trim().replace(/["']/g, '');
-        }
-    }
-
-    return fileKey || process.env.PERPLEXITY_API_KEY || process.env.OPENAI_API_KEY;
-}
 
 export async function POST(req: Request) {
     try {
@@ -31,14 +13,6 @@ export async function POST(req: Request) {
 
         if (!message) {
             return NextResponse.json({ error: 'Message is required' }, { status: 400 });
-        }
-
-        const apiKey = getApiKey();
-        if (!apiKey) {
-            return NextResponse.json({
-                message: "I'm currently offline (API Key missing). Please configure PERPLEXITY_API_KEY or OPENAI_API_KEY in your .env file.",
-                type: 'text'
-            });
         }
 
         // Fetch context
@@ -55,10 +29,6 @@ export async function POST(req: Request) {
             decisions: decisions.map(d => `- ${d.title}: ${d.decision}`).join('\n')
         };
 
-        const client = new OpenAI({
-            apiKey: apiKey,
-            baseURL: "https://api.perplexity.ai",
-        });
 
         const systemPrompt = `
         You are the "AI Architect Advisor" for a software development company.
@@ -98,7 +68,7 @@ export async function POST(req: Request) {
             sanitizedHistory.shift();
         }
 
-        const completion = await client.chat.completions.create({
+        const completion = await safeCompletion({
             model: "sonar-pro",
             messages: [
                 { role: "system", content: systemPrompt },
@@ -129,6 +99,14 @@ export async function POST(req: Request) {
 
     } catch (error: any) {
         console.error('AI Architect Error:', error);
+
+        if (error.message && error.message.includes("API Key missing")) {
+            return NextResponse.json({
+                message: "I'm currently offline (API Key missing). Please configure PERPLEXITY_API_KEY in your .env.local file.",
+                type: 'text'
+            });
+        }
+
         return NextResponse.json({ error: error.message || 'Failed to process request' }, { status: 500 });
     }
 }

@@ -1,34 +1,12 @@
 import { NextResponse } from 'next/server';
 import { PrismaClient } from '@prisma/client';
-import OpenAI from 'openai';
+import { safeCompletion } from '@/lib/ai/core';
 
 const prisma = new PrismaClient();
 
 export async function POST() {
     try {
-        // Force read .env from filesystem to bypass Next.js/Node process.env cache
-        const fs = require('fs');
-        const path = require('path');
-        const envPath = path.join(process.cwd(), '.env');
-        let fileKey = null;
-
-        if (fs.existsSync(envPath)) {
-            const envContent = fs.readFileSync(envPath, 'utf-8');
-            const match = envContent.match(/PERPLEXITY_API_KEY=(.*)/) || envContent.match(/PERPLEXITY_API_TOKEN=(.*)/) || envContent.match(/OPENAI_API_KEY=(.*)/);
-            if (match && match[1]) {
-                fileKey = match[1].trim().replace(/["']/g, '');
-            }
-        }
-
-        const apiKey = fileKey || process.env.PERPLEXITY_API_KEY || process.env.PERPLEXITY_API_TOKEN || process.env.OPENAI_API_KEY;
-        if (!apiKey) {
-            return NextResponse.json({ error: 'AI API Key not configured' }, { status: 500 });
-        }
-
-        const client = new OpenAI({
-            apiKey: apiKey,
-            baseURL: "https://api.perplexity.ai",
-        });
+        // 1. Fetch Repositories
 
         // 1. Fetch Repositories
         let repos;
@@ -76,13 +54,12 @@ export async function POST() {
         const userPrompt = JSON.stringify(repoData, null, 2);
 
         // 3. Call AI
-        const completion = await client.chat.completions.create({
+        const completion = await safeCompletion({
             model: "sonar-pro",
             messages: [
                 { role: "system", content: systemPrompt },
                 { role: "user", content: userPrompt }
-            ],
-            temperature: 0.2, // Low temp for structured output
+            ]
         });
 
         const content = completion.choices[0].message.content || "[]";

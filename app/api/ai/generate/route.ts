@@ -1,37 +1,13 @@
 import { NextResponse } from 'next/server';
 import { PrismaClient } from '@prisma/client';
-import OpenAI from 'openai';
+import { safeCompletion } from '@/lib/ai/core';
 
 const prisma = new PrismaClient();
 
 export async function POST() {
     try {
-        // Force read .env from filesystem to bypass Next.js/Node process.env cache
-        const fs = require('fs');
-        const path = require('path');
-        const envPath = path.join(process.cwd(), '.env');
-        let fileKey = null;
-
-        if (fs.existsSync(envPath)) {
-            const envContent = fs.readFileSync(envPath, 'utf-8');
-            const match = envContent.match(/PERPLEXITY_API_KEY=(.*)/) || envContent.match(/PERPLEXITY_API_TOKEN=(.*)/) || envContent.match(/OPENAI_API_KEY=(.*)/);
-            if (match && match[1]) {
-                fileKey = match[1].trim().replace(/["']/g, '');
-            }
-        }
-
-        const apiKey = fileKey || process.env.PERPLEXITY_API_KEY || process.env.PERPLEXITY_API_TOKEN || process.env.OPENAI_API_KEY;
-        if (!apiKey) {
-            return NextResponse.json({ error: 'AI API Key not configured (Set PERPLEXITY_API_KEY or OPENAI_API_KEY)' }, { status: 500 });
-        }
-
-        // Configure for Perplexity (OpenAI compatible)
-        const openai = new OpenAI({
-            apiKey,
-            baseURL: 'https://api.perplexity.ai', // Perplexity API Endpoint
-        });
-
         // 1. Fetch System Context
+
         const [repos, technologies, interfaces, deployments, decisions] = await Promise.all([
             prisma.repository.findMany({ include: { technologies: true, interfaces: true, deployments: true } }),
             prisma.technology.findMany(),
@@ -111,7 +87,7 @@ export async function POST() {
     `;
 
         // 3. Call AI (Perplexity)
-        const completion = await openai.chat.completions.create({
+        const completion = await safeCompletion({
             model: "sonar-pro", // Perplexity Model
             messages: [
                 { role: "system", content: systemPrompt },
