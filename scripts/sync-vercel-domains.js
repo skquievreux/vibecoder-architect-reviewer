@@ -13,11 +13,8 @@ async function main() {
     const apiToken = process.env.VERCEL_API_TOKEN || process.env.VERCEL_TOKEN;
 
     if (!apiToken) {
-        console.error("ERRORS:");
-        console.error("❌ VERCEL_API_TOKEN not found.");
-        console.error("\nPlease set VERCEL_API_TOKEN in .env.local:");
-        console.error("VERCEL_API_TOKEN=\"your_vercel_token_here\"\n");
-        console.error("Get your token from: https://vercel.com/account/tokens");
+        console.log("⚠️ VERCEL_API_TOKEN not found. Skipping Vercel Domain Sync.");
+        console.log("ℹ️ If you want to enable automatic domain linking, set VERCEL_API_TOKEN in .env.local");
         return;
     }
 
