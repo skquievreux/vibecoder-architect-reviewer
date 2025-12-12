@@ -2,6 +2,7 @@
 import OpenAI from 'openai';
 import path from 'path';
 import fs from 'fs';
+import * as dotenv from 'dotenv';
 
 // --- Configuration ---
 // These can be tuned via ENV vars
@@ -11,26 +12,33 @@ const MAX_RETRIES = 3;
 // --- Environment Loading Helper ---
 // Ensures we find keys even when running isolated scripts
 function getApiKey(): string | null {
+    // 1. Standard process.env
     if (process.env.PERPLEXITY_API_KEY) return process.env.PERPLEXITY_API_KEY;
     if (process.env.OPENAI_API_KEY) return process.env.OPENAI_API_KEY;
 
-    // Manual lookup for scripts
+    console.warn("⚠️ [AI Core] Keys missing in process.env. Attempting manual file load...");
+
+    // 2. Manual Load via dotenv
     try {
         const envLocal = path.join(process.cwd(), '.env.local');
         if (fs.existsSync(envLocal)) {
-            const content = fs.readFileSync(envLocal, 'utf-8');
-            const match = content.match(/PERPLEXITY_API_KEY=(.*)/) || content.match(/OPENAI_API_KEY=(.*)/);
-            if (match && match[1]) return match[1].trim().replace(/["']/g, '');
+            console.log(`[AI Core] Reading ${envLocal}`);
+            const envConfig = dotenv.parse(fs.readFileSync(envLocal));
+            if (envConfig.PERPLEXITY_API_KEY) return envConfig.PERPLEXITY_API_KEY;
+            if (envConfig.OPENAI_API_KEY) return envConfig.OPENAI_API_KEY;
+        } else {
+            console.log(`[AI Core] .env.local not found at ${envLocal}`);
         }
 
         const env = path.join(process.cwd(), '.env');
         if (fs.existsSync(env)) {
-            const content = fs.readFileSync(env, 'utf-8');
-            const match = content.match(/PERPLEXITY_API_KEY=(.*)/) || content.match(/OPENAI_API_KEY=(.*)/);
-            if (match && match[1]) return match[1].trim().replace(/["']/g, '');
+            console.log(`[AI Core] Reading ${env}`);
+            const envConfig = dotenv.parse(fs.readFileSync(env));
+            if (envConfig.PERPLEXITY_API_KEY) return envConfig.PERPLEXITY_API_KEY;
+            if (envConfig.OPENAI_API_KEY) return envConfig.OPENAI_API_KEY;
         }
-    } catch (e) {
-        // Ignore fs errors in browser context (though this is server-only lib)
+    } catch (e: any) {
+        console.error(`[AI Core] Error reading .env files manually: ${e.message}`);
     }
     return null;
 }
