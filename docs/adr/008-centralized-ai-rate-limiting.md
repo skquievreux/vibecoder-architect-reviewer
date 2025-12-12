@@ -1,4 +1,4 @@
-# ADR 001: Centralized AI Rate Limiting & Gateway
+# ADR 008: Centralized AI Rate Limiting & Gateway
 
 ## Status
 Accepted

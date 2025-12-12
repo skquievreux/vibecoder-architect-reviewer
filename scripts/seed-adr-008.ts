@@ -4,10 +4,12 @@ import { PrismaClient } from '@prisma/client';
 const prisma = new PrismaClient();
 
 async function main() {
-    console.log("📝 Creating ADR 002: Centralized AI Rate Limiting...");
+    console.log("📝 Creating ADR-008: Centralized AI Rate Limiting...");
+
+    const title = "ADR-008: Centralized AI Rate Limiting";
 
     const adr = await prisma.architectureDecision.upsert({
-        where: { title: "ADR 002: Centralized AI Rate Limiting" },
+        where: { title: title },
         update: {
             context: "Frequent '429 Too Many Requests' errors from AI providers (Perplexity/OpenAI) caused by uncoordinated parallel requests from distributed scripts and API routes.",
             decision: "Implement a Centralized AI Gateway (Singleton Client) in `lib/ai/core.ts` that enforces global queuing, sequential execution with 2s delay, and automatic exponential backoff for retries.",
@@ -16,7 +18,7 @@ async function main() {
             tags: "AI, Architecture, Reliability, Rate-Limit"
         },
         create: {
-            title: "ADR 002: Centralized AI Rate Limiting",
+            title: title,
             status: "ACCEPTED",
             context: "Frequent '429 Too Many Requests' errors from AI providers (Perplexity/OpenAI) caused by uncoordinated parallel requests from distributed scripts and API routes.",
             decision: "Implement a Centralized AI Gateway (Singleton Client) in `lib/ai/core.ts` that enforces global queuing, sequential execution with 2s delay, and automatic exponential backoff for retries.",
