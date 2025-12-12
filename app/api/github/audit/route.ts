@@ -1,7 +1,35 @@
 import { NextResponse } from 'next/server';
 
 export async function GET() {
-    const token = process.env.GITHUB_TOKEN;
+    // Force read .env from filesystem to bypass Next.js/Node process.env cache
+    const fs = require('fs');
+    const path = require('path');
+
+    let fileKey = null;
+
+    // Try .env.local first
+    const localEnvPath = path.join(process.cwd(), '.env.local');
+    if (fs.existsSync(localEnvPath)) {
+        const envContent = fs.readFileSync(localEnvPath, 'utf-8');
+        const match = envContent.match(/GITHUB_TOKEN=(.*)/);
+        if (match && match[1]) {
+            fileKey = match[1].trim().replace(/["']/g, '');
+        }
+    }
+
+    // Try .env fallback
+    if (!fileKey) {
+        const envPath = path.join(process.cwd(), '.env');
+        if (fs.existsSync(envPath)) {
+            const envContent = fs.readFileSync(envPath, 'utf-8');
+            const match = envContent.match(/GITHUB_TOKEN=(.*)/);
+            if (match && match[1]) {
+                fileKey = match[1].trim().replace(/["']/g, '');
+            }
+        }
+    }
+
+    const token = fileKey || process.env.GITHUB_TOKEN;
 
     if (!token) {
         return NextResponse.json({ error: 'GITHUB_TOKEN not configured' }, { status: 500 });

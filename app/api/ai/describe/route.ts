@@ -10,25 +10,41 @@ export async function POST() {
         // Force read .env from filesystem to bypass Next.js/Node process.env cache
         const fs = require('fs');
         const path = require('path');
-        const envPath = path.join(process.cwd(), '.env');
+
         let fileKey = null;
 
-        if (fs.existsSync(envPath)) {
-            const envContent = fs.readFileSync(envPath, 'utf-8');
-            const match = envContent.match(/PERPLEXITY_API_KEY=(.*)/) || envContent.match(/PERPLEXITY_API_TOKEN=(.*)/) || envContent.match(/OPENAI_API_KEY=(.*)/);
+        // Try .env.local first
+        const localEnvPath = path.join(process.cwd(), '.env.local');
+        if (fs.existsSync(localEnvPath)) {
+            const envContent = fs.readFileSync(localEnvPath, 'utf-8');
+            const match = envContent.match(/PERPLEXITY_API_KEY=(.*)/) || envContent.match(/PERPLEXITY_API_TOKEN=(.*)/);
             if (match && match[1]) {
                 fileKey = match[1].trim().replace(/["']/g, '');
             }
         }
 
+        // Try .env fallback
+        if (!fileKey) {
+            const envPath = path.join(process.cwd(), '.env');
+            if (fs.existsSync(envPath)) {
+                const envContent = fs.readFileSync(envPath, 'utf-8');
+                const match = envContent.match(/PERPLEXITY_API_KEY=(.*)/) || envContent.match(/PERPLEXITY_API_TOKEN=(.*)/) || envContent.match(/OPENAI_API_KEY=(.*)/);
+                if (match && match[1]) {
+                    fileKey = match[1].trim().replace(/["']/g, '');
+                }
+            }
+        }
+
         const apiKey = fileKey || process.env.PERPLEXITY_API_KEY || process.env.OPENAI_API_KEY;
+
         if (!apiKey) {
-            return NextResponse.json({ error: 'AI API Key not configured' }, { status: 500 });
+            console.error("AI API Key missing. Checked .env.local, .env and process.env");
+            return NextResponse.json({ error: 'AI API Key not configured (PERPLEXITY_API_KEY)' }, { status: 500 });
         }
 
         const client = new OpenAI({
             apiKey: apiKey,
-            baseURL: "https://api.perplexity.ai", // Defaulting to Perplexity as per other routes
+            baseURL: "https://api.perplexity.ai",
         });
 
         // 2. Find repos without descriptions

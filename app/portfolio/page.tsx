@@ -104,11 +104,7 @@ const CompactRepoNode = ({ data }: NodeProps) => {
     );
 };
 
-const nodeTypes = {
-    repoNode: RepoNode,
-    compactRepoNode: CompactRepoNode,
-    serviceNode: ServiceNode,
-};
+
 
 // --- Layout Helper ---
 const getLayoutedElements = (nodes: any[], edges: any[], direction = 'TB', isCompact = false) => {
@@ -161,6 +157,13 @@ export default function PortfolioPage() {
     const [nodes, setNodes, onNodesChange] = useNodesState([]);
     const [edges, setEdges, onEdgesChange] = useEdgesState([]);
     const [selectedNodeId, setSelectedNodeId] = useState<string | null>(null);
+
+    // Memoize nodeTypes to prevent React Flow warning
+    const nodeTypes = useMemo(() => ({
+        repoNode: RepoNode,
+        compactRepoNode: CompactRepoNode,
+        serviceNode: ServiceNode,
+    }), []);
 
     // Controls State
     const [layoutDirection, setLayoutDirection] = useState<'TB' | 'LR'>('TB');
