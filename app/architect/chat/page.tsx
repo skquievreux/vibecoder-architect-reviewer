@@ -99,26 +99,27 @@ export default function ArchitectChatPage() {
                                 : 'bg-violet-600 text-white'
                                 }`}>
                                 {msg.role === 'assistant' ? (
-                                    <ReactMarkdown
-                                        remarkPlugins={[remarkGfm]}
-                                        className="prose prose-invert prose-sm max-w-none break-words"
-                                        components={{
-                                            // Ensure lists are properly styled within prose
-                                            ul: ({ node, ...props }) => <ul className="list-disc pl-4 my-2" {...props} />,
-                                            ol: ({ node, ...props }) => <ol className="list-decimal pl-4 my-2" {...props} />,
-                                            li: ({ node, ...props }) => <li className="mb-1" {...props} />,
-                                            // Style headings
-                                            h1: ({ node, ...props }) => <h1 className="text-xl font-bold mt-4 mb-2" {...props} />,
-                                            h2: ({ node, ...props }) => <h2 className="text-lg font-bold mt-3 mb-2" {...props} />,
-                                            h3: ({ node, ...props }) => <h3 className="text-md font-bold mt-2 mb-1" {...props} />,
-                                            // Links
-                                            a: ({ node, ...props }) => <a className="text-violet-400 hover:underline" target="_blank" {...props} />,
-                                            // Strong
-                                            strong: ({ node, ...props }) => <strong className="font-bold text-white" {...props} />
-                                        }}
-                                    >
-                                        {msg.content}
-                                    </ReactMarkdown>
+                                    <div className="prose prose-invert prose-sm max-w-none break-words">
+                                        <ReactMarkdown
+                                            remarkPlugins={[remarkGfm]}
+                                            components={{
+                                                // Ensure lists are properly styled within prose
+                                                ul: ({ node, ...props }) => <ul className="list-disc pl-4 my-2" {...props} />,
+                                                ol: ({ node, ...props }) => <ol className="list-decimal pl-4 my-2" {...props} />,
+                                                li: ({ node, ...props }) => <li className="mb-1" {...props} />,
+                                                // Style headings
+                                                h1: ({ node, ...props }) => <h1 className="text-xl font-bold mt-4 mb-2" {...props} />,
+                                                h2: ({ node, ...props }) => <h2 className="text-lg font-bold mt-3 mb-2" {...props} />,
+                                                h3: ({ node, ...props }) => <h3 className="text-md font-bold mt-2 mb-1" {...props} />,
+                                                // Links
+                                                a: ({ node, ...props }) => <a className="text-violet-400 hover:underline" target="_blank" {...props} />,
+                                                // Strong
+                                                strong: ({ node, ...props }) => <strong className="font-bold text-white" {...props} />
+                                            }}
+                                        >
+                                            {msg.content}
+                                        </ReactMarkdown>
+                                    </div>
                                 ) : (
                                     <div className="whitespace-pre-wrap mb-2">{msg.content}</div>
                                 )}
