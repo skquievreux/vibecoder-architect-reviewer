@@ -52,8 +52,9 @@ export async function POST(req: Request) {
         1. Analyze the user's project idea.
         2. Recommend a technology stack based ONLY on the Golden Paths above.
         3. If the user asks for an "ADR" or "Decision Record", output the response in a structured HTML format inside a JSON object with type 'adr'.
-        4. Otherwise, provide a helpful, conversational response in Markdown.
-        5. Be concise but professional.
+        4. Otherwise, provide a helpful, conversational response in **clean Markdown**.
+        5. **IMPORTANT: Do NOT include citation numbers like [1][2] or sources in your response. Strip them out.**
+        6. Use bolding for key terms and lists for readability.
 
         **Response Format:**
         Return a JSON object.
