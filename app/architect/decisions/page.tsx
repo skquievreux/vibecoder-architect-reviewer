@@ -90,8 +90,15 @@ export default function DecisionsPage() {
                     <Grid numItems={1} numItemsSm={2} numItemsLg={3} className="gap-6">
                         {filteredDecisions.map(decision => {
                             const Icon = getStatusIcon(decision.status);
-                            let tags = [];
-                            try { tags = JSON.parse(decision.tags); } catch { }
+                            let tags: string[] = [];
+                            try {
+                                tags = JSON.parse(decision.tags);
+                            } catch {
+                                // Fallback for CSV strings (e.g. from seed scripts)
+                                if (typeof decision.tags === 'string') {
+                                    tags = decision.tags.split(',').map(t => t.trim()).filter(Boolean);
+                                }
+                            }
 
                             return (
                                 <Link key={decision.id} href={`/architect/decisions/${decision.id}`}>
