@@ -29,31 +29,56 @@ if (!GITHUB_TOKEN) {
     process.exit(1);
 }
 
-async function fetchAllRepos() {
-    console.log("🚀 Starting GitHub Repository Sync...");
+// Helper to fetch raw content
+async function fetchRawFile(fullName: string, defaultBranch: string, filePath: string, token: string | undefined): Promise<string | null> {
+    const url = `https://raw.githubusercontent.com/${fullName}/${defaultBranch}/${filePath}`;
+    try {
+        const res = await fetch(url, {
+            headers: token ? { 'Authorization': `Bearer ${token}` } : {}
+        });
+        if (res.ok) return await res.text();
+        return null;
+    } catch {
+        return null;
+    }
+}
+
+// Helper to detect technology from package.json
+function detectTech(pkgJson: any): any[] {
+    const tech = [];
+    if (pkgJson?.engines?.node) tech.push({ name: 'Node.js', version: pkgJson.engines.node, category: 'Runtime' });
+    if (pkgJson?.dependencies?.react) tech.push({ name: 'React', version: pkgJson.dependencies.react, category: 'Framework' });
+    if (pkgJson?.dependencies?.next) tech.push({ name: 'Next.js', version: pkgJson.dependencies.next, category: 'Framework' });
+    if (pkgJson?.dependencies?.['@nestjs/core']) tech.push({ name: 'NestJS', version: pkgJson.dependencies['@nestjs/core'], category: 'Framework' });
+    return tech;
+}
+
+// Export for direct usage in API routes (Vercel serverless friendly)
+export async function syncGithubRepos() {
+    console.log("🚀 Starting GitHub Repository Sync (Enriched)...");
+
+    if (!GITHUB_TOKEN) {
+        throw new Error("GITHUB_TOKEN not found in environment.");
+    }
 
     let allRepos: any[] = [];
     let page = 1;
     let hasNextPage = true;
 
-    // Determine URL: User or Org?
-    // If GITHUB_OWNER is set, try to see if it's an org or user. 
-    // Safest is to list "my" repos if the token belongs to the user, or org repos if explicit.
-    // Let's use /user/repos if we want everything the user has access to, or /orgs/OWNER/repos if filtered.
-    // Users often want "all my repos".
+    const token = process.env.GITHUB_TOKEN;
+    const owner = process.env.GITHUB_OWNER;
 
-    const baseUrl = GITHUB_OWNER
-        ? `https://api.github.com/users/${GITHUB_OWNER}/repos` // or orgs, but users endpoint works for both usually if type=all
+    const baseUrl = owner
+        ? `https://api.github.com/users/${owner}/repos`
         : `https://api.github.com/user/repos`;
 
-    console.log(`📡 Fetching repositories from GitHub...`);
-
     while (hasNextPage) {
+        // ... (fetching logic remains same)
         const url = `${baseUrl}?per_page=100&type=all&page=${page}`;
         try {
             const res = await fetch(url, {
                 headers: {
-                    'Authorization': `Bearer ${GITHUB_TOKEN}`,
+                    'Authorization': `Bearer ${token}`,
                     'Accept': 'application/vnd.github.v3+json'
                 }
             });
@@ -83,12 +108,30 @@ async function fetchAllRepos() {
     let updated = 0;
 
     for (const githubRepo of allRepos) {
-        // Skip archived if desired? User wanted "missing", assume active usually.
-        // Let's keep them but maybe mark them. Our DB schema might not have archived flag on Repository model directly?
-        // Let's check schema/types.
-        // Assuming minimal fields for now.
-
         try {
+            // Intelligent Enrichment: Fetch OpenAPI and package.json
+            const defaultBranch = githubRepo.default_branch || 'main';
+            let apiSpec = null;
+            let pkgJson = null;
+
+            // Try common OpenAPI locations
+            const openApiPaths = ['openapi.json', 'public/openapi.json', 'docs/openapi.json', 'swagger.json'];
+            for (const p of openApiPaths) {
+                const content = await fetchRawFile(githubRepo.full_name, defaultBranch, p, token);
+                if (content) {
+                    apiSpec = content; // Keep stringified
+                    break;
+                }
+            }
+
+            // Fetch package.json for tech detection
+            const pkgContent = await fetchRawFile(githubRepo.full_name, defaultBranch, 'package.json', token);
+            if (pkgContent) {
+                try {
+                    pkgJson = JSON.parse(pkgContent);
+                } catch { }
+            }
+
             const existing = await prisma.repository.findFirst({
                 where: {
                     OR: [
@@ -104,32 +147,56 @@ async function fetchAllRepos() {
                 fullName: githubRepo.full_name,
                 nameWithOwner: githubRepo.full_name,
                 url: githubRepo.html_url,
-                description: githubRepo.description || undefined, // Don't overwrite with null if we have better local?
+                description: githubRepo.description || undefined,
                 isPrivate: githubRepo.private,
                 updatedAt: new Date(githubRepo.updated_at),
                 pushedAt: new Date(githubRepo.pushed_at),
-                // We map 'language' to primary language if needed, but schema uses relation usually
+                apiSpec: apiSpec, // Save detected spec!
             };
 
+            let repoId = existing?.id;
+
             if (existing) {
-                // Update basic info
                 await prisma.repository.update({
                     where: { id: existing.id },
                     data: {
                         ...data,
-                        description: existing.description || data.description // Preserve existing description if GitHub is empty
+                        description: existing.description || data.description
                     }
                 });
                 updated++;
             } else {
-                await prisma.repository.create({
+                const newRepo = await prisma.repository.create({
                     data: {
                         ...data,
                         description: data.description || "No description",
                     }
                 });
+                repoId = newRepo.id;
                 created++;
             }
+
+            // Sync Technologies if package.json found
+            if (pkgJson && repoId) {
+                const techs = detectTech(pkgJson);
+                for (const t of techs) {
+                    // Update or create tech
+                    const techExists = await prisma.technology.findFirst({
+                        where: { repositoryId: repoId, name: t.name }
+                    });
+                    if (!techExists) {
+                        await prisma.technology.create({
+                            data: {
+                                repositoryId: repoId,
+                                name: t.name,
+                                version: t.version,
+                                category: t.category
+                            }
+                        });
+                    }
+                }
+            }
+
         } catch (e: any) {
             console.error(`❌ Failed to sync ${githubRepo.name}: ${e.message}`);
         }
@@ -138,8 +205,18 @@ async function fetchAllRepos() {
     console.log("\n📊 Sync Summary:");
     console.log(`   New Repos: ${created}`);
     console.log(`   Updated:   ${updated}`);
+
+    return { created, updated, total: allRepos.length };
 }
 
-fetchAllRepos()
-    .catch(console.error)
-    .finally(async () => await prisma.$disconnect());
+// Only execute if running directly as a script (CLI)
+// In ES modules / TSX, checking if file is main module is slightly different
+import { fileURLToPath } from 'url';
+
+const isMainModule = process.argv[1] === fileURLToPath(import.meta.url);
+
+if (isMainModule) {
+    syncGithubRepos()
+        .catch(console.error)
+        .finally(async () => await prisma.$disconnect());
+}
