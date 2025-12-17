@@ -29,9 +29,33 @@ if (!GITHUB_TOKEN) {
     process.exit(1);
 }
 
+// Helper to fetch raw content
+async function fetchRawFile(fullName: string, defaultBranch: string, filePath: string, token: string | undefined): Promise<string | null> {
+    const url = `https://raw.githubusercontent.com/${fullName}/${defaultBranch}/${filePath}`;
+    try {
+        const res = await fetch(url, {
+            headers: token ? { 'Authorization': `Bearer ${token}` } : {}
+        });
+        if (res.ok) return await res.text();
+        return null;
+    } catch {
+        return null;
+    }
+}
+
+// Helper to detect technology from package.json
+function detectTech(pkgJson: any): any[] {
+    const tech = [];
+    if (pkgJson?.engines?.node) tech.push({ name: 'Node.js', version: pkgJson.engines.node, category: 'Runtime' });
+    if (pkgJson?.dependencies?.react) tech.push({ name: 'React', version: pkgJson.dependencies.react, category: 'Framework' });
+    if (pkgJson?.dependencies?.next) tech.push({ name: 'Next.js', version: pkgJson.dependencies.next, category: 'Framework' });
+    if (pkgJson?.dependencies?.['@nestjs/core']) tech.push({ name: 'NestJS', version: pkgJson.dependencies['@nestjs/core'], category: 'Framework' });
+    return tech;
+}
+
 // Export for direct usage in API routes (Vercel serverless friendly)
 export async function syncGithubRepos() {
-    console.log("🚀 Starting GitHub Repository Sync...");
+    console.log("🚀 Starting GitHub Repository Sync (Enriched)...");
 
     if (!GITHUB_TOKEN) {
         throw new Error("GITHUB_TOKEN not found in environment.");
@@ -41,7 +65,6 @@ export async function syncGithubRepos() {
     let page = 1;
     let hasNextPage = true;
 
-    // Use environment directly for re-entry
     const token = process.env.GITHUB_TOKEN;
     const owner = process.env.GITHUB_OWNER;
 
@@ -49,9 +72,8 @@ export async function syncGithubRepos() {
         ? `https://api.github.com/users/${owner}/repos`
         : `https://api.github.com/user/repos`;
 
-    console.log(`📡 Fetching repositories from GitHub...`);
-
     while (hasNextPage) {
+        // ... (fetching logic remains same)
         const url = `${baseUrl}?per_page=100&type=all&page=${page}`;
         try {
             const res = await fetch(url, {
@@ -87,6 +109,29 @@ export async function syncGithubRepos() {
 
     for (const githubRepo of allRepos) {
         try {
+            // Intelligent Enrichment: Fetch OpenAPI and package.json
+            const defaultBranch = githubRepo.default_branch || 'main';
+            let apiSpec = null;
+            let pkgJson = null;
+
+            // Try common OpenAPI locations
+            const openApiPaths = ['openapi.json', 'public/openapi.json', 'docs/openapi.json', 'swagger.json'];
+            for (const p of openApiPaths) {
+                const content = await fetchRawFile(githubRepo.full_name, defaultBranch, p, token);
+                if (content) {
+                    apiSpec = content; // Keep stringified
+                    break;
+                }
+            }
+
+            // Fetch package.json for tech detection
+            const pkgContent = await fetchRawFile(githubRepo.full_name, defaultBranch, 'package.json', token);
+            if (pkgContent) {
+                try {
+                    pkgJson = JSON.parse(pkgContent);
+                } catch { }
+            }
+
             const existing = await prisma.repository.findFirst({
                 where: {
                     OR: [
@@ -106,7 +151,10 @@ export async function syncGithubRepos() {
                 isPrivate: githubRepo.private,
                 updatedAt: new Date(githubRepo.updated_at),
                 pushedAt: new Date(githubRepo.pushed_at),
+                apiSpec: apiSpec, // Save detected spec!
             };
+
+            let repoId = existing?.id;
 
             if (existing) {
                 await prisma.repository.update({
@@ -118,14 +166,37 @@ export async function syncGithubRepos() {
                 });
                 updated++;
             } else {
-                await prisma.repository.create({
+                const newRepo = await prisma.repository.create({
                     data: {
                         ...data,
                         description: data.description || "No description",
                     }
                 });
+                repoId = newRepo.id;
                 created++;
             }
+
+            // Sync Technologies if package.json found
+            if (pkgJson && repoId) {
+                const techs = detectTech(pkgJson);
+                for (const t of techs) {
+                    // Update or create tech
+                    const techExists = await prisma.technology.findFirst({
+                        where: { repositoryId: repoId, name: t.name }
+                    });
+                    if (!techExists) {
+                        await prisma.technology.create({
+                            data: {
+                                repositoryId: repoId,
+                                name: t.name,
+                                version: t.version,
+                                category: t.category
+                            }
+                        });
+                    }
+                }
+            }
+
         } catch (e: any) {
             console.error(`❌ Failed to sync ${githubRepo.name}: ${e.message}`);
         }
