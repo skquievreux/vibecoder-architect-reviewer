@@ -29,21 +29,24 @@ if (!GITHUB_TOKEN) {
     process.exit(1);
 }
 
-async function fetchAllRepos() {
+// Export for direct usage in API routes (Vercel serverless friendly)
+export async function syncGithubRepos() {
     console.log("🚀 Starting GitHub Repository Sync...");
+
+    if (!GITHUB_TOKEN) {
+        throw new Error("GITHUB_TOKEN not found in environment.");
+    }
 
     let allRepos: any[] = [];
     let page = 1;
     let hasNextPage = true;
 
-    // Determine URL: User or Org?
-    // If GITHUB_OWNER is set, try to see if it's an org or user. 
-    // Safest is to list "my" repos if the token belongs to the user, or org repos if explicit.
-    // Let's use /user/repos if we want everything the user has access to, or /orgs/OWNER/repos if filtered.
-    // Users often want "all my repos".
+    // Use environment directly for re-entry
+    const token = process.env.GITHUB_TOKEN;
+    const owner = process.env.GITHUB_OWNER;
 
-    const baseUrl = GITHUB_OWNER
-        ? `https://api.github.com/users/${GITHUB_OWNER}/repos` // or orgs, but users endpoint works for both usually if type=all
+    const baseUrl = owner
+        ? `https://api.github.com/users/${owner}/repos`
         : `https://api.github.com/user/repos`;
 
     console.log(`📡 Fetching repositories from GitHub...`);
@@ -53,7 +56,7 @@ async function fetchAllRepos() {
         try {
             const res = await fetch(url, {
                 headers: {
-                    'Authorization': `Bearer ${GITHUB_TOKEN}`,
+                    'Authorization': `Bearer ${token}`,
                     'Accept': 'application/vnd.github.v3+json'
                 }
             });
@@ -83,11 +86,6 @@ async function fetchAllRepos() {
     let updated = 0;
 
     for (const githubRepo of allRepos) {
-        // Skip archived if desired? User wanted "missing", assume active usually.
-        // Let's keep them but maybe mark them. Our DB schema might not have archived flag on Repository model directly?
-        // Let's check schema/types.
-        // Assuming minimal fields for now.
-
         try {
             const existing = await prisma.repository.findFirst({
                 where: {
@@ -104,20 +102,18 @@ async function fetchAllRepos() {
                 fullName: githubRepo.full_name,
                 nameWithOwner: githubRepo.full_name,
                 url: githubRepo.html_url,
-                description: githubRepo.description || undefined, // Don't overwrite with null if we have better local?
+                description: githubRepo.description || undefined,
                 isPrivate: githubRepo.private,
                 updatedAt: new Date(githubRepo.updated_at),
                 pushedAt: new Date(githubRepo.pushed_at),
-                // We map 'language' to primary language if needed, but schema uses relation usually
             };
 
             if (existing) {
-                // Update basic info
                 await prisma.repository.update({
                     where: { id: existing.id },
                     data: {
                         ...data,
-                        description: existing.description || data.description // Preserve existing description if GitHub is empty
+                        description: existing.description || data.description
                     }
                 });
                 updated++;
@@ -138,8 +134,18 @@ async function fetchAllRepos() {
     console.log("\n📊 Sync Summary:");
     console.log(`   New Repos: ${created}`);
     console.log(`   Updated:   ${updated}`);
+
+    return { created, updated, total: allRepos.length };
 }
 
-fetchAllRepos()
-    .catch(console.error)
-    .finally(async () => await prisma.$disconnect());
+// Only execute if running directly as a script (CLI)
+// In ES modules / TSX, checking if file is main module is slightly different
+import { fileURLToPath } from 'url';
+
+const isMainModule = process.argv[1] === fileURLToPath(import.meta.url);
+
+if (isMainModule) {
+    syncGithubRepos()
+        .catch(console.error)
+        .finally(async () => await prisma.$disconnect());
+}

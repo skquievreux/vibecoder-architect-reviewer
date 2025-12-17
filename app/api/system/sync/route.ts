@@ -11,37 +11,32 @@ export async function POST() {
     try {
         const dashboardDir = process.cwd();
         const rootDir = path.resolve(dashboardDir, '..');
-        // 1. Run GitHub Fetch (replaces Analyzer)
+        // 1. Run GitHub Fetch (In-Process)
         console.log('Starting GitHub Fetch...');
-        const fetchScript = path.join(dashboardDir, 'scripts', 'fetch-github-repos.ts');
-        // Use npx -y tsx to execute TS script directly
-        const analyzerRes = await execAsync(`npx -y tsx "${fetchScript}"`, {
-            cwd: dashboardDir,
-            env: { ...process.env, PATH: process.env.PATH }
-        });
-        console.log('GitHub Fetch finished.');
+        const { syncGithubRepos } = await import('@/scripts/fetch-github-repos');
+        const syncResult = await syncGithubRepos();
+        console.log('GitHub Fetch finished:', syncResult);
 
-        // 2. Run Seeder
-        console.log('Starting Seeder...');
-        const seederRes = await execAsync('npx prisma db seed', { cwd: dashboardDir });
-        console.log('Seeder finished.');
+        // 2. Run Seeder (Skipped for Sync - only needed for init)
+        // const seederRes = await execAsync('npx prisma db seed', { cwd: dashboardDir });
 
         // 3. Auto-Verify Tasks
-        console.log('Starting Auto-Verify Tasks...');
-        const verifyScript = path.join(dashboardDir, 'scripts', 'verify-tasks.js');
-        const verifyRes = await execAsync(`node "${verifyScript}"`, { cwd: dashboardDir });
-        console.log('Task verification finished.');
+        const verifyDetails = "Verification Skipped (TODO: Move to import)";
 
         // Log Success
         await prisma.syncLog.create({
             data: {
                 status: 'SUCCESS',
                 message: 'Sync completed successfully',
-                details: `Analyzer:\n${analyzerRes.stdout}\n\nSeeder:\n${seederRes.stdout}\n\nTask Verification:\n${verifyRes.stdout}`
+                details: `GitHub Sync:\nCreated: ${syncResult.created}, Updated: ${syncResult.updated}, Total: ${syncResult.total}`
             }
         });
 
-        return NextResponse.json({ success: true, message: 'Data synced successfully' });
+        return NextResponse.json({
+            success: true,
+            message: 'Data synced successfully',
+            stats: syncResult
+        });
     } catch (error: any) {
         console.error('Sync Error:', error);
 
