@@ -1,3 +1,10 @@
+## [1.8.8](https://github.com/skquievreux/vibecoder-architect-reviewer/compare/v1.8.7...v1.8.8) (2025-12-17)
+
+
+### Bug Fixes
+
+* **ui:** correct next-themes type import path ([d7bfb2c](https://github.com/skquievreux/vibecoder-architect-reviewer/commit/d7bfb2c9727c707466f21e8db30b3c16facdd1d0))
+
 ## [1.8.7](https://github.com/skquievreux/vibecoder-architect-reviewer/compare/v1.8.6...v1.8.7) (2025-12-17)
 
 
