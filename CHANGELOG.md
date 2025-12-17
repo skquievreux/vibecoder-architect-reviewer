@@ -1,3 +1,10 @@
+## [1.9.2](https://github.com/skquievreux/vibecoder-architect-reviewer/compare/v1.9.1...v1.9.2) (2025-12-17)
+
+
+### Bug Fixes
+
+* **seed:** syntax error missing brace ([3a04c84](https://github.com/skquievreux/vibecoder-architect-reviewer/commit/3a04c846af43b163d7936b55becc5c41b080dde7))
+
 ## [1.9.1](https://github.com/skquievreux/vibecoder-architect-reviewer/compare/v1.9.0...v1.9.1) (2025-12-17)
 
 
