@@ -22,7 +22,9 @@ const errorMessages: Record<string, string> = {
   Default: "Unable to sign in.",
 };
 
-export default function AuthErrorPage() {
+import { Suspense } from "react";
+
+function AuthErrorContent() {
   const searchParams = useSearchParams();
   const error = searchParams.get("error");
 
@@ -65,5 +67,13 @@ export default function AuthErrorPage() {
         )}
       </Card>
     </div>
+  );
+}
+
+export default function AuthErrorPage() {
+  return (
+    <Suspense fallback={<div className="min-h-screen flex items-center justify-center">Loading...</div>}>
+      <AuthErrorContent />
+    </Suspense>
   );
 }
