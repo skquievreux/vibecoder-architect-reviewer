@@ -1,3 +1,10 @@
+## [1.8.16](https://github.com/skquievreux/vibecoder-architect-reviewer/compare/v1.8.15...v1.8.16) (2025-12-17)
+
+
+### Bug Fixes
+
+* **config:** remove markdown artifacts from package.json ([473c568](https://github.com/skquievreux/vibecoder-architect-reviewer/commit/473c5681087a91ea1f83fdf8e1250cdde412f8ef))
+
 ## [2.0.0] (2025-12-17) - OFFICIAL CLOUD LAUNCH 🚀
 
 ### 🏗️ Architecture & Deployment
