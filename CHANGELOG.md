@@ -1,3 +1,10 @@
+## [1.8.14](https://github.com/skquievreux/vibecoder-architect-reviewer/compare/v1.8.13...v1.8.14) (2025-12-17)
+
+
+### Bug Fixes
+
+* **auth-error:** wrap AuthErrorPage in Suspense ([838171a](https://github.com/skquievreux/vibecoder-architect-reviewer/commit/838171acdc0b4d8bb823a788909b9a7cf372d03c))
+
 ## [1.8.13](https://github.com/skquievreux/vibecoder-architect-reviewer/compare/v1.8.12...v1.8.13) (2025-12-17)
 
 
