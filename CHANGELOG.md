@@ -1,3 +1,10 @@
+## [1.8.10](https://github.com/skquievreux/vibecoder-architect-reviewer/compare/v1.8.9...v1.8.10) (2025-12-17)
+
+
+### Bug Fixes
+
+* **scripts:** add required fullName to repository sync script ([5d5eda5](https://github.com/skquievreux/vibecoder-architect-reviewer/commit/5d5eda5861a846168a3f8654faa924b93e7425d1))
+
 ## [1.8.9](https://github.com/skquievreux/vibecoder-architect-reviewer/compare/v1.8.8...v1.8.9) (2025-12-17)
 
 
