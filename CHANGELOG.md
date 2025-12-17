@@ -1,3 +1,10 @@
+## [1.8.12](https://github.com/skquievreux/vibecoder-architect-reviewer/compare/v1.8.11...v1.8.12) (2025-12-17)
+
+
+### Bug Fixes
+
+* **middleware:** explicit export for next-auth middleware ([4adea7a](https://github.com/skquievreux/vibecoder-architect-reviewer/commit/4adea7aa6331d0bce4eec53ac21e5720af73e9e5))
+
 ## [1.8.11](https://github.com/skquievreux/vibecoder-architect-reviewer/compare/v1.8.10...v1.8.11) (2025-12-17)
 
 
