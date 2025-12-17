@@ -1,3 +1,10 @@
+## [1.8.7](https://github.com/skquievreux/vibecoder-architect-reviewer/compare/v1.8.6...v1.8.7) (2025-12-17)
+
+
+### Bug Fixes
+
+* **api:** update route handler params to awaitable promise for Next.js 15+ ([5db0f47](https://github.com/skquievreux/vibecoder-architect-reviewer/commit/5db0f4729cf255f150436e5cbc5cb3d7a042082a))
+
 ## [1.8.6](https://github.com/skquievreux/vibecoder-architect-reviewer/compare/v1.8.5...v1.8.6) (2025-12-17)
 
 
