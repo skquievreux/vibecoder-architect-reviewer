@@ -78,6 +78,38 @@ async function importPortfolioData() {
                                 imported++;
                             }
                         }
+
+                        // NEW: Ensure Capability exists (Critical for Portfolio View)
+                        const capabilityName = subcategory;
+                        const capabilityCategory = category;
+
+                        // Check if capability exists
+                        const existingCap = await prisma.capability.findFirst({
+                            where: {
+                                repositoryId: repo.id,
+                                name: capabilityName
+                            }
+                        });
+
+                        if (existingCap) {
+                            await prisma.capability.update({
+                                where: { id: existingCap.id },
+                                data: {
+                                    category: capabilityCategory,
+                                    source: 'portfolio_import'
+                                }
+                            });
+                        } else {
+                            await prisma.capability.create({
+                                data: {
+                                    name: capabilityName,
+                                    category: capabilityCategory,
+                                    source: 'portfolio_import',
+                                    repositoryId: repo.id
+                                }
+                            });
+                        }
+                        // End Capability Sync
                     } catch (error) {
                         console.error(`   ❌ Error processing ${project.repoName}:`, error.message);
                     }

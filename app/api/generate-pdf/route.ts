@@ -1,19 +1,29 @@
-import puppeteer from 'puppeteer';
 import { NextRequest, NextResponse } from 'next/server';
 
 export async function POST(request: NextRequest) {
+  let browser;
   try {
     const { htmlContent } = await request.json();
 
-    const browser = await puppeteer.launch({
-      headless: true,
-      args: [
-        '--no-sandbox',
-        '--disable-setuid-sandbox',
-        '--disable-fonts',
-        '--font-render-hinting=none',
-      ],
-    });
+    if (process.env.NODE_ENV === 'production' || process.env.VERCEL) {
+      // Production (Vercel/Lambda)
+      const chromium = (await import('@sparticuz/chromium')).default;
+      const puppeteer = await import('puppeteer-core');
+
+      browser = await puppeteer.launch({
+        args: chromium.args,
+        defaultViewport: chromium.defaultViewport,
+        executablePath: await chromium.executablePath(),
+        headless: chromium.headless,
+      });
+    } else {
+      // Local Development (using standard puppeteer)
+      const puppeteer = await import('puppeteer');
+      browser = await (puppeteer as any).launch({
+        headless: true,
+        args: ['--no-sandbox', '--disable-setuid-sandbox'],
+      });
+    }
 
     const page = await browser.newPage();
 
@@ -43,7 +53,6 @@ export async function POST(request: NextRequest) {
             line-height: 1.5;
             font-size: 12pt;
           }
-          /* Safety: Force everything to black text */
           h1, h2, h3, h4, h5, h6,
           p, span, li, td, th, div {
             color: #000000 !important;
@@ -77,7 +86,11 @@ export async function POST(request: NextRequest) {
 
     await page.evaluate(() => {
       return new Promise<void>(resolve => {
-        document.fonts.ready.then(() => resolve());
+        if ((document as any).fonts) {
+          (document as any).fonts.ready.then(() => resolve());
+        } else {
+          resolve();
+        }
         setTimeout(resolve, 1000);
       });
     });
@@ -99,9 +112,11 @@ export async function POST(request: NextRequest) {
     });
   } catch (error) {
     console.error('PDF generation error:', error);
+    if (browser) await browser.close();
     return NextResponse.json(
-      { error: 'PDF generation failed' },
+      { error: 'PDF generation failed', details: String(error) },
       { status: 500 }
     );
   }
 }
+
