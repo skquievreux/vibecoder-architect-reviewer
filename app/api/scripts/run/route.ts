@@ -1,9 +1,7 @@
 import { NextResponse } from 'next/server';
 import { exec } from 'child_process';
-import { PrismaClient } from '@prisma/client';
 import path from 'path';
-
-const prisma = new PrismaClient();
+import prisma from "@/lib/prisma";
 
 const ALLOWED_SCRIPTS = {
     'audit-ecosystem': 'audit-ecosystem.js',

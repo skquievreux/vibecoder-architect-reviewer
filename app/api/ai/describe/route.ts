@@ -1,8 +1,6 @@
 import { NextResponse } from 'next/server';
-import { PrismaClient } from '@prisma/client';
 import { safeCompletion } from '@/lib/ai/core';
-
-const prisma = new PrismaClient();
+import prisma from '@/lib/prisma';
 
 export async function POST() {
     try {

@@ -193,6 +193,79 @@ const PROVIDERS = [
         docsUrl: 'https://developers.cloudflare.com',
         billingUrl: 'https://dash.cloudflare.com/billing',
         category: 'infrastructure'
+    },
+    // New Providers Added via Concept
+    {
+        id: 'sentry',
+        name: 'Sentry',
+        description: 'Application monitoring and error tracking software.',
+        capabilities: ['Error Tracking', 'Performance Monitoring', 'Session Replay'],
+        tags: ['observability', 'monitoring'],
+        website: 'https://sentry.io',
+        developerUrl: 'https://sentry.io/organizations/vibecoder/issues/',
+        docsUrl: 'https://docs.sentry.io',
+        billingUrl: 'https://sentry.io/settings/billing',
+        category: 'tool'
+    },
+    {
+        id: 'posthog',
+        name: 'PostHog',
+        description: 'Open source product analytics.',
+        capabilities: ['Product Analytics', 'Session Recording', 'Feature Flags', 'A/B Testing'],
+        tags: ['analytics', 'tool'],
+        website: 'https://posthog.com',
+        developerUrl: 'https://us.posthog.com/project/settings',
+        docsUrl: 'https://posthog.com/docs',
+        billingUrl: 'https://us.posthog.com/organization/billing',
+        category: 'tool'
+    },
+    {
+        id: 'clerk',
+        name: 'Clerk',
+        description: 'Complete user management and authentication.',
+        capabilities: ['Authentication', 'User Management', 'Multi-Session'],
+        tags: ['auth', 'service'],
+        website: 'https://clerk.com',
+        developerUrl: 'https://dashboard.clerk.com',
+        docsUrl: 'https://clerk.com/docs',
+        billingUrl: 'https://dashboard.clerk.com',
+        category: 'service'
+    },
+    {
+        id: 'resend',
+        name: 'Resend',
+        description: 'Email for developers.',
+        capabilities: ['Transactional Email', 'Email API', 'React Email'],
+        tags: ['email', 'service'],
+        website: 'https://resend.com',
+        developerUrl: 'https://resend.com/overview',
+        docsUrl: 'https://resend.com/docs',
+        billingUrl: 'https://resend.com/settings/billing',
+        category: 'service'
+    },
+    {
+        id: 'sanity',
+        name: 'Sanity',
+        description: 'Structured content platform.',
+        capabilities: ['Headless CMS', 'Realtime Content', 'Visual Editing'],
+        tags: ['cms', 'content'],
+        website: 'https://sanity.io',
+        developerUrl: 'https://sanity.io/manage',
+        docsUrl: 'https://www.sanity.io/docs',
+        billingUrl: 'https://sanity.io/manage',
+        category: 'service'
+    },
+    {
+        id: 'pinecone',
+        name: 'Pinecone',
+        description: 'Long-term memory for AI.',
+        capabilities: ['Vector Database', 'Semantic Search', 'AI Memory'],
+        tags: ['database', 'ai', 'vector'],
+        website: 'https://pinecone.io',
+        developerUrl: 'https://app.pinecone.io',
+        docsUrl: 'https://docs.pinecone.io',
+        billingUrl: 'https://app.pinecone.io',
+        category: 'service'
     }
 ];
 

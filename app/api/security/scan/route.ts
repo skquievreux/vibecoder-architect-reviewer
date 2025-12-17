@@ -1,10 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
 import { authOptions, hasPermission } from "@/lib/auth";
-import { PrismaClient } from "@prisma/client";
 import { scanDependencies } from "@/lib/security/scanner";
-
-const prisma = new PrismaClient();
+import prisma from "@/lib/prisma";
 
 // GET - Fetch security scans
 export async function GET(request: NextRequest) {
