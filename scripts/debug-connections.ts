@@ -21,7 +21,7 @@ async function checkConnections() {
         const maxConn = await prisma.$queryRaw`SHOW max_connections;`;
         console.log('Max Connections settings:', maxConn);
 
-    } catch (error) {
+    } catch (error: any) {
         console.error('FAILED to connect or query:', error.message);
     } finally {
         await prisma.$disconnect();

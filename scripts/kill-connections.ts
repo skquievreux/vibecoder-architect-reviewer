@@ -19,7 +19,7 @@ async function killAllConnections() {
         await new Promise(r => setTimeout(r, 5000));
         console.log('Done.');
 
-    } catch (error) {
+    } catch (error: any) {
         console.error('CRITICAL: Could not execute kill command. The database might be completely locked out.');
         console.error('Error details:', error.message);
     } finally {
