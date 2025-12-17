@@ -101,6 +101,7 @@ async function fetchAllRepos() {
 
             const data = {
                 name: githubRepo.name,
+                fullName: githubRepo.full_name,
                 nameWithOwner: githubRepo.full_name,
                 url: githubRepo.html_url,
                 description: githubRepo.description || undefined, // Don't overwrite with null if we have better local?
