@@ -1,3 +1,10 @@
+## [1.9.1](https://github.com/skquievreux/vibecoder-architect-reviewer/compare/v1.9.0...v1.9.1) (2025-12-17)
+
+
+### Bug Fixes
+
+* **seed:** add business canvas support and robust interface json handling ([f85bf8a](https://github.com/skquievreux/vibecoder-architect-reviewer/commit/f85bf8afa5ecd33093703508d5bc84341c487dc2))
+
 # [1.9.0](https://github.com/skquievreux/vibecoder-architect-reviewer/compare/v1.8.17...v1.9.0) (2025-12-17)
 
 
