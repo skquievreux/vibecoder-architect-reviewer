@@ -1,3 +1,10 @@
+## [1.9.3](https://github.com/skquievreux/vibecoder-architect-reviewer/compare/v1.9.2...v1.9.3) (2025-12-17)
+
+
+### Bug Fixes
+
+* **scripts:** block unsafe fs scripts in cloud ([42c3602](https://github.com/skquievreux/vibecoder-architect-reviewer/commit/42c360279102a02c3dde083b645963ff483c4e4b))
+
 ## [1.9.2](https://github.com/skquievreux/vibecoder-architect-reviewer/compare/v1.9.1...v1.9.2) (2025-12-17)
 
 
