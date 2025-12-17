@@ -83,25 +83,64 @@ async function main() {
         // Interfaces
         await prisma.interface.deleteMany({ where: { repositoryId: repo.id } });
         for (const iface of item.interfaces) {
+            let details = null;
+            if (iface.details) {
+                if (typeof iface.details === 'string') {
+                    // Try to fix double stringified or invalid json
+                    try { details = JSON.stringify(JSON.parse(iface.details)) }
+                    catch { details = JSON.stringify({ raw: iface.details }) }
+                } else {
+                    details = JSON.stringify(iface.details);
+                }
+            }
+
             await prisma.interface.create({
                 data: {
                     repositoryId: repo.id,
                     type: iface.type,
                     direction: iface.direction,
-                    details: JSON.stringify(iface.details),
+                    details: details,
                 },
             });
         }
+
+        // Business Canvas
+        if (item.businessCanvas) {
+            const canvas = item.businessCanvas;
+            await prisma.businessCanvas.upsert({
+                where: { repositoryId: repo.id },
+                create: {
+                    repositoryId: repo.id,
+                    valueProposition: canvas.valueProposition,
+                    customerSegments: canvas.customerSegments,
+                    revenueStreams: canvas.revenueStreams,
+                    costStructure: canvas.costStructure,
+                    marketSize: canvas.marketSize || '',
+                    monetizationPotential: canvas.monetizationPotential || '',
+                    estimatedARR: canvas.estimatedARR ? canvas.estimatedARR : null,
+                    updatedAt: canvas.updatedAt ? new Date(canvas.updatedAt) : new Date(),
+                },
+                update: {
+                    valueProposition: canvas.valueProposition,
+                    customerSegments: canvas.customerSegments,
+                    revenueStreams: canvas.revenueStreams,
+                    costStructure: canvas.costStructure,
+                    marketSize: canvas.marketSize || '',
+                    monetizationPotential: canvas.monetizationPotential || '',
+                    estimatedARR: canvas.estimatedARR ? canvas.estimatedARR : null,
+                    updatedAt: canvas.updatedAt ? new Date(canvas.updatedAt) : new Date(),
+                }
+            });
+        }
+
+        console.log('Seeding complete.');
     }
 
-    console.log('Seeding complete.');
-}
-
-main()
-    .catch((e) => {
-        console.error(e);
-        process.exit(1);
-    })
-    .finally(async () => {
-        await prisma.$disconnect();
-    });
+    main()
+        .catch((e) => {
+            console.error(e);
+            process.exit(1);
+        })
+        .finally(async () => {
+            await prisma.$disconnect();
+        });
