@@ -1,3 +1,10 @@
+## [1.8.9](https://github.com/skquievreux/vibecoder-architect-reviewer/compare/v1.8.8...v1.8.9) (2025-12-17)
+
+
+### Bug Fixes
+
+* **git:** remove invalid submodule reference to temp_fix_2/playlist_generator ([202eedb](https://github.com/skquievreux/vibecoder-architect-reviewer/commit/202eedbabe718f65a63646830de1abce158be173))
+
 ## [1.8.8](https://github.com/skquievreux/vibecoder-architect-reviewer/compare/v1.8.7...v1.8.8) (2025-12-17)
 
 
