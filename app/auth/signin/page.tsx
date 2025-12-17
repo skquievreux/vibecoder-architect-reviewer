@@ -6,9 +6,14 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { Card, Title, Text, TextInput, Button } from "@tremor/react";
 import { Github, LogIn } from "lucide-react";
 
-export default function SignInPage() {
+import { Suspense } from "react";
+
+function SignInForm() {
   const router = useRouter();
   const searchParams = useSearchParams();
+  // ... (rest of the component logic)
+
+  // NOTE: Logic is preserved, just wrapped.
   const callbackUrl = searchParams.get("callbackUrl") || "/";
 
   const [email, setEmail] = useState("");
@@ -127,5 +132,13 @@ export default function SignInPage() {
         </Text>
       </Card>
     </div>
+  );
+}
+
+export default function SignInPage() {
+  return (
+    <Suspense fallback={<div className="min-h-screen flex items-center justify-center">Loading...</div>}>
+      <SignInForm />
+    </Suspense>
   );
 }
