@@ -65,5 +65,22 @@ We cannot fix what we cannot see.
 - [x] Implement Prisma Singleton (DONE)
 - [ ] Configure PgBouncer in `DATABASE_URL` for Production
 - [ ] Add Request Caching to `getPortfolio()`
-- [ ] Integrate Inngest for Background Jobs
+- [x] Integrate Inngest for Background Jobs
 - [ ] Set up Sentry for Error Monitoring
+
+## Appendix: Case Study - The P1017 Incident (Dec 2025)
+
+### What happened?
+The application suffered a complete database outage during development/deployment cycles. The logs showed `PrismaClientInitializationError: P1017: Server has closed the connection`.
+
+### Root Cause
+We were instantiating `new PrismaClient()` directly in API routes and utility files. In a Serverless/Hot-Reload environment, this resulted in a **connection leak**. Every API call opened a new pool of connections until the database reached its `max_connections` limit and refused all further access, blocking both the production app and local development.
+
+### Resolution
+1.  **Code Fix:** Replaced all direct instantiations with a **Singleton Pattern** (`lib/prisma.ts`) that reuses a single instance across hot-reloads.
+2.  **Recovery:** A hard **Cluster Restart** (via `fly machine restart`) was required to flush the "zombie" connections that persisted even after the code fix was deployed.
+
+### Prevention Mandate
+1.  **NEVER** instantiate `new PrismaClient()` outside of `lib/prisma.ts`.
+2.  **ALWAYS** use the Connection Pooler URL (Port 6543) in Production environments.
+3.  **MONITOR** active connections if 500 errors spike.
