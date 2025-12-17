@@ -1,3 +1,10 @@
+## [1.8.13](https://github.com/skquievreux/vibecoder-architect-reviewer/compare/v1.8.12...v1.8.13) (2025-12-17)
+
+
+### Bug Fixes
+
+* **auth:** wrap SignInPage in Suspense for Next.js build ([2f883fa](https://github.com/skquievreux/vibecoder-architect-reviewer/commit/2f883fa7d549d24e34c7af479f62a5738496fd5f))
+
 ## [1.8.12](https://github.com/skquievreux/vibecoder-architect-reviewer/compare/v1.8.11...v1.8.12) (2025-12-17)
 
 
