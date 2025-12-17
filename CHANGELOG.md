@@ -1,3 +1,17 @@
+# [1.9.0](https://github.com/skquievreux/vibecoder-architect-reviewer/compare/v1.8.17...v1.9.0) (2025-12-17)
+
+
+### Bug Fixes
+
+* **api:** improve notifications route error handling ([bbcc069](https://github.com/skquievreux/vibecoder-architect-reviewer/commit/bbcc06990a935f401bb7e515f7bde3806158a489))
+* **build:** dynamic rendering for developer portal ([908b69c](https://github.com/skquievreux/vibecoder-architect-reviewer/commit/908b69c6876282e8b7d2daae115a66f8f91a40d9))
+* **sync:** execute github sync in-process instead of spawning shell ([71d7361](https://github.com/skquievreux/vibecoder-architect-reviewer/commit/71d7361d770c4e2e446739143bc44765da008a00))
+
+
+### Features
+
+* **sync:** active scanning for openapi specs and tech stack ([e2bed9c](https://github.com/skquievreux/vibecoder-architect-reviewer/commit/e2bed9c41a648fd45e32a2e69d1b2eba97666d55))
+
 ## [1.8.17](https://github.com/skquievreux/vibecoder-architect-reviewer/compare/v1.8.16...v1.8.17) (2025-12-17)
 
 
