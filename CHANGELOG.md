@@ -1,3 +1,10 @@
+## [1.8.17](https://github.com/skquievreux/vibecoder-architect-reviewer/compare/v1.8.16...v1.8.17) (2025-12-17)
+
+
+### Bug Fixes
+
+* **api:** robust error handling and proper sql casing for RepoTask ([731d6aa](https://github.com/skquievreux/vibecoder-architect-reviewer/commit/731d6aa485934734c4b25fee18a1702c2e0c1e55))
+
 ## [1.8.16](https://github.com/skquievreux/vibecoder-architect-reviewer/compare/v1.8.15...v1.8.16) (2025-12-17)
 
 
