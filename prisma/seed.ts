@@ -132,15 +132,16 @@ async function main() {
                 }
             });
         }
-
-        console.log('Seeding complete.');
     }
 
-    main()
-        .catch((e) => {
-            console.error(e);
-            process.exit(1);
-        })
-        .finally(async () => {
-            await prisma.$disconnect();
-        });
+    console.log('Seeding complete.');
+}
+
+main()
+    .catch((e) => {
+        console.error(e);
+        process.exit(1);
+    })
+    .finally(async () => {
+        await prisma.$disconnect();
+    });
