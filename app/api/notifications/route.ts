@@ -14,13 +14,19 @@ export async function GET(request: NextRequest) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
+    const userId = (session.user as any).id;
+    if (!userId) {
+      console.warn("Session user found but no ID present");
+      return NextResponse.json({ notifications: [], total: 0, unreadCount: 0 }, { status: 200 });
+    }
+
     const { searchParams } = new URL(request.url);
     const unreadOnly = searchParams.get("unreadOnly") === "true";
     const limit = parseInt(searchParams.get("limit") || "50");
     const offset = parseInt(searchParams.get("offset") || "0");
 
     const where: any = {
-      userId: (session.user as any).id,
+      userId: userId,
     };
 
     if (unreadOnly) {
@@ -37,7 +43,7 @@ export async function GET(request: NextRequest) {
       prisma.notification.count({ where }),
       prisma.notification.count({
         where: {
-          userId: (session.user as any).id,
+          userId: userId,
           isRead: false,
         },
       }),
@@ -50,10 +56,14 @@ export async function GET(request: NextRequest) {
       limit,
       offset,
     });
-  } catch (error) {
+  } catch (error: any) {
     console.error("Error fetching notifications:", error);
     return NextResponse.json(
-      { error: "Failed to fetch notifications" },
+      {
+        error: "Failed to fetch notifications",
+        message: error.message,
+        stack: process.env.NODE_ENV === 'development' ? error.stack : undefined
+      },
       { status: 500 }
     );
   }
