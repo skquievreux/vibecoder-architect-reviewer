@@ -25,6 +25,24 @@ export async function POST(request: Request) {
             return NextResponse.json({ error: 'Invalid script' }, { status: 400 });
         }
 
+        // Prevent unsafe scripts in cloud environment
+        if (process.env.VERCEL || process.env.NODE_ENV === 'production') {
+            const UNSAFE_SCRIPTS = [
+                'standardize-node',
+                'standardize-ts',
+                'standardize-supabase',
+                'upgrade-react',
+                'analyze-react-upgrade',
+                'analyze-next-migration'
+            ];
+
+            if (UNSAFE_SCRIPTS.includes(script)) {
+                return NextResponse.json({
+                    error: 'This script modifies the local filesystem and cannot be run in a cloud environment (Vercel). Run it locally via CLI.'
+                }, { status: 403 });
+            }
+        }
+
         const scriptName = ALLOWED_SCRIPTS[script as keyof typeof ALLOWED_SCRIPTS];
         const scriptPath = path.join(process.cwd(), 'scripts', scriptName);
         const targetDir = target || '../'; // Default to parent dir
