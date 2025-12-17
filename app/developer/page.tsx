@@ -4,6 +4,8 @@ import { Book, Shield, Globe, Lock } from 'lucide-react';
 
 const prisma = new PrismaClient();
 
+export const dynamic = 'force-dynamic';
+
 export default async function DeveloperPortal() {
     const repos = await prisma.repository.findMany({
         where: {
