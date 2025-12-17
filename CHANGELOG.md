@@ -1,3 +1,20 @@
+## [1.10.1](https://github.com/skquievreux/vibecoder-architect-reviewer/compare/v1.10.0...v1.10.1) (2025-12-17)
+
+
+### Bug Fixes
+
+* **build:** exclude scripts from tsconfig and fix types to ensure reliable build ([be796f1](https://github.com/skquievreux/vibecoder-architect-reviewer/commit/be796f118ffa198f31b65ddc3cfd272a540f2ecf))
+* **build:** resolve puppeteer type errors for vercel deployment ([18f1eec](https://github.com/skquievreux/vibecoder-architect-reviewer/commit/18f1eec3fe3a63b6fe8c893aac7ff76a00794aa1))
+* **db:** implement singleton prisma client to resolve connection exhaustion and add reliability docs ([d8cf935](https://github.com/skquievreux/vibecoder-architect-reviewer/commit/d8cf9350daa104d4c01c708b9a743cd32f471075))
+* **pdf:** Use puppeteer-core for Vercel & fix portfolio/dns scripts ([46442a7](https://github.com/skquievreux/vibecoder-architect-reviewer/commit/46442a700571fe95d7bdfc6d779a5161684e1355))
+
+# [1.10.0](https://github.com/skquievreux/vibecoder-architect-reviewer/compare/v1.9.3...v1.10.0) (2025-12-17)
+
+
+### Features
+
+* add local file sync script for developer portal ([95971e0](https://github.com/skquievreux/vibecoder-architect-reviewer/commit/95971e070fe9952cbcd3d657ec6064794d33c93b))
+
 ## [1.9.3](https://github.com/skquievreux/vibecoder-architect-reviewer/compare/v1.9.2...v1.9.3) (2025-12-17)
 
 
