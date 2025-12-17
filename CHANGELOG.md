@@ -1,3 +1,24 @@
+## [2.0.0] (2025-12-17) - OFFICIAL CLOUD LAUNCH 🚀
+
+### 🏗️ Architecture & Deployment
+* **Fly.io PostgreSQL**: Successfully migrated production database from SQLite to a managed PostgreSQL cluster on Fly.io.
+* **Vercel Deployment**: Established enterprise-grade CI/CD pipeline on Vercel with automated builds and preview deployments.
+* **Hybrid Architecture**: Optimized setup running frontend/API on Vercel Edge Network and persistent data on Fly.io.
+
+### 🛡️ Security & Auth
+* **GitHub OAuth**: Configured production-ready GitHub OAuth authentication with secure callback URLs.
+* **CVE Remediation**: Updated Next.js to v16.0.10 to resolve critical security vulnerability (CVE-2025-66478).
+* **Middleware**: Modernized NextAuth middleware for Next.js 16 compatibility.
+
+### ⚡ Performance & Stability
+* **Static Generation**: Implementing `<Suspense>` boundaries for `useSearchParams` across all Auth and Dashboard pages to enable full static optimization.
+* **Prisma Build Pipeline**: Fixed Vercel build process by injecting `prisma generate` into build steps.
+* **React 18 Stabilization**: Pinned React to v18.3.1 to ensure ecosystem compatibility while leveraging Next.js 16 features.
+
+### 📦 Data & Content
+* **Full Cloud Seeding**: Restored complete portfolio state (63 repositories, 7 ADRs, Interface Registry) to the new cloud database.
+* **ADR System**: Updated Architecture Decision Records to reflect the new Hosting Strategy (Vercel + Hetzner/Fly).
+
 ## [1.8.15](https://github.com/skquievreux/vibecoder-architect-reviewer/compare/v1.8.14...v1.8.15) (2025-12-17)
 
 

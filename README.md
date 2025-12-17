@@ -1,7 +1,8 @@
 # 🏗️ Vibecoder Architect Reviewer
 
-**Version:** 0.11.1  
-**Status:** Production Ready  
+**Version:** 2.0.0 🚀  
+**Status:** Live in Production  
+**Deployment:** [Vercel](https://vibecode.runitfast.xyz) + [Fly.io](https://fly.io)  
 **License:** MIT
 
 > Eine umfassende Portfolio-Management- und Architektur-Review-Plattform für GitHub-Repositories mit AI-gestützter Analyse, Business Intelligence und automatisiertem Deployment-Management.
@@ -173,10 +174,15 @@ npm run dev
 
 ### Backend
 - **Runtime**: Node.js 20+ LTS
-- **API**: Next.js API Routes
-- **Datenbank**: SQLite (dev) / PostgreSQL (production)
+- **API**: Next.js API Routes (Serverless)
+- **Datenbank**: PostgreSQL 16 (Managed Cluster on Fly.io)
 - **ORM**: Prisma 5.22.0
-- **Auth**: NextAuth.js 4.24.13
+- **Auth**: NextAuth.js (GitHub OAuth)
+
+### ☁️ Cloud Architecture (Hybrid)
+- **Frontend/Edge**: Vercel (Global Edge Network)
+- **Persistence**: Fly.io (Postgres Primary+Replica Cluster in `fra` region)
+- **Orchestration**: GitHub Actions & Vercel CI/CD
 
 ### Externe Services
 - GitHub API, Cloudflare API
@@ -226,7 +232,8 @@ Vollständige API-Referenz: [DOCUMENTATION.md](./DOCUMENTATION.md#api-dokumentat
 ### Build-Status
 
 [![Build Status](https://img.shields.io/badge/build-passing-brightgreen)]()
-[![Version](https://img.shields.io/badge/version-0.11.1-blue)]()
+[![Deployment](https://img.shields.io/badge/deployment-live-success)]()
+[![Version](https://img.shields.io/badge/version-2.0.0-blue)]()
 [![License](https://img.shields.io/badge/license-MIT-green)](./LICENSE)
 
 ---
