@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { useSearchParams } from "next/navigation";
+// import { useSearchParams } from "next/navigation";
 import {
   Card,
   Title,
@@ -57,7 +57,7 @@ interface SecurityScan {
 }
 
 export default function SecurityDashboard() {
-  const searchParams = useSearchParams();
+  // searchParams removed
   const [scans, setScans] = useState<SecurityScan[]>([]);
   const [vulnerabilities, setVulnerabilities] = useState<Vulnerability[]>([]);
   const [summary, setSummary] = useState({
@@ -81,8 +81,7 @@ export default function SecurityDashboard() {
       const [scansRes, vulnsRes] = await Promise.all([
         fetch("/api/security/scan?limit=10"),
         fetch(
-          `/api/security/vulnerabilities?${
-            selectedSeverity !== "all" ? `severity=${selectedSeverity}` : ""
+          `/api/security/vulnerabilities?${selectedSeverity !== "all" ? `severity=${selectedSeverity}` : ""
           }`
         ),
       ]);
@@ -186,10 +185,10 @@ export default function SecurityDashboard() {
     securityScore >= 90
       ? "green"
       : securityScore >= 75
-      ? "blue"
-      : securityScore >= 50
-      ? "yellow"
-      : "red";
+        ? "blue"
+        : securityScore >= 50
+          ? "yellow"
+          : "red";
 
   if (isLoading) {
     return (
@@ -413,8 +412,8 @@ export default function SecurityDashboard() {
                       scan.status === "COMPLETED"
                         ? "green"
                         : scan.status === "RUNNING"
-                        ? "blue"
-                        : "red"
+                          ? "blue"
+                          : "red"
                     }
                   >
                     {scan.status}
