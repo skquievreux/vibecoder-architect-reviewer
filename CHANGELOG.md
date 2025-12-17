@@ -1,3 +1,10 @@
+## [1.8.6](https://github.com/skquievreux/vibecoder-architect-reviewer/compare/v1.8.5...v1.8.6) (2025-12-17)
+
+
+### Bug Fixes
+
+* **build:** resolve path reference error in build script & migrate to postgres ([4d4f44b](https://github.com/skquievreux/vibecoder-architect-reviewer/commit/4d4f44bd5b4b2107ecabec6a16da6ec8ef5b54f3))
+
 ## [1.8.5](https://github.com/skquievreux/vibecoder-architect-reviewer/compare/v1.8.4...v1.8.5) (2025-12-17)
 
 
