@@ -1,3 +1,10 @@
+## [1.8.15](https://github.com/skquievreux/vibecoder-architect-reviewer/compare/v1.8.14...v1.8.15) (2025-12-17)
+
+
+### Bug Fixes
+
+* **security:** remove unused useSearchParams from SecurityDashboard ([869fd00](https://github.com/skquievreux/vibecoder-architect-reviewer/commit/869fd00655ff421264c415643880b38e7636d609))
+
 ## [1.8.14](https://github.com/skquievreux/vibecoder-architect-reviewer/compare/v1.8.13...v1.8.14) (2025-12-17)
 
 
