@@ -1,3 +1,11 @@
+## [1.8.5](https://github.com/skquievreux/vibecoder-architect-reviewer/compare/v1.8.4...v1.8.5) (2025-12-17)
+
+
+### Bug Fixes
+
+* bump version to 1.8.5 to match main branch progression ([30abad5](https://github.com/skquievreux/vibecoder-architect-reviewer/commit/30abad5e40d69fe5a0a85b4751437912a3584a76))
+* update workflow deployment scripts and docs ([181c234](https://github.com/skquievreux/vibecoder-architect-reviewer/commit/181c2347c2e49cc5e3de38f9cb4c28b9034e3310))
+
 ## [1.8.4](https://github.com/skquievreux/vibecoder-architect-reviewer/compare/v1.8.3...v1.8.4) (2025-12-12)
 
 
