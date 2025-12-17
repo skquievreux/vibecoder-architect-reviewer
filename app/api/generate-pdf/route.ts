@@ -12,9 +12,16 @@ export async function POST(request: NextRequest) {
 
       browser = await puppeteer.launch({
         args: chromium.args,
-        defaultViewport: chromium.defaultViewport,
+        defaultViewport: {
+          width: 1920,
+          height: 1080,
+          deviceScaleFactor: 1,
+          isMobile: false,
+          hasTouch: false,
+          isLandscape: false,
+        },
         executablePath: await chromium.executablePath(),
-        headless: chromium.headless,
+        headless: true,
       });
     } else {
       // Local Development (using standard puppeteer)
