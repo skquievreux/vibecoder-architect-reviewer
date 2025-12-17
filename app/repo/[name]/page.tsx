@@ -513,44 +513,64 @@ export default function RepoDetail() {
                     <Card className="glass-card">
                         <Title className="mb-4 text-white">Connected Providers</Title>
                         <div className="space-y-4">
-                            <div className="flex flex-wrap gap-2">
+                            <div className="flex flex-wrap gap-3">
                                 {repoData.providers && repoData.providers.length > 0 ? (
                                     repoData.providers.map(provider => (
-                                        <div key={provider.id} className="flex items-center gap-2 px-3 py-1.5 bg-slate-900 border border-slate-800 rounded-lg group">
-                                            <span className="text-slate-200 text-sm font-medium">{provider.name}</span>
+                                        <div key={provider.id} className="flex items-center gap-3 pl-3 pr-2 py-2 bg-slate-900/80 border border-slate-800 rounded-lg group hover:border-violet-500/30 transition-all">
+                                            <div>
+                                                <div className="text-slate-200 text-sm font-medium leading-none mb-1">{provider.name}</div>
+                                                <div className="text-[10px] text-slate-500 uppercase tracking-wider">{provider.category}</div>
+                                            </div>
+                                            <div className="h-6 w-px bg-slate-800 mx-1"></div>
                                             <button
                                                 onClick={() => handleRemoveProvider(provider.id)}
-                                                className="text-slate-500 hover:text-rose-400 opacity-0 group-hover:opacity-100 transition-all"
+                                                className="p-1 text-slate-500 hover:text-rose-400 hover:bg-rose-950/30 rounded transition-colors"
                                                 title="Remove"
                                             >
+                                                <span className="sr-only">Remove</span>
                                                 &times;
                                             </button>
                                         </div>
                                     ))
                                 ) : (
-                                    <Text className="text-slate-500 text-sm">No providers linked manually.</Text>
+                                    <Text className="text-slate-500 text-sm italic">No providers linked yet.</Text>
                                 )}
                             </div>
 
-                            <div className="flex gap-2 pt-4 border-t border-slate-800">
-                                <select
-                                    className="flex-1 p-2 bg-slate-950 border border-slate-700 rounded-lg text-slate-200 text-sm focus:outline-none focus:border-violet-500"
-                                    value={selectedProvider}
-                                    onChange={(e) => setSelectedProvider(e.target.value)}
-                                >
-                                    <option value="">+ Link Provider...</option>
-                                    {allProviders
-                                        .filter(p => !repoData.providers?.some(rp => rp.id === p.id))
-                                        .map(p => (
-                                            <option key={p.id} value={p.id}>{p.name}</option>
-                                        ))}
-                                </select>
+                            <div className="flex gap-2 pt-4 border-t border-slate-800 mt-4">
+                                <div className="relative flex-1">
+                                    <select
+                                        className="w-full appearance-none p-2.5 bg-slate-950 border border-slate-700 rounded-lg text-slate-200 text-sm focus:outline-none focus:border-violet-500 focus:ring-1 focus:ring-violet-500 transition-shadow"
+                                        value={selectedProvider}
+                                        onChange={(e) => setSelectedProvider(e.target.value)}
+                                    >
+                                        <option value="">+ Add Provider...</option>
+                                        {['infrastructure', 'hosting', 'database', 'auth', 'service', 'ai', 'tool', 'observability', 'other'].map(cat => {
+                                            const categoryProviders = allProviders.filter(p =>
+                                                p.category === cat && !repoData.providers?.some(rp => rp.id === p.id)
+                                            );
+                                            if (categoryProviders.length === 0) return null;
+                                            return (
+                                                <optgroup key={cat} label={cat.charAt(0).toUpperCase() + cat.slice(1)}>
+                                                    {categoryProviders.map(p => (
+                                                        <option key={p.id} value={p.id}>{p.name}</option>
+                                                    ))}
+                                                </optgroup>
+                                            );
+                                        })}
+                                    </select>
+                                    <div className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-slate-500">
+                                        <svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M1 1L5 5L9 1" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                                        </svg>
+                                    </div>
+                                </div>
                                 <button
                                     onClick={handleAddProvider}
                                     disabled={!selectedProvider || addingProvider}
-                                    className="px-3 py-2 bg-violet-600 text-white rounded-lg text-sm font-medium hover:bg-violet-500 disabled:opacity-50 disabled:cursor-not-allowed"
+                                    className="px-4 py-2 bg-violet-600 text-white rounded-lg text-sm font-medium hover:bg-violet-500 disabled:opacity-50 disabled:cursor-not-allowed shadow-[0_0_15px_rgba(124,58,237,0.3)] transition-all active:scale-95"
                                 >
-                                    Add
+                                    {addingProvider ? "Adding..." : "Add"}
                                 </button>
                             </div>
                         </div>

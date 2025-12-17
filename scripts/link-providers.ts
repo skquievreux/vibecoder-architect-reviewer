@@ -77,6 +77,42 @@ const DETECTORS = [
         files: [], // Hard to detect via file, maybe docker-compose with specific labels?
         dependencies: [],
         envVars: ['HETZNER_TOKEN'] // Hypothetical
+    },
+    {
+        providerId: 'clerk',
+        files: ['middleware.ts', 'clerk.ts'],
+        dependencies: ['@clerk/nextjs', '@clerk/clerk-sdk-node'],
+        envVars: ['NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY', 'CLERK_SECRET_KEY']
+    },
+    {
+        providerId: 'sentry',
+        files: ['sentry.client.config.ts', 'sentry.server.config.ts', 'sentry.properties'],
+        dependencies: ['@sentry/nextjs', '@sentry/node', '@sentry/react'],
+        envVars: ['SENTRY_DSN', 'SENTRY_AUTH_TOKEN']
+    },
+    {
+        providerId: 'posthog',
+        files: [],
+        dependencies: ['posthog-js', 'posthog-node'],
+        envVars: ['NEXT_PUBLIC_POSTHOG_KEY', 'POSTHOG_API_KEY']
+    },
+    {
+        providerId: 'resend',
+        files: [],
+        dependencies: ['resend'],
+        envVars: ['RESEND_API_KEY']
+    },
+    {
+        providerId: 'sanity',
+        files: ['sanity.config.ts', 'sanity.cli.ts'],
+        dependencies: ['sanity', 'next-sanity', '@sanity/client'],
+        envVars: ['SANITY_PROJECT_ID', 'NEXT_PUBLIC_SANITY_PROJECT_ID']
+    },
+    {
+        providerId: 'pinecone',
+        files: [],
+        dependencies: ['@pinecone-database/pinecone'],
+        envVars: ['PINECONE_API_KEY', 'PINECONE_ENVIRONMENT']
     }
 ];
 

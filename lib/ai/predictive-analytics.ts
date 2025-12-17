@@ -1,8 +1,7 @@
 import OpenAI from "openai";
-import { PrismaClient } from "@prisma/client";
+import prisma from "@/lib/prisma";
 
 const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
-const prisma = new PrismaClient();
 
 export type PredictionType =
   | "MAINTENANCE_NEEDED"
@@ -173,9 +172,9 @@ export async function predictChurnRisk(repositoryId: string): Promise<Prediction
 
     const daysSinceLastPush = repository.pushedAt
       ? Math.floor(
-          (Date.now() - new Date(repository.pushedAt).getTime()) /
-            (1000 * 60 * 60 * 24)
-        )
+        (Date.now() - new Date(repository.pushedAt).getTime()) /
+        (1000 * 60 * 60 * 24)
+      )
       : 9999;
 
     const hasRecentDeployments =
@@ -183,7 +182,7 @@ export async function predictChurnRisk(repositoryId: string): Promise<Prediction
         (d) =>
           d.lastDeployedAt &&
           new Date(d.lastDeployedAt).getTime() >
-            Date.now() - 30 * 24 * 60 * 60 * 1000
+          Date.now() - 30 * 24 * 60 * 60 * 1000
       ) || false;
 
     const prompt = `Analyze the churn risk for this repository:

@@ -1,6 +1,4 @@
-import { PrismaClient } from "@prisma/client";
-
-const prisma = new PrismaClient();
+import prisma from "@/lib/prisma";
 
 export type NotificationType =
   | "SECURITY"
@@ -113,9 +111,8 @@ export async function notifySecurityVulnerability(
     userId,
     type: "SECURITY",
     severity: severityMap[vulnerability.severity] || "MEDIUM",
-    title: `Security vulnerability detected${
-      vulnerability.repositoryName ? ` in ${vulnerability.repositoryName}` : ""
-    }`,
+    title: `Security vulnerability detected${vulnerability.repositoryName ? ` in ${vulnerability.repositoryName}` : ""
+      }`,
     message: vulnerability.title,
     metadata: {
       cveId: vulnerability.cveId,
@@ -142,9 +139,8 @@ export async function notifyDeployment(
     userId,
     type: "DEPLOYMENT",
     severity: deployment.status === "FAILED" ? "HIGH" : "INFO",
-    title: `Deployment ${
-      deployment.status === "SUCCESS" ? "successful" : "failed"
-    }`,
+    title: `Deployment ${deployment.status === "SUCCESS" ? "successful" : "failed"
+      }`,
     message: `${deployment.repositoryName} deployment to ${deployment.environment} ${deployment.status.toLowerCase()}`,
     metadata: deployment,
   });

@@ -1,8 +1,6 @@
-import { PrismaClient } from '@prisma/client';
 import Link from 'next/link';
 import { Book, Shield, Globe, Lock } from 'lucide-react';
-
-const prisma = new PrismaClient();
+import prisma from "@/lib/prisma";
 
 export const dynamic = 'force-dynamic';
 

@@ -1,6 +1,4 @@
-import { PrismaClient } from "@prisma/client";
-
-const prisma = new PrismaClient();
+import prisma from "@/lib/prisma";
 
 export interface TestRunParams {
   repositoryId: string;
@@ -51,8 +49,8 @@ export async function recordTestRun(params: TestRunParams): Promise<string> {
           failedTests > 0
             ? "FAILED"
             : passedTests > 0
-            ? "PASSED"
-            : "SKIPPED",
+              ? "PASSED"
+              : "SKIPPED",
         totalTests,
         passedTests,
         failedTests,

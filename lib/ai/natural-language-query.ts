@@ -1,8 +1,7 @@
 import OpenAI from "openai";
-import { PrismaClient } from "@prisma/client";
+import prisma from "@/lib/prisma";
 
 const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
-const prisma = new PrismaClient();
 
 export interface QueryResult {
   query: string;

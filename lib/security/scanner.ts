@@ -1,10 +1,9 @@
 import { exec } from "child_process";
 import { promisify } from "util";
-import { PrismaClient } from "@prisma/client";
 import { notifyAdmins } from "../notifications";
+import prisma from "@/lib/prisma";
 
 const execAsync = promisify(exec);
-const prisma = new PrismaClient();
 
 export interface ScanResult {
   scanId: string;
@@ -253,9 +252,9 @@ export async function getSecurityStatus(repositoryId: string) {
       score >= 90
         ? "EXCELLENT"
         : score >= 75
-        ? "GOOD"
-        : score >= 50
-        ? "FAIR"
-        : "POOR",
+          ? "GOOD"
+          : score >= 50
+            ? "FAIR"
+            : "POOR",
   };
 }

@@ -1,7 +1,5 @@
-import { PrismaClient } from "@prisma/client";
 import { analyzeBlastRadius } from "./blast-radius";
-
-const prisma = new PrismaClient();
+import prisma from "@/lib/prisma";
 
 export interface UpdatePlanParams {
   title: string;
@@ -135,8 +133,8 @@ export async function executeUpdatePlan(planId: string): Promise<void> {
           failedUpdates > 0
             ? "FAILED"
             : completedUpdates === plan.updates.length
-            ? "COMPLETED"
-            : "IN_PROGRESS",
+              ? "COMPLETED"
+              : "IN_PROGRESS",
         completedAt: new Date(),
       },
     });
