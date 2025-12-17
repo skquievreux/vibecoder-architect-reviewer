@@ -1,3 +1,10 @@
+## [1.8.11](https://github.com/skquievreux/vibecoder-architect-reviewer/compare/v1.8.10...v1.8.11) (2025-12-17)
+
+
+### Bug Fixes
+
+* **build:** add prisma generate to build script for Vercel ([bdc757b](https://github.com/skquievreux/vibecoder-architect-reviewer/commit/bdc757b69878dd9ba999762dcfd09f81bae25f5d))
+
 ## [1.8.10](https://github.com/skquievreux/vibecoder-architect-reviewer/compare/v1.8.9...v1.8.10) (2025-12-17)
 
 
