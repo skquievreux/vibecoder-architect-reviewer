@@ -28,7 +28,13 @@ export async function GET() {
                 });
             } else {
                 // Fallback to raw SQL
-                tasks = await prisma.$queryRawUnsafe(`SELECT * FROM RepoTask WHERE status = 'OPEN'`);
+                // Note: PostgreSQL tables created by Prisma are usually double-quoted case-sensitive
+                try {
+                    tasks = await prisma.$queryRawUnsafe(`SELECT * FROM "RepoTask" WHERE status = 'OPEN'`);
+                } catch (sqlError) {
+                    console.warn("SQL fallback failed, trying lowercase:", sqlError);
+                    tasks = await prisma.$queryRawUnsafe(`SELECT * FROM "repo_task" WHERE status = 'OPEN'`);
+                }
             }
         } catch (e) {
             console.warn("Failed to fetch tasks, continuing without them:", e);
@@ -39,6 +45,13 @@ export async function GET() {
         const formatted = repos.map((r: any) => {
             const repoTasks = tasks.filter((t: any) => t.repositoryId === r.id);
 
+            let parsedDetails = null;
+            try {
+                parsedDetails = r.interfaces?.[0]?.details ? JSON.parse(r.interfaces[0].details) : null;
+            } catch (err) {
+                console.warn(`Failed to parse interface details for repo ${r.name}`, err);
+            }
+
             return {
                 repo: {
                     ...r,
@@ -47,17 +60,27 @@ export async function GET() {
                 technologies: r.technologies,
                 deployments: r.deployments,
                 tasks: repoTasks,
-                interfaces: r.interfaces.map((i: any) => ({
-                    ...i,
-                    details: i.details ? JSON.parse(i.details) : null
-                })),
+                interfaces: r.interfaces.map((i: any) => {
+                    try {
+                        return {
+                            ...i,
+                            details: i.details ? JSON.parse(i.details) : null
+                        };
+                    } catch (e) {
+                        return { ...i, details: null, _parseError: true };
+                    }
+                }),
                 businessCanvas: r.businessCanvas
             };
         });
 
         return NextResponse.json(formatted);
-    } catch (error) {
+    } catch (error: any) {
         console.error('API Error:', error);
-        return NextResponse.json({ error: 'Failed to fetch data' }, { status: 500 });
+        return NextResponse.json({
+            error: 'Failed to fetch data',
+            message: error.message,
+            stack: process.env.NODE_ENV === 'development' ? error.stack : undefined
+        }, { status: 500 });
     }
 }
