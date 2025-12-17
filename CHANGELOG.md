@@ -1,3 +1,10 @@
+# [1.10.0](https://github.com/skquievreux/vibecoder-architect-reviewer/compare/v1.9.3...v1.10.0) (2025-12-17)
+
+
+### Features
+
+* add local file sync script for developer portal ([95971e0](https://github.com/skquievreux/vibecoder-architect-reviewer/commit/95971e070fe9952cbcd3d657ec6064794d33c93b))
+
 ## [1.9.3](https://github.com/skquievreux/vibecoder-architect-reviewer/compare/v1.9.2...v1.9.3) (2025-12-17)
 
 
