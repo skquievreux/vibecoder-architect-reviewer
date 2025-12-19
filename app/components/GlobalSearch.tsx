@@ -23,7 +23,7 @@ interface SearchResult {
   title: string;
   description?: string;
   url?: string;
-  icon?: any;
+  icon?: React.ComponentType<{ className?: string }>;
   action?: () => void;
 }
 
@@ -64,7 +64,7 @@ export default function GlobalSearch() {
         if (repoRes.ok) {
           const data = await repoRes.json();
           const repoResults: SearchResult[] = (data.repos || []).slice(0, 5).map(
-            (repo: any) => ({
+            (repo: { id: string; name: string; description?: string }) => ({
               id: repo.id,
               type: "repository",
               title: repo.name,

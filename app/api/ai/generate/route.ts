@@ -17,9 +17,9 @@ export async function POST() {
         // 1.5 Fetch Previous Report
         let previousReportContent = "";
         try {
-            // @ts-ignore
+            // @ts-expect-error - Dynamic model access
             if (prisma.aIReport) {
-                // @ts-ignore
+                // @ts-expect-error - Dynamic model access
                 const lastReport = await prisma.aIReport.findFirst({
                     orderBy: { createdAt: 'desc' }
                 });

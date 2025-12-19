@@ -73,19 +73,22 @@ export default function Navbar() {
 
     // Determine active context based on pathname
     useEffect(() => {
-        if (pathname === '/') {
-            setActiveContext('dashboard');
-        } else if (pathname.startsWith('/portfolio') || pathname.startsWith('/report/portfolio') || pathname.startsWith('/report/strategy') || pathname === '/report') {
-            setActiveContext('portfolio');
-        } else if (pathname.startsWith('/architect') || pathname.startsWith('/developer')) {
-            setActiveContext('architecture');
-        } else if (pathname.startsWith('/providers') || pathname.startsWith('/report/providers') || pathname.startsWith('/logs')) {
-            setActiveContext('operations');
-        } else if (pathname.startsWith('/admin') || pathname.startsWith('/maintenance')) {
-            setActiveContext('settings');
-        } else if (pathname.startsWith('/help')) {
-            setActiveContext('help');
-        }
+        const updateActiveContext = () => {
+            if (pathname === '/') {
+                setActiveContext('dashboard');
+            } else if (pathname.startsWith('/portfolio') || pathname.startsWith('/report/portfolio') || pathname.startsWith('/report/strategy') || pathname === '/report') {
+                setActiveContext('portfolio');
+            } else if (pathname.startsWith('/architect') || pathname.startsWith('/developer')) {
+                setActiveContext('architecture');
+            } else if (pathname.startsWith('/providers') || pathname.startsWith('/report/providers') || pathname.startsWith('/logs')) {
+                setActiveContext('operations');
+            } else if (pathname.startsWith('/admin') || pathname.startsWith('/maintenance')) {
+                setActiveContext('settings');
+            } else if (pathname.startsWith('/help')) {
+                setActiveContext('help');
+            }
+        };
+        updateActiveContext();
     }, [pathname]);
 
     const isActive = (path: string) => pathname === path;
@@ -141,7 +144,7 @@ export default function Navbar() {
                                         <User className="w-4 h-4" />
                                         <span>{session.user.name || session.user.email}</span>
                                         <span className="text-xs text-violet-400 ml-1">
-                                            {(session.user as any).role}
+{(session.user as { role?: string }).role}
                                         </span>
                                     </button>
                                     {isUserMenuOpen && (
@@ -229,7 +232,7 @@ export default function Navbar() {
                                             {session.user.email}
                                         </div>
                                         <div className="text-xs text-violet-400 mt-1">
-                                            Role: {(session.user as any).role}
+                                            Role: {(session.user as { role?: string }).role}
                                         </div>
                                     </div>
                                 </div>

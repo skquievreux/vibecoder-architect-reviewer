@@ -3,7 +3,7 @@
 import { Card, Title, Text, Button, Badge, Select, SelectItem } from "@tremor/react";
 import { useState, useEffect } from "react";
 import { useRouter, useParams } from "next/navigation";
-import { ArrowLeft, Save, Trash2, CheckCircle } from "lucide-react";
+import { ArrowLeft, Save, Trash2 } from "lucide-react";
 import Link from "next/link";
 
 type Decision = {

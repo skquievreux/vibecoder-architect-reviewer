@@ -448,6 +448,58 @@ export default function RepoDetail() {
                     </div>
                 </div>
 
+                {/* URL Information Section */}
+                <div className="glass-card border-l-4 border-l-violet-500">
+                    <Title className="mb-4 text-white">🔗 Repository Links</Title>
+                    
+                    {/* Compact Icons Section */}
+                    <div className="flex flex-wrap gap-3">
+                        {repo.customUrl && (
+                            <a 
+                                href={repo.customUrl} 
+                                target="_blank" 
+                                rel="noopener noreferrer"
+                                className="flex items-center gap-2 px-3 py-2 bg-emerald-950/20 rounded-lg border border-emerald-800/30 hover:bg-emerald-900/30 transition-all group"
+                                title="Open Custom Domain"
+                            >
+                                <Globe size={18} className="text-emerald-400" />
+                                <span className="text-emerald-300 group-hover:text-emerald-200 font-medium">Custom</span>
+                            </a>
+                        )}
+                        
+                        {repo.url && (
+                            <a 
+                                href={repo.url} 
+                                target="_blank" 
+                                rel="noopener noreferrer"
+                                className="flex items-center gap-2 px-3 py-2 bg-slate-800/50 rounded-lg border border-slate-700/30 hover:bg-slate-700 transition-all group"
+                                title="Open Source Repository"
+                            >
+                                <Github size={18} className="text-slate-500" />
+                                <span className="text-slate-400 group-hover:text-slate-300 font-medium">Source</span>
+                            </a>
+                        )}
+                        
+                        {deployments && deployments.length > 0 && (
+                            <a 
+                                href={deployments[0].url} 
+                                target="_blank" 
+                                rel="noopener noreferrer"
+                                className="flex items-center gap-2 px-3 py-2 bg-violet-950/20 rounded-lg border border-violet-800/30 hover:bg-violet-900/30 transition-all group"
+                                title="Open Deployment"
+                            >
+                                <Database size={18} className="text-violet-400" />
+                                <span className="text-violet-400 group-hover:text-violet-300 font-medium">Deploy</span>
+                                {deployments.length > 1 && (
+                                    <span className="ml-1 text-xs bg-violet-600 text-violet-200 px-2 py-1 rounded-full">
+                                        +{deployments.length - 1}
+                                    </span>
+                                )}
+                            </a>
+                        )}
+                    </div>
+                </div>
+
                 {/* ... Grids ... */}
                 <Grid numItems={1} numItemsMd={3} className="gap-6">
                     {/* Stats Card */}

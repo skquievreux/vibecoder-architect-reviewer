@@ -2,7 +2,7 @@
 
 import { Card, Title, Text, Badge, Grid, Select, SelectItem, TextInput, Button, Table, TableHead, TableHeaderCell, TableBody, TableRow, TableCell } from "@tremor/react";
 import { useState, useEffect } from "react";
-import { ArrowLeft, Search, RefreshCw, Globe, Shield } from "lucide-react";
+import { ArrowLeft, Search, RefreshCw, Globe, Shield, AlertTriangle, ExternalLink } from "lucide-react";
 import Link from "next/link";
 
 type Zone = {
@@ -42,6 +42,8 @@ export default function DnsManager() {
         try {
             const res = await fetch('/api/repos');
             const data = await res.json();
+            console.log('🔍 DNS: Fetched repository data:', { total: data?.length, sample: data?.slice(0, 3) });
+            
             if (Array.isArray(data)) {
                 const rMap: Record<string, string> = {};
                 const dMap: Record<string, string> = {};
@@ -63,6 +65,13 @@ export default function DnsManager() {
                     // Map Repo Name (for subdomain matching)
                     nMap[r.repo.name.toLowerCase()] = r.repo.name;
                 });
+                
+                console.log('🔗 DNS: Built mapping tables:', { 
+                    repoMap: Object.keys(rMap).length,
+                    domainMap: Object.keys(dMap).length,
+                    nameMap: Object.keys(nMap).length
+                });
+                
                 setRepoMap(rMap);
                 setDomainMap(dMap);
                 setNameMap(nMap);
@@ -229,25 +238,46 @@ export default function DnsManager() {
                                                 {(() => {
                                                     // 1. Direct Content Match (Target URL)
                                                     let linkedRepo = repoMap[record.content];
+                                                    let matchType = 'content';
 
                                                     // 2. Custom Domain Match (Record Name)
                                                     if (!linkedRepo) {
                                                         linkedRepo = domainMap[record.name];
+                                                        matchType = linkedRepo ? 'domain' : 'none';
                                                     }
 
                                                     // 3. Subdomain Match (Repo Name)
                                                     if (!linkedRepo) {
                                                         const subdomain = record.name.split('.')[0].toLowerCase();
                                                         linkedRepo = nameMap[subdomain];
+                                                        matchType = linkedRepo ? 'subdomain' : 'none';
+                                                    }
+
+                                                    // Debug logging for first 5 records
+                                                    if (record.id.slice(-8) === '00000001' || record.id.slice(-8) === '00000002' || record.id.slice(-8) === '00000003') {
+                                                        console.log(`🔍 DNS Match Debug for ${record.name}:`, {
+                                                            record: record.name,
+                                                            content: record.content,
+                                                            matchType,
+                                                            linkedRepo,
+                                                            foundInContent: !!repoMap[record.content],
+                                                            foundInDomain: !!domainMap[record.name]
+                                                        });
                                                     }
 
                                                     return linkedRepo ? (
-                                                        <Link href={`/repo/${linkedRepo}`} className="text-violet-400 hover:underline flex items-center gap-1">
-                                                            <Globe size={12} />
-                                                            {linkedRepo}
-                                                        </Link>
+                                                        <div className="group" title={`Linked via ${matchType} match`}>
+                                                            <Link href={`/repo/${linkedRepo}`} className="text-violet-400 hover:underline flex items-center gap-1 transition-colors hover:text-violet-300">
+                                                                <Globe size={12} />
+                                                                {linkedRepo}
+                                                                <ExternalLink size={10} className="ml-1 opacity-70 group-hover:opacity-100" />
+                                                            </Link>
+                                                        </div>
                                                     ) : (
-                                                        <span className="text-slate-600">-</span>
+                                                        <span className="text-slate-500 opacity-50 flex items-center gap-1" title="No repository found for this DNS record">
+                                                            <AlertTriangle size={12} />
+                                                            Not linked
+                                                        </span>
                                                     );
                                                 })()}
                                             </TableCell>

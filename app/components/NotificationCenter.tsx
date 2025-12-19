@@ -229,7 +229,7 @@ export default function NotificationCenter() {
                               </p>
                               <div className="flex items-center space-x-2 mt-2">
                                 <Badge
-                                  color={getSeverityColor(notification.severity) as any}
+                                  color={getSeverityColor(notification.severity) as "red" | "orange" | "blue" | "gray"}
                                   size="xs"
                                 >
                                   {notification.severity}
