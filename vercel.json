@@ -1,0 +1,8 @@
+{
+  "buildCommand": "npm run build",
+  "functions": {
+    "default": {
+      "runtime": "nodejs18.x"
+    }
+  }
+}
