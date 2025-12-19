@@ -1,25 +1,12 @@
-import { NextRequest, NextResponse } from 'next/server';
+import { NextResponse } from 'next/server';
 
-export async function POST(request: NextRequest) {
-  try {
-    const { htmlContent } = await request.json();
-    
-    // Simple test response to verify PDF generation works
-    return NextResponse.json({ 
-      success: true, 
-      message: 'PDF generation endpoint is working',
-      received: htmlContent ? 'HTML content received' : 'No HTML content',
-      timestamp: new Date().toISOString()
-    });
-    
-  } catch (error) {
-    console.error('PDF endpoint test error:', error);
-    return NextResponse.json(
-      { 
-        error: 'PDF endpoint test failed', 
-        details: String(error) 
-      },
-      { status: 500 }
-    );
-  }
+export async function GET() {
+  return NextResponse.json({
+    success: true,
+    message: 'PDF generation endpoint is working',
+    status: 'ready-for-testing',
+    environment: process.env.NODE_ENV || 'unknown',
+    chromium_version: '2024-12-19',
+    timestamp: new Date().toISOString()
+  });
 }
