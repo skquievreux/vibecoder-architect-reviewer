@@ -17,10 +17,11 @@ export async function POST() {
         // 1.5 Fetch Previous Report
         let previousReportContent = "";
         try {
-            // @ts-expect-error - Dynamic model access
-            if (prisma.aIReport) {
-                // @ts-expect-error - Dynamic model access
-                const lastReport = await prisma.aIReport.findFirst({
+            // Access dynamic AI Report model
+            if ('aIReport' in prisma) {
+                // Type assertion for dynamic model access
+                const aIReport = (prisma as any).aIReport;
+                const lastReport = await aIReport.findFirst({
                     orderBy: { createdAt: 'desc' }
                 });
                 if (lastReport) {
@@ -28,7 +29,7 @@ export async function POST() {
                 }
             } else {
                 // Fallback raw query
-                const reports = await prisma.$queryRawUnsafe('SELECT content FROM AIReport ORDER BY createdAt DESC LIMIT 1');
+                const reports = await (prisma as any).$queryRawUnsafe('SELECT content FROM AIReport ORDER BY createdAt DESC LIMIT 1');
                 if (Array.isArray(reports) && reports.length > 0) {
                     previousReportContent = (reports[0] as any).content;
                 }

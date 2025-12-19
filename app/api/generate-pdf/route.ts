@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import chromium from '@sparticuz/chromium';
 
 export async function POST(request: NextRequest) {
   let browser;
@@ -6,23 +7,46 @@ export async function POST(request: NextRequest) {
     const { htmlContent } = await request.json();
 
     if (process.env.NODE_ENV === 'production' || process.env.VERCEL) {
-      // Production (Vercel/Lambda)
-      const chromium = (await import('@sparticuz/chromium')).default;
-      const puppeteer = await import('puppeteer-core');
-
-      browser = await puppeteer.launch({
-        args: chromium.args,
-        defaultViewport: {
-          width: 1920,
-          height: 1080,
-          deviceScaleFactor: 1,
-          isMobile: false,
-          hasTouch: false,
-          isLandscape: false,
-        },
-        executablePath: await chromium.executablePath(),
-        headless: true,
-      });
+      // Production (Vercel/Lambda) with enhanced error handling
+      let executablePath;
+      
+      try {
+        const chromium = (await import('@sparticuz/chromium')).default;
+        executablePath = await chromium.executablePath();
+        console.log('Chromium executable path:', executablePath);
+        
+        // Verify path exists
+        const fs = await import('fs');
+        if (!fs.existsSync(executablePath)) {
+          throw new Error(`Chromium executable not found at: ${executablePath}`);
+        }
+        
+        const puppeteer = await import('puppeteer-core');
+        
+        browser = await puppeteer.launch({
+          args: [
+            ...chromium.args,
+            '--no-sandbox',
+            '--disable-setuid-sandbox',
+            '--disable-dev-shm-usage',
+            '--disable-gpu',
+            '--single-process'
+          ],
+          defaultViewport: {
+            width: 1920,
+            height: 1080,
+            deviceScaleFactor: 1,
+            isMobile: false,
+            hasTouch: false,
+            isLandscape: false,
+          },
+          executablePath,
+          headless: 'new', // Use new headless mode for better compatibility
+        });
+      } catch (error) {
+        console.error('Error launching Chromium:', error);
+        throw new Error(`Failed to initialize Chromium: ${error.message}`);
+      }
     } else {
       // Local Development (using standard puppeteer)
       const puppeteer = await import('puppeteer');
