@@ -29,7 +29,10 @@ export default function AdminProvidersPage() {
     };
 
     useEffect(() => {
-        fetchProviders();
+        const loadProviders = async () => {
+            await fetchProviders();
+        };
+        loadProviders();
     }, []);
 
     const handleEdit = (provider: Provider) => {
@@ -140,7 +143,14 @@ export default function AdminProvidersPage() {
     );
 }
 
-function ProviderForm({ formData, setFormData, onSave, onCancel }: any) {
+interface ProviderFormProps {
+    formData: Partial<Provider>;
+    setFormData: (data: Partial<Provider>) => void;
+    onSave: () => void;
+    onCancel: () => void;
+}
+
+function ProviderForm({ formData, setFormData, onSave, onCancel }: ProviderFormProps) {
     return (
         <div className="grid grid-cols-2 gap-4">
             <TextInput placeholder="Name" value={formData.name || ''} onChange={e => setFormData({ ...formData, name: e.target.value })} />

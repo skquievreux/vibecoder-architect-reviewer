@@ -1,39 +1,38 @@
 # AGENTS.md
 
-## Build/Lint/Test-Befehle
+## Build/Lint/Test Commands
 
 ### Dashboard (Next.js/TypeScript)
-- **Build**: `cd dashboard && npm run build`
-- **Dev**: `cd dashboard && npm run dev`
-- **Lint**: `cd dashboard && npm run lint`
-- **Verify**: `cd dashboard && npm run verify`
-- **Einzelner Test**: Kein dedizierter Test-Runner konfiguriert
+- **Build**: `npm run build`
+- **Dev**: `npm run dev`
+- **Lint**: `npm run lint`
+- **Verify**: `npm run verify`
+- **Single test**: No test runner configured
 
 ### Analysis (Python)
-- **Ausführen**: `cd analysis && python analyzer.py`
-- **Lint**: Kein Linter konfiguriert
-- **Test**: Kein Test-Framework konfiguriert
+- **Run**: `cd analysis && python analyzer.py`
+- **Lint**: `cd analysis && flake8 analyzer.py` or `black --check analyzer.py`
+- **Test**: No test framework configured
 
-## Code-Style-Richtlinien
+## Code Style Guidelines
 
 ### TypeScript/React (Dashboard)
-- **Strict mode**: Aktiviert in tsconfig.json
-- **Target**: ES2017 mit moderner Lib-Unterstützung
-- **JSX**: React JSX-Syntax
-- **Imports**: ES-Module, verwende `@/*` Pfad-Alias für App-Verzeichnis
-- **Naming**: camelCase für Variablen/Funktionen, PascalCase für Komponenten
-- **Error handling**: Verwende try/catch-Blöcke, vermeide Werfen in Komponenten
-- **Types**: Explizite Typisierung erforderlich, verwende Interfaces für komplexe Objekte
+- **Strict mode**: Enabled in tsconfig.json
+- **Target**: ES2017 with modern lib support
+- **JSX**: React JSX syntax
+- **Imports**: ES modules, use `@/*` path alias for app directory
+- **Naming**: camelCase for variables/functions, PascalCase for components
+- **Error handling**: Use try/catch blocks, avoid throwing in components
+- **Types**: Explicit typing required, use interfaces for complex objects
 
 ### Python (Analysis)
-- **Imports**: Standardbibliothek zuerst, dann Drittanbieter, alphabetische Reihenfolge
-- **Naming**: snake_case für Variablen/Funktionen, PascalCase für Klassen
-- **Error handling**: Verwende try/except-Blöcke mit spezifischen Ausnahmen
-- **Docstrings**: Verwende dreifache Anführungszeichen für Funktionsdokumentation
-- **Zeilenlänge**: Kein explizites Limit, halte lesbar
+- **Imports**: Standard library first, then third-party, alphabetical order
+- **Naming**: snake_case for variables/functions, PascalCase for classes
+- **Error handling**: Use try/except blocks with specific exceptions
+- **Docstrings**: Use triple quotes for function documentation
 
-### Allgemein
-- **Formatting**: ESLint handhabt JS/TS, manuelle Formatierung für Python
-- **Commits**: Verwende konventionelle Commit-Nachrichten
-- **Secrets**: Commite niemals API-Schlüssel, Tokens oder sensible Konfiguration</content>
+### General
+- **Formatting**: ESLint handles JS/TS, manual formatting for Python
+- **Commits**: Use conventional commit messages
+- **Secrets**: Never commit API keys, tokens, or sensitive config</content>
 <parameter name="filePath">/home/ladmin/Desktop/GIT/ArchitekturReview/AGENTS.md

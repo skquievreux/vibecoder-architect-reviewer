@@ -78,7 +78,7 @@ export async function POST() {
         for (const task of tasks) {
             const repo = (repos as any[]).find((r: any) => r.name === task.repoName);
             if (repo) {
-                // @ts-ignore
+                // @ts-expect-error - Dynamic model access
                 if (!prisma.repoTask) {
                     // Fallback
                     const crypto = require('crypto');
@@ -89,7 +89,7 @@ export async function POST() {
                     createdCount++;
                 } else {
                     // Check for duplicate open task
-                    // @ts-ignore
+                    // @ts-expect-error - Dynamic model access
                     const existing = await prisma.repoTask.findFirst({
                         where: {
                             repositoryId: repo.id,

@@ -7,7 +7,7 @@ import { useState, useEffect } from "react";
 import { DndContext, closestCenter, KeyboardSensor, PointerSensor, useSensor, useSensors, DragOverlay, useDraggable, useDroppable } from '@dnd-kit/core';
 import { arrayMove, SortableContext, sortableKeyboardCoordinates, verticalListSortingStrategy, useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
-import { ArrowLeft, GripVertical, Plus, Trash2, Save, RotateCcw, Library } from "lucide-react";
+import { ArrowLeft, GripVertical, Plus, Trash2, Save, RotateCcw, Library, Globe, Server, ExternalLink } from "lucide-react";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 
@@ -408,7 +408,40 @@ function PortfolioReportPageContent() {
                                 <Link href={`/repo/${activeRepo.name}`} className="hover:underline decoration-violet-500 underline-offset-4">
                                     <h2 className="text-xl font-bold text-white mb-1">{activeRepo.name}</h2>
                                 </Link>
-                                <p className="text-slate-400 text-sm max-w-3xl">{activeRepo.description || "No description available."}</p>
+                                <p className="text-slate-400 text-sm max-w-3xl mb-3">{activeRepo.description || "No description available."}</p>
+                                {/* URL Display Section */}
+                                <div className="space-y-2">
+                                    {activeRepo.customUrl && (
+                                        <div className="flex items-center gap-2 text-sm">
+                                            <Globe size={14} className="text-emerald-400" />
+                                            <span className="text-slate-400">Custom URL:</span>
+                                            <a 
+                                                href={activeRepo.customUrl} 
+                                                target="_blank" 
+                                                rel="noopener noreferrer"
+                                                className="text-emerald-400 hover:text-emerald-300 underline decoration-emerald-500 underline-offset-2 transition-colors"
+                                            >
+                                                {activeRepo.customUrl}
+                                            </a>
+                                            <ExternalLink size={12} className="text-emerald-400/70" />
+                                        </div>
+                                    )}
+                                    {activeRepo.url && activeRepo.url !== activeRepo.customUrl && (
+                                        <div className="flex items-center gap-2 text-sm">
+                                            <Server size={14} className="text-slate-500" />
+                                            <span className="text-slate-400">Vercel URL:</span>
+                                            <a 
+                                                href={activeRepo.url} 
+                                                target="_blank" 
+                                                rel="noopener noreferrer"
+                                                className="text-slate-500 hover:text-slate-300 underline decoration-slate-500 underline-offset-2 transition-colors"
+                                            >
+                                                {activeRepo.url}
+                                            </a>
+                                            <ExternalLink size={12} className="text-slate-500/70" />
+                                        </div>
+                                    )}
+                                </div>
                             </div>
                             <div className="text-right">
                                 <span className="text-xs text-slate-500 uppercase tracking-wider font-medium">Tech Stack</span>
