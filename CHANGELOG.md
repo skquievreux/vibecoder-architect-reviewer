@@ -1,3 +1,23 @@
+## [1.11.0] (2025-12-20) - Extended Providers & Stability 🛡️
+
+### 🚀 Key Features
+
+#### 🔌 Extended Provider Ecosystem
+- **Comprehensive Detection**: Now detects and links 30+ providers including Sentry, PostHog, Clerk, Pinecone, and more.
+- **Smart Linking**: Advanced pattern matching for provider validation via dependencies, config files, and environment variables.
+- **Seeding Script**: New `seed:providers` script to populate the database with the extended provider catalog.
+
+### 🛡️ Reliability & Scale
+- **Prisma Stability**: Reverted to Prisma 5.22.0 to ensure production stability and eliminate connection issues associated with v7 experimental features.
+- **Documentation**: Added comprehensive `RELIABILITY_AND_SCALE.md` concept guide.
+- **Dependable Deployment**: Integrated critical `Next.js 15+` awaitable params fix from upcoming feature branches.
+
+### 🐛 Bug Fixes
+- **Repo Linking**: Fixed logic in `link-providers.ts` to correctly associate providers based on the new detection rules.
+- **Database Consistency**: Resolved issues with seeding scripts attempting to use incorrect Prisma adapters.
+
+---
+
 ## [2.1.0](https://github.com/skquievreux/vibecoder-architect-reviewer/compare/v1.10.1...v2.1.0) (2025-12-19)
 
 ### 🚀 Major Features
