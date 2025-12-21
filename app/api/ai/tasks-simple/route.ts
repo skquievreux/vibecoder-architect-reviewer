@@ -17,8 +17,7 @@ export async function POST() {
                     title: task.title,
                     status: task.status,
                     priority: task.priority,
-                    type: task.type,
-                    repositoryId: null
+                    type: task.type
                 }
             });
         }
@@ -28,13 +27,13 @@ export async function POST() {
             message: `Generated ${tasks.length} maintenance tasks`,
             tasks: tasks
         });
-        
+
     } catch (error) {
         console.error('Task generation error:', error);
         return NextResponse.json(
-            { 
-                error: 'Task generation failed', 
-                details: String(error) 
+            {
+                error: 'Task generation failed',
+                details: String(error)
             },
             { status: 500 }
         );

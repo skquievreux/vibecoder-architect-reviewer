@@ -128,17 +128,17 @@ model AIReport {
 }
 
 model RepoTask {
-  id           String     @id @default(uuid())
-  repositoryId String
+  id           String      @id @default(uuid())
+  repositoryId String?
   title        String
   description  String?
   reference    String?
-  status       String     @default("OPEN")
-  priority     String     @default("MEDIUM")
-  type         String     @default("MAINTENANCE")
-  createdAt    DateTime   @default(now())
-  updatedAt    DateTime   @updatedAt
-  repository   Repository @relation(fields: [repositoryId], references: [id], onDelete: Cascade)
+  status       String      @default("OPEN")
+  priority     String      @default("MEDIUM")
+  type         String      @default("MAINTENANCE")
+  createdAt    DateTime    @default(now())
+  updatedAt    DateTime    @updatedAt
+  repository   Repository? @relation(fields: [repositoryId], references: [id], onDelete: Cascade)
 }
 
 model Capability {
