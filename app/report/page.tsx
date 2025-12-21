@@ -141,9 +141,9 @@ export default function ReportPage() {
     return (
         <main className="p-10 bg-slate-950 min-h-screen">
             <div className="max-w-7xl mx-auto space-y-6">
-                <div className="flex justify-between items-center">
+                <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
                     <div className="flex items-center gap-4">
-                        <Link href="/" className="p-2 rounded-full hover:bg-slate-800 text-slate-400 hover:text-white transition-colors">
+                        <Link href="/" className="p-2 rounded-full hover:bg-slate-800 text-slate-400 hover:text-white transition-colors shrink-0">
                             <ArrowLeft size={24} />
                         </Link>
                         <div>
@@ -151,8 +151,8 @@ export default function ReportPage() {
                             <Text className="text-slate-400">Automated analysis and recommendations.</Text>
                         </div>
                     </div>
-                    <div className="flex gap-3">
-                        <div className="bg-slate-900 p-1 rounded-lg flex border border-slate-800">
+                    <div className="flex flex-wrap gap-3 w-full md:w-auto">
+                        <div className="bg-slate-900 p-1 rounded-lg flex border border-slate-800 shrink-0">
                             <button
                                 onClick={() => setActiveTab('report')}
                                 className={`px-4 py-1.5 rounded-md text-sm font-medium transition-all ${activeTab === 'report' ? 'bg-violet-600 text-white shadow-lg' : 'text-slate-400 hover:text-white'}`}
@@ -169,7 +169,7 @@ export default function ReportPage() {
                         <button
                             onClick={generateReport}
                             disabled={generating}
-                            className="flex items-center gap-2 px-4 py-2 bg-violet-600 text-white rounded-lg hover:bg-violet-700 active:bg-violet-800 transition-all shadow-[0_0_15px_rgba(124,58,237,0.5)] font-medium disabled:opacity-50 disabled:cursor-not-allowed"
+                            className="flex items-center justify-center gap-2 px-4 py-2 bg-violet-600 text-white rounded-lg hover:bg-violet-700 active:bg-violet-800 transition-all shadow-[0_0_15px_rgba(124,58,237,0.5)] font-medium disabled:opacity-50 disabled:cursor-not-allowed flex-1 md:flex-initial whitespace-nowrap"
                         >
                             <Sparkles size={18} />
                             {generating ? "Analysiere..." : "Neu generieren"}
