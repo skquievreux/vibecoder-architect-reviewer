@@ -1,0 +1,93 @@
+{
+  "repositoryId": "a88cd02b-7242-4aae-a36c-af280a51641e",
+  "name": "VoiceStage",
+  "owner": "skquievreux",
+  "harvestedAt": "2025-12-21T09:21:42.853Z",
+  "content": {
+    "readme": "# VoiceStage 🎤\n\n**Ihr Multi-Voicebot Landing-Page System** - Professionelle KI-Assistenten mit individuellen Designs und Eleven Labs Integration.\n\n[![Version](https://img.shields.io/badge/Version-1.6.0-blue.svg)](VERSION)\n[![Next.js](https://img.shields.io/badge/Next.js-14.2.3-black.svg)](https://nextjs.org/)\n[![TypeScript](https://img.shields.io/badge/TypeScript-5.9.3-blue.svg)](https://www.typescriptlang.org/)\n[![Tailwind CSS](https://img.shields.io/badge/Tailwind-3.4.18-38B2AC.svg)](https://tailwindcss.com/)\n[![ESLint](https://img.shields.io/badge/ESLint-9.37.0-4B32C3.svg)](https://eslint.org/)\n[![Vercel](https://img.shields.io/badge/Deployed%20on-Vercel-000000.svg)](https://vercel.com)\n\n## 📋 Inhaltsverzeichnis\n\n- [🚀 Übersicht](#-übersicht)\n- [✨ Features](#-features)\n- [🏗️ Architektur](#️-architektur)\n- [📦 Installation](#-installation)\n- [🎯 Verwendung](#-verwendung)\n- [🤖 Bot-Management](#-bot-management)\n- [🖼️ Bot-Bilder](#️-bot-bilder)\n- [🔧 Entwicklung](#-entwicklung)\n- [📊 Deployment](#-deployment)\n- [📝 Changelog](#-changelog)\n- [👥 Mitwirkende](#-mitwirkende)\n- [📄 Lizenz](#-lizenz)\n\n## 🚀 Übersicht\n\nVoiceStage ist ein modernes, skalierbares Multi-Voicebot-System basierend auf Next.js 14. Es ermöglicht die einfache Verwaltung und Darstellung mehrerer KI-Chatbots mit individuellen Designs, Bildern und Eleven Labs Voice-Integration.\n\n### 🎯 Hauptfunktionen\n\n- **7 aktive Voice-Bots** in verschiedenen Branchen\n- **Individuelle Bot-Bilder** und Farbschemata\n- **Eleven Labs Integration** für Voice-Chat\n- **Responsive Design** mit Dark Mode\n- **Einfache Bot-Verwaltung** über JSON-Konfiguration\n- **SEO-optimiert** und performant\n\n## ✨ Features\n\n### 🤖 Voice-Bots\n\n- **MIRA** - Ganganalyse-Assistentin 🏥\n- **Rita** - Möbelberaterin 🪑\n- **Osti** - Persönlicher Assistent 🤖\n- **Da Aldo** - Pizzeria-Bot 🍕\n- **Quievreux Consulting** - Chatbot-Beratung 🏢\n- **Brötchen Service** - Bäckerei-Bot 🥖\n- **VoiceMentor** - Sprach-Mentoring 🎓\n\n### 🎨 Design-System\n\n- **Individuelle Farbpaletten** pro Bot\n- **Professionelle UI/UX** mit Tailwind CSS\n- **Dark Mode Support**\n- **Responsive Layout** für alle Geräte\n- **Hover-Effekte** und Animationen\n\n### 🔧 Technische Features\n\n- **Next.js 14** mit App Router\n- **TypeScript 5.9** für Typensicherheit\n- **ESLint v9** mit Flat Config für Code-Qualität\n- **Eleven Labs Integration** für Voice-Chat\n- **Vercel Deployment** für serverless Hosting\n- **SEO-optimiert** mit Meta-Tags\n- **Error Boundaries** und Loading States\n- **Versionierung** und Changelog\n\n## 🏗️ Architektur\n\n```\nVoiceStage/\n├── app/                    # Next.js App Router\n│   ├── layout.tsx         # Root Layout mit globalen Scripts\n│   ├── page.tsx          # Hauptseite mit Bot-Übersicht\n│   ├── error.tsx         # Error Boundary\n│   ├── loading.tsx       # Loading States\n│   ├── not-found.tsx     # 404 Seite\n│   └── bot/[id]/         # Dynamische Bot-Routen\n│       └── page.tsx\n├── components/            # Wiederverwendbare Komponenten\n│   ├── VoicebotLanding.tsx\n│   └── ElevenLabsWidget.tsx\n├── data/                  # Konfigurationsdaten\n│   └── bots.json         # Bot-Konfigurationen\n├── AVATARS_README.md     # Bild-Management Anleitung (veraltet)\n└── README.md             # Diese Datei\n```\n\n## 📦 Installation\n\n### Voraussetzungen\n\n- **Node.js** 18.17 oder höher\n- **npm** oder **yarn**\n- **Git**\n\n### Schnellstart\n\n```bash\n# Repository klonen\ngit clone <repository-url>\ncd voicestage\n\n# Dependencies installieren\nnpm install\n\n# Entwicklungsserver starten\nnpm run dev\n\n# Öffne http://localhost:3000\n```\n\n### Umgebungsvariablen\n\nKeine zusätzlichen Umgebungsvariablen erforderlich. Die Eleven Labs Agent-IDs sind in der Bot-Konfiguration gespeichert.\n\n## 🎯 Verwendung\n\n### Hauptseite besuchen\n\n```\nhttp://localhost:3000\n```\n\nDie Hauptseite zeigt alle aktiven Voice-Bots mit:\n\n- Individuellen Avataren\n- Beschreibungen\n- Farbcodierten Buttons\n- Klickbaren Bildern\n\n### Bot-Seiten\n\nJeder Bot hat eine eigene Landing-Page unter:\n\n```\nhttp://localhost:3000/bot/{bot-id}\n```\n\nBeispiele:\n\n- `/bot/mira-ganganalyse` - MIRA Bot\n- `/bot/quievreux-consulting` - Consulting Bot\n- `/bot/voicementor` - VoiceMentor Bot\n\n## 🤖 Bot-Management\n\n### Neue Bots hinzufügen\n\n1. **Bot-Konfiguration** in `data/bots.json` hinzufügen:\n\n```json\n\"neuer-bot\": {\n  \"name\": \"Bot Name\",\n  \"description\": \"Bot Beschreibung\",\n  \"primaryColor\": \"#Farbe\",\n  \"accentColor\": \"#Akzent\",\n  \"avatar\": \"kategorie\",\n  \"agentId\": \"elevenlabs-agent-id\",\n  \"active\": true\n}\n```\n\n2. **Agent-ID** von Eleven Labs kopieren\n3. **Server neu starten**\n\n### Bot-Konfiguration\n\n| Feld           | Typ     | Beschreibung         |\n| -------------- | ------- | -------------------- |\n| `name`         | string  | Anzeigename des Bots |\n| `description`  | string  | Kurze Beschreibung   |\n| `primaryColor` | string  | Hauptfarbe (Hex)     |\n| `accentColor`  | string  | Akzentfarbe (Hex)    |\n| `avatar`       | string  | Avatar-Kategorie     |\n| `agentId`      | string  | Eleven Labs Agent-ID |\n| `active`       | boolean | Bot aktiv/inaktiv    |\n\n## 🖼️ Bot-Avatare\n\nVoiceStage verwendet ein vereinfachtes Avatar-System mit farbcodierten Initialen für eine konsistente und performante Darstellung.\n\n### Avatar-System\n\n- **Generierte Avatare** mit Bot-Initiale\n- **Individuelle Farbcodierung** pro Bot\n- **Responsive Design** für alle Bildschirmgrößen\n- **Fallback-System** für fehlende Konfigurationen\n\n### Fallback-Verhalten\n\nDas System zeigt automatisch einen farbcodierten Kreis mit der ersten Buchstabe des Bot-Namens, falls keine spezifischen Bilder konfiguriert sind.\n\n## 🔧 Entwicklung\n\n### Verfügbare Scripts\n\n```bash\nnpm run dev      # Entwicklungsserver starten\nnpm run build    # Produktions-Build erstellen\nnpm run start    # Produktions-Server starten\nnpm run lint     # ESLint v9 mit Flat Config ausführen\n```\n\n### Code-Struktur\n\n- **`/app`** - Next.js App Router Seiten\n- **`/components`** - Wiederverwendbare React-Komponenten\n- **`/data`** - JSON-Konfigurationen\n- **`/public`** - Statische Assets\n\n### Styling\n\n- **Tailwind CSS** für Utility-First CSS\n- **CSS-Variablen** für dynamische Themes\n- **Dark Mode** mit `class` Strategie\n- **Responsive Design** mit Mobile-First Ansatz\n\n## 📊 Deployment\n\n### Vercel Deployment\n\nVoiceStage ist für automatische Deployments auf Vercel konfiguriert.\n\n```bash\n# Lokaler Build-Test\nnpm run build\n\n# Push zu Git für automatische Vercel-Deployment\ngit add .\ngit commit -m \"Release v1.6.0\"\ngit push origin main\n```\n\nDie Vercel-Integration deployt automatisch bei jedem Push zum main-Branch.\n\n### Umgebungsvariablen für Production\n\nKeine zusätzlichen Umgebungsvariablen erforderlich. Eleven Labs Agent-IDs sind in der Bot-Konfiguration gespeichert.\n\n### Performance\n\n- **Next.js Optimierungen** aktiviert\n- **Bilder optimiert** mit Next.js Image Component\n- **Code-Splitting** automatisch\n- **Caching** konfiguriert\n\n## 📝 Changelog\n\nAlle wichtigen Änderungen und neue Features werden im [CHANGELOG.md](CHANGELOG.md) dokumentiert.\n\n### [1.4.0] - 2025-09-22\n\n#### ✨ Added\n\n- **Drei neue Voice-Bots hinzugefügt:**\n  - **Quievreux Consulting** - Chatbot-Beratung (Blau #1E40AF)\n  - **Brötchen Service** - Bäckerei-Bot (Braun #92400E)\n  - **VoiceMentor** - Sprach-Mentoring (Grün #059669)\n- **Erweiterte Bot-Sammlung** auf 7 aktive Bots\n- **Neue Branchen abgedeckt:** Beratung, Gastronomie, Bildung\n- **Zusätzliche Bot-Bilder** integriert\n\n#### 🔄 Changed\n\n- **Bot-Konfiguration erweitert** mit neuen Agent-IDs\n- **Farbpalette erweitert** für verschiedene Dienstleistungen\n- **Avatar-System** mit neuen Bildern aktualisiert\n\n### [1.3.0] - 2025-09-22\n\n#### ✨ Added\n\n- **Bot-Avatar Bild-Unterstützung** für individuelle Bot-Bilder\n- **AVATARS_README.md** mit vollständiger Dokumentation\n- **public/avatars/** Verzeichnis für Bot-Bilder\n- **Fallback-System** für fehlende Bilder\n- **Image-Konfiguration** in Bot-Settings\n\n#### 🔄 Changed\n\n- **Bot-Konfiguration erweitert** um `image` Feld\n- **Avatar-Anzeige aktualisiert** für Bilder oder Fallback\n- **Hauptseite und Bot-Seiten** zeigen jetzt Bilder anstatt generierter Avatare\n- **TypeScript Interfaces** um `image` Feld erweitert\n\n### [1.2.0] - 2025-09-22\n\n#### ✨ Added\n\n- **Drei neue Voice-Bots hinzugefügt:**\n  - **Rita** (K+N Möbelberaterin) - Braune Farbpalette\n  - **Osti** (Persönlicher Assistent) - Lila/Blau Farbpalette\n  - **Da Aldo** (Pizzeria Bot) - Rot/Orange Farbpalette\n- **Erweiterte Bot-Sammlung** auf 4 aktive Bots\n- **Verschiedene Branchen abgedeckt:** Medizin, Möbel, Allgemein, Gastronomie\n\n#### 🔄 Changed\n\n- **Bot-Konfiguration erweitert** mit neuen Agent-IDs\n- **Farbpalette angepasst** für verschiedene Bot-Persönlichkeiten\n- **Avatar-Typen hinzugefügt** für bessere Kategorisierung\n\n### [1.1.0] - 2025-09-22\n\n#### ✨ Added\n\n- **Eleven Labs Integration** für Voice-Chat-Widgets\n- **ElevenLabsWidget Komponente** mit dynamischem Script-Loading\n- **Agent-ID Konfiguration** in Bot-Settings\n- **Fallback-Button** für Bots ohne Voice-Widget\n\n#### 🔄 Changed\n\n- **Bot-Konfiguration erweitert** um `agentId` Feld\n- **VoicebotLanding-Komponente** zeigt Widget oder Button basierend auf Konfiguration\n- **Medical-Wave Animation** in globale CSS verschoben\n\n#### 🛠️ Technical\n\n- Client Component für Eleven Labs Widget\n- Dynamisches Script-Loading zur Vermeidung von Duplikaten\n- TypeScript Interfaces aktualisiert\n\n### [1.0.0] - 2025-09-22\n\n#### ✨ Added\n\n- **Erste Version** von VoiceStage\n- **MIRA Bot** als Beispiel-Implementation\n- **Next.js 14** mit App Router\n- **TypeScript** und **Tailwind CSS**\n- **Responsive Design** und **Dark Mode**\n- **Modulare Bot-Architektur**\n\n## 👥 Mitwirkende\n\n- **Steffen Quievreux** - Projektentwicklung und Design\n- **Quievreux Consulting** - Beratung und Konzeption\n\n## 📄 Lizenz\n\nDieses Projekt ist proprietär und gehört Quievreux Consulting.\n\n## 📞 Support\n\nBei Fragen oder Problemen:\n\n- **E-Mail:** quievreux.consulting@gmail.com\n- **LinkedIn:** [Steffen Quievreux](https://www.linkedin.com/in/steffen-quievreux-b037867/)\n- **Instagram:** [@dein_chatbot_experte](https://www.instagram.com/dein_chatbot_experte/)\n\n---\n\n**VoiceStage** - Ihr professionelles Multi-Voicebot-System für die Zukunft der KI-Kommunikation. 🎤🤖\n",
+    "packageJson": {
+      "name": "voicebot-demosite",
+      "version": "1.6.1",
+      "private": true,
+      "type": "module",
+      "scripts": {
+        "dev": "next dev",
+        "build": "next build",
+        "start": "next start",
+        "lint": "next lint"
+      },
+      "dependencies": {
+        "@tailwindcss/postcss": "^4.0.0",
+        "next": "15.5.7",
+        "react": "^19.2.0",
+        "react-dom": "^19.2.0"
+      },
+      "devDependencies": {
+        "@eslint/js": "^9.39.1",
+        "@next/eslint-plugin-next": "^16.0.8",
+        "@playwright/test": "^1.56.0",
+        "@types/node": "^20",
+        "@types/react": "^19.0.0",
+        "@types/react-dom": "^19.0.0",
+        "@typescript-eslint/eslint-plugin": "^8.46.0",
+        "@typescript-eslint/parser": "^8.46.0",
+        "autoprefixer": "^10.4.16",
+        "eslint": "^9.37.0",
+        "eslint-config-next": "^15.5.4",
+        "globals": "^16.5.0",
+        "postcss": "^8.5.6",
+        "tailwindcss": "^4.0.0",
+        "typescript": "^5.8.2"
+      },
+      "packageManager": "pnpm@10.20.0+sha512.cf9998222162dd85864d0a8102e7892e7ba4ceadebbf5a31f9c2fce48dfce317a9c53b9f6464d1ef9042cba2e02ae02a9f7c143a2b438cd93c91840f0192b9dd",
+      "engines": {
+        "node": ">=20.9.0"
+      }
+    }
+  },
+  "analysis": {
+    "description": "VoiceStage delivers customizable multi-voicebot landing pages with Eleven Labs integration, enabling businesses to showcase professional AI voice assistants across industries like healthcare, retail, and consulting. Effortlessly manage bots via JSON, deploy on Vercel, and convert visitors into engaged users with SEO-optimized, responsive designs.",
+    "businessCanvas": {
+      "valueProposition": [
+        "Scalable landing page system for multiple branded voice AI bots with easy JSON configuration and Eleven Labs voice integration",
+        "Industry-specific demos (healthcare, furniture, food service, consulting) that accelerate customer adoption and reduce custom development costs",
+        "Professional, responsive UI with dark mode, SEO, and Vercel deployment for instant go-live and high performance"
+      ],
+      "customerSegments": [
+        {
+          "name": "SMEs in Retail, Healthcare, Food Service & Consulting",
+          "willingness_to_pay": "High",
+          "pain_points": [
+            "High cost and complexity of building custom voice AI landing pages",
+            "Need for quick, professional demos to showcase AI voicebots to clients"
+          ]
+        },
+        {
+          "name": "AI Agencies & Voicebot Developers",
+          "willingness_to_pay": "Medium",
+          "pain_points": [
+            "Time-consuming setup of multi-bot portfolios with consistent branding",
+            "Lack of ready-to-deploy, customizable templates for client pitches"
+          ]
+        }
+      ],
+      "revenueStreams": [
+        {
+          "source": "SaaS Subscription",
+          "model": "Recurring",
+          "potential_arr": 50000
+        },
+        {
+          "source": "White-label Licensing",
+          "model": "One-time + Maintenance",
+          "potential_arr": 25000
+        },
+        {
+          "source": "Customization Services",
+          "model": "Project-based",
+          "potential_arr": 30000
+        }
+      ]
+    }
+  }
+}

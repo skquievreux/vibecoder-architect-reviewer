@@ -1,0 +1,57 @@
+{
+  "repositoryId": "dcd629f9-0204-4854-8688-9131085c491e",
+  "name": "network-architect",
+  "owner": "skquievreux",
+  "harvestedAt": "2025-12-21T09:21:47.614Z",
+  "content": {
+    "readme": "# Network Architect - Hyper-V Stretched Cluster\n\nEine interaktive Visualisierung der Netzwerkarchitektur für einen Hyper-V Stretched Cluster mit zwei Serverräumen.\n\n## 📋 Übersicht\n\nDieses Projekt enthält eine detaillierte Dokumentation und Visualisierung der Verkabelung für einen Hyper-V Stretched Cluster mit folgenden Komponenten:\n\n- **2x Hyper-V Server** (Cisco UCS C240 M7)\n- **2x NetApp AFF A400** Storage Controller\n- **2x Cisco Catalyst 9300X/9500** Switches\n- **4x NetApp DS224C** Disk Shelves\n- **Redundante Verkabelung** zwischen Serverraum A und B\n\n## 🌐 Live Demo\n\nDie Anwendung ist deployed auf Vercel und erfordert eine Authentifizierung:\n\n- **URL:** [https://network-architect.vercel.app](https://network-architect.vercel.app)\n- **Benutzername:** Wird bei Deployment konfiguriert\n- **Passwort:** Wird bei Deployment konfiguriert\n\n## 📁 Projektstruktur\n\n```\nnetwork-architect/\n├── index.html                 # Hauptübersicht mit Executive Summary\n├── serverraum-a.html          # Detailansicht Serverraum A\n├── executive_summary.svg      # Grafische Projektübersicht\n├── CHANGELOG.md              # Versionshistorie\n├── VERSION                   # Aktuelle Versionsnummer\n├── vercel.json               # Vercel Deployment Konfiguration\n├── middleware.js             # Authentifizierungs-Middleware\n└── api/\n    └── auth.js              # Authentifizierungs-API\n```\n\n## 🚀 Features\n\n### Hauptseite\n- **Executive Summary** mit visueller Projektübersicht\n- **Versionsmanagement** mit automatischer Aktualisierung\n- **Navigationssystem** zu Detailansichten\n- **Changelog-Integration**\n\n### Serverraum A Detailansicht\n- **42U Rack-Layout** mit farbkodierter Geräteübersicht\n- **Detaillierte Verkabelungstabellen** für alle Komponenten\n- **Power Distribution** Übersicht\n- **Zusammenfassung-Dashboard**\n\n### Sicherheit\n- **Basic Authentication** für geschützten Zugriff\n- **Middleware-basierte** Routen-Schutz\n- **Umgebungsvariablen** für Credentials\n\n## 🛠️ Technologie-Stack\n\n- **Frontend:** Reine HTML/CSS/JavaScript (keine Frameworks)\n- **Deployment:** Vercel (Serverless)\n- **Authentifizierung:** Basic Auth mit Middleware\n- **Versionierung:** Git mit Semantic Versioning\n- **Dokumentation:** Markdown mit automatischem Changelog\n\n## 📊 Projekt-Metriken\n\n- **Gesamtleistung:** ~36 kW (18 kW pro Rack)\n- **ISL-Bandbreite:** 400 Gbps zwischen Serverräumen\n- **Storage-Kapazität:** 192x 3.84TB SSDs\n- **Netzwerk-Ports:** 48x 25GbE pro Switch\n- **RTO/RPO:** < 2 Minuten / 0 (Zero Data Loss)\n\n## 🔧 Lokale Entwicklung\n\n```bash\n# Repository klonen\ngit clone https://github.com/skquievreux/network-architect.git\ncd network-architect\n\n# Lokalen Server starten\nnpx serve -p 3000\n\n# Öffnen: http://localhost:3000\n```\n\n## 🚀 Deployment\n\n### Voraussetzungen\n- Vercel Account\n- GitHub Repository\n\n### Schritte\n1. **Repository mit Vercel verbinden**\n2. **Environment Variables setzen:**\n   - `AUTH_USERNAME`: Gewünschter Benutzername\n   - `AUTH_PASSWORD`: Sicheres Passwort\n3. **Deploy triggern** (automatisch bei Git-Push)\n\n### Environment Variables\n```bash\nAUTH_USERNAME=admin\nAUTH_PASSWORD=your_secure_password_here\n```\n\n### Vercel Edge Middleware\nDas Projekt verwendet Vercel Edge Middleware für Authentifizierung:\n- `_middleware.js` - Edge Runtime Middleware\n- Basic Authentication für geschützte Routen\n- Automatische Weiterleitung zu Login bei fehlender Auth\n\n## 📈 Version History\n\nSiehe [CHANGELOG.md](CHANGELOG.md) für detaillierte Versionshistorie.\n\n## 🔒 Sicherheit\n\n- **HTTPS enforced** durch Vercel\n- **Basic Authentication** für alle geschützten Routen\n- **Rate Limiting** durch Vercel Platform\n- **Credential-Rotation** empfohlen\n\n## 🤝 Contributing\n\n1. Fork das Repository\n2. Erstelle einen Feature-Branch (`git checkout -b feature/AmazingFeature`)\n3. Commit deine Änderungen (`git commit -m 'Add some AmazingFeature'`)\n4. Push zum Branch (`git push origin feature/AmazingFeature`)\n5. Öffne einen Pull Request\n\n## 📞 Support\n\nBei Fragen oder Problemen:\n- GitHub Issues erstellen\n- Dokumentation in CHANGELOG.md prüfen\n\n## 📄 Lizenz\n\nDieses Projekt ist privat und nur für autorisierten Zugriff bestimmt.\n\n---\n\n**Version:** 1.0.4\n**Letzte Änderung:** November 2025\n**Autor:** Claude (Anthropic AI) & Netzwerk-Architekt\n**Status:** Production Ready with Multi-Layer Security\n**Deployment:** Vercel mit Edge Middleware + API Auth",
+    "packageJson": {
+      "dependencies": {
+        "drawio-mcp-server": "^1.3.0"
+      },
+      "engines": {
+        "node": ">=20.9.0"
+      }
+    }
+  },
+  "analysis": {
+    "description": "Network Architect delivers interactive, secure visualizations of Hyper-V Stretched Cluster cabling and infrastructure across dual data centers, enabling instant comprehension of complex high-availability networks. Enterprise IT teams achieve zero-downtime resilience with RTO<2min and zero data loss through precise, rack-level documentation.",
+    "businessCanvas": {
+      "valueProposition": [
+        "Interactive rack layouts and cabling diagrams for disaster recovery validation",
+        "Executive summaries with power, bandwidth, and RTO/RPO metrics",
+        "Secure, deployment-ready tool with versioned changelogs for audit compliance"
+      ],
+      "customerSegments": [
+        {
+          "name": "Enterprise IT Architects & Data Center Managers",
+          "willingness_to_pay": "High",
+          "pain_points": [
+            "Complexity of documenting stretched cluster cabling across sites",
+            "Downtime risks from misconfigured Hyper-V redundancy and storage replication"
+          ]
+        },
+        {
+          "name": "Managed Service Providers (MSPs)",
+          "willingness_to_pay": "Medium",
+          "pain_points": [
+            "Client audits requiring visual proof of HA infrastructure",
+            "Onboarding delays due to unclear network topologies"
+          ]
+        }
+      ],
+      "revenueStreams": [
+        {
+          "source": "SaaS Subscription for hosted visualization",
+          "model": "Recurring",
+          "potential_arr": 25000
+        },
+        {
+          "source": "Professional Services Customization",
+          "model": "One-time",
+          "potential_arr": 50000
+        }
+      ]
+    }
+  }
+}

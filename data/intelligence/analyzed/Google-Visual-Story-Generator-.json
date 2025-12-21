@@ -1,0 +1,93 @@
+{
+  "repositoryId": "76f95cf8-72bd-48a8-ad1a-3344c18a18f0",
+  "name": "Google-Visual-Story-Generator-",
+  "owner": "skquievreux",
+  "harvestedAt": "2025-12-21T09:21:52.388Z",
+  "content": {
+    "readme": "\n# AI Image Workflow Builder\n\n![Version](https://img.shields.io/badge/version-0.2.9-blue)\n![Status](https://img.shields.io/badge/status-Alpha-orange)\n![Tech](https://img.shields.io/badge/tech-React%20%7C%20TypeScript%20%7C%20Gemini%20API-green)\n\n## 📑 Über das Projekt\n\nDer **AI Image Workflow Builder** ist eine professionelle, knotenbasierte Webanwendung zur Orchestrierung von generativen KI-Workflows.\n\n---\n*Dokumentation identisch zu v0.2.8, Versionsnummer aktualisiert.*\n",
+    "packageJson": {
+      "name": "ai-story-workflow-builder",
+      "private": true,
+      "version": "1.1.0",
+      "type": "module",
+      "scripts": {
+        "dev": "vite",
+        "build": "vite build",
+        "preview": "vite preview"
+      },
+      "dependencies": {
+        "@google/genai": "^1.21.0",
+        "@tailwindcss/vite": "^4.0.0",
+        "@vitejs/plugin-react": "^5.1.1",
+        "react": "^19.1.1",
+        "react-dom": "^19.1.1",
+        "reactflow": "^11.11.4",
+        "tailwindcss": "^4.0.0",
+        "uuid": "^13.0.0",
+        "vite": "^7.2.4"
+      },
+      "devDependencies": {
+        "@types/node": "^22.14.0",
+        "@vitejs/plugin-react": "^5.0.0",
+        "typescript": "^5.8.2",
+        "vite": "^6.2.0"
+      },
+      "engines": {
+        "node": ">=20.9.0"
+      }
+    }
+  },
+  "analysis": {
+    "description": "AI Image Workflow Builder is a professional, node-based web app that lets teams visually design, orchestrate, and run complex generative AI image workflows using Google’s Gemini stack. It turns ad‑hoc prompt hacking into reusable, shareable pipelines that creative and product teams can iterate on in minutes instead of days.",
+    "businessCanvas": {
+      "valueProposition": [
+        "Visual, node-based editor to design and orchestrate complex generative image workflows without deep coding expertise",
+        "Standardized, reusable AI pipelines that reduce experimentation time and operational chaos across teams",
+        "Native alignment with Google Gemini APIs, making it easier to productize and scale image‑generation use cases on Google Cloud"
+      ],
+      "customerSegments": [
+        {
+          "name": "Digital agencies and creative studios experimenting with generative imagery",
+          "willingness_to_pay": "High",
+          "pain_points": [
+            "Fragmented prompt experiments and image tools that don’t scale to client-grade workflows",
+            "High labor cost and lead times for iterating on visual concepts and campaign assets"
+          ]
+        },
+        {
+          "name": "Product and AI teams in mid‑to‑large SaaS or consumer apps integrating generative image features",
+          "willingness_to_pay": "High",
+          "pain_points": [
+            "Custom orchestration code for every new AI use case increases maintenance and slows releases",
+            "Lack of a shared, visual way for PMs, designers, and engineers to collaborate on AI workflows"
+          ]
+        },
+        {
+          "name": "Enterprise innovation and R&D groups standardizing on Google Cloud and Gemini",
+          "willingness_to_pay": "Medium",
+          "pain_points": [
+            "Difficulty governing and reusing AI experiments across multiple teams and business units",
+            "Need to demonstrate ROI on generative AI by quickly moving from POCs to repeatable workflows"
+          ]
+        }
+      ],
+      "revenueStreams": [
+        {
+          "source": "SaaS subscription for hosted AI workflow builder",
+          "model": "Recurring",
+          "potential_arr": 150000
+        },
+        {
+          "source": "Enterprise licensing with SSO, governance, and on‑prem/virtual private cloud deployment",
+          "model": "Recurring",
+          "potential_arr": 300000
+        },
+        {
+          "source": "Professional services for custom workflow templates and Gemini integration",
+          "model": "Project-based",
+          "potential_arr": 80000
+        }
+      ]
+    }
+  }
+}

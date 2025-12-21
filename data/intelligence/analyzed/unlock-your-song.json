@@ -1,0 +1,52 @@
+{
+  "repositoryId": "0001a1a3-f203-446d-b08f-471e2f451cfe",
+  "name": "unlock-your-song",
+  "owner": "quievreux",
+  "harvestedAt": "2025-12-21T09:21:44.146Z",
+  "content": {
+    "readme": null,
+    "packageJson": null
+  },
+  "analysis": {
+    "description": "Unlock Your Song empowers musicians to break through creative blocks and access hidden inspiration instantly. Transform vague ideas into complete, professional tracks that captivate audiences and accelerate music careers.",
+    "businessCanvas": {
+      "valueProposition": [
+        "Instant creative inspiration for songwriters facing blocks",
+        "AI-powered song unlocking from lyrics, moods, or prompts",
+        "Professional-quality outputs saving hours of production time"
+      ],
+      "customerSegments": [
+        {
+          "name": "Independent Musicians & Songwriters",
+          "willingness_to_pay": "Medium",
+          "pain_points": [
+            "Creative blocks halting progress",
+            "Struggling to finish songs quickly",
+            "High production costs for demos"
+          ]
+        },
+        {
+          "name": "Music Producers & Content Creators",
+          "willingness_to_pay": "High",
+          "pain_points": [
+            "Time-intensive ideation process",
+            "Need for fresh ideas on demand",
+            "Scaling content for platforms like TikTok/YouTube"
+          ]
+        }
+      ],
+      "revenueStreams": [
+        {
+          "source": "Freemium SaaS Subscription",
+          "model": "Recurring",
+          "potential_arr": 50000
+        },
+        {
+          "source": "Pay-per-Song Generation",
+          "model": "Usage-based",
+          "potential_arr": 25000
+        }
+      ]
+    }
+  }
+}

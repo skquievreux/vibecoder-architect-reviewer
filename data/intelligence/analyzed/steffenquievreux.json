@@ -1,0 +1,45 @@
+{
+  "repositoryId": "72f0f9db-15b6-4b92-9159-d89215142454",
+  "name": "steffenquievreux",
+  "owner": "skquievreux",
+  "harvestedAt": "2025-12-21T09:21:46.883Z",
+  "content": {
+    "readme": "# steffenquievreux\nSonic Pi 2.4 programming sounds\n.\n",
+    "packageJson": null
+  },
+  "analysis": {
+    "description": "A creative coding playground for turning Sonic Pi 2.4 scripts into live-generated music and soundscapes. Ideal for experimenting with programmed sounds, performance sketches, and teaching the basics of music coding.",
+    "businessCanvas": {
+      "valueProposition": [
+        "Provides ready-made Sonic Pi 2.4 code examples to dramatically shorten the learning curve for live-coded music.",
+        "Enables educators and creatives to quickly demonstrate programmable sound concepts without building examples from scratch.",
+        "Acts as a lightweight reference library for experimenting with new musical ideas in Sonic Pi."
+      ],
+      "customerSegments": [
+        {
+          "name": "Music educators and coding instructors using Sonic Pi in classes or workshops",
+          "willingness_to_pay": "Low",
+          "pain_points": [
+            "Need simple, tested examples to teach code-based music without preparing all content themselves",
+            "Limited time to design engaging demos that clearly show how code maps to sound"
+          ]
+        },
+        {
+          "name": "Hobbyist musicians and creative coders exploring Sonic Pi",
+          "willingness_to_pay": "Low",
+          "pain_points": [
+            "Difficulty getting started without concrete, working scripts to modify",
+            "Lack of inspiration or structure when experimenting with programmable music for the first time"
+          ]
+        }
+      ],
+      "revenueStreams": [
+        {
+          "source": "Educational content bundles or workshop materials built around the repository examples",
+          "model": "One-time",
+          "potential_arr": 0
+        }
+      ]
+    }
+  }
+}

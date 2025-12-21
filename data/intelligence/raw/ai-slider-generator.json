@@ -1,0 +1,46 @@
+{
+  "repositoryId": "63c82c9b-f9ec-41bd-b31a-bcb0d83fd88f",
+  "name": "ai-slider-generator",
+  "owner": "skquievreux",
+  "harvestedAt": "2025-12-21T09:21:52.011Z",
+  "content": {
+    "readme": "# AI Slides Generator v1.1.0\n\nEine Next.js-basierte Webanwendung zur automatischen Generierung professioneller, gebrandeter Präsentationen aus Themenvorgaben mittels KI.\n\n## ✨ Features\n\n- 🤖 **KI-gestützte Präsentationsgenerierung** mit OpenAI GPT-4\n- 🎨 **Enhanced Template System** mit robuster Platzhalter-Erkennung\n- 📊 **Automatische Folienstrukturierung** mit 5 optimierten Folien\n- ☁️ **Nahtlose Google Slides Integration** mit User OAuth\n- 📄 **Direkter Export** zu Google Slides\n- 🎯 **Responsive Web-Interface** mit Live-Vorschau\n- 🔐 **Sichere Authentifizierung** mit Google OAuth 2.0\n- 📱 **Mobile-optimierte Benutzeroberfläche**\n- 🛡️ **Verbesserte Fehlerbehandlung** und Code-Qualität\n\n## Technologie-Stack\n\n- **Frontend**: Next.js 14.2.33, TypeScript, Tailwind CSS, Zustand\n- **Backend**: Next.js API Routes\n- **APIs**: OpenAI GPT-4, Google Slides API, Google Drive API\n- **Styling**: Tailwind CSS mit custom Components\n- **Quality**: ESLint, Prettier, Playwright E2E Testing\n\n## Installation\n\n1. **Repository klonen**\n\n   ```bash\n   git clone <repository-url>\n   cd ai-slides-generator\n   ```\n\n2. **Dependencies installieren**\n\n   ```bash\n   npm install\n   ```\n\n3. **Umgebungsvariablen konfigurieren**\n\n   Kopiere `.env.local` und fülle die folgenden Werte:\n\n   ```env\n   # OpenAI API\n   OPENAI_API_KEY=sk-your-openai-api-key\n\n   # Google APIs (optional für Entwicklung)\n   GOOGLE_CLIENT_EMAIL=your-service-account@project.iam.gserviceaccount.com\n   GOOGLE_PRIVATE_KEY=\"-----BEGIN PRIVATE KEY-----\\nYOUR_PRIVATE_KEY\\n-----END PRIVATE KEY-----\"\n   GOOGLE_PROJECT_ID=your-google-project-id\n\n   # App Configuration\n   NEXT_PUBLIC_APP_URL=http://localhost:3000\n   ```\n\n4. **Entwicklungsserver starten**\n\n   ```bash\n   npm run dev\n   ```\n\n   Öffne [http://localhost:3000](http://localhost:3000) in deinem Browser.\n\n## 🔧 Google APIs Setup (für Produktion)\n\n### OAuth 2.0 Konfiguration\n\n1. **Google Cloud Project erstellen**\n   - Gehe zu [Google Cloud Console](https://console.cloud.google.com/)\n   - Erstelle ein neues Projekt oder verwende ein bestehendes\n\n2. **APIs aktivieren**\n   - Gehe zu \"APIs & Services\" > \"Library\"\n   - Aktiviere: **Google Slides API** und **Google Drive API**\n\n3. **OAuth 2.0 Credentials erstellen**\n   - Gehe zu \"APIs & Services\" > \"Credentials\"\n   - Klicke \"Create Credentials\" > \"OAuth 2.0 Client IDs\"\n   - Wähle \"Web application\" als Application type\n   - Füge Authorized redirect URIs hinzu:\n     - `http://localhost:3000/api/auth/callback` (für Entwicklung)\n     - `https://yourdomain.com/api/auth/callback` (für Produktion)\n\n4. **Environment Variables setzen**\n\n   ```env\n   # Google OAuth (für User-Authentifizierung)\n   GOOGLE_CLIENT_ID=your-oauth-client-id.apps.googleusercontent.com\n   GOOGLE_CLIENT_SECRET=your-oauth-client-secret\n\n   # App Configuration\n   NEXT_PUBLIC_APP_URL=http://localhost:3000\n   ```\n\n### Template Setup\n\n1. **Google Slides Template erstellen**\n   - Erstelle eine neue Präsentation in Google Slides\n   - Füge Platzhalter-Text hinzu (wird durch KI-Inhalte ersetzt)\n   - Notiere die Presentation ID aus der URL\n\n2. **Template ID konfigurieren**\n   - Aktualisiere `src/app/api/create-presentation/route.ts`\n   - Setze die korrekte `templateId` für dein Template\n\n## 🎯 Verwendung\n\n### Schnellstart\n\n1. **App starten**\n\n   ```bash\n   npm run dev\n   ```\n\n   Öffne [http://localhost:3000](http://localhost:3000)\n\n2. **Google Login**\n   - Klicke \"Mit Google anmelden\"\n   - Erlaube Zugriff auf Google Drive und Slides\n\n3. **Präsentation erstellen**\n   - Gib dein Thema ein (z.B. \"KI in der Bildung\")\n   - Wähle Business-Stil\n   - Klicke \"Präsentation generieren\"\n\n4. **Google Slides erstellen**\n   - Überprüfe die Vorschau\n   - Klicke \"Google Slides erstellen\"\n   - Bearbeite die Präsentation direkt in Google Slides\n\n### Erweiterte Features\n\n- **Template-Generierung**: Erstelle Templates aus Websites\n- **Live-Vorschau**: Siehe deine Präsentation vor dem Export\n- **Responsive Design**: Funktioniert auf Desktop und Mobile\n\n## Projektstruktur\n\n```\nsrc/\n├── app/                    # Next.js App Router\n│   ├── api/               # API Routes\n│   │   ├── generate-json/ # Präsentationsgenerierung\n│   │   ├── create-presentation/ # Google Slides Erstellung\n│   │   ├── export/        # PDF/PPTX Export\n│   │   └── templates/     # Template-Verwaltung\n│   ├── globals.css        # Global Styles\n│   ├── layout.tsx         # Root Layout\n│   └── page.tsx           # Hauptseite\n├── components/            # React Components\n│   ├── PresentationForm.tsx\n│   ├── SlidePreview.tsx\n│   ├── ExportButtons.tsx\n│   └── LoadingIndicator.tsx\n├── lib/                   # Utilities\n│   └── store.ts           # Zustand Store\n└── types/                 # TypeScript Types\n    └── index.ts\n```\n\n## 🚀 API Endpoints\n\n### Authentifizierung\n\n- `GET /api/auth/login` - OAuth Login initiieren\n- `GET /api/auth/callback` - OAuth Token austauschen\n- `GET /api/auth/logout` - User ausloggen\n- `GET /api/auth/status` - Login-Status prüfen\n\n### Präsentationsgenerierung\n\n- `POST /api/generate-json` - KI-generierte Präsentation erstellen\n- `POST /api/create-presentation` - Google Slides Präsentation erstellen\n- `POST /api/generate-template` - Website-basierte Templates generieren\n\n### Verwaltung\n\n- `GET /api/templates` - Verfügbare Templates abrufen\n- `GET /api/export/:id/:format` - Export als PDF/PPTX\n\n### Test-Endpunkte\n\n- `GET /api/test-slides` - Google Slides API testen\n- `GET /api/test-presentation-access` - Präsentationszugriff testen\n- `GET /api/analyze-template` - Template-Struktur analysieren\n\n## Entwicklung\n\n### Scripts\n\n- `npm run dev` - Entwicklungsserver\n- `npm run build` - Produktionsbuild\n- `npm run start` - Produktionsserver\n- `npm run lint` - ESLint Code-Qualitätsprüfung\n- `npx playwright test` - E2E Tests ausführen\n- `npx playwright show-report` - Test-Report anzeigen\n\n### Code Quality\n\n- **TypeScript**: Strict Type Checking\n- **ESLint**: Code Linting mit Next.js Standards\n- **Prettier**: Automatische Code-Formatierung\n- **Playwright**: End-to-End Testing Suite\n\n## Deployment\n\n### Vercel (empfohlen)\n\n1. **Vercel Account erstellen**\n2. **Repository verbinden**\n3. **Environment Variables setzen**\n4. **Deploy**\n\n### Andere Platformen\n\nDie App kann auf jeder Node.js-kompatiblen Platform deployed werden.\n\n## Sicherheit\n\n- API Keys werden nur serverseitig verwendet\n- Keine Speicherung sensibler Nutzerdaten\n- Rate Limiting für API-Endpoints\n- Input Validation mit Zod (zukünftig)\n\n## Lizenz\n\n[MIT License](LICENSE)\n\n## Beitragen\n\n1. Fork das Repository\n2. Erstelle einen Feature Branch\n3. Commit deine Änderungen\n4. Push zum Branch\n5. Erstelle einen Pull Request\n\n## Support\n\nBei Fragen oder Problemen:\n\n- Öffne ein Issue im Repository\n- Kontaktiere das Entwicklungsteam\n",
+    "packageJson": {
+      "name": "ai-slider-generator",
+      "version": "1.1.0",
+      "private": true,
+      "scripts": {
+        "dev": "next dev",
+        "build": "next build",
+        "start": "next start",
+        "lint": "next lint"
+      },
+      "dependencies": {
+        "@prisma/client": "^5.22.0",
+        "@types/node": "^20",
+        "@types/react": "^18",
+        "@types/react-dom": "^18",
+        "autoprefixer": "^10.0.1",
+        "eslint": "^9.39.2",
+        "eslint-config-next": "^16.1.0",
+        "googleapis": "^161.0.0",
+        "next": "^16.1.0",
+        "openai": "^6.2.0",
+        "postcss": "^8",
+        "prisma": "^5.22.0",
+        "puppeteer": "^24.23.0",
+        "react": "^19.2.3",
+        "react-dom": "^19.2.3",
+        "tailwindcss": "^3.3.0",
+        "typescript": "^5",
+        "zustand": "^4.4.0"
+      },
+      "devDependencies": {
+        "@playwright/test": "^1.56.0"
+      },
+      "engines": {
+        "node": ">=20.9.0"
+      }
+    }
+  }
+}

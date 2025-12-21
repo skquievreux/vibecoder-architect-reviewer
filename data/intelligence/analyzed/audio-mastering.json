@@ -1,0 +1,63 @@
+{
+  "repositoryId": "b4ea6a42-e390-4af1-8cc3-434409d0520c",
+  "name": "audio-mastering",
+  "owner": "skquievreux",
+  "harvestedAt": "2025-12-21T09:21:41.521Z",
+  "content": {
+    "readme": "# Audio Mastering Automation Tool\n\nAutomatisiertes Audio-Mastering für Suno AI generierte Songs mit Batch-Verarbeitung und professionellen Standards.\n\n## 🚀 Schnellstart\n\n### 1. Installation\n```bash\npip install -r requirements.txt\n```\n\n### 2. Audio-Dateien vorbereiten\nLege deine WAV oder MP3-Dateien in den `input/` Ordner.\n\n### 3. Mastering starten\n\n#### Option A: Kommandozeile (traditionell)\n```bash\npython mastering_tool.py\n```\n\n#### Option B: Weboberfläche (empfohlen)\n```bash\npython mastering_tool.py --web\n```\nDer Browser öffnet sich automatisch unter `http://localhost:8080`\n\n### 4. Ergebnisse finden\nDie gemasterten Dateien findest du im `output/` Ordner mit dem Suffix \"_mastered\".\n\n## 📋 Funktionen\n\n- **Batch-Verarbeitung**: Mehrere Dateien gleichzeitig verarbeiten\n- **Professionelle Chain**: High-Pass → Kompression → LUFS-Norm → Peak-Limiting\n- **Qualitätskontrolle**: Automatische LUFS und Peak-Messungen\n- **Detaillierte Reports**: Übersicht über alle Verarbeitungsergebnisse\n- **Fehlerbehandlung**: Robuste Verarbeitung mit aussagekräftigen Meldungen\n- **Weboberfläche**: Moderne Browser-basierte Benutzeroberfläche mit A/B-Vergleich\n- **Intelligente Presets**: Automatische Analyse und Preset-Empfehlungen\n- **Drag & Drop Upload**: Einfacher Datei-Upload über die Weboberfläche\n- **One-Click Mastering**: Direkter Start der Verarbeitung aus dem Browser\n\n## 🎛️ Mastering-Standards\n\n| Parameter | Wert | Begründung |\n|-----------|------|------------|\n| Sample Rate | 44100 Hz | CD-Qualität, Streaming-Standard |\n| Bit Depth | 16-bit | Ausreichend für Streaming |\n| Target LUFS | -10.0 LUFS | Moderne Musik-Standards |\n| True Peak Ceiling | -1.0 dBTP | Verhindert Inter-Sample Peaks |\n| High-Pass | 20 Hz | Entfernt Subsonic-Rumpeln |\n| Kompression | 3:1 @ -20dB | Balance zwischen Kontrolle und Natürlichkeit |\n\n## 📖 Verwendung\n\n### Grundlegende Verwendung\n```bash\n# Standard-Ordner verwenden\npython mastering_tool.py\n\n# Benutzerdefinierte Ordner\npython mastering_tool.py -i ./meine_songs -o ./gemastert\n\n# Detaillierte Ausgabe\npython mastering_tool.py --verbose\n```\n\n### Kommandozeilen-Optionen\n```\n-i, --input     Input-Ordner (Standard: input/)\n-o, --output    Output-Ordner (Standard: output/)\n--verbose, -v   Detaillierte Ausgabe\n--workers       Anzahl paralleler Worker (Standard: 1)\n--web           Weboberfläche starten (Standard: localhost:8080)\n--port          Port für Weboberfläche (Standard: 8080)\n```\n\n## 📊 Beispiel-Output\n\n```\n================================================================================\nAUDIO MASTERING BATCH REPORT\n================================================================================\n\nZUSAMMENFASSUNG:\n  Verarbeitete Dateien: 3\n  Fehlerhafte Dateien: 0\n  Gesamtzeit: 12.45 Sekunden\n  Durchschnitt pro Datei: 4.15 Sekunden\n\nVERARBEITETE DATEIEN:\n--------------------------------------------------------------------------------\nDateiname                 | LUFS   | Peak dB | Peak dBTP | Dauer\n--------------------------------------------------------------------------------\nsong1.wav                 | -10.0  | -2.3    | -1.0      | 3:24\nsong2.wav                 | -10.0  | -1.8    | -1.0      | 2:51\nsong3.wav                 | -10.0  | -3.1    | -1.0      | 4:12\n\n================================================================================\n```\n\n## 🏗️ Architektur\n\n### Komponenten\n- **`mastering_tool.py`**: Haupt-Script mit CLI\n- **`audio_processor.py`**: Audio-Verarbeitungsklasse\n- **`batch_processor.py`**: Batch-Verwaltung\n- **`config.py`**: Konfiguration und Konstanten\n\n### Verarbeitungskette\n1. **High-Pass Filter** (20 Hz) - Entfernt unerwünschte Tieftonartefakte\n2. **Kompression** (3:1 Ratio, -20dB Threshold) - Dynamikkontrolle\n3. **LUFS-Normalisierung** (-10 LUFS) - Einheitliche Lautstärke\n4. **Peak Limiter** (-1.0 dBTP) - Verhindert Clipping\n\n## 🔧 Technische Details\n\n### Abhängigkeiten\n- `numpy` - Numerische Berechnungen\n- `scipy` - Signalverarbeitung\n- `soundfile` - Audio I/O\n- `pyloudnorm` - LUFS-Messung\n\n### Unterstützte Formate\n- WAV (beliebiges Sample Rate, konvertiert zu 44.1kHz)\n- MP3 (decoded zu WAV)\n\n### Performance\n- Typische Verarbeitungszeit: < 30 Sekunden für 3-5 Minuten Audio\n- Speicherverbrauch: ~50-200 MB pro Datei\n- CPU: Single-Threaded (parallele Verarbeitung für zukünftige Releases)\n\n## 🐛 Fehlerbehebung\n\n### Häufige Probleme\n- **\"Keine Dateien gefunden\"**: Überprüfe, ob Dateien im `input/` Ordner liegen\n- **\"Import Error\"**: Stelle sicher, dass alle Dependencies installiert sind\n- **\"Speicherfehler\"**: Datei könnte zu groß sein (Max. 500 MB)\n\n### Logs\nLogs werden automatisch in `logs/mastering_YYYYMMDD_HHMMSS.log` gespeichert.\n\n## 📈 Zukünftige Erweiterungen\n\n### Phase 2\n- [ ] GUI mit tkinter\n- [ ] Preset-System (Rock, Pop, EDM)\n- [ ] Spektrum-Analyse\n\n### Phase 3\n- [ ] Web-Interface\n- [ ] Cloud-Integration\n- [ ] Machine Learning Optimierung\n\n## 📄 Lizenz\n\nDieses Projekt ist Open Source. Für kommerzielle Nutzung bitte kontaktieren.\n\n## 🤝 Beitragen\n\nIssues und Pull Requests sind willkommen!",
+    "packageJson": null
+  },
+  "analysis": {
+    "description": "Audio Mastering Automation Tool turns raw Suno AI–generated tracks into streaming-ready masters in one click, at scale. It replaces manual studio work with fast, standardized batch mastering via a simple web interface or CLI.",
+    "businessCanvas": {
+      "valueProposition": [
+        "Automates professional-grade mastering for AI-generated and demo tracks, reducing time and cost versus traditional studios.",
+        "Enables scalable batch processing with consistent LUFS/peak standards and detailed quality reports for catalogs of songs.",
+        "Offers a user-friendly web interface with drag-and-drop, A/B comparison, and intelligent presets for non-engineers."
+      ],
+      "customerSegments": [
+        {
+          "name": "Indie musicians and small labels using AI tools (e.g., Suno) for rapid song creation",
+          "willingness_to_pay": "Medium",
+          "pain_points": [
+            "High cost and slow turnaround of traditional mastering for many low-budget tracks",
+            "Inconsistent loudness and quality when self-mastering without engineering expertise"
+          ]
+        },
+        {
+          "name": "Content creators and agencies producing large volumes of audio (shorts, ads, podcasts, jingles)",
+          "willingness_to_pay": "Medium",
+          "pain_points": [
+            "Need fast, consistent loudness and quality across many audio assets",
+            "Lack of in-house audio engineers and limited time to learn complex DAWs or plugins"
+          ]
+        },
+        {
+          "name": "AI music platforms and SaaS tools wanting integrated, white-label mastering",
+          "willingness_to_pay": "High",
+          "pain_points": [
+            "Need embedded, automated mastering to ship ‘ready-to-publish’ audio to end users",
+            "Difficulty scaling manual or plugin-based workflows across thousands of AI-generated tracks"
+          ]
+        }
+      ],
+      "revenueStreams": [
+        {
+          "source": "SaaS subscription for indie creators and small teams",
+          "model": "Recurring",
+          "potential_arr": 25000
+        },
+        {
+          "source": "API / white-label licensing for AI music and creator platforms",
+          "model": "Recurring",
+          "potential_arr": 75000
+        },
+        {
+          "source": "One-time desktop or on-premise licenses for studios and agencies",
+          "model": "One-time",
+          "potential_arr": 30000
+        }
+      ]
+    }
+  }
+}

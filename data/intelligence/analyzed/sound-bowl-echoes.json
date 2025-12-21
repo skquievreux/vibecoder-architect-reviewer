@@ -1,0 +1,144 @@
+{
+  "repositoryId": "a3ecd381-9cd3-4556-bc77-6e950d0645d9",
+  "name": "sound-bowl-echoes",
+  "owner": "skquievreux",
+  "harvestedAt": "2025-12-21T09:21:47.252Z",
+  "content": {
+    "readme": "\n# Klangschalen-Oase - Projektdokumentation\n\n## 1. Projektübersicht\n\nDie \"Klangschalen-Oase\" ist eine webbasierte Anwendung, die es Benutzern ermöglicht, Klänge von verschiedenen Klangschalen zu erleben. Die Anwendung ist mandantenfähig, was bedeutet, dass verschiedene Organisationen (Mandanten) ihre eigenen, angepassten Klangschalen-Sets für ihre Benutzer bereitstellen können.\n\nEin zentrales Admin-Panel ermöglicht die Verwaltung von globalen Klangschalen-Stammdaten, Mandanten und Benutzerrollen.\n\n## 2. Kernfunktionen\n\n- **Dynamische Klangerzeugung**: Die Klänge der Schalen werden nicht aus Audiodateien abgespielt, sondern dynamisch im Browser synthetisiert, basierend auf in der Datenbank hinterlegten Klangprofilen (`sound_profile`).\n- **Mandantenfähigkeit**: Jeder Mandant kann aus einem globalen Pool von Klangschalen auswählen, diese für seine Benutzer aktivieren und ihnen benutzerdefinierte Namen geben.\n- **Benutzer- und Rollenverwaltung**:\n  - **Admin**: Hat vollen Zugriff auf das System. Kann globale Schalen, Mandanten und alle Benutzerrollen verwalten.\n  - **Mandanten-Manager (tenant_manager)**: Kann die Klangschalen und Benutzer für einen oder mehrere zugewiesene Mandanten verwalten.\n  - **Endbenutzer**: Kann die für seinen Mandanten freigeschalteten Klangschalen abspielen.\n\n## 3. Technischer Stack\n\n- **Frontend**: React, Vite, TypeScript\n- **Styling**: Tailwind CSS & shadcn/ui\n- **Backend & Datenbank**: Supabase (PostgreSQL, Authentication)\n- **Data Fetching**: TanStack Query (React Query)\n- **Routing**: React Router\n\n## 4. Datenbankstruktur\n\nDie Kernlogik der Anwendung stützt sich auf folgende Supabase-Tabellen:\n\n- `public.bowls`: Enthält die globalen Stammdaten aller Klangschalen, inklusive ihres `sound_profile` (JSONB) für die Klangerzeugung.\n- `public.tenants`: Definiert die einzelnen Mandanten (z.B. Unternehmen, Organisationen).\n- `public.tenant_bowls`: Eine Verbindungstabelle, die eine globale `bowl` mit einem `tenant` verknüpft. Ermöglicht mandantenspezifische Anpassungen wie `custom_label`.\n- `public.user_roles`: Weist Benutzern (`user_id`) Rollen (`admin`, `tenant_manager`) zu. Für `tenant_manager` wird auch der zugehörige `tenant_id` gespeichert.\n- `public.profiles`: Speichert zusätzliche Benutzerinformationen wie `full_name`, verknüpft mit `auth.users`.\n\n## 5. Lokale Entwicklung\n\n### Voraussetzungen\n\n- Node.js und npm (oder ein anderer Paketmanager wie bun, yarn)\n- Ein Supabase-Projekt (die Verbindungsdaten sind in `src/integrations/supabase/client.ts` hinterlegt).\n\n### Installation & Start\n\n1.  **Repository klonen**:\n    ```sh\n    git clone <YOUR_GIT_URL>\n    cd <YOUR_PROJECT_NAME>\n    ```\n\n2.  **Abhängigkeiten installieren**:\n    ```sh\n    npm install\n    ```\n\n3.  **Entwicklungsserver starten**:\n    ```sh\n    npm run dev\n    ```\n    Die Anwendung ist nun unter `http://localhost:5173` (oder einem anderen Port, falls dieser belegt ist) erreichbar.\n\n## 6. Wichtige Seiten und Routen\n\n- `/`: Die Startseite der Anwendung.\n- `/{tenantSlug}`: Die öffentliche Seite eines Mandanten, auf der die Klangschalen abgespielt werden können.\n- `/admin`: Das zentrale Einstellungs-Dashboard für Administratoren.\n- `/admin/users`: Verwaltung globaler Benutzerrollen.\n- `/admin/tenant/{tenantId}`: Detaillierte Verwaltung eines spezifischen Mandanten (z.B. zugewiesene Schalen, Manager).\n- `/login`: Anmeldeseite für Benutzer.\n\n---\n\n*Dieses Projekt wird mit Lovable erstellt und verwaltet.*\n*URL: https://lovable.dev/projects/addab658-fc3f-4830-9ceb-d444d215ed13*\n\n",
+    "packageJson": {
+      "name": "vite_react_shadcn_ts",
+      "private": true,
+      "version": "0.0.0",
+      "type": "module",
+      "scripts": {
+        "dev": "vite",
+        "build": "vite build",
+        "build:dev": "vite build --mode development",
+        "lint": "eslint .",
+        "preview": "vite preview"
+      },
+      "dependencies": {
+        "@hookform/resolvers": "^3.9.0",
+        "@radix-ui/react-accordion": "^1.2.0",
+        "@radix-ui/react-alert-dialog": "^1.1.1",
+        "@radix-ui/react-aspect-ratio": "^1.1.0",
+        "@radix-ui/react-avatar": "^1.1.0",
+        "@radix-ui/react-checkbox": "^1.1.1",
+        "@radix-ui/react-collapsible": "^1.1.0",
+        "@radix-ui/react-context-menu": "^2.2.1",
+        "@radix-ui/react-dialog": "^1.1.2",
+        "@radix-ui/react-dropdown-menu": "^2.1.1",
+        "@radix-ui/react-hover-card": "^1.1.1",
+        "@radix-ui/react-label": "^2.1.0",
+        "@radix-ui/react-menubar": "^1.1.1",
+        "@radix-ui/react-navigation-menu": "^1.2.0",
+        "@radix-ui/react-popover": "^1.1.1",
+        "@radix-ui/react-progress": "^1.1.0",
+        "@radix-ui/react-radio-group": "^1.2.0",
+        "@radix-ui/react-scroll-area": "^1.1.0",
+        "@radix-ui/react-select": "^2.1.1",
+        "@radix-ui/react-separator": "^1.1.0",
+        "@radix-ui/react-slider": "^1.2.0",
+        "@radix-ui/react-slot": "^1.1.0",
+        "@radix-ui/react-switch": "^1.1.0",
+        "@radix-ui/react-tabs": "^1.1.0",
+        "@radix-ui/react-toast": "^1.2.1",
+        "@radix-ui/react-toggle": "^1.1.0",
+        "@radix-ui/react-toggle-group": "^1.1.0",
+        "@radix-ui/react-tooltip": "^1.1.4",
+        "@supabase/supabase-js": "^2.49.4",
+        "@tanstack/react-query": "^5.56.2",
+        "class-variance-authority": "^0.7.1",
+        "clsx": "^2.1.1",
+        "cmdk": "^1.0.0",
+        "date-fns": "^3.6.0",
+        "embla-carousel-react": "^8.3.0",
+        "input-otp": "^1.2.4",
+        "lucide-react": "^0.462.0",
+        "next-themes": "^0.3.0",
+        "react": "^19.2.0",
+        "react-day-picker": "^8.10.1",
+        "react-dom": "^19.2.0",
+        "react-hook-form": "^7.53.0",
+        "react-resizable-panels": "^2.1.3",
+        "react-router-dom": "^6.26.2",
+        "recharts": "^2.12.7",
+        "sonner": "^1.5.0",
+        "tailwind-merge": "^2.5.2",
+        "tailwindcss-animate": "^1.0.7",
+        "vaul": "^0.9.3",
+        "zod": "^3.23.8"
+      },
+      "devDependencies": {
+        "@eslint/js": "^9.9.0",
+        "@tailwindcss/typography": "^0.5.15",
+        "@types/node": "^22.5.5",
+        "@types/react": "^19.0.0",
+        "@types/react-dom": "^19.0.0",
+        "@vitejs/plugin-react-swc": "^3.5.0",
+        "autoprefixer": "^10.4.20",
+        "eslint": "^9.9.0",
+        "eslint-plugin-react-hooks": "^5.1.0-rc.0",
+        "eslint-plugin-react-refresh": "^0.4.9",
+        "globals": "^15.9.0",
+        "lovable-tagger": "^1.1.7",
+        "postcss": "^8.4.47",
+        "tailwindcss": "^3.4.11",
+        "typescript": "^5.8.2",
+        "typescript-eslint": "^8.0.1",
+        "vite": "^5.4.1"
+      },
+      "engines": {
+        "node": ">=20.9.0"
+      }
+    }
+  },
+  "analysis": {
+    "description": "Klangschalen-Oase delivers immersive, browser-synthesized singing bowl sounds for wellness and meditation, customized per organization. Multi-tenant architecture empowers wellness centers and corporates to brand and manage unique sound experiences for their users.",
+    "businessCanvas": {
+      "valueProposition": [
+        "Dynamic, file-free sound synthesis for instant, customizable singing bowl experiences in the browser",
+        "Scalable multi-tenant platform with admin tools for organizations to tailor and control user access",
+        "Role-based management reducing setup costs while enabling branded wellness content delivery"
+      ],
+      "customerSegments": [
+        {
+          "name": "Wellness Centers & Spas",
+          "willingness_to_pay": "High",
+          "pain_points": [
+            "High costs of physical sound bowls and audio production",
+            "Difficulty scaling personalized sound therapy sessions"
+          ]
+        },
+        {
+          "name": "Corporate Wellness Programs",
+          "willingness_to_pay": "Medium",
+          "pain_points": [
+            "Need for branded, easy-to-deploy employee relaxation tools",
+            "Managing access for large user groups without IT overhead"
+          ]
+        },
+        {
+          "name": "Meditation App Providers",
+          "willingness_to_pay": "Medium",
+          "pain_points": [
+            "Large audio file storage and bandwidth costs",
+            "Lack of customizable sound sets per client"
+          ]
+        }
+      ],
+      "revenueStreams": [
+        {
+          "source": "SaaS Subscription per Tenant",
+          "model": "Recurring",
+          "potential_arr": 50000
+        },
+        {
+          "source": "Premium Sound Profile Add-ons",
+          "model": "Recurring",
+          "potential_arr": 15000
+        }
+      ]
+    }
+  }
+}

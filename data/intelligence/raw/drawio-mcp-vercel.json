@@ -1,0 +1,46 @@
+{
+  "repositoryId": "64319cfc-1f39-46be-9530-da43d32e230a",
+  "name": "drawio-mcp-vercel",
+  "owner": "skquievreux",
+  "harvestedAt": "2025-12-21T09:21:51.259Z",
+  "content": {
+    "readme": "# DrawIO MCP Server für Vercel\n\nDieses Projekt stellt einen Model Context Protocol (MCP) Server für Draw.io bereit, der auf Vercel gehostet werden kann. Es ermöglicht KI-Agenten wie Claude, programmatisch mit Draw.io zu interagieren und Diagramme zu erstellen oder zu bearbeiten.\n\n## Features\n\n- Vollständige MCP-Implementierung für DrawIO\n- Unterstützung für HTTP und WebSocket-Verbindungen\n- Bildverarbeitung (Skalierung, Optimierung, Thumbnails)\n- Vollständiges Historie-System für Änderungsverfolgung\n- Versionskontrolle und Changelog\n- Optimiert für Vercel Serverless Functions\n- Einfache Integration mit Claude und anderen KI-Assistenten\n\n## API-Endpunkte\n\n### Grundlegende Endpunkte\n- `GET /api` - Server-Status und verfügbare Features\n- `POST /api/mcp` - MCP-Anfragen verarbeiten\n\n### Historie-System\n- `GET /api/history` - Alle Bilder mit Historie abrufen\n- `GET /api/history/:imageId` - Historie für spezifisches Bild\n- `POST /api/history/:imageId` - Neue Historie-Eintragung erstellen\n- `DELETE /api/history/:imageId` - Historie für Bild löschen\n- `GET /api/history-stats` - Statistiken über Historie\n\n### Bildverarbeitung\n- `POST /api/images` - Bild hochladen und validieren\n- `PUT /api/images/:imageId` - Bild aktualisieren\n- `POST /api/process/:imageId` - Bild verarbeiten (skalieren, optimieren)\n- `POST /api/thumbnail/:imageId` - Thumbnail erstellen\n- `POST /api/analyze/:imageId` - Bild analysieren\n- `POST /api/batch-process` - Mehrere Bilder gleichzeitig verarbeiten\n- `GET /api/processing-stats` - Verarbeitungsstatistiken\n\n## Lokale Entwicklung\n\n1. Repository klonen\n2. Abhängigkeiten installieren\n   ```bash\n   npm install\n   ```\n3. Lokalen Server starten\n   ```bash\n   npm run dev\n   ```\n4. Server ist unter http://localhost:3000/api erreichbar\n\n## Deployment auf Vercel\n\n1. Vercel CLI installieren (falls noch nicht vorhanden)\n   ```bash\n   npm install -g vercel\n   ```\n\n2. Anmelden und Projekt deployen\n   ```bash\n   vercel login\n   vercel\n   ```\n\n3. Für Production-Deployment\n   ```bash\n   npm run deploy\n   ```\n\n## Integration mit Claude\n\nNach dem Deployment auf Vercel kannst du den MCP-Server mit Claude oder anderen MCP-kompatiblen Tools verwenden:\n\n```json\n{\n  \"mcpServers\": {\n    \"drawio\": {\n      \"url\": \"https://deine-vercel-domain.vercel.app/api/mcp\"\n    }\n  }\n}\n```\n\n## Browser-Erweiterung\n\nUm den MCP-Server mit Draw.io zu nutzen, benötigst du die Draw.io MCP Browser-Erweiterung:\n- [GitHub Repository der Erweiterung](https://github.com/lgazo/drawio-mcp-browser-extension)\n\n## Beispiel-Nutzung\n\n### Bild hochladen\n```javascript\nfetch('/api/images', {\n  method: 'POST',\n  headers: { 'Content-Type': 'application/json' },\n  body: JSON.stringify({\n    imageId: 'diagram-001',\n    imageData: '<svg>...</svg>',\n    metadata: { author: 'User', description: 'Beispiel-Diagramm' }\n  })\n});\n```\n\n### Bild verarbeiten\n```javascript\nfetch('/api/process/diagram-001', {\n  method: 'POST',\n  headers: { 'Content-Type': 'application/json' },\n  body: JSON.stringify({\n    imageData: '<svg>...</svg>',\n    options: { scale: 0.8, optimize: true }\n  })\n});\n```\n\n### Historie abrufen\n```javascript\nfetch('/api/history/diagram-001')\n  .then(res => res.json())\n  .then(data => console.log(data));\n```\n\n## Projektstruktur\n\n```\n/\n├── api/\n│   └── index.js              # Hauptserver-Logik\n├── lib/\n│   ├── imageHistory.js       # Historie-Verwaltung\n│   └── imageProcessor.js     # Bildverarbeitung\n├── data/\n│   ├── history/              # Historie-Daten\n│   ├── processed/            # Verarbeitete Bilder\n│   └── temp/                 # Temporäre Dateien\n├── public/\n│   └── images/\n│       └── example-diagram.svg # Beispielbild\n├── AGENTS.md                 # Agent-Konfiguration\n├── CHANGELOG.md              # Versionsprotokoll\n├── package.json              # Projekt-Konfiguration\n├── vercel.json               # Vercel-Konfiguration\n└── README.md                 # Diese Datei\n```\n\n## Technische Details\n\n- **Node.js Version:** >= 18.x\n- **Deployment:** Vercel Serverless Functions\n- **WebSocket Support:** Vollständig implementiert\n- **Memory:** 1024MB pro Function\n- **Max Duration:** 60 Sekunden\n- **Region:** Frankfurt (fra1)\n\n## Sicherheit\n\n- SVG-Validierung vor Verarbeitung\n- Keine Ausführung von Script-Tags in SVG\n- CORS-Konfiguration für sichere Cross-Origin-Requests\n- Umgebungsspezifische Konfiguration\n\n## Beitragende\n\n- Steffen Quievreux (Initiale Implementierung)\n\n## Lizenz\n\nDieses Projekt steht unter der MIT-Lizenz.",
+    "packageJson": {
+      "name": "drawio-mcp-vercel",
+      "version": "1.0.0",
+      "description": "DrawIO MCP Server für Vercel mit Bildverarbeitung und Historie",
+      "main": "api/index.js",
+      "scripts": {
+        "dev": "vercel dev",
+        "deploy": "vercel deploy --prod",
+        "build": "echo 'No build step required for serverless functions'",
+        "test": "echo 'Tests würden hier ausgeführt werden'",
+        "lint": "echo 'Linting würde hier ausgeführt werden'"
+      },
+      "keywords": [
+        "drawio",
+        "mcp",
+        "vercel",
+        "diagrams",
+        "image-processing",
+        "history"
+      ],
+      "author": "Steffen Quievreux",
+      "license": "MIT",
+      "dependencies": {
+        "@tailwindcss/postcss": "^4.0.0",
+        "cors": "^2.8.5",
+        "express": "^4.18.2",
+        "postcss": "^8.5.6",
+        "tailwindcss": "^4.0.0",
+        "ws": "^8.14.2"
+      },
+      "devDependencies": {
+        "vercel": "^32.5.0"
+      },
+      "engines": {
+        "node": ">=20.9.0"
+      }
+    }
+  }
+}

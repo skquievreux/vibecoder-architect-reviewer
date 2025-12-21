@@ -1,0 +1,63 @@
+{
+  "repositoryId": "9a56c8d5-79c3-47b0-a49f-1f7332c9ca42",
+  "name": "leadmagnet-quiz-mitochondrien",
+  "owner": "skquievreux",
+  "harvestedAt": "2025-12-21T09:21:41.048Z",
+  "content": {
+    "readme": null,
+    "packageJson": null
+  },
+  "analysis": {
+    "description": "Leadmagnet-Quiz-Mitochondrien is a niche lead-generation quiz experience that educates users about mitochondrial health while capturing rich, consented contact and profiling data. It turns health-curious traffic into segmented, high-intent leads that can be nurtured into premium wellness product or program sales.",
+    "businessCanvas": {
+      "valueProposition": [
+        "Convert cold traffic into qualified leads via an engaging quiz themed around mitochondrial health and fatigue-related issues.",
+        "Segment users by symptoms, goals, and awareness level to trigger targeted email funnels and higher-converting offers.",
+        "Provide a white-label, reusable quiz asset that health brands can plug into existing funnels, landing pages, and ad campaigns."
+      ],
+      "customerSegments": [
+        {
+          "name": "Functional medicine and naturopathic clinics",
+          "willingness_to_pay": "High",
+          "pain_points": [
+            "Difficulty filling high-ticket programs and consultations with qualified, pre-educated patients",
+            "Limited internal capacity to build conversion-optimized quiz funnels for lead generation"
+          ]
+        },
+        {
+          "name": "Supplement and wellness product brands (mitochondria/energy focus)",
+          "willingness_to_pay": "High",
+          "pain_points": [
+            "Need scalable, compliant list-building mechanisms to feed email and SMS marketing",
+            "Poor differentiation and low engagement on standard landing pages and static lead magnets"
+          ]
+        },
+        {
+          "name": "Health coaches specializing in fatigue, burnout, and longevity",
+          "willingness_to_pay": "Medium",
+          "pain_points": [
+            "Reliance on referrals and social content without a predictable lead-generation engine",
+            "Lack of technical skills to design and optimize interactive quiz funnels"
+          ]
+        }
+      ],
+      "revenueStreams": [
+        {
+          "source": "SaaS subscription for hosted quiz funnel (builder, hosting, analytics, integrations)",
+          "model": "Recurring",
+          "potential_arr": 36000
+        },
+        {
+          "source": "Done-for-you funnel setup and customization for individual brands/clinics",
+          "model": "One-time + upsell retainers",
+          "potential_arr": 60000
+        },
+        {
+          "source": "White-label licensing of the quiz template for agencies serving health & wellness clients",
+          "model": "Recurring license",
+          "potential_arr": 24000
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,99 @@
+{
+  "repositoryId": "5e304161-fc02-4cee-94ba-aad6d007356e",
+  "name": "OsteoConnect",
+  "owner": "skquievreux",
+  "harvestedAt": "2025-12-21T09:21:53.106Z",
+  "content": {
+    "readme": "# OsteoConnect\n\nVersion: 2.2.0\n\nOsteoConnect ist eine skalierbare Web-App für Osteopathen, die eine zentrale Plattform für die Anamnese-Vorbereitung bietet. Jede Praxis erhält ihre eigene Subdomain mit individualisiertem Design, Logo und ElevenLabs-Agenten.\n\n## Features\n\n- **Multi-Tenant-Architektur**: Eine skalierbare Plattform für mehrere Praxen\n- **Benutzerbewertungen**: Anonymes Bewertungssystem mit Session-IDs für Datenschutz\n- **Social-Media-Integration**: Automatisch generierte Preview-Bilder für Facebook/Twitter\n- **Moderne Next.js-App**: App Router, Server Components, API Routes\n- **Responsive Design**: Mobile-first mit professionellem UI/UX\n- **SEO-optimiert**: Vollständiges SEO-Setup mit Meta-Tags und Sitemap\n- **PWA-Features**: Offline-Funktionalität und Service Worker\n- **Automatisierte Deployments**: GitHub Actions für kontinuierliche Integration\n- **Security-First**: Security Headers, Input Validation, Error Boundaries\n- **Monitoring**: Sentry Error Tracking und Performance Monitoring\n- **Docker-basiert**: Optimierte Container mit Standalone Builds\n- **Vercel Hosting**: Globale Verfügbarkeit mit geringer Latenz\n\n## Technologie-Stack\n\n- **Framework**: Next.js 15 mit App Router\n- **Runtime**: Node.js 18 LTS\n- **Styling**: CSS Modules + Tailwind CSS\n- **Testing**: Jest + React Testing Library + Playwright\n- **Code Quality**: ESLint + Prettier + Husky\n- **Hosting**: Vercel mit globaler CDN\n- **Monitoring**: Sentry + Web Vitals\n- **CI/CD**: GitHub Actions\n- **Security**: Security Headers + Input Validation\n\n## Projektstruktur\n\n```\nosteoconnect/\n├── app/                      # Next.js App Router\n│   ├── api/                  # API Routes\n│   │   ├── health/           # Health Check Endpoint\n│   │   └── praxen/           # Praxen API\n│   ├── praxen/               # Praxen-Seite (Client Component)\n│   ├── impressum/            # Impressum-Seite\n│   ├── layout.js             # Root Layout\n│   ├── page.js               # Homepage\n│   ├── globals.css           # Global Styles\n│   └── error.js              # Error Boundary\n├── config/                   # Konfigurationsdateien\n│   ├── default.json          # Standard-Konfiguration\n│   └── praxen/               # Praxisspezifische Konfigurationen\n│       ├── beispiel.json\n│       └── ...\n├── assets/                   # Praxisspezifische Assets\n│   ├── beispiel/\n│   │   ├── logo.svg\n│   │   └── logo-fallback.html\n│   └── ...\n├── public/                   # Statische Dateien\n│   ├── favicon.ico\n│   ├── sw.js                 # Service Worker (PWA)\n│   └── workbox-*.js          # PWA Assets\n├── scripts/                  # Automatisierungsscripts\n│   ├── add-practice.sh       # Neue Praxis hinzufügen\n│   ├── sync-version.js       # Version synchronisieren\n│   └── generate-placeholder-logos.js\n├── __tests__/                # Unit Tests\n├── tests/e2e/                # E2E Tests (Playwright)\n├── .github/workflows/        # GitHub Actions\n│   ├── deploy.yml            # Automatische Deployments\n│   ├── docker-update.yml     # Docker Updates\n│   └── security-scan.yml     # Security Scans\n├── Dockerfile                # Multi-Stage Docker Build\n├── next.config.js            # Next.js Konfiguration\n├── package.json              # Dependencies & Scripts\n└── README.md\n```\n\n## Version 2.2.0 - Social-Media Preview-Bilder\n\n### 🚀 Neue Features\n\n- **Automatische Preview-Bilder**: Playwright-generierte Social-Media-Bilder\n- **OpenGraph Integration**: Vollständige Facebook/LinkedIn-Kompatibilität\n- **Twitter Cards**: Optimierte Twitter-Sharing-Previews\n- **Professionelles Branding**: OsteoConnect-spezifisches Design mit Farbverlauf\n- **SEO-Optimierung**: Automatische Meta-Tags für bessere Sichtbarkeit\n\n### 🏗️ Technische Verbesserungen\n\n- **Playwright-Integration**: Browser-Automation für Bildgenerierung\n- **Metadata-API**: Dynamische OG-Tags mit Next.js 15\n- **Performance**: Optimierte Bildgenerierung ohne Server-Abhängigkeit\n- **Deployment-Ready**: Bilder werden automatisch deployed\n\n## Version 2.1.0 - Session-ID-Bewertungssystem\n\n### 🚀 Neue Features\n\n- **Benutzerbewertungen**: Vollständiges anonymes Bewertungssystem mit Session-IDs\n- **Datenschutz-konform**: Keine persönlichen Daten, vollständige Anonymisierung\n- **Session-Management**: Client-seitige UUID-Generierung für User-Isolation\n- **Datenbank-Integration**: Neue osteo_reviews Tabelle mit Row Level Security\n- **API-Erweiterungen**: Vollständige CRUD-API für Bewertungen\n- **Frontend-Updates**: Responsive Bewertungs-Komponenten\n\n### 🏗️ Technische Verbesserungen\n\n- **Next.js 15 Upgrade**: Aktualisierung auf neueste Version mit await params\n- **Supabase RLS**: Row Level Security für sichere Datenisolation\n- **Code-Bereinigung**: Entfernung veralteter Docker- und Server-Artefakte\n- **Vercel-Optimierung**: Hosting vollständig auf Vercel migriert\n\n## Version 2.0.0 - Supabase-Migration\n\n### 🚀 Neue Features\n\n- **Supabase-Integration**: Vollständige Migration von statischen zu dynamischen Daten\n- **Datenbank-API**: RESTful API für Praxen-Verwaltung\n- **Performance-Optimierung**: Schnellere Ladezeiten durch Datenbank-Caching\n\n## Version 1.1.0 - Base-Image-Architektur\n\n### 🚀 Neue Features\n\n- **Automatisierte Deployments**: GitHub Actions für kontinuierliche Integration\n- **Base-Image-Updates**: Automatische Docker-Image-Updates für alle Praxen\n- **Verbesserte Scripts**: Automatisiertes Hinzufügen neuer Praxen\n- **Moderne Architektur**: Next.js App Router mit Server Components\n- **Erweiterte Tests**: Vollständige Test-Suite mit Unit- und E2E-Tests\n- **Security-Scanning**: Automatische Security-Überprüfungen\n- **Monitoring**: Sentry Integration und Performance-Monitoring\n\n### 🏗️ Multi-Tenant-Architektur\n\nOsteoConnect verwendet eine effiziente Multi-Tenant-Architektur:\n\n1. **Eine gemeinsame Codebase** für alle Praxen\n2. **Praxis-spezifische Konfiguration** über JSON-Dateien\n3. **Individuelle Assets** (Logos, Farben) pro Praxis\n4. **Automatische Updates** für alle Praxen gleichzeitig\n5. **Zentrales Monitoring** und Logging\n\n### 📊 URLs\n\n- **Hauptseite**: https://osteo-connect.vercel.app\n- **Praxen-Übersicht**: https://osteo-connect.vercel.app/praxen\n- **Impressum**: https://osteo-connect.vercel.app/impressum\n- **Preview-Bild**: https://osteo-connect.vercel.app/preview\n- **API Health**: https://osteo-connect.vercel.app/api/health\n- **Praxen API**: https://osteo-connect.vercel.app/api/praxen\n- **Bewertungen API**: https://osteo-connect.vercel.app/api/reviews\n\n## Installation und Entwicklung\n\n### Voraussetzungen\n\n- Node.js (v18 oder höher)\n- Docker und Docker Compose\n- Git\n\n### Lokale Entwicklung\n\n1. Repository klonen:\n    ```bash\n    git clone https://github.com/skquievreux/OsteoConnect.git\n    cd OsteoConnect\n    ```\n\n2. Abhängigkeiten installieren:\n    ```bash\n    npm install\n    ```\n\n3. Umgebungsvariablen konfigurieren:\n    ```bash\n    cp .env.example .env.local\n    # .env.local-Datei bearbeiten\n    ```\n\n4. Server starten:\n    ```bash\n    npm run dev\n    ```\n\n### Neue Praxis hinzufügen\n\nVerwende das automatisierte Script für neue Praxen:\n\n```bash\n# Neue Praxis hinzufügen\n./scripts/add-practice.sh neue-praxis \"Neue Osteopathie-Praxis\" \"#4a90e2\"\n\n# Oder manuell:\n# 1. Konfigurationsdatei erstellen\ncp config/praxen/beispiel.json config/praxen/neue-praxis.json\n# Konfigurationsdatei bearbeiten\n\n# 2. Assets hinzufügen\nmkdir -p assets/neue-praxis\n# Logo und andere Assets hinzufügen\n\n# 3. Git commit (Deployment erfolgt automatisch via Vercel)\ngit add .\ngit commit -m \"feat: Add new practice Neue Osteopathie-Praxis\"\ngit push\n```\n\n**Script-Parameter:**\n- `praxis-slug`: URL-freundlicher Name (z.B. neue-praxis)\n- `praxis-name`: Anzeigename der Praxis\n- `primary-color`: Optionale Hauptfarbe (Standard: #4a90e2)\n\n## Deployment\n\n### Auf Vercel deployen\n\n1. Vercel CLI installieren (optional)\n2. Repository mit Vercel verbinden:\n    - Gehe zu https://vercel.com und melde dich an\n    - Importiere das GitHub-Repository: https://github.com/skquievreux/osteo-connect\n\n3. Automatisches Deployment:\n    - Vercel deployt automatisch bei jedem Push zu main\n    - Überwache den Status unter: https://vercel.com/skquievreuxs-projects/osteo-connect\n\n4. Domains konfigurieren:\n    - Füge Custom Domains in Vercel Dashboard hinzu\n    - Beispiel: osteoconnect.com und *.osteoconnect.com\n\n## Demo-Modus\n\nOsteoConnect enthält einen Demo-Modus, der es ermöglicht, die Anwendung mit Beispieldaten zu testen. Die Demo-Daten basieren auf einer CSV-Datei mit Informationen über Osteopathie-Praxen.\n\n### Demo einrichten\n\n1. Demo-Daten generieren:\n   ```bash\n   npm run setup-demo\n   ```\n\n2. Server starten:\n   ```bash\n   npm run dev\n   ```\n\n3. Demo aufrufen:\n   - Übersicht aller Praxen: http://localhost:3000\n   - Einzelne Praxis: http://localhost:3000/demo/[praxis-slug]\n   - Praxisliste: http://localhost:3000/praxen\n\n### Demo-Daten\n\nDie Demo-Daten werden aus der Datei `Input/google (1).csv` generiert. Diese Datei enthält Informationen über verschiedene Osteopathie-Praxen, die von Google Maps exportiert wurden.\n\nFür jede Praxis werden folgende Daten generiert:\n- Konfigurationsdatei in `config/praxen/[praxis-slug].json`\n- Platzhalter-Logo in `assets/[praxis-slug]/logo.svg`\n\n## Lizenz\n\nMIT",
+    "packageJson": {
+      "name": "osteoconnect",
+      "version": "2.1.0",
+      "description": "Eine skalierbare Web-App für Osteopathen mit individuellen Subdomains",
+      "scripts": {
+        "dev": "next dev",
+        "build": "next build",
+        "start": "next start",
+        "lint": "next lint",
+        "test": "jest",
+        "e2e": "playwright test",
+        "version": "git add -A && git commit -m \"Bump version to $npm_package_version\" && git tag v$npm_package_version"
+      },
+      "keywords": [
+        "osteopathie",
+        "anamnese",
+        "elevenlabs",
+        "web-app"
+      ],
+      "author": "",
+      "license": "MIT",
+      "dependencies": {
+        "@sentry/nextjs": "^10.17.0",
+        "@supabase/supabase-js": "^2.49.4",
+        "@tailwindcss/postcss": "^4.0.0",
+        "next": "^15.5.7",
+        "next-pwa": "^5.6.0",
+        "next-seo": "^6.8.0",
+        "postcss": "^8.5.6",
+        "react": "^19.2.0",
+        "react-dom": "^19.2.0",
+        "tailwindcss": "^4.0.0",
+        "web-vitals": "^5.1.0"
+      },
+      "devDependencies": {
+        "@next/bundle-analyzer": "^15.5.7",
+        "@playwright/test": "^1.55.1",
+        "@testing-library/jest-dom": "^6.9.0",
+        "@testing-library/react": "^16.3.0",
+        "@testing-library/user-event": "^14.6.1",
+        "eslint-config-prettier": "^10.1.8",
+        "jest": "^30.2.0",
+        "jest-environment-jsdom": "^30.2.0",
+        "playwright": "^1.55.1",
+        "prettier": "^3.6.2"
+      },
+      "engines": {
+        "node": ">=20.9.0"
+      }
+    }
+  },
+  "analysis": {
+    "description": "OsteoConnect empowers osteopaths with a scalable multi-tenant web platform for seamless patient anamnesis preparation via personalized subdomains, complete with custom branding, anonymous reviews, and AI agents. Drive practice growth through superior online patient engagement, SEO visibility, and automated social sharing—without the hassle of custom development.",
+    "businessCanvas": {
+      "valueProposition": [
+        "Scalable multi-tenant platform delivering branded subdomains for patient anamnesis and intake, reducing admin time",
+        "Anonymous review system and social media previews to build trust, attract patients, and boost online visibility",
+        "Effortless practice onboarding with automated deployments, SEO/PWA features, and central monitoring for reliability"
+      ],
+      "customerSegments": [
+        {
+          "name": "Osteopath Practices & Clinics",
+          "willingness_to_pay": "Medium",
+          "pain_points": [
+            "Manual patient onboarding and anamnesis processes waste time",
+            "Lack of branded online presence and patient feedback tools hinders growth"
+          ]
+        },
+        {
+          "name": "Multi-Location Osteopathy Networks",
+          "willingness_to_pay": "High",
+          "pain_points": [
+            "Coordinating custom websites across sites is expensive and fragmented",
+            "Inconsistent patient experience and poor digital marketing scalability"
+          ]
+        }
+      ],
+      "revenueStreams": [
+        {
+          "source": "SaaS Subscription per Practice",
+          "model": "Recurring",
+          "potential_arr": 12000
+        },
+        {
+          "source": "Premium Features (Custom AI Agents, Advanced Analytics)",
+          "model": "Recurring",
+          "potential_arr": 5000
+        }
+      ]
+    }
+  }
+}

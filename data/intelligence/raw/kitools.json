@@ -1,0 +1,66 @@
+{
+  "repositoryId": "4594fe47-3537-4362-86cf-5637674bb29d",
+  "name": "kitools",
+  "owner": "skquievreux",
+  "harvestedAt": "2025-12-21T09:21:50.605Z",
+  "content": {
+    "readme": "# KI Tools Vergleich - kitools.runitfast.xyz\n\n**Version 2.2.1** - Pricing Bugfixes | QA Improvements | Data Consistency\n\nEine datengetriebene SEO-Website für hochwertige KI-Tool-Vergleiche. Quality over Quantity - Fokus auf sinnvollen Vergleichen mit Benchmark-Daten, Experten-Einschätzungen und Affiliate-Optimierung.\n\n## 🚀 Überblick\n\nModerne, skalierbare Vergleichswebsite für KI-Tools mit professionellem Content-Management. Das System generiert automatisch Premium-Vergleichsseiten mit strukturierten Daten, Benchmark-Integration und E-E-A-T Optimierung für maximale Suchmaschinen-Sichtbarkeit.\n\n## ✨ Premium Features\n\n- **E-E-A-T Optimierung**: Experten-Profile (Dr. Sarah Müller, Prof. Dr. Michael Weber) für Authority\n- **Benchmark-Integration**: MMLU, HumanEval, GSM8K, HellaSwag Performance-Daten\n- **Unified Generator**: Datengetriebener Ansatz mit JSON-Konfiguration\n- **Affiliate-System**: Automatisierte Conversion-Optimierung mit dynamischen CTAs\n- **QA-Pipeline**: Vollständige Validierung (Logos, Links, Screenshots, Preise)\n- **Schema.org Markup**: Strukturierte Daten für Rich Snippets\n- **Mobile-Optimiert**: WCAG-konforme, responsive Designs\n- **Professional Content**: Use-Case Matrix, Cost-Calculator, Quellen-Angaben\n\n## 📊 Aktuelle Vergleiche\n\n**19 Premium-Vergleichsseiten in 4 Kategorien:**\n\n### 📝 Text AI (10 Vergleiche)\n- Claude vs ChatGPT, Gemini, Perplexity, Copilot\n- ChatGPT vs Gemini, Perplexity, Copilot\n- Gemini vs Perplexity, Copilot\n- Perplexity vs Copilot\n\n### 🎨 Image AI (6 Vergleiche)\n- Midjourney vs DALL-E 3, Stable Diffusion, Adobe Firefly\n- DALL-E 3 vs Stable Diffusion, Adobe Firefly\n- Stable Diffusion vs Adobe Firefly\n\n### 💻 Code AI (3 Vergleiche)\n- GitHub Copilot vs Cursor, Codeium\n- Cursor vs Codeium\n\n### 🧠 Vibe-Coding (5 Tools)\n- Claude Code, Gemini CLI, Lovable, OpenCode, Roo Code\n\n## 🛠️ Tech Stack\n\n- **Generator**: Node.js Unified Generator (datengetrieben)\n- **Testing**: Playwright für Browser-Kompatibilität & Accessibility\n- **Data Sources**: JSON-Konfiguration (tools-data.json, benchmarks.json)\n- **Deployment**: Vercel (kitools.runitfast.xyz) mit globalem CDN\n- **QA**: Automatisierte Pipeline (logos, links, screenshots, prices)\n- **Content**: Premium-Templates mit E-E-A-T Optimierung\n\n## 📁 Projektstruktur\n\n```\nkitools/\n├── src/                       # Source Code\n│   ├── generators/            # Template-Generatoren\n│   │   ├── unified-generator.js    # Haupt-Generator\n│   │   └── premium-template-generator.js\n│   ├── maintenance/           # QA & Wartung Scripts\n│   │   ├── check-prices.js\n│   │   ├── capture-screenshots.js\n│   │   └── validate-logos.js\n│   └── utils/                 # Hilfsfunktionen\n│       ├── check-links.js\n│       └── logo-downloader.js\n├── data/                      # Strukturierte Daten\n│   ├── tools-data.json        # Tool-Spezifikationen\n│   ├── benchmarks.json        # Performance-Daten\n│   └── comparison-matrix.json # Vergleichs-Konfiguration\n├── docs/                      # Dokumentation\n│   ├── CHANGELOG.md          # Versionshistorie\n│   └── README.md             # Diese Datei\n├── vergleiche/               # Generierte Premium-Seiten\n│   ├── claude-vs-chatgpt.html\n│   └── ... (19 Seiten)\n├── images/                   # Assets\n│   ├── logos/                # Tool-Logos\n│   └── authors/              # Experten-Profile\n└── package.json              # NPM Konfiguration\n```\n\n## 🚀 Quick Start\n\n### Voraussetzungen\n- Node.js (v16+)\n- Git\n\n### 1. Repository klonen\n```bash\ngit clone <repository-url>\ncd kitools\n```\n\n### 2. Dependencies installieren\n```bash\nnpm install\n```\n\n### 3. Vergleichsseiten generieren\n```bash\nnpm run build\n# oder\nnpm run generate\n```\n\n### 4. Development Server starten\n```bash\nnpm start\n# Website verfügbar unter: http://localhost:8080\n```\n\n### 5. QA-Validierung ausführen\n```bash\nnpm run qa:full\n# Validiert Logos, Links, Screenshots und Preise\n```\n\n## 🔧 Verwendung\n\n### Neue Vergleichsseiten generieren\n```bash\nnpm run build          # Alle Seiten neu generieren\nnpm run generate       # Dasselbe wie build\n```\n\n### Qualitätssicherung\n```bash\nnpm run qa:full        # Komplette QA-Suite\nnpm run qa:logos       # Logo-Validierung\nnpm run qa:links       # Link-Checking\nnpm run qa:screenshots # Screenshot-Erstellung\nnpm run check-prices   # Preis-Validierung\n```\n\n### Daten aktualisieren\nBearbeiten Sie die JSON-Dateien in `/data/`:\n- `tools-data.json`: Tool-Spezifikationen und Preise\n- `benchmarks.json`: Performance-Messdaten\n- `comparison-matrix.json`: Vergleichs-Konfiguration\n\n### Neue Tools hinzufügen\n1. Tool-Daten in `tools-data.json` hinzufügen\n2. Logo in `/images/logos/` platzieren\n3. `npm run build` ausführen\n4. `npm run qa:full` für Validierung\n\n## 📈 SEO-Optimierung\n\nJede Seite enthält:\n- **Meta Tags**: Title, Description, Keywords\n- **Open Graph**: Social Media Sharing\n- **Schema.org**: Strukturierte Daten für Suchmaschinen\n- **Semantisches HTML**: Proper heading structure\n- **Performance**: Optimierte Ladezeiten\n\n## 🎨 Design-System\n\n### Farbschema\n- **Text AI**: Blau (#007bff)\n- **Image AI**: Lila (#6f42c1)\n- **Code AI**: Grün (#28a745)\n- **Primär**: Dunkelblau (#1a1a2e)\n- **Sekundär**: Grau (#6c757d)\n\n### Responsive Breakpoints\n- **Mobile**: < 768px\n- **Tablet**: 768px - 1024px\n- **Desktop**: > 1024px\n\n## 🔄 Automatisierung\n\nDas System generiert automatisch:\n1. **Alle möglichen Vergleiche** innerhalb jeder Kategorie\n2. **SEO-optimierte URLs** (tool1-vs-tool2.html)\n3. **Meta-Daten** für jede Seite\n4. **Strukturierte Daten** für Suchmaschinen\n5. **Responsive Layouts** für alle Geräte\n\n## 📊 Analytics & Monitoring\n\nIntegrierte Features:\n- **Performance Monitoring**: Core Web Vitals\n- **Event Tracking**: User Interactions\n- **Error Logging**: JavaScript Fehler\n- **Service Worker**: PWA-Funktionalität\n\n## 🚀 Deployment\n\n### Aktuelle Produktionsumgebung\n- **Domain**: kitools.runitfast.xyz\n- **Platform**: Vercel mit globalem CDN\n- **Status**: ✅ Live und aktiv\n\n### Deployment-Prozess\n```bash\n# Lokale Änderungen testen\nnpm run qa:full\n\n# Build für Production\nnpm run build\n\n# Git commit und push\ngit add .\ngit commit -m \"Deploy: Neue Features\"\ngit push origin main\n\n# Vercel deployed automatisch via GitHub Integration\n```\n\n### Performance-Metriken\n- **Ladezeit**: < 2s (Vercel Edge Network)\n- **SEO-Score**: 95+ (Lighthouse)\n- **Accessibility**: WCAG AA compliant\n\n## 🤝 Beitragen\n\n1. Fork des Repositories erstellen\n2. Feature Branch erstellen (`git checkout -b feature/neue-funktion`)\n3. Änderungen committen (`git commit -am 'Neue Funktion hinzugefügt'`)\n4. Branch pushen (`git push origin feature/neue-funktion`)\n5. Pull Request erstellen\n\n## 📝 Lizenz\n\nDieses Projekt steht unter der MIT-Lizenz. Siehe [LICENSE](LICENSE) für Details.\n\n## 🆘 Support\n\nBei Fragen oder Problemen:\n1. **Issues**: GitHub Issues für Bug Reports\n2. **Dokumentation**: Siehe `/docs` Ordner\n3. **Wiki**: Detaillierte Anleitungen im GitHub Wiki\n\n## 🔮 Roadmap\n\n### Version 2.3.0 (Q1 2026)\n- [ ] Advanced Analytics Integration\n- [ ] Multi-Language Support (EN/DE)\n- [ ] API für externe Integrationen\n- [ ] Automated Content Updates\n\n### Version 3.0.0 (Q2 2026)\n- [ ] React/Next.js Migration\n- [ ] Headless CMS Integration\n- [ ] Advanced A/B Testing\n- [ ] Machine Learning Content Optimization\n\n### Langfristige Vision\n- [ ] Global Expansion (mehr Sprachen)\n- [ ] Enterprise Features\n- [ ] API Marketplace\n- [ ] AI-Powered Content Generation\n\n---\n\n**🏆 Version 2.2.0 - Professional E-E-A-T Content Delivered**",
+    "packageJson": {
+      "name": "ki-tools-website",
+      "version": "2.2.1",
+      "description": "Programmatic SEO website for AI tool comparisons - Quality over Quantity",
+      "main": "src/generators/unified-generator.js",
+      "scripts": {
+        "build": "node src/generators/unified-generator.js",
+        "start": "http-server . -p 8080 --cors",
+        "dev": "python3 -m http.server 8000",
+        "generate": "node src/generators/unified-generator.js",
+        "cleanup": "node scripts/cleanup-comparisons.js",
+        "test": "npx playwright test",
+        "test:ui": "npx playwright test --ui",
+        "test:headed": "npx playwright test --headed",
+        "screenshots": "node src/maintenance/capture-screenshots.js",
+        "check-links": "node src/utils/check-links.js",
+        "check-dead-links": "node src/utils/check-dead-links.js",
+        "check-prices": "node src/maintenance/check-prices.js",
+        "update-pipeline": "node src/maintenance/update-pipeline.js",
+        "validate-logos": "node src/maintenance/validate-logos.js",
+        "qa:logos": "npm run validate-logos",
+        "qa:links": "npm run check-links",
+        "qa:screenshots": "npm run screenshots",
+        "qa:full": "npm run qa:logos && npm run qa:links && npm run qa:screenshots && npm run check-prices",
+        "version": "cat VERSION"
+      },
+      "keywords": [
+        "AI",
+        "SEO",
+        "comparison",
+        "tools",
+        "programmatic-seo",
+        "benchmarks"
+      ],
+      "repository": {
+        "type": "git",
+        "url": "https://github.com/skquievreux/kitools.git"
+      },
+      "author": "KI Tools Vergleich",
+      "license": "ISC",
+      "dependencies": {
+        "@notionhq/client": "^4.0.1",
+        "@playwright/test": "^1.56.1",
+        "@ramidecodes/mcp-server-notion": "github:ramidecodes/mcp-server-notion",
+        "dotenv": "^17.2.3",
+        "firecrawl-mcp": "github:mendableai/firecrawl-mcp-server",
+        "http-server": "^14.1.1",
+        "jsdom": "^26.1.0",
+        "puppeteer": "^24.29.1"
+      },
+      "devDependencies": {
+        "playwright": "^1.56.1"
+      },
+      "engines": {
+        "node": ">=20.9.0"
+      }
+    }
+  }
+}

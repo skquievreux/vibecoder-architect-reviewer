@@ -1,0 +1,110 @@
+{
+  "repositoryId": "07b5f175-c803-4e13-a597-5696c7dcca4f",
+  "name": "Karbendrop",
+  "owner": "skquievreux",
+  "harvestedAt": "2025-12-21T09:21:52.750Z",
+  "content": {
+    "readme": "# KABENDROP 🏍️💨\n\n[![Vercel](https://img.shields.io/badge/vercel-%23000000.svg?style=for-the-badge&logo=vercel&logoColor=white)](https://vercel.com)\n[![Next.js](https://img.shields.io/badge/next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white)](https://nextjs.org/)\n[![Supabase](https://img.shields.io/badge/Supabase-3ECF8E?style=for-the-badge&logo=supabase&logoColor=white)](https://supabase.com)\n[![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)\n\n**Current Version:** `1.3.2`\n\nKABENDROP is a high-octane music voting platform designed for the bike park community. It features a gamified \"Anonymous First\" voting flow, viral sharing mechanics, and a \"Neon-Dirtbike\" aesthetic.\n\n## 🚀 Quick Start\n\n### Prerequisites\n- Node.js 18+\n- Supabase Account\n\n### Installation\n\n1. Clone the repo:\n   ```bash\n   git clone https://github.com/skquievreux/kabendrop.git\n   cd kabendrop\n   ```\n\n2. Install dependencies:\n   ```bash\n   npm install\n   ```\n\n3. Setup Environment Variables:\n   Copy `.env.example` to `.env` (or `.env.local`):\n   ```\n   VITE_SUPABASE_URL=your-sb-url\n   VITE_SUPABASE_ANON_KEY=your-sb-key\n   VITE_GA_MEASUREMENT_ID=your-ga-id\n   GA_API_SECRET=your-ga-api-secret\n   VITE_ADMIN_PASSWORD=optional-password\n   ```\n\n4. Run Development Server:\n   ```bash\n   npm run dev\n   ```\n\n## 🛠️ Deployment & Versioning\n\nThis project uses an automated build numbering system.\n\n**How it works:**\n1. Every time `npm run build` is executed (locally or on Vercel), `scripts/increment-build.js` runs.\n2. It reads `build-number.txt`, increments the integer, and gets the current Git SHA.\n3. It generates `constants/version.ts`.\n4. The App imports this file to display the version in the footer and console.\n\n**Vercel Setup:**\n- Ensure the Build Command is set to: `npm run build` (This includes the increment script).\n- Output Directory: `dist`.\n- **Environment Variables:** Must be set in Vercel Project Settings (as listed above).\n\n## ⚡ Features\n\n- **Anonymous First Flow:** Users can play and vote immediately.\n- **Unique Nickname System:** Secured via Supabase Profiles with duplicate detection.\n- **Frontend & Backend Analytics:** Full Google Analytics 4 integration tracking plays, votes, and shares.\n- **Viral Looping:** \"Share to unlock extra plays\" mechanic.\n- **Live Hype Stream:** Real-time comments with keyword highlighting.\n- **Admin Dashboard:** (`/admin`) Full management of events, tracks, and sponsors.\n\n## 🔐 Admin Access\n\nThe admin dashboard is located at `/admin`.\nCurrently configured for **Open Access** (Authentication disabled in code) for demonstration purposes.\nTo secure it, enable the `isAuthenticated` check in `app/admin/page.tsx`.\n\n## 📂 Project Structure\n\n- `/app` - Page logic (Event page, Admin page).\n- `/components` - UI Components (TrackCard, Player, Modals).\n- `/services` - Supabase client and Data abstraction layer.\n- `/scripts` - DevOps scripts (Versioning).\n- `/constants` - Config, Images, Version info.\n\n## 📄 License\n\nProprietary. Built for Schanzenberg Bike Park.\n",
+    "packageJson": {
+      "name": "kabendrop",
+      "private": true,
+      "version": "1.3.4",
+      "type": "module",
+      "scripts": {
+        "dev": "vite",
+        "build": "node scripts/increment-build.js && vite build",
+        "preview": "vite preview",
+        "backup-demo": "npx tsx scripts/backup-demo.ts",
+        "restore-demo": "npx tsx scripts/restore-demo.ts",
+        "compress-audio": "node scripts/compress-audio.cjs",
+        "migrate-compress-audio": "node scripts/migrate-compress-audio.cjs",
+        "postinstall": "node scripts/fix-prisma.cjs && prisma generate"
+      },
+      "dependencies": {
+        "@aws-sdk/client-s3": "^3.948.0",
+        "@google/genai": "*",
+        "@prisma/client": "^7.1.0",
+        "@supabase/supabase-js": "^2.49.4",
+        "browser-image-compression": "^2.0.2",
+        "canvas-confetti": "^1.9.2",
+        "dompurify": "^3.0.6",
+        "framer-motion": "^10.16.4",
+        "isomorphic-dompurify": "^2.9.0",
+        "lucide-react": "^0.294.0",
+        "react": "^18.2.0",
+        "react-dom": "^18.2.0",
+        "resend": "^6.6.0",
+        "zod": "^3.22.4"
+      },
+      "devDependencies": {
+        "@tailwindcss/line-clamp": "^0.4.4",
+        "@types/canvas-confetti": "^1.6.4",
+        "@types/dompurify": "^3.0.5",
+        "@types/node": "^20.10.0",
+        "@types/react": "^18.2.37",
+        "@types/react-dom": "^18.2.15",
+        "@vercel/node": "^5.5.15",
+        "@vitejs/plugin-react": "^4.2.0",
+        "autoprefixer": "^10.4.22",
+        "dotenv": "^17.2.3",
+        "form-data": "^4.0.5",
+        "postcss": "^8.5.6",
+        "prisma": "^7.1.0",
+        "tailwindcss": "^3.4.19",
+        "tailwindcss-animate": "^1.0.7",
+        "typescript": "^5.8.2",
+        "vite": "^5.0.0"
+      },
+      "engines": {
+        "node": ">=20.9.0"
+      }
+    }
+  },
+  "analysis": {
+    "description": "KABENDROP ignites bike park crowds with a gamified, anonymous music voting platform that turns events into viral hype machines. Bike parks and event organizers boost attendance and sponsorship revenue through real-time engagement and shareable experiences.",
+    "businessCanvas": {
+      "valueProposition": [
+        "Gamified anonymous voting and viral sharing to maximize rider participation without friction",
+        "Live hype stream and analytics for real-time event energy and sponsor ROI tracking",
+        "Admin dashboard for seamless event/track/sponsor management"
+      ],
+      "customerSegments": [
+        {
+          "name": "Bike Park Operators & Event Organizers",
+          "willingness_to_pay": "Medium",
+          "pain_points": [
+            "Low rider engagement during events",
+            "Difficulty measuring music impact on attendance",
+            "Complex event management without real-time feedback"
+          ]
+        },
+        {
+          "name": "Music Sponsors & Brands",
+          "willingness_to_pay": "High",
+          "pain_points": [
+            "Unproven ROI on event sponsorships",
+            "Lack of attendee interaction data",
+            "No viral promotion mechanics"
+          ]
+        }
+      ],
+      "revenueStreams": [
+        {
+          "source": "SaaS Subscription for Bike Parks",
+          "model": "Recurring",
+          "potential_arr": 50000
+        },
+        {
+          "source": "Sponsor Packages & Analytics Access",
+          "model": "Per-Event",
+          "potential_arr": 25000
+        },
+        {
+          "source": "Premium Features (Custom Branding)",
+          "model": "Recurring",
+          "potential_arr": 15000
+        }
+      ]
+    }
+  }
+}

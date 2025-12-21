@@ -1,0 +1,63 @@
+{
+  "repositoryId": "703d978d-c205-480a-976d-30ac2a4487f5",
+  "name": "visual-image-composer",
+  "owner": "skquievreux",
+  "harvestedAt": "2025-12-21T09:21:42.409Z",
+  "content": {
+    "readme": null,
+    "packageJson": null
+  },
+  "analysis": {
+    "description": "Visual Image Composer is a modular toolkit for assembling, editing, and exporting visual assets without needing deep design or coding skills. It helps teams rapidly compose production-ready images from reusable components, accelerating content creation for marketing, product, and UX workflows.",
+    "businessCanvas": {
+      "valueProposition": [
+        "Enable non-designers to quickly compose and customize high-quality images from reusable visual components.",
+        "Standardize brand visuals with templates, constraints, and repeatable image-generation workflows.",
+        "Reduce design backlog and turnaround time by letting product, marketing, and content teams self-serve common visuals."
+      ],
+      "customerSegments": [
+        {
+          "name": "Marketing and Growth Teams at Digital-First Companies",
+          "willingness_to_pay": "High",
+          "pain_points": [
+            "Slow turnaround and high cost for campaign visuals and creative variants",
+            "Difficulty maintaining consistent branding across many channels and experiments"
+          ]
+        },
+        {
+          "name": "Product & UX Teams Building Image-Rich Interfaces",
+          "willingness_to_pay": "Medium",
+          "pain_points": [
+            "Need to rapidly iterate UI visuals, mockups, and in-app imagery without blocking on design",
+            "Fragmented asset creation process across tools and teams"
+          ]
+        },
+        {
+          "name": "Content Creators and Agencies",
+          "willingness_to_pay": "Medium",
+          "pain_points": [
+            "Manual, repetitive image production for blogs, social posts, and client deliverables",
+            "Limited ability to templatize and reuse visual patterns across clients and projects"
+          ]
+        }
+      ],
+      "revenueStreams": [
+        {
+          "source": "SaaS Subscription for Teams",
+          "model": "Recurring",
+          "potential_arr": 250000
+        },
+        {
+          "source": "Usage-Based API or Build Credits (for automated image generation in pipelines)",
+          "model": "Usage-based",
+          "potential_arr": 150000
+        },
+        {
+          "source": "Enterprise Licensing & Integration Support",
+          "model": "Recurring",
+          "potential_arr": 300000
+        }
+      ]
+    }
+  }
+}

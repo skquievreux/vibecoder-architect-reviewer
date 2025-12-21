@@ -1,0 +1,10 @@
+{
+  "repositoryId": "d4593d92-d5ea-4d55-b942-a3fa958d606d",
+  "name": "comicgenerator",
+  "owner": "skquievreux",
+  "harvestedAt": "2025-12-21T09:21:52.572Z",
+  "content": {
+    "readme": "# Comic Generator\n\nThis is a simple web application that allows users to generate comics based on a text description.\n\n## Features\n\n- Input field for text description (English or German)\n- Sends description to a configurable webhook for image generation\n- Displays a countdown timer\n- Shows a history of generated images with links to download\n- Clicking a history link loads the corresponding prompt\n- Submit button is disabled for 5 seconds after each submission\n- Mobile-optimized and centered layout\n\n## Setup\n\n1. Clone the repository.\n2. Open the `index.html` file in your web browser.\n\n## Webhook\n\nThe application sends a POST request to the configured webhook URL with a JSON body in the following format:\n\n```json\n{\n    \"description\": \"Your text description here\"\n}\n```\n\nThe webhook is expected to respond with a JSON object containing a `download_url` property:\n\n```json\n{\n    \"message\": \"Your comic was successfully generated!\",\n    \"download_url\": \"https://example.com/path/to/your/comic.png\"\n}\n```\n\nReplace `https://hook.eu1.make.com/h4153k67va517axorsb91ks10zarqc4v` in `script.js` with your actual webhook URL.\n\n## Files\n\n- `index.html`: The main HTML file.\n- `styles.css`: Contains the CSS for styling the website.\n- `script.js`: Contains the JavaScript for the website's functionality.\n- `README.md`: This file.",
+    "packageJson": null
+  }
+}

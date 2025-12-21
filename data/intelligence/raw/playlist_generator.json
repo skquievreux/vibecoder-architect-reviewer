@@ -1,0 +1,84 @@
+{
+  "repositoryId": "2f02789a-b5ee-42ac-a9ca-ea221b51ac25",
+  "name": "playlist_generator",
+  "owner": "skquievreux",
+  "harvestedAt": "2025-12-21T09:21:51.068Z",
+  "content": {
+    "readme": "# UYS Playlist Manager v2.3.1\n\n> Automatische Playlist-Distribution für Unlock Your Song\n\n[![Version](https://img.shields.io/badge/version-2.3.1-blue.svg)](https://github.com/skquievreux/playlist_generator/releases/tag/v2.3.1)\n[![Build Status](https://img.shields.io/badge/build-passing-brightgreen.svg)]()\n[![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)\n\n## 🎯 Vision\n\nAutomatisiere die Promotion deiner Songs durch intelligente Playlist-Distribution auf Spotify, YouTube und mehr.\n\n## 🚀 Features\n\n### ✅ **Production Ready (v2.3.1)**\n- **🎨 Spotify-Inspired Design**: Modern dark theme with #121212 background and #1DB954 green accents\n- **♿ WCAG AAA Accessibility**: 8.5:1+ contrast ratio for excellent readability\n- **User Authentication**: NextAuth.js with Google, GitHub, Email login\n- **Song Upload**: Professional drag & drop interface with metadata extraction\n- **YouTube Playlist Import**: Bulk import from YouTube playlists with auto-matching\n- **Song Management**: Complete CRUD operations with advanced filtering\n- **YouTube Integration**: Video search, playlist search, and intelligent matching\n- **AI Song Generation**: Create songs from images or text with OpenAI Vision\n- **Playlist Management**: Create, edit, and manage custom playlists\n- **Modern UI/UX**: Spotify-inspired design, responsive layout, Material icons\n- **Analytics Dashboard**: Track playlist performance and engagement metrics\n- **Professional Build System**: Automated versioning, deployment, and monitoring\n\n### 🔄 **Upcoming Features**\n- **Spotify Integration**: Direct playlist distribution and management\n- **Advanced Analytics**: Detailed streaming metrics and ROI tracking\n- **Subscription Management**: Stripe integration for premium tiers\n- **Automated Distribution**: AI-powered playlist placement optimization\n\n## 🏗️ Tech Stack\n\n- **Framework:** Next.js 15 (App Router)\n- **Language:** TypeScript\n- **Database:** PostgreSQL + Prisma\n- **Auth:** NextAuth.js v5\n- **Styling:** Tailwind CSS + Shadcn/ui\n- **APIs:** Spotify Web API, YouTube Data API\n- **Deployment:** Vercel\n- **Monitoring:** Sentry + Vercel Analytics\n\n## 📦 Installation\n\n```bash\n# Clone repository\ngit clone https://github.com/skquievreux/playlist_generator.git\ncd playlist_generator\n\n# Install dependencies\nnpm install\n\n# Setup environment variables\ncp .env.example .env.local\n# Edit .env.local with your credentials\n\n# Setup database\nnpx prisma migrate dev\nnpx prisma db seed\n\n# Run development server\nnpm run dev\n```\n\nOpen [http://localhost:3000](http://localhost:3000)\n\n## 🔑 Environment Variables\n\n```bash\n# Database\nDATABASE_URL=\"postgresql://...\"\n\n# NextAuth\nNEXTAUTH_SECRET=\"generate-with-openssl-rand-base64-32\"\nNEXTAUTH_URL=\"http://localhost:3000\"\n\n# Spotify API\nSPOTIFY_CLIENT_ID=\"your-spotify-client-id\"\nSPOTIFY_CLIENT_SECRET=\"your-spotify-client-secret\"\n\n# YouTube API\nYOUTUBE_API_KEY=\"your-youtube-api-key\"\n\n# OpenAI (for AI features)\nOPENAI_API_KEY=\"your-openai-api-key\"\n\n# Stripe (for payments)\nSTRIPE_SECRET_KEY=\"sk_test_...\"\nSTRIPE_WEBHOOK_SECRET=\"whsec_...\"\nNEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=\"pk_test_...\"\n```\n\n## 🧪 Testing\n\n```bash\n# Run all tests\nnpm test\n\n# Run specific test suite\nnpm run test:unit\nnpm run test:integration\nnpm run test:e2e\n\n# Test API connections\nnpm run test:apis\n\n# Test YouTube integration\n# Visit: http://localhost:3000/youtube-test\n# Or use API directly:\ncurl \"http://localhost:3000/api/youtube?action=validate\"\ncurl \"http://localhost:3000/api/youtube?action=search&q=tame+impala\"\n```\n\n## 📡 API Reference\n\n### YouTube API\n\n> 📘 **Full API Documentation**: A complete OpenAPI specification is available at [`/openapi.json`](/openapi.json) when running the application.\n\n#### Validate API Key\n```http\nGET /api/youtube?action=validate\n```\n\n#### Search Videos\n```http\nGET /api/youtube?action=search&q={query}\n```\n\n**Response:**\n```json\n{\n  \"success\": true,\n  \"data\": [\n    {\n      \"id\": \"video-id\",\n      \"title\": \"Song Title\",\n      \"artist\": \"Artist Name\",\n      \"viewCount\": 1500000,\n      \"duration\": \"PT3M37S\",\n      \"publishedAt\": \"2023-01-01T00:00:00Z\"\n    }\n  ]\n}\n```\n\n#### Search Playlists\n```http\nGET /api/youtube/playlists?q={query}\n```\n\n#### Import YouTube Playlist\n```http\nPOST /api/youtube/import-playlist\nContent-Type: application/json\nAuthorization: Bearer {token}\n\n{\n  \"url\": \"https://www.youtube.com/playlist?list=PLAYLIST_ID\"\n}\n```\n\n**Supported URL formats:**\n- `https://www.youtube.com/playlist?list=PLAYLIST_ID`\n- `https://www.youtube.com/watch?v=VIDEO_ID&list=PLAYLIST_ID`\n- `https://youtu.be/VIDEO_ID?list=PLAYLIST_ID`\n\n**Response:**\n```json\n{\n  \"success\": true,\n  \"data\": {\n    \"playlistId\": \"OLAK5uy_...\",\n    \"totalVideos\": 150,\n    \"importedSongs\": 147,\n    \"songs\": [\n      {\n        \"id\": \"song-id\",\n        \"title\": \"Song Title\",\n        \"artist\": \"Artist Name\",\n        \"youtubeUrl\": \"https://www.youtube.com/watch?v=VIDEO_ID\",\n        \"viewCount\": 1250000,\n        \"duration\": \"PT3M45S\",\n        \"source\": \"youtube_playlist\"\n      }\n    ]\n  }\n}\n```\n\n### Authentication API\n\n#### NextAuth.js Routes\n```http\nGET  /api/auth/signin\nPOST /api/auth/signin\nGET  /api/auth/signout\nPOST /api/auth/signout\nGET  /api/auth/session\nGET  /api/auth/providers\n```\n\n### Songs API\n\n#### Get All Songs\n```http\nGET /api/songs\nAuthorization: Bearer {token}\n```\n\n#### Upload Song\n```http\nPOST /api/songs/upload\nContent-Type: multipart/form-data\nAuthorization: Bearer {token}\n\n# Form fields:\nfile: [audio-file]        # WAV, MP3, FLAC (max 50MB)\ntitle: \"Song Title\"       # Required\nartist: \"Artist Name\"     # Required\nalbum: \"Album Name\"       # Optional\ngenre: \"pop\"              # Optional\nalbumArt: [image-file]    # Optional (JPG, PNG)\n```\n\n**Response:**\n```json\n{\n  \"success\": true,\n  \"data\": {\n    \"song\": {\n      \"id\": \"song-id\",\n      \"title\": \"Song Title\",\n      \"artist\": \"Artist Name\",\n      \"album\": \"Album Name\",\n      \"genre\": [\"pop\"],\n      \"mood\": [\"unknown\"]\n    }\n  }\n}\n```\n\n#### Find Video Matches for Song\n```http\nPOST /api/songs/find-matches\nContent-Type: application/json\nAuthorization: Bearer {token}\n\n{\n  \"songId\": \"song-id\"\n}\n```\n\n#### Get Video Matches for Song\n```http\nGET /api/songs/matches?songId={song-id}\nAuthorization: Bearer {token}\n```\n\n#### Select Video Match\n```http\nPOST /api/songs/matches\nContent-Type: application/json\nAuthorization: Bearer {token}\n\n{\n  \"songId\": \"song-id\",\n  \"videoId\": \"video-id\"\n}\n```\n\n### Song Generator API\n\n#### Generate Songs from Image/Text\n```http\nPOST /api/song-generator/generate\nContent-Type: multipart/form-data\n\n# For image upload:\nimage: [file]              # JPG, PNG, GIF (max 10MB)\ncontext: \"Additional context\" (optional)\n\n# For text input:\ntext: \"Song inspiration text\"\ncontext: \"Additional context\" (optional)\n```\n\n**Response:**\n```json\n{\n  \"success\": true,\n  \"data\": [\n    {\n      \"id\": \"generated-1234567890-0\",\n      \"title\": \"Electric Dreams\",\n      \"artist\": \"Neon Pulse\",\n      \"genre\": [\"electronic\", \"synthwave\"],\n      \"mood\": [\"energetic\", \"futuristic\"],\n      \"description\": \"A high-energy track about digital transformation\",\n      \"releaseYear\": 2024,\n      \"confidence\": 0.89,\n      \"reasoning\": \"Based on the neon lights and digital interface elements in the image\"\n    }\n  ],\n  \"count\": 3\n}\n```\n\n#### Analyze Image\n```http\nPOST /api/song-generator/analyze\nContent-Type: multipart/form-data\n\nimage: [file]              # Image file for analysis\n```\n\n#### Save Generated Songs\n```http\nPOST /api/song-generator/save\nContent-Type: application/json\nAuthorization: Bearer {token}\n\n{\n  \"songs\": [\n    {\n      \"title\": \"Electric Dreams\",\n      \"artist\": \"Neon Pulse\",\n      \"genre\": [\"electronic\"],\n      \"mood\": [\"energetic\"]\n    }\n  ],\n  \"userId\": \"user-id\"\n}\n```\n\n### Playlists API\n\n#### Get All Playlists\n```http\nGET /api/playlists\n```\n\n**Response:**\n```json\n{\n  \"success\": true,\n  \"data\": [\n    {\n      \"id\": \"playlist-id\",\n      \"name\": \"Indie Vibes 2024\",\n      \"platform\": \"SPOTIFY\",\n      \"genre\": \"[\\\"indie\\\",\\\"alternative\\\"]\",\n      \"followers\": 1250\n    }\n  ]\n}\n```\n\n## 📚 Documentation\n\n- [Changelog](CHANGELOG.md) - Version history and release notes\n- [API Reference](#api-reference) - Complete API documentation\n- [Development Roadmap](ROADMAP.md) - Future development plans\n- [Setup Instructions](docs/SETUP_INSTRUCTIONS.md) - Getting started guide\n\n## 🚀 Deployment\n\n### Vercel (Recommended)\n\n1. **Connect Repository**\n   ```bash\n   # Push to GitHub\n   git add .\n   git commit -m \"Release v1.0.0\"\n   git tag v1.0.0\n   git push origin main --tags\n   ```\n\n2. **Vercel Setup**\n   - Import project on [Vercel](https://vercel.com)\n   - Set environment variables in Vercel dashboard\n   - Deploy automatically on push\n\n3. **Environment Variables**\n   ```bash\n   # Required for production\n   DATABASE_URL=\"postgresql://...\"\n   NEXTAUTH_SECRET=\"generate-with-openssl-rand-base64-32\"\n   NEXTAUTH_URL=\"https://your-app.vercel.app\"\n   SPOTIFY_CLIENT_ID=\"...\"\n   SPOTIFY_CLIENT_SECRET=\"...\"\n   YOUTUBE_API_KEY=\"...\"\n   OPENAI_API_KEY=\"...\"\n   ```\n\n## 📊 Project Status\n\n### ✅ **Production Ready (v1.0.0)**\n- [x] **Authentication System**: NextAuth.js with Google, GitHub, Email\n- [x] **Song Upload Interface**: Professional drag & drop with metadata extraction\n- [x] **YouTube Playlist Import**: Bulk import with intelligent auto-matching\n- [x] **Playlist Management**: Create, edit, and manage custom playlists\n- [x] **Modern UI/UX**: Glassmorphism design, dark theme, responsive layout\n- [x] **Song Management**: Complete CRUD with advanced filtering\n- [x] **AI Song Generation**: OpenAI Vision integration for image-to-song\n- [x] **YouTube Integration**: Advanced search, matching, and import\n- [x] **Analytics Dashboard**: Track playlist performance metrics\n- [x] **Professional Build System**: Automated versioning and deployment\n- [x] **Database Architecture**: Extended Prisma schema with relationships\n- [x] **API Infrastructure**: RESTful APIs with validation and error handling\n\n### 🔄 **In Development**\n- [ ] **Spotify Integration**: Playlist distribution and management\n- [ ] **Advanced Analytics**: Streaming metrics and insights\n- [ ] **Subscription System**: Stripe payment processing\n- [ ] **Automated Distribution**: AI-powered playlist placement\n- [ ] **Email Notifications**: User communication system\n\n### 📋 **Future Plans**\n- [ ] **Mobile App**: React Native implementation\n- [ ] **Chrome Extension**: Direct DistroKid integration\n- [ ] **API for Power Users**: Advanced integrations\n- [ ] **Marketplace**: Influencer and promotion tools\n\n## 🗓️ Roadmap\n\nSee [ROADMAP.md](ROADMAP.md) for detailed development timeline.\n\n## 📄 License\n\nPrivate - All Rights Reserved\n\n## 🤝 Contributing\n\nThis is a private project. For questions, contact: support@unlockyoursong.com\n",
+    "packageJson": {
+      "name": "playlist_generator",
+      "version": "1.2.1",
+      "private": true,
+      "scripts": {
+        "dev": "tsx scripts/update-build.ts && next dev --hostname 127.0.0.1",
+        "build": "tsx scripts/update-build.ts && node scripts/prebuild.js && npx prisma generate && next build && node scripts/postbuild.js",
+        "start": "next start",
+        "lint": "next lint",
+        "typecheck": "tsc --noEmit",
+        "test": "jest",
+        "test:unit": "jest --testPathPattern=unit",
+        "test:integration": "jest --testPathPattern=integration",
+        "test:e2e": "playwright test",
+        "test:apis": "tsx scripts/test-apis.ts",
+        "test:youtube": "tsx scripts/test-apis.ts --youtube-only",
+        "prebuild": "node scripts/prebuild.js",
+        "postbuild": "node scripts/postbuild.js",
+        "doc:generate": "node scripts/generate-openapi.js"
+      },
+      "dependencies": {
+        "@hookform/resolvers": "^3.3.2",
+        "@next-auth/prisma-adapter": "^1.0.7",
+        "@prisma/client": "^5.7.0",
+        "@radix-ui/react-slot": "^1.0.2",
+        "@spotify/web-api-ts-sdk": "^1.1.1",
+        "@tailwindcss/postcss": "^4.0.0",
+        "@tailwindcss/typography": "^0.5.10",
+        "class-variance-authority": "^0.7.1",
+        "clsx": "^2.1.1",
+        "dotenv": "^17.2.3",
+        "googleapis": "^126.0.1",
+        "lucide-react": "^0.554.0",
+        "next": "15.5.7",
+        "next-auth": "^4.24.7",
+        "openai": "^4.24.7",
+        "postcss": "^8.5.6",
+        "prisma": "^5.7.0",
+        "react": "^19.2.0",
+        "react-dom": "^19.2.0",
+        "react-hook-form": "^7.48.2",
+        "react-player": "^3.4.0",
+        "replicate": "^1.4.0",
+        "resend": "^3.2.0",
+        "stripe": "^14.17.0",
+        "tailwind-merge": "^2.6.0",
+        "tailwindcss": "^4.0.0",
+        "zod": "^3.22.4"
+      },
+      "devDependencies": {
+        "@playwright/test": "^1.40.0",
+        "@testing-library/jest-dom": "^6.1.5",
+        "@testing-library/react": "^16.3.0",
+        "@types/node": "^20.10.0",
+        "@types/react": "^19.2.0",
+        "@types/react-dom": "^19.2.0",
+        "@typescript-eslint/eslint-plugin": "^6.13.0",
+        "@typescript-eslint/parser": "^6.13.0",
+        "autoprefixer": "^10.4.22",
+        "eslint": "^8.55.0",
+        "eslint-config-next": "^15.0.0",
+        "jest": "^29.7.0",
+        "jest-environment-jsdom": "^30.2.0",
+        "playwright": "^1.40.0",
+        "prettier": "^3.1.0",
+        "tsx": "^4.6.0",
+        "typescript": "^5.8.2"
+      },
+      "prisma": {
+        "seed": "tsx prisma/seed.ts"
+      },
+      "engines": {
+        "node": ">=20.9.0"
+      }
+    }
+  }
+}

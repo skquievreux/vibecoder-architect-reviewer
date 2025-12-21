@@ -1,0 +1,180 @@
+{
+  "repositoryId": "5aa659b3-b3f1-478c-802d-6dd16a7a063c",
+  "name": "melody-maker",
+  "owner": "skquievreux",
+  "harvestedAt": "2025-12-21T09:21:52.925Z",
+  "content": {
+    "readme": "# 🎵 Unlock Your Song - Melody Maker\n\n> Automatisierte Plattform für personalisierte Song-Produktion mit KI\n\n## 📖 Übersicht\n\nUnlock Your Song ermöglicht es Kunden, durch einfache Voicebot-Interaktion personalisierte Songs zu erstellen. Die komplette Produktion läuft vollautomatisch ab - von der Erstellung des Songs über die Cover-Generierung bis zur Auslieferung.\n\n## 🚀 Quick Start\n\n```bash\n# Repository klonen\ngit clone [repo-url]\ncd Melody-Maker\n\n# Dependencies installieren\nnpm install\n\n# Environment Variables einrichten\ncp .env.example .env.local\n# Fülle die Werte in .env.local aus\n\n# Development Server starten\nnpm run dev\n```\n\n## 📁 Projektstruktur\n\n```\nMelody-Maker/\n├── docs/                   # Dokumentation\n│   ├── requirements/      # Anforderungsdokumente\n│   ├── api/              # API-Spezifikationen\n│   └── workflows/        # Workflow-Diagramme\n├── app/                   # Next.js App Directory\n│   ├── api/              # API Routes\n│   ├── (marketing)/      # Marketing Pages\n│   └── go/               # Landing Pages\n├── components/           # React Components\n├── lib/                  # Utilities & Services\n│   ├── services/         # External API Integrations\n│   ├── prompts/          # AI Prompt Generators\n│   └── db/               # Database Queries\n└── workflows/            # Make.com & n8n Scenarios\n```\n\n## 🛠 Tech Stack\n\n- **Frontend:** Next.js 16, React 19, Tailwind CSS, shadcn/ui\n- **Backend:** Next.js API Routes, Edge Functions\n- **Database:** Supabase (PostgreSQL)\n- **Storage:** Cloudflare R2\n- **Payment:** Stripe\n- **Email:** Resend\n- **Automation:** Make.com / n8n\n- **AI:** Suno AI, fal.ai, ElevenLabs, Kie AI\n\n## 📚 Dokumentation\n\n- [Produktanforderungsdokument (PRD)](./docs/requirements/PRD.md)\n- [API Dokumentation](./docs/api/README.md)\n- [Workflow Dokumentation](./docs/workflows/README.md)\n- [Deployment Guide](./docs/DEPLOYMENT.md)\n\n## 🔑 Environment Variables\n\nSiehe `docs/DEPLOYMENT.md` für alle benötigten Environment Variables.\n\nWichtigste Variablen:\n\n- `STRIPE_SECRET_KEY` - Stripe API Key\n- `LANDING_PAGE_API_KEY` - Existing Landing Page API\n- `SUNO_API_KEY` - Suno AI Cookie\n- `FAL_KEY` - fal.ai API Key\n- `ELEVENLABS_API_KEY` - ElevenLabs API Key\n- `KIAI_API_KEY` - Kie AI API Key\n- `RESEND_API_KEY` - Resend Email API Key\n- `R2_*` - Cloudflare R2 Storage Credentials\n\n## 🚢 Deployment\n\nDas Projekt wird auf Vercel gehostet:\n\n```bash\n# Production Deployment\nvercel --prod\n\n# Preview Deployment\nvercel\n```\n\n## 📊 Status\n\n**Version:** 1.3.0  \n**Status:** Production Ready  \n**Letzte Aktualisierung:** Dezember 2025\n\n## 👥 Team\n\n- **Product Owner:** Steffen Quievreux\n- **Email:** steffen.quievreux@gmail.com\n\n## 📄 Lizenz\n\nProprietary - Alle Rechte vorbehalten\n",
+    "packageJson": {
+      "name": "melody-maker",
+      "version": "1.5.2",
+      "private": true,
+      "versionHistory": [
+        {
+          "version": "1.4.0",
+          "date": "2025-12-10",
+          "description": "Production Ready Release with Environment Fixes",
+          "features": [
+            "Cloudflare R2 Environment Variables standardization",
+            "Build process fixes and stability improvements",
+            "Successful production deployment on Vercel",
+            "Environment variable synchronization",
+            "Zero-downtime deployment capability"
+          ]
+        },
+        {
+          "version": "1.3.0",
+          "date": "2025-12-10",
+          "description": "Production Ready Release",
+          "features": [
+            "Environment variable fixes for Cloudflare R2",
+            "Build stability improvements",
+            "Vercel deployment optimization"
+          ]
+        },
+        {
+          "version": "1.1.1",
+          "date": "2025-10-24",
+          "description": "Correlation-IDs & Admin Dashboard Enhancement",
+          "features": [
+            "Correlation-ID implementation across entire service chain",
+            "Structured logging with request tracing",
+            "Enhanced admin dashboard with service links",
+            "Improved UI colors and version display",
+            "External service management cards",
+            "Real-time dashboard updates"
+          ]
+        },
+        {
+          "version": "1.1.0",
+          "date": "2025-10-24",
+          "description": "Complete branding implementation with premium design",
+          "features": [
+            "Complete 'Unlock Your Song' branding implementation",
+            "Dark premium design with gold accents",
+            "Lucide icons replacing emojis",
+            "Consistent typography hierarchy",
+            "Professional UI components",
+            "Responsive design optimization"
+          ]
+        },
+        {
+          "version": "1.0.0",
+          "date": "2025-10-24",
+          "description": "Initial release with queue-based architecture",
+          "features": [
+            "Queue-based song generation",
+            "Stripe payment integration",
+            "Supabase database",
+            "Admin dashboard",
+            "WA-S architecture (Wartbarkeit, Ausfallsicherheit, Skalierbarkeit)"
+          ]
+        }
+      ],
+      "scripts": {
+        "dev": "next dev",
+        "dev:debug": "NODE_OPTIONS='--inspect' next dev",
+        "dev:tools": "react-devtools & next dev",
+        "build": "next build",
+        "vercel-build": "next build",
+        "start": "next start",
+        "lint": "next lint",
+        "test": "playwright test",
+        "test:ui": "playwright test --ui",
+        "test:headed": "playwright test --headed",
+        "test:debug": "playwright test --debug",
+        "react-devtools": "react-devtools"
+      },
+      "dependencies": {
+        "@aws-sdk/client-s3": "^3.916.0",
+        "@aws-sdk/s3-request-presigner": "^3.916.0",
+        "@fal-ai/client": "^1.7.0",
+        "@radix-ui/react-label": "^2.1.7",
+        "@radix-ui/react-slot": "^1.2.3",
+        "@radix-ui/react-tabs": "^1.1.13",
+        "@supabase/ssr": "^0.7.0",
+        "@supabase/supabase-js": "^2.49.4",
+        "autoprefixer": "^10.4.21",
+        "class-variance-authority": "^0.7.0",
+        "clsx": "^2.1.1",
+        "eslint": "^9.38.0",
+        "eslint-config-next": "16.0.0",
+        "lucide-react": "^0.546.0",
+        "next": "^15.1.6",
+        "postcss": "^8",
+        "react": "^18.3.1",
+        "react-dom": "^18.3.1",
+        "react-hook-form": "^7.65.0",
+        "resend": "^6.2.2",
+        "stripe": "^19.1.0",
+        "tailwind-merge": "^3.3.1",
+        "tailwindcss": "^4.1.16",
+        "typescript": "^5"
+      },
+      "devDependencies": {
+        "@playwright/test": "^1.56.1",
+        "@tailwindcss/postcss": "^4.1.16",
+        "@types/node": "^24.9.1",
+        "@types/react": "^19.2.2",
+        "@types/react-dom": "^19.2.2",
+        "react-devtools": "^7.0.1"
+      },
+      "engines": {
+        "node": ">=20.9.0"
+      }
+    }
+  },
+  "analysis": {
+    "description": "Melody Maker ist eine vollautomatisierte KI-Plattform, mit der jeder per einfacher Voicebot-Interaktion einen individuellen, professionell produzierten Song inklusive Cover und Lieferung erhält. Marken, Creator und Agenturen skalieren damit personalisierte Audio-Erlebnisse ohne eigenes Musikteam, aber mit klar messbaren Payment- und Fulfillment-Flows.",
+    "businessCanvas": {
+      "valueProposition": [
+        "Vollautomatisierte End-to-End-Produktion personalisierter Songs (Text, Musik, Voice, Cover, Auslieferung) aus einer einfachen Voicebot-Interaktion.",
+        "Produktionsstudio-Qualität on-demand dank Integration führender KI-Anbieter (Suno, ElevenLabs, fal.ai, Kie AI) bei gleichzeitig standardisiertem, stabilen Betrieb (Vercel, Supabase, R2).",
+        "Sofort monetarisierbar über Stripe-Integration mit Admin-Dashboard, Queue-Architektur und Echtzeit-Status für Support und Operations."
+      ],
+      "customerSegments": [
+        {
+          "name": "B2C-Endkunden (Geschenke, persönliche Anlässe, Fun-Content)",
+          "willingness_to_pay": "Medium",
+          "pain_points": [
+            "Individuelle Musikproduktion ist traditionell teuer, komplex und braucht menschliche Künstler.",
+            "Kunden möchten schnelle, spaßige, personalisierte Inhalte (z.B. Geburtstags- oder Jubiläumssongs), ohne sich mit Musikproduktion beschäftigen zu müssen."
+          ]
+        },
+        {
+          "name": "Influencer & Creator, die personalisierte Songs als Produkt oder Upsell anbieten",
+          "willingness_to_pay": "High",
+          "pain_points": [
+            "Skalierung personalisierter Produkte (z.B. Fansongs) ist manuell kaum möglich und operativ aufwendig.",
+            "Fehlende robuste Payment-, Fulfillment- und Status-Infrastruktur für digitale, individuelle Produkte."
+          ]
+        },
+        {
+          "name": "Marken, Agenturen & Event-Anbieter (Kampagnen, Promotion, Loyalty-Programme)",
+          "willingness_to_pay": "High",
+          "pain_points": [
+            "Personalisierte Audio-Kampagnen sind teuer in der Produktion und schwer zu skalieren.",
+            "Technische Integration von Payment, Data Storage, Automations und KI-Anbietern erfordert komplexe Eigenentwicklungen."
+          ]
+        }
+      ],
+      "revenueStreams": [
+        {
+          "source": "Transaktionsbasiertes Bezahlprodukt pro personalisiertem Song (B2C / Creator-Fanshop)",
+          "model": "Recurring",
+          "potential_arr": 150000
+        },
+        {
+          "source": "SaaS-/White-Label-Lizenz für Marken, Agenturen und Event-Plattformen",
+          "model": "Recurring",
+          "potential_arr": 300000
+        },
+        {
+          "source": "Usage-basierte Gebühren / API-Zugriff für Automations (Make.com, n8n) und Integrationen",
+          "model": "Recurring",
+          "potential_arr": 100000
+        }
+      ]
+    }
+  }
+}

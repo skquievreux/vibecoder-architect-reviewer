@@ -1,0 +1,63 @@
+{
+  "repositoryId": "8d268409-e328-4401-85fb-b6da36839897",
+  "name": "hugofirebase",
+  "owner": "skquievreux",
+  "harvestedAt": "2025-12-21T09:21:49.873Z",
+  "content": {
+    "readme": null,
+    "packageJson": null
+  },
+  "analysis": {
+    "description": "HugoFirebase lets teams publish blazing-fast static websites by automatically building Hugo content and deploying it to Firebase’s global hosting in one seamless pipeline. Ship marketing sites, docs, and blogs continuously from Git commits without touching infrastructure or deployment scripts.",
+    "businessCanvas": {
+      "valueProposition": [
+        "Automated CI/CD from Git to Hugo build to Firebase Hosting, eliminating manual deploy steps and DevOps toil.",
+        "Reliable, SSL-secured, CDN-backed delivery of static sites with every commit, enabling rapid, low-risk content iteration.",
+        "Developer-friendly workflow that plugs into existing GitHub/GitLab repos and Firebase projects with minimal setup."
+      ],
+      "customerSegments": [
+        {
+          "name": "Small and mid-size SaaS and product companies hosting marketing sites and documentation on static stacks (Hugo + Firebase)",
+          "willingness_to_pay": "High",
+          "pain_points": [
+            "Engineers waste time maintaining fragile custom deployment scripts for simple static sites.",
+            "Marketing and product teams cannot safely push content changes without developer and DevOps involvement."
+          ]
+        },
+        {
+          "name": "Agencies and freelancers managing multiple client sites on Hugo and Firebase",
+          "willingness_to_pay": "Medium",
+          "pain_points": [
+            "Managing many client deployments across projects and repos is error-prone and time-consuming.",
+            "Lack of standardized pipelines increases risk of downtime or broken client sites after updates."
+          ]
+        },
+        {
+          "name": "Developer platforms, tech bloggers, and communities using Hugo to run content-heavy sites",
+          "willingness_to_pay": "Medium",
+          "pain_points": [
+            "Limited CI/CD expertise makes it hard to set up secure, automated deploy pipelines to Firebase.",
+            "Slow or manual deploy processes discourage frequent content updates and experimentation."
+          ]
+        }
+      ],
+      "revenueStreams": [
+        {
+          "source": "SaaS subscription for managed Hugo-to-Firebase CI/CD service (multi-project support, dashboards, alerts)",
+          "model": "Recurring",
+          "potential_arr": 75000
+        },
+        {
+          "source": "Usage-based pricing for high-volume sites (per site, per deploy, or bandwidth tier add-ons)",
+          "model": "Recurring",
+          "potential_arr": 50000
+        },
+        {
+          "source": "Consulting and onboarding packages for agencies and enterprises (pipeline setup, migration, best practices)",
+          "model": "One-time",
+          "potential_arr": 25000
+        }
+      ]
+    }
+  }
+}

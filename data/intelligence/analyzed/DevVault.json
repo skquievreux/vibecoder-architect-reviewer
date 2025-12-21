@@ -1,0 +1,80 @@
+{
+  "repositoryId": "811207cb-0aa3-44f5-b8a7-63ed05a2f320",
+  "name": "DevVault",
+  "owner": "skquievreux",
+  "harvestedAt": "2025-12-21T09:21:39.719Z",
+  "content": {
+    "readme": "# 🔐 DevVault\r\n\r\n> **Secure, Local-First Secrets Management for Developers.**  \r\n> Stop scattering `.env` files across your filesystem. Centralize, encrypt, and manage secrets with ease.\r\n\r\n![Status](https://img.shields.io/badge/Status-Access_Preview-blue)\r\n![License](https://img.shields.io/badge/License-MIT-green)\r\n![Platform](https://img.shields.io/badge/Platform-Windows%20%7C%20WSL-lightgrey)\r\n\r\n---\r\n\r\n## 🚀 Mission\r\n\r\nDevVault solves the chaos of managing secrets across dozens of local repositories. It eliminates duplicated API keys, insecure plain-text storage, and the hassle of manual secret rotation. Built for developers who value data ownership and security.\r\n\r\n## ✨ Features\r\n\r\n- **🛡️ Local-First Vault**: All secrets are encrypted locally using `age` (file-based) and `libsodium` (database-based). You own your keys.\r\n- **🔍 Inventory Scan**: Automatically detect `.env` files across your Windows and WSL filesystems.\r\n- **🔄 Universal Injection**: Inject secrets back into projects with `dv inject`.\r\n- **🖥️ Modern Dashboard**: A beautiful Next.js UI to view projects, analyze usage, and identify shared secrets.\r\n- **⚡ Zero-Knowledge**: We never see your secrets. Everything runs on localhost.\r\n\r\n## 🛠️ Architecture\r\n\r\nDevVault uses a hybrid architecture to ensure both security and developer experience:\r\n\r\n- **Core**: Next.js 15 (App Router) + TypeScript\r\n- **Database**: SQLite (Local Dev) / PostgreSQL (Production ready)\r\n- **Encryption**: \r\n  - **At Rest (Files):** `SOPS` + `age`\r\n  - **At Rest (DB):** `libsodium` (ChaCha20-Poly1305)\r\n- **Auth**: NextAuth.js v5\r\n- **UI**: Tailwind CSS v4 + Shadcn/UI\r\n\r\n## 🏁 Quick Start\r\n\r\n### Prerequisites\r\n- **Node.js** v20+\r\n- **Git**\r\n\r\n### Installation\r\n\r\n1. **Clone the repository** (or your local copy)\r\n   ```bash\r\n   git clone https://github.com/your-username/devvault.git\r\n   cd DevVault\r\n   ```\r\n\r\n2. **Install Dependencies**\r\n   ```bash\r\n   cd web\r\n   npm install\r\n   ```\r\n\r\n3. **Start the Dashboard**\r\n   ```bash\r\n   npm run dev\r\n   ```\r\n   Visit [http://localhost:3000](http://localhost:3000).\r\n\r\n4. **Initialize CLI (Coming Soon)**\r\n   ```bash\r\n   dv init\r\n   ```\r\n\r\n## 🗺️ Roadmap\r\n\r\n- [x] **Phase 1: Local Vault** (Inventory, Scan, Migration)\r\n- [x] **Phase 2: Core Platform** (Dashboard, SQLite, API)\r\n- [ ] **Phase 3: CLI Tool** (`dv` command for terminal injection)\r\n- [ ] **Phase 4: Automation** (Key Rotation, Git Hooks)\r\n\r\n---\r\n\r\n© 2025 DevVault. Built with ❤️ and ☕.\r\n",
+    "packageJson": {
+      "name": "devvault-monorepo",
+      "version": "1.0.0",
+      "private": true,
+      "scripts": {
+        "dev": "npm run dev --prefix web",
+        "build": "npm run build --prefix web",
+        "start": "npm run start --prefix web",
+        "cli:link": "npm link --prefix cli"
+      },
+      "workspaces": [
+        "web",
+        "cli"
+      ],
+      "engines": {
+        "node": ">=20.9.0"
+      }
+    }
+  },
+  "analysis": {
+    "description": "DevVault is a secure, local-first secrets manager that centralizes and encrypts all your `.env` files and API keys across Windows and WSL so developers never lose track of critical credentials again. It delivers a unified dashboard and upcoming CLI to safely discover, deduplicate, and inject secrets into any project without relying on a third-party cloud vault.",
+    "businessCanvas": {
+      "valueProposition": [
+        "Eliminates scattered, duplicated `.env` files by automatically inventorying and centralizing secrets across Windows and WSL projects.",
+        "Reduces security risk and compliance exposure with strong local encryption, zero-knowledge architecture, and planned automated rotation and Git hooks.",
+        "Speeds up onboarding and day-to-day development by providing one-click/one-command secret injection and a modern dashboard for analyzing secret usage and sharing."
+      ],
+      "customerSegments": [
+        {
+          "name": "Individual developers and power users on Windows/WSL",
+          "willingness_to_pay": "Medium",
+          "pain_points": [
+            "Managing dozens of `.env` files and API keys across many local projects and environments",
+            "Risk of accidentally committing secrets to Git or leaving them in plain text on disk"
+          ]
+        },
+        {
+          "name": "Small–mid sized software teams (3–50 engineers)",
+          "willingness_to_pay": "High",
+          "pain_points": [
+            "Inconsistent local secret management practices that create security and compliance blind spots",
+            "Slow, error-prone onboarding and rotation when APIs, tokens, or shared secrets change"
+          ]
+        },
+        {
+          "name": "Security-conscious startups and internal platform teams",
+          "willingness_to_pay": "High",
+          "pain_points": [
+            "Need for developer-friendly, zero-trust-aligned secret handling without standing up and operating heavy enterprise vault infrastructure",
+            "Limited visibility into where secrets live locally, which ones are shared, and how to enforce safer workflows (e.g., hooks, rotation, audits)"
+          ]
+        }
+      ],
+      "revenueStreams": [
+        {
+          "source": "SaaS subscription for team features and automation (hosted or managed DevVault controller)",
+          "model": "Recurring",
+          "potential_arr": 250000
+        },
+        {
+          "source": "Per-seat licensing for advanced desktop client and CLI (pro tier for individual and small teams)",
+          "model": "Recurring",
+          "potential_arr": 75000
+        },
+        {
+          "source": "Enterprise licensing and support (SSO, compliance reporting, custom integrations)",
+          "model": "Recurring",
+          "potential_arr": 300000
+        }
+      ]
+    }
+  }
+}

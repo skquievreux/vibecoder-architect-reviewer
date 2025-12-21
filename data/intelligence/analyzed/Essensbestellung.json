@@ -1,0 +1,82 @@
+{
+  "repositoryId": "46da6b80-6bc5-437b-8d44-c4643b95bd98",
+  "name": "Essensbestellung",
+  "owner": "skquievreux",
+  "harvestedAt": "2025-12-21T09:21:49.023Z",
+  "content": {
+    "readme": "# Speiseplan-Application\n\nWebbasierte Applikation zur Verwaltung und Bestellung von Kantinenmahlzeiten\n\n## Installation\n```bash\n# Voraussetzung: Python 3.x\ngit clone https://github.com/ihr-repo/speiseplan.git\ncd speiseplan\n```\n\n## Konfiguration\n1. `meals.json`-Beispieldatei erstellen:\n```json\n{\n  \"weeks\": {\n    \"week1\": [\n      {\"day\": \"Montag\", \"menu\": \"Hühnerfrikassee\", \"price\": 4.50},\n      {\"day\": \"Dienstag\", \"menu\": \"Vegetarische Lasagne\", \"price\": 4.20}\n    ]\n  }\n}\n```\n2. Umgebungsvariablen in `.env` setzen:\n```ini\nWEBHOOK_URL=https://hook.eu1.make.com/fq7mkmnr328eqvwmipkafkdy86x39jfk\nPORT=8000\n```\n\n## Verwendung\n```bash\n# Entwicklungs-Server starten\npython -m http.server %PORT%\n\n# Im Browser öffnen\nstart http://localhost:%PORT%/speiseplan.html\n```\n\n## Funktionsumfang\n- Mandantenauswahl (Kantine A/B)\n- Wochenansicht mit Mahlzeiten\n- Bulk-Input für Bestellmengen\n- Webhook-Integration für Bestellungen\n- Echtzeit-Vorschau der Bestellungen\n\n## Webhook-Integration\nDie Anwendung sendet Bestelldaten im JSON-Format:\n```json\n{\n  \"client\": \"clientA\",\n  \"week\": \"week1\",\n  \"meals\": [...],\n  \"tenant\": \"Kantine A\",\n  \"timestamp\": \"2025-02-06T16:03:18.000Z\"\n}\n```\n\n## Entwicklung\n```bash\n# Abhängigkeiten installieren (falls erforderlich)\nnpm install\n```\n\nTechnologien:\n- Vanilla JavaScript\n- HTML5/CSS3\n- Web Fetch API\n\n## Lizenz\nMIT License",
+    "packageJson": {
+      "name": "speiseplan",
+      "version": "1.0.0",
+      "main": "speiseplan.js",
+      "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+      },
+      "keywords": [],
+      "author": "",
+      "license": "ISC",
+      "type": "commonjs",
+      "description": "",
+      "devDependencies": {
+        "@babel/preset-env": "^7.26.7",
+        "jest": "^29.7.0"
+      },
+      "engines": {
+        "node": ">=20.9.0"
+      }
+    }
+  },
+  "analysis": {
+    "description": "A lightweight web app for canteens to publish weekly menus and collect bulk meal orders in real time via webhook automation. It replaces manual Excel/email workflows with a simple browser UI that feeds structured order data directly into downstream systems.",
+    "businessCanvas": {
+      "valueProposition": [
+        "Digitizes weekly menu selection and meal ordering for canteens into a simple, self-service web interface.",
+        "Streams all orders as clean JSON via webhooks into ERP, catering, or billing systems to eliminate manual data entry.",
+        "Supports multiple locations/tenants with bulk order capture and real-time preview to reduce errors and food waste."
+      ],
+      "customerSegments": [
+        {
+          "name": "Corporate and institutional canteens (in-house or outsourced caterers)",
+          "willingness_to_pay": "High",
+          "pain_points": [
+            "Inefficient manual processes (paper, email, spreadsheets) for collecting and aggregating meal orders",
+            "Frequent ordering errors and lack of real-time visibility into demand per day and location"
+          ]
+        },
+        {
+          "name": "Catering companies serving multiple B2B clients",
+          "willingness_to_pay": "Medium",
+          "pain_points": [
+            "Complex, heterogeneous ordering channels across clients with no standard data format",
+            "High operational overhead to reconcile orders and plan production and logistics"
+          ]
+        },
+        {
+          "name": "Facility management and HR teams managing employee benefits",
+          "willingness_to_pay": "Medium",
+          "pain_points": [
+            "Limited transparency into meal usage and costs across sites",
+            "Inability to easily integrate meal ordering data into internal reporting and subsidy workflows"
+          ]
+        }
+      ],
+      "revenueStreams": [
+        {
+          "source": "SaaS subscription for canteen ordering portal",
+          "model": "Recurring",
+          "potential_arr": 30000
+        },
+        {
+          "source": "White-label / OEM licensing to catering providers",
+          "model": "Recurring",
+          "potential_arr": 20000
+        },
+        {
+          "source": "Integration and setup fees (webhook, ERP, HR integrations)",
+          "model": "One-time",
+          "potential_arr": 15000
+        }
+      ]
+    }
+  }
+}

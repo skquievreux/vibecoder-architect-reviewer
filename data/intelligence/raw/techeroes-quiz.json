@@ -1,0 +1,54 @@
+{
+  "repositoryId": "18e07fbf-0ca2-4cd4-ae43-509eba3ce4b0",
+  "name": "techeroes-quiz",
+  "owner": "skquievreux",
+  "harvestedAt": "2025-12-21T09:21:52.209Z",
+  "content": {
+    "readme": null,
+    "packageJson": {
+      "name": "techeroes-quiz",
+      "version": "0.4.3",
+      "private": true,
+      "type": "module",
+      "scripts": {
+        "dev": "next dev",
+        "build": "next build",
+        "start": "next start",
+        "lint": "next lint"
+      },
+      "dependencies": {
+        "@playwright/test": "^1.55.1",
+        "@tailwindcss/postcss": "^4.1.16",
+        "autoprefixer": "^10.4.21",
+        "next": "^15.5.7",
+        "postcss": "^8.5.6",
+        "react": "^19.2.0",
+        "react-dom": "^19.2.0",
+        "tailwindcss": "^4.1.16"
+      },
+      "devDependencies": {
+        "@eslint/js": "^9.37.0",
+        "@semantic-release/changelog": "^6.0.3",
+        "@semantic-release/commit-analyzer": "^13.0.0",
+        "@semantic-release/git": "^10.0.1",
+        "@semantic-release/github": "^10.0.5",
+        "@semantic-release/npm": "^13.1.2",
+        "@semantic-release/release-notes-generator": "^14.0.1",
+        "@types/node": "^20",
+        "@types/react": "^19.0.0",
+        "@types/react-dom": "^19.0.0",
+        "@typescript-eslint/eslint-plugin": "^8.46.0",
+        "@typescript-eslint/parser": "^8.46.0",
+        "baseline-browser-mapping": "^2.9.5",
+        "eslint": "^9.37.0",
+        "eslint-config-next": "^15.5.4",
+        "globals": "^16.4.0",
+        "semantic-release": "^25.0.2",
+        "typescript": "^5.8.2"
+      },
+      "engines": {
+        "node": ">=20.9.0"
+      }
+    }
+  }
+}

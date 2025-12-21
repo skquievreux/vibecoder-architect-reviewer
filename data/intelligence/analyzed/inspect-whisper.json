@@ -1,0 +1,158 @@
+{
+  "repositoryId": "f9e0262d-b5a2-4e8b-b843-03207037f874",
+  "name": "inspect-whisper",
+  "owner": "skquievreux",
+  "harvestedAt": "2025-12-21T09:21:48.678Z",
+  "content": {
+    "readme": "# Inspektions-App für Windenergieanlagen\n\nEine umfassende Web-Anwendung zur Dokumentation und Verwaltung von Inspektionen an Windenergieanlagen.\n\n## Aktuelle Version: 1.3.0\n\n### Neue Features (v1.3.0)\n- **Drag & Drop für Standard-Text Fotos**: Ziehen Sie Bilder direkt in die Dropzone\n- **Vollständige Foto-Bearbeitung**: Crop, Rotate, Filter auch in Standard-Texten\n- **Universelle Bild-Anzeige**: Alle Org-Mitglieder können Bilder sehen (Presigned URLs)\n- **Foto-Persistenz**: Bilder bleiben nach Speichern erhalten\n\n### Bug-Fixes (v1.3.0)\n- Foto-Upload in Standard-Texten funktioniert jetzt zuverlässig\n- Drag & Drop Dropzone wird korrekt angezeigt\n- Bilder verschwinden nicht mehr nach Speichern\n\n## 📋 Übersicht\n\nWind Inspector ist eine umfassende Lösung für die Inspektion und Mängelerfassung von Windenergieanlagen. Die Anwendung ermöglicht es Teams, Inspektionen zu dokumentieren, Mängel mit Fotos zu erfassen, Reports zu generieren und die gesamte Projekthistorie zu verwalten.\n\n### Hauptfunktionen\n\n- **🔍 Mängel-Dokumentation**: Erfassung von Mängeln mit Kategorisierung, Schweregrad und Foto-Dokumentation\n- **📸 Foto-Management**: Drag & Drop Sortierung, Bildbearbeitung, Thumbnail-Generierung und Versionsverwaltung\n- **📊 Reports & Analysen**: Automatische Report-Generierung auf Organisations- und Anlagen-Ebene\n- **👥 Mehrmandantenfähigkeit**: Organisations-basierte Struktur mit Rollenverwaltung\n- **🏭 Anlagen-Verwaltung**: Verwaltung mehrerer Windkraftanlagen mit individuellen Strukturen\n- **📝 Standard-Texte**: Bibliothek wiederverwendbarer Textbausteine für Reports\n- **🎨 Template-System**: Anpassbare Report-Vorlagen nach Anlagen-Typ\n- **🔐 Rollen & Berechtigungen**: Fein granulares Zugriffssystem (Super Admin, Owner, Admin, Editor, Viewer)\n- **☁️ Cloud-Speicher**: Integration mit Cloudflare R2 für Bildspeicherung\n\n## 🚀 Tech Stack\n\n### Frontend\n- **React 18.3** - UI Framework\n- **TypeScript** - Type-Safe JavaScript\n- **Vite** - Build Tool & Dev Server\n- **Tailwind CSS** - Utility-First CSS Framework\n- **shadcn/ui** - Komponentenbibliothek basierend auf Radix UI\n- **React Router** - Client-Side Routing\n- **Zustand** - State Management\n- **React Query** - Server State Management\n- **Recharts** - Diagramme und Visualisierungen\n- **React Hook Form + Zod** - Formular-Validierung\n\n### Backend & Infrastruktur\n- **Supabase** - Backend as a Service\n  - PostgreSQL Datenbank\n  - Row Level Security (RLS)\n  - Authentication (Email, Google OAuth)\n  - Edge Functions (Deno)\n- **Cloudflare R2** - Object Storage für Bilder\n- **Resend** - E-Mail-Versand\n\n### Weitere Libraries\n- **@dnd-kit** - Drag & Drop Funktionalität\n- **react-easy-crop** - Bildbearbeitung\n- **DOMPurify** - HTML Sanitization\n- **date-fns** - Datums-Utilities\n- **Lucide React** - Icon-System\n\n## 📦 Installation\n\n### Voraussetzungen\n- Node.js 18+ oder Bun\n- Ein Supabase-Projekt\n- Cloudflare R2 Bucket (optional, für Bild-Upload)\n\n### 1. Repository klonen\n```bash\ngit clone <YOUR_GIT_URL>\ncd wind-inspector\n```\n\n### 2. Dependencies installieren\n```bash\nnpm install\n# oder\nbun install\n```\n\n### 3. Umgebungsvariablen konfigurieren\n\nErstellen Sie eine `.env` Datei im Root-Verzeichnis:\n\n```env\n# Supabase Configuration\nVITE_SUPABASE_URL=https://ihre-projekt-id.supabase.co\nVITE_SUPABASE_ANON_KEY=ihr-anon-key\n\n# Optional: Weitere Konfiguration\nVITE_APP_VERSION=1.2.0\n```\n\n**Hinweis:** Die Supabase URL und Keys sind bereits in `src/integrations/supabase/client.ts` hinterlegt.\n\n### 4. Entwicklungsserver starten\n```bash\nnpm run dev\n# oder\nbun run dev\n```\n\nDie Anwendung läuft nun auf `http://localhost:8080`\n\n## 🗄️ Datenbank Setup\n\n### Supabase Migrationen\n\nDie Datenbank-Migrationen befinden sich im Ordner `supabase/migrations/`. Diese werden automatisch bei Deployment ausgeführt.\n\n### Wichtige Datenbank-Tabellen\n\n- `organizations` - Organisationen/Mandanten\n- `organization_members` - Mitgliedschaften und Rollen\n- `plants` - Windkraftanlagen\n- `areas` - Inspektionsbereiche (z.B. Turm, Gondel)\n- `components` - Komponenten innerhalb der Bereiche\n- `inspection_points` - Inspektionspunkte\n- `defects` - Dokumentierte Mängel\n- `images` - Bild-Metadaten\n- `image_versions` - Bildversionen (Original, Bearbeitet, Thumbnail)\n- `categories` / `subcategories` - Mangel-Kategorisierung\n- `standard_texts` - Wiederverwendbare Textbausteine\n- `templates` - Report-Vorlagen\n- `profiles` - Benutzer-Profile\n- `user_roles` - System-Rollen (Super Admin)\n\n### Row Level Security (RLS)\n\nAlle Tabellen sind mit RLS-Richtlinien gesichert:\n- Organisations-basierte Zugriffskontrolle\n- Rollen-basierte Berechtigungen (Owner, Admin, Editor, Viewer)\n- Super-Admin-Zugriff auf alle Daten\n\n## 🏗️ Projekt-Struktur\n\n```\nwind-inspector/\n├── src/\n│   ├── components/          # React-Komponenten\n│   │   ├── ui/             # Basis UI-Komponenten (shadcn)\n│   │   ├── mobile/         # Mobile-spezifische Komponenten\n│   │   └── ...             # Feature-Komponenten\n│   ├── pages/              # Seiten/Routes\n│   ├── hooks/              # Custom React Hooks\n│   ├── contexts/           # React Contexts (Auth, Organization, Plant)\n│   ├── store/              # Zustand Stores\n│   ├── types/              # TypeScript Typen\n│   ├── utils/              # Utility-Funktionen\n│   ├── integrations/       # API-Integrationen (Supabase)\n│   ├── data/               # Statische Daten\n│   └── lib/                # Shared Libraries\n├── supabase/\n│   ├── functions/          # Edge Functions\n│   ├── migrations/         # Datenbank-Migrationen\n│   └── config.toml         # Supabase-Konfiguration\n├── public/                 # Statische Assets\n└── ...\n```\n\n## 🔐 Authentifizierung & Autorisierung\n\n### Rollen-System\n\n#### System-Rollen (Tabelle: `user_roles`)\n- **Super Admin**: Voller Zugriff auf alle Organisationen und System-Einstellungen\n\n#### Organisations-Rollen (Tabelle: `organization_members`)\n- **Owner**: Vollzugriff auf Organisation inkl. Mitglieder-Verwaltung\n- **Admin**: Verwaltung von Einstellungen, Templates, Kategorien\n- **Editor**: Erstellen und Bearbeiten von Mängeln, Fotos, Reports\n- **Viewer**: Nur Lesezugriff\n\n### Login-Methoden\n- E-Mail/Passwort\n- Google OAuth\n\n### Benutzer-Verwaltung\n- Einladung neuer Mitglieder per E-Mail\n- Token-basierte Einladungen mit 7 Tagen Gültigkeit\n- Automatische Profil-Erstellung bei Registrierung\n\n## 🎨 Design-System\n\nDas Projekt verwendet ein semantisches Token-System basierend auf CSS-Variablen:\n\n### Farbschema\n- **Primary**: Hauptfarbe der Anwendung\n- **Secondary**: Sekundärfarbe\n- **Accent**: Akzentfarbe\n- **Severity-Levels**: \n  - `severity-urgent` - Dringende Mängel (Rot)\n  - `severity-action` - Handlungsbedarf (Orange)\n  - `severity-note` - Hinweise (Gelb)\n  - `severity-ok` - Alles in Ordnung (Grün)\n\n### Dark Mode\nVollständige Unterstützung für Dark Mode mit automatischer System-Erkennung.\n\n## 📱 Mobile-Optimierung\n\nDie Anwendung ist vollständig responsive und bietet spezielle mobile Komponenten:\n- Touch-optimierte Bedienung\n- Optimierte Navigation für kleine Bildschirme\n- Swipe-Gesten für Bildergalerien\n- Mobile Bottom Sheets für Aktionen\n\n## 🛠️ Entwicklung\n\n### Build für Produktion\n```bash\nnpm run build\n```\n\n### Build für Development (mit Source Maps)\n```bash\nnpm run build:dev\n```\n\n### Preview des Production Builds\n```bash\nnpm run preview\n```\n\n### Linting\n```bash\nnpm run lint\n```\n\n## 🚀 Deployment\n\n### Lovable Platform (Empfohlen)\nDas Projekt ist für die Lovable-Plattform optimiert:\n1. Öffnen Sie [Lovable](https://lovable.dev/projects/a6834d91-4fe3-47cd-8980-dbf96dbbdc3d)\n2. Klicken Sie auf Share → Publish\n3. Die App wird automatisch deployed\n\n### Eigenes Hosting\n1. Build erstellen: `npm run build`\n2. Inhalt des `dist/` Ordners auf Server deployen\n3. Umgebungsvariablen auf Server konfigurieren\n4. Supabase Edge Functions separat deployen\n\n### Docker\n```bash\ndocker build -t wind-inspector .\ndocker run -p 8080:8080 wind-inspector\n```\n\n## 🔧 Supabase Edge Functions\n\n### Verfügbare Functions\n- **generate-r2-presigned-url**: Generiert signierte URLs für Bild-Uploads zu R2\n- **send-invitation-email**: Versendet Einladungs-E-Mails an neue Mitglieder\n- **test-r2-connection**: Testet die R2-Verbindung\n\n### Secrets konfigurieren\nErforderliche Secrets in Supabase:\n- `R2_ACCESS_KEY_ID`\n- `R2_SECRET_ACCESS_KEY`\n- `R2_ENDPOINT`\n- `R2_BUCKET_NAME`\n- `R2_PUBLIC_URL`\n- `RESEND_API_KEY`\n- `SUPABASE_URL`\n- `SUPABASE_SERVICE_ROLE_KEY`\n- `SUPABASE_ANON_KEY`\n- `SUPABASE_DB_URL`\n\n## 🖼️ Bild-Verwaltung\n\n### Cloudflare R2 Integration\n- Sichere Bild-Uploads über Pre-Signed URLs\n- Automatische Thumbnail-Generierung (400x300px)\n- Versionsverwaltung (Original, Bearbeitet, Thumbnail)\n- Optimierte Ladezeiten durch Thumbnail-System\n\n### Bild-Bearbeitung\n- Zuschneiden mit React Easy Crop\n- Rotation und Skalierung\n- Automatisches Speichern als neue Version\n\n## 📝 Changelog\n\nSiehe [Changelog](src/pages/Changelog.tsx) für Details zu allen Versionen.\n\n### Aktuelle Version: 1.3.0 (Oktober 2025)\n\n#### Highlights v1.3.0\n- Drag & Drop Foto-Upload in Standard-Texten\n- Vollständige Foto-Bearbeitung für Standard-Texte\n- Verbesserte Foto-Persistenz\n\n#### Highlights v1.2.0\n- Drag & Drop Sortierung für Fotos\n- Thumbnail-System für 95% schnellere Ladezeiten\n- Feature-Hints für besseres Onboarding\n- Erweiterte Rollen-basierte Zugriffskontrolle\n- Organisation-Reports für Editor+ Rollen\n\n## 🤝 Contributing\n\nBeiträge sind willkommen! Bitte beachten Sie:\n1. Fork des Repositories erstellen\n2. Feature-Branch erstellen (`git checkout -b feature/AmazingFeature`)\n3. Änderungen committen (`git commit -m 'Add some AmazingFeature'`)\n4. Branch pushen (`git push origin feature/AmazingFeature`)\n5. Pull Request erstellen\n\n### Entwicklungs-Workflow\n- Änderungen können direkt in Lovable gemacht werden\n- Commits werden automatisch zu GitHub gepusht\n- Lokale Entwicklung ist parallel möglich\n- Alle Changes werden bidirektional synchronisiert\n\n## 🔒 Sicherheit\n\n### Implementierte Sicherheitsmaßnahmen\n- Row Level Security (RLS) auf allen Tabellen\n- Rollen-basierte Zugriffskontrolle (RBAC)\n- Security Definer Functions zur Vermeidung von RLS-Rekursionen\n- HTML Sanitization mit DOMPurify\n- Sichere Authentication über Supabase\n- Input-Validierung mit Zod\n- XSS-Schutz\n\n### Best Practices\n- Keine sensiblen Daten im Client-Side Storage\n- Alle Admin-Checks serverseitig\n- Token-basierte Einladungen mit Ablaufdatum\n- Audit-Logs für wichtige Aktionen\n\n## 📄 Lizenz\n\nAlle Rechte vorbehalten.\n\n## 🆘 Support & Kontakt\n\nBei Fragen oder Problemen:\n- Issues erstellen im GitHub Repository\n- Dokumentation konsultieren unter `/changelog` in der App\n- Lovable Project: https://lovable.dev/projects/a6834d91-4fe3-47cd-8980-dbf96dbbdc3d\n\n## 🙏 Danksagungen\n\n- Built with [Lovable](https://lovable.dev)\n- UI-Komponenten von [shadcn/ui](https://ui.shadcn.com)\n- Icons von [Lucide](https://lucide.dev)\n- Backend powered by [Supabase](https://supabase.com)\n\n---\n\n**Version:** 1.3.0  \n**Letztes Update:** Oktober 2025  \n**Lovable Project URL:** https://lovable.dev/projects/a6834d91-4fe3-47cd-8980-dbf96dbbdc3d\n",
+    "packageJson": {
+      "name": "vite_react_shadcn_ts",
+      "private": true,
+      "version": "0.0.0",
+      "type": "module",
+      "scripts": {
+        "dev": "vite",
+        "build": "vite build",
+        "build:dev": "vite build --mode development",
+        "lint": "eslint .",
+        "preview": "vite preview"
+      },
+      "dependencies": {
+        "@dnd-kit/core": "^6.3.1",
+        "@dnd-kit/sortable": "^10.0.0",
+        "@dnd-kit/utilities": "^3.2.2",
+        "@hookform/resolvers": "^3.9.0",
+        "@radix-ui/react-accordion": "^1.2.0",
+        "@radix-ui/react-alert-dialog": "^1.1.1",
+        "@radix-ui/react-aspect-ratio": "^1.1.0",
+        "@radix-ui/react-avatar": "^1.1.0",
+        "@radix-ui/react-checkbox": "^1.1.1",
+        "@radix-ui/react-collapsible": "^1.1.0",
+        "@radix-ui/react-context-menu": "^2.2.1",
+        "@radix-ui/react-dialog": "^1.1.2",
+        "@radix-ui/react-dropdown-menu": "^2.1.1",
+        "@radix-ui/react-hover-card": "^1.1.1",
+        "@radix-ui/react-label": "^2.1.0",
+        "@radix-ui/react-menubar": "^1.1.1",
+        "@radix-ui/react-navigation-menu": "^1.2.0",
+        "@radix-ui/react-popover": "^1.1.1",
+        "@radix-ui/react-progress": "^1.1.0",
+        "@radix-ui/react-radio-group": "^1.2.0",
+        "@radix-ui/react-scroll-area": "^1.1.0",
+        "@radix-ui/react-select": "^2.1.1",
+        "@radix-ui/react-separator": "^1.1.0",
+        "@radix-ui/react-slider": "^1.2.0",
+        "@radix-ui/react-slot": "^1.1.0",
+        "@radix-ui/react-switch": "^1.1.0",
+        "@radix-ui/react-tabs": "^1.1.0",
+        "@radix-ui/react-toast": "^1.2.1",
+        "@radix-ui/react-toggle": "^1.1.0",
+        "@radix-ui/react-toggle-group": "^1.1.0",
+        "@radix-ui/react-tooltip": "^1.1.4",
+        "@supabase/supabase-js": "^2.49.4",
+        "@tanstack/react-query": "^5.56.2",
+        "@types/dompurify": "^3.2.0",
+        "class-variance-authority": "^0.7.1",
+        "clsx": "^2.1.1",
+        "cmdk": "^1.0.0",
+        "date-fns": "^3.6.0",
+        "dompurify": "^3.2.7",
+        "embla-carousel-react": "^8.3.0",
+        "fabric": "^6.7.1",
+        "input-otp": "^1.2.4",
+        "lucide-react": "^0.462.0",
+        "next-themes": "^0.3.0",
+        "react": "^19.2.0",
+        "react-day-picker": "^8.10.1",
+        "react-dom": "^19.2.0",
+        "react-easy-crop": "^5.5.0",
+        "react-hook-form": "^7.53.0",
+        "react-resizable-panels": "^2.1.3",
+        "react-router-dom": "^6.26.2",
+        "react-speech-kit": "^3.0.1",
+        "recharts": "^2.12.7",
+        "sonner": "^1.5.0",
+        "tailwind-merge": "^2.5.2",
+        "tailwindcss-animate": "^1.0.7",
+        "vaul": "^0.9.3",
+        "zod": "^3.23.8",
+        "zustand": "^5.0.6"
+      },
+      "devDependencies": {
+        "@eslint/js": "^9.9.0",
+        "@tailwindcss/typography": "^0.5.15",
+        "@types/node": "^22.5.5",
+        "@types/react": "^19.0.0",
+        "@types/react-dom": "^19.0.0",
+        "@vitejs/plugin-react-swc": "^3.5.0",
+        "autoprefixer": "^10.4.20",
+        "eslint": "^9.9.0",
+        "eslint-plugin-react-hooks": "^5.1.0-rc.0",
+        "eslint-plugin-react-refresh": "^0.4.9",
+        "globals": "^15.9.0",
+        "lovable-tagger": "^1.1.7",
+        "postcss": "^8.4.47",
+        "tailwindcss": "^3.4.11",
+        "typescript": "^5.8.2",
+        "typescript-eslint": "^8.0.1",
+        "vite": "^5.4.1"
+      },
+      "engines": {
+        "node": ">=20.9.0"
+      }
+    }
+  },
+  "analysis": {
+    "description": "Wind Inspector ist eine spezialisierte Web-App, mit der Betreiber und Serviceunternehmen Inspektionen von Windenergieanlagen vollständig digital, bildgestützt und revisionssicher dokumentieren können. Sie reduziert Nacharbeit, Medienbrüche und Reporting-Aufwand drastisch, indem alle Mängel, Fotos, Standardtexte und Reports mandantenfähig in einer zentralen Plattform orchestriert werden.",
+    "businessCanvas": {
+      "valueProposition": [
+        "Reduktion von Inspektions- und Nachbearbeitungsaufwand durch durchgängige digitale Mängel- und Fotodokumentation inklusive Bildbearbeitung und Vorlagen.",
+        "Höhere Anlagenverfügbarkeit und Compliance durch strukturierte Erfassung von Mängeln (Kategorien, Schweregrad) und automatisierte Reports auf Organisations- und Anlagenebene.",
+        "Skalierbare Zusammenarbeit für Betreiber, Service-Dienstleister und Gutachter dank Mehrmandantenfähigkeit, Rollen- und Rechtekonzept sowie Cloud-Speicher für alle Bilddaten."
+      ],
+      "customerSegments": [
+        {
+          "name": "Betreiber von Windparks (Onshore/Offshore)",
+          "willingness_to_pay": "High",
+          "pain_points": [
+            "Hohe Kosten und Zeitaufwand für Inspektionen, Nachbereitung und manuelles Reportings in Excel/PDF.",
+            "Schwierige Nachverfolgung von Mängeln, Fotodokumentationen und Historie über die gesamte Lebensdauer der Anlagen."
+          ]
+        },
+        {
+          "name": "Service- und Wartungsdienstleister für Windenergieanlagen",
+          "willingness_to_pay": "High",
+          "pain_points": [
+            "Ineffiziente Feldprozesse mit separaten Tools für Fotos, Protokolle und Berichte.",
+            "Fehlende mandantenfähige Lösung zur parallelen Bearbeitung verschiedener Kundenprojekte und klarer Rollenverteilung im Team."
+          ]
+        },
+        {
+          "name": "Sachverständige und Inspektionsbüros im Bereich Windenergie",
+          "willingness_to_pay": "Medium",
+          "pain_points": [
+            "Hoher Erstellungsaufwand für standardisierte, kundenindividuelle Gutachten und Reports.",
+            "Aufwendige Verwaltung von Bildmaterial, Versionen und standardisierten Textbausteinen über viele Projekte hinweg."
+          ]
+        }
+      ],
+      "revenueStreams": [
+        {
+          "source": "SaaS-Subscription pro Organisation (Mandant)",
+          "model": "Recurring",
+          "potential_arr": 120000
+        },
+        {
+          "source": "Zusatzmodule für erweitertes Reporting, Templates und Speicherpakete (Add-ons)",
+          "model": "Recurring",
+          "potential_arr": 40000
+        },
+        {
+          "source": "Onboarding, Setup & Individualisierung (Templates, Kategorien, Integrationen)",
+          "model": "One-time",
+          "potential_arr": 30000
+        }
+      ]
+    }
+  }
+}

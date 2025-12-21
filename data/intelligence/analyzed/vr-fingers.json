@@ -1,0 +1,58 @@
+{
+  "repositoryId": "4c1c7ad7-a45b-4bcd-8f9e-22791f97a8c0",
+  "name": "vr-fingers",
+  "owner": "skquievreux",
+  "harvestedAt": "2025-12-21T09:21:45.281Z",
+  "content": {
+    "readme": "# 🦸‍♂️ VR-FINGER: TecHeroes Interactive Hero Discovery\n\nAn innovative hand-tracking web application for interactive hero presentations with automatic text sequencing and idle mode. Discover 10 unique TecHeroes through gesture-based interactions!\n\n![TecHeroes VR-FINGER](https://img.shields.io/badge/Version-1.1.0-blue) ![MediaPipe](https://img.shields.io/badge/MediaPipe-Hands-green) ![WebRTC](https://img.shields.io/badge/WebRTC-Camera-orange)\n\n## 📋 Project Overview\n\nThis application leverages Google's MediaPipe Hand-Tracking technology to automatically select heroes through finger gestures and display their motivational texts sequentially. Perfect for touchless presentations and interactive learning environments.\n\n## ✨ Key Features\n\n### 🎯 Automatic Hero Discovery\n- **Finger Gesture** → 0.5s Timer → **Random Hero Selection**\n- **10 TecHeroes** with 3 unique motivational texts each\n- **Large Hero Images** (130% scaled) on clean white background\n- **Seamless Transitions** between different heroes\n\n### 🖐️ Sequential Text Display\n| Fingers | Sequence | Timing |\n|---------|----------|--------|\n| **1 Finger** | Every Word | 0.5s per word |\n| **2 Fingers** | Every 2nd Word | 0.5s per word |\n| **3 Fingers** | Every 3rd Word | 0.5s per word |\n| **4 Fingers** | Every 4th Word | 0.5s per word |\n| **5 Fingers** | Every 5th Word | 0.5s per word |\n\n### 🤖 Intelligent Idle Mode\n- **10 Seconds No Hand** → Automatic Rest Mode\n- **Text Stays Static** (no distracting animations)\n- **Hand Detected** → Reset → New Hero Search\n- **Perfect for Presentations** without constant interaction\n\n### 🦸‍♂️ TecHeroes Cast\n1. **T-Fox** - The Leader (Leadership & Motivation)\n2. **John Bot** - The Robohero (Technology & Innovation)\n3. **Anna** - The Media Heroine (Digital Literacy)\n4. **Mira** - The Code Heroine (Programming)\n5. **Matheo** - The Math Master (Mathematics)\n6. **Maya** - The Design Heroine (Creativity)\n7. **Jim** - The Tech Hero (DIY & Tinkering)\n8. **Ronney** - The Powerhouse (Mental Strength)\n9. **Farah** - The Agility Expert (Flexibility)\n10. **Luca** - The TasteHero (Learning & Experimenting)\n\n## 🚀 Quick Start\n\n### Prerequisites\n- **Modern Browser** (Chrome 80+, Firefox 70+, Safari 14+)\n- **Webcam** or built-in camera\n- **Internet Connection** (for MediaPipe CDN)\n\n### Get Started Immediately\n1. **Open File**: Open `index.html` in your browser\n2. **Start Camera**: Click button and grant camera permission\n3. **Show Hand**: Hold fingers in front of camera\n4. **Hero Appears**: After 0.5s, a hero is automatically selected\n5. **Text Sequence**: Different finger counts for word highlighting\n\n## 🎯 How to Use\n\n### Basic Workflow\n```\n1️⃣ Show Fingers → ⏱️ 0.5s Wait → 🦸‍♂️ Hero Appears\n2️⃣ More Fingers → ✨ Word Sequence Starts\n3️⃣ Change Count → 🔄 Sequence Changes\n4️⃣ Zero Fingers → ⏸️ Sequence Pauses (Text Stays Readable)\n5️⃣ 10s No Hand → 🤖 Idle Mode (Static Text)\n6️⃣ Show Hand Again → 🔄 New Hero Search\n```\n\n### Sequence Modes\n- **Always Starts** with **Hero Name** (green highlighted)\n- **Cycles Through Text** based on finger count\n- **At Text End** → jumps back to beginning\n- **Continuous** until finger count changes\n\n### Idle Behavior\n- **No Highlighting** in rest mode\n- **Text Remains Readable** without distraction\n- **Automatic Reset** on new hand detection\n- **Fresh Start** with new hero\n\n## 🛠️ Technical Details\n\n### Architecture\n```\nVR-FINGER/\n├── index.html                 # Main Application\n├── heros-description.json     # 10 Heroes with 3 Texts Each\n├── Images/                    # Hero Images (1.png - 10.png)\n├── README.md                  # This Documentation (English)\n├── README-DEUTSCH.md          # German Documentation\n└── plan.md                    # Development Plan\n```\n\n### Hand-Tracking Engine\n- **Google MediaPipe Hands** - Precise finger recognition\n- **Real-time Processing** - 30+ FPS without visual display\n- **Robust Detection** - Works in various lighting conditions\n- **Multi-Hand Support** - Up to 2 hands simultaneously\n\n### Performance Features\n- **Invisible Tracking** - Camera runs in background\n- **White Screen Focus** - Emphasis on hero presentation\n- **Smooth Transitions** - Elegant state changes\n- **Memory-Efficient** - No trail storage, optimized rendering\n\n## 🎨 Customization Options\n\n### Timing Adjustments\n```javascript\n// Hero Selection Timer (Default: 0.5s)\nsetTimeout(() => this.selectRandomHero(), 500);\n\n// Word Sequence Speed (Default: 0.5s)\nsetTimeout(() => this.showNextWord(stepSize), 500);\n\n// Idle Timer (Default: 10s)\nif (timeSinceLastHand > 10000) this.enterIdleMode();\n```\n\n### Visual Customizations\n```css\n/* Hero Image Size (Currently 130% Scaled) */\n.hero-image img {\n    transform: scale(1.3);\n}\n\n/* Text Highlighting Colors */\n.word.highlight {\n    color: #ffff00;           /* Yellow for regular words */\n    background: rgba(255, 255, 0, 0.2);\n}\n\n.hero-name.highlight {\n    color: #00ff00 !important; /* Green for hero names */\n}\n```\n\n### Adding New Heroes\n```json\n{\n  \"nr\": 11,\n  \"held\": \"New Hero\",\n  \"untertitel\": \"The Specialist\",\n  \"zitate\": [\n    \"First motivational text...\",\n    \"Second inspiring text...\",\n    \"Third encouraging text...\"\n  ]\n}\n```\n\n## 🎮 Use Cases\n\n### 📚 Education\n- **Classroom Presentations** - Interactive motivation\n- **STEM Promotion** - Heroes as role models\n- **Digital Skills** - Gamified learning\n\n### 🏢 Business & Events\n- **Trade Shows** - Capture attention\n- **Team Building** - Shared inspiration\n- **Presentations** - Interactive elements\n\n### 🎯 Therapeutic Applications\n- **Motivation Therapy** - Positive messages\n- **Accessible Control** - Touchless operation\n- **Focus Training** - Text sequence concentration\n\n## 🐛 Troubleshooting\n\n### Common Issues\n\n**❌ Camera Won't Start:**\n```\n✅ Check browser permissions\n✅ Close other camera apps\n✅ Use HTTPS (for online deployment)\n✅ Enable hardware access\n```\n\n**❌ Hand Not Detected:**\n```\n✅ Ensure good lighting\n✅ Keep hand 50-100cm from camera\n✅ Spread fingers clearly\n✅ Avoid dark backgrounds\n```\n\n**❌ Hero Won't Change:**\n```\n✅ Wait 10s without hand → Idle mode\n✅ Then show hand → New hero\n✅ Or reload page for reset\n```\n\n**❌ Text Sequence Stutters:**\n```\n✅ Briefly change finger count\n✅ Show zero fingers → Reset\n✅ New finger count for restart\n```\n\n## 🚧 Roadmap & Extensions\n\n### 🔜 Planned Features\n- [ ] **Text-to-Speech** - Voice integration\n- [ ] **Custom Heroes** - Upload your own heroes\n- [ ] **Multi-Language** - Multiple language support\n- [ ] **Analytics** - Usage statistics\n- [ ] **Fullscreen Mode** - Kiosk mode for events\n\n### 💡 Community Ideas\n- [ ] **Achievements** - Collection system for all heroes\n- [ ] **Story Mode** - Connected hero narratives\n- [ ] **Voice Commands** - Speech integration alongside gestures\n- [ ] **AR Mode** - Augmented reality overlay\n\n## 📄 License & Credits\n\n### Open Source Components\n- **MediaPipe** (Apache 2.0) - Hand-tracking engine\n- **Modern Browser APIs** - WebRTC, Canvas, ES6+\n\n### TecHeroes IP\n- **Hero Characters** - Original designs\n- **Motivational Texts** - Pedagogically developed\n- **UI/UX Concept** - User-friendly interaction\n\n## 👨‍💻 Development & Support\n\n### Tech Stack\n- **Frontend**: Vanilla HTML5, CSS3, JavaScript ES6+\n- **Hand-Tracking**: Google MediaPipe\n- **Architecture**: Single-Page Application\n- **Deployment**: Static files (no server required)\n\n### Developer Contact\n- **Issues**: GitHub Repository\n- **Features**: Pull Requests Welcome\n- **Documentation**: Wiki Available\n\n---\n\n## 🌟 Motivation\n\n> *\"Each of us TecHeroes started small! The most important thing is that you never stop asking, dreaming, and experimenting. The future needs YOU!\"*\n\n**Have fun with the TecHeroes! 🦸‍♂️✨**\n\n---\n\n*Built with ❤️ for interactive learning and motivation*</content>\n<parameter name=\"filePath\">/home/ladmin/Desktop/GIT/vr-fingers/README.md",
+    "packageJson": null
+  },
+  "analysis": {
+    "description": "VR-Fingers delivers touchless, gesture-controlled hero presentations that captivate audiences with interactive TecHeroes motivation via webcam hand-tracking. Transform education, events, and therapy into engaging, no-touch experiences that boost learning and inspiration without devices or contact.",
+    "businessCanvas": {
+      "valueProposition": [
+        "Gesture-based interactive learning with 10 motivational TecHeroes and adaptive text sequencing",
+        "Touchless operation ideal for presentations, classrooms, and public events with intelligent idle mode",
+        "Zero hardware required—just a webcam and browser—for instant deployment and scalability"
+      ],
+      "customerSegments": [
+        {
+          "name": "Educators & Schools (STEM promotion)",
+          "willingness_to_pay": "Medium",
+          "pain_points": [
+            "Engaging students without screens or devices",
+            "Need gamified, interactive motivation tools"
+          ]
+        },
+        {
+          "name": "Event Organizers & Businesses (Trade shows, team building)",
+          "willingness_to_pay": "High",
+          "pain_points": [
+            "Captivating audiences touchlessly",
+            "Interactive elements for presentations"
+          ]
+        },
+        {
+          "name": "Therapists & Training Providers",
+          "willingness_to_pay": "Medium",
+          "pain_points": [
+            "Accessible, focus-training tools",
+            "Motivational content delivery"
+          ]
+        }
+      ],
+      "revenueStreams": [
+        {
+          "source": "SaaS Subscription (hosted version)",
+          "model": "Recurring",
+          "potential_arr": 25000
+        },
+        {
+          "source": "Customization & Licensing",
+          "model": "One-time",
+          "potential_arr": 15000
+        }
+      ]
+    }
+  }
+}

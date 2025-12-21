@@ -1,0 +1,10 @@
+{
+  "repositoryId": "e98393a2-182e-449f-9185-dc5b9991f68c",
+  "name": "Videoedidshare",
+  "owner": "skquievreux",
+  "harvestedAt": "2025-12-21T09:21:46.390Z",
+  "content": {
+    "readme": "# Video Feedback Application\n\nEine interaktive Webanwendung zur Videowiedergabe mit Kommentarfunktion und Zeitmarken.\n\n## 🚀 Funktionen\n- Wiedergabe von YouTube-Videos und lokalen MP4-Dateien\n- Kommentarerstellung mit automatischem Zeitstempel\n- Visuelle Marker im Video-Progress-Bar\n- Lokale Speicherung aller Kommentare (localStorage)\n- Share-Link Generation mit eingebetteten Kommentaren\n- Responsive Design mit Fluid Player\n\n## 📦 Voraussetzungen\n- Moderner Webbrowser mit JavaScript-Unterstützung\n- Internetverbindung für YouTube-Videos\n\n## 🛠️ Installation\n1. Repository klonen:\n   ```bash\n   git clone https://github.com/ihr-benutzer/video-feedback-app.git\n   ```\n2. Alle Dateien auf einem Webserver bereitstellen\n\n## 🎮 Bedienung\n### Video laden\n1. YouTube-URL oder MP4-Link eingeben\n2. Enter drücken oder \"Video laden\" klicken\n\n### Kommentar hinzufügen\n1. Zeitpunkt im Video auswählen\n2. Kommentar eingeben\n3. \"Kommentar hinzufügen\" klicken\n\n### Zu Markern springen\n- Klick auf Kommentare in der Liste\n- Direktes Anklicken der Marker im Progress-Bar\n\n### Share-Link erstellen\n- \"Share-Link kopieren\" Button verwenden\n- Link enthält Video-URL und alle Kommentare\n\n## 📚 Verwendete Technologien\n- [Video.js](https://videojs.com/) (v7.21.1)\n- [Video.js Markers Plugin](https://github.com/spchuang/videojs-markers)\n- [Video.js YouTube Plugin](https://github.com/videojs/videojs-youtube)\n- localStorage für persistente Datenspeicherung\n\n## 🔍 Besonderheiten\n- Automatische URL-Parameter-Verarbeitung:\n  - `v`: Video-URL (URL-encoded)\n  - `c`: Kommentare (Base64-encoded JSON)\n- Mobile-optimierte Oberfläche\n- Automatische Zeitformatierung (MM:SS)\n- Fehlertolerante Kommentarverarbeitung\n\n## 📄 Lizenz\nMIT License",
+    "packageJson": null
+  }
+}

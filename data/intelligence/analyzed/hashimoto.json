@@ -1,0 +1,55 @@
+{
+  "repositoryId": "e7e4d90d-04a8-4053-bbde-26859c80f96d",
+  "name": "hashimoto",
+  "owner": "skquievreux",
+  "harvestedAt": "2025-12-21T09:21:48.312Z",
+  "content": {
+    "readme": "# Hashimoto-Thyreoiditis Selbsttest\n \nEin interaktiver Online-Selbsttest zur Ersteinschätzung von Hashimoto-Thyreoiditis Symptomen.\n\n## Projektbeschreibung\n\nDiese Webanwendung bietet einen benutzerfreundlichen Selbsttest zur Einschätzung möglicher Hashimoto-Thyreoiditis Symptome. Der Test wurde entwickelt, um Betroffenen eine erste Orientierung zu geben und sie bei Bedarf zur weiteren medizinischen Abklärung zu motivieren.\n\n## Funktionen\n\n- **Interaktiver Fragebogen**: 7 gezielte Fragen zu typischen Hashimoto-Symptomen\n- **Fortschrittsanzeige**: Visualisierung des Testfortschritts\n- **Detaillierte Auswertung**: Personalisierte Einschätzung basierend auf den Antworten\n- **Produktempfehlungen**: Maßgeschneiderte Empfehlungen je nach Testergebnis\n- **Berichtsanforderung**: Möglichkeit, einen detaillierten Bericht per E-Mail anzufordern\n- **Responsives Design**: Optimale Darstellung auf allen Geräten\n- **Dunkles Farbschema**: Augenschonendes Design\n\n## Technische Details\n\n### Verwendete Technologien\n\n- HTML5\n- CSS3\n- JavaScript\n- Vue.js 3\n- Responsive Design\n\n### Projektstruktur\n\n```\n├── index.html          # Hauptdatei mit HTML-Struktur\n├── style.css          # Styling und Layout\n├── main.js            # Vue.js Logik und Funktionalität\n└── README.md          # Projektdokumentation\n```\n\n### Features im Detail\n\n1. **Fragebogen-System**\n   - Dynamische Fragenanzeige\n   - Validierung der Antworten\n   - Navigation zwischen Fragen\n   - Fortschrittsanzeige\n\n2. **Auswertungslogik**\n   - Gewichtete Bewertung der Antworten\n   - Drei-Stufen-Bewertungssystem\n   - Personalisierte Empfehlungen\n\n3. **Kontaktformular**\n   - E-Mail-Validierung\n   - Benutzerfreundliche Fehlerbehandlung\n   - Bestätigungsnachrichten\n\n## Installation und Start\n\n1. Laden Sie alle Projektdateien herunter\n2. Öffnen Sie die `index.html` in einem modernen Webbrowser\n3. Keine weitere Installation erforderlich\n\n## Nutzung\n\n1. Beantworten Sie die 7 Fragen zu Ihren Symptomen\n2. Erhalten Sie eine sofortige Auswertung\n3. Optional: Fordern Sie einen detaillierten Bericht an\n4. Bei Bedarf: Test wiederholen\n\n## Datenschutz\n\n- Keine Speicherung persönlicher Daten\n- Lokale Verarbeitung der Antworten\n- Sichere Übermittlung der Kontaktdaten\n\n## Empfohlene Browser\n\n- Google Chrome (neueste Version)\n- Mozilla Firefox (neueste Version)\n- Microsoft Edge (neueste Version)\n- Safari (neueste Version)\n\n## Einbindung über iframe\n\nSie können den Selbsttest auch in Ihre eigene Webseite einbinden, indem Sie folgenden iframe-Code verwenden:\n\n```html\n<iframe \n  src=\"Pfad/zu/index.html\" \n  frameborder=\"0\" \n  width=\"100%\" \n  height=\"600\"\n  scrolling=\"yes\"\n  allowfullscreen>\n</iframe>\n```\n\nErsetzen Sie `Pfad/zu/index.html` mit dem tatsächlichen Pfad zu Ihrer `index.html`-Datei. Sie können die Größe des iframes (`width` und `height`) sowie andere Attribute nach Bedarf anpassen.\n\n## Hinweis\n\nDieser Selbsttest ersetzt keine ärztliche Diagnose. Bei gesundheitlichen Beschwerden wenden Sie sich bitte an einen Arzt oder eine Ärztin.",
+    "packageJson": null
+  },
+  "analysis": {
+    "description": "Hashimoto is an interactive online self-test that delivers instant, personalized assessments of Hashimoto-Thyreoiditis symptoms via a 7-question questionnaire. It motivates users to seek professional diagnosis while offering tailored product recommendations and email reports to drive health awareness and conversions.",
+    "businessCanvas": {
+      "valueProposition": [
+        "Quick, anonymous symptom self-assessment with progress tracking and detailed results",
+        "Personalized recommendations and optional email reports to guide next steps",
+        "Embeddable via iframe for seamless integration into health sites or clinics"
+      ],
+      "customerSegments": [
+        {
+          "name": "Individuals suspecting Hashimoto symptoms (women 40-60)",
+          "willingness_to_pay": "Medium",
+          "pain_points": [
+            "Undiagnosed fatigue, weight gain, and thyroid issues mistaken for other conditions",
+            "Lack of easy first-step tools before costly doctor visits"
+          ]
+        },
+        {
+          "name": "Healthcare providers and supplement brands",
+          "willingness_to_pay": "High",
+          "pain_points": [
+            "Patient acquisition and pre-screening for thyroid consultations",
+            "Lead generation for thyroid-related products and services"
+          ]
+        }
+      ],
+      "revenueStreams": [
+        {
+          "source": "Premium report access",
+          "model": "One-time",
+          "potential_arr": 5000
+        },
+        {
+          "source": "Affiliate product recommendations",
+          "model": "Commission",
+          "potential_arr": 20000
+        },
+        {
+          "source": "SaaS embedding license for clinics",
+          "model": "Recurring",
+          "potential_arr": 15000
+        }
+      ]
+    }
+  }
+}

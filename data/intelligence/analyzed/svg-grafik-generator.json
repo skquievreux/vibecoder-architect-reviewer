@@ -1,0 +1,62 @@
+{
+  "repositoryId": "60585ce3-5926-4da7-9aac-64cc06d49534",
+  "name": "svg-grafik-generator",
+  "owner": "skquievreux",
+  "harvestedAt": "2025-12-21T09:21:40.238Z",
+  "content": {
+    "readme": "# Chatbot SVG Galerie\n\nDieses Projekt erstellt eine Galerie von SVG-Grafiken für Chatbots. Jede Grafik zeigt ein Icon in einem achteckigen Rahmen auf schwarzem Hintergrund.\n\n## Funktionen\n\n*   Generierung von SVG-Grafiken basierend auf einer Liste von Chatbot-Ideen.\n*   Anzeige der Grafiken in einer responsiven HTML-Galerie.\n*   Bereitstellung des Einbindungscodes für jede SVG-Grafik.\n\n## Verwendung\n\n1.  Öffnen Sie die `index.html`-Datei in Ihrem Webbrowser.\n2.  Die Galerie zeigt die generierten SVG-Grafiken an.\n3.  Klicken Sie auf die Schaltfläche \"Kopieren\" unter jeder Grafik, um den Einbindungscode in die Zwischenablage zu kopieren.\n\n## Technologien\n\n*   HTML\n*   CSS\n*   JavaScript\n*   SVG\n*   Markdown (für die Chatbot-Ideen-Liste)\n\n## Projektstruktur\n\n*   `index.html`: Die HTML-Datei für die Galerie.\n*   `script.js`: Das JavaScript-Skript, das die SVGs generiert und die Galerie aktualisiert.\n*   `chatbot-ideen.md`: Die Markdown-Datei mit den Chatbot-Ideen.\n*   `chatbot-ideen-erweitert.md`: Die erweiterte Markdown-Datei mit zusätzlichen Chatbot-Ideen.\n*   `README.md`: Diese Datei.\n\n## Autor\n\nSteffen Quievreux",
+    "packageJson": {
+      "dependencies": {
+        "@supabase/supabase-js": "^2.49.4"
+      },
+      "engines": {
+        "node": ">=20.9.0"
+      }
+    }
+  },
+  "analysis": {
+    "description": "Instantly generate professional SVG icon galleries for chatbot projects from markdown idea lists. Copy-paste embed codes accelerate UI prototyping for developers and designers building AI assistants.",
+    "businessCanvas": {
+      "valueProposition": [
+        "Rapid SVG icon creation tailored to chatbot concepts with one-click embed code generation",
+        "Responsive gallery previews save hours of manual design and asset management",
+        "Static HTML/JS solution deploys instantly without servers or complex setups"
+      ],
+      "customerSegments": [
+        {
+          "name": "Frontend Developers & UI/UX Designers",
+          "willingness_to_pay": "Medium",
+          "pain_points": [
+            "Time wasted sourcing or custom-designing consistent chatbot icons",
+            "Inconsistent asset styling across prototypes and marketing materials"
+          ]
+        },
+        {
+          "name": "Chatbot Product Teams & Agencies",
+          "willingness_to_pay": "Medium",
+          "pain_points": [
+            "Need quick visual prototypes from idea lists for client pitches",
+            "Manual SVG editing disrupts fast iteration workflows"
+          ]
+        }
+      ],
+      "revenueStreams": [
+        {
+          "source": "SaaS Icon Generator",
+          "model": "Recurring",
+          "potential_arr": 25000
+        },
+        {
+          "source": "Premium Icon Packs",
+          "model": "One-time",
+          "potential_arr": 15000
+        },
+        {
+          "source": "Enterprise Customization",
+          "model": "Subscription",
+          "potential_arr": 50000
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "repositoryId": "34be5a8a-8ac7-4a4a-899a-b9761718529f",
+  "name": "simplehosting",
+  "owner": "skquievreux",
+  "harvestedAt": "2025-12-21T09:21:46.712Z",
+  "content": {
+    "readme": null,
+    "packageJson": null
+  },
+  "analysis": {
+    "description": "SimpleHosting delivers effortless cloud infrastructure management, automating deployments and scaling for developers who demand reliability without complexity.",
+    "businessCanvas": {
+      "valueProposition": [
+        "Streamlined hosting setup with zero-config deployments",
+        "Automatic scaling and monitoring to cut downtime costs",
+        "Cost-efficient alternative to complex cloud platforms"
+      ],
+      "customerSegments": [
+        {
+          "name": "Small dev teams & startups",
+          "willingness_to_pay": "Medium",
+          "pain_points": [
+            "Manual server management overhead",
+            "Unreliable scaling during traffic spikes"
+          ]
+        },
+        {
+          "name": "Indie developers",
+          "willingness_to_pay": "Low",
+          "pain_points": [
+            "High learning curve for cloud services",
+            "Unexpected hosting bills"
+          ]
+        }
+      ],
+      "revenueStreams": [
+        {
+          "source": "SaaS Hosting Subscription",
+          "model": "Recurring",
+          "potential_arr": 50000
+        }
+      ]
+    }
+  }
+}

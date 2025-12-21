@@ -1,0 +1,101 @@
+{
+  "repositoryId": "992a386c-ae06-4f7c-850b-acc78c0f8205",
+  "name": "Audio-Transkriptor",
+  "owner": "skquievreux",
+  "harvestedAt": "2025-12-21T09:21:44.022Z",
+  "content": {
+    "readme": "# Audio Transkriptor\n\nEine moderne Web-Anwendung zur Transkription von Audio-Dateien mit Hilfe von OpenAI's Whisper-Modell. Die App ermöglicht es Benutzern, Audio-Dateien hochzuladen und automatisch Transkripte zu generieren.\n\n## Features\n\n- **Mehrfach-Datei-Upload**: Ziehen und Ablegen oder Klick zum Auswählen mehrerer Audio-Dateien gleichzeitig\n- **Automatische Transkription**: Verwendung von OpenAI Whisper für präzise Transkripte\n- **KI-gestützte Todo-Generierung**: Automatische Extraktion von Aufgaben aus allen Transkripten\n- **Kopierbare Ergebnisse**: Ein-Klick-Kopieren der Transkripte und Todo-Listen in die Zwischenablage\n- **Quelle-Anzeige**: Optionale Angabe und Anzeige der Quelle (z.B. Chat-Name) für Transkripte\n- **Mobile-First Design**: Vollständig responsive und touch-freundlich für iOS/Android\n- **Inter Schriftart**: Moderne Typografie mit optimierter Lesbarkeit\n- **iOS/Android Farben**: Konsistente Farbpalette (#007AFF, #34C759, #F5F5F5)\n- **Echtzeit-Feedback**: Lade-Indikatoren und Fehlermeldungen\n- **Accordion UI**: Klappbare Sektionen für bessere Übersicht\n- **Zeitstempel**: Automatische Erfassung von Erstellungszeiten für Todos\n- **Unterstützung für Opus-Dateien**: Automatische Umbenennung von .opus zu .ogg für Kompatibilität\n- **SEO-optimiert**: Verbesserte Titel und Meta-Tags für Suchmaschinen\n- **Professioneller Footer**: Kontaktinformationen und Copyright-Hinweise\n\n## Versionen\n\n### v0.1.1 (Bugfix)\n\n- Behoben: TypeScript-Konfigurationsfehler beim Build\n\n### v0.1.0 (Initial)\n\n- Erste Version mit grundlegender Transkriptionsfunktionalität\n- Moderne UI mit Tailwind CSS\n- Integration mit OpenAI Whisper API\n- End-to-End Tests mit Playwright\n\n## Unterstützte Audio-Formate\n\n- FLAC\n- M4A\n- MP3\n- MP4\n- MPEG\n- MPGA\n- OGA\n- OGG\n- WAV\n- WEBM\n\n## Technologien\n\n- **Frontend**: Next.js 15, React, TypeScript\n- **Styling**: Tailwind CSS\n- **Backend**: Next.js API Routes\n- **AI**: OpenAI Whisper API\n- **Testing**: Playwright\n\n## Installation\n\n1. **Repository klonen**:\n\n   ```bash\n   git clone <repository-url>\n   cd hello-world-app\n   ```\n\n2. **Abhängigkeiten installieren**:\n\n   ```bash\n   npm install\n   ```\n\n3. **Umgebungsvariablen einrichten**:\n   Erstellen Sie eine `.env.local` Datei im Projektverzeichnis:\n\n   ```bash\n   OPENAI_API_KEY=your_openai_api_key_here\n   ```\n\n   Ersetzen Sie `your_openai_api_key_here` mit Ihrem tatsächlichen OpenAI API-Key.\n\n4. **Entwicklungsserver starten**:\n\n   ```bash\n   npm run dev\n   ```\n\n5. **Browser öffnen**:\n   Navigieren Sie zu `http://localhost:3000`\n\n## Verwendung\n\n1. Klicken Sie auf \"Audio-Datei hochladen\" oder ziehen Sie eine Audio-Datei in den Upload-Bereich\n2. Warten Sie auf die Transkription (dies kann einige Sekunden dauern)\n3. Das Transkript wird automatisch angezeigt\n4. Klicken Sie auf \"Kopieren\", um das Transkript in die Zwischenablage zu kopieren\n\n## Tests\n\nDie Anwendung enthält End-to-End-Tests mit Playwright:\n\n```bash\nnpx playwright test\n```\n\n## Deployment\n\nDie App kann auf verschiedenen Hosting-Plattformen deployed werden, die Next.js unterstützen.\n\n### Vercel Deployment\n\nDiese App ist für Vercel optimiert:\n\n1. Repository mit Vercel verbinden\n2. Umgebungsvariablen setzen: `OPENAI_API_KEY=your_key_here`\n3. Automatisches Deployment bei jedem Git-Push\n\n### Andere Plattformen\n\n- **Netlify**: Repository verbinden, Build-Einstellungen konfigurieren\n- **Railway**: Repository verbinden, Umgebungsvariablen setzen\n\n## API-Referenz\n\n### POST /api/transcribe\n\nTranskribiert eine hochgeladene Audio-Datei.\n\n**Request:**\n\n- Content-Type: multipart/form-data\n- Body: file (Audio-Datei)\n\n**Response:**\n\n```json\n{\n  \"transcript\": \"Das ist das Transkript...\"\n}\n```\n\n## Beitragen\n\nBeiträge sind willkommen! Bitte öffnen Sie Issues für Bugs oder Feature-Requests und Pull Requests für Verbesserungen.\n\n## Lizenz\n\nDieses Projekt ist unter der MIT-Lizenz lizenziert.\n\n## Changelog\n\n### v1.1.0 (2025-10-04)\n\n- 🚀 **Hosting-Migration**: Von Fly.io zu Vercel migriert\n- 🧹 **Codebase-Bereinigung**: Fly.io-Artefakte entfernt\n- 📚 **Dokumentation aktualisiert**: Deployment-Anweisungen für Vercel\n\n### v1.0.3 (2025-09-24)\n\n- 📱 **Mobile-First UI**: Vollständig responsive Design mit Touch-Targets (min 48px), optimiert für iPhone SE (375px) und iPhone Plus (414px)\n- 🎨 **Inter Schriftart**: Moderne Typografie mit optimierter Letter-Spacing (-0.5px) und Line-Height (1.5)\n- 🎨 **iOS/Android Farben**: Konsistente Farbpalette (#007AFF Blau, #34C759 Grün, #F5F5F5 Hintergrund)\n- 📍 **Quelle-Anzeige**: Optionales Feld für Chat-Namen oder Quellen, angezeigt in Transkript-Headern\n- 🔄 **Verbesserte Copy-Funktion**: Fallback für lokale Entwicklung, visuelles Feedback mit Button-Text-Änderung\n- 📐 **Adaptive Layouts**: Flexbox und Grid für mobile Geräte, deaktiviertes Drag-and-Drop für Touch\n- ✨ **Fade-Animationen**: Sanfte Übergänge (<300ms) für bessere UX\n- 🔧 **Performance-Optimierung**: Code-Splitting und responsive Ladezeiten\n\n### v1.0.1 (2025-09-24)\n\n- 🚀 **Mehrfach-Upload**: Unterstützung für gleichzeitiges Hochladen mehrerer Audio-Dateien\n- ⏱️ **Erhöhte Timeouts**: Timeout für Transkription auf 60s, für Todo-Generierung auf 30s erhöht\n- 🔍 **SEO-Optimierung**: Verbesserte Titel und Meta-Description für bessere Suchmaschinen-Sichtbarkeit\n- 🦶 **Footer hinzugefügt**: Professioneller Footer mit Kontaktinformationen\n- 📱 **WhatsApp-Hinweis**: Erweiterte Beschreibung um WhatsApp-Nutzung\n- 🔧 **Verbesserte Todo-Generierung**: Todos werden für alle Transkripte gleichzeitig generiert\n\n### v1.0.0 (2025-09-22)\n\n- 🎉 **Stable Release**: Vollständige Audio-Transkriptor-Anwendung\n- 📋 **Todo-Listen Header**: Automatischer Header beim Kopieren von Todo-Listen\n- 🏆 **Production Ready**: Alle Features getestet und stabil\n- 📚 **Umfassende Dokumentation**: Vollständige README mit allen Features\n\n### v0.2.0 (2025-09-22)\n\n- ✨ Neue Todo-Generierung: KI-gestützte Extraktion von Aufgaben aus Transkripten\n- 📅 Zeitstempel: Automatische Erfassung von Erstellungszeiten für Todos\n- 🎯 Priorisierung: Todos werden mit Prioritätsstufen (Hoch/Mittel/Niedrig) versehen\n- 📋 WhatsApp-Formatierung: Optimierte Kopierfunktion für Todo-Listen\n- 🔄 Accordion UI: Klappbare Sektionen für bessere Übersicht\n- 🧹 Automatische Bereinigung: Neue Uploads löschen vorherige Ergebnisse\n- 🎨 Verbessertes UI: Moderneres Design mit Gradienten und Icons\n\n### v0.1.0 (2025-09-22)\n\n- 🎵 Audio-Transkription mit OpenAI Whisper\n- 📤 Drag & Drop Datei-Upload\n- 📋 Kopierbare Transkripte\n- 🎨 Responsive Design mit Tailwind CSS\n- 🧪 End-to-End Tests mit Playwright\n- 🚀 Multi-Platform Deployment-Unterstützung\n\n## Kontakt\n\nFür Fragen oder Support kontaktieren Sie bitte [Ihre E-Mail/Kontaktinformationen].\n",
+    "packageJson": {
+      "name": "audio-transkriptor",
+      "version": "1.3.1",
+      "private": true,
+      "scripts": {
+        "dev": "next dev",
+        "build": "next build",
+        "start": "next start",
+        "lint": "eslint",
+        "semantic-release": "semantic-release"
+      },
+      "dependencies": {
+        "@supabase/supabase-js": "^2.49.4",
+        "@upstash/ratelimit": "^2.0.7",
+        "@upstash/redis": "^1.35.6",
+        "lucide-react": "^0.544.0",
+        "next": "^15.5.7",
+        "openai": "^5.22.0",
+        "react": "^19.2.0",
+        "react-dom": "^19.2.0"
+      },
+      "devDependencies": {
+        "@eslint/eslintrc": "^3",
+        "@playwright/test": "^1.55.0",
+        "@types/node": "^20",
+        "@types/react": "^19.2.0",
+        "@types/react-dom": "^19.2.0",
+        "autoprefixer": "^10.4.22",
+        "eslint": "^9",
+        "eslint-config-next": "15.5.3",
+        "postcss": "^8.5.6",
+        "semantic-release": "^25.0.2",
+        "tailwindcss": "^3.4.0",
+        "typescript": "^5.8.2"
+      },
+      "engines": {
+        "node": ">=22.0.0"
+      }
+    }
+  },
+  "analysis": {
+    "description": "Audio Transkriptor transforms uploaded audio files into precise transcripts and AI-extracted todo lists using OpenAI Whisper, saving hours of manual note-taking. Perfect for busy professionals turning meetings, podcasts, and calls into actionable insights with one-click copy-paste.",
+    "businessCanvas": {
+      "valueProposition": [
+        "Instant, accurate audio-to-text transcription with multi-file upload and mobile-first design",
+        "AI-powered todo extraction and prioritization from transcripts for immediate actionability",
+        "Seamless integration for WhatsApp, meetings, and content workflows with copy-to-clipboard"
+      ],
+      "customerSegments": [
+        {
+          "name": "Professionals & Managers (Meetings, Calls)",
+          "willingness_to_pay": "High",
+          "pain_points": [
+            "Time lost manually transcribing hours of audio",
+            "Missing key action items from discussions"
+          ]
+        },
+        {
+          "name": "Content Creators (Podcasts, Videos)",
+          "willingness_to_pay": "Medium",
+          "pain_points": [
+            "Tedious transcription blocking content repurposing and SEO",
+            "No easy way to extract tasks or summaries"
+          ]
+        },
+        {
+          "name": "Teams using WhatsApp/Collaboration Tools",
+          "willingness_to_pay": "Medium",
+          "pain_points": [
+            "Voice notes piling up without searchable text or todos",
+            "Poor mobile transcription experience"
+          ]
+        }
+      ],
+      "revenueStreams": [
+        {
+          "source": "SaaS Subscription (Basic/Pro tiers)",
+          "model": "Recurring",
+          "potential_arr": 50000
+        },
+        {
+          "source": "Pay-per-Transcription (via OpenAI costs + markup)",
+          "model": "Usage-based",
+          "potential_arr": 20000
+        },
+        {
+          "source": "Team/Enterprise Plans",
+          "model": "Recurring",
+          "potential_arr": 100000
+        }
+      ]
+    }
+  }
+}

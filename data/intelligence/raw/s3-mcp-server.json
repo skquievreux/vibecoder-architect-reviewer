@@ -1,0 +1,52 @@
+{
+  "repositoryId": "4f4e92c0-1c82-48e9-9e11-f02573d23ed3",
+  "name": "s3-mcp-server",
+  "owner": "skquievreux",
+  "harvestedAt": "2025-12-21T09:21:40.895Z",
+  "content": {
+    "readme": "# S3 MCP Server\n\nEin erweiterbarer Model Context Protocol (MCP) Server für AWS S3 mit umfassenden Bucket-Management-Features.\n\n## Features\n\n- 🗂️ **Bucket Management**: Liste alle verfügbaren S3 Buckets\n- 📁 **Datei-Operationen**: Upload, Download, Löschen von Dateien\n- 📋 **Ordner-Verwaltung**: Erstelle virtuelle Ordnerstrukturen\n- 🔐 **Berechtigungen**: Anzeige und Kopieren von Bucket-Berechtigungen\n- 🐳 **Docker Support**: Containerisierte Deployment-Option\n- 🚀 **CI/CD**: Automatische Build- und Deployment-Pipeline\n\n## Schnellstart\n\n### Lokale Installation\n\n```bash\n# Repository klonen\ngit clone <your-repo-url>\ncd s3-mcp-server\n\n# Dependencies installieren\nnpm install\n\n# Umgebungsvariablen konfigurieren\ncp .env.example .env\n# .env bearbeiten mit deinen AWS-Credentials\n\n# Build\nnpm run build\n\n# Server starten\nnpm start\n```\n\n### Docker\n\n```bash\n# Mit Docker Compose\ndocker-compose up -d\n\n# Oder direkt mit Docker\ndocker build -t s3-mcp-server .\ndocker run -e AWS_ACCESS_KEY_ID=... -e AWS_SECRET_ACCESS_KEY=... s3-mcp-server\n```\n\n## Claude Desktop Integration\n\n1. **Konfigurationsdatei bearbeiten**:\n   ```bash\n   # macOS\n   nano ~/Library/Application\\ Support/Claude/claude_desktop_config.json\n   \n   # Windows\n   notepad %APPDATA%\\\\Claude\\\\claude_desktop_config.json\n   ```\n\n2. **MCP Server hinzufügen**:\n   ```json\n   {\n     \"mcpServers\": {\n       \"s3\": {\n         \"command\": \"node\",\n         \"args\": [\"/path/to/s3-mcp-server/dist/index.js\"],\n         \"env\": {\n           \"AWS_REGION\": \"eu-central-1\",\n           \"AWS_ACCESS_KEY_ID\": \"your_access_key\",\n           \"AWS_SECRET_ACCESS_KEY\": \"your_secret_key\",\n           \"S3_BUCKET_NAME\": \"your_default_bucket\"\n         }\n       }\n     }\n   }\n   ```\n\n3. **Claude Desktop neustarten**\n\n## Verfügbare Tools\n\n### 🗂️ Bucket-Verwaltung\n\n- **`s3_list_buckets`**: Liste alle verfügbaren S3 Buckets\n- **`s3_get_bucket_permissions`**: Zeige Bucket-Berechtigungen (ACL + Policy)\n- **`s3_copy_bucket_permissions`**: Kopiere Berechtigungen zwischen Buckets\n\n### 📁 Datei-Operationen\n\n- **`s3_list_objects`**: Liste Objekte in einem Bucket\n- **`s3_download_file`**: Lade Datei herunter\n- **`s3_upload_file`**: Lade Datei hoch\n- **`s3_delete_file`**: Lösche Datei\n- **`s3_create_folder`**: Erstelle virtuelle Ordner\n\n## Beispiel-Usage in Claude\n\n```\nZeige mir alle meine S3 Buckets\n```\n\n```\nListe die Dateien in meinem main-bucket auf\n```\n\n```\nLade die Datei \"data/report.pdf\" aus dem Bucket \"documents\" herunter nach \"./downloads/\"\n```\n\n```\nZeige mir die Berechtigungen für den Bucket \"public-assets\"\n```\n\n```\nKopiere die Berechtigungen von \"template-bucket\" zu \"new-bucket\"\n```\n\n## Entwicklung\n\n### Lokale Entwicklung\n\n```bash\n# Development server mit auto-reload\nnpm run dev\n\n# Linting\nnpm run lint\n\n# Tests\nnpm run test\n```\n\n### Mit LocalStack (lokale S3-Simulation)\n\n```bash\n# LocalStack starten\ndocker-compose --profile test up localstack\n\n# Umgebung für LocalStack konfigurieren\nexport AWS_ENDPOINT_URL=http://localhost:4566\n```\n\n## Deployment\n\n### GitHub Container Registry\n\nDas Projekt ist für automatische Builds in GitHub Container Registry konfiguriert:\n\n```bash\n# Image pullen\ndocker pull ghcr.io/yourusername/s3-mcp-server:latest\n\n# Container starten\ndocker run -d \\\n  -e AWS_ACCESS_KEY_ID=... \\\n  -e AWS_SECRET_ACCESS_KEY=... \\\n  ghcr.io/yourusername/s3-mcp-server:latest\n```\n\n### Production Deployment\n\n1. **Container Registry Setup**: Automatische Builds bei Push zu `main`\n2. **Secrets konfigurieren**: AWS Credentials in GitHub Secrets\n3. **Deployment**: Nutze das gebaute Container Image\n\n## Umgebungsvariablen\n\n| Variable | Beschreibung | Standard |\n|----------|--------------|----------|\n| `AWS_REGION` | AWS Region | `eu-central-1` |\n| `AWS_ACCESS_KEY_ID` | AWS Access Key | **Required** |\n| `AWS_SECRET_ACCESS_KEY` | AWS Secret Key | **Required** |\n| `S3_BUCKET_NAME` | Standard-Bucket (optional) | - |\n| `LOG_LEVEL` | Log Level | `info` |\n\n## Sicherheit\n\n- ✅ Container läuft als non-root User\n- ✅ AWS Credentials nur über Umgebungsvariablen\n- ✅ Keine Secrets im Code\n- ✅ Minimal Container Image (Alpine Linux)\n\n## Troubleshooting\n\n### Claude Desktop verbindet nicht\n\n1. Überprüfe Pfad in `claude_desktop_config.json`\n2. Stelle sicher, dass `dist/index.js` existiert\n3. Überprüfe AWS Credentials\n4. Claude Desktop Log: `~/Library/Logs/Claude/`\n\n### AWS Berechtigungen\n\nMindest-IAM-Berechtigungen:\n```json\n{\n  \"Version\": \"2012-10-17\",\n  \"Statement\": [\n    {\n      \"Effect\": \"Allow\",\n      \"Action\": [\n        \"s3:ListBucket\",\n        \"s3:GetObject\",\n        \"s3:PutObject\",\n        \"s3:DeleteObject\",\n        \"s3:GetBucketAcl\",\n        \"s3:PutBucketAcl\",\n        \"s3:GetBucketPolicy\",\n        \"s3:PutBucketPolicy\"\n      ],\n      \"Resource\": \"*\"\n    }\n  ]\n}\n```\n\n## Contributing\n\n1. Fork das Repository\n2. Feature Branch erstellen (`git checkout -b feature/amazing-feature`)\n3. Commit deine Änderungen (`git commit -m 'Add amazing feature'`)\n4. Branch pushen (`git push origin feature/amazing-feature`)\n5. Pull Request erstellen\n\n## License\n\nMIT License - siehe [LICENSE](LICENSE) Datei.\n\n## Support\n\n- 📚 [MCP Documentation](https://docs.anthropic.com/en/docs/build-with-claude/computer-use#model-context-protocol-mcp)\n- 🐛 [Issues](https://github.com/yourusername/s3-mcp-server/issues)\n- 💬 [Discussions](https://github.com/yourusername/s3-mcp-server/discussions)\n",
+    "packageJson": {
+      "name": "s3-mcp-server",
+      "version": "1.0.0",
+      "description": "MCP Server für AWS S3 Zugriff mit erweiterten Features",
+      "main": "dist/index.js",
+      "type": "module",
+      "scripts": {
+        "build": "tsc",
+        "start": "node dist/index.js",
+        "dev": "tsx src/index.ts",
+        "clean": "rm -rf dist",
+        "lint": "eslint src/**/*.ts",
+        "test": "jest"
+      },
+      "bin": {
+        "s3-mcp-server": "./dist/index.js"
+      },
+      "keywords": [
+        "mcp",
+        "model-context-protocol",
+        "s3",
+        "aws",
+        "claude"
+      ],
+      "author": "Your Name",
+      "license": "MIT",
+      "dependencies": {
+        "@modelcontextprotocol/sdk": "^0.5.0",
+        "@aws-sdk/client-s3": "^3.490.0"
+      },
+      "devDependencies": {
+        "@types/node": "^20.0.0",
+        "@typescript-eslint/eslint-plugin": "^6.0.0",
+        "@typescript-eslint/parser": "^6.0.0",
+        "eslint": "^8.0.0",
+        "jest": "^29.0.0",
+        "typescript": "^5.8.2",
+        "tsx": "^4.0.0"
+      },
+      "engines": {
+        "node": ">=20.9.0"
+      }
+    }
+  }
+}
