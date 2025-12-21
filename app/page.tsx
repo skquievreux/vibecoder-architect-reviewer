@@ -5,6 +5,8 @@ import { useState, useEffect } from "react";
 import { Search, Server, Database, Code, Globe, ExternalLink, AlertTriangle, RefreshCw, LayoutGrid, List, ChevronLeft, ChevronRight, ArrowUp, ArrowDown, Sparkles, Activity } from "lucide-react";
 import Link from "next/link";
 
+import { useSession } from "next-auth/react";
+
 // Types based on our analysis script output
 type Technology = {
   id: string;
@@ -12,40 +14,10 @@ type Technology = {
   category: string;
   version: string | null;
 };
-
-type Interface = {
-  type: string;
-  direction: string;
-  details: any;
-};
-
-type Deployment = {
-  id: string;
-  provider: string;
-  url: string;
-  status: string;
-  lastDeployedAt: string;
-};
-
-type Repository = {
-  repo: {
-    name: string;
-    fullName: string; // Note: script outputs fullName but we changed query to nameWithOwner, let's check json
-    nameWithOwner: string;
-    url: string;
-    description: string;
-    isPrivate: boolean;
-    updatedAt: string;
-    pushedAt: string;
-    languages: { edges: { node: { name: string } }[] };
-  };
-  technologies: Technology[];
-  interfaces: Interface[];
-  deployments: Deployment[];
-  tasks: { id: string; title: string; priority: string; status: string }[];
-};
+// ... (rest of types)
 
 export default function Dashboard() {
+  const { data: session, status } = useSession();
   const [repos, setRepos] = useState<Repository[]>([]);
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState("");
@@ -99,6 +71,7 @@ export default function Dashboard() {
   };
 
   useEffect(() => {
+    if (status === "loading" || status === "unauthenticated") return;
     fetch("/api/repos")
       .then((res) => {
         if (!res.ok) throw new Error("Failed to fetch");
@@ -118,7 +91,7 @@ export default function Dashboard() {
         setRepos([]);
         setLoading(false);
       });
-  }, []);
+  }, [status]);
 
   const handleSort = (key: string) => {
     setSortConfig(current => ({

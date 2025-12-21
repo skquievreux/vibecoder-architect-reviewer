@@ -1,6 +1,6 @@
 {
-  "version": "1.10.26",
-  "buildTime": "2025-12-19T15:52:38.496Z",
-  "commitHash": "44052b3",
+  "version": "1.12.1",
+  "buildTime": "2025-12-21T10:09:48.781Z",
+  "commitHash": "7bed861",
   "env": "development"
 }
