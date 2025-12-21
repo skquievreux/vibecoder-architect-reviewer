@@ -1,3 +1,24 @@
+# [2.2.0](https://github.com/skquievreux/vibecoder-architect-reviewer/compare/v2.1.0...v2.2.0) (2025-12-21)
+
+
+### Bug Fixes
+
+* add vercel.json configuration for Intel AMD build ([5a14f80](https://github.com/skquievreux/vibecoder-architect-reviewer/commit/5a14f803965e9c73fddbbe698348e1a8f78e0a80))
+* Correct syntax errors in API routes ([e39f156](https://github.com/skquievreux/vibecoder-architect-reviewer/commit/e39f156ca1eb0c16ac39f625c7124d6faa3a2957))
+* Make repositoryId optional in RepoTask model ([47457a4](https://github.com/skquievreux/vibecoder-architect-reviewer/commit/47457a41bcf35e09519abcd198601a31e84ebc67))
+* Remove deprecated Vercel runtime configuration ([86ba90c](https://github.com/skquievreux/vibecoder-architect-reviewer/commit/86ba90c0940b481f18cb870bdfc8c13415d6c34c))
+* remove problematic AI tasks routes to resolve build errors ([a4d17a0](https://github.com/skquievreux/vibecoder-architect-reviewer/commit/a4d17a057c95c28db106a87c4cc96c54a4ac6c56))
+* resolve PDF generation and task verification issues ([3a11ab0](https://github.com/skquievreux/vibecoder-architect-reviewer/commit/3a11ab0d08ad6105c94074159f18ca75f4711a05))
+* revert to Prisma 5.22.0 to resolve stability issues with providers ([4e22d8f](https://github.com/skquievreux/vibecoder-architect-reviewer/commit/4e22d8f48c3adc89313b98c4e27579e101ae7289))
+
+
+### Features
+
+* Add Favorites UI and Mobile Layout Optimizations ([cbdfe40](https://github.com/skquievreux/vibecoder-architect-reviewer/commit/cbdfe40790eb1fefaac3639107fe8472f63d0bff))
+* automated portfolio intelligence pipeline ([35b7b8e](https://github.com/skquievreux/vibecoder-architect-reviewer/commit/35b7b8effcbcd3dd183872c441d60ea129546676))
+* implement mobile optimization with SwipeableRow and ActionGroup components ([8b44cfb](https://github.com/skquievreux/vibecoder-architect-reviewer/commit/8b44cfb3024779d9d5c291a48f1dd26f43f7d4a3))
+* release version 1.12.0 with portfolio pipeline ([7bed861](https://github.com/skquievreux/vibecoder-architect-reviewer/commit/7bed8618847cca1a33abd901911e4bdfcf7a7882))
+
 ## [1.12.0] (2025-12-21) - Automated Portfolio Intelligence 🧠
 
 ### 🚀 Key Features
