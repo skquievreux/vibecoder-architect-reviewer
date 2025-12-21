@@ -1,0 +1,143 @@
+{
+  "repositoryId": "a3737ad9-6191-4000-90c3-8db5096b7c3f",
+  "name": "vibecoder-architect-reviewer",
+  "owner": "skquievreux",
+  "harvestedAt": "2025-12-21T09:21:43.030Z",
+  "content": {
+    "readme": "# 🏗️ Vibecoder Architect Reviewer\n\n**Version:** 2.0.0 🚀  \n**Status:** Live in Production  \n**Deployment:** [Vercel](https://vibecode.runitfast.xyz) + [Fly.io](https://fly.io)  \n**License:** MIT\n\n> Eine umfassende Portfolio-Management- und Architektur-Review-Plattform für GitHub-Repositories mit AI-gestützter Analyse, Business Intelligence und automatisiertem Deployment-Management.\n\n---\n\n## 📋 Inhaltsverzeichnis\n\n- [Überblick](#-überblick)\n- [Features](#-features)\n- [Quick Start](#-quick-start)\n- [Technologie-Stack](#-technologie-stack)\n- [Dokumentation](#-dokumentation)\n- [Projekt-Status](#-projekt-status)\n- [Support](#-support)\n\n---\n\n## 🎯 Überblick\n\nVibecoder Architect Reviewer ist eine leistungsstarke Plattform zur Verwaltung und Analyse Ihrer GitHub-Repositories. Die Anwendung kombiniert automatische Code-Analyse, Business Intelligence und AI-gestützte Empfehlungen, um Ihnen einen vollständigen Überblick über Ihr Software-Portfolio zu geben.\n\n### Hauptziele\n\n- **📊 Portfolio-Übersicht**: Zentralisierte Ansicht aller Repositories mit Technologie-Stack und Deployment-Status\n- **💼 Business Intelligence**: Bewertung des kommerziellen Potenzials jedes Projekts\n- **🤖 AI-Unterstützung**: Automatische Task-Generierung und Architektur-Beratung\n- **🚀 Deployment-Management**: Verwaltung von Deployments und Custom Domains\n- **📝 Dokumentation**: Architecture Decision Records (ADRs) und automatische Reports\n\n---\n\n## ✨ Features\n\n### 🔍 Repository-Analyse\n- Automatische Technologie-Erkennung (Sprachen, Frameworks, Datenbanken)\n- Interface-Detection (REST APIs, GraphQL, Cloud-Services)\n- **Private Repository Support** - Vollständiger Zugriff auf 63 Repositories (15 öffentlich, 48 privat)\n\n### 💼 Business Canvas Management\n- Value Proposition Analysis\n- Customer Segmentation mit Pain Points\n- Revenue Streams mit ARR-Schätzungen\n- Cost Structure-Tracking und Optimierung\n\n### 🚀 Deployment & DNS\n- Multi-Provider Support (Vercel, Netlify, Fly.io, AWS, etc.)\n- Cloudflare DNS-Management mit automatischer CNAME-Erstellung\n- Link Health Monitoring mit Latency-Messung\n\n### 🤖 AI-Features\n- Automatische Task-Generierung (Security, Maintenance, Features)\n- Architektur-Beratung mit Best Practices\n- Repository-Beschreibungen (SEO-optimiert)\n\n### 📝 Architecture Decision Records\n- 7 vordefinierte ADRs (Next.js 16, TypeScript Strict Mode, etc.)\n- Status-Tracking (Proposed, Accepted, Deprecated)\n- Tag-basierte Kategorisierung\n\n### 📊 Reporting & Analytics\n- Portfolio-Reports mit Technologie-Verteilung\n- AI-generierte Projekt-Übersichten\n- Cost-Übersicht und Health-Scores\n\n---\n\n## 🚀 Quick Start\n\n### Voraussetzungen\n\n- **Node.js** >= 20.9.0\n- **Python** 3.8+\n- **Git**\n- **GitHub Account** mit Personal Access Token\n\n### Installation\n\n#### Option 1: Automatisches Setup (Empfohlen)\n\n```bash\n# Repository klonen\ngit clone https://github.com/yourusername/vibecoder-architect-reviewer.git\ncd vibecoder-architect-reviewer\n\n# Automatisches Setup ausführen\nnode quick-setup.js\n```\n\n#### Option 2: Manuelles Setup\n\n```bash\n# 1. Dependencies installieren\nnpm install\npip install -r analysis/requirements.txt\n\n# 2. Environment konfigurieren\ncp .env.example .env.local\n# Bearbeiten Sie .env.local und fügen Sie Ihre Credentials hinzu\n\n# 3. Datenbank initialisieren\nnpx prisma generate\nnpx prisma db push\n\n# 4. Repositories analysieren\npython analysis/analyzer.py\n\n# 5. Datenbank befüllen\nnpx prisma db seed\nnode scripts/import-portfolio.js\nnpx ts-node scripts/seed-adrs.ts\nnode scripts/seed-providers.js\n```\n\n### Konfiguration\n\n#### Erforderliche Environment-Variablen\n\n```env\n# Datenbank\nDATABASE_URL=\"file:./dev.db\"\n\n# GitHub (Erforderlich)\nGITHUB_TOKEN=\"ghp_your_token_here\"\nGITHUB_OWNER=\"your-github-username\"\n\n# Authentication (Erforderlich)\nNEXTAUTH_SECRET=\"generate-with-openssl-rand-base64-32\"\nNEXTAUTH_URL=\"http://localhost:3000\"\n\n# AI (Optional, aber empfohlen)\nPERPLEXITY_API_KEY=\"pplx_your_key\"\nOPENAI_API_KEY=\"sk_your_key\"\n\n# Cloudflare (Optional, für DNS-Management)\nCLOUDFLARE_API_TOKEN=\"your_token\"\n```\n\n**GitHub Token erstellen:**\n1. https://github.com/settings/tokens\n2. \"Generate new token (classic)\"\n3. Scopes: `repo` + `read:org`\n4. Token in `.env.local` einfügen\n\n### Development Server starten\n\n```bash\nnpm run dev\n```\n\nÖffnen Sie http://localhost:3000 im Browser.\n\n### Erste Schritte\n\n1. **Environment validieren**: `node check-env.js`\n2. **Repositories synchronisieren**: Klick auf \"Sync\" im Dashboard\n3. **Business Canvas bearbeiten**: Repository öffnen → \"Edit Canvas\"\n4. **Tasks generieren**: Klick auf \"Generate Tasks\"\n\n---\n\n## 🛠️ Technologie-Stack\n\n### Frontend\n- **Framework**: Next.js 16.0.5 (App Router)\n- **UI**: React 18.3.1 + Tailwind CSS 3.4.18\n- **Components**: Tremor React + Lucide Icons\n- **Visualisierung**: ReactFlow\n\n### Backend\n- **Runtime**: Node.js 20+ LTS\n- **API**: Next.js API Routes (Serverless)\n- **Datenbank**: PostgreSQL 16 (Managed Cluster on Fly.io)\n- **ORM**: Prisma 5.22.0\n- **Auth**: NextAuth.js (GitHub OAuth)\n\n### ☁️ Cloud Architecture (Hybrid)\n- **Frontend/Edge**: Vercel (Global Edge Network)\n- **Persistence**: Fly.io (Postgres Primary+Replica Cluster in `fra` region)\n- **Orchestration**: GitHub Actions & Vercel CI/CD\n\n### Externe Services\n- GitHub API, Cloudflare API\n- Perplexity/OpenAI (AI-Features)\n- Supabase (Optional)\n\n### Analyse-Tools\n- Python 3.8+ (Repository-Analyzer)\n- python-dotenv, requests\n\n---\n\n## 📚 Dokumentation\n\n### Haupt-Dokumentation\n- **[DOCUMENTATION.md](./DOCUMENTATION.md)** - Vollständige Funktions- und API-Dokumentation (10.000+ Wörter)\n- **[SETUP.md](./SETUP.md)** - Detaillierte Setup-Anleitung (Deutsch)\n- **[RELEASE_v0.11.1.md](./RELEASE_v0.11.1.md)** - Release Notes\n\n### Spezifische Guides\n- **[analysis/README.md](./analysis/README.md)** - GitHub Analyzer Dokumentation\n- **[.env.example](./.env.example)** - Environment-Variablen Template\n\n### API-Dokumentation\n\n**Wichtigste Endpoints:**\n- `GET /api/repos/[name]` - Repository-Details\n- `POST /api/ai/tasks` - Task-Generierung\n- `POST /api/dns` - DNS-Record erstellen\n- `PATCH /api/repos/[name]/canvas` - Business Canvas aktualisieren\n\nVollständige API-Referenz: [DOCUMENTATION.md](./DOCUMENTATION.md#api-dokumentation)\n\n---\n\n## 📊 Projekt-Status\n\n### Statistiken (v0.11.1)\n\n- **Repositories**: 63 (15 öffentlich, 48 privat)\n- **Technologies**: 284 erkannt\n- **Business Canvases**: 26\n- **ADRs**: 7\n- **AI Reports**: 3\n- **Providers**: 16\n\n### Build-Status\n\n[![Build Status](https://img.shields.io/badge/build-passing-brightgreen)]()\n[![Deployment](https://img.shields.io/badge/deployment-live-success)]()\n[![Version](https://img.shields.io/badge/version-2.0.0-blue)]()\n[![License](https://img.shields.io/badge/license-MIT-green)](./LICENSE)\n\n---\n\n## 📞 Support\n\n### Hilfe benötigt?\n\n1. **Dokumentation**: [DOCUMENTATION.md](./DOCUMENTATION.md)\n2. **Troubleshooting**: [DOCUMENTATION.md#troubleshooting](./DOCUMENTATION.md#troubleshooting)\n3. **Setup-Guide**: [SETUP.md](./SETUP.md)\n\n### Nützliche Befehle\n\n```bash\n# Status-Check\nnode check-env.js          # Environment validieren\nnode check-db-counts.js    # Datenbank-Statistiken\nnode check-logs.js         # Logs anzeigen\n\n# Sync\npython analysis/analyzer.py  # Repositories analysieren\nnpx prisma db seed           # Datenbank befüllen\n\n# Maintenance\nnpx prisma studio           # Datenbank-GUI\nnpm run build              # Production Build\n```\n\n---\n\n## 🔄 Was ist neu in v0.11.1?\n\n### 🐛 Bug Fixes\n- ✅ Sync-Fehler behoben (`analyzer.py` erstellt)\n- ✅ Private Repository Support (48 private Repos hinzugefügt)\n- ✅ React Hooks-Fehler behoben\n- ✅ Environment Variable Loading in Python\n\n### ✨ Neue Features\n- ✅ Umfassende `.env.example` mit allen Variablen\n- ✅ `check-env.js` - Environment-Validator\n- ✅ `quick-setup.js` - Automatisches Setup\n- ✅ Vollständige Dokumentation (DOCUMENTATION.md)\n\n### 📦 Daten-Wiederherstellung\n- ✅ Business Canvases: 26 importiert\n- ✅ ADRs: 7 wiederhergestellt\n- ✅ AI Reports: 3 wiederhergestellt\n- ✅ Providers: 16 wiederhergestellt\n\nVollständige Release Notes: [RELEASE_v0.11.1.md](./RELEASE_v0.11.1.md)\n\n---\n\n## 📄 License\n\nMIT License - siehe [LICENSE](./LICENSE)\n\n---\n\n**Made with ❤️ by the Vibecoder Team**\n\n[⬆ Back to top](#-vibecoder-architect-reviewer)\n",
+    "packageJson": {
+      "name": "dashboard",
+      "version": "1.10.2",
+      "private": true,
+      "scripts": {
+        "dev": "next dev",
+        "prebuild": "node scripts/update-build.js && node scripts/optimize-images.js",
+        "verify": "node scripts/verify-deployment.js",
+        "build": "npx prisma generate && next build",
+        "refresh-data": "npx -y dotenv-cli -e .env.local -- npx tsx scripts/fetch-github-repos.ts",
+        "sync:local-files": "npx -y dotenv-cli -e .env.local -- npx tsx scripts/local-files-to-db.ts ../",
+        "maintain:verify": "npx -y dotenv-cli -e .env.local -- node scripts/verify-tasks.js",
+        "maintain:node": "node scripts/standardize-node.js ../",
+        "maintain:audit": "npx -y dotenv-cli -e .env.local -- node scripts/audit-ecosystem.js ../",
+        "start": "next start",
+        "lint": "eslint",
+        "enrich": "npx tsx scripts/enrich-portfolio.ts",
+        "sync-repos": "npx tsx scripts/fetch-github-repos.ts"
+      },
+      "dependencies": {
+        "@auth/prisma-adapter": "^2.11.1",
+        "@dnd-kit/core": "^6.3.1",
+        "@dnd-kit/sortable": "^10.0.0",
+        "@dnd-kit/utilities": "^3.2.2",
+        "@sparticuz/chromium": "^143.0.0",
+        "@supabase/supabase-js": "^2.49.4",
+        "@tremor/react": "^3.18.7",
+        "@types/bcryptjs": "^2.4.6",
+        "@types/uuid": "^10.0.0",
+        "bcryptjs": "^3.0.3",
+        "clsx": "^2.1.1",
+        "cmdk": "^1.1.1",
+        "dagre": "^0.8.5",
+        "dotenv": "^17.2.3",
+        "html2canvas": "^1.4.1",
+        "jspdf": "^3.0.4",
+        "lucide-react": "^0.555.0",
+        "next": "^16.0.10",
+        "next-auth": "^4.24.13",
+        "next-themes": "^0.4.6",
+        "openai": "^6.9.1",
+        "puppeteer": "^24.31.0",
+        "puppeteer-core": "^24.33.0",
+        "react": "^18.3.1",
+        "react-dom": "^18.3.1",
+        "react-markdown": "^10.1.0",
+        "reactflow": "^11.11.4",
+        "remark-gfm": "^4.0.1",
+        "sqlite3": "^5.1.7",
+        "swagger-ui-react": "^5.31.0",
+        "tailwind-merge": "^3.4.0",
+        "uuid": "^13.0.0",
+        "zod": "^4.1.13"
+      },
+      "devDependencies": {
+        "@prisma/client": "^5.22.0",
+        "@types/dagre": "^0.7.53",
+        "@types/node": "^20",
+        "@types/react": "^18",
+        "@types/react-dom": "^18",
+        "@types/swagger-ui-react": "^5.18.0",
+        "autoprefixer": "^10.4.22",
+        "eslint": "^9",
+        "eslint-config-next": "16.0.5",
+        "playwright": "^1.57.0",
+        "postcss": "^8.5.6",
+        "prisma": "^5.22.0",
+        "tailwindcss": "^3.4.18",
+        "ts-node": "^10.9.2",
+        "typescript": "^5.8.2"
+      },
+      "prisma": {
+        "seed": "ts-node prisma/seed.ts",
+        "seed:adrs": "ts-node scripts/seed-adrs.ts",
+        "registry:generate": "ts-node scripts/generate-interface-registry.ts",
+        "rollout:all": "ts-node scripts/rollout-standards.ts"
+      },
+      "engines": {
+        "node": ">=20.9.0"
+      }
+    }
+  },
+  "analysis": {
+    "description": "Vibecoder Architect Reviewer is an AI-powered portfolio and architecture review cockpit that turns a messy landscape of GitHub repos into a clear, monetizable software asset map. It continuously analyzes code, deployments, and business potential so leaders can decide what to invest in, sunset, or ship—without wading through technical noise.",
+    "businessCanvas": {
+      "valueProposition": [
+        "Unified, always-current overview of all GitHub repositories with tech stack, deployment status, and health in one place",
+        "AI-driven business assessment of each codebase (value proposition, customer segments, revenue potential, cost structure) to guide product and investment decisions",
+        "Automated architecture reviews, task generation, and deployment/DNS management to reduce maintenance overhead and operational risk"
+      ],
+      "customerSegments": [
+        {
+          "name": "CTOs, Heads of Engineering, and Engineering Directors managing large GitHub portfolios",
+          "willingness_to_pay": "High",
+          "pain_points": [
+            "No single source of truth for tech stack, repo health, and deployment status across dozens of services",
+            "Difficulty prioritizing which projects to fund, refactor, or retire based on commercial impact rather than gut feel"
+          ]
+        },
+        {
+          "name": "Product & Portfolio Managers in software-driven companies",
+          "willingness_to_pay": "Medium",
+          "pain_points": [
+            "Limited visibility into which internal or experimental repos have real market potential",
+            "Manual, spreadsheet-based business canvases that drift out of sync with the actual code and deployments"
+          ]
+        },
+        {
+          "name": "Digital/Cloud Consultancies and Fractional CTOs managing client codebases",
+          "willingness_to_pay": "High",
+          "pain_points": [
+            "Time-consuming discovery and due diligence when onboarding new clients’ GitHub organizations",
+            "Inconsistent, ad-hoc architecture reviews and recommendations that are hard to standardize and productize"
+          ]
+        }
+      ],
+      "revenueStreams": [
+        {
+          "source": "SaaS subscription for teams (seat-based or repo-based tiers)",
+          "model": "Recurring",
+          "potential_arr": 150000
+        },
+        {
+          "source": "Enterprise licensing with SSO, private cloud/self-hosted deployment, and compliance features",
+          "model": "Recurring",
+          "potential_arr": 300000
+        },
+        {
+          "source": "Consulting add-ons (portfolio audits, migration/modernization roadmaps, custom AI reports)",
+          "model": "Non-Recurring",
+          "potential_arr": 80000
+        }
+      ]
+    }
+  }
+}

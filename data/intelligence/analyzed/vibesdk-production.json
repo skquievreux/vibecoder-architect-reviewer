@@ -1,0 +1,50 @@
+{
+  "repositoryId": "36ff1556-f4e9-4bbe-ac70-27756cbbc35a",
+  "name": "vibesdk-production",
+  "owner": "skquievreux",
+  "harvestedAt": "2025-12-21T09:21:47.069Z",
+  "content": {
+    "readme": "# vibesdk-production",
+    "packageJson": null
+  },
+  "analysis": {
+    "description": "VibeSDK Production is a backend service environment for running, scaling, and operating the Vibe SDK in real-world, high-traffic production use cases. It lets teams integrate Vibe-powered features into their products reliably while centralizing deployments, monitoring, and operational controls.",
+    "businessCanvas": {
+      "valueProposition": [
+        "Provides a stable, production-grade runtime for the Vibe SDK so product teams can ship features without building complex infrastructure themselves.",
+        "Centralizes configuration, deployment, and monitoring of Vibe-based services to reduce operational overhead and incidents.",
+        "Enables consistent, scalable performance for all Vibe SDK integrations across multiple applications and customer environments."
+      ],
+      "customerSegments": [
+        {
+          "name": "Product and engineering teams integrating Vibe SDK into customer-facing applications",
+          "willingness_to_pay": "High",
+          "pain_points": [
+            "Lack of reliable, scalable infrastructure to run SDK-based features in production.",
+            "High maintenance cost and complexity for deployments, monitoring, and incident response."
+          ]
+        },
+        {
+          "name": "Digital platforms and SaaS vendors embedding Vibe SDK as part of their own offerings",
+          "willingness_to_pay": "Medium",
+          "pain_points": [
+            "Need to ensure uptime and performance SLAs for SDK-powered features across many tenants.",
+            "Desire to minimize DevOps investment while still supporting growth and high traffic."
+          ]
+        }
+      ],
+      "revenueStreams": [
+        {
+          "source": "SaaS subscription for managed VibeSDK production environment",
+          "model": "Recurring",
+          "potential_arr": 150000
+        },
+        {
+          "source": "Premium support and reliability SLAs for production workloads",
+          "model": "Recurring",
+          "potential_arr": 50000
+        }
+      ]
+    }
+  }
+}

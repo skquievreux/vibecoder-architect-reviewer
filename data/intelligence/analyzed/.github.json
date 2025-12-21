@@ -1,0 +1,49 @@
+{
+  "repositoryId": "ed3c22bd-c245-4383-a9e2-e841d6742fe1",
+  "name": ".github",
+  "owner": "skquievreux-org",
+  "harvestedAt": "2025-12-21T09:21:48.838Z",
+  "content": {
+    "readme": null,
+    "packageJson": null
+  },
+  "analysis": {
+    "description": "Standardize GitHub repository configurations with .github for automated workflows, issue templates, and contribution guidelines. Drive developer productivity by enforcing consistent project standards across organizations.",
+    "businessCanvas": {
+      "valueProposition": [
+        "Centralized repository setup for GitHub Actions, PR templates, and funding files",
+        "Streamlined onboarding and collaboration through standardized contributor guidelines"
+      ],
+      "customerSegments": [
+        {
+          "name": "Open Source Maintainers",
+          "willingness_to_pay": "Low",
+          "pain_points": [
+            "Inconsistent repo setups causing contributor confusion",
+            "Manual workflow configuration across multiple projects"
+          ]
+        },
+        {
+          "name": "Enterprise DevOps Teams",
+          "willingness_to_pay": "Medium",
+          "pain_points": [
+            "Fragmented GitHub configurations across teams",
+            "Lack of standardized CI/CD and issue tracking templates"
+          ]
+        }
+      ],
+      "revenueStreams": [
+        {
+          "source": "GitHub Marketplace Integration",
+          "model": "Freemium",
+          "potential_arr": 5000
+        },
+        {
+          "source": "Enterprise Consulting",
+          "model": "One-time",
+          "potential_arr": 25000
+        }
+      ]
+    }
+  }
+}

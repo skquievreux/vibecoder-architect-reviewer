@@ -1,0 +1,82 @@
+{
+  "repositoryId": "af25d238-fd58-4e46-bd6a-11a909340912",
+  "name": "noobgallery",
+  "owner": "skquievreux",
+  "harvestedAt": "2025-12-21T09:21:45.832Z",
+  "content": {
+    "readme": "# noobgallery\n\nnoobgallery is a static photo gallery powered by [lightgallery.js](https://sachinchoolur.github.io/lightgallery.js/). It can be deployed to Amazon S3, which allows a huge amount of storage. (around $0.02/GB per month).\n\n<img width=\"800\" src=\"https://user-images.githubusercontent.com/96217/99756404-ef6e0c00-2aa1-11eb-9369-dde7ecb308ce.png\">\n\n## Example Sites\nYou can see noobgallery in action:\n\n* [picturethecity.com](https://picturethecity.com) (Photos by Brendan Nee)\n* [everydayphotos.net](https://everydayphotos.net) (Every Day Photos by Sean Ryan)\n\n## Features\n\n* simple photo gallery creation: just create a folder for each gallery, and copy your photos. noobgallery takes care of the rest.\n* responsive layout, supports mobile and desktop\n* slideshow and zoom in/out\n* gallery summary & tags (via optional gallery.json for each gallery)\n* bread crumbs to navigate multple gallery levels\n* navigate galleries via tags\n* about page\n* error page\n* does not upload original images\n* add optional copyright watermark\n* add optional fotomoto store links\n\n## Configuration\n\nnoobgallery uses Amazon S3 to host images. You'll need to:\n\n* Create an Amazon S3 bucket.\n* Set the bucket to be publicly readable.\n* Enable static website hosting on the bucket, use `index.html` as the index document. Note the bucket URL.\n* Create an IAM user with a new policy to have programatic access to upload the site to the bucket.\n  * note: it is not recommended to use AmazonS3FullAccess, as that grants too much permission.\n\nExample AWS Policy:\n\n```\n{\n  \"Version\": \"2012-10-17\",\n  \"Statement\": [\n    {\n      \"Sid\": \"AllowUploaderUserToList\",\n      \"Effect\": \"Allow\",\n      \"Action\": [\"s3:ListBucket\"],\n      \"Resource\": [\"arn:aws:s3:::BUCKETNAME\"]\n    },\n    {\n      \"Sid\": \"AllowUploaderUserToUpload\",\n      \"Effect\": \"Allow\",\n      \"Action\": [\n        \"s3:PutObject\",\n        \"s3:PutObjectAcl\",\n        \"s3:GetObject\",\n        \"s3:GetObjectAcl\",\n        \"s3:DeleteObject\",\n        \"s3:ListMultipartUploadParts\",\n        \"s3:AbortMultipartUpload\"\n      ],\n      \"Resource\": [\"arn:aws:s3:::BUCKETNAME/*\"]\n    }\n  ]\n}\n```\n\n* to read more about the AWS access, see [gulp-awspublish](https://github.com/pgherveou/gulp-awspublish).\n\n* create a new Access key id and secret access key for that user.\n\nAdd a `.env` file with the following variables:\n\n    GALLERY_TITLE=Your Gallery Name\n    GALLERY_DESCRIPTION=Photos by a noob\n    GALLERY_LOCAL_PATH=~/path/to/your/gallery/root\n    AWS_REGION=us-east-1\n    AWS_BUCKET=yourbucketname\n    AWS_ACCESS_KEY_ID=YOUR_AWS_ACCESS_KEY_ID\n    AWS_SECRET_ACCESS_KEY=YOUR_AWS_SECRET_ACCESS_KEY\n    USE_INDEX_FILE=true\n    FORCE_HTTPS=false\n    SHOW_ABOUT_PAGE=true\n    SHOW_CREATED_DATE=true\n    # For CloudFront distribution without a lambda function\n    ALWAYS_ADD_INDEX_HTML_FOR_CLOUD_FRONT=true\n\nYou can also set these optional variables, or leave them empty like `this=`\n\n    GOOGLE_ANALYTICS_ID=YOUR_GOOGLE_ANALYTICS_ID\n    FOOTER_HTML=&copy; 2024 <a href=\"https://yourwebsite.com\">A great photographer</a>\n    FOOTER_HTML_SUFFIX=info(at)my-domain.net\n    COPYRIGHT_MESSAGE=© my name\n    FOTOMOTO_STORE_ID=<my fotomoto store ID OR empty>\n\nSee the example file `.env.sample` for the full set of variables.\n\n## Setup\n\nInstall dependencies\n\n    npm install\n\n## Organizing images\n\nCreate a folder to contain all your galleries, and then a folder for each gallery. The name of the folder will be the name of the gallery, with underscores converted to spaces.\n\n* note on the sorting of gallery folders:\n  - if the gallery name starts with a year and month, or just a year, then the year and month will be used to sort the gallery before or after other galleries.\n  - galleries with a year and month are shown first, and sorted to have the most recent date first\n    - for example: galleries `2023-11_-_My_Photos, 2023-12_-_My_Photos` will be sorted so that `2023-12_-_My_Photos` will appear before `2023-11_-_My_Photos`\n  - galleries with only a year will appear next for that year, sorted to have the most recent data first\n    - for example: galleries `2024, 2023, 2023-11_-_My_Photos, 2023-12_-_My_Photos_B, 2023-12_-_My_Photos_A` will be sorted to `2024, 2023-12_-_My_Photos_A, 2023-12_-_My_Photos_B, 2023-11_-_My_Photos, 2023`\n  - galleries with no year or month will appear next, sorted alphabetically\n    - for example: galleries `2024, 2023, A_Photos, B_Photos, 2023-11_-_My_Photos, 2023-12_-_My_Photos` will be sorted to `2024, 2023-12_-_My_Photos, 2023-11_-_My_Photos, 2023, A_Photos, B_Photos`\n\nWithin galleries, photos are sorted by `createDate` from the image EXIF data.\n\nIf you want to specify which image should be the cover representing an entire gallery, name it starting with `cover` - like `cover.IMG_1.jpg`. This is optional, if no such file is found, then it will use the first image chronologically.\n\nExample directory structure:\n\n    gallery_root_folder\n    ├── favicon.ico\n    ├── new_york\n    │   ├── cover.jpg\n    │   ├── file2.jpg\n    │   └── file3.jpg\n    └── barcelona   \n        ├── file1.jpg\n        ├── file2.jpg\n        └── file3.jpg\n\nOptionally, you can include a `favicon.ico` file in your gallery root folder.\n\n## Image Metadata\n\nIf an image has an XMP `Title` set, this will be used as the photo title. The XMP `Description` will be used as the photo description. If this information isn't set, no title or description will be show.\n\nWant to add metadata to a photo manually with the command line? Use [exiftool](https://www.sno.phy.queensu.ca/~phil/exiftool/) to do:\n\n    exiftool -XMP:Title=\"The Eiffel Tower\" -XMP:Description=\"A nice description of this\" /path/to/your/image.jpg \n\n## Optional gallery summary and tags\n\nOptionally, extra gallery info can be added, simply by adding a text file `gallery.json` in the same folder as the photos.\n\nThe format is like this:\n\n```json\n{\n  \"summary\": \"Some shots taken on a walk through old Schiedam harbour, featuring old boats, bridges and restored windmills.\",\n  \"summaries\": [\"Summary paragraph 1\", \"Summary paragraph 2\", \"Summary paragraph 3\"],\n  \"tags\": [\"travel\", \"Schiedam\", \"NL\", \"photo-walk\", \"2023\"]\n}\n```\n\n- if you want just one paragraph, then use `summary`\n- if you want multiple paragraphs, then instead use `summaries`\n\n## Preprocessing and running locally\n\nA preprocessing and publishing task is included that takes a folder of folders that contain images and preps them and uploads them to Amazon S3 for use on a gallery website.\n\nIt creates resized versions of all photos that are 3000px wide in a subfolder called `large`, 800px wide in a subfolder called `medium` and 200px wide in a subfolder called `thumbs`. It also summarizes each folder as a JSON file called `index.json` with image metadata and paths to images.\n\nTo run the preprocessing task:\n\n    npm run build\n\nIf your `.env` file is has the correct variables, images will be processed locally and moved to the `./build` folder inside of this project.\n\nTo run locally\n\n    npm start\n\nOpen http://localhost:3000 in your browser.\n\n## Deploying\n\nYou can deploy the site to Amazon S3 with:\n\n    npm run deploy\n\nThis will work as long as you specify your AWS S3 credentials in a `.env` file.\n\nAfter publishing, you can view your gallery using the AWS S3 URL you set up, which can be a custom domain name that you own. See more about [static hosting with Amazon S3](https://docs.aws.amazon.com/AmazonS3/latest/dev/website-hosting-custom-domain-walkthrough.html).\n\nTo use CloudFront, set ALWAYS_ADD_INDEX_HTML_FOR_CLOUD_FRONT in `.env` to be true.\nIf you want cleaner URLs, you can set up [Amazon CloudFront CDN and setup a Lambda@Edge function to set subdirectory indexes](https://aws.amazon.com/blogs/compute/implementing-default-directory-indexes-in-amazon-s3-backed-amazon-cloudfront-origins-using-lambdaedge/). If you do this, you can set `USE_INDEX_FILE` to false in the `.env` file and `index.html` will be removed from all links.\n\n## Credits\n\nInspired by:\n* [lightgallery.js](https://sachinchoolur.github.io/lightgallery.js/)\n* [express-photo-gallery](https://github.com/timmydoza/express-photo-gallery)\n* [egp-prep](https://github.com/timmydoza/epg-prep)\n* [gulp-sharp-minimal](https://github.com/pupil-labs/gulp-sharp-minimal)\n",
+    "packageJson": {
+      "name": "noobgallery",
+      "version": "0.4.2",
+      "description": "A minimalistic photo gallery with images stored on Amazon S3 and just the features you want.",
+      "main": "index.js",
+      "scripts": {
+        "build": "gulp build",
+        "start": "http-server ./build/ -p 3000",
+        "deploy": "gulp deploy",
+        "only:publishAWS": "gulp publishAWS"
+      },
+      "keywords": [
+        "gallery",
+        "photography",
+        "node.js",
+        "nextjs",
+        "Amazon S3"
+      ],
+      "private": false,
+      "author": "Brendan Nee <brendan@blinktag.com> (https://picturethecity.com)",
+      "contributors": [
+        "Sean Ryan <str_ie@yahoo.co.uk> (https://everydayphotos.net)"
+      ],
+      "license": "MIT",
+      "dependencies": {
+        "concurrent-transform": "^1.0.0",
+        "del": "^7.1.0",
+        "dotenv": "^16.4.5",
+        "exif-parser": "^0.1.12",
+        "fancy-log": "^2.0.0",
+        "glob": "^10.4.1",
+        "gulp": "^4.0.2",
+        "gulp-awspublish": "^8.0.0",
+        "gulp-debug": "^5.0.1",
+        "gulp-file": "^0.4.0",
+        "gulp-plumber": "^1.2.1",
+        "gulp-pug": "^5.0.0",
+        "gulp-rename": "^2.0.0",
+        "http-server": "^14.1.1",
+        "imagesloaded": "^5.0.0",
+        "lg-autoplay.js": "^1.2.0",
+        "lg-fullscreen.js": "^1.2.0",
+        "lg-hash.js": "^1.0.0",
+        "lg-pager.js": "^1.0.0",
+        "lg-share.js": "^1.3.0",
+        "lg-thumbnail.js": "^1.2.0",
+        "lg-zoom.js": "^1.3.0",
+        "lightgallery.js": "^1.4.0",
+        "lodash": "^4.17.21",
+        "masonry-layout": "^4.2.2",
+        "merge-stream": "^2.0.0",
+        "moment": "^2.30.1",
+        "plugin-error": "^2.0.1",
+        "sharp": "^0.33.4",
+        "through2": "^4.0.2",
+        "untildify": "^5.0.0",
+        "vinyl": "^3.0.0",
+        "xmp-reader": "0.0.3"
+      },
+      "release-it": {
+        "github": {
+          "release": true
+        },
+        "plugins": {
+          "@release-it/keep-a-changelog": {
+            "filename": "CHANGELOG.md"
+          }
+        }
+      },
+      "engines": {
+        "node": ">=20.9.0"
+      }
+    }
+  }
+}

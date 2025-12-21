@@ -1,0 +1,63 @@
+{
+  "repositoryId": "e98393a2-182e-449f-9185-dc5b9991f68c",
+  "name": "Videoedidshare",
+  "owner": "skquievreux",
+  "harvestedAt": "2025-12-21T09:21:46.390Z",
+  "content": {
+    "readme": "# Video Feedback Application\n\nEine interaktive Webanwendung zur Videowiedergabe mit Kommentarfunktion und Zeitmarken.\n\n## 🚀 Funktionen\n- Wiedergabe von YouTube-Videos und lokalen MP4-Dateien\n- Kommentarerstellung mit automatischem Zeitstempel\n- Visuelle Marker im Video-Progress-Bar\n- Lokale Speicherung aller Kommentare (localStorage)\n- Share-Link Generation mit eingebetteten Kommentaren\n- Responsive Design mit Fluid Player\n\n## 📦 Voraussetzungen\n- Moderner Webbrowser mit JavaScript-Unterstützung\n- Internetverbindung für YouTube-Videos\n\n## 🛠️ Installation\n1. Repository klonen:\n   ```bash\n   git clone https://github.com/ihr-benutzer/video-feedback-app.git\n   ```\n2. Alle Dateien auf einem Webserver bereitstellen\n\n## 🎮 Bedienung\n### Video laden\n1. YouTube-URL oder MP4-Link eingeben\n2. Enter drücken oder \"Video laden\" klicken\n\n### Kommentar hinzufügen\n1. Zeitpunkt im Video auswählen\n2. Kommentar eingeben\n3. \"Kommentar hinzufügen\" klicken\n\n### Zu Markern springen\n- Klick auf Kommentare in der Liste\n- Direktes Anklicken der Marker im Progress-Bar\n\n### Share-Link erstellen\n- \"Share-Link kopieren\" Button verwenden\n- Link enthält Video-URL und alle Kommentare\n\n## 📚 Verwendete Technologien\n- [Video.js](https://videojs.com/) (v7.21.1)\n- [Video.js Markers Plugin](https://github.com/spchuang/videojs-markers)\n- [Video.js YouTube Plugin](https://github.com/videojs/videojs-youtube)\n- localStorage für persistente Datenspeicherung\n\n## 🔍 Besonderheiten\n- Automatische URL-Parameter-Verarbeitung:\n  - `v`: Video-URL (URL-encoded)\n  - `c`: Kommentare (Base64-encoded JSON)\n- Mobile-optimierte Oberfläche\n- Automatische Zeitformatierung (MM:SS)\n- Fehlertolerante Kommentarverarbeitung\n\n## 📄 Lizenz\nMIT License",
+    "packageJson": null
+  },
+  "analysis": {
+    "description": "A lightweight web app that lets teams leave precise, time-stamped comments on any YouTube or MP4 video and share them via a single URL. Perfect for fast, asynchronous reviews of marketing, training, or product videos without new logins or complex tooling.",
+    "businessCanvas": {
+      "valueProposition": [
+        "Enable fast, asynchronous video reviews by attaching comments directly to exact timestamps in the video.",
+        "Eliminate bulky review workflows by sharing all feedback through a single link that encodes video and comments.",
+        "Reduce onboarding and IT overhead with a browser-only tool that requires no installs, accounts, or backend infrastructure."
+      ],
+      "customerSegments": [
+        {
+          "name": "Marketing and creative agencies reviewing video assets with clients",
+          "willingness_to_pay": "High",
+          "pain_points": [
+            "Fragmented feedback across emails, chats, and PDFs with unclear video timestamps",
+            "Time-consuming review cycles and misunderstandings about which video moment a comment refers to"
+          ]
+        },
+        {
+          "name": "Product teams and UX designers reviewing demo and tutorial videos",
+          "willingness_to_pay": "Medium",
+          "pain_points": [
+            "Difficulty collecting structured, time-based feedback from stakeholders on product demos",
+            "Lack of simple tools for non-technical users to comment on specific moments in videos"
+          ]
+        },
+        {
+          "name": "Training and e-learning providers collecting learner feedback on course videos",
+          "willingness_to_pay": "Medium",
+          "pain_points": [
+            "Limited insight into which parts of training videos confuse or disengage learners",
+            "No easy way for learners to attach comments to exact points in the video timeline"
+          ]
+        }
+      ],
+      "revenueStreams": [
+        {
+          "source": "SaaS subscription for teams (workspace with shared libraries, admin, and export features)",
+          "model": "Recurring",
+          "potential_arr": 30000
+        },
+        {
+          "source": "Client-facing review portals for agencies (branded video review spaces per client)",
+          "model": "Recurring",
+          "potential_arr": 20000
+        },
+        {
+          "source": "Usage-based pricing for high-volume sharing (per number of shared review links or videos)",
+          "model": "Usage-based",
+          "potential_arr": 10000
+        }
+      ]
+    }
+  }
+}

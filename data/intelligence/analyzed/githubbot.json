@@ -1,0 +1,63 @@
+{
+  "repositoryId": "38f52489-7ee0-46b0-8944-bb49e1f23b04",
+  "name": "githubbot",
+  "owner": "skquievreux",
+  "harvestedAt": "2025-12-21T09:21:40.065Z",
+  "content": {
+    "readme": null,
+    "packageJson": null
+  },
+  "analysis": {
+    "description": "githubbot is an AI-powered assistant that automates routine GitHub repository workflows, freeing engineering teams from low‑value manual tasks. It acts as a smart collaborator inside your repos, streamlining issue triage, PR hygiene, and project maintenance so developers can focus on shipping product.",
+    "businessCanvas": {
+      "valueProposition": [
+        "Reduce engineering time spent on repetitive GitHub chores (labelling, merging, housekeeping) through automated bot workflows.",
+        "Improve code quality and delivery speed by enforcing consistent PR, review, and branching practices directly in GitHub.",
+        "Provide actionable repository insights and automated nudges that keep backlogs healthy and projects moving without extra PM overhead."
+      ],
+      "customerSegments": [
+        {
+          "name": "Engineering leaders at SaaS and digital product companies",
+          "willingness_to_pay": "High",
+          "pain_points": [
+            "Senior engineers wasting time on reviews, triage, and repo maintenance instead of core feature work",
+            "Lack of consistent standards and automation across dozens or hundreds of GitHub repositories"
+          ]
+        },
+        {
+          "name": "Developer productivity / platform teams in mid–large enterprises",
+          "willingness_to_pay": "High",
+          "pain_points": [
+            "Need to standardize workflows and policies across many teams and orgs inside GitHub",
+            "Pressure to improve DORA metrics without adding more custom tooling to build and maintain"
+          ]
+        },
+        {
+          "name": "Small dev agencies and consultancies managing many client repos",
+          "willingness_to_pay": "Medium",
+          "pain_points": [
+            "Context switching across many client repositories causing overhead and missed follow‑ups",
+            "Limited capacity to enforce consistent workflow and quality practices across projects"
+          ]
+        }
+      ],
+      "revenueStreams": [
+        {
+          "source": "SaaS subscription per GitHub organization",
+          "model": "Recurring",
+          "potential_arr": 120000
+        },
+        {
+          "source": "Usage-based add-ons (per active repository or automation run)",
+          "model": "Recurring",
+          "potential_arr": 60000
+        },
+        {
+          "source": "Enterprise plan with premium support and custom workflow integration",
+          "model": "Recurring",
+          "potential_arr": 200000
+        }
+      ]
+    }
+  }
+}

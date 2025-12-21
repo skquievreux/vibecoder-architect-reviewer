@@ -1,0 +1,46 @@
+name: Sync Vercel Deployments
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 */6 * * * *' # Every 6 hours
+  push:
+    branches: [ main ]
+    paths:
+      - 'scripts/sync-vercel-enhanced.ts'
+
+jobs:
+  sync-vercel:
+    runs-on: ubuntu-latest
+    environment: production
+    
+    steps:
+    - uses: actions/checkout@v4
+      
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20'
+        cache: 'npm'
+        
+    - name: Install dependencies
+      run: npm ci --legacy-peer-deps
+      
+    - name: Sync Vercel Deployments
+      env:
+        VERCEL_API_TOKEN: ${{ secrets.VERCEL_API_TOKEN }}
+        DATABASE_URL: ${{ secrets.DATABASE_URL }}
+      run: |
+        echo "🚀 Syncing Vercel deployments and domains..."
+        npx tsx scripts/sync-vercel-enhanced.ts
+        
+    - name: Deploy Dashboard Update
+      env:
+        DASHBOARD_URL: ${{ secrets.DASHBOARD_URL }}
+        DASHBOARD_API_KEY: ${{ secrets.DASHBOARD_API_KEY }}
+      run: |
+        echo "📊 Triggering dashboard update..."
+        curl -X POST "$DASHBOARD_URL/api/system/ingest" \
+          -H "Content-Type: application/json" \
+          -H "x-api-key: $DASHBOARD_API_KEY" \
+          -d '{"event": "vercel_sync_completed", "timestamp": "'$(date -u +%Y-%m-%dT%H:%M:%SZ)'"}' || true

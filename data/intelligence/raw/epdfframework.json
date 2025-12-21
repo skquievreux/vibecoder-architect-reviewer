@@ -1,0 +1,57 @@
+{
+  "repositoryId": "52296c93-e54d-4319-ab51-e0367246131f",
+  "name": "epdfframework",
+  "owner": "skquievreux",
+  "harvestedAt": "2025-12-21T09:21:49.357Z",
+  "content": {
+    "readme": "# Interaktives ePDF Framework - Designtrends 2025\n\n**Version 1.5.0 \"Optimized\"** - Performance-optimierte Version mit Service Worker und Lazy Loading\n\nEin wiederverwendbares HTML5-basiertes Framework für die Erstellung interaktiver ePDFs, spezialisiert auf Designtrends. Dieses Framework kombiniert moderne Webtechnologien mit KI-gestützten Workflows und professionellen Test-Suites für pixel-genaue Implementierungen.\n\n## 🚀 Features\n\n### Core Features (v1.0.0)\n\n- **HTML5-basiert**: Vollständig browserkompatibel und responsiv\n- **Interaktive Elemente**: Klickbare Buttons, Videos, Hover-Effekte\n- **Animierte Übergänge**: GSAP-Animationen mit Scroll-Trigger\n- **Modulare Architektur**: Einfach erweiterbar für verschiedene Projekte\n- **KI-Integration**: Optimierte Workflows mit KI-Tools\n- **PDF-Export**: Automatisierte Generierung mit Puppeteer\n\n### Neue Features (v1.5.0)\n\n- **🚀 Service Worker**: Offline-Caching und Background-Updates für optimale Performance\n- **⚡ Lazy Loading**: Automatisches Laden von Bildern und Assets bei Bedarf\n- **🏷️ Tag-Badges System**: Visuelle Content-Tags für bessere Navigation und Hierarchie\n- **🎯 Reparierte Navigation**: Single-Page-System ohne Accessibility-Verletzungen\n- **📊 Erweiterte Performance**: Core Web Vitals Monitoring und Optimierungen\n- **🤖 Automatisierte Tests**: Vollständige Playwright-Test-Suite für Design-Verifikation\n- **📸 Screenshot-Gallery**: Automatisch generierte Screenshots mit interaktiver Gallery\n- **🧪 Qualitätssicherung**: Pixel-genaue Design-Implementierung mit visueller Verifikation\n- **📱 Cross-Device-Testing**: Separate Tests für Desktop und Mobile\n- **⚡ Performance-Monitoring**: Automatisierte Ladezeit- und Fehleranalyse\n\n## � Projektstruktur\n\n```\nepdf-framework/\n├── index.html              # Haupt-HTML-Datei\n├── css/\n│   ├── styles.css          # Hauptstyling mit Tailwind\n│   └── animations.css      # CSS-Animationen\n├── js/\n│   ├── main.js             # Interaktivität und Logik\n│   └── gsap.js             # GSAP-Animationen\n├── assets/\n│   ├── videos/             # Videodateien\n│   └── images/             # Bilder und Grafiken\n├── scripts/\n│   └── generate-pdf.js     # PDF-Generierung\n├── pdf/\n│   └── output.pdf          # Exportiertes PDF\n└── package.json            # Node.js Dependencies\n```\n\n## 🛠️ Installation\n\n1. **Repository klonen**:\n\n   ```bash\n   git clone <repository-url>\n   cd epdf-framework\n   ```\n\n2. **Dependencies installieren**:\n\n   ```bash\n   npm install\n   ```\n\n3. **Entwicklungsserver starten**:\n   ```bash\n   npm run dev\n   ```\n   Öffne http://localhost:3000 in deinem Browser.\n\n## 🎨 Design-System & Verwendung\n\n### Professionelles Design-System\n\nDas Framework verwendet ein umfassendes Design-System mit:\n\n- **CSS-Variablen**: Konsistente Farben, Typografie und Spacing\n- **Komponenten-Bibliothek**: Buttons, Cards, Layouts\n- **Responsive Design**: Mobile-first Ansatz\n- **Accessibility**: WCAG-konforme Features\n- **Dark Mode**: Automatische Anpassung\n\n### Grundlegende Anpassung\n\n1. **Design-Variablen**: Bearbeite `:root` in `css/styles.css` für globale Änderungen\n2. **Komponenten**: Verwende die CSS-Klassen aus dem Design-System\n3. **Inhalte ändern**: Bearbeite `index.html` für Text, Bilder und Videos\n4. **Neue Trends hinzufügen**: Verwende die `addTrend()` Funktion in `js/main.js`\n\n### Design-System Komponenten\n\n#### Buttons\n\n```html\n<!-- Primäre Buttons -->\n<button class=\"btn btn-primary\">Primär</button>\n<button class=\"btn btn-primary btn-lg\">Groß</button>\n\n<!-- Sekundäre Buttons -->\n<button class=\"btn btn-secondary\">Sekundär</button>\n\n<!-- CTA Buttons (veraltet) -->\n<button class=\"cta-button\">Call-to-Action</button>\n```\n\n#### Cards\n\n```html\n<!-- Standard Card -->\n<div class=\"card\">\n  <div class=\"card-header\">Titel</div>\n  <div class=\"card-body\">Inhalt</div>\n  <div class=\"card-footer\">Footer</div>\n</div>\n\n<!-- Trend Card -->\n<div class=\"trend-card\">\n  <div class=\"card-header\">\n    <img src=\"...\" alt=\"...\" />\n  </div>\n  <div class=\"card-body\">\n    <h3>Titel</h3>\n    <p>Beschreibung</p>\n  </div>\n</div>\n```\n\n#### Layout-System\n\n```html\n<!-- Container -->\n<div class=\"container\">\n  <!-- Grid -->\n  <div class=\"grid grid-cols-1 md:grid-cols-3\">\n    <div>Spalte 1</div>\n    <div>Spalte 2</div>\n    <div>Spalte 3</div>\n  </div>\n</div>\n```\n\n#### Farbpalette\n\n```css\n/* Verfügbare CSS-Variablen */\n--color-primary: #6366f1 /* Indigo */ --color-secondary: #ec4899 /* Pink */ --color-accent: #f59e0b\n  /* Amber */ --color-success: #10b981 /* Emerald */ --color-gray-900: #111827 /* Dark Gray */;\n```\n\n### Modulare Komponenten\n\nDas Framework verwendet modulare Komponenten für einfache Wiederverwendung:\n\n```javascript\n// Neuen Trend hinzufügen\nwindow.addTrend(\n  'Neuer Trend Titel',\n  'Beschreibung des Trends...',\n  'assets/images/trend-image.jpg',\n  'assets/videos/trend-video.mp4' // optional\n);\n```\n\n### GSAP-Animationen erweitern\n\n```javascript\n// Neue Animation hinzufügen\nwindow.addGsapAnimation(\n  '.neues-element',\n  { opacity: 0, x: 50, duration: 0.8 },\n  { start: 'top 80%' }\n);\n```\n\n## 🤖 KI-Integration\n\n### GitHub Copilot\n\n- **Code-Vervollständigung**: Copilot schlägt automatisch Code vor basierend auf Kommentaren\n- **Funktionsgenerierung**: Beschreibe gewünschte Funktionalität in Kommentaren\n- **Debugging**: Copilot hilft bei Fehlerbehebung\n\n### Beispiel-Prompts für Copilot\n\n```javascript\n// Erstelle eine Funktion zum dynamischen Laden von Trend-Daten\n// Funktion sollte Daten von einer API laden und in die Seite einfügen\n// Verwende async/await für sauberen Code\n// Füge Fehlerbehandlung hinzu\n```\n\n### KI-gestützte Designgenerierung\n\n1. **MidJourney/DALL·E**: Generiere Trend-Illustrationen\n   - Prompt: \"Futuristische UI-Designs für 2025, minimalistische Ästhetik\"\n\n2. **Figma mit KI-Plugins**: Erstelle Layouts automatisch\n   - Verwende Plugins wie \"Magician\" für schnelle Prototyping\n\n3. **Code-Optimierung**: Lass KI-Tools Code analysieren und verbessern\n   - Performance-Optimierung\n   - Accessibility-Verbesserungen\n\n## 📄 PDF-Generierung\n\n### Automatische Generierung\n\n```bash\nnpm run generate-pdf\n```\n\nDas generiert `pdf/output.pdf` aus der aktuellen HTML-Seite.\n\n### Custom PDF-Optionen\n\n```javascript\nconst { generateCustomPDF } = require('./scripts/generate-pdf');\n\ngenerateCustomPDF({\n  outputPath: 'pdf/custom-design-trends.pdf',\n  format: 'A4',\n  waitTime: 3000,\n});\n```\n\n## 🎯 Anpassung für neue Projekte\n\n1. **Assets ersetzen**: Tausche Videos und Bilder in `assets/` aus\n2. **Inhalte aktualisieren**: Bearbeite Texte und Links in `index.html`\n3. **Farbschema ändern**: Modifiziere CSS-Variablen in `css/styles.css`\n4. **Neue Sektionen hinzufügen**: Kopiere bestehende Abschnitte und passe an\n\n## 📱 Responsive Design\n\nDas Framework ist vollständig responsiv:\n\n- **Desktop**: Volle Funktionalität mit allen Animationen\n- **Tablet**: Optimierte Layouts für mittlere Bildschirme\n- **Mobile**: Vereinfachte Darstellung mit Touch-Optimierung\n\n## 🚀 Performance-Optimierung\n\n- **Lazy Loading**: Videos und Bilder werden bei Bedarf geladen\n- **Minimierung**: Verwende Build-Tools für Produktion\n- **CDN**: Statische Assets über CDN ausliefern\n\n## 🧪 Testing\n\n### Browser-Kompatibilität\n\nTeste in:\n\n- Chrome/Chromium\n- Firefox\n- Safari\n- Edge\n\n### Responsivität\n\nVerwende Browser-DevTools für verschiedene Bildschirmgrößen.\n\n## 🛠️ Infrastruktur-Check\n\nUm sicherzustellen, dass alle Bibliotheken aktuell sind und zusammen funktionieren, führen Sie regelmäßig den Infrastruktur-Check durch:\n\n```bash\nnpm run infrastructure-check\n```\n\nDieser Befehl führt folgende Schritte aus:\n\n- **Überprüfung auf veraltete Pakete** (`npm outdated`): Zeigt Pakete, die neuer als die aktuellen SemVer-Bereiche sind\n- **Sicherheitsaudit** (`npm audit`): Sucht nach bekannten Sicherheitslücken in Abhängigkeiten\n- **Vollständige Test-Suite** (`npm test`): Führt alle Playwright-Tests aus, um Funktionalität zu verifizieren\n\n### Sicherheitsupdates\n\nFalls Sicherheitslücken gefunden werden:\n\n- Verwenden Sie `npm audit fix` für automatische Fixes ohne breaking changes\n- Bei Bedarf `npm audit fix --force` für breaking changes (testen Sie anschließend gründlich)\n\n### Abhängigkeitsupdates\n\nFür manuelle Updates:\n\n- `npm update` für Updates innerhalb der SemVer-Bereiche\n- Direkte Versionsänderungen in `package.json` für Major-Updates\n- Immer Tests nach Updates ausführen\n\n## 📚 Erweiterte Features\n\n### Video-Integration\n\n- Lokale Videos: `<video>` Tag\n- Externe Videos: Vimeo/YouTube Embeds\n- Lazy Loading für Performance\n\n### Animationen\n\n- GSAP für komplexe Animationen\n- Scroll-Trigger für Interaktionen\n- CSS-Animationen für einfache Effekte\n\n### Interaktivität\n\n- Button-Klicks mit Callbacks\n- Hover-Effekte\n- Smooth Scrolling Navigation\n\n## 🤝 Beitrag\n\n1. Fork das Repository\n2. Erstelle einen Feature-Branch\n3. Commit deine Änderungen\n4. Push zum Branch\n5. Erstelle einen Pull Request\n\n## 📄 Lizenz\n\nMIT License - siehe LICENSE Datei für Details.\n\n## 📞 Support\n\nBei Fragen oder Problemen:\n\n- Erstelle ein Issue im Repository\n- Kontaktiere das MARVIS.design Team\n\n---\n\n**Entwickelt mit ❤️ von MARVIS.design**\n",
+    "packageJson": {
+      "name": "interactive-epdf-framework",
+      "version": "1.5.2",
+      "description": "Wiederverwendbares Framework für interaktive ePDFs zu Designtrends",
+      "main": "index.html",
+      "scripts": {
+        "generate-pdf": "node scripts/generate-pdf.js",
+        "generate-full-pdf": "node scripts/generate-full-pdf.js",
+        "test-pdf": "node scripts/test-pdf.js",
+        "dev": "npx http-server . -p 3000",
+        "build": "npm run generate-full-pdf",
+        "optimize": "node scripts/optimize-build.js",
+        "build-optimized": "npm run optimize",
+        "test": "npm run test-pdf",
+        "format": "prettier --write \"**/*.{js,css,md,json,html}\"",
+        "format:check": "prettier --check \"**/*.{js,css,md,json,html}\"",
+        "lint": "prettier --check \"**/*.{js,css,md,json,html}\"",
+        "infrastructure-check": "npm outdated && npm audit && npm test"
+      },
+      "repository": {
+        "type": "git",
+        "url": "https://github.com/skquievreux/epdfframework.git"
+      },
+      "keywords": [
+        "epdf",
+        "interactive",
+        "design-trends",
+        "html5",
+        "framework"
+      ],
+      "author": "MARVIS.design",
+      "license": "MIT",
+      "dependencies": {
+        "@types/three": "^0.180.0",
+        "pdf-lib": "^1.17.1",
+        "puppeteer": "^24.23.0",
+        "three": "^0.180.0"
+      },
+      "devDependencies": {
+        "@playwright/test": "^1.56.0",
+        "http-server": "^14.1.1",
+        "pdf-parse": "^1.1.1",
+        "prettier": "^3.6.2"
+      },
+      "engines": {
+        "node": ">=20.9.0"
+      }
+    }
+  }
+}

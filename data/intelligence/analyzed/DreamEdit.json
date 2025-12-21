@@ -1,0 +1,96 @@
+{
+  "repositoryId": "98654118-0471-45d9-a936-38aed315c96b",
+  "name": "DreamEdit",
+  "owner": "skquievreux",
+  "harvestedAt": "2025-12-21T09:21:43.260Z",
+  "content": {
+    "readme": "# DreamEdit - KI-Bildbearbeitung\n\nEine moderne Next.js-Anwendung für die KI-gestützte Bildbearbeitung mit Fal AI.\n\n## Features\n\n- **Bild-Upload**: Laden Sie Bilder über eine schöne Drag-and-Drop-Oberfläche hoch\n- **KI-Bildbearbeitung**: Bearbeiten Sie Bilder mit fortschrittlicher KI\n  (Fal AI Seedream)\n- **Texteingabe**: Beschreiben Sie die gewünschten Änderungen mit Text\n- **Spracheingabe**: Verwenden Sie die Web Speech API für Sprach-zu-Text-Eingabe\n  mit automatischer Stille-Erkennung\n- **Historie**: Verfolgen Sie alle Bearbeitungsschritte mit Thumbnails und Prompts\n- **Visuelles Feedback**: Animierte Lade-Nachrichten während der KI-Generierung\n- **Share-Funktion**: Teilen Sie Ihre bearbeiteten Bilder in sozialen Medien\n- **Responsive Design**: Moderne, mobile-freundliche Benutzeroberfläche\n- **Umgebungsvariablen**: Sichere Speicherung von API-Schlüsseln\n- **Mandantenfähigkeit**: Unterstützung für mehrere Mandanten mit individueller Branding\n  und Konfiguration\n- **Mandanten-Anzeige**: Prominente Anzeige des aktuellen Mandanten im Header und\n  Browser-Titel\n- **URL-Parameter**: Dynamische Anpassung der App über URL-Parameter (`?tenant=name`)\n- **Admin-Bereich**: Verwaltungsbereich für Administratoren zur Konfiguration und\n  Überwachung\n- **Format-Auswahl**: Auswahl verschiedener Bildformate für die Ausgabe\n  (16:9, 1:1, 9:16, Instagram)\n- **Umfassende Tests**: Automatisierte Test-Suite mit visueller\n  Ergebnisanzeige\n- **Dynamische Preview-Bilder**: Automatische Generierung von Open Graph Bildern\n  für Social Media Sharing\n- **Tenant-spezifische OG-Bilder**: Individuelle Vorschau-Bilder für jeden Mandanten\n  mit Branding\n- **Playwright-Integration**: Server-seitige Screenshot-Generierung für perfekte\n  Bildqualität\n- **Vollständiges Session-Management**: Anonymes User-Tracking mit UUID-basierten Sessions\n- **Nutzer-Statistiken**: Echtzeit-Anzeige der bearbeiteten Bilder pro Session\n- **Achievement-System**: Motivations-Badges (STARTER, ADVANCED, EXPERT, PRO)\n- **Sichere API-Architektur**: Serverseitige FAL API ohne Client-Exposition\n- **Fehlerresistente App**: Funktioniert auch bei API-Ausfällen (Graceful Degradation)\n\n## Technologie-Stack\n\n- **Frontend**: Next.js 16, React 19\n- **KI-API**: Fal AI (Seedream v4 Edit)\n- **Styling**: Tailwind CSS v4.0\n- **Sprache**: Web Speech API\n- **Build**: Next.js\n- **Linting**: ESLint v9 mit Flat Config\n- **Session Management**: Supabase mit UUID-basiertem Tracking\n\n## Installation\n\n1. Klone das Repository:\n\n   ```bash\n   git clone <repository-url>\n   cd dreamedit\n   ```\n\n2. Installiere die Abhängigkeiten:\n\n   ```bash\n   npm install\n   ```\n\n3. Erstelle eine `.env.local` Datei mit deinen API-Keys:\n\n   ```env\n   # FAL AI für Bildbearbeitung (serverseitig)\n   FAL_API_KEY=dein-fal-api-key-hier\n\n   # Supabase für Session-Management (optional)\n   NEXT_PUBLIC_SUPABASE_URL=https://dein-project.supabase.co\n   NEXT_PUBLIC_SUPABASE_ANON_KEY=dein-anon-key-hier\n\n   # Session-Management aktivieren\n   ENABLE_SESSION_MANAGEMENT=true\n   ```\n\n4. Starte den Entwicklungsserver:\n\n   ```bash\n   npm run dev\n   ```\n\n5. Öffne [http://localhost:3000](http://localhost:3000) in deinem Browser.\n\n## 🚀 Deployment\n\n### Vercel (empfohlen)\n\n1. **Repository pushen**: Stelle sicher, dass dein Code auf GitHub ist\n2. **Vercel verbinden**: Gehe zu [vercel.com](https://vercel.com) und importiere\n   dein Repository\n3. **Environment Variables setzen**:\n   - `FAL_API_KEY`: Dein Fal AI API Key (serverseitig)\n   - `NEXT_PUBLIC_SUPABASE_URL`: Supabase Project URL (optional)\n   - `NEXT_PUBLIC_SUPABASE_ANON_KEY`: Supabase Anon Key (optional)\n   - `ENABLE_SESSION_MANAGEMENT`: true/false (optional)\n4. **Automatisches Deployment**: Bei jedem Git-Push wird automatisch deployed\n\n### Lokale Entwicklung\n\n```bash\nnpm run dev\n```\n\n## Verwendung\n\n1. **Bild hochladen**: Klicke auf \"Bild auswählen\" und wähle ein Bild aus\n2. **Bearbeitung beschreiben**: Gib im Textfeld ein, wie das Bild bearbeitet\n   werden soll\n3. **Spracheingabe**: Verwende den \"🎤 Spracheingabe\" Button für Sprach-zu-Text\n4. **KI bearbeiten**: Klicke auf \"✨ KI bearbeiten\" um die Bearbeitung zu starten\n5. **Historie**: Klicke auf Thumbnails in der Historie, um zu früheren Versionen\n   zurückzukehren\n\n## Mandanten-Funktionalität\n\nDreamEdit unterstützt mehrere Mandanten mit individueller Branding:\n\n### Verfügbare Mandanten\n\n- **Unlock Your Song**: `/?tenant=unlockyoursong`\n- **Demo Kreativ-Agentur**: `/?tenant=demo-agency`\n\n### Mandanten-Anzeige\n\n- **Browser-Titel**: Zeigt \"[Mandant] - DreamEdit\"\n- **Header-Badge**: Fest positioniertes Badge oben rechts mit Logo und Name\n- **Branding-Sektion**: Kombinierte Anzeige von DreamEdit-Titel und\n  Mandanten-Logo/Name\n\n### Beispiel-URLs\n\n- Standard: `https://your-domain.com/`\n- Unlock Your Song: `https://your-domain.com/?tenant=unlockyoursong`\n- Demo Agency: `https://your-domain.com/?tenant=demo-agency`\n\n## API-Schlüssel\n\nDu benötigst einen API-Schlüssel von [Fal AI](https://fal.ai). Registriere dich und\nerhalte deinen Key.\n\n## Entwicklung\n\n### Verfügbare Scripts\n\n- `npm run dev` - Startet den Entwicklungsserver\n- `npm run build` - Erstellt die Produktionsversion\n- `npm run start` - Startet den Produktionsserver\n- `npm run lint` - Führt ESLint aus\n\n### Projektstruktur\n\n```text\ndreamedit/\n├── app/\n│   ├── layout.js      # Root Layout\n│   ├── page.js        # Hauptseite\n│   └── globals.css    # Globale Styles (falls verwendet)\n├── public/            # Statische Dateien\n├── .gitignore         # Git Ignore Regeln\n├── package.json       # Abhängigkeiten und Scripts\n├── next.config.js     # Next.js Konfiguration\n└── README.md          # Diese Datei\n```\n\n## Funktionen im Detail\n\n### Bildbearbeitung\n\nDie App verwendet Fal AI's Seedream Modell für hochqualitative Bildbearbeitungen.\nBeschreibe einfach, was du ändern möchtest, und die KI erledigt den Rest.\n\n### Historie-System\n\nJede Bearbeitung wird gespeichert, sodass du:\n\n- Zu früheren Versionen zurückkehren kannst\n- Verschiedene Bearbeitungswege ausprobieren kannst\n- Deine Arbeitsschritte nachverfolgen kannst\n\n### Barrierefreiheit\n\n- Web Speech API für Sprachunterstützung\n- Responsive Design für alle Geräte\n- Klare visuelle Hierarchie\n\n## Lizenz\n\nDieses Projekt ist unter der MIT-Lizenz lizenziert.\n\n## Beiträge\n\nBeiträge sind willkommen! Bitte erstelle ein Issue oder Pull Request.\n\n## Support\n\nBei Fragen oder Problemen erstelle ein Issue im GitHub-Repository.\n\n## Versionshistorie\n\nFür eine vollständige Versionshistorie siehe [CHANGELOG.md](CHANGELOG.md).\n\n### v2.6.3 - Additional Security Patches (2024-12-08)\n\n- **Sicherheit**: Next.js 16.0.7 → 16.0.10 (weitere Sicherheitspatches)\n- **Behoben**: Server Actions Source Code Exposure (GHSA-w37m-7fhw-fmv9)\n- **Behoben**: Denial of Service mit Server Components (GHSA-mwv6-3258-q52c)\n\n### v2.6.2 - CRITICAL Security Update (2024-12-08)\n\n- **KRITISCH**: CVE-2025-66478 behoben (CVSS 10.0 - Remote Code Execution)\n- **Aktualisiert**: Next.js 16.0.1 → 16.0.7 (gepatchte Version)\n- **Sicherheit**: Alle npm audit Schwachstellen behoben\n\n### v2.6.1 - Footer, Image Numbering & Hydration Fix (2024-11-29)\n\n- **Neu**: Professioneller Footer mit Quievreux Consulting Branding\n- **Neu**: Nummerierungssystem für generierte Bilder\n- **Behoben**: React Hydration-Fehler durch Browser-Extensions\n\n### v2.6.0 - ESLint v9 Migration & Dependency Updates (2024-10-10)\n\n- **Migration**: Vollständige Migration zu ESLint v9 mit Flat Config Format\n- **Aktualisiert**: ESLint und eslint-config-next auf neueste Versionen\n- **Verbessert**: Code-Qualität und Linting-Performance\n- **Technisch**: Moderne JavaScript-Standards und bessere Entwicklererfahrung\n\n### v2.5.1 - Critical Production Bug Fixes (2024-10-07)\n\n- **Behoben**: \"Cannot access 'h' before initialization\" Fehler durch ES-Module-Inkonsistenzen\n- **Behoben**: Falsche Import-Statements korrigiert mit `.js` Extensions\n- **Behoben**: Zirkuläre Abhängigkeiten in Modul-Initialisierung aufgelöst\n- **Behoben**: Statische Generierungs-Konflikte in Session API Routes\n- **Technisch**: Vollständige Migration zu konsistenten ES-Modulen\n- **Technisch**: Build-Stabilität wiederhergestellt für Produktions-Deployments\n\n### v2.5.0 - Complete Session Management & User Statistics (2024-10-06)\n\n- **Neu**: Vollständiges Session-Management-System mit anonymem User-Tracking\n- **Neu**: UUID-basierte Sessions mit 30 Tagen Expiration und automatischer Validierung\n- **Neu**: Supabase Datenbank-Integration mit Row Level Security\n- **Neu**: RESTful API-Endpunkte für Session-Operationen (`/api/sessions/*`)\n- **Neu**: Echtzeit User-Statistiken (\"X Bilder erfolgreich bearbeitet\")\n- **Neu**: Achievement-Badges (STARTER, ADVANCED, EXPERT, PRO) basierend auf Edit-Count\n- **Neu**: Header-Widget für Session-Statistiken mit DreamEdit \"D\" Logo\n- **Neu**: Serverseitige FAL API (Credentials nicht mehr im Browser exponiert)\n- **Neu**: Graceful Error-Handling - App funktioniert bei API-Ausfällen\n- **Neu**: Umfassende Test-Suite (16/16 Tests erfolgreich)\n- **Sicherheit**: API-Key-Schutz und Input-Validierung\n- **Performance**: Middleware-basierte Session-Tracking ohne Performance-Impact\n\n### v2.4.0 - Dynamic Preview Images (2024-10-05)\n\n- **Neu**: Dynamische Preview-Bild-Generierung mit Playwright für OG-Bilder\n- **Neu**: Tenant-spezifische Open Graph Bilder mit individuellem Branding\n- **Neu**: API-Route `/api/generate-preview` für dynamische Bildgenerierung\n- **Neu**: Tenant-Routen `/tenant/[id]` mit automatischen Meta-Tags\n- **Neu**: Build-Script für Pre-Generierung von Tenant-Preview-Bildern\n- **Neu**: Cache-Mechanismus für optimierte Performance\n- **Verbessert**: Social Media Sharing mit hochwertigen, dynamischen Vorschau-Bildern\n\n### v2.3.0 - Social Media Integration (2024-09-30)\n\n- **Neu**: Open Graph & Twitter Card Meta-Tags für Link-Vorschauen\n- **Neu**: Professionelles SVG-Favicon für alle Browser\n- **Neu**: Automatisch generiertes OG-Image (1200x630)\n- **Verbessert**: Social-Sharing in WhatsApp, Facebook, Twitter\n- **Behoben**: Link-Vorschau zeigt jetzt schöne Bilder anstatt Standard-Icons\n\n### v2.2.0 - Version Management & Techeroes Tenant (2024-09-30)\n\n- **Neu**: Techeroes Tenant mit individueller Branding\n- **Neu**: Automatisiertes Version-Management-System\n- **Neu**: Erweiterte Test-Suite mit Tenant-Validierung\n- **Geändert**: Dynamische Version-Anzeige aus package.json\n- **Behoben**: Format-Auswahl Bug (Square funktioniert jetzt korrekt)\n\n### v2.1.0 - Enhanced Tenant Display (2024-09-29)\n\n- **Neu**: Mandanten-Anzeige-System mit Header-Badge und Browser-Titeln\n- **Neu**: Dynamische Browser-Titel basierend auf Mandant\n- **Neu**: Fest positioniertes Mandanten-Badge oben rechts\n- **Neu**: Erweiterte Test-Suite mit visueller Ergebnisanzeige\n- **Verbessert**: Query-Parameter-Unterstützung für Mandanten-Detection\n\n### v2.0.0 - Multi-Tenant Release (2024-09-29)\n\n- **Neu**: Mandantenfähigkeit mit individueller Branding und Konfiguration\n- **Neu**: URL-Parameter-Unterstützung für dynamische Anpassungen\n- **Neu**: Admin-Bereich für Verwaltung und Überwachung\n- **Neu**: Format-Auswahl für verschiedene Bildausgabe-Formate\n\n### v1.0.0 - Production Release (2024-09-25)\n\n- **Neu**: Unterstützung für Mehrfach-Bild-Upload (bis zu 10 Bilder)\n- **Neu**: Automatische 16:9 Ausgabe mit image_size Parameter\n- **Neu**: Responsives Grid für hochgeladene Bilder\n- **Neu**: Versionsanzeige in der App\n- **Geändert**: Bild-Handling für Arrays von Bildern\n- **Geändert**: API-Aufruf mit image_size für konsistente 16:9 Ausgabe\n- **Geändert**: Historie-Funktionalität für mehrere Bilder\n- **Behoben**: Bilder werden nun in 16:9-Format ausgegeben statt quadratisch\n- **Behoben**: Korrekte Handhabung mehrerer Eingabebilder zur Fal.ai API\n- **Behoben**: Teilen-Button verwendet korrekte Bild-Referenz\n\n### v0.2.0 - Multiple Images Support (2024-09-25)\n\n- Unterstützung für mehrere Bild-Uploads\n- 16:9 Ausgabe-Format\n- Verbesserte UI für Mehrfachauswahl\n\n### v0.1.0 - Initial Development (2024-09-25)\n\n- Grundlegende KI-Bildbearbeitung mit Fal AI\n- Text- und Spracheingabe\n- Historie-System mit Thumbnails\n- Responsive Benutzeroberfläche\n",
+    "packageJson": {
+      "name": "dream-edit",
+      "version": "2.6.3",
+      "private": true,
+      "scripts": {
+        "dev": "next dev",
+        "build": "next build",
+        "start": "next start",
+        "lint": "next lint",
+        "test": "node comprehensive-test.js",
+        "test:session": "node scripts/test-session-management.js"
+      },
+      "dependencies": {
+        "@fal-ai/client": "^1.6.2",
+        "@supabase/supabase-js": "^2.49.4",
+        "@tailwindcss/postcss": "^4.0.0",
+        "next": "^16.0.10",
+        "postcss": "^8.5.6",
+        "react": "^19.2.0",
+        "react-dom": "^19.2.0",
+        "react-hot-toast": "^2.6.0",
+        "tailwindcss": "^4.0.0",
+        "uuid": "^13.0.0"
+      },
+      "devDependencies": {
+        "dotenv": "^17.2.3",
+        "eslint": "^9.37.0",
+        "eslint-config-next": "^15.5.4",
+        "playwright": "^1.55.0"
+      },
+      "engines": {
+        "node": ">=20.9.0"
+      }
+    }
+  },
+  "analysis": {
+    "description": "DreamEdit revolutionizes image editing with AI-powered transformations via text or voice prompts, featuring drag-and-drop uploads, edit history, and social sharing. Multi-tenant architecture enables branded, white-label deployments for agencies and businesses, delivering pro results without design skills.",
+    "businessCanvas": {
+      "valueProposition": [
+        "AI-driven image editing accessible via simple text/voice prompts with history tracking and achievements for engagement",
+        "Multi-tenant white-labeling for customized branding, admin management, and session analytics",
+        "Robust, secure, responsive app with graceful degradation and easy Vercel deployment"
+      ],
+      "customerSegments": [
+        {
+          "name": "Digital Marketing Agencies",
+          "willingness_to_pay": "High",
+          "pain_points": [
+            "Need fast, high-quality image edits for campaigns without Photoshop expertise",
+            "Require branded tools for client delivery and multi-project management"
+          ]
+        },
+        {
+          "name": "Content Creators & Social Media Managers",
+          "willingness_to_pay": "Medium",
+          "pain_points": [
+            "Time-consuming manual editing for posts and stories",
+            "Lack of easy voice/text-based editing on mobile"
+          ]
+        },
+        {
+          "name": "Creative Agencies (e.g., Unlock Your Song, Demo Agency)",
+          "willingness_to_pay": "High",
+          "pain_points": [
+            "Custom client-facing tools with individual branding and analytics",
+            "Scalable image processing for multiple tenants without dev overhead"
+          ]
+        }
+      ],
+      "revenueStreams": [
+        {
+          "source": "Multi-Tenant SaaS Subscription",
+          "model": "Recurring",
+          "potential_arr": 50000
+        },
+        {
+          "source": "Per-Edit API Usage (Fal AI Passthrough)",
+          "model": "Usage-based",
+          "potential_arr": 20000
+        },
+        {
+          "source": "White-Label Enterprise Licensing",
+          "model": "Annual Contract",
+          "potential_arr": 100000
+        }
+      ]
+    }
+  }
+}

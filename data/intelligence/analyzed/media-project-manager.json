@@ -1,0 +1,99 @@
+{
+  "repositoryId": "a1c22548-ac04-4312-88c1-74433fcda1e8",
+  "name": "media-project-manager",
+  "owner": "skquievreux",
+  "harvestedAt": "2025-12-21T09:21:44.577Z",
+  "content": {
+    "readme": "# Media Project Manager (MPM)\n\n![Version](https://img.shields.io/badge/version-1.5.2-blue.svg)\n![Electron](https://img.shields.io/badge/Electron-Desktop-orange.svg)\n![Feature](https://img.shields.io/badge/feature-Audio_Visualizer-purple.svg)\n![Language](https://img.shields.io/badge/language-Deutsch-red.svg)\n\n## 📄 Über das Projekt\n\nDer **Media Project Manager (MPM)** ist eine spezialisierte Desktop-Anwendung zur Verwaltung komplexer Medienproduktionen. Sie wurde entwickelt, um den Workflow von Agenturen und Freelancern zu standardisieren, die mit Audio-, Video- und Foto-Projekten arbeiten.\n\nDas Ziel der Anwendung ist es, die Lücke zwischen Dateisystem (Explorer/Finder) und Projektmanagement zu schließen. Anstatt Projekte manuell zu verwalten, scannt der MPM intelligente Ordnerstrukturen und visualisiert den Status, die Assets und den Fortschritt jedes Projekts in einer modernen, dunklen Benutzeroberfläche.\n\n### 🎯 Kernprobleme, die wir lösen\n*   **Verlorene Übersicht:** Bei hunderten von Projektordnern geht der Überblick über den Status schnell verloren.\n*   **Medien-Chaos:** Assets (Bilder, Videos) liegen verstreut in Unterordnern.\n*   **Manuelle Prozesse:** Das Zählen von Tracks oder das Prüfen auf Vorhandensein notwendiger Schritte kostet Zeit.\n\n## 🚀 Hauptfunktionen (v1.5.2)\n\n### 1. 🪄 Smart Templates & Workflows\nStarten Sie neue Projekte blitzschnell mit vordefinierten Schablonen für verschiedene Medientypen (Single Song, Album, Kinderbuch, Werbespot). Jedes Template enthält automatisch alle notwendigen Tasks und Milestones.\n\n### 2. 📋 Advanced Task-Tracking\nVerwalten Sie Ihre Aufgaben präzise:\n*   **Bearbeiten:** Passen Sie Aufgabennamen und geschätzte Zeiten direkt an.\n*   **Zeit-Tracking:** Erfassen Sie die tatsächliche Arbeitszeit.\n*   **Flexibilität:** Starten Sie abgeschlossene Aufgaben neu oder überspringen Sie unnötige Schritte.\n*   **Integration:** Quick-Links zu Tools wie Suno, Transkriptor oder Canva direkt in der Aufgabe.\n\n### 3. Intelligente Projekt-Erkennung\nDie App arbeitet nahtlos mit Ihrer bestehenden Ordnerstruktur zusammen. Sie erkennt Projekte basierend auf Namenskonventionen (`Typ-Name`, z.B. `Album-SommerHits`) und analysiert automatisch den Inhalt.\n\n### 4. Desktop-Integration & Ressourcen\n*   **Lokaler Zugriff:** Basiert auf Electron für direkten, performanten Zugriff auf die Festplatte.\n*   **Asset-Scan:** Automatische Indizierung von Medien (JPG, MP3, MP4) im Projektordner.\n*   **Inline-Editing:** Bearbeiten Sie Projektdetails direkt in der Oberfläche.\n\n## 🛠️ Technischer Stack\n\n*   **Frontend:** React, Vite, CSS Modules (Modernes Dark-Theme)\n*   **Backend/Desktop:** Electron (IPC Communication)\n*   **Datenbank:** Lokale JSON-Persistenz (`projects.json`)\n*   **Sprache:** JavaScript (ES6+)\n\n## 🔄 Workflow für Entwickler & Feature-Branches\n\nWir setzen auf einen Feature-Branch-Workflow. Das Repository ist so konfiguriert, dass neue Funktionen isoliert entwickelt und getestet werden können.\n\n### Branching-Strategie\n*   `main`: Der stabile Produktions-Code.\n*   `feature/name-des-features`: Für neue Entwicklungen (z.B. `feature/cloud-sync`, `feature/drag-drop`).\n\n### CI/CD (GitHub Actions)\nWir haben Workflows eingerichtet, um die Qualität sicherzustellen:\n1.  **CI (Continuous Integration):** Bei jedem Push auf einen Feature-Branch oder Pull Request wird der Code automatisch gebaut (`npm run build`), um Fehler frühzeitig zu erkennen.\n2.  **Release:** Beim Erstellen eines Tags (z.B. `v1.2.0`) kann optional ein Release-Build angestoßen werden.\n\n## 🚀 Installation & Setup\n\n1.  **Repository klonen:**\n    ```bash\n    git clone https://github.com/skquievreux/media-project-manager.git\n    cd media-project-manager\n    ```\n\n2.  **Abhängigkeiten installieren:**\n    ```bash\n    npm install\n    ```\n\n3.  **App starten:**\n    ```bash\n    npm run electron\n    ```\n\n## 🤝 Mitwirken\n\n1.  Erstellen Sie einen Feature-Branch (`git checkout -b feature/MeinFeature`).\n2.  Implementieren Sie Ihre Änderungen.\n3.  Pushen Sie den Branch (`git push origin feature/MeinFeature`).\n4.  Erstellen Sie einen Pull Request auf GitHub.\n\n## 📄 Lizenz\n\nInternes Projekt. Alle Rechte vorbehalten.\n",
+    "packageJson": {
+      "name": "media-project-manager",
+      "private": true,
+      "version": "1.6.1",
+      "type": "module",
+      "main": "electron/main.js",
+      "scripts": {
+        "dev": "vite",
+        "electron": "cross-env NODE_ENV=development concurrently \"vite\" \"wait-on tcp:5173 && electron .\"",
+        "build": "vite build",
+        "lint": "eslint .",
+        "preview": "vite preview"
+      },
+      "dependencies": {
+        "react": "^19.2.0",
+        "react-dom": "^19.2.0"
+      },
+      "devDependencies": {
+        "@eslint/js": "^9.39.1",
+        "@types/react": "^19.2.5",
+        "@types/react-dom": "^19.2.3",
+        "@vitejs/plugin-react": "^5.1.1",
+        "concurrently": "^9.2.1",
+        "cross-env": "^10.1.0",
+        "electron": "^39.2.4",
+        "electron-builder": "^26.0.12",
+        "eslint": "^9.39.1",
+        "eslint-plugin-react-hooks": "^7.0.1",
+        "eslint-plugin-react-refresh": "^0.4.24",
+        "globals": "^16.5.0",
+        "vite": "^7.2.4",
+        "wait-on": "^9.0.3"
+      },
+      "engines": {
+        "node": ">=20.9.0"
+      }
+    }
+  },
+  "analysis": {
+    "description": "Media Project Manager (MPM) is a desktop app that turns messy audio, video and photo folder structures into a clear, template-driven production pipeline. It gives agencies and media freelancers instant visibility into project status, assets and effort without changing their existing file system workflows.",
+    "businessCanvas": {
+      "valueProposition": [
+        "Closes the gap between raw file-system folders and structured project management for media productions.",
+        "Saves time and reduces errors through smart templates, automatic asset scans and integrated time tracking.",
+        "Improves production predictability and client transparency by standardizing workflows across many similar projects (songs, albums, spots, books)."
+      ],
+      "customerSegments": [
+        {
+          "name": "Small to mid-size media agencies (audio, video, creative studios)",
+          "willingness_to_pay": "High",
+          "pain_points": [
+            "Lack of standardized workflows across dozens or hundreds of client projects stored in complex folder trees.",
+            "Time wasted manually checking project completeness (assets, steps, tracks) and maintaining status reports for clients."
+          ]
+        },
+        {
+          "name": "Freelance producers, podcasters, musicians and content creators",
+          "willingness_to_pay": "Medium",
+          "pain_points": [
+            "Difficulty tracking the status and tasks of many parallel productions spread across local drives.",
+            "No lightweight tool that leverages existing folder structures while adding time tracking and task control."
+          ]
+        },
+        {
+          "name": "In-house marketing and media teams in SMEs",
+          "willingness_to_pay": "Medium",
+          "pain_points": [
+            "Disorganized media assets for campaigns and recurring formats (ads, social series, internal videos).",
+            "Limited visibility for managers into progress, bottlenecks and workload across multiple projects."
+          ]
+        }
+      ],
+      "revenueStreams": [
+        {
+          "source": "Per-seat desktop license (Electron app)",
+          "model": "Recurring",
+          "potential_arr": 60000
+        },
+        {
+          "source": "Team/agency plans with advanced templates, support and onboarding",
+          "model": "Recurring",
+          "potential_arr": 120000
+        },
+        {
+          "source": "One-time licenses or upgrades for freelancers (lifetime or major-version)",
+          "model": "One-time",
+          "potential_arr": 30000
+        }
+      ]
+    }
+  }
+}

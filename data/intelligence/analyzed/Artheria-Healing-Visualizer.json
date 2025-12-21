@@ -1,0 +1,90 @@
+{
+  "repositoryId": "bc1f842c-027e-40e8-9f59-d5c697c87b1e",
+  "name": "Artheria-Healing-Visualizer",
+  "owner": "skquievreux",
+  "harvestedAt": "2025-12-21T09:21:50.411Z",
+  "content": {
+    "readme": "<div align=\"center\">\n<img width=\"1200\" height=\"475\" alt=\"GHBanner\" src=\"https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6\" />\n</div>\n\n# Run and deploy your AI Studio app\n\nThis contains everything you need to run your app locally.\n\nView your app in AI Studio: https://ai.studio/apps/drive/1uyHwI-QxwPbxspexeqqdJRibbBkpzHXz\n\n## Run Locally\n\n**Prerequisites:**  Node.js\n\n\n1. Install dependencies:\n   `npm install`\n2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key\n3. Run the app:\n   `npm run dev`\n",
+    "packageJson": {
+      "name": "aetheria---healing-visualizer",
+      "private": true,
+      "version": "0.0.0",
+      "type": "module",
+      "scripts": {
+        "dev": "vite",
+        "build": "vite build",
+        "preview": "vite preview"
+      },
+      "dependencies": {
+        "@react-three/drei": "^10.7.7",
+        "three": "^0.181.2",
+        "lucide-react": "^0.555.0",
+        "recharts": "^3.5.1",
+        "@react-three/fiber": "^9.4.0",
+        "react-dom": "^19.2.0",
+        "react": "^19.2.0",
+        "@google/genai": "^1.30.0",
+        "@react-three/postprocessing": "^3.0.4"
+      },
+      "devDependencies": {
+        "@types/node": "^22.14.0",
+        "@vitejs/plugin-react": "^5.0.0",
+        "typescript": "~5.8.2",
+        "vite": "^6.2.0"
+      }
+    }
+  },
+  "analysis": {
+    "description": "Aetheria Healing Visualizer is an immersive, AI-powered 3D experience that turns abstract emotional or wellness journeys into rich, visual narratives using Gemini and WebGL. It helps coaches, therapists, and wellness platforms differentiate their offerings with engaging, data-driven visuals that deepen client insight and retention.",
+    "businessCanvas": {
+      "valueProposition": [
+        "Transform subjective healing and wellness progress into intuitive, shareable 3D visualizations that clients can instantly understand.",
+        "Embed Gemini-powered reflective prompts and insights into a visually rich React/Three.js front end to increase engagement and perceived value of coaching or therapy sessions.",
+        "Offer wellness and mental health providers a white-labeled, browser-based visualizer that runs on existing Gemini API keys and scales with their client base."
+      ],
+      "customerSegments": [
+        {
+          "name": "Digital mental health & wellness platforms (B2B SaaS)",
+          "willingness_to_pay": "High",
+          "pain_points": [
+            "Low engagement and poor adherence to journaling or self-reflection tools.",
+            "Difficulty demonstrating progress and ROI of mental health programs to users and enterprise buyers."
+          ]
+        },
+        {
+          "name": "Independent coaches, therapists, and holistic practitioners",
+          "willingness_to_pay": "Medium",
+          "pain_points": [
+            "Limited time and skills to build differentiated digital experiences beyond basic video calls and PDFs.",
+            "Challenges turning qualitative client stories into tangible, visual artifacts that reinforce perceived progress."
+          ]
+        },
+        {
+          "name": "Retreats, wellness centers, and mindfulness educators",
+          "willingness_to_pay": "Medium",
+          "pain_points": [
+            "Need for memorable, premium-feeling experiences that justify higher pricing tiers.",
+            "Lack of interactive tools to visualize group or individual healing journeys during programs."
+          ]
+        }
+      ],
+      "revenueStreams": [
+        {
+          "source": "B2B SaaS subscription for hosted Healing Visualizer dashboard",
+          "model": "Recurring",
+          "potential_arr": 120000
+        },
+        {
+          "source": "White-label licensing for wellness platforms and clinics",
+          "model": "Recurring",
+          "potential_arr": 180000
+        },
+        {
+          "source": "Pro/Creator tier for individual practitioners (self-serve)",
+          "model": "Recurring",
+          "potential_arr": 60000
+        }
+      ]
+    }
+  }
+}

@@ -5,6 +5,9 @@ import { useState, useEffect } from "react";
 import { ArrowLeft, Github, Globe, ExternalLink, Calendar, Code, Database, Server, Shield, CheckCircle, Circle, Play, AlertTriangle, FileText } from "lucide-react";
 import Link from "next/link";
 import { useParams } from "next/navigation";
+import { ActionGroup } from "@/app/components/ui/ActionGroup";
+import { SwipeableRow, SwipeableItem } from "@/app/components/ui/SwipeableRow";
+import { ReactNode } from "react";
 
 type Technology = {
     id: string;
@@ -383,26 +386,15 @@ export default function RepoDetail() {
                             <Text className="mt-1 text-slate-400">{repo.description || "No description provided."}</Text>
                         </div>
                     </div>
-                    <div className="flex gap-3">
-                        <a href={repo.url} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-4 py-2 bg-slate-800 border border-slate-700 rounded-lg hover:bg-slate-700 transition-colors text-slate-200 font-medium">
-                            <Github size={18} />
-                            GitHub
-                        </a>
-                        <Link
-                            href={`/report/portfolio?repoId=${(repo as any).id}`}
-                            className="flex items-center gap-2 px-4 py-2 bg-violet-600/20 border border-violet-500/50 text-violet-300 rounded-lg hover:bg-violet-600/30 transition-colors font-medium"
-                        >
-                            <FileText size={18} />
-                            Edit Canvas
-                        </Link>
-                        {activeUrl && (
-                            <div className="flex gap-2 items-center">
-                                <div className="relative group">
+                    <ActionGroup
+                        primaryAction={
+                            activeUrl ? (
+                                <div className="relative group w-full">
                                     <a
                                         href={activeUrl}
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className={`flex items-center gap-2 px-4 py-2 text-white rounded-lg transition-colors font-medium shadow-[0_0_10px_rgba(124,58,237,0.3)] ${repo.customUrl ? 'bg-violet-600 hover:bg-violet-700' : (customDomain ? 'bg-emerald-600 hover:bg-emerald-700' : 'bg-cyan-600 hover:bg-cyan-700')}`}
+                                        className={`flex items-center justify-center gap-2 px-4 py-2 text-white rounded-lg transition-colors font-medium shadow-[0_0_10px_rgba(124,58,237,0.3)] w-full ${repo.customUrl ? 'bg-violet-600 hover:bg-violet-700' : (customDomain ? 'bg-emerald-600 hover:bg-emerald-700' : 'bg-cyan-600 hover:bg-cyan-700')}`}
                                     >
                                         <Globe size={18} />
                                         {repo.customUrl ? "Custom Link" : (customDomain ? customDomain : "Live Site")}
@@ -412,52 +404,74 @@ export default function RepoDetail() {
                                             <span className={`absolute -top-1 -right-1 w-3 h-3 rounded-full border-2 border-slate-900 ${linkStatus.reachable ? 'bg-emerald-400' : 'bg-rose-500'}`} />
                                         )}
                                     </a>
-                                    {/* Tooltip */}
-                                    {linkStatus && (
-                                        <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-2 py-1 bg-slate-800 text-white text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none border border-slate-700">
-                                            {linkStatus.reachable ? `Online (${linkStatus.status})` : `Offline (${linkStatus.status})`} • {linkStatus.latency}ms
-                                        </div>
-                                    )}
                                 </div>
-
+                            ) : (
+                                <a href={repo.url} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2 px-4 py-2 bg-slate-800 border border-slate-700 rounded-lg hover:bg-slate-700 transition-colors text-slate-200 font-medium w-full">
+                                    <Github size={18} />
+                                    GitHub
+                                </a>
+                            )
+                        }
+                        secondaryActions={[
+                            // GitHub (if not primary)
+                            activeUrl && (
+                                <a href={repo.url} key="github" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-4 py-2 bg-slate-800 border border-slate-700 rounded-lg hover:bg-slate-700 transition-colors text-slate-200 font-medium">
+                                    <Github size={18} />
+                                    GitHub
+                                </a>
+                            ),
+                            // Edit Canvas
+                            <Link
+                                key="canvas"
+                                href={`/report/portfolio?repoId=${(repo as any).id}`}
+                                className="flex items-center gap-2 px-4 py-2 bg-violet-600/20 border border-violet-500/50 text-violet-300 rounded-lg hover:bg-violet-600/30 transition-colors font-medium"
+                            >
+                                <FileText size={18} />
+                                Edit Canvas
+                            </Link>,
+                            // Connect Domain
+                            deployments.length > 0 && !repo.customUrl && !customDomain && (
                                 <button
+                                    key="connect-domain"
+                                    onClick={() => {
+                                        setTargetDeployment(deployments[0]);
+                                        setIsDnsModalOpen(true);
+                                    }}
+                                    className="flex items-center gap-2 px-4 py-2 bg-amber-600 text-white rounded-lg hover:bg-amber-500 transition-colors font-medium shadow-[0_0_10px_rgba(245,158,11,0.3)] w-full justify-center"
+                                >
+                                    <Shield size={18} />
+                                    Connect Domain
+                                </button>
+                            ),
+                            // Edit URL
+                            activeUrl && (
+                                <button
+                                    key="edit-url"
                                     onClick={() => {
                                         setManualUrl(repo.customUrl || activeUrl || "");
                                         setIsEditUrlModalOpen(true);
                                     }}
-                                    className="p-2 text-slate-400 hover:text-white hover:bg-slate-800 rounded-lg transition-colors"
+                                    className="flex items-center gap-2 px-4 py-2 text-slate-400 hover:text-white hover:bg-slate-800 rounded-lg transition-colors border border-transparent hover:border-slate-700 w-full justify-center"
                                     title="Edit Link"
                                 >
                                     <Code size={18} />
+                                    Edit URL
                                 </button>
-
-                                {deployments.length > 0 && !repo.customUrl && !customDomain && (
-                                    <button
-                                        onClick={() => {
-                                            setTargetDeployment(deployments[0]);
-                                            setIsDnsModalOpen(true);
-                                        }}
-                                        className="flex items-center gap-2 px-4 py-2 bg-amber-600 text-white rounded-lg hover:bg-amber-500 transition-colors font-medium shadow-[0_0_10px_rgba(245,158,11,0.3)]"
-                                    >
-                                        <Shield size={18} />
-                                        Connect Domain
-                                    </button>
-                                )}
-                            </div>
-                        )}
-                    </div>
+                            )
+                        ].filter(Boolean) as ReactNode[]}
+                    />
                 </div>
 
                 {/* URL Information Section */}
                 <div className="glass-card border-l-4 border-l-violet-500">
                     <Title className="mb-4 text-white">🔗 Repository Links</Title>
-                    
+
                     {/* Compact Icons Section */}
                     <div className="flex flex-wrap gap-3">
                         {repo.customUrl && (
-                            <a 
-                                href={repo.customUrl} 
-                                target="_blank" 
+                            <a
+                                href={repo.customUrl}
+                                target="_blank"
                                 rel="noopener noreferrer"
                                 className="flex items-center gap-2 px-3 py-2 bg-emerald-950/20 rounded-lg border border-emerald-800/30 hover:bg-emerald-900/30 transition-all group"
                                 title="Open Custom Domain"
@@ -466,11 +480,11 @@ export default function RepoDetail() {
                                 <span className="text-emerald-300 group-hover:text-emerald-200 font-medium">Custom</span>
                             </a>
                         )}
-                        
+
                         {repo.url && (
-                            <a 
-                                href={repo.url} 
-                                target="_blank" 
+                            <a
+                                href={repo.url}
+                                target="_blank"
                                 rel="noopener noreferrer"
                                 className="flex items-center gap-2 px-3 py-2 bg-slate-800/50 rounded-lg border border-slate-700/30 hover:bg-slate-700 transition-all group"
                                 title="Open Source Repository"
@@ -479,11 +493,11 @@ export default function RepoDetail() {
                                 <span className="text-slate-400 group-hover:text-slate-300 font-medium">Source</span>
                             </a>
                         )}
-                        
+
                         {deployments && deployments.length > 0 && (
-                            <a 
-                                href={deployments[0].url} 
-                                target="_blank" 
+                            <a
+                                href={deployments[0].url}
+                                target="_blank"
                                 rel="noopener noreferrer"
                                 className="flex items-center gap-2 px-3 py-2 bg-violet-950/20 rounded-lg border border-violet-800/30 hover:bg-violet-900/30 transition-all group"
                                 title="Open Deployment"
@@ -565,29 +579,31 @@ export default function RepoDetail() {
                     <Card className="glass-card">
                         <Title className="mb-4 text-white">Connected Providers</Title>
                         <div className="space-y-4">
-                            <div className="flex flex-wrap gap-3">
+                            <SwipeableRow>
                                 {repoData.providers && repoData.providers.length > 0 ? (
                                     repoData.providers.map(provider => (
-                                        <div key={provider.id} className="flex items-center gap-3 pl-3 pr-2 py-2 bg-slate-900/80 border border-slate-800 rounded-lg group hover:border-violet-500/30 transition-all">
-                                            <div>
-                                                <div className="text-slate-200 text-sm font-medium leading-none mb-1">{provider.name}</div>
-                                                <div className="text-[10px] text-slate-500 uppercase tracking-wider">{provider.category}</div>
+                                        <SwipeableItem key={provider.id}>
+                                            <div className="flex items-center gap-3 pl-3 pr-2 py-2 bg-slate-900/80 border border-slate-800 rounded-lg group hover:border-violet-500/30 transition-all whitespace-nowrap">
+                                                <div>
+                                                    <div className="text-slate-200 text-sm font-medium leading-none mb-1">{provider.name}</div>
+                                                    <div className="text-[10px] text-slate-500 uppercase tracking-wider">{provider.category}</div>
+                                                </div>
+                                                <div className="h-6 w-px bg-slate-800 mx-1"></div>
+                                                <button
+                                                    onClick={() => handleRemoveProvider(provider.id)}
+                                                    className="p-1 text-slate-500 hover:text-rose-400 hover:bg-rose-950/30 rounded transition-colors"
+                                                    title="Remove"
+                                                >
+                                                    <span className="sr-only">Remove</span>
+                                                    &times;
+                                                </button>
                                             </div>
-                                            <div className="h-6 w-px bg-slate-800 mx-1"></div>
-                                            <button
-                                                onClick={() => handleRemoveProvider(provider.id)}
-                                                className="p-1 text-slate-500 hover:text-rose-400 hover:bg-rose-950/30 rounded transition-colors"
-                                                title="Remove"
-                                            >
-                                                <span className="sr-only">Remove</span>
-                                                &times;
-                                            </button>
-                                        </div>
+                                        </SwipeableItem>
                                     ))
                                 ) : (
                                     <Text className="text-slate-500 text-sm italic">No providers linked yet.</Text>
                                 )}
-                            </div>
+                            </SwipeableRow>
 
                             <div className="flex gap-2 pt-4 border-t border-slate-800 mt-4">
                                 <div className="relative flex-1">

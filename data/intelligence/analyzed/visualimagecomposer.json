@@ -1,0 +1,103 @@
+{
+  "repositoryId": "a6349158-33da-419f-908b-7beaf94c2384",
+  "name": "visualimagecomposer",
+  "owner": "skquievreux",
+  "harvestedAt": "2025-12-21T09:21:51.625Z",
+  "content": {
+    "readme": "# Visual Image Composer\n\nA visual node-based image generation tool built with Next.js, React Flow, and AI APIs.\n\n![Version](https://img.shields.io/badge/version-1.9.0-blue.svg)\n\n## Documentation\n\n- [API Documentation](src/app/api/openapi.json)\n- [Fal.ai API Guide](docs/fal-ai-api.md)\n\n## Features\n\n- **Node-Based Workflow**: Create complex image generation pipelines using visual nodes\n- **AI-Powered Generation**: Integrate with various AI image generation services\n- **Real-Time Preview**: See your compositions come to life as you build\n- **Customizable Nodes**: Add prompts, styles, aspect ratios, and more\n- **Settings Log System**: Automatically track and restore generation settings\n- **Download Functionality**: Download individual images or entire generations with smart filenames\n- **Version Control**: Track and manage different versions of your images\n- **Canvas Navigation**: Pan and zoom the canvas to access all nodes\n\n## Canvas Navigation\n\n### Panning the Canvas\n\nMove the canvas to access nodes outside the visible viewport:\n\n**Method 1: Middle Mouse Button** (Recommended)\n- Click and hold the **middle mouse button** (scroll wheel button)\n- Drag to pan the canvas in any direction\n\n**Method 2: Shift + Scroll**\n- Hold the **Shift** key\n- Scroll with your mouse wheel to pan horizontally/vertically\n\n### Zooming\n\n- **Mouse Wheel**: Scroll to zoom in/out\n- **Control Panel**: Use zoom buttons in the control panel node\n- **Pinch Gesture**: On touch devices, pinch to zoom\n\n### Moving Nodes\n\n- **Left Mouse Button**: Click and drag any node to reposition it\n- Nodes snap to a 20×20 grid for precise alignment\n\n## Getting Started\n\nFirst, install dependencies:\n\n```bash\nnpm install\n```\n\nThen, run the development server:\n\n```bash\nnpm run dev\n```\n\nOpen [http://localhost:3000](http://localhost:3000) with your browser to see the result.\n\n## Project Structure\n\n- `src/components/nodes/` - Individual node components for the canvas (including SettingsLogNode)\n- `src/app/api/generate/` - API route for image generation\n- `src/lib/store.ts` - Zustand state management with settings logging\n- `src/lib/download.ts` - Download utilities for images with smart filename generation\n\n## Download Features\n\n### Single Image Download\n- Click on any generated image to open the preview\n- Click the \"Download\" button to save the image\n- Automatic filename generation: `prompt-model-date.png`\n\n### Batch Download\n- Use the \"Download All\" button in the Generation History node\n- Downloads all images from your generation history\n- Each image gets a unique filename with index: `prompt-model-date-img1.png`\n\n### Smart Filenames\nFilenames are automatically generated based on:\n- **Prompt**: First 30 characters, cleaned of special characters\n- **Model**: Short model name (e.g., \"flux-pro\")\n- **Date**: Generation date in YYYY-MM-DD format\n- **Index**: Sequential number for batch downloads\n\n## Technologies Used\n\n- [Next.js](https://nextjs.org) - React framework\n- [React Flow](https://reactflow.dev) - Node-based UI library\n- [Tailwind CSS](https://tailwindcss.com) - Styling\n- [Zustand](https://zustand-demo.pmnd.rs) - State management\n- [Playwright](https://playwright.dev) - Testing\n\n## Contributing\n\nContributions are welcome! Please read the contributing guidelines first.\n\n## License\n\nThis project is licensed under the MIT License.\n",
+    "packageJson": {
+      "name": "visual-image-composer",
+      "version": "1.9.0",
+      "private": true,
+      "scripts": {
+        "dev": "next dev --turbopack",
+        "prebuild": "echo \"🚀 Building Visual Image Composer v$(node -p \"require('./package.json').version\")\"",
+        "build": "next build",
+        "start": "next start",
+        "lint": "eslint",
+        "test": "playwright test",
+        "test:headed": "playwright test --headed",
+        "precommit": "npm run lint",
+        "generate-summary": "node scripts/generate-test-summary.js"
+      },
+      "dependencies": {
+        "@supabase/supabase-js": "^2.49.4",
+        "jszip": "^3.10.1",
+        "lucide-react": "^0.544.0",
+        "next": "^16.0.7",
+        "postcss": "^8.5.6",
+        "react": "^19.2.0",
+        "react-dom": "^19.2.0",
+        "reactflow": "^11.11.4",
+        "zustand": "^5.0.8"
+      },
+      "devDependencies": {
+        "@eslint/eslintrc": "^3",
+        "@playwright/test": "^1.55.1",
+        "@types/node": "^20",
+        "@types/react": "^19.2.0",
+        "@types/react-dom": "^19.2.0",
+        "eslint": "^9",
+        "eslint-config-next": "^16.0.7",
+        "tailwindcss": "^3.4.17",
+        "typescript": "^5.8.2"
+      },
+      "engines": {
+        "node": ">=20.9.0"
+      }
+    }
+  },
+  "analysis": {
+    "description": "Visual Image Composer is a node-based AI image generation studio that lets teams visually design, version, and export complex image workflows without touching code. It turns scattered prompt experiments into a repeatable, auditable pipeline with real-time preview and one-click asset downloads for production use.",
+    "businessCanvas": {
+      "valueProposition": [
+        "Visual, node-based editor to design, test, and reuse complex AI image generation workflows without engineering effort.",
+        "Built-in settings logging, version control, and smart download/filenaming turn prompt tinkering into a governed, shareable asset pipeline.",
+        "Pluggable AI providers and Next.js architecture make it easy to integrate with existing apps, internal tools, or creative production workflows."
+      ],
+      "customerSegments": [
+        {
+          "name": "Creative teams at agencies and brands using AI for campaign assets",
+          "willingness_to_pay": "High",
+          "pain_points": [
+            "Inconsistent AI results and prompts living in screenshots, chats, or personal notebooks.",
+            "Time wasted recreating past generations, managing versions, and organizing exports for clients and internal stakeholders."
+          ]
+        },
+        {
+          "name": "Product teams and startups building AI-powered design or media tools",
+          "willingness_to_pay": "Medium",
+          "pain_points": [
+            "Needing a robust, visual workflow editor for AI image generation without investing months in custom React Flow and state-management work.",
+            "Difficulty maintaining reproducible generations, auditability, and a clean UX for non-technical users."
+          ]
+        },
+        {
+          "name": "In-house marketing and content operations teams standardizing AI usage",
+          "willingness_to_pay": "Medium",
+          "pain_points": [
+            "Lack of a central place to manage prompts, styles, aspect ratios, and versions across multiple campaigns and team members.",
+            "Operational friction downloading, naming, and organizing large batches of AI-generated images for downstream channels."
+          ]
+        }
+      ],
+      "revenueStreams": [
+        {
+          "source": "SaaS subscription for cloud-hosted visual AI image workflow studio",
+          "model": "Recurring",
+          "potential_arr": 150000
+        },
+        {
+          "source": "Developer / enterprise license for embedding the composer into existing products",
+          "model": "Recurring",
+          "potential_arr": 100000
+        },
+        {
+          "source": "Professional services for custom node types, provider integrations, and workflow onboarding",
+          "model": "Non-Recurring",
+          "potential_arr": 50000
+        }
+      ]
+    }
+  }
+}

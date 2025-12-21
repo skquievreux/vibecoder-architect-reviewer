@@ -1,0 +1,27 @@
+{
+  "repositoryId": "811207cb-0aa3-44f5-b8a7-63ed05a2f320",
+  "name": "DevVault",
+  "owner": "skquievreux",
+  "harvestedAt": "2025-12-21T09:21:39.719Z",
+  "content": {
+    "readme": "# 🔐 DevVault\r\n\r\n> **Secure, Local-First Secrets Management for Developers.**  \r\n> Stop scattering `.env` files across your filesystem. Centralize, encrypt, and manage secrets with ease.\r\n\r\n![Status](https://img.shields.io/badge/Status-Access_Preview-blue)\r\n![License](https://img.shields.io/badge/License-MIT-green)\r\n![Platform](https://img.shields.io/badge/Platform-Windows%20%7C%20WSL-lightgrey)\r\n\r\n---\r\n\r\n## 🚀 Mission\r\n\r\nDevVault solves the chaos of managing secrets across dozens of local repositories. It eliminates duplicated API keys, insecure plain-text storage, and the hassle of manual secret rotation. Built for developers who value data ownership and security.\r\n\r\n## ✨ Features\r\n\r\n- **🛡️ Local-First Vault**: All secrets are encrypted locally using `age` (file-based) and `libsodium` (database-based). You own your keys.\r\n- **🔍 Inventory Scan**: Automatically detect `.env` files across your Windows and WSL filesystems.\r\n- **🔄 Universal Injection**: Inject secrets back into projects with `dv inject`.\r\n- **🖥️ Modern Dashboard**: A beautiful Next.js UI to view projects, analyze usage, and identify shared secrets.\r\n- **⚡ Zero-Knowledge**: We never see your secrets. Everything runs on localhost.\r\n\r\n## 🛠️ Architecture\r\n\r\nDevVault uses a hybrid architecture to ensure both security and developer experience:\r\n\r\n- **Core**: Next.js 15 (App Router) + TypeScript\r\n- **Database**: SQLite (Local Dev) / PostgreSQL (Production ready)\r\n- **Encryption**: \r\n  - **At Rest (Files):** `SOPS` + `age`\r\n  - **At Rest (DB):** `libsodium` (ChaCha20-Poly1305)\r\n- **Auth**: NextAuth.js v5\r\n- **UI**: Tailwind CSS v4 + Shadcn/UI\r\n\r\n## 🏁 Quick Start\r\n\r\n### Prerequisites\r\n- **Node.js** v20+\r\n- **Git**\r\n\r\n### Installation\r\n\r\n1. **Clone the repository** (or your local copy)\r\n   ```bash\r\n   git clone https://github.com/your-username/devvault.git\r\n   cd DevVault\r\n   ```\r\n\r\n2. **Install Dependencies**\r\n   ```bash\r\n   cd web\r\n   npm install\r\n   ```\r\n\r\n3. **Start the Dashboard**\r\n   ```bash\r\n   npm run dev\r\n   ```\r\n   Visit [http://localhost:3000](http://localhost:3000).\r\n\r\n4. **Initialize CLI (Coming Soon)**\r\n   ```bash\r\n   dv init\r\n   ```\r\n\r\n## 🗺️ Roadmap\r\n\r\n- [x] **Phase 1: Local Vault** (Inventory, Scan, Migration)\r\n- [x] **Phase 2: Core Platform** (Dashboard, SQLite, API)\r\n- [ ] **Phase 3: CLI Tool** (`dv` command for terminal injection)\r\n- [ ] **Phase 4: Automation** (Key Rotation, Git Hooks)\r\n\r\n---\r\n\r\n© 2025 DevVault. Built with ❤️ and ☕.\r\n",
+    "packageJson": {
+      "name": "devvault-monorepo",
+      "version": "1.0.0",
+      "private": true,
+      "scripts": {
+        "dev": "npm run dev --prefix web",
+        "build": "npm run build --prefix web",
+        "start": "npm run start --prefix web",
+        "cli:link": "npm link --prefix cli"
+      },
+      "workspaces": [
+        "web",
+        "cli"
+      ],
+      "engines": {
+        "node": ">=20.9.0"
+      }
+    }
+  }
+}

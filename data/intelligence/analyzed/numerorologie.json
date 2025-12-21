@@ -1,0 +1,63 @@
+{
+  "repositoryId": "8cbdaf83-0dc4-49ec-b516-6d580a68f4b6",
+  "name": "numerorologie",
+  "owner": "skquievreux",
+  "harvestedAt": "2025-12-21T09:21:47.792Z",
+  "content": {
+    "readme": "# Numerologie-Rechner\n\nEin interaktiver Numerologie-Rechner, der die Lebenszahl und Namenszahl basierend auf dem pythagoräischen System berechnet. Der Rechner kann sowohl als eigenständige Anwendung als auch als eingebettetes Element in bestehende Webseiten integriert werden.\n\n## 🌟 Funktionen\n\n- **Lebenszahl-Berechnung**: Ermittelt Ihre Lebenszahl anhand Ihres Geburtsdatums\n- **Namenszahl-Berechnung**: Berechnet Ihre persönliche Namenszahl basierend auf dem pythagoräischen System\n- **Detaillierte Bedeutungen**: Liefert ausführliche Interpretationen für jede berechnete Zahl\n- **Animierter Hintergrund**: Dynamische Wellenanimation für ein ansprechendes visuelles Erlebnis\n- **E-Mail-Versand**: Automatischer Versand der Berechnungsergebnisse per E-Mail\n- **Responsive Design**: Optimale Darstellung auf allen Geräten\n\n## 🚀 Technologien\n\n- HTML5\n- CSS3\n- Vanilla JavaScript\n- SimplexNoise für die Wellenanimation\n- Make.com Webhook-Integration\n\n## 💻 Einbindung in bestehende Webseiten\n\n### Als Iframe einbetten\n\nFügen Sie folgenden Code an der gewünschten Stelle in Ihrer Webseite ein:\n\n```html\n<iframe \n    src=\"https://ihre-domain.de/numerologie-rechner\" \n    width=\"100%\" \n    height=\"800px\" \n    style=\"border: none; max-width: 100%; margin: 0 auto; display: block;\"\n    title=\"Numerologie-Rechner\"\n></iframe>\n```\n\n### Anpassung der Iframe-Größe\n\n- Die Standardhöhe von 800px kann je nach Bedarf angepasst werden\n- Die Breite passt sich automatisch responsiv an den verfügbaren Platz an\n- Für eine dynamische Höhenanpassung können Sie folgenden JavaScript-Code verwenden:\n\n```javascript\nwindow.addEventListener('message', function(e) {\n    if (e.data.type === 'numerologie-height') {\n        const iframe = document.querySelector('iframe[title=\"Numerologie-Rechner\"]');\n        if (iframe) {\n            iframe.style.height = e.data.height + 'px';\n        }\n    }\n});\n```\n\n### Styling-Anpassungen\n\nDer Rechner übernimmt automatisch das Color-Scheme der einbettenden Webseite. Für individuelle Anpassungen können Sie folgende CSS-Variablen in Ihrer Webseite überschreiben:\n\n```css\n:root {\n    --numerologie-primary-color: #8b68ff;\n    --numerologie-background: #121212;\n    --numerologie-text: #ffffff;\n}\n```\n\n## 🔧 Konfiguration\n\nDer Webhook für den E-Mail-Versand ist in der `script.js` konfiguriert. Um die E-Mail-Funktionalität zu nutzen, müssen Sie:\n\n1. Einen eigenen Make.com (früher Integromat) Webhook erstellen\n2. Die Webhook-URL in der `script.js` anpassen:\n```javascript\nconst response = await fetch('Ihre-Webhook-URL', {\n    // ...\n});\n```\n\n## 📝 Benutzung\n\n1. Geben Sie Ihren vollständigen Namen ein\n2. Fügen Sie Ihre E-Mail-Adresse hinzu\n3. Wählen Sie Ihr Geburtsdatum aus\n4. Geben Sie Ihren Geburtsort ein\n5. Klicken Sie auf \"Auswertung anfordern\"\n\nDie Ergebnisse werden automatisch berechnet und per E-Mail zugesendet.\n\n## 🎨 Anpassung der Animation\n\nDie Wellenanimation lässt sich in der `script.js` über das `config`-Objekt modifizieren:\n\n```javascript\nconst config = {\n    blur: 10,\n    speed: 0.002,\n    waveWidth: 50,\n    waveOpacity: 0.5,\n    colors: [\n        '#8b68ff',\n        '#7a54ff',\n        '#6940ff',\n        '#582eff',\n        '#4a1fff'\n    ],\n    backgroundFill: '#121212'\n};\n```\n\n## 📱 Browser-Kompatibilität\n\nDer Numerologie-Rechner wurde für folgende Browser optimiert:\n- Chrome (Version 90+)\n- Firefox (Version 88+)\n- Safari (Version 14+)\n- Edge (Version 90+)\n\n## 📜 Lizenz\n\nDieses Projekt ist unter der MIT-Lizenz lizenziert.\n",
+    "packageJson": null
+  },
+  "analysis": {
+    "description": "Ein eingebetteter, interaktiver Numerologie-Rechner, der aus Name, Geburtsdaten und -ort automatisch personalisierte Auswertungen erzeugt und per E-Mail zustellt. Ideal für spirituelle Berater, Coaches und Esoterik-Shops, um ohne Entwicklungsaufwand ein modernes, visuell ansprechendes Lead-Magnet-Tool auf ihrer Website anzubieten.",
+    "businessCanvas": {
+      "valueProposition": [
+        "Sofort einbindbarer Numerologie-Rechner als Iframe, der ohne Backend oder komplexe Integration auf jede bestehende Website passt",
+        "Generiert automatisiert personalisierte Numerologie-Reports inklusive E-Mail-Versand und damit qualitativ hochwertige Leads",
+        "Optisch ansprechende, responsive Oberfläche mit anpassbarem Branding (Farbschema, Animation), um sich nahtlos ins bestehende Design einzufügen"
+      ],
+      "customerSegments": [
+        {
+          "name": "Spirituelle Berater, Coaches und Numerologen mit eigener Website",
+          "willingness_to_pay": "High",
+          "pain_points": [
+            "Kein technisches Know-how, um interaktive Rechner oder Lead-Magnet-Tools selbst zu entwickeln",
+            "Bedarf an automatisierter, professioneller Auswertung und E-Mail-Nachverfolgung statt manueller Berechnungen"
+          ]
+        },
+        {
+          "name": "Esoterik- und Mindfulness-Plattformen / Online-Magazine",
+          "willingness_to_pay": "Medium",
+          "pain_points": [
+            "Steigerung von Engagement und Verweildauer durch interaktive Inhalte",
+            "Suche nach konvertierenden Tools zur Lead-Generierung ohne hohen Entwicklungsaufwand"
+          ]
+        },
+        {
+          "name": "Marketing-Agenturen für Coaches und spirituelle Dienstleister",
+          "willingness_to_pay": "Medium",
+          "pain_points": [
+            "Fehlende wiederverwendbare, konversionsstarke Widgets für Landingpages und Funnels",
+            "Hoher Zeit- und Kostenaufwand, individuelle Rechner für jeden Kunden zu entwickeln"
+          ]
+        }
+      ],
+      "revenueStreams": [
+        {
+          "source": "SaaS Subscription für gehosteten Numerologie-Rechner (White-Label & Branding-Optionen)",
+          "model": "Recurring",
+          "potential_arr": 30000
+        },
+        {
+          "source": "Agentur-/Reseller-Lizenzen mit Multi-Client-Verwaltung",
+          "model": "Recurring",
+          "potential_arr": 20000
+        },
+        {
+          "source": "Einmalige Setup- und Customization-Gebühren (Design, individuelle Texte, zusätzliche Felder/Flows)",
+          "model": "One-time",
+          "potential_arr": 10000
+        }
+      ]
+    }
+  }
+}

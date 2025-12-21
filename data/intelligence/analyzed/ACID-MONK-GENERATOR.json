@@ -1,0 +1,128 @@
+{
+  "repositoryId": "47bf7bb4-e6b1-4859-8ef4-c619f7c935d6",
+  "name": "ACID-MONK-GENERATOR",
+  "owner": "skquievreux",
+  "harvestedAt": "2025-12-21T09:21:44.755Z",
+  "content": {
+    "readme": "# 🎵 ACID MONK Hook Generator v1.4.0\n\n**Emotionale Voice Hooks in Sekunden statt Studiozeit**\n\n[![Next.js](https://img.shields.io/badge/Next.js-16-black)](https://nextjs.org/)\n[![TypeScript](https://img.shields.io/badge/TypeScript-5.3+-blue)](https://www.typescriptlang.org/)\n[![Vercel](https://img.shields.io/badge/Vercel-Deployed-black)](https://vercel.com/)\n[![Supabase](https://img.shields.io/badge/Supabase-Database-green)](https://supabase.com/)\n[![License](https://img.shields.io/badge/License-MIT-green)](LICENSE)\n\n## 📋 Überblick\n\nDer ACID MONK Hook Generator ist eine moderne SaaS-Anwendung, die Musikproduzenten und Content-Creators ermöglicht, professionelle Voice Hooks mit KI zu generieren.\n\n### ✨ Hauptfunktionen\n\n- 🎤 **KI-gestützte Voice-Generierung** mit ACID MONK Stimme\n- 🌍 **Multi-Tenancy** (Verschiedene Profile/Mandanten)\n- ❤️ **Community Voting** & Sharing System\n- 💰 **Pay-per-Use Modell** (€0.20 für 10 Hooks)\n- ⚡ **Sofortiger Download** als ZIP-Archiv\n- 🔒 **Sichere Zahlungsabwicklung** via Lemon Squeezy\n\n## 🚀 Technische Architektur\n\n### Tech-Stack\n\n- **Framework:** Next.js 16 (App Router)\n- **Language:** TypeScript 5.3+\n- **Database:** Supabase (PostgreSQL) für Shares & Profile\n- **Session Storage:** Vercel KV (Redis)\n- **File Storage:** Cloudflare R2 (S3-kompatibel)\n- **Voice AI:** ElevenLabs API\n\n### Systemarchitektur\n\n```\n┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐\n│   User Browser  │────│   Next.js App   │────│  Vercel KV      │\n│                 │    │   (Frontend)    │    │  (Sessions)     │\n└─────────────────┘    └─────────────────┘    └─────────────────┘\n        │                       │                      │\n        ▼                       ▼                      ▼\n┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐\n│  Lemon Squeezy  │    │    Supabase     │    │  ElevenLabs     │\n│   (Payment)     │    │ (Shares/Profiles│    │   (Voice AI)    │\n└─────────────────┘    └─────────────────┘    └─────────────────┘\n                                                       │\n                                                       ▼\n                                              ┌─────────────────┐\n                                              │  Cloudflare R2  │\n                                              │   (File Storage)│\n                                              └─────────────────┘\n```\n\n### Datenfluss\n\n1. **User wählt Profil** → Dynamische Styles & Config aus Supabase\n2. **Generierung** → Parallel via ElevenLabs\n3. **Speicherung** → MP3s nach R2, Metadaten nach Supabase\n4. **Sharing** → Permanente Landingpages (`/listen/...`)\n\n\n## 📦 Installation & Setup\n\n### Voraussetzungen\n\n- Node.js ≥ 18.0.0\n- npm ≥ 9.0.0\n- Git\n\n### Lokale Entwicklung\n\n```bash\n# Repository klonen\ngit clone https://github.com/skquievreux/ACID-MONK-GENERATOR.git\ncd acid-monk-generator\n\n# Dependencies installieren\nnpm install\n\n# Environment Variables konfigurieren\ncp .env.example .env.local\n# Bearbeite .env.local mit deinen API-Keys\n\n# Entwicklungsserver starten\nnpm run dev\n```\n\n### Environment Variables\n\n```bash\n# .env.local\n# ElevenLabs API\nELEVEN_API_KEY=sk_...\nVOICE_ID=vjJ6nq\n\n# Lemon Squeezy\nLEMON_WEBHOOK_SECRET=...\n\n# Cloudflare R2\nR2_ACCOUNT_ID=...\nR2_ACCESS_KEY_ID=...\nR2_SECRET_ACCESS_KEY=...\nR2_BUCKET_NAME=acid-monk-hooks\nR2_PUBLIC_URL=https://pub-xxx.r2.dev\n\n# Vercel KV (wird automatisch gesetzt)\nKV_URL=...\nKV_REST_API_URL=...\nKV_REST_API_TOKEN=...\nKV_REST_API_READ_ONLY_TOKEN=...\n\n# JWT Secret\nJWT_SECRET=your_secure_random_string\n\n# App URL\nNEXT_PUBLIC_APP_URL=http://localhost:3000\n```\n\n## 🎯 API Dokumentation\n\n### POST `/api/generate`\n\nGeneriert Voice Hooks aus Text-Datei.\n\n**Request:**\n```typescript\n{\n  \"sessionId\": \"sess_abc123\",\n  \"hooks\": [\n    { \"id\": 1, \"text\": \"Feel the beat drop\" },\n    { \"id\": 2, \"text\": \"This is my moment\" }\n  ]\n}\n```\n\n**Response:**\n```typescript\n{\n  \"success\": true,\n  \"generationId\": \"gen_xyz789\",\n  \"zipUrl\": \"https://pub-xxx.r2.dev/downloads/hooks-sess_abc123.zip\"\n}\n```\n\n### POST `/api/webhook`\n\nLemon Squeezy Payment Webhook Handler.\n\n**Security:** HMAC SHA-256 Signatur-Verifizierung\n\n### GET `/api/download/[sessionId]`\n\nLeitet zu ZIP-Download weiter.\n\n## 🧪 Testing\n\n### Unit Tests\n\n```bash\nnpm run test:unit\n```\n\n### E2E Tests (Playwright)\n\n```bash\n# E2E Tests installieren\nnpx playwright install\n\n# Tests ausführen\nnpm run test:e2e\n```\n\n### Build Tests\n\n```bash\n# Production Build testen\nnpm run build\nnpm run start\n```\n\n## 🚀 Deployment\n\n### Vercel Deployment\n\n```bash\n# Vercel CLI installieren\nnpm i -g vercel\n\n# Projekt deployen\nvercel --prod\n\n# Environment Variables setzen\nvercel env add ELEVEN_API_KEY\nvercel env add LEMON_WEBHOOK_SECRET\n# ... weitere Variablen\n```\n\n### Cloudflare R2 Setup\n\n1. **R2 Bucket erstellen:**\n   ```bash\n   # Dashboard: https://dash.cloudflare.com/r2\n   # Bucket Name: acid-monk-hooks\n   ```\n\n2. **API Token generieren:**\n   - Permissions: Object Read & Write\n   - TTL: No expiration\n\n3. **Lifecycle Rule (24h Cleanup):**\n   ```json\n   {\n     \"Rules\": [\n       {\n         \"ID\": \"DeleteAfter24Hours\",\n         \"Status\": \"Enabled\",\n         \"Filter\": {\n           \"Prefix\": \"hooks/\"\n         },\n         \"Expiration\": {\n           \"Days\": 1\n         }\n       }\n     ]\n   }\n   ```\n\n## 📊 Monitoring & Analytics\n\n### Sentry Error Tracking\n\n```bash\nnpm install @sentry/nextjs\n# Sentry Konfiguration folgt...\n```\n\n### Vercel Analytics\n\nAutomatisch aktiviert bei Vercel Deployment.\n\n### Custom Metrics\n\n- Generierungsdauer\n- Erfolgsrate\n- Payment-Konversion\n- Dateigrößen\n\n## 🔒 Sicherheit\n\n### Payment Security\n\n- **Lemon Squeezy PCI Compliance**\n- **Webhook Signatur-Verifizierung**\n- **Idempotency Keys** für Zahlungen\n\n### API Security\n\n- **Rate Limiting** (100 req/IP/h)\n- **Input Validation** (Zod)\n- **CORS Konfiguration**\n- **HTTPS erzwungen**\n\n### Data Privacy\n\n- **Keine persönlichen Daten gespeichert**\n- **Session-Daten: 24h TTL**\n- **Generierte Dateien: 24h verfügbar**\n- **GDPR-konform**\n\n## 📈 Performance\n\n### Benchmarks\n\n- **Time to First Byte:** <200ms\n- **Voice Generierung:** <30s pro Hook\n- **ZIP Erstellung:** <5s\n- **Lighthouse Score:** >90\n\n### Optimierungen\n\n- **Parallel Processing:** 3 Hooks gleichzeitig\n- **Memory Streaming:** ZIP ohne temporäre Dateien\n- **CDN Delivery:** Cloudflare R2 global\n- **Edge Functions:** Vercel Edge Runtime\n\n## 🐛 Fehlerbehebung\n\n### Häufige Probleme\n\n**Build-Fehler:**\n```bash\n# Dependencies neu installieren\nrm -rf node_modules package-lock.json\nnpm install\n```\n\n**Environment Variables:**\n```bash\n# Variables prüfen\nvercel env ls\n```\n\n**R2 Connection:**\n```bash\n# Test-Upload\nnpm run test:r2\n```\n\n## 📝 Changelog\n\n### v1.0.0 (29. Oktober 2025)\n- 🎉 **Erste stabile Version**\n- ✅ Komplette MVP-Implementierung\n- ✅ Next.js 15 mit TypeScript\n- ✅ DB-lose Architektur mit Vercel KV\n- ✅ Cloudflare R2 Speicherung\n- ✅ ElevenLabs Integration\n- ✅ Lemon Squeezy Payment\n- ✅ Mobile-responsive Design\n- ✅ Production-ready Build\n\n## 🤝 Contributing\n\n1. Fork das Repository\n2. Erstelle einen Feature-Branch (`git checkout -b feature/AmazingFeature`)\n3. Commit deine Änderungen (`git commit -m 'Add some AmazingFeature'`)\n4. Push zum Branch (`git push origin feature/AmazingFeature`)\n5. Öffne einen Pull Request\n\n### Code Style\n\n- **ESLint:** Automatische Formatierung\n- **Prettier:** Konsistente Formatierung\n- **TypeScript:** Strict Mode aktiviert\n- **Conventional Commits**\n\n## 📄 Lizenz\n\nDieses Projekt ist unter der MIT-Lizenz lizenziert - siehe die [LICENSE](LICENSE) Datei für Details.\n\n## 📞 Support\n\n- **Issues:** [GitHub Issues](https://github.com/skquievreux/ACID-MONK-GENERATOR/issues)\n- **Discussions:** [GitHub Discussions](https://github.com/skquievreux/ACID-MONK-GENERATOR/discussions)\n- **E-Mail:** support@acidmonk.app\n\n## 🙏 Acknowledgments\n\n- **ElevenLabs** für die Voice AI API\n- **Lemon Squeezy** für die Payment-Infrastruktur\n- **Vercel** für die Hosting-Plattform\n- **Cloudflare** für R2 Object Storage\n\n---\n\n**Made with ❤️ by ACID MONK**\n",
+    "packageJson": {
+      "name": "acid-monk-generator",
+      "version": "1.9.1",
+      "private": true,
+      "scripts": {
+        "predev": "node scripts/generate-build-info.js",
+        "dev": "next dev",
+        "prebuild": "node scripts/generate-build-info.js",
+        "build": "next build",
+        "start": "next start",
+        "lint": "eslint",
+        "compress-audio": "node scripts/compress-audio.cjs",
+        "migrate:audio": "node scripts/migrate-compress-audio.cjs",
+        "migrate:images": "node scripts/migrate-optimize-images.cjs",
+        "cleanup:storage": "node scripts/cleanup-storage.cjs"
+      },
+      "dependencies": {
+        "@aws-sdk/client-s3": "^3.919.0",
+        "@aws-sdk/lib-storage": "^3.919.0",
+        "@elevenlabs/elevenlabs-js": "^2.20.1",
+        "@next/third-parties": "^16.1.0",
+        "@radix-ui/react-slot": "^1.2.3",
+        "@supabase/supabase-js": "^2.49.4",
+        "@types/jsonwebtoken": "^9.0.10",
+        "@types/qrcode": "^1.5.6",
+        "@upstash/ratelimit": "^2.0.6",
+        "@upstash/redis": "^1.35.6",
+        "@vercel/blob": "^2.0.0",
+        "@vercel/kv": "^3.0.0",
+        "@vercel/og": "^0.8.6",
+        "archiver": "^7.0.1",
+        "class-variance-authority": "^0.7.1",
+        "clsx": "^2.1.1",
+        "jsonwebtoken": "^9.0.2",
+        "lucide-react": "^0.548.0",
+        "next": "^16.0.7",
+        "next-themes": "^0.4.6",
+        "qrcode": "^1.5.4",
+        "react": "^19.2.1",
+        "react-dom": "^19.2.1",
+        "tailwind-merge": "^3.3.1",
+        "zod": "^4.1.12"
+      },
+      "devDependencies": {
+        "@playwright/test": "^1.56.1",
+        "@tailwindcss/postcss": "^4",
+        "@testing-library/jest-dom": "^6.9.1",
+        "@testing-library/react": "^16.3.0",
+        "@types/archiver": "^7.0.0",
+        "@types/jest": "^30.0.0",
+        "@types/node": "^24.9.2",
+        "@types/react": "^19",
+        "@types/react-dom": "^19",
+        "dotenv": "^17.2.3",
+        "eslint": "^9",
+        "eslint-config-next": "16.0.1",
+        "git-rev-sync": "^3.0.2",
+        "jest": "^30.2.0",
+        "sharp": "^0.34.5",
+        "tailwindcss": "^4",
+        "typescript": "^5.8.2"
+      },
+      "engines": {
+        "node": ">=20.9.0"
+      }
+    }
+  },
+  "analysis": {
+    "description": "ACID MONK Hook Generator ist eine KI-gestützte SaaS-Plattform, mit der Musikproduzenten und Content-Creators in Sekunden emotionale, release-fertige Voice Hooks statt in teurer Studiozeit produzieren. Mit Pay-per-Use, Community-Voting und sofortigem ZIP-Download skaliert das Tool von schnellen Ideen-Skizzen bis zu professionellen Produktionen ohne eigene Infrastruktur.",
+    "businessCanvas": {
+      "valueProposition": [
+        "Reduziert Studio- und Sprecherkosten drastisch, indem professionelle Voice Hooks on-demand per KI generiert werden",
+        "Beschleunigt den kreativen Workflow durch sofortige Generierung, Download und Sharing von Hooks (inkl. Multi-Tenancy für verschiedene Artists/Brands)",
+        "Monetarisierbares Pay-per-Use-Modell mit sicherer Zahlungsabwicklung, das ohne Abo-Hürde skaliert und einfach in bestehende Produktions- oder Content-Prozesse integrierbar ist"
+      ],
+      "customerSegments": [
+        {
+          "name": "Indie- und Semi-Pro Musikproduzenten (EDM, Hip-Hop, Pop)",
+          "willingness_to_pay": "High",
+          "pain_points": [
+            "Hohe Kosten und Terminkonflikte mit Studios und Vocalists für kurze Hooks und Adlibs",
+            "Langsame Iterationszyklen beim Testen von Melodien, Hooks und Songideen"
+          ]
+        },
+        {
+          "name": "Content-Creators & Social-Media-Marketer (TikTok, Reels, YouTube Shorts)",
+          "willingness_to_pay": "Medium",
+          "pain_points": [
+            "Fehlende schnelle, lizenzklare Voice-Snippets für virale Clips und Kampagnen",
+            "Zu komplexe oder teure Audio-Tools für einfache, wiederkehrende Hook-Produktion"
+          ]
+        },
+        {
+          "name": "Sample-Label-Betreiber & Beatmaker-Plattformen",
+          "willingness_to_pay": "High",
+          "pain_points": [
+            "Konstanter Bedarf an neuen, rechtssicheren Vocal-Samples und Hooks in hoher Stückzahl",
+            "Aufwändige Verwaltung mehrerer Artists/Brands und Freigaben ohne skalierbaren Produktionsprozess"
+          ]
+        }
+      ],
+      "revenueStreams": [
+        {
+          "source": "Pay-per-Use Hook Credits (z.B. €0,20 für 10 Hooks)",
+          "model": "Recurring",
+          "potential_arr": 120000
+        },
+        {
+          "source": "Whitelabel-/B2B-Lizenzen für Labels, Sample-Shops und Plattformen",
+          "model": "Recurring",
+          "potential_arr": 250000
+        },
+        {
+          "source": "Premium-Features (exklusive Voices, höhere Limits, Team-/Mandantenverwaltung)",
+          "model": "Recurring",
+          "potential_arr": 80000
+        }
+      ]
+    }
+  }
+}

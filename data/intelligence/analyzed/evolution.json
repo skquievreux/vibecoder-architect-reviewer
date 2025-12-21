@@ -1,0 +1,63 @@
+{
+  "repositoryId": "b16e8403-58f3-44f9-ba3f-5158fc6899a1",
+  "name": "evolution",
+  "owner": "quievreux",
+  "harvestedAt": "2025-12-21T09:21:43.403Z",
+  "content": {
+    "readme": null,
+    "packageJson": null
+  },
+  "analysis": {
+    "description": "Evolution is a flexible software foundation for rapidly prototyping, testing, and scaling new digital products without being locked into legacy architecture. It gives product and engineering teams a starting point that shortens time-to-market for new services and experiments.",
+    "businessCanvas": {
+      "valueProposition": [
+        "Accelerates product delivery by providing a reusable, evolution-ready codebase instead of starting every initiative from scratch",
+        "Reduces technical risk by enforcing opinionated patterns that can adapt as requirements and scale evolve",
+        "Lowers long-term engineering cost by standardizing how new features and services are added over time"
+      ],
+      "customerSegments": [
+        {
+          "name": "Digital product teams at startups and scale-ups",
+          "willingness_to_pay": "Medium",
+          "pain_points": [
+            "Slow MVP delivery due to repeated boilerplate setup",
+            "Frequent rewrites when products scale or pivot"
+          ]
+        },
+        {
+          "name": "Innovation labs and corporate venture studios",
+          "willingness_to_pay": "High",
+          "pain_points": [
+            "Need to validate many ideas quickly with limited shared engineering capacity",
+            "Inconsistent architecture across experiments complicating maintenance and handover"
+          ]
+        },
+        {
+          "name": "Software consultancies and agencies",
+          "willingness_to_pay": "Medium",
+          "pain_points": [
+            "Pressure to deliver custom client projects faster while preserving quality",
+            "Difficulty reusing internal frameworks across diverse client engagements"
+          ]
+        }
+      ],
+      "revenueStreams": [
+        {
+          "source": "Commercial license for advanced evolution framework features",
+          "model": "Recurring",
+          "potential_arr": 50000
+        },
+        {
+          "source": "SaaS platform for managing evolution-based projects, templates, and upgrades",
+          "model": "Recurring",
+          "potential_arr": 120000
+        },
+        {
+          "source": "Professional services (implementation, customization, and training)",
+          "model": "One-time",
+          "potential_arr": 80000
+        }
+      ]
+    }
+  }
+}

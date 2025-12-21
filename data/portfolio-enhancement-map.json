@@ -1,0 +1,186 @@
+{
+    "Google-Visual-Story-Generator-": {
+        "description": "Interactive visual storytelling engine powered by AI models. Allows creators to weave narratives with generated imagery in a seamless flow.",
+        "canvas": {
+            "valueProposition": "[\"AI-Driven Storyboarding\", \"Instant Visual Narrative\", \"No-Code Interactive Stories\"]",
+            "customerSegments": "[{\"name\":\"Authors\",\"willingness_to_pay\":\"Medium\"}, {\"name\":\"Educators\",\"willingness_to_pay\":\"Low\"}]",
+            "revenueStreams": "[{\"source\":\"Subscription\",\"model\":\"Pro Features\",\"potential_arr\":12000}]"
+        }
+    },
+    "birdie-flight-revamp": {
+        "description": "Enterprise-grade flight passenger management specifically designed for high-load environments. Features real-time seat allocation and booking management.",
+        "canvas": {
+            "valueProposition": "[\"Real-time Passenger Tracking\", \"High-Availability Architecture\", \"Legacy System Integration\"]",
+            "customerSegments": "[{\"name\":\"Regional Airlines\",\"willingness_to_pay\":\"Very High\"}, {\"name\":\"Travel Agencies\",\"willingness_to_pay\":\"High\"}]",
+            "revenueStreams": "[{\"source\":\"B2B License\",\"model\":\"Per Transaction\",\"potential_arr\":150000}]"
+        }
+    },
+    "inspect-whisper": {
+        "description": "Voice-controlled inspection logging tool. Enables field technicians to document findings hands-free using advanced speech-to-text integration.",
+        "canvas": {
+            "valueProposition": "[\"Hands-Free Documentation\", \"Voice Command Interface\", \"Offline-Capable\"]",
+            "customerSegments": "[{\"name\":\"Field Service Techs\",\"willingness_to_pay\":\"Medium\"}, {\"name\":\"Construction Managers\",\"willingness_to_pay\":\"High\"}]",
+            "revenueStreams": "[{\"source\":\"SaaS\",\"model\":\"Per User/Month\",\"potential_arr\":45000}]"
+        }
+    },
+    "techeroes-quiz": {
+        "description": "Gamified technical assessment platform for recruiting and training. Uses React/Next.js for a responsive, engaging candidate experience.",
+        "canvas": {
+            "valueProposition": "[\"Automated Skill Assessment\", \"Gamified Recruiting\", \"Instant Feedback Loops\"]",
+            "customerSegments": "[{\"name\":\"HR Departments\",\"willingness_to_pay\":\"Medium\"}, {\"name\":\"Coding Bootcamps\",\"willingness_to_pay\":\"Low\"}]",
+            "revenueStreams": "[{\"source\":\"SaaS\",\"model\":\"Per Assessment\",\"potential_arr\":10000}]"
+        }
+    },
+    "VoiceStage": {
+        "description": "Central dashboard for managing diverse Voice Agents. Orchestrates multiple AI voice personas and their dialogue flows in one interface.",
+        "canvas": {
+            "valueProposition": "[\"Unified Agent Management\", \"Multi-Persona Testing\", \"Dialogue Flow Analytics\"]",
+            "customerSegments": "[{\"name\":\"AI Developers\",\"willingness_to_pay\":\"Medium\"}, {\"name\":\"Customer Support Leads\",\"willingness_to_pay\":\"High\"}]",
+            "revenueStreams": "[{\"source\":\"SaaS\",\"model\":\"Tiered\",\"potential_arr\":25000}]"
+        }
+    },
+    "bit-blast-studio": {
+        "description": "Low-code environment for building interactive web experiences. Bridges the gap between design and development for web-based games and tools.",
+        "canvas": {
+            "valueProposition": "[\"Rapid Interactive Prototyping\", \"Component-Based Logic\", \"Visual State Management\"]",
+            "customerSegments": "[{\"name\":\"Creative Agencies\",\"willingness_to_pay\":\"Medium\"}, {\"name\":\"Indie Developers\",\"willingness_to_pay\":\"Low\"}]",
+            "revenueStreams": "[{\"source\":\"License\",\"model\":\"One-time Purchase\",\"potential_arr\":5000}]"
+        }
+    },
+    "art-vibe-gen": {
+        "description": "Personalized AI Art Generation designed for Print-on-Demand workflows. Generates high-res textures and patterns based on abstract mood prompts.",
+        "canvas": {
+            "valueProposition": "[\"Print-Ready AI Art\", \"Mood-Based Generation\", \"Commercial License Included\"]",
+            "customerSegments": "[{\"name\":\"POD Sellers (Etsy)\",\"willingness_to_pay\":\"Medium\"}, {\"name\":\"Interior Designers\",\"willingness_to_pay\":\"High\"}]",
+            "revenueStreams": "[{\"source\":\"Credits\",\"model\":\"Pay-per-Generation\",\"potential_arr\":15000}]"
+        }
+    },
+    "sound-bowl-echoes": {
+        "description": "Digital management platform for sound healing sessions. Organizes client preferences, session tracks, and therapeutic outcomes for holistic practitioners.",
+        "canvas": {
+            "valueProposition": "[\"Niche Practice Management\", \"Therapy Session Tracking\", \"Audio Asset Library\"]",
+            "customerSegments": "[{\"name\":\"Sound Healers\",\"willingness_to_pay\":\"Medium\"}, {\"name\":\"Spas & Wellness Centers\",\"willingness_to_pay\":\"High\"}]",
+            "revenueStreams": "[{\"source\":\"Subscription\",\"model\":\"Monthly\",\"potential_arr\":12000}]"
+        }
+    },
+    "broetchen-wochenende-bestellung": {
+        "description": "Hyper-local pre-order management system for bakeries. Streamlines weekend rush hours by handling orders and payments digitally in advance.",
+        "canvas": {
+            "valueProposition": "[\"Queue Reduction\", \"Waste Minimization\", \"Predictive Baking\"]",
+            "customerSegments": "[{\"name\":\"Local Bakeries\",\"willingness_to_pay\":\"Low\"}, {\"name\":\"Community Groups\",\"willingness_to_pay\":\"Low\"}]",
+            "revenueStreams": "[{\"source\":\"Commission\",\"model\":\"% of Order\",\"potential_arr\":8000}]"
+        }
+    },
+    "visual-flyer-snap": {
+        "description": "Rapid flyer creation tool for social media managers. A simplified version of Karbendrop focused purely on high-speed 'Snap' creation for Instagram Stories.",
+        "canvas": {
+            "valueProposition": "[\"1-Click Social Exports\", \"Brand Templates\", \"Mobile-First Editor\"]",
+            "customerSegments": "[{\"name\":\"Social Media Managers\",\"willingness_to_pay\":\"Medium\"}]",
+            "revenueStreams": "[{\"source\":\"In-App Purchase\",\"model\":\"Premium Templates\",\"potential_arr\":5000}]"
+        }
+    },
+    "ai-portfolio-fly-website": {
+        "description": "Dynamic portfolio showcase engine. Automatically updates based on GitHub activity and deployed projects, keeping developer profiles fresh without manual edits.",
+        "canvas": {
+            "valueProposition": "[\"Automated Resume Updates\", \"Live Project Previews\", \"GitHub Sync\"]",
+            "customerSegments": "[{\"name\":\"Freelance Developers\",\"willingness_to_pay\":\"Low\"}]",
+            "revenueStreams": "[{\"source\":\"Open Source\",\"model\":\"Donation\",\"potential_arr\":0}]"
+        }
+    },
+    "albumpromotion": {
+        "description": "Dedicated release platform for independent music artists. Combines pre-save campaigns, bio-links, and merch sales in one cohesive album launch page.",
+        "canvas": {
+            "valueProposition": "[\"All-in-One Launch Page\", \"Fan Data Capture\", \"Direct-to-Fan Sales\"]",
+            "customerSegments": "[{\"name\":\"Indie Artists\",\"willingness_to_pay\":\"Medium\"}, {\"name\":\"Small Labels\",\"willingness_to_pay\":\"Medium\"}]",
+            "revenueStreams": "[{\"source\":\"Subscription\",\"model\":\"Per Release\",\"potential_arr\":10000}]"
+        }
+    },
+    "agent-dialogue-manager": {
+        "description": "Middleware for managing state and context in autonomous agent conversations. Ensures long-running LLM tasks maintain coherence across multiple turns.",
+        "canvas": {
+            "valueProposition": "[\"Context Persistence\", \"Stateful LLP Interaction\", \"Audit Logging\"]",
+            "customerSegments": "[{\"name\":\"Enterprise AI Teams\",\"willingness_to_pay\":\"High\"}]",
+            "revenueStreams": "[{\"source\":\"Commercial License\",\"model\":\"Per Seat\",\"potential_arr\":60000}]"
+        }
+    },
+    "inspect-sync-scribe": {
+        "description": "Offline-first inspection tool with synchronized documentation. Allows teams to work in low-connectivity environments and sync data when back online.",
+        "canvas": {
+            "valueProposition": "[\"Offline-First Architecture\", \"Conflict Resolution\", \"Audit Compliance\"]",
+            "customerSegments": "[{\"name\":\"Industrial Inspectors\",\"willingness_to_pay\":\"High\"}, {\"name\":\"Facility Managers\",\"willingness_to_pay\":\"Medium\"}]",
+            "revenueStreams": "[{\"source\":\"SaaS\",\"model\":\"Per Inspector\",\"potential_arr\":35000}]"
+        }
+    },
+    "melody-maker": {
+        "description": "Collaborative music composition tool in the browser. Allows real-time melody drafting and sharing using Web Audio API.",
+        "canvas": {
+            "valueProposition": "[\"Browser-Based DAW Lite\", \"Real-time Collaboration\", \"Export to MIDI\"]",
+            "customerSegments": "[{\"name\":\"Music Students\",\"willingness_to_pay\":\"Low\"}, {\"name\":\"Songwriters\",\"willingness_to_pay\":\"Medium\"}]",
+            "revenueStreams": "[{\"source\":\"Freemium\",\"model\":\"Storage Limits\",\"potential_arr\":5000}]"
+        }
+    },
+    "clip-sync-collab": {
+        "description": "Secure, real-time clipboard synchronization for distributed teams. Encrypted transfer of snippets and files across devices.",
+        "canvas": {
+            "valueProposition": "[\"End-to-End Encryption\", \"Cross-Device Sync\", \"Team Workspaces\"]",
+            "customerSegments": "[{\"name\":\"Remote Teams\",\"willingness_to_pay\":\"Medium\"}, {\"name\":\"Developers\",\"willingness_to_pay\":\"Low\"}]",
+            "revenueStreams": "[{\"source\":\"SaaS\",\"model\":\"Per User\",\"potential_arr\":20000}]"
+        }
+    },
+    "youtube-landing-page": {
+        "description": "High-conversion landing page generator optimized for Creator Economy. Converts YouTube traffic into email subscribers with minimal friction.",
+        "canvas": {
+            "valueProposition": "[\"Creator-First Design\", \"YouTube API Integration\", \"High Conversion Templates\"]",
+            "customerSegments": "[{\"name\":\"YouTubers (>10k subs)\",\"willingness_to_pay\":\"Medium\"}]",
+            "revenueStreams": "[{\"source\":\"SaaS\",\"model\":\"Monthly\",\"potential_arr\":8000}]"
+        }
+    },
+    "DreamEdit": {
+        "description": "Browser-based image manipulation suite for social media. Includes filters, cropping, and text overlay tools powered by WebAssembly.",
+        "canvas": {
+            "valueProposition": "[\"Privacy-First Editing (Local)\", \"High Performance\", \"No Upload Needed\"]",
+            "customerSegments": "[{\"name\":\"Casual Users\",\"willingness_to_pay\":\"Low\"}]",
+            "revenueStreams": "[{\"source\":\"Ads/Freemium\",\"model\":\"Ad Removal\",\"potential_arr\":3000}]"
+        }
+    },
+    "OsteoConnect": {
+        "description": "Comprehensive practice management for Osteopaths. Handles patient records, scheduling, and billing in a HIPAA/GDPR compliant environment.",
+        "canvas": {
+            "valueProposition": "[\"Compliance-Ready\", \"Specialized Medical Workflows\", \"Patient Portal\"]",
+            "customerSegments": "[{\"name\":\"Osteopathic Clinics\",\"willingness_to_pay\":\"High\"}]",
+            "revenueStreams": "[{\"source\":\"SaaS\",\"model\":\"Per Practice\",\"potential_arr\":80000}]"
+        }
+    },
+    "playlist_generator": {
+        "description": "AI-driven playlist curation tool. Analyzes user listening listening history and mood inputs to generate perfectly sequenced playlists.",
+        "canvas": {
+            "valueProposition": "[\"Mood-Based Sequencing\", \"Cross-Platform Export\", \"Deep Cuts Discovery\"]",
+            "customerSegments": "[{\"name\":\"Music Enthusiasts\",\"willingness_to_pay\":\"Low\"}]",
+            "revenueStreams": "[{\"source\":\"Affiliate\",\"model\":\"Streaming Referrals\",\"potential_arr\":2000}]"
+        }
+    },
+    "Audio-Transkriptor": {
+        "description": "Fully managed audio-to-text platform using OpenAI Whisper. Provides highly accurate transcripts with speaker detection and timestamps.",
+        "canvas": {
+            "valueProposition": "[\"99% Accuracy\", \"Speaker Diarization\", \"Multi-Language Support\"]",
+            "customerSegments": "[{\"name\":\"Journalists\",\"willingness_to_pay\":\"Medium\"}, {\"name\":\"Podcasters\",\"willingness_to_pay\":\"Medium\"}]",
+            "revenueStreams": "[{\"source\":\"Pay-as-you-go\",\"model\":\"Per Minute\",\"potential_arr\":25000}]"
+        }
+    },
+    "visualimagecomposer": {
+        "description": "Advanced compositing tool for layering visual elements. Used as the core engine for projects like Karbendrop.",
+        "canvas": {
+            "valueProposition": "[\"Layer-Based Editing\", \"Programmable Layouts\", \"Export to JSON/PNG\"]",
+            "customerSegments": "[{\"name\":\"Developers\",\"willingness_to_pay\":\"Medium\"}]",
+            "revenueStreams": "[{\"source\":\"Open Source\",\"model\":\"Dual Licensing\",\"potential_arr\":10000}]"
+        }
+    },
+    "svg-grafik-generator": {
+        "description": "Automated pipeline for generating complex SVG assets. Useful for data visualization and dynamic iconography.",
+        "canvas": {
+            "valueProposition": "[\"Scalable Vector Graphics\", \"Data-Driven Generation\", \"CI/CD Integration\"]",
+            "customerSegments": "[{\"name\":\"Data Viz Teams\",\"willingness_to_pay\":\"High\"}]",
+            "revenueStreams": "[{\"source\":\"SaaS API\",\"model\":\"Per Request\",\"potential_arr\":15000}]"
+        }
+    }
+}

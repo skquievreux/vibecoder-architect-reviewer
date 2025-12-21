@@ -2,8 +2,11 @@
 
 import { Card, Title, Text, Badge, Grid, Select, SelectItem, MultiSelect, MultiSelectItem, Table, TableHead, TableHeaderCell, TableBody, TableRow, TableCell } from "@tremor/react";
 import { useState, useEffect } from "react";
-import { Search, Server, Database, Code, Globe, ExternalLink, AlertTriangle, RefreshCw, LayoutGrid, List, ChevronLeft, ChevronRight, ArrowUp, ArrowDown, Sparkles, Activity } from "lucide-react";
+import { Search, Server, Database, Code, Globe, ExternalLink, AlertTriangle, RefreshCw, LayoutGrid, List, ChevronLeft, ChevronRight, ArrowUp, ArrowDown, Sparkles, Activity, Star } from "lucide-react";
 import Link from "next/link";
+import FavoriteButton from "./components/FavoriteButton";
+
+import { useSession } from "next-auth/react";
 
 // Types based on our analysis script output
 type Technology = {
@@ -12,47 +15,49 @@ type Technology = {
   category: string;
   version: string | null;
 };
-
-type Interface = {
-  type: string;
-  direction: string;
-  details: any;
-};
-
 type Deployment = {
   id: string;
   provider: string;
   url: string;
+};
+
+type Task = {
+  id: string;
+  priority: string;
   status: string;
-  lastDeployedAt: string;
+};
+
+type Interface = {
+  type: string;
+  details: any;
 };
 
 type Repository = {
   repo: {
+    id: string;
     name: string;
-    fullName: string; // Note: script outputs fullName but we changed query to nameWithOwner, let's check json
-    nameWithOwner: string;
-    url: string;
-    description: string;
+    description: string | null;
     isPrivate: boolean;
-    updatedAt: string;
-    pushedAt: string;
-    languages: { edges: { node: { name: string } }[] };
+    updatedAt: string | Date;
+    pushedAt: string | Date | null;
+    url: string;
   };
   technologies: Technology[];
-  interfaces: Interface[];
   deployments: Deployment[];
-  tasks: { id: string; title: string; priority: string; status: string }[];
+  tasks: Task[];
+  interfaces: Interface[];
 };
 
 export default function Dashboard() {
+  const { data: session, status } = useSession();
   const [repos, setRepos] = useState<Repository[]>([]);
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedProviders, setSelectedProviders] = useState<string[]>([]);
   // Replace sortOption with sortConfig
   const [sortConfig, setSortConfig] = useState<{ key: string; direction: 'asc' | 'desc' }>({ key: 'updated', direction: 'desc' });
-  const [filterStatus, setFilterStatus] = useState<'all' | 'private' | 'supabase' | 'outdated' | 'critical'>('all');
+  const [filterStatus, setFilterStatus] = useState<'all' | 'private' | 'supabase' | 'outdated' | 'critical' | 'favorites'>('all');
+  const [favorites, setFavorites] = useState<string[]>([]);
   const [syncing, setSyncing] = useState(false);
   const [enriching, setEnriching] = useState(false);
 
@@ -99,6 +104,7 @@ export default function Dashboard() {
   };
 
   useEffect(() => {
+    if (status === "loading" || status === "unauthenticated") return;
     fetch("/api/repos")
       .then((res) => {
         if (!res.ok) throw new Error("Failed to fetch");
@@ -111,14 +117,27 @@ export default function Dashboard() {
           console.error("API returned non-array:", data);
           setRepos([]);
         }
-        setLoading(false);
       })
       .catch(err => {
         console.error(err);
         setRepos([]);
-        setLoading(false);
       });
-  }, []);
+
+    fetch("/api/favorites")
+      .then((res) => {
+        if (!res.ok) throw new Error("Failed to fetch favorites");
+        return res.json();
+      })
+      .then((data) => {
+        if (data.favorites) {
+          setFavorites(data.favorites.map((f: any) => f.repositoryId));
+        }
+      })
+      .catch(err => {
+        console.error("Error fetching favorites:", err);
+      })
+      .finally(() => setLoading(false));
+  }, [status]);
 
   const handleSort = (key: string) => {
     setSortConfig(current => ({
@@ -154,6 +173,7 @@ export default function Dashboard() {
     if (filterStatus === 'supabase') matchesStatus = r.technologies.some(t => t.name.toLowerCase() === 'supabase');
     if (filterStatus === 'outdated') matchesStatus = isOutdated(r.repo.updatedAt.toString());
     if (filterStatus === 'critical') matchesStatus = r.tasks && r.tasks.some(t => t.priority === 'HIGH');
+    if (filterStatus === 'favorites') matchesStatus = favorites.includes(r.repo.id);
 
     return matchesSearch && matchesProvider && matchesStatus;
   }).sort((a, b) => {
@@ -228,12 +248,12 @@ export default function Dashboard() {
   return (
     <main className="p-10 bg-slate-950 min-h-screen">
       <div className="max-w-7xl mx-auto space-y-6">
-        <div className="flex justify-between items-center">
+        <div className="flex flex-col xl:flex-row justify-between items-start xl:items-center gap-6">
           <div>
             <Title className="text-3xl font-bold text-white">Repository Maintenance Dashboard</Title>
             <Text className="text-slate-400">Overview of {totalRepos} repositories</Text>
           </div>
-          <div className="flex gap-2">
+          <div className="flex flex-wrap gap-2">
             <Link href="/maintenance?view=audit" className="no-underline">
               <Badge color="emerald" icon={Activity} className="cursor-pointer hover:opacity-80 animate-pulse ring-1 ring-emerald-500/50 shadow-[0_0_10px_rgba(16,185,129,0.3)]">
                 Live Ecosystem Status
@@ -246,6 +266,14 @@ export default function Dashboard() {
               onClick={() => setFilterStatus('all')}
             >
               {totalRepos} Total
+            </Badge>
+            <Badge
+              color={filterStatus === 'favorites' ? "amber" : "slate"}
+              icon={Star}
+              className="cursor-pointer hover:opacity-80"
+              onClick={() => setFilterStatus('favorites')}
+            >
+              {favorites.length} Favorites
             </Badge>
             <Badge
               color={filterStatus === 'private' ? "violet" : "slate"}
@@ -383,19 +411,32 @@ export default function Dashboard() {
 
               return (
                 <Card key={item.repo.name} className={`glass-card flex flex-col h-full ${isRepoOutdated ? 'border-amber-500/30 bg-amber-900/10' : ''}`}>
-                  <div className="flex justify-between items-start mb-4">
-                    <div>
-                      <div className="flex items-center gap-2">
-                        <Link href={`/repo/${item.repo.name}`} className="hover:underline">
-                          <Title className="truncate w-48 text-slate-200" title={item.repo.name}>{item.repo.name}</Title>
+                  <div className="flex flex-col sm:flex-row justify-between items-start gap-2 mb-4">
+                    <div className="min-w-0 flex-1 pr-2 w-full">
+                      <div className="flex items-center gap-2 max-w-full">
+                        <Link href={`/repo/${item.repo.name}`} className="hover:underline min-w-0 block truncate">
+                          <Title className="truncate text-slate-200" title={item.repo.name}>{item.repo.name}</Title>
                         </Link>
-                        {isRepoOutdated && <Badge color="amber" size="xs">Stale</Badge>}
+                        {isRepoOutdated && <Badge color="amber" size="xs" className="shrink-0">Stale</Badge>}
                       </div>
-                      <Text className="truncate w-48 text-xs text-slate-400">{item.repo.description || "No description"}</Text>
+                      <Text className="truncate text-xs text-slate-400 block w-full">{item.repo.description || "No description"}</Text>
                     </div>
-                    <Badge color={item.repo.isPrivate ? "slate" : "violet"}>
-                      {item.repo.isPrivate ? "Private" : "Public"}
-                    </Badge>
+                    <div className="flex items-center gap-2 shrink-0 self-end sm:self-start mt-2 sm:mt-0">
+                      <FavoriteButton
+                        repositoryId={item.repo.id}
+                        isFavorite={favorites.includes(item.repo.id)}
+                        onToggle={(newState) => {
+                          if (newState) {
+                            setFavorites(prev => [...prev, item.repo.id]);
+                          } else {
+                            setFavorites(prev => prev.filter(id => id !== item.repo.id));
+                          }
+                        }}
+                      />
+                      <Badge color={item.repo.isPrivate ? "slate" : "violet"}>
+                        {item.repo.isPrivate ? "Private" : "Public"}
+                      </Badge>
+                    </div>
                   </div>
 
                   <div className="space-y-4 flex-grow">
@@ -515,6 +556,7 @@ export default function Dashboard() {
                       )}
                     </div>
                   </TableHeaderCell>
+                  <TableHeaderCell className="w-10"></TableHeaderCell>
                   <TableHeaderCell
                     className="cursor-pointer hover:bg-slate-800 transition-colors text-slate-300"
                     onClick={() => handleSort('priority')}
@@ -565,6 +607,19 @@ export default function Dashboard() {
                         <Badge color={item.repo.isPrivate ? "slate" : "violet"} size="xs">
                           {item.repo.isPrivate ? "Private" : "Public"}
                         </Badge>
+                      </TableCell>
+                      <TableCell>
+                        <FavoriteButton
+                          repositoryId={item.repo.id}
+                          isFavorite={favorites.includes(item.repo.id)}
+                          onToggle={(newState) => {
+                            if (newState) {
+                              setFavorites(prev => [...prev, item.repo.id]);
+                            } else {
+                              setFavorites(prev => prev.filter(id => id !== item.repo.id));
+                            }
+                          }}
+                        />
                       </TableCell>
                       <TableCell>
                         <div className="flex gap-1 flex-wrap max-w-[150px]">

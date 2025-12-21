@@ -1,0 +1,63 @@
+{
+  "repositoryId": "0732391f-8dcc-4017-9c4d-c9d661421e05",
+  "name": "playlist-generator",
+  "owner": "quievreux",
+  "harvestedAt": "2025-12-21T09:21:43.544Z",
+  "content": {
+    "readme": null,
+    "packageJson": null
+  },
+  "analysis": {
+    "description": "Playlist Generator automatically creates tailored music or media playlists based on listener preferences, context, and behavior. It helps platforms boost engagement and retention by always serving the right content at the right moment.",
+    "businessCanvas": {
+      "valueProposition": [
+        "Automated creation of highly personalized playlists that increase user engagement and time-on-platform.",
+        "Reduction of manual curation effort through algorithmic generation based on behavior, mood, or context.",
+        "Flexible engine that can be embedded into existing apps, streaming services, or in-store/venue systems."
+      ],
+      "customerSegments": [
+        {
+          "name": "Music and podcast streaming platforms",
+          "willingness_to_pay": "High",
+          "pain_points": [
+            "Need to continuously improve personalization to reduce churn and increase listening time",
+            "High cost and limited scalability of human-curated playlists"
+          ]
+        },
+        {
+          "name": "Fitness, wellness, and productivity app providers",
+          "willingness_to_pay": "Medium",
+          "pain_points": [
+            "Need contextual audio (workouts, meditation, focus) without building complex recommendation engines in-house",
+            "Limited engineering resources to maintain content discovery features"
+          ]
+        },
+        {
+          "name": "Retail, hospitality, and venues needing background music",
+          "willingness_to_pay": "Medium",
+          "pain_points": [
+            "Need dynamic in-store/venue playlists that match brand, time of day, and audience without full-time curation",
+            "Fragmented tools for managing multi-location audio experiences"
+          ]
+        }
+      ],
+      "revenueStreams": [
+        {
+          "source": "B2B SaaS API subscription",
+          "model": "Recurring",
+          "potential_arr": 150000
+        },
+        {
+          "source": "Enterprise licensing and integration fees",
+          "model": "Project-based plus support retainer",
+          "potential_arr": 80000
+        },
+        {
+          "source": "White-label solution for apps and platforms",
+          "model": "Recurring with usage-based overages",
+          "potential_arr": 60000
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,63 @@
+{
+  "repositoryId": "17fea2fd-2ea2-4b39-91d4-a5cbcc12c52e",
+  "name": "artify",
+  "owner": "quievreux",
+  "harvestedAt": "2025-12-21T09:21:43.673Z",
+  "content": {
+    "readme": null,
+    "packageJson": null
+  },
+  "analysis": {
+    "description": "Artify is a flexible, developer-focused toolkit for building and integrating custom art or design workflows into modern applications. It helps teams turn raw creative assets into consistent, reusable components that streamline visual production at scale.",
+    "businessCanvas": {
+      "valueProposition": [
+        "Standardizes fragmented creative workflows into a single, reusable toolkit for developers and designers.",
+        "Reduces time-to-market for visually rich features by providing ready-made art/asset processing and integration tools.",
+        "Enables teams to scale content production without proportionally increasing design and engineering headcount."
+      ],
+      "customerSegments": [
+        {
+          "name": "Product and engineering teams at digital-first companies (SaaS, marketplaces, consumer apps)",
+          "willingness_to_pay": "High",
+          "pain_points": [
+            "Manual and inconsistent handling of creative assets across products and platforms",
+            "Engineering time wasted reinventing image/asset pipelines for each new feature"
+          ]
+        },
+        {
+          "name": "Creative agencies and studios delivering recurring digital campaigns",
+          "willingness_to_pay": "Medium",
+          "pain_points": [
+            "Difficulty reusing creative components efficiently across multiple clients and campaigns",
+            "High coordination cost between designers and developers to implement visual concepts"
+          ]
+        },
+        {
+          "name": "Indie developers and small teams building design-heavy apps",
+          "willingness_to_pay": "Low",
+          "pain_points": [
+            "Limited resources to build robust, production-grade art/asset pipelines in-house",
+            "Need to ship visually polished experiences quickly without deep design-engineering expertise"
+          ]
+        }
+      ],
+      "revenueStreams": [
+        {
+          "source": "SaaS subscription for hosted Artify platform and APIs",
+          "model": "Recurring",
+          "potential_arr": 250000
+        },
+        {
+          "source": "Enterprise license with SLAs, custom integrations, and on-prem deployment",
+          "model": "Recurring",
+          "potential_arr": 500000
+        },
+        {
+          "source": "Professional services (implementation, workflow design, and migration)",
+          "model": "One-time",
+          "potential_arr": 150000
+        }
+      ]
+    }
+  }
+}

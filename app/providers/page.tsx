@@ -4,6 +4,7 @@ import { Card, Title, Text, Badge, Grid, List, ListItem } from "@tremor/react";
 import { useState, useEffect } from "react";
 import { ArrowLeft, Server, Cloud, CreditCard, Cpu, Wrench, ShieldCheck, Book } from "lucide-react";
 import Link from "next/link";
+import { SwipeableRow, SwipeableItem } from "@/app/components/ui/SwipeableRow";
 
 type Provider = {
     id: string;
@@ -116,16 +117,15 @@ export default function ProvidersPage() {
                                     <div className="space-y-3">
                                         <div>
                                             <Text className="text-xs font-medium text-slate-500 mb-1">Capabilities</Text>
-                                            <div className="flex flex-wrap gap-1">
-                                                {parseJson(provider.capabilities).slice(0, 3).map((cap: string) => (
-                                                    <span key={cap} className="px-2 py-0.5 bg-slate-800 text-slate-300 text-[10px] rounded border border-slate-700">
-                                                        {cap}
-                                                    </span>
+                                            <SwipeableRow className="pb-1">
+                                                {parseJson(provider.capabilities).map((cap: string) => (
+                                                    <SwipeableItem key={cap}>
+                                                        <span className="px-2 py-0.5 bg-slate-800 text-slate-300 text-[10px] rounded border border-slate-700 whitespace-nowrap">
+                                                            {cap}
+                                                        </span>
+                                                    </SwipeableItem>
                                                 ))}
-                                                {parseJson(provider.capabilities).length > 3 && (
-                                                    <span className="px-2 py-0.5 text-slate-500 text-[10px]">+ more</span>
-                                                )}
-                                            </div>
+                                            </SwipeableRow>
                                         </div>
 
                                         <div className="pt-4 mt-auto border-t border-slate-800 flex justify-between items-center gap-2">

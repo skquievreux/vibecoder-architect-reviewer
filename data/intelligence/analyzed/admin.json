@@ -1,0 +1,50 @@
+{
+  "repositoryId": "01f476e8-76dc-49c5-a1e8-fa6fd2e48a54",
+  "name": "admin",
+  "owner": "quievreux",
+  "harvestedAt": "2025-12-21T09:21:44.396Z",
+  "content": {
+    "readme": null,
+    "packageJson": null
+  },
+  "analysis": {
+    "description": "Admin is a central control hub that unifies configuration, monitoring, and management of your software portfolio in one place. It reduces operational overhead by giving teams a single, secure interface to administer users, settings, and system health across products.",
+    "businessCanvas": {
+      "valueProposition": [
+        "Single pane of glass for managing users, permissions, and configurations across multiple internal tools and services.",
+        "Reduced admin workload and errors through standardized workflows, auditability, and role-based access controls.",
+        "Faster onboarding and change management by centralizing routine admin tasks into an easy-to-use interface."
+      ],
+      "customerSegments": [
+        {
+          "name": "Mid-size to large enterprises with multiple internal applications",
+          "willingness_to_pay": "High",
+          "pain_points": [
+            "Fragmented admin experiences across different systems leading to inefficiency and access risks",
+            "High support burden for routine configuration and user-management requests"
+          ]
+        },
+        {
+          "name": "SaaS companies needing a unified back-office console",
+          "willingness_to_pay": "Medium",
+          "pain_points": [
+            "Maintaining multiple bespoke admin tools for each product or environment",
+            "Difficulty enforcing consistent governance, audit trails, and permission models"
+          ]
+        }
+      ],
+      "revenueStreams": [
+        {
+          "source": "SaaS subscription for admin console platform",
+          "model": "Recurring",
+          "potential_arr": 250000
+        },
+        {
+          "source": "Enterprise license plus implementation services",
+          "model": "Hybrid",
+          "potential_arr": 500000
+        }
+      ]
+    }
+  }
+}

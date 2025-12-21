@@ -1,0 +1,99 @@
+{
+  "repositoryId": "65514d2b-1be7-4c79-b623-7a37cdadf738",
+  "name": "comicgenerator-techeroes",
+  "owner": "skquievreux",
+  "harvestedAt": "2025-12-21T09:21:45.645Z",
+  "content": {
+    "readme": "# TechHeroes Comic Generator\n\nEine moderne Webanwendung zur Generierung von personalisierten Comics im TechHeroes-Stil.\n\n## 🚀 Neue Features (Update 2025)\n\n### Design-Überarbeitung\n\n- **Modernes TechHeroes-Design**: Komplett neu gestaltete Benutzeroberfläche im Stil von techeroes.de\n- **Dunkles Theme**: Augenschonendes Dark Mode Design mit Türkis-Akzenten\n- **Responsive Layout**: Optimiert für Desktop, Tablet und Mobile\n- **Gradient-Effekte**: Moderne visuelle Effekte und Animationen\n\n### Galerie & Authentifizierung (Neu)\n\n- **Benutzerkonto-System**: Sichere Anmeldung und Registrierung über AWS Cognito.\n- **Bildergalerie**: Anzeige generierter Bilder, nur für angemeldete Benutzer zugänglich.\n- **Bild-Management**: Sortierung nach Datum, Erstellung von Ordnern/Themen.\n- **Webhook-gesteuerte Aktionen**: Funktionen zum Generieren von Videos, Publizieren auf Instagram und Erzeugen von PDFs aus ausgewählten Bildern.\n\n### Verbesserte Funktionalität\n\n- **Visuelle Bildauswahl**: Hervorhebung des ausgewählten Heldenbildes\n- **Heldenbeschreibungen**: Anzeige der Heldenbeschreibung neben dem ausgewählten Helden\n- **Zeichenzähler**: Live-Anzeige der verwendeten Zeichen (max. 500)\n- **Erweiterte Historie**:\n  - Speicherung im Local Storage\n  - Vorschau der Beschreibung\n  - Schnelles Laden vorheriger Comics\n- **Tastaturkürzel**: Strg+Enter zum Absenden\n- **Verbesserte Fehlermeldungen**: Klare Rückmeldungen bei Erfolg oder Fehler\n- **Comic-Vorschau**: Miniaturansicht des generierten Comics\n- **Instagram QR-Code**: Direkter Zugang zum TechHeroes Instagram-Profil\n- **Mehrfach-Generierung**: Beibehaltung des ausgewählten Helden nach Comic-Generierung\n\n## 📱 Funktionen\n\n1. **Heldenbild auswählen**\n   - 10 verschiedene Heldenbilder zur Auswahl\n   - Visuelles Feedback bei Auswahl\n   - Anzeige der Heldenbeschreibung neben dem ausgewählten Helden\n   - Ausblenden der anderen Helden bei Auswahl\n\n2. **Geschichte beschreiben**\n   - Eingabe auf Deutsch oder Englisch\n   - Maximal 500 Zeichen\n   - Echtzeit-Zeichenzählung\n\n3. **Comic generieren (öffentlich)**\n   - Ein-Klick-Generierung\n   - Visueller Countdown\n   - 10-Sekunden-Cooldown zwischen Generierungen\n\n4. **Historie verwalten**\n   - Automatische Speicherung der letzten 10 Comics\n   - Schnellzugriff auf vorherige Kreationen\n   - Persistente Speicherung im Browser\n\n5. **Bildergalerie (geschützt)**\n   - Anzeige aller generierten Bilder des angemeldeten Benutzers.\n   - Sortierung der Bilder nach Erstellungsdatum (neueste/älteste zuerst).\n   - Filterung der Bilder nach benutzerdefinierten Ordnern/Themen.\n   - Funktionen zum Erstellen neuer Ordner.\n   - Aktionen für ausgewählte Bilder: Video generieren, auf Instagram publizieren, PDF erzeugen, Bild löschen.\n\n## 🛠️ Technische Details\n\n### Frontend\n\n- **HTML5**: Semantische Struktur\n- **CSS3**: Moderne Styling-Features\n  - CSS Grid & Flexbox\n  - CSS Custom Properties (Variablen)\n  - Gradient-Effekte\n  - Smooth Transitions\n- **JavaScript**: Vanilla JS mit modernen ES6+ Features\n  - Async/Await\n  - Local Storage API\n  - Event Delegation\n- **AWS Amplify SDK**: Integration für die Authentifizierung mit AWS Cognito.\n\n### Backend (auf Vercel)\n\n- **Python Serverless Functions**: API-Routes in Vercel Functions.\n- **AWS S3**: Hosting der generierten Bilder. Metadaten (Datum, Ordner) werden über S3-Objektschlüssel und Tags verwaltet, keine separate Datenbank erforderlich.\n- **AWS Cognito**: JWT-Validierung für geschützte API-Endpunkte (Galerie-Zugriff).\n- **Stateless Design**: Kein In-Memory Cache, serverless-kompatibel.\n- **API-Endpunkte**:\n  - `/api/generate-comic` (POST): Öffentlicher Endpunkt für die Comic-Generierung (ruft externen Webhook auf).\n  - `/api/gallery/images` (GET, geschützt): Listet Bilder aus S3 für den angemeldeten Benutzer auf.\n  - `/api/gallery/upload` (POST, geschützt): Lädt Bilder in S3 hoch.\n  - `/api/gallery/folder` (POST, geschützt): Logische Erstellung von Ordnern.\n  - `/api/gallery/image/<image_id>` (DELETE, geschützt): Löscht ein Bild aus S3.\n  - `/api/action/generate-video` (POST, geschützt): Löst Video-Generierung aus.\n  - `/api/action/publish-instagram` (POST, geschützt): Löst Instagram-Veröffentlichung aus.\n  - `/api/action/generate-pdf` (POST, geschützt): Löst PDF-Generierung aus.\n\n### Hosting\n\n- **Frontend & Backend**: Gehostet auf [Vercel](https://vercel.com/) mit serverless Functions.\n- **Automatisiertes Deployment**: CI/CD-Pipeline mit GitHub Actions und Dependabot-Integration.\n- **Staging-Deployments**: Sichere Tests vor Production-Deployments.\n- **Sicherheits-Monitoring**: Automatische Vulnerability-Scans und Updates.\n\n## 🎨 Design-System\n\n### Farbpalette\n\n- **Primärfarbe**: #00D4FF (Türkis)\n- **Hintergrund**: #0A0A0A (Dunkel)\n- **Karten**: #141414\n- **Text**: #FFFFFF (Primär), #B0B0B0 (Sekundär)\n\n### Typografie\n\n- **Schriftart**: Inter (Google Fonts)\n- **Größen**: Responsive von 0.875rem bis 3rem\n\n## 🏗️ Architektur-Plan\n\n### Systemübersicht\n\nDie Comic Generator Anwendung folgt einer modernen Cloud-nativen Architektur mit klarer Trennung zwischen Frontend und Backend:\n\n```\n┌─────────────────┐    ┌──────────────────┐    ┌─────────────────┐\n│   Frontend      │    │   Backend        │    │   AWS Services  │\n│   (Static)      │    │   (Vercel)       │    │                 │\n├─────────────────┤    ├──────────────────┤    ├─────────────────┤\n│ • HTML/CSS/JS   │◄──►│ • Serverless API │◄──►│ • S3 Storage    │\n│ • AWS Amplify   │    │ • JWT Validation │    │ • Cognito Auth  │\n│ • Responsive UI │    │ • CORS Handler   │    │ • IAM Policies  │\n└─────────────────┘    └──────────────────┘    └─────────────────┘\n```\n\n### Datenfluss\n\n1. **Öffentliche Comic-Generierung**: Frontend → Backend API → Externer Webhook → S3 Storage\n2. **Authentifizierung**: Frontend (Amplify) → Cognito → JWT Token → Backend Validation\n3. **Galerie-Zugriff**: Authentifizierter User → Backend API → S3 Listing → Frontend Display\n4. **Bild-Aktionen**: Galerie Selection → Backend Webhook Calls → Externe Services\n\n### Sicherheitskonzept\n\n- **Öffentlicher Zugang**: Comic-Generierung ohne Authentifizierung\n- **Geschützter Bereich**: Galerie nur für angemeldete Benutzer\n- **JWT-basierte API-Sicherheit**: Alle Galerie-Endpunkte validieren Cognito-Tokens\n- **S3-Bucket-Policies**: Sichere Speicherung mit IAM-kontrollierten Zugriffsrechten\n\n### Skalierbarkeit\n\n- **Serverless Backend**: Automatische Skalierung durch Vercel\n- **S3-basierte Speicherung**: Keine Datenbankabhängigkeiten\n- **CDN-ready**: Frontend-Assets werden über Vercel CDN ausgeliefert\n- **Microservice-Pattern**: Webhook-basierte Aktionen für externe Services\n\n## 📝 Installation & Nutzung\n\n1.  **Repository klonen**:\n\n    ```bash\n    git clone https://github.com/IhrBenutzername/ComicGenerator-Techeroes.git\n    cd ComicGenerator-Techeroes\n    ```\n\n2.  **AWS Cognito User Pool einrichten**:\n    - Erstellen Sie einen User Pool in AWS Cognito (Region `eu-north-1`).\n    - Erstellen Sie einen App Client (ohne Client Secret).\n    - Notieren Sie sich die **User Pool ID** (`eu-north-1_jf7455Jfe`) und die **App Client ID** (`489fgtb0l5eah3ron1jv3nrl0a`).\n\n3.  **Amazon S3 Bucket einrichten**:\n    - Erstellen Sie einen S3 Bucket (z.B. `techeroes`) in der Region `eu-north-1`.\n    - Konfigurieren Sie die Bucket-Richtlinien und IAM-Berechtigungen, damit Ihre Fly.io-App Lese-/Schreibzugriff hat.\n\n4.  **Vercel CLI installieren und anmelden**:\n    - Installieren Sie die Vercel CLI: `npm install -g vercel`\n    - Melden Sie sich an: `vercel login`\n\n5.  **Projekt auf Vercel bereitstellen**:\n    - Im Projekt-Root: `vercel`\n    - Wählen Sie \"Link to existing project\" oder erstellen Sie ein neues.\n    - Setzen Sie die Umgebungsvariablen im Vercel Dashboard (Project Settings > Environment Variables):\n      - S3_BUCKET_NAME=techeroes\n      - AWS_REGION=eu-north-1\n      - AWS_ACCESS_KEY_ID=YOUR_AWS_ACCESS_KEY_ID\n      - AWS_SECRET_ACCESS_KEY=YOUR_AWS_SECRET_ACCESS_KEY\n      - COGNITO_USER_POOL_ID=eu-north-1_jf7455Jfe\n      - COGNITO_CLIENT_ID=489fgtb0l5eah3ron1jv3nrl0a\n    - Deployen: `vercel --prod`\n\n6.  **Frontend und Backend**:\n    - Frontend wird automatisch als Static Site deployed.\n    - Backend läuft als Serverless Functions in `/api/`.\n\n## 🔧 Anpassungen\n\n### Bilder ändern\n\nErsetze die Dateien im `Images/` Ordner:\n\n- Format: PNG\n- Benennung: 1.png, 2.png, 3.png, ..., 10.png\n- Empfohlene Größe: mindestens 300x300px\n\n### Webhook anpassen\n\nDie Webhook-URL für die Comic-Generierung kann in `script.js` (Zeile ~386) geändert werden.\n\n## 📱 Browser-Kompatibilität\n\n- Chrome/Edge: ✅ Vollständig unterstützt\n- Firefox: ✅ Vollständig unterstützt\n- Safari: ✅ Vollständig unterstützt\n- Mobile Browser: ✅ Responsive Design\n\n## 📋 Änderungsprotokoll\n\n### Version 2.0.0 - 2025-10-10: Migration zu Vercel\n\n- **Breaking Change: Migration von Fly.io zu Vercel**: Vollständige Umstellung auf serverless Hosting.\n- **Backend-Konvertierung**: Flask zu Vercel Python Serverless Functions.\n- **Aufräumen**: Entfernung aller Fly.io-spezifischen Dateien (fly.toml, Dockerfiles, .dockerignore).\n- **Konfiguration**: Neue vercel.json für Static Site und API Routes.\n- **Dokumentation**: Hinzufügung von Bibliotheks-Dokumentationen in /documents/.\n- **Architektur**: Stateless Design, automatische Skalierung durch Vercel.\n- **Paket-Updates**: Flask 3.0.0, Flask-CORS 4.0.0, boto3 1.34.0, PyJWT 2.8.0, requests 2.31.0.\n\n## 🎯 Zukünftige Verbesserungen\n\n- [x] Anzeige der Heldenbeschreibung neben dem ausgewählten Helden\n- [x] Vorschau des generierten Comics\n- [x] Social Media Integration (QR-Code)\n- [x] Mehrfach-Generierung mit demselben Helden\n- [x] Benutzerkonto-System (Login, Registrierung, Galerie)\n- [x] Migration zu Vercel Serverless\n- [x] **Automatisierte Dependency-Management mit Dependabot**\n- [x] **Sicherheits-Updates und Vulnerability-Scans**\n- [x] **CI/CD-Pipeline mit Staging-Deployments**\n- [ ] Mehrsprachige Unterstützung\n- [ ] Erweiterte Bildbearbeitungsoptionen\n- [ ] Export-Funktionen für Comics\n- [ ] Implementierung der tatsächlichen Bildaktionen (Video, Instagram, PDF)\n\n## 👥 Credits\n\nEntwickelt im Rahmen des TechHeroes-Programms zur Förderung digitaler Bildung.\n\n---\n\n_Empowering the next generation_ 🚀\n",
+    "packageJson": {
+      "name": "comicgenerator-techeroes",
+      "version": "2.2.1",
+      "description": "Eine moderne Webanwendung zur Generierung von personalisierten Comics im TechHeroes-Stil.",
+      "main": "index.html",
+      "scripts": {
+        "test": "playwright test",
+        "lint": "echo 'No linting configured for static site'"
+      },
+      "keywords": [
+        "comic",
+        "generator",
+        "techheroes",
+        "vercel"
+      ],
+      "author": "TechHeroes",
+      "license": "MIT",
+      "devDependencies": {
+        "@playwright/test": "^1.56.0"
+      },
+      "engines": {
+        "node": ">=20.9.0"
+      },
+      "dependencies": {
+        "@tailwindcss/postcss": "^4.0.0",
+        "postcss": "^8.5.6",
+        "tailwindcss": "^4.0.0"
+      }
+    }
+  },
+  "analysis": {
+    "description": "TechHeroes Comic Generator is a branded web app that turns short user stories into personalized TechHeroes-style comics, complete with a secure gallery and rich export options for video, Instagram, and PDFs. It lets brands and communities run scalable, automated fan-engagement campaigns without building any AI or cloud infrastructure themselves.",
+    "businessCanvas": {
+      "valueProposition": [
+        "Automated generation of branded TechHeroes-style comics from short user prompts, creating highly shareable content in seconds.",
+        "Secure personal galleries with folders, history, and media actions (video, Instagram publish, PDF) that turn one comic into multiple marketing assets.",
+        "Cloud-native, serverless architecture (Vercel + AWS Cognito/S3) that is low‑ops, scalable, and easily white‑labelled or embedded into existing campaigns."
+      ],
+      "customerSegments": [
+        {
+          "name": "Tech brands and developer-focused companies running community or employer-branding campaigns",
+          "willingness_to_pay": "High",
+          "pain_points": [
+            "Need fresh, on-brand content to keep developers and tech audiences engaged without constantly involving design teams.",
+            "Difficulty scaling personalized campaign assets (social posts, PDFs, videos) for hackathons, conferences, and community events."
+          ]
+        },
+        {
+          "name": "Marketing agencies and studios offering gamified or interactive campaigns for B2B tech clients",
+          "willingness_to_pay": "Medium",
+          "pain_points": [
+            "High manual effort to design and deliver personalized creatives at scale for each client campaign.",
+            "Limited technical capacity to build and maintain secure, scalable, cloud-based content generators themselves."
+          ]
+        },
+        {
+          "name": "Event organizers (tech conferences, meetups, bootcamps) seeking memorable digital swag",
+          "willingness_to_pay": "Medium",
+          "pain_points": [
+            "Need low-friction digital experiences that attendees can use on-site and share on social media.",
+            "Lack of turnkey tools that handle authentication, content storage, and sharing workflows out of the box."
+          ]
+        },
+        {
+          "name": "Individual creators and small content teams building personal or niche tech hero brands",
+          "willingness_to_pay": "Low",
+          "pain_points": [
+            "Limited budget and design skills to create consistent, high-quality comic-style content.",
+            "Time-consuming process to turn ideas into multi-format assets (images, videos, PDFs, Instagram posts)."
+          ]
+        }
+      ],
+      "revenueStreams": [
+        {
+          "source": "SaaS subscription for brands and agencies",
+          "model": "Recurring",
+          "potential_arr": 120000
+        },
+        {
+          "source": "Per-event or campaign licensing (white-labeled comic generator for conferences and launches)",
+          "model": "Project-based",
+          "potential_arr": 60000
+        },
+        {
+          "source": "Usage-based add-ons for premium actions (video generation, Instagram automation, bulk PDF exports)",
+          "model": "Usage-based",
+          "potential_arr": 30000
+        }
+      ]
+    }
+  }
+}

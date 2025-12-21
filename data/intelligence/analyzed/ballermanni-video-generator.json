@@ -1,0 +1,106 @@
+{
+  "repositoryId": "919423eb-f779-462b-b791-72be6dbdb41f",
+  "name": "ballermanni-video-generator",
+  "owner": "skquievreux",
+  "harvestedAt": "2025-12-21T09:21:39.873Z",
+  "content": {
+    "readme": "# 🎵 Ballermanni Video Generator\n\n**Disco-Dieter Musikvideo Workflow 3.1.0**\n\nA comprehensive Google Apps Script system for managing AI-powered music video character generation using the Replicate API. This project automates character creation, scene tracking, cost analysis, and file organization through integrated Google Sheets and Google Drive workflows.\n\n## 🚀 Features\n\n- **🎭 Character Management**: Complete character creation and tracking system\n- **🎨 AI Content Generation**: Integration with Replicate API for image and video generation  \n- **📊 Cost Tracking**: Detailed analytics and budget management\n- **☁️ Google Drive Integration**: Automated file organization and batch management\n- **🔧 Automated Deployment**: Clasp-powered deployment pipeline\n- **📋 Comprehensive Testing**: Manual test checklist and automated validation\n\n## 🏗️ Architecture\n\n### Core Components\n- **Google Apps Script**: Single JavaScript file with modular architecture\n- **CONFIG System**: Centralized configuration management\n- **Logger Class**: Structured logging (ERROR, WARN, INFO, DEBUG)\n- **ErrorHandler Class**: Standardized error handling\n- **BatchOperations Class**: Performance-optimized batch processing\n\n### Google Services Integration\n- **Sheets API**: Multi-sheet project management system\n- **Drive API**: Automated folder structure and file management\n- **Properties Service**: Secure API token storage\n\n## 📁 Project Structure\n\n```\nballermanni-video-generator/\n├── src/\n│   └── Code.js              # Main Google Apps Script file\n├── scripts/\n│   ├── validate-syntax.js   # Pre-deployment syntax validation\n│   └── run-tests.js        # Basic test runner\n├── Documentation/\n│   ├── google-apps-script.md\n│   └── replicate-api.md\n├── .clasp.json             # Clasp configuration\n├── package.json            # NPM configuration\n└── README.md\n```\n\n## 🛠️ Setup & Deployment\n\n### Prerequisites\n- Node.js 14+\n- Google account with Apps Script access\n- Replicate API account and token\n\n### 1. Clone Repository\n```bash\ngit clone https://github.com/skquievreux/ballermanni-video-generator.git\ncd ballermanni-video-generator\n```\n\n### 2. Install Dependencies\n```bash\nnpm install -g @google/clasp\n```\n\n### 3. Authenticate with Google\n```bash\nclasp login\n```\n\n### 4. Create New Apps Script Project\n```bash\nnpm run setup\n```\n*This creates a new Google Apps Script project linked to Google Sheets*\n\n### 5. Deploy to Google Apps Script\n```bash\nnpm run deploy\n```\n\n## 🔧 Development Workflow\n\n### Local Development\n```bash\n# Pull latest from Google Apps Script\nnpm run pull\n\n# Validate syntax before deployment\nnpm run pre-deploy  \n\n# Push changes to Google Apps Script\nnpm run push\n\n# Open project in browser\nnpm run open\n```\n\n### Automated Deployment Pipeline\n```bash\n# Full build and deploy process\nnpm run build\n```\n\nThis runs:\n1. Syntax validation (`validate-syntax.js`)\n2. Basic tests (`run-tests.js`) \n3. Deployment to Google Apps Script\n\n## 🧪 Testing\n\n### Manual Testing\nFollow the comprehensive test checklist in `MANUAL_TEST_CHECKLIST.md`:\n- Basic functionality verification\n- API integration testing\n- UI component validation\n- Error handling verification\n\n### Automated Validation\n```bash\n# Run syntax validation\nnpm run pre-deploy\n\n# Run basic tests\nnpm run test\n```\n\n## 📊 Google Sheets Structure\n\nThe system creates and manages 5 specialized sheets:\n\n1. **Character Overview**: Character progress and batch management\n2. **Scene Details**: Individual scene tracking with URLs and metadata\n3. **Cost Tracking**: Detailed API usage and cost analysis\n4. **Workflow Templates**: Reusable templates for different character types\n5. **API_Config**: Secure API credential storage (hidden)\n\n## 🔐 API Configuration\n\n### Replicate API Setup\n1. Get API token from [Replicate](https://replicate.com/account/api-tokens)\n2. In Google Sheets: `Setup & Tools` → `API konfigurieren`\n3. Enter token (format: `r8_...`)\n\n### Supported Models\n- **flux-schnell**: Primary image generation\n- **consistent-character**: Character consistency across scenes\n- **Video models**: Video generation from images\n\n## 💰 Cost Management\n\nThe system includes comprehensive cost tracking:\n- Real-time API usage monitoring\n- Per-operation cost calculation\n- Cumulative budget analysis\n- Cost optimization recommendations\n\n## 🔍 Troubleshooting\n\n### Common Issues\n\n**Syntax Errors**\n- Ensure V8 Runtime is enabled in Apps Script\n- Run `npm run pre-deploy` to validate syntax\n- Check `SYNTAX_FIXES.md` for Google Apps Script compatibility\n\n**API Authentication**\n- Verify API token format: `r8_...`\n- Check token permissions in Replicate account\n- Test connection: `Setup & Tools` → `API testen`\n\n**Deployment Issues**\n- Run `clasp login` to re-authenticate\n- Verify `.clasp.json` has correct script ID\n- Check `npm run logs` for deployment errors\n\n## 📖 Documentation\n\n- **[Google Apps Script APIs](Documentation/google-apps-script.md)**\n- **[Replicate API Integration](Documentation/replicate-api.md)**\n- **[Manual Test Checklist](MANUAL_TEST_CHECKLIST.md)**\n- **[Syntax Fixes Guide](SYNTAX_FIXES.md)**\n\n## 🤝 Contributing\n\n1. Fork the repository\n2. Create feature branch\n3. Run tests: `npm run test`\n4. Submit pull request\n\n## 📄 License\n\nMIT License - see LICENSE file for details\n\n## 🙏 Acknowledgments\n\n- Built with [Google Apps Script](https://script.google.com/)\n- Deployed with [Clasp](https://github.com/google/clasp)\n- AI generation powered by [Replicate](https://replicate.com/)\n- Generated with [Claude Code](https://claude.ai/code)\n\n---\n\n**Disco-Dieter Musikvideo Workflow 3.1.0** - Professional AI-powered music video production pipeline",
+    "packageJson": {
+      "name": "ballermanni-video-generator",
+      "version": "3.1.0",
+      "description": "Google Apps Script for Disco-Dieter Musikvideo Workflow - AI-powered music video character generation and management system",
+      "main": "src/Code.js",
+      "scripts": {
+        "push": "clasp push",
+        "pull": "clasp pull",
+        "deploy": "npm run push && clasp deploy",
+        "open": "clasp open",
+        "logs": "clasp logs",
+        "versions": "clasp versions",
+        "setup": "clasp create --title 'Disco-Dieter Musikvideo Workflow' --type sheets",
+        "build": "npm run pre-deploy && npm run push",
+        "pre-deploy": "node scripts/validate-syntax.js",
+        "test": "node scripts/run-tests.js"
+      },
+      "keywords": [
+        "google-apps-script",
+        "music-video",
+        "ai-generation",
+        "replicate-api",
+        "workflow-automation",
+        "google-sheets",
+        "google-drive"
+      ],
+      "author": "Claude Code",
+      "license": "MIT",
+      "devDependencies": {
+        "@google/clasp": "^2.4.2"
+      },
+      "repository": {
+        "type": "git",
+        "url": "https://github.com/skquievreux/ballermanni-video-generator.git"
+      },
+      "engines": {
+        "node": ">=20.9.0"
+      },
+      "dependencies": {
+        "@tailwindcss/postcss": "^4.0.0",
+        "postcss": "^8.5.6",
+        "tailwindcss": "^4.0.0"
+      }
+    }
+  },
+  "analysis": {
+    "description": "Ballermanni Video Generator is an AI-powered, Google Sheets–driven pipeline that automates character, scene, and cost management for high-volume music video production. It turns messy, manual prompt creation and asset tracking into a structured, low-touch workflow tightly integrated with Google Drive and the Replicate API.",
+    "businessCanvas": {
+      "valueProposition": [
+        "Automates AI music video character and scene generation end-to-end, replacing ad hoc prompts and file chaos with a structured, Google Sheets–based workflow.",
+        "Gives producers real-time cost visibility and budget controls for Replicate API usage, enabling predictable margins on AI-heavy productions.",
+        "Standardizes reusable templates and batch operations so small teams can scale to agency-level output without adding headcount or custom engineering."
+      ],
+      "customerSegments": [
+        {
+          "name": "Independent music producers and small labels using AI visuals",
+          "willingness_to_pay": "Medium",
+          "pain_points": [
+            "Manual, error-prone management of AI prompts, scenes, and assets across tools and folders",
+            "Unpredictable API spend and difficulty understanding per-video cost structure"
+          ]
+        },
+        {
+          "name": "Creative studios and agencies offering AI-powered video packages",
+          "willingness_to_pay": "High",
+          "pain_points": [
+            "High coordination cost to manage many characters, scenes, and revisions across multiple client projects",
+            "Lack of standardized workflows and reporting for AI asset generation and chargeback to clients"
+          ]
+        },
+        {
+          "name": "No-code/low-code teams in media companies building internal AI tooling on Google Workspace",
+          "willingness_to_pay": "Medium",
+          "pain_points": [
+            "Need to orchestrate AI image/video generation within Google Sheets and Drive without dedicated engineering",
+            "Difficulty enforcing governance, logging, and cost tracking across experimental AI workflows"
+          ]
+        }
+      ],
+      "revenueStreams": [
+        {
+          "source": "SaaS subscription for hosted workflow template (Sheets add-on or Workspace app)",
+          "model": "Recurring",
+          "potential_arr": 60000
+        },
+        {
+          "source": "Per-seat or per-workspace licensing for agencies and studios",
+          "model": "Recurring",
+          "potential_arr": 90000
+        },
+        {
+          "source": "Professional services and custom workflow setup for larger media clients",
+          "model": "One-time",
+          "potential_arr": 40000
+        }
+      ]
+    }
+  }
+}

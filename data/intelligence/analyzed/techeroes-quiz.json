@@ -1,0 +1,115 @@
+{
+  "repositoryId": "18e07fbf-0ca2-4cd4-ae43-509eba3ce4b0",
+  "name": "techeroes-quiz",
+  "owner": "skquievreux",
+  "harvestedAt": "2025-12-21T09:21:52.209Z",
+  "content": {
+    "readme": null,
+    "packageJson": {
+      "name": "techeroes-quiz",
+      "version": "0.4.3",
+      "private": true,
+      "type": "module",
+      "scripts": {
+        "dev": "next dev",
+        "build": "next build",
+        "start": "next start",
+        "lint": "next lint"
+      },
+      "dependencies": {
+        "@playwright/test": "^1.55.1",
+        "@tailwindcss/postcss": "^4.1.16",
+        "autoprefixer": "^10.4.21",
+        "next": "^15.5.7",
+        "postcss": "^8.5.6",
+        "react": "^19.2.0",
+        "react-dom": "^19.2.0",
+        "tailwindcss": "^4.1.16"
+      },
+      "devDependencies": {
+        "@eslint/js": "^9.37.0",
+        "@semantic-release/changelog": "^6.0.3",
+        "@semantic-release/commit-analyzer": "^13.0.0",
+        "@semantic-release/git": "^10.0.1",
+        "@semantic-release/github": "^10.0.5",
+        "@semantic-release/npm": "^13.1.2",
+        "@semantic-release/release-notes-generator": "^14.0.1",
+        "@types/node": "^20",
+        "@types/react": "^19.0.0",
+        "@types/react-dom": "^19.0.0",
+        "@typescript-eslint/eslint-plugin": "^8.46.0",
+        "@typescript-eslint/parser": "^8.46.0",
+        "baseline-browser-mapping": "^2.9.5",
+        "eslint": "^9.37.0",
+        "eslint-config-next": "^15.5.4",
+        "globals": "^16.4.0",
+        "semantic-release": "^25.0.2",
+        "typescript": "^5.8.2"
+      },
+      "engines": {
+        "node": ">=20.9.0"
+      }
+    }
+  },
+  "analysis": {
+    "description": "Techeroes Quiz is an interactive Next.js-powered quiz app that engages users with dynamic assessments, scoring, and sleek Tailwind styling for seamless tech skill testing. Drive user retention and monetize through premium quizzes or corporate training modules.",
+    "businessCanvas": {
+      "valueProposition": [
+        "Interactive quizzes for skill assessment and knowledge testing",
+        "Engaging user experience with scoring, navigation, and results analysis",
+        "Modern, responsive UI built with Next.js and Tailwind for professional deployment"
+      ],
+      "customerSegments": [
+        {
+          "name": "EdTech Platforms",
+          "willingness_to_pay": "High",
+          "pain_points": [
+            "Need scalable quiz tools for courses",
+            "Lack of customizable, engaging assessment interfaces"
+          ]
+        },
+        {
+          "name": "Corporate HR/Training",
+          "willingness_to_pay": "Medium",
+          "pain_points": [
+            "Employee skill testing without custom dev",
+            "Quick deployment of tech-focused quizzes"
+          ]
+        },
+        {
+          "name": "Content Creators",
+          "willingness_to_pay": "Low",
+          "pain_points": [
+            "Simple tools for audience engagement quizzes",
+            "Monetizable interactive content"
+          ]
+        },
+        {
+          "name": "Educational Institutions",
+          "willingness_to_pay": "Medium",
+          "pain_points": [
+            "Affordable quiz apps for student assessments",
+            "Integration-ready for learning platforms"
+          ]
+        }
+      ],
+      "revenueStreams": [
+        {
+          "source": "SaaS Subscription",
+          "model": "Recurring",
+          "potential_arr": 50000
+        },
+        {
+          "source": "Premium Quiz Templates",
+          "model": "One-time",
+          "potential_arr": 10000
+        },
+        {
+          "source": "White-label Licensing",
+          "model": "Recurring",
+          "potential_arr": 25000
+        }
+      ]
+    }
+  }
+}

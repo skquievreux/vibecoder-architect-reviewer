@@ -1,0 +1,44 @@
+{
+  "repositoryId": "97f1e0fa-6391-41b6-bdf9-32876dbb3606",
+  "name": "runninggame",
+  "owner": "skquievreux",
+  "harvestedAt": "2025-12-21T09:21:46.019Z",
+  "content": {
+    "readme": "# 3D Endless Runner Game 🏃‍♂️\r\n\r\nEin modernes 3D Endless Runner Spiel mit Three.js, das die Herausforderungen eines unendlichen Laufs mit beeindruckenden visuellen Effekten verbindet.\r\n\r\n## ✨ Features\r\n\r\n- **3D-Grafik**: Vollständig in Three.js implementiert mit Schatten und Beleuchtung\r\n- **Modulare Architektur**: ES6-Module für saubere Code-Organisation\r\n- **Partikelsystem**: Explosive Effekte bei Kollisionen\r\n- **Dynamische Umgebung**: Berge, Wolken und animierte Hintergründe\r\n- **Responsive Steuerung**: Tastatur- und Touch-Unterstützung\r\n- **Score-System**: Punkte sammeln und Leben verwalten\r\n\r\n## 🚀 Lokale Entwicklung\r\n\r\n### Voraussetzungen\r\n\r\n- Moderner Webbrowser mit ES6-Modul-Unterstützung\r\n- Python 3.x (für lokalen Server)\r\n\r\n### Installation & Start\r\n\r\n1. **Repository klonen:**\r\n   ```bash\r\n   git clone <repository-url>\r\n   cd endless-runner-game\r\n   ```\r\n\r\n2. **Lokalen Server starten:**\r\n   ```bash\r\n   npm start\r\n   # oder direkt mit Python:\r\n   python -m http.server 8000\r\n   ```\r\n\r\n3. **Spiel öffnen:**\r\n   Öffne `http://localhost:8000` in deinem Browser\r\n\r\n## 📦 Deployment\r\n\r\n### Automatisiertes Deployment (empfohlen)\r\n\r\n```bash\r\n# Vollständiges Deployment mit Tests\r\nnode deploy.js\r\n\r\n# Oder manuell:\r\nnpm run build    # Build testen\r\nnpm run deploy   # Auf Vercel deployen\r\n```\r\n\r\n### Manuelles Deployment auf Vercel\r\n\r\n1. **Vercel CLI installieren:**\r\n   ```bash\r\n   npm install -g vercel\r\n   ```\r\n\r\n2. **Projekt deployen:**\r\n   ```bash\r\n   vercel\r\n   # Für Produktion:\r\n   vercel --prod\r\n   ```\r\n\r\n3. **Domain konfigurieren** (optional):\r\n   - Gehe zu deinem Vercel-Dashboard\r\n   - Füge eine Custom Domain hinzu\r\n\r\n## 🏗️ Projektstruktur\r\n\r\n```\r\nendless-runner-game/\r\n├── index.html              # Haupt-HTML-Datei\r\n├── js/                     # ES6-Module\r\n│   ├── main.js            # Anwendungseinstiegspunkt\r\n│   ├── Game.js            # Spiel-Logik & Zustand\r\n│   ├── Scene.js           # Three.js Szene & Renderer\r\n│   ├── Player.js          # Spieler-Charakter\r\n│   ├── Environment.js     # Hintergrund & Umgebung\r\n│   ├── Obstacles.js       # Hindernisse & Power-ups\r\n│   ├── Particles.js       # Partikelsystem\r\n│   ├── UI.js              # Benutzeroberfläche\r\n│   └── Utils.js           # Hilfsfunktionen\r\n├── package.json           # NPM-Konfiguration\r\n├── vercel.json           # Vercel-Deployment-Konfiguration\r\n├── deploy.js             # Automatisiertes Deployment-Skript\r\n└── README.md             # Diese Datei\r\n```\r\n\r\n## 🎮 Spielsteuerung\r\n\r\n- **Leertaste / Mausklick**: Springen\r\n- **R**: Neustart nach Game Over\r\n\r\n## 🛠️ Technologien\r\n\r\n- **Three.js**: 3D-Grafik-Engine\r\n- **ES6-Module**: Moderne JavaScript-Modularisierung\r\n- **Vercel**: Hosting & Deployment\r\n- **HTML5 Canvas**: Rendering\r\n\r\n## 📈 Entwicklung\r\n\r\n### Neue Features hinzufügen\r\n\r\n1. Erstelle ein neues Modul in `js/`\r\n2. Importiere es in `main.js`\r\n3. Aktualisiere die Dokumentation\r\n\r\n### Code-Qualität\r\n\r\n- Verwende ESLint für Code-Qualität\r\n- Führe Tests vor jedem Commit durch\r\n- Halte die modulare Struktur bei\r\n\r\n## 🤝 Mitwirken\r\n\r\n1. Fork das Projekt\r\n2. Erstelle einen Feature-Branch (`git checkout -b feature/AmazingFeature`)\r\n3. Commit deine Änderungen (`git commit -m 'Add some AmazingFeature'`)\r\n4. Push zum Branch (`git push origin feature/AmazingFeature`)\r\n5. Öffne einen Pull Request\r\n\r\n## 📄 Lizenz\r\n\r\nDieses Projekt ist unter der MIT-Lizenz lizenziert - siehe die [LICENSE](LICENSE) Datei für Details.\r\n\r\n## 🙏 Danksagungen\r\n\r\n- Three.js Community für die hervorragende 3D-Bibliothek\r\n- Vercel für das großartige Hosting",
+    "packageJson": {
+      "name": "endless-runner-game",
+      "version": "1.1.0",
+      "description": "Ein 3D Endless Runner Spiel mit Three.js",
+      "main": "index.html",
+      "scripts": {
+        "start": "python -m http.server 8000",
+        "build": "echo 'Static site - no build needed'",
+        "deploy": "gh-pages -d .",
+        "deploy:vercel": "npx vercel --prod",
+        "preview": "vercel"
+      },
+      "keywords": [
+        "game",
+        "three.js",
+        "endless-runner",
+        "javascript",
+        "es6-modules"
+      ],
+      "author": "Your Name",
+      "license": "MIT",
+      "repository": {
+        "type": "git",
+        "url": "https://github.com/yourusername/endless-runner-game"
+      },
+      "devDependencies": {
+        "@playwright/test": "^1.56.1",
+        "@types/node": "^24.8.1",
+        "gh-pages": "^6.3.0",
+        "vercel": "^48.4.0"
+      },
+      "engines": {
+        "node": ">=20.9.0"
+      }
+    }
+  }
+}

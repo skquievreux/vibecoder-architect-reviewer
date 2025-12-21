@@ -1,0 +1,45 @@
+{
+  "repositoryId": "2be3ff79-1c11-4374-bc2d-c69ad9921ab1",
+  "name": "leadmagnet-question",
+  "owner": "skquievreux",
+  "harvestedAt": "2025-12-21T09:21:49.715Z",
+  "content": {
+    "readme": null,
+    "packageJson": null
+  },
+  "analysis": {
+    "description": "LeadMagnet-Question crafts irresistible lead magnets that turn website visitors into eager email subscribers, skyrocketing your marketing funnel conversions overnight.",
+    "businessCanvas": {
+      "valueProposition": [
+        "Generate high-converting quizzes and assessments to capture leads effortlessly.",
+        "Boost email list growth by solving audience pain points with personalized insights.",
+        "Automate marketing engagement, turning casual browsers into loyal customers."
+      ],
+      "customerSegments": [
+        {
+          "name": "Digital Marketers & SaaS Founders",
+          "willingness_to_pay": "High",
+          "pain_points": [
+            "Struggling to build email lists organically.",
+            "Low conversion rates on lead capture forms."
+          ]
+        },
+        {
+          "name": "Content Creators & Coaches",
+          "willingness_to_pay": "Medium",
+          "pain_points": [
+            "Difficulty creating engaging interactive content.",
+            "Need tools to qualify and nurture prospects."
+          ]
+        }
+      ],
+      "revenueStreams": [
+        {
+          "source": "SaaS Subscription",
+          "model": "Recurring",
+          "potential_arr": 50000
+        }
+      ]
+    }
+  }
+}

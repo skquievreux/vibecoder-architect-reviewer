@@ -1,0 +1,148 @@
+{
+  "repositoryId": "41c4cea7-1924-4911-bf42-fa53180e328b",
+  "name": "visual-flyer-snap",
+  "owner": "skquievreux",
+  "harvestedAt": "2025-12-21T09:21:45.459Z",
+  "content": {
+    "readme": "# Screenshot App\n\nA full-stack screenshot service with web interface, API, and Chrome extension. Take screenshots of web pages with platform-specific viewports (Instagram, YouTube, Facebook, Default).\n\n## Features\n\n- 🖼️ **Web Interface**: React frontend for single and batch screenshot generation\n- 🔌 **REST API**: Webhook endpoints for integration with external services\n- 🌐 **Chrome Extension**: One-click screenshots from browser toolbar\n- 📱 **Platform Viewports**: Instagram (375×667), YouTube (1280×720), Facebook (414×736), Default (1280×800)\n- 🚀 **Fly.io Ready**: Optimized for deployment on Fly.io free tier\n- 🔒 **API Key Protection**: Optional API key authentication\n- 📦 **Batch Processing**: Process multiple URLs simultaneously\n- ⏰ **Auto Cleanup**: Screenshots expire after 24 hours\n\n## Architecture\n\n```\n📁 Project Structure\n├── backend/          # Node.js + Express + Playwright\n├── frontend/         # React + Vite\n├── extension/        # Chrome Extension\n├── fly.toml         # Fly.io deployment config\n└── README.md        # This file\n```\n\n## Quick Start\n\n### Local Development\n\n1. **Clone and install dependencies:**\n   ```bash\n   git clone <your-repo-url>\n   cd screenshot-app\n   \n   # Install backend dependencies\n   cd backend\n   npm install\n   npx playwright install chromium\n   \n   # Install frontend dependencies\n   cd ../frontend\n   npm install\n   ```\n\n2. **Start the development servers:**\n   ```bash\n   # Terminal 1: Backend (Port 3000)\n   cd backend\n   npm run dev\n   \n   # Terminal 2: Frontend (Port 5173)\n   cd frontend\n   npm run dev\n   ```\n\n3. **Load Chrome Extension (Development):**\n   - Open Chrome → Extensions → Enable Developer Mode\n   - Click \"Load unpacked\" → Select the `extension/` folder\n   - Pin the extension to your toolbar\n\n### Production Deployment on Fly.io\n\n1. **Install Fly CLI:**\n   ```bash\n   curl -L https://fly.io/install.sh | sh\n   ```\n\n2. **Login to Fly.io:**\n   ```bash\n   fly auth login\n   ```\n\n3. **Deploy the app:**\n   ```bash\n   fly deploy\n   ```\n\n4. **Create volume for temporary files:**\n   ```bash\n   fly volumes create screenshot_temp --size 1 --region dfw\n   ```\n\n5. **Set environment variables (optional):**\n   ```bash\n   fly secrets set API_KEY=your-secret-key\n   ```\n\nYour app will be available at: `https://your-app-name.fly.dev`\n\n## API Reference\n\n### POST /webhook\nSingle screenshot endpoint.\n\n**Request:**\n```json\n{\n  \"url\": \"https://example.com\",\n  \"platform\": \"instagram\",\n  \"project\": \"my-project\"\n}\n```\n\n**Response:**\n```json\n{\n  \"success\": true,\n  \"screenshotUrl\": \"/screenshots/filename.png\",\n  \"project\": \"my-project\"\n}\n```\n\n### POST /batch\nBatch screenshot endpoint (max 50 URLs).\n\n**Request:**\n```json\n{\n  \"urls\": [\"https://example1.com\", \"https://example2.com\"],\n  \"platform\": \"youtube\",\n  \"project\": \"batch-job\"\n}\n```\n\n**Response:**\n```json\n{\n  \"success\": true,\n  \"screenshots\": [\n    {\n      \"url\": \"https://example1.com\",\n      \"screenshotUrl\": \"/screenshots/file1.png\",\n      \"project\": \"batch-job\"\n    }\n  ],\n  \"errors\": []\n}\n```\n\n### GET /screenshots/:filename\nServe screenshot files.\n\n### GET /health\nHealth check endpoint.\n\n## Configuration\n\n### Environment Variables\n\n| Variable | Description | Default |\n|----------|-------------|---------|\n| `PORT` | Server port | `3000` |\n| `API_KEY` | Optional API key for authentication | None |\n| `NODE_ENV` | Environment mode | `development` |\n\n### Platform Viewports\n\n| Platform | Viewport | Use Case |\n|----------|----------|----------|\n| `instagram` | 375×667 | Mobile Instagram posts |\n| `youtube` | 1280×720 | YouTube thumbnails (720p) |\n| `facebook` | 414×736 | Mobile Facebook posts |\n| `default` | 1280×800 | General desktop screenshots |\n\n## Chrome Extension\n\n### Installation (Development)\n1. Open Chrome → `chrome://extensions/`\n2. Enable \"Developer mode\"\n3. Click \"Load unpacked\" → Select `extension/` folder\n\n### Installation (Production)\nPackage the extension and publish to Chrome Web Store or load as unpacked.\n\n### Usage\n1. Navigate to any webpage\n2. Click the extension icon\n3. Select platform viewport\n4. Click \"Take Screenshot\"\n5. Screenshot opens in new tab\n\n## File Storage\n\nScreenshots are stored temporarily in `/temp` directory:\n- **Local**: `backend/temp/`\n- **Fly.io**: Mounted volume (`screenshot_temp`)\n- **Retention**: 24 hours (auto-cleanup)\n- **Format**: PNG files with unique names\n\n## Cost Optimization\n\n- **No Database**: Uses temporary file storage only\n- **Fly.io Free Tier**: \n  - 512MB RAM, 1 CPU\n  - 1GB volume for screenshots\n  - Auto-scaling from 0 instances\n- **Auto Cleanup**: Prevents storage bloat\n- **Shared CPU**: Cost-effective for low traffic\n\n## Security\n\n- **API Key Authentication**: Optional `X-API-Key` header\n- **Input Validation**: URL format validation\n- **File Security**: Path traversal protection\n- **CORS**: Configurable cross-origin requests\n- **Helmet**: Security headers middleware\n\n## Monitoring\n\n- **Health Check**: `/health` endpoint\n- **Fly.io Metrics**: Built-in monitoring\n- **Logs**: `fly logs` for debugging\n- **Uptime**: Auto-scaling keeps costs low\n\n## Troubleshooting\n\n### Common Issues\n\n1. **Playwright Installation:**\n   ```bash\n   npx playwright install chromium\n   ```\n\n2. **Port Conflicts:**\n   - Backend: Change `PORT` in `.env`\n   - Frontend: Modify `vite.config.js`\n\n3. **Extension Permissions:**\n   - Check `host_permissions` in `manifest.json`\n   - Update server URL in extension settings\n\n4. **Fly.io Deployment:**\n   ```bash\n   fly doctor  # Check configuration\n   fly logs    # View application logs\n   ```\n\n### Performance Tips\n\n- Use appropriate viewport for your use case\n- Batch requests for multiple URLs\n- Monitor volume usage on Fly.io\n- Set reasonable API limits\n\n## Contributing\n\n1. Fork the repository\n2. Create feature branch\n3. Make changes\n4. Test locally\n5. Submit pull request\n\n## License\n\nMIT License - see LICENSE file for details.\n\n---\n\n**Example URLs for Testing:**\n- Instagram: `https://www.instagram.com/lunaneon_original/`\n- YouTube: `https://www.youtube.com/watch?v=dQw4w9WgXcQ`\n- Facebook: `https://www.facebook.com/facebook`\n- General: `https://github.com`",
+    "packageJson": {
+      "name": "vite_react_shadcn_ts",
+      "private": true,
+      "version": "0.0.0",
+      "type": "module",
+      "scripts": {
+        "dev": "vite",
+        "build": "vite build",
+        "build:dev": "vite build --mode development",
+        "lint": "eslint .",
+        "preview": "vite preview"
+      },
+      "dependencies": {
+        "@hookform/resolvers": "^3.10.0",
+        "@radix-ui/react-accordion": "^1.2.11",
+        "@radix-ui/react-alert-dialog": "^1.1.14",
+        "@radix-ui/react-aspect-ratio": "^1.1.7",
+        "@radix-ui/react-avatar": "^1.1.10",
+        "@radix-ui/react-checkbox": "^1.3.2",
+        "@radix-ui/react-collapsible": "^1.1.11",
+        "@radix-ui/react-context-menu": "^2.2.15",
+        "@radix-ui/react-dialog": "^1.1.14",
+        "@radix-ui/react-dropdown-menu": "^2.1.15",
+        "@radix-ui/react-hover-card": "^1.1.14",
+        "@radix-ui/react-label": "^2.1.7",
+        "@radix-ui/react-menubar": "^1.1.15",
+        "@radix-ui/react-navigation-menu": "^1.2.13",
+        "@radix-ui/react-popover": "^1.1.14",
+        "@radix-ui/react-progress": "^1.1.7",
+        "@radix-ui/react-radio-group": "^1.3.7",
+        "@radix-ui/react-scroll-area": "^1.2.9",
+        "@radix-ui/react-select": "^2.2.5",
+        "@radix-ui/react-separator": "^1.1.7",
+        "@radix-ui/react-slider": "^1.3.5",
+        "@radix-ui/react-slot": "^1.2.3",
+        "@radix-ui/react-switch": "^1.2.5",
+        "@radix-ui/react-tabs": "^1.1.12",
+        "@radix-ui/react-toast": "^1.2.14",
+        "@radix-ui/react-toggle": "^1.1.9",
+        "@radix-ui/react-toggle-group": "^1.1.10",
+        "@radix-ui/react-tooltip": "^1.2.7",
+        "@tanstack/react-query": "^5.83.0",
+        "class-variance-authority": "^0.7.1",
+        "clsx": "^2.1.1",
+        "cmdk": "^1.1.1",
+        "date-fns": "^3.6.0",
+        "embla-carousel-react": "^8.6.0",
+        "input-otp": "^1.4.2",
+        "lucide-react": "^0.462.0",
+        "next-themes": "^0.3.0",
+        "react": "^19.2.0",
+        "react-day-picker": "^8.10.1",
+        "react-dom": "^19.2.0",
+        "react-hook-form": "^7.61.1",
+        "react-resizable-panels": "^2.1.9",
+        "react-router-dom": "^6.30.1",
+        "recharts": "^2.15.4",
+        "sonner": "^1.7.4",
+        "tailwind-merge": "^2.6.0",
+        "tailwindcss-animate": "^1.0.7",
+        "vaul": "^0.9.9",
+        "zod": "^3.25.76"
+      },
+      "devDependencies": {
+        "@eslint/js": "^9.32.0",
+        "@tailwindcss/typography": "^0.5.16",
+        "@types/node": "^22.16.5",
+        "@types/react": "^19.0.0",
+        "@types/react-dom": "^19.0.0",
+        "@vitejs/plugin-react-swc": "^3.11.0",
+        "autoprefixer": "^10.4.21",
+        "eslint": "^9.32.0",
+        "eslint-plugin-react-hooks": "^5.2.0",
+        "eslint-plugin-react-refresh": "^0.4.20",
+        "globals": "^15.15.0",
+        "lovable-tagger": "^1.1.9",
+        "postcss": "^8.5.6",
+        "tailwindcss": "^3.4.17",
+        "typescript": "^5.8.2",
+        "typescript-eslint": "^8.38.0",
+        "vite": "^5.4.19"
+      },
+      "engines": {
+        "node": ">=20.9.0"
+      }
+    }
+  },
+  "analysis": {
+    "description": "Visual Flyer Snap delivers instant, platform-perfect screenshots via web app, API, and Chrome extension—optimized for social media previews and automated documentation. Deploy on Fly.io free tier with auto-cleanup for zero-maintenance visual asset generation.",
+    "businessCanvas": {
+      "valueProposition": [
+        "Platform-specific viewports for Instagram, YouTube, Facebook previews",
+        "Batch API processing with webhook integration for automation workflows",
+        "Zero-cost Fly.io deployment with Chrome extension for instant captures"
+      ],
+      "customerSegments": [
+        {
+          "name": "Social Media Marketers",
+          "willingness_to_pay": "Medium",
+          "pain_points": [
+            "Manual screenshot resizing for platform previews",
+            "Time-consuming batch image generation for campaigns"
+          ]
+        },
+        {
+          "name": "Developers & Documentation Teams",
+          "willingness_to_pay": "High",
+          "pain_points": [
+            "Creating consistent web screenshots for tutorials",
+            "Integrating screenshot automation in CI/CD pipelines"
+          ]
+        },
+        {
+          "name": "Content Creators & Agencies",
+          "willingness_to_pay": "Medium",
+          "pain_points": [
+            "Capturing mobile/desktop views without multiple devices",
+            "Organizing temporary screenshot storage"
+          ]
+        }
+      ],
+      "revenueStreams": [
+        {
+          "source": "SaaS Subscription",
+          "model": "Recurring",
+          "potential_arr": 120000
+        },
+        {
+          "source": "API Usage Tier",
+          "model": "Pay-per-screenshot",
+          "potential_arr": 50000
+        },
+        {
+          "source": "Enterprise Self-Hosting License",
+          "model": "One-time",
+          "potential_arr": 25000
+        }
+      ]
+    }
+  }
+}

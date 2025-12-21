@@ -1,0 +1,17 @@
+{
+  "repositoryId": "60585ce3-5926-4da7-9aac-64cc06d49534",
+  "name": "svg-grafik-generator",
+  "owner": "skquievreux",
+  "harvestedAt": "2025-12-21T09:21:40.238Z",
+  "content": {
+    "readme": "# Chatbot SVG Galerie\n\nDieses Projekt erstellt eine Galerie von SVG-Grafiken für Chatbots. Jede Grafik zeigt ein Icon in einem achteckigen Rahmen auf schwarzem Hintergrund.\n\n## Funktionen\n\n*   Generierung von SVG-Grafiken basierend auf einer Liste von Chatbot-Ideen.\n*   Anzeige der Grafiken in einer responsiven HTML-Galerie.\n*   Bereitstellung des Einbindungscodes für jede SVG-Grafik.\n\n## Verwendung\n\n1.  Öffnen Sie die `index.html`-Datei in Ihrem Webbrowser.\n2.  Die Galerie zeigt die generierten SVG-Grafiken an.\n3.  Klicken Sie auf die Schaltfläche \"Kopieren\" unter jeder Grafik, um den Einbindungscode in die Zwischenablage zu kopieren.\n\n## Technologien\n\n*   HTML\n*   CSS\n*   JavaScript\n*   SVG\n*   Markdown (für die Chatbot-Ideen-Liste)\n\n## Projektstruktur\n\n*   `index.html`: Die HTML-Datei für die Galerie.\n*   `script.js`: Das JavaScript-Skript, das die SVGs generiert und die Galerie aktualisiert.\n*   `chatbot-ideen.md`: Die Markdown-Datei mit den Chatbot-Ideen.\n*   `chatbot-ideen-erweitert.md`: Die erweiterte Markdown-Datei mit zusätzlichen Chatbot-Ideen.\n*   `README.md`: Diese Datei.\n\n## Autor\n\nSteffen Quievreux",
+    "packageJson": {
+      "dependencies": {
+        "@supabase/supabase-js": "^2.49.4"
+      },
+      "engines": {
+        "node": ">=20.9.0"
+      }
+    }
+  }
+}

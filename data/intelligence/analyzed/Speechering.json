@@ -1,0 +1,58 @@
+{
+  "repositoryId": "676d77bb-77cb-48d8-bc5c-59270647d280",
+  "name": "Speechering",
+  "owner": "skquievreux",
+  "harvestedAt": "2025-12-21T09:21:40.568Z",
+  "content": {
+    "readme": null,
+    "packageJson": null
+  },
+  "analysis": {
+    "description": "Speechering revolutionizes communication by transforming text into natural, expressive speech with advanced AI synthesis. Businesses gain a competitive edge with seamless voice solutions for content, accessibility, and customer engagement.",
+    "businessCanvas": {
+      "valueProposition": [
+        "AI-powered speech synthesis for lifelike audio generation",
+        "Streamlines content creation and improves accessibility",
+        "Customizable voices for branding and personalization"
+      ],
+      "customerSegments": [
+        {
+          "name": "Content Creators & Media Companies",
+          "willingness_to_pay": "High",
+          "pain_points": [
+            "Time-intensive voice recording",
+            "High costs for professional voice talent"
+          ]
+        },
+        {
+          "name": "Accessibility Service Providers",
+          "willingness_to_pay": "Medium",
+          "pain_points": [
+            "Need for natural TTS in apps",
+            "Compliance with audio accessibility standards"
+          ]
+        },
+        {
+          "name": "Customer Service Platforms",
+          "willingness_to_pay": "High",
+          "pain_points": [
+            "Scalable voice responses",
+            "Personalized audio interactions"
+          ]
+        }
+      ],
+      "revenueStreams": [
+        {
+          "source": "SaaS Subscription",
+          "model": "Recurring",
+          "potential_arr": 50000
+        },
+        {
+          "source": "API Usage Pay-per-Use",
+          "model": "Usage-based",
+          "potential_arr": 25000
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,50 @@
+{
+  "repositoryId": "3a328336-1c5a-4f42-837c-8467b82b26f6",
+  "name": "Preisanfrage",
+  "owner": "skquievreux",
+  "harvestedAt": "2025-12-21T09:21:47.428Z",
+  "content": {
+    "readme": "# Preisabfrage\n\nDiese Website dient zur Abfrage von Preisen für Produkte über einen Webhook.\n\n## Verwendung\n\n1.  Geben Sie die Produkte, für die Sie die Preise abrufen möchten, in das Textfeld \"Produkte\" ein. Trennen Sie die Produkte durch Kommas.\n2.  Klicken Sie auf die Schaltfläche \"Preise abrufen\".\n3.  Die Website sendet die Produkte als einen einzigen String (kommagetrennt) an den Webhook und zeigt die Ergebnisse unterhalb des Eingabefelds an.\n\n**Wichtig:** Der Webhook erwartet die Eingabe als einen einzigen String, in dem die Produkte durch Kommas getrennt sind.\n\n## Hinweise\n\n*   Der Webhook muss eine gültige Textantwort zurückgeben.\n*   Die Website sendet alle Produkte in einer einzigen Anfrage an den Webhook.\n\n## Fehlerbehebung\n\n*   Wenn ein Fehler auftritt, wird eine Fehlermeldung unterhalb des Eingabefelds angezeigt.\n*   Überprüfen Sie, ob der Webhook korrekt konfiguriert ist und eine gültige Textantwort zurückgibt.\n\n## Lizenz\n\n[Hier Lizenz einfügen]",
+    "packageJson": null
+  },
+  "analysis": {
+    "description": "Preisanfrage ist die ultimative Web-App für Echtzeit-Preisabfragen: Geben Sie Produkte ein, und erhalten Sie Preise blitzschnell über Ihren Webhook. Ideal für E-Commerce-Teams, die Verkaufsprozesse automatisieren und Kunden sofort mit genauen Angeboten versorgen.",
+    "businessCanvas": {
+      "valueProposition": [
+        "Einfache, sofortige Preisabfragen für mehrere Produkte per Webhook-Integration",
+        "Fehlerresistente Oberfläche mit direkter Anzeige von Ergebnissen und Fehlermeldungen",
+        "Zeitersparnis durch Batch-Verarbeitung kommagetrennter Produktlisten"
+      ],
+      "customerSegments": [
+        {
+          "name": "E-Commerce Manager und Vertriebsteams",
+          "willingness_to_pay": "Medium",
+          "pain_points": [
+            "Manuelle Preisrecherchen für Kundenanfragen sind zeitaufwendig",
+            "Fehlende Echtzeit-Integration zwischen Frontend und Preissystemen"
+          ]
+        },
+        {
+          "name": "Entwickler von Webshops und Marketplace-Plattformen",
+          "willingness_to_pay": "High",
+          "pain_points": [
+            "Komplexe API-Entwicklung für Preisabfragen",
+            "Unzuverlässige Webhook-Handling in bestehenden Tools"
+          ]
+        }
+      ],
+      "revenueStreams": [
+        {
+          "source": "SaaS Subscription",
+          "model": "Recurring",
+          "potential_arr": 12000
+        },
+        {
+          "source": "White-label Lizenzierung",
+          "model": "One-time",
+          "potential_arr": 5000
+        }
+      ]
+    }
+  }
+}

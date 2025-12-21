@@ -1,0 +1,964 @@
+[
+  {
+    "name": "colab-monk-generator",
+    "description": "Ein innovatives Collaboration-Tool, das mit Node.js und Python die automatisierte Generierung von Monk-Konfigurationen und Skripten ermöglicht und dabei nahtlose Zusammenarbeit zwischen verschiedenen Entwicklungsumgebungen gewährleistet.",
+    "technologies": [
+      "Python"
+    ],
+    "hasBusinessCanvas": false,
+    "businessCanvas": null
+  },
+  {
+    "name": "heldenquiz",
+    "description": "Ein interaktives Quiz-Anwendung, die mit Node.js als Backend-Runtime entwickelt wurde und HTML, CSS und JavaScript für ein responsives Frontend-Erlebnis nutzt.",
+    "technologies": [
+      "JavaScript",
+      "CSS",
+      "HTML",
+      "Node.js"
+    ],
+    "hasBusinessCanvas": false,
+    "businessCanvas": null
+  },
+  {
+    "name": "DevVault",
+    "description": "Verwaltung von environment Variablen für DEV",
+    "technologies": [
+      "TypeScript",
+      "JavaScript",
+      "CSS",
+      "PowerShell",
+      "Node.js"
+    ],
+    "hasBusinessCanvas": false,
+    "businessCanvas": null
+  },
+  {
+    "name": "ballermanni-video-generator",
+    "description": "Ein Node.js-basiertes JavaScript-Tool zur automatisierten Generierung und Verarbeitung von Videos mit erweiterten Funktionalitäten.",
+    "technologies": [
+      "JavaScript",
+      "Node.js"
+    ],
+    "hasBusinessCanvas": false,
+    "businessCanvas": null
+  },
+  {
+    "name": "githubbot",
+    "description": "github bot über slack",
+    "technologies": [],
+    "hasBusinessCanvas": false,
+    "businessCanvas": null
+  },
+  {
+    "name": "svg-grafik-generator",
+    "description": "Automated pipeline for generating complex SVG assets. Useful for data visualization and dynamic iconography.",
+    "technologies": [
+      "TypeScript",
+      "HTML",
+      "JavaScript",
+      "CSS",
+      "Node.js"
+    ],
+    "hasBusinessCanvas": true,
+    "businessCanvas": {
+      "valueProposition": "[\"Scalable Vector Graphics\", \"Data-Driven Generation\", \"CI/CD Integration\"]",
+      "customerSegments": "[{\"name\":\"Data Viz Teams\",\"willingness_to_pay\":\"High\"}]",
+      "revenueStreams": "[{\"source\":\"SaaS API\",\"model\":\"Per Request\",\"potential_arr\":15000}]"
+    }
+  },
+  {
+    "name": "albumpromotion",
+    "description": "Dedicated release platform for independent music artists. Combines pre-save campaigns, bio-links, and merch sales in one cohesive album launch page.",
+    "technologies": [
+      "TypeScript",
+      "HTML",
+      "JavaScript",
+      "CSS",
+      "Node.js",
+      "Next.js",
+      "React"
+    ],
+    "hasBusinessCanvas": true,
+    "businessCanvas": {
+      "valueProposition": "[\"All-in-One Launch Page\", \"Fan Data Capture\", \"Direct-to-Fan Sales\"]",
+      "customerSegments": "[{\"name\":\"Indie Artists\",\"willingness_to_pay\":\"Medium\"}, {\"name\":\"Small Labels\",\"willingness_to_pay\":\"Medium\"}]",
+      "revenueStreams": "[{\"source\":\"Subscription\",\"model\":\"Per Release\",\"potential_arr\":10000}]"
+    }
+  },
+  {
+    "name": "Speechering",
+    "description": "Speechering ist eine plattformübergreifende Anwendung für Spracherkennung und -verarbeitung, entwickelt mit Node.js und Python, mit Installation und Automation über NSIS und AutoHotkey.",
+    "technologies": [
+      "Python",
+      "NSIS",
+      "AutoHotkey"
+    ],
+    "hasBusinessCanvas": false,
+    "businessCanvas": null
+  },
+  {
+    "name": "veridex",
+    "description": "Ein Open-Source-Projekt zur Erstellung von Webanwendungen mit Node.js und HTML, das Entwicklern ermöglicht, serverseitige Anwendungen effizient zu entwickeln.",
+    "technologies": [
+      "HTML"
+    ],
+    "hasBusinessCanvas": false,
+    "businessCanvas": null
+  },
+  {
+    "name": "s3-mcp-server",
+    "description": "Ein MCP-Server für die Verwaltung von Amazon S3-Speichern, implementiert in TypeScript und Node.js mit Docker-Unterstützung und plattformübergreifenden Deployment-Skripten.",
+    "technologies": [
+      "JavaScript",
+      "Batchfile",
+      "Shell",
+      "Dockerfile",
+      "Node.js"
+    ],
+    "hasBusinessCanvas": false,
+    "businessCanvas": null
+  },
+  {
+    "name": "leadmagnet-quiz-mitochondrien",
+    "description": "Ein interaktives Quiz-Anwendung über Mitochondrien, entwickelt mit Node.js und modernen Web-Technologien (JavaScript, HTML, CSS), die als Lead-Magnet zur Nutzergewinnung eingesetzt wird.",
+    "technologies": [
+      "JavaScript",
+      "HTML",
+      "CSS"
+    ],
+    "hasBusinessCanvas": false,
+    "businessCanvas": null
+  },
+  {
+    "name": "art-vibe-gen",
+    "description": "Personalized AI Art Generation designed for Print-on-Demand workflows. Generates high-res textures and patterns based on abstract mood prompts.",
+    "technologies": [
+      "TypeScript",
+      "PLpgSQL",
+      "HTML",
+      "CSS",
+      "JavaScript",
+      "Node.js",
+      "React"
+    ],
+    "hasBusinessCanvas": true,
+    "businessCanvas": {
+      "valueProposition": "[\"Print-Ready AI Art\", \"Mood-Based Generation\", \"Commercial License Included\"]",
+      "customerSegments": "[{\"name\":\"POD Sellers (Etsy)\",\"willingness_to_pay\":\"Medium\"}, {\"name\":\"Interior Designers\",\"willingness_to_pay\":\"High\"}]",
+      "revenueStreams": "[{\"source\":\"Credits\",\"model\":\"Pay-per-Generation\",\"potential_arr\":15000}]"
+    }
+  },
+  {
+    "name": "clip-sync-collab",
+    "description": "Secure, real-time clipboard synchronization for distributed teams. Encrypted transfer of snippets and files across devices.",
+    "technologies": [
+      "TypeScript",
+      "PLpgSQL",
+      "CSS",
+      "HTML",
+      "Dockerfile",
+      "JavaScript",
+      "Node.js",
+      "React"
+    ],
+    "hasBusinessCanvas": true,
+    "businessCanvas": {
+      "valueProposition": "[\"End-to-End Encryption\", \"Cross-Device Sync\", \"Team Workspaces\"]",
+      "customerSegments": "[{\"name\":\"Remote Teams\",\"willingness_to_pay\":\"Medium\"}, {\"name\":\"Developers\",\"willingness_to_pay\":\"Low\"}]",
+      "revenueStreams": "[{\"source\":\"SaaS\",\"model\":\"Per User\",\"potential_arr\":20000}]"
+    }
+  },
+  {
+    "name": "audio-mastering",
+    "description": "Ein vielseitiges Audio-Mastering-Tool, das Node.js für die Backend-Verarbeitung mit Python und Flask kombiniert, um professionelle Audio-Bearbeitung über eine HTML-basierte Benutzeroberfläche bereitzustellen.",
+    "technologies": [
+      "Python",
+      "HTML"
+    ],
+    "hasBusinessCanvas": false,
+    "businessCanvas": null
+  },
+  {
+    "name": "birdie-flight-revamp",
+    "description": "Enterprise-grade flight passenger management specifically designed for high-load environments. Features real-time seat allocation and booking management.",
+    "technologies": [
+      "TypeScript",
+      "CSS",
+      "HTML",
+      "JavaScript",
+      "Node.js",
+      "React"
+    ],
+    "hasBusinessCanvas": true,
+    "businessCanvas": {
+      "valueProposition": "[\"Real-time Passenger Tracking\", \"High-Availability Architecture\", \"Legacy System Integration\"]",
+      "customerSegments": "[{\"name\":\"Regional Airlines\",\"willingness_to_pay\":\"Very High\"}, {\"name\":\"Travel Agencies\",\"willingness_to_pay\":\"High\"}]",
+      "revenueStreams": "[{\"source\":\"B2B License\",\"model\":\"Per Transaction\",\"potential_arr\":150000}]"
+    }
+  },
+  {
+    "name": "agent-dialogue-manager",
+    "description": "Middleware for managing state and context in autonomous agent conversations. Ensures long-running LLM tasks maintain coherence across multiple turns.",
+    "technologies": [
+      "TypeScript",
+      "PLpgSQL",
+      "CSS",
+      "JavaScript",
+      "HTML",
+      "Dockerfile",
+      "Node.js",
+      "React"
+    ],
+    "hasBusinessCanvas": true,
+    "businessCanvas": {
+      "valueProposition": "[\"Context Persistence\", \"Stateful LLP Interaction\", \"Audit Logging\"]",
+      "customerSegments": "[{\"name\":\"Enterprise AI Teams\",\"willingness_to_pay\":\"High\"}]",
+      "revenueStreams": "[{\"source\":\"Commercial License\",\"model\":\"Per Seat\",\"potential_arr\":60000}]"
+    }
+  },
+  {
+    "name": "youtube-landing-page",
+    "description": "High-conversion landing page generator optimized for Creator Economy. Converts YouTube traffic into email subscribers with minimal friction.",
+    "technologies": [
+      "TypeScript",
+      "CSS",
+      "JavaScript",
+      "Node.js",
+      "Next.js",
+      "React"
+    ],
+    "hasBusinessCanvas": true,
+    "businessCanvas": {
+      "valueProposition": "[\"Creator-First Design\", \"YouTube API Integration\", \"High Conversion Templates\"]",
+      "customerSegments": "[{\"name\":\"YouTubers (>10k subs)\",\"willingness_to_pay\":\"Medium\"}]",
+      "revenueStreams": "[{\"source\":\"SaaS\",\"model\":\"Monthly\",\"potential_arr\":8000}]"
+    }
+  },
+  {
+    "name": "test-repo",
+    "description": "No description",
+    "technologies": [],
+    "hasBusinessCanvas": false,
+    "businessCanvas": null
+  },
+  {
+    "name": "visual-image-composer",
+    "description": "Eine Node.js-Anwendung zur programmatischen Zusammenstellung und Verarbeitung von Bildern mit erweiterbaren Funktionen für automatisierte visuelle Komposition.",
+    "technologies": [],
+    "hasBusinessCanvas": false,
+    "businessCanvas": null
+  },
+  {
+    "name": "screenshotgallerysystem",
+    "description": "Eine vollständige Web-Anwendung zur Verwaltung und Präsentation von Screenshots, entwickelt mit React und Next.js im Frontend sowie Node.js im Backend, mit modernem JavaScript-Stack für optimale Performance und Benutzerfreundlichkeit.",
+    "technologies": [
+      "JavaScript",
+      "Dockerfile",
+      "Node.js",
+      "Express",
+      "Prisma"
+    ],
+    "hasBusinessCanvas": false,
+    "businessCanvas": null
+  },
+  {
+    "name": "VoiceStage",
+    "description": "Central dashboard for managing diverse Voice Agents. Orchestrates multiple AI voice personas and their dialogue flows in one interface.",
+    "technologies": [
+      "HTML",
+      "TypeScript",
+      "PowerShell",
+      "JavaScript",
+      "CSS",
+      "Shell",
+      "Node.js",
+      "Next.js",
+      "React"
+    ],
+    "hasBusinessCanvas": true,
+    "businessCanvas": {
+      "valueProposition": "[\"Unified Agent Management\", \"Multi-Persona Testing\", \"Dialogue Flow Analytics\"]",
+      "customerSegments": "[{\"name\":\"AI Developers\",\"willingness_to_pay\":\"Medium\"}, {\"name\":\"Customer Support Leads\",\"willingness_to_pay\":\"High\"}]",
+      "revenueStreams": "[{\"source\":\"SaaS\",\"model\":\"Tiered\",\"potential_arr\":25000}]"
+    }
+  },
+  {
+    "name": "vibecoder-architect-reviewer",
+    "description": "An automated governance platform that orchestrates 60+ micro-repositories. It enforces architectural decisions (ADRs), synchronizes CI/CD pipelines, and provides a 'Self-Healing' capability for high-velocity engineering teams.",
+    "technologies": [
+      "TypeScript",
+      "JavaScript",
+      "Shell",
+      "CSS",
+      "Dockerfile",
+      "Node.js",
+      "Next.js",
+      "React",
+      "Prisma"
+    ],
+    "hasBusinessCanvas": true,
+    "businessCanvas": {
+      "valueProposition": "[\"Automated Architecture Governance\",\"Self-Healing Codebase Analysis\",\"Enterprise-Grade Compliance Guardrails\"]",
+      "customerSegments": "[{\"name\":\"CTOs & Tech Leads\",\"pain_points\":[\"Technical Debt\",\"Inconsistent Standards\"],\"willingness_to_pay\":\"High\"},{\"name\":\"Scale-ups\",\"pain_points\":[\"Onboarding Velocity\",\"Broken CI/CD\"],\"willingness_to_pay\":\"High\"}]",
+      "revenueStreams": "[{\"source\":\"Enterprise License\",\"model\":\"Per Seat/Repo\",\"potential_arr\":50000}]"
+    }
+  },
+  {
+    "name": "DreamEdit",
+    "description": "Browser-based image manipulation suite for social media. Includes filters, cropping, and text overlay tools powered by WebAssembly.",
+    "technologies": [
+      "JavaScript",
+      "PLpgSQL",
+      "Shell",
+      "Node.js",
+      "Next.js",
+      "React"
+    ],
+    "hasBusinessCanvas": true,
+    "businessCanvas": {
+      "valueProposition": "[\"Privacy-First Editing (Local)\", \"High Performance\", \"No Upload Needed\"]",
+      "customerSegments": "[{\"name\":\"Casual Users\",\"willingness_to_pay\":\"Low\"}]",
+      "revenueStreams": "[{\"source\":\"Ads/Freemium\",\"model\":\"Ad Removal\",\"potential_arr\":3000}]"
+    }
+  },
+  {
+    "name": "evolution",
+    "description": "evolution - Part of Unlock Your Song ecosystem",
+    "technologies": [],
+    "hasBusinessCanvas": false,
+    "businessCanvas": null
+  },
+  {
+    "name": "playlist-generator",
+    "description": "AI-driven playlist curation tool. Analyzes user listening listening history and mood inputs to generate perfectly sequenced playlists.",
+    "technologies": [],
+    "hasBusinessCanvas": true,
+    "businessCanvas": {
+      "valueProposition": "[\"Mood-Based Sequencing\", \"Cross-Platform Export\", \"Deep Cuts Discovery\"]",
+      "customerSegments": "[{\"name\":\"Music Enthusiasts\",\"willingness_to_pay\":\"Low\"}]",
+      "revenueStreams": "[{\"source\":\"Affiliate\",\"model\":\"Streaming Referrals\",\"potential_arr\":2000}]"
+    }
+  },
+  {
+    "name": "artify",
+    "description": "artify - Part of Unlock Your Song ecosystem",
+    "technologies": [],
+    "hasBusinessCanvas": false,
+    "businessCanvas": null
+  },
+  {
+    "name": "Audio-Transkriptor",
+    "description": "Fully managed audio-to-text platform using OpenAI Whisper. Provides highly accurate transcripts with speaker detection and timestamps.",
+    "technologies": [
+      "TypeScript",
+      "JavaScript",
+      "PLpgSQL",
+      "Shell",
+      "CSS",
+      "Node.js",
+      "Next.js",
+      "React"
+    ],
+    "hasBusinessCanvas": true,
+    "businessCanvas": {
+      "valueProposition": "[\"99% Accuracy\", \"Speaker Diarization\", \"Multi-Language Support\"]",
+      "customerSegments": "[{\"name\":\"Journalists\",\"willingness_to_pay\":\"Medium\"}, {\"name\":\"Podcasters\",\"willingness_to_pay\":\"Medium\"}]",
+      "revenueStreams": "[{\"source\":\"Pay-as-you-go\",\"model\":\"Per Minute\",\"potential_arr\":25000}]"
+    }
+  },
+  {
+    "name": "unlock-your-song",
+    "description": "Unlock Your Song - Music Platform",
+    "technologies": [],
+    "hasBusinessCanvas": false,
+    "businessCanvas": null
+  },
+  {
+    "name": "visual-story",
+    "description": "visual-story - Part of Unlock Your Song ecosystem",
+    "technologies": [],
+    "hasBusinessCanvas": false,
+    "businessCanvas": null
+  },
+  {
+    "name": "admin",
+    "description": "admin - Part of Unlock Your Song ecosystem",
+    "technologies": [],
+    "hasBusinessCanvas": false,
+    "businessCanvas": null
+  },
+  {
+    "name": "media-project-manager",
+    "description": "Auftragstool zur Bearbeitung neuer Songs und Alben sowie zum Management von Medien, Screenshots und Ähnlichem.",
+    "technologies": [
+      "JavaScript",
+      "CSS",
+      "Shell",
+      "HTML",
+      "Node.js",
+      "React"
+    ],
+    "hasBusinessCanvas": false,
+    "businessCanvas": null
+  },
+  {
+    "name": "ACID-MONK-GENERATOR",
+    "description": "The 'Guardian' of data consistency. A generator framework that enforces ACID principles at the code level, producing strictly typed backend interfaces that eliminate entire classes of runtime errors.",
+    "technologies": [
+      "TypeScript",
+      "JavaScript",
+      "CSS",
+      "Node.js",
+      "Next.js",
+      "React"
+    ],
+    "hasBusinessCanvas": true,
+    "businessCanvas": {
+      "valueProposition": "[\"Guaranteed Data Integrity\",\"Type-Safe Backend Generation\",\"Zero-Runtime Errors\"]",
+      "customerSegments": "[{\"name\":\"FinTech Startups\",\"pain_points\":[\"Data Corruption\",\"Compliance\"],\"willingness_to_pay\":\"High\"},{\"name\":\"Enterprise Architects\",\"pain_points\":[\"System Stability\",\"Schema Drift\"],\"willingness_to_pay\":\"High\"}]",
+      "revenueStreams": "[{\"source\":\"Open Core\",\"model\":\"Support/Enterprise\",\"potential_arr\":30000}]"
+    }
+  },
+  {
+    "name": "Waldessenz",
+    "description": "Waldessenz ist eine Node.js-basierte Webanwendung, die HTML-Inhalte dynamisch bereitstellt und Dateisystem-Operationen zur Verwaltung von Web-Ressourcen nutzt.",
+    "technologies": [
+      "HTML"
+    ],
+    "hasBusinessCanvas": false,
+    "businessCanvas": null
+  },
+  {
+    "name": "vr-fingers",
+    "description": "Ein Node.js-basiertes Projekt zur Verarbeitung und Visualisierung von Virtual-Reality-Handbewegungen mit HTML-Frontend.",
+    "technologies": [
+      "HTML"
+    ],
+    "hasBusinessCanvas": false,
+    "businessCanvas": null
+  },
+  {
+    "name": "visual-flyer-snap",
+    "description": "Rapid flyer creation tool for social media managers. A simplified version of Karbendrop focused purely on high-speed 'Snap' creation for Instagram Stories.",
+    "technologies": [
+      "TypeScript",
+      "JavaScript",
+      "CSS",
+      "HTML",
+      "Dockerfile",
+      "Node.js",
+      "React"
+    ],
+    "hasBusinessCanvas": true,
+    "businessCanvas": {
+      "valueProposition": "[\"1-Click Social Exports\", \"Brand Templates\", \"Mobile-First Editor\"]",
+      "customerSegments": "[{\"name\":\"Social Media Managers\",\"willingness_to_pay\":\"Medium\"}]",
+      "revenueStreams": "[{\"source\":\"In-App Purchase\",\"model\":\"Premium Templates\",\"potential_arr\":5000}]"
+    }
+  },
+  {
+    "name": "comicgenerator-techeroes",
+    "description": "Ein Node.js-basiertes Web-Anwendungsprojekt zur Generierung und Verwaltung von Comics mit HTML, JavaScript und CSS im Frontend sowie Python und Shell-Skripten für Backend-Automatisierung und -Verarbeitung.",
+    "technologies": [
+      "JavaScript",
+      "Python",
+      "CSS",
+      "HTML",
+      "Shell",
+      "Node.js"
+    ],
+    "hasBusinessCanvas": false,
+    "businessCanvas": null
+  },
+  {
+    "name": "noobgallery",
+    "description": "A minimalistic photo gallery with images stored on Amazon S3 and just the features you want.",
+    "technologies": [
+      "JavaScript",
+      "Pug",
+      "CSS",
+      "Node.js"
+    ],
+    "hasBusinessCanvas": false,
+    "businessCanvas": null
+  },
+  {
+    "name": "runninggame",
+    "description": "Ein interaktives Laufspiel, entwickelt mit Node.js und JavaScript, das HTML-basierte Spielmechaniken in einer Webanwendung umsetzt.",
+    "technologies": [
+      "JavaScript",
+      "HTML",
+      "Node.js"
+    ],
+    "hasBusinessCanvas": false,
+    "businessCanvas": null
+  },
+  {
+    "name": "shader",
+    "description": "Shader ist eine Node.js-basierte Anwendung zur Verwaltung und Verarbeitung von WebGL-Shadern mit JavaScript, HTML und CSS-Integration für moderne Grafikprogrammierung.",
+    "technologies": [
+      "JavaScript",
+      "HTML",
+      "CSS",
+      "Node.js"
+    ],
+    "hasBusinessCanvas": false,
+    "businessCanvas": null
+  },
+  {
+    "name": "Videoedidshare",
+    "description": "Videoedidshare ist eine Node.js-basierte Webanwendung zur Verwaltung und zum Teilen von Videoprojekten, entwickelt mit JavaScript, HTML und CSS.",
+    "technologies": [
+      "JavaScript",
+      "HTML",
+      "CSS"
+    ],
+    "hasBusinessCanvas": false,
+    "businessCanvas": null
+  },
+  {
+    "name": "simplehosting",
+    "description": "Eine einfache, leichte Hosting-Lösung für statische HTML-Seiten mit Node.js unter Verwendung der built-in Module http und fs.",
+    "technologies": [
+      "HTML"
+    ],
+    "hasBusinessCanvas": false,
+    "businessCanvas": null
+  },
+  {
+    "name": "steffenquievreux",
+    "description": "Sonic Pi 2.4 programming sounds",
+    "technologies": [
+      "Ruby"
+    ],
+    "hasBusinessCanvas": false,
+    "businessCanvas": null
+  },
+  {
+    "name": "vibesdk-production",
+    "description": "Produktions-SDK für Vibe-Anwendungen, entwickelt mit Node.js zur Bereitstellung einer robusten API-Lösung für Integration und Datenverarbeitung.[1]",
+    "technologies": [],
+    "hasBusinessCanvas": false,
+    "businessCanvas": null
+  },
+  {
+    "name": "sound-bowl-echoes",
+    "description": "Digital management platform for sound healing sessions. Organizes client preferences, session tracks, and therapeutic outcomes for holistic practitioners.",
+    "technologies": [
+      "TypeScript",
+      "PLpgSQL",
+      "CSS",
+      "HTML",
+      "Dockerfile",
+      "JavaScript",
+      "Node.js",
+      "React"
+    ],
+    "hasBusinessCanvas": true,
+    "businessCanvas": {
+      "valueProposition": "[\"Niche Practice Management\", \"Therapy Session Tracking\", \"Audio Asset Library\"]",
+      "customerSegments": "[{\"name\":\"Sound Healers\",\"willingness_to_pay\":\"Medium\"}, {\"name\":\"Spas & Wellness Centers\",\"willingness_to_pay\":\"High\"}]",
+      "revenueStreams": "[{\"source\":\"Subscription\",\"model\":\"Monthly\",\"potential_arr\":12000}]"
+    }
+  },
+  {
+    "name": "Preisanfrage",
+    "description": "Website für Preisanfrage",
+    "technologies": [
+      "HTML",
+      "JavaScript"
+    ],
+    "hasBusinessCanvas": false,
+    "businessCanvas": null
+  },
+  {
+    "name": "network-architect",
+    "description": "Ein hochperformantes Netzwerk-Verwaltungstool, entwickelt mit Node.js zur Architekturierung und Überwachung komplexer Netzwerkstrukturen mittels JavaScript und webbasierter HTML-Schnittstellen.",
+    "technologies": [
+      "HTML",
+      "JavaScript",
+      "Node.js"
+    ],
+    "hasBusinessCanvas": false,
+    "businessCanvas": null
+  },
+  {
+    "name": "numerorologie",
+    "description": "Ein Node.js-basiertes Projekt zur Numerologie-Analyse mit interaktiven HTML-, JavaScript- und CSS-Komponenten für die Berechnung und Visualisierung numerologischer Bedeutungen.",
+    "technologies": [
+      "JavaScript",
+      "CSS",
+      "HTML"
+    ],
+    "hasBusinessCanvas": false,
+    "businessCanvas": null
+  },
+  {
+    "name": "loopcraft",
+    "description": "Loopcraft ist eine Node.js-Anwendung mit Docker-Unterstützung für die Verwaltung und Orchestrierung von Schleifen-basierten Prozessen mittels HTML-Interface und containerisierter Deployment-Umgebung.",
+    "technologies": [
+      "HTML",
+      "Dockerfile"
+    ],
+    "hasBusinessCanvas": false,
+    "businessCanvas": null
+  },
+  {
+    "name": "sonic-pi-chat-gpt",
+    "description": "I created some songs wiht chat gpt have a look",
+    "technologies": [],
+    "hasBusinessCanvas": false,
+    "businessCanvas": null
+  },
+  {
+    "name": "hashimoto",
+    "description": "Ein Node.js-Projekt, das moderne Web-Anwendungen mit HTML, JavaScript und CSS entwickelt und bereitstellt.[1][3]",
+    "technologies": [
+      "JavaScript",
+      "HTML",
+      "CSS"
+    ],
+    "hasBusinessCanvas": false,
+    "businessCanvas": null
+  },
+  {
+    "name": "inspect-whisper",
+    "description": "Voice-controlled inspection logging tool. Enables field technicians to document findings hands-free using advanced speech-to-text integration.",
+    "technologies": [
+      "TypeScript",
+      "PLpgSQL",
+      "Shell",
+      "CSS",
+      "Dockerfile",
+      "HTML",
+      "JavaScript",
+      "Node.js",
+      "React"
+    ],
+    "hasBusinessCanvas": true,
+    "businessCanvas": {
+      "valueProposition": "[\"Hands-Free Documentation\", \"Voice Command Interface\", \"Offline-Capable\"]",
+      "customerSegments": "[{\"name\":\"Field Service Techs\",\"willingness_to_pay\":\"Medium\"}, {\"name\":\"Construction Managers\",\"willingness_to_pay\":\"High\"}]",
+      "revenueStreams": "[{\"source\":\"SaaS\",\"model\":\"Per User/Month\",\"potential_arr\":45000}]"
+    }
+  },
+  {
+    "name": ".github",
+    "description": "Organisationsrepo mit Git Actions",
+    "technologies": [],
+    "hasBusinessCanvas": false,
+    "businessCanvas": null
+  },
+  {
+    "name": "Essensbestellung",
+    "description": "Ein Node.js-basiertes Webservice-System für die Verwaltung und Verarbeitung von Essensbestellungen mit HTML-, CSS- und JavaScript-Frontend-Komponenten.",
+    "technologies": [
+      "JavaScript",
+      "CSS",
+      "HTML",
+      "Node.js"
+    ],
+    "hasBusinessCanvas": false,
+    "businessCanvas": null
+  },
+  {
+    "name": "epdfframework",
+    "description": "Epdf framework",
+    "technologies": [
+      "HTML",
+      "JavaScript",
+      "CSS",
+      "Node.js"
+    ],
+    "hasBusinessCanvas": false,
+    "businessCanvas": null
+  },
+  {
+    "name": "broetchen-wochenende-bestellung",
+    "description": "Hyper-local pre-order management system for bakeries. Streamlines weekend rush hours by handling orders and payments digitally in advance.",
+    "technologies": [
+      "TypeScript",
+      "PLpgSQL",
+      "CSS",
+      "HTML",
+      "Dockerfile",
+      "JavaScript",
+      "Node.js",
+      "React"
+    ],
+    "hasBusinessCanvas": true,
+    "businessCanvas": {
+      "valueProposition": "[\"Queue Reduction\", \"Waste Minimization\", \"Predictive Baking\"]",
+      "customerSegments": "[{\"name\":\"Local Bakeries\",\"willingness_to_pay\":\"Low\"}, {\"name\":\"Community Groups\",\"willingness_to_pay\":\"Low\"}]",
+      "revenueStreams": "[{\"source\":\"Commission\",\"model\":\"% of Order\",\"potential_arr\":8000}]"
+    }
+  },
+  {
+    "name": "leadmagnet-question",
+    "description": "Ein Node.js-basiertes Lead-Magnet-Tool zur interaktiven Erfassung von Benutzerdaten durch dynamische Frageformulare mit JavaScript, HTML und CSS.",
+    "technologies": [
+      "JavaScript",
+      "HTML",
+      "CSS"
+    ],
+    "hasBusinessCanvas": false,
+    "businessCanvas": null
+  },
+  {
+    "name": "hugofirebase",
+    "description": "Dieses Repository enthält eine Node.js-Anwendung für die Integration mit Firebase-Diensten.[1]",
+    "technologies": [],
+    "hasBusinessCanvas": false,
+    "businessCanvas": null
+  },
+  {
+    "name": "bit-blast-studio",
+    "description": "Low-code environment for building interactive web experiences. Bridges the gap between design and development for web-based games and tools.",
+    "technologies": [
+      "TypeScript",
+      "HTML",
+      "CSS",
+      "JavaScript",
+      "Node.js",
+      "React"
+    ],
+    "hasBusinessCanvas": true,
+    "businessCanvas": {
+      "valueProposition": "[\"Rapid Interactive Prototyping\", \"Component-Based Logic\", \"Visual State Management\"]",
+      "customerSegments": "[{\"name\":\"Creative Agencies\",\"willingness_to_pay\":\"Medium\"}, {\"name\":\"Indie Developers\",\"willingness_to_pay\":\"Low\"}]",
+      "revenueStreams": "[{\"source\":\"License\",\"model\":\"One-time Purchase\",\"potential_arr\":5000}]"
+    }
+  },
+  {
+    "name": "Artheria-Healing-Visualizer",
+    "description": "vibe codes visualizer",
+    "technologies": [
+      "TypeScript",
+      "HTML",
+      "Node.js",
+      "React"
+    ],
+    "hasBusinessCanvas": true,
+    "businessCanvas": {
+      "valueProposition": "[\"Innovative Solution (Generic)\"]",
+      "customerSegments": "[{\"name\":\"Content Creators\",\"confidence\":0.8,\"pain_points\":[\"Consistent posting\",\"Visual quality\",\"Engagement\"],\"willingness_to_pay\":\"Medium ($15-50/mo)\"}]",
+      "revenueStreams": "[{\"source\":\"Freemium\",\"model\":\"Free w/ Watermark -> Paid\",\"potential_arr\":5000,\"effort\":\"Medium\",\"impact\":\"Medium\"}]"
+    }
+  },
+  {
+    "name": "kitools",
+    "description": "Eine umfassende Toolkit-Sammlung für die Webentwicklung mit Node.js, Docker und modernen Frontend-Technologien zur effizienten Verwaltung von HTML, JavaScript und CSS Projekten.",
+    "technologies": [
+      "HTML",
+      "JavaScript",
+      "CSS",
+      "Dockerfile",
+      "Node.js"
+    ],
+    "hasBusinessCanvas": false,
+    "businessCanvas": null
+  },
+  {
+    "name": "ai-portfolio-fly-website",
+    "description": "Dynamic portfolio showcase engine. Automatically updates based on GitHub activity and deployed projects, keeping developer profiles fresh without manual edits.",
+    "technologies": [
+      "TypeScript",
+      "CSS",
+      "HTML",
+      "JavaScript",
+      "Dockerfile",
+      "Node.js",
+      "React"
+    ],
+    "hasBusinessCanvas": true,
+    "businessCanvas": {
+      "valueProposition": "[\"Automated Resume Updates\", \"Live Project Previews\", \"GitHub Sync\"]",
+      "customerSegments": "[{\"name\":\"Freelance Developers\",\"willingness_to_pay\":\"Low\"}]",
+      "revenueStreams": "[{\"source\":\"Open Source\",\"model\":\"Donation\",\"potential_arr\":0}]"
+    }
+  },
+  {
+    "name": "playlist_generator",
+    "description": "Playlist-Generator mit React und Next.js – Anwendung zur automatisierten Erstellung und Verwaltung von Musikwiedergabelisten mit TypeScript und Tailwind CSS.",
+    "technologies": [
+      "HTML",
+      "TypeScript",
+      "JavaScript",
+      "Shell",
+      "CSS",
+      "Node.js",
+      "Next.js",
+      "React",
+      "Prisma"
+    ],
+    "hasBusinessCanvas": true,
+    "businessCanvas": {
+      "valueProposition": "[\"Innovative Solution (Generic)\"]",
+      "customerSegments": "[{\"name\":\"Early Adopters\",\"confidence\":0.4,\"pain_points\":[\"Seeking novelty\"],\"willingness_to_pay\":\"Low\"}]",
+      "revenueStreams": "[]"
+    }
+  },
+  {
+    "name": "drawio-mcp-vercel",
+    "description": "Ein Model Context Protocol (MCP)-Server für Draw.io, implementiert in Node.js und optimiert für die Bereitstellung auf Vercel, ermöglicht die nahtlose Integration von Diagramm- und Visualisierungsfunktionen in LLM-Anwendungen.",
+    "technologies": [
+      "JavaScript",
+      "Node.js",
+      "Express"
+    ],
+    "hasBusinessCanvas": false,
+    "businessCanvas": null
+  },
+  {
+    "name": "visualimagecomposer",
+    "description": "Advanced compositing tool for layering visual elements. Used as the core engine for projects like Karbendrop.",
+    "technologies": [
+      "TypeScript",
+      "PLpgSQL",
+      "JavaScript",
+      "CSS",
+      "Node.js",
+      "Next.js",
+      "React"
+    ],
+    "hasBusinessCanvas": true,
+    "businessCanvas": {
+      "valueProposition": "[\"Layer-Based Editing\", \"Programmable Layouts\", \"Export to JSON/PNG\"]",
+      "customerSegments": "[{\"name\":\"Developers\",\"willingness_to_pay\":\"Medium\"}]",
+      "revenueStreams": "[{\"source\":\"Open Source\",\"model\":\"Dual Licensing\",\"potential_arr\":10000}]"
+    }
+  },
+  {
+    "name": "inspect-sync-scribe",
+    "description": "Offline-first inspection tool with synchronized documentation. Allows teams to work in low-connectivity environments and sync data when back online.",
+    "technologies": [
+      "TypeScript",
+      "JavaScript",
+      "PLpgSQL",
+      "CSS",
+      "HTML",
+      "Node.js",
+      "React"
+    ],
+    "hasBusinessCanvas": true,
+    "businessCanvas": {
+      "valueProposition": "[\"Offline-First Architecture\", \"Conflict Resolution\", \"Audit Compliance\"]",
+      "customerSegments": "[{\"name\":\"Industrial Inspectors\",\"willingness_to_pay\":\"High\"}, {\"name\":\"Facility Managers\",\"willingness_to_pay\":\"Medium\"}]",
+      "revenueStreams": "[{\"source\":\"SaaS\",\"model\":\"Per Inspector\",\"potential_arr\":35000}]"
+    }
+  },
+  {
+    "name": "ai-slider-generator",
+    "description": "Dies ist ein Generator für Präsentationen, der ein vorhandenes Template verwendet.",
+    "technologies": [
+      "Node.js",
+      "React",
+      "Next.js"
+    ],
+    "hasBusinessCanvas": false,
+    "businessCanvas": null
+  },
+  {
+    "name": "techeroes-quiz",
+    "description": "Gamified technical assessment platform for recruiting and training. Uses React/Next.js for a responsive, engaging candidate experience.",
+    "technologies": [
+      "TypeScript",
+      "CSS",
+      "JavaScript",
+      "Node.js",
+      "Next.js",
+      "React"
+    ],
+    "hasBusinessCanvas": true,
+    "businessCanvas": {
+      "valueProposition": "[\"Automated Skill Assessment\", \"Gamified Recruiting\", \"Instant Feedback Loops\"]",
+      "customerSegments": "[{\"name\":\"HR Departments\",\"willingness_to_pay\":\"Medium\"}, {\"name\":\"Coding Bootcamps\",\"willingness_to_pay\":\"Low\"}]",
+      "revenueStreams": "[{\"source\":\"SaaS\",\"model\":\"Per Assessment\",\"potential_arr\":10000}]"
+    }
+  },
+  {
+    "name": "Google-Visual-Story-Generator-",
+    "description": "Interactive visual storytelling engine powered by AI models. Allows creators to weave narratives with generated imagery in a seamless flow.",
+    "technologies": [
+      "TypeScript",
+      "HTML",
+      "Node.js",
+      "React"
+    ],
+    "hasBusinessCanvas": true,
+    "businessCanvas": {
+      "valueProposition": "[\"AI-Driven Storyboarding\", \"Instant Visual Narrative\", \"No-Code Interactive Stories\"]",
+      "customerSegments": "[{\"name\":\"Authors\",\"willingness_to_pay\":\"Medium\"}, {\"name\":\"Educators\",\"willingness_to_pay\":\"Low\"}]",
+      "revenueStreams": "[{\"source\":\"Subscription\",\"model\":\"Pro Features\",\"potential_arr\":12000}]"
+    }
+  },
+  {
+    "name": "comicgenerator",
+    "description": "Ein Node.js-basiertes Tool zur automatisierten Generierung und Verwaltung von Comics mit HTML, JavaScript und CSS für Web-Anwendungen.",
+    "technologies": [
+      "JavaScript",
+      "CSS",
+      "HTML"
+    ],
+    "hasBusinessCanvas": false,
+    "businessCanvas": null
+  },
+  {
+    "name": "Karbendrop",
+    "description": "A creative engine for event promotion. Karbendrop allows organizers to generate professional, on-brand visual assets in seconds, leveraging a specialized rendering engine for maximum social media engagement.",
+    "technologies": [
+      "TypeScript",
+      "HTML",
+      "JavaScript",
+      "Node.js",
+      "React"
+    ],
+    "hasBusinessCanvas": true,
+    "businessCanvas": {
+      "valueProposition": "[\"Instant Event Visualization\",\"User-Generated Campaign Assets\",\"Viral Social Media Integration\"]",
+      "customerSegments": "[{\"name\":\"Event Organizers\",\"pain_points\":[\"Cost of Design\",\"Slow Time-to-Market\"],\"willingness_to_pay\":\"Medium\"},{\"name\":\"Clubs & Venues\",\"pain_points\":[\"Engagement\",\"Brand Consistency\"],\"willingness_to_pay\":\"Medium\"}]",
+      "revenueStreams": "[{\"source\":\"Freemium SaaS\",\"model\":\"Basic/Pro\",\"potential_arr\":20000}]"
+    }
+  },
+  {
+    "name": "melody-maker",
+    "description": "Collaborative music composition tool in the browser. Allows real-time melody drafting and sharing using Web Audio API.",
+    "technologies": [
+      "TypeScript",
+      "JavaScript",
+      "CSS",
+      "PLpgSQL",
+      "Shell",
+      "Batchfile",
+      "Node.js",
+      "Next.js",
+      "React"
+    ],
+    "hasBusinessCanvas": true,
+    "businessCanvas": {
+      "valueProposition": "[\"Browser-Based DAW Lite\", \"Real-time Collaboration\", \"Export to MIDI\"]",
+      "customerSegments": "[{\"name\":\"Music Students\",\"willingness_to_pay\":\"Low\"}, {\"name\":\"Songwriters\",\"willingness_to_pay\":\"Medium\"}]",
+      "revenueStreams": "[{\"source\":\"Freemium\",\"model\":\"Storage Limits\",\"potential_arr\":5000}]"
+    }
+  },
+  {
+    "name": "OsteoConnect",
+    "description": "Comprehensive practice management for Osteopaths. Handles patient records, scheduling, and billing in a HIPAA/GDPR compliant environment.",
+    "technologies": [
+      "JavaScript",
+      "CSS",
+      "Shell",
+      "HTML",
+      "Node.js",
+      "Next.js",
+      "React"
+    ],
+    "hasBusinessCanvas": true,
+    "businessCanvas": {
+      "valueProposition": "[\"Compliance-Ready\", \"Specialized Medical Workflows\", \"Patient Portal\"]",
+      "customerSegments": "[{\"name\":\"Osteopathic Clinics\",\"willingness_to_pay\":\"High\"}]",
+      "revenueStreams": "[{\"source\":\"SaaS\",\"model\":\"Per Practice\",\"potential_arr\":80000}]"
+    }
+  }
+]
