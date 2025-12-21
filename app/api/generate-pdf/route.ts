@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { prisma } from '@/lib/prisma';
+import prisma from '@/lib/prisma';
 import chromium from '@sparticuz/chromium';
 import { execSync } from 'child_process';
 
@@ -7,14 +7,14 @@ export async function POST(request: NextRequest) {
   let browser;
   try {
     const { htmlContent } = await request.json();
-    
+
     if (process.env.NODE_ENV === 'production' || process.env.VERCEL) {
       // Production (Vercel/Lambda)
       let executablePath;
       try {
         executablePath = await chromium.executablePath();
         console.log('Chromium executable path:', executablePath);
-        
+
         // Verify path exists
         const fs = await import('fs');
         if (!fs.existsSync(executablePath)) {
@@ -24,7 +24,7 @@ export async function POST(request: NextRequest) {
             '/opt/render/project/node_modules/@sparticuz/chromium/bin/chromium-linux64/chrome',
             '/tmp/chromium-bin/chromium'
           ];
-          
+
           for (const path of possiblePaths) {
             if (fs.existsSync(path)) {
               executablePath = path;
@@ -32,12 +32,14 @@ export async function POST(request: NextRequest) {
             }
           }
         }
-        
+
+
         if (!fs.existsSync(executablePath)) {
           throw new Error(`Chromium executable not found at: ${executablePath}`);
         }
-        
-        browser = await chromium.launch({
+
+        const puppeteerCore = await import('puppeteer-core');
+        browser = await puppeteerCore.launch({
           args: [
             ...chromium.args,
             '--no-sandbox',
@@ -57,22 +59,31 @@ export async function POST(request: NextRequest) {
           executablePath,
           headless: true,
         });
-      } else {
-        // Local Development (using standard puppeteer)
+      } catch (chromiumError) {
+        console.error('Chromium launch failed, falling back to puppeteer:', chromiumError);
+        // Fallback to local puppeteer if Chromium fails
         const puppeteer = await import('puppeteer');
         browser = await puppeteer.launch({
           headless: true,
           args: ['--no-sandbox', '--disable-setuid-sandbox'],
         });
       }
-      
-      const page = await browser.newPage();
-      
-      // A4 Viewport
-      await page.setViewport({ width: 794, height: 1122, deviceScaleFactor: 1 });
-      
-      // Theme-independent HTML template (No Tailwind)
-      const fullHTML = `
+    } else {
+      // Local Development (using standard puppeteer)
+      const puppeteer = await import('puppeteer');
+      browser = await puppeteer.launch({
+        headless: true,
+        args: ['--no-sandbox', '--disable-setuid-sandbox'],
+      });
+    }
+
+    const page = await browser.newPage();
+
+    // A4 Viewport
+    await page.setViewport({ width: 794, height: 1122, deviceScaleFactor: 1 });
+
+    // Theme-independent HTML template (No Tailwind)
+    const fullHTML = `
         <!DOCTYPE html>
         <html>
           <head>
@@ -120,54 +131,54 @@ export async function POST(request: NextRequest) {
           </body>
         </html>
       `;
-      
-      await page.setContent(fullHTML, {
-        waitUntil: ['networkidle0', 'domcontentloaded']
+
+    await page.setContent(fullHTML, {
+      waitUntil: ['networkidle0', 'domcontentloaded']
+    });
+
+    await page.evaluate(() => {
+      return new Promise<void>(resolve => {
+        if ((document as any).fonts) {
+          (document as any).fonts.ready.then(() => resolve());
+        } else {
+          resolve();
+        }
+        setTimeout(resolve, 1000);
       });
-      
-      await page.evaluate(() => {
-        return new Promise<void>(resolve => {
-          if ((document as any).fonts) {
-            (document as any).fonts.ready.then(() => resolve());
-          } else {
-            resolve();
-          }
-          setTimeout(resolve, 1000);
-        });
-      });
-      
-      const pdf = await page.pdf({
-        format: 'A4',
-        printBackground: true,
-        preferCSSPageSize: true,
-        displayHeaderFooter: false,
-      });
-      
-      await browser.close();
-      
-      return new NextResponse(Buffer.from(pdf), {
-        headers: {
-          'Content-Type': 'application/pdf',
-          'Content-Disposition': 'attachment; filename="architecture-report.pdf"',
-        },
-      });
-    } catch (error: any) {
-      console.error('PDF generation error:', error);
-      
-      // Add detailed error logging for debugging
-      if (error instanceof Error) {
-        console.error('Error stack:', error.stack);
-        console.error('Error name:', error.name);
-        console.error('Error message:', error.message);
-      }
-      
-      if (browser) await browser.close();
-      return NextResponse.json(
-        { 
-          error: 'PDF generation failed', 
-          details: String(error) 
-        },
-        { status: 500 }
-      );
+    });
+
+    const pdf = await page.pdf({
+      format: 'A4',
+      printBackground: true,
+      preferCSSPageSize: true,
+      displayHeaderFooter: false,
+    });
+
+    await browser.close();
+
+    return new NextResponse(Buffer.from(pdf), {
+      headers: {
+        'Content-Type': 'application/pdf',
+        'Content-Disposition': 'attachment; filename="architecture-report.pdf"',
+      },
+    });
+  } catch (error: any) {
+    console.error('PDF generation error:', error);
+
+    // Add detailed error logging for debugging
+    if (error instanceof Error) {
+      console.error('Error stack:', error.stack);
+      console.error('Error name:', error.name);
+      console.error('Error message:', error.message);
     }
+
+    if (browser) await browser.close();
+    return NextResponse.json(
+      {
+        error: 'PDF generation failed',
+        details: String(error)
+      },
+      { status: 500 }
+    );
+  }
 }

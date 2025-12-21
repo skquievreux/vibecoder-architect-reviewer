@@ -12,7 +12,7 @@ export async function POST() {
         });
 
         const verifiedTasks = [];
-        
+
         for (const task of tasks) {
             const repo = task.repository;
             if (repo) {
@@ -30,17 +30,16 @@ export async function POST() {
             message: `Verified ${verifiedTasks.length} tasks successfully`,
             verifiedTasks
         });
-        
+
     } catch (error) {
         console.error('Task verification error:', error);
         return NextResponse.json(
-            { 
-                error: 'Task verification failed', 
-                details: String(error) 
+            {
+                error: 'Task verification failed',
+                details: String(error)
             },
             { status: 500 }
-            );
-        }
+        );
     } finally {
         await prisma.$disconnect();
     }
