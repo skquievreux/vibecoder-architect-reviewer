@@ -1,3 +1,20 @@
+## [1.12.0] (2025-12-21) - Automated Portfolio Intelligence 🧠
+
+### 🚀 Key Features
+
+#### 🧠 Automated Portfolio Intelligence Pipeline
+- **AI-Driven Analysis**: Automatically scans, harvests, and analyzes all 72+ repositories using LLMs to extract business value, value propositions, and customer segments from `README.md` and `package.json`.
+- **Zero-Manual-Entry**: Eliminates the need for manual data entry of portfolio details. The pipeline updates the database and dashboard automatically.
+- **Refresh Pipeline**: New command `npm run portfolio:refresh` to trigger a full re-harvest and analysis cycle.
+- **Portfolio Summary**: Automatically generates a comprehensive `PORTFOLIO_SUMMARY.md` report ready for PDF export or CV use.
+
+### 🛡️ Architecture
+- **Intelligence Module**: New `scripts/intelligence/` module with `harvest.ts`, `analyze.ts`, and `sync-db.ts`.
+- **Robust Parsing**: Added improved JSON parsing resilience for AI responses.
+- **Perplexity Integration**: Switched to `sonar-pro` model for high-quality, up-to-date analysis of technical documentation.
+
+---
+
 ## [1.11.0] (2025-12-20) - Extended Providers & Stability 🛡️
 
 ### 🚀 Key Features
