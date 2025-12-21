@@ -1,3 +1,11 @@
+# [2.5.0](https://github.com/skquievreux/vibecoder-architect-reviewer/compare/v2.4.0...v2.5.0) (2025-12-21)
+
+
+### Features
+
+* Add automated security patching scripts for CVE-2025-55182 ([32927c0](https://github.com/skquievreux/vibecoder-architect-reviewer/commit/32927c055c98a3b5ee7d2eb029afd9ccf2a16009))
+* Security patching infrastructure complete ([cb529e7](https://github.com/skquievreux/vibecoder-architect-reviewer/commit/cb529e76e3c284407e2e87623c00fa3f5fd352e3))
+
 # [2.4.0](https://github.com/skquievreux/vibecoder-architect-reviewer/compare/v2.3.0...v2.4.0) (2025-12-21)
 
 
