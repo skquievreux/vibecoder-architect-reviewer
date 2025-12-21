@@ -1,3 +1,16 @@
+# [2.3.0](https://github.com/skquievreux/vibecoder-architect-reviewer/compare/v2.2.0...v2.3.0) (2025-12-21)
+
+
+### Bug Fixes
+
+* Add .npmrc for Vercel build compatibility ([a419a03](https://github.com/skquievreux/vibecoder-architect-reviewer/commit/a419a03948d4377ded4d9d4abdb074a810b5ba29))
+* Resolve Git merge conflicts in screenshotgallerysystem package.json ([bb17e6e](https://github.com/skquievreux/vibecoder-architect-reviewer/commit/bb17e6e1195e5c063dbea6d6f6bb09f16acc3d66))
+
+
+### Features
+
+* Add optimized React upgrade analysis scripts ([5924e6e](https://github.com/skquievreux/vibecoder-architect-reviewer/commit/5924e6e8846b994c9b88348618a85b94c28cefab))
+
 # [2.2.0](https://github.com/skquievreux/vibecoder-architect-reviewer/compare/v2.1.0...v2.2.0) (2025-12-21)
 
 
