@@ -1,3 +1,11 @@
+# [2.4.0](https://github.com/skquievreux/vibecoder-architect-reviewer/compare/v2.3.0...v2.4.0) (2025-12-21)
+
+
+### Features
+
+* Add Portfolio Intelligence Reports & Executive Summary ([48b0cd7](https://github.com/skquievreux/vibecoder-architect-reviewer/commit/48b0cd788d2108b1e2f7e6820a4f5f646abe1e46))
+* Enhanced Architecture Report Generation with Security Analysis ([bf99d05](https://github.com/skquievreux/vibecoder-architect-reviewer/commit/bf99d052a14b1ae6058f23fdfe0f3a774996c12a))
+
 # [2.3.0](https://github.com/skquievreux/vibecoder-architect-reviewer/compare/v2.2.0...v2.3.0) (2025-12-21)
 
 
