@@ -1,0 +1,532 @@
+---
+title: "PLATZHALTER - API Dokumentation"
+type: "reference"
+audience: "developer"
+status: "draft"
+created: "YYYY-MM-DD"
+updated: "YYYY-MM-DD"
+version: "1.0.0"
+review_due: "YYYY-MM-DD"
+tags": ["api", "reference", "PLATZHALTER_API"]
+---
+
+# 🔌 PLATZHALTER - API Dokumentation
+
+## 📋 Inhaltsverzeichnis
+- [🎯 Überblick](#-überblick)
+- [🔗 Basis-URL](#-basis-url)
+- [🔑 Authentifizierung](#-authentifizierung)
+- [📋 Endpunkte](#-endpunkte)
+- [🔧 Datenmodelle](#-datenmodelle)
+- [🔍 Fehlerbehandlung](#-fehlerbehandlung)
+- [📊 Beispiele](#-beispiele)
+- [🔄 SDK & Tools](#-sdk--tools)
+
+## 🎯 Überblick
+
+KURZE_BESCHREIBUNG_DER_API_IN_EINEM_SATZ.
+
+Diese API ermöglicht PROJEKT_ODER_DIENSTE_ZU_STEUERN_ODER_DATEN_ZU_AUSTAUSCHEN. Sie folgt REST-Konventionen und verwendet JSON für Datenübertragung.
+
+**API-Version:** v1.0  
+**Base URL:** `https://api.example.com/v1`  
+**Protokoll:** HTTPS (erforderlich)
+
+## 🔗 Basis-URL
+
+### Produktiv-Umgebung
+```
+https://api.example.com/v1
+```
+
+### Staging-Umgebung
+```
+https://staging-api.example.com/v1
+```
+
+### Entwicklungs-Umgebung
+```
+http://localhost:3000/api/v1
+```
+
+## 🔑 Authentifizierung
+
+### API Key Authentication (Bearer Token)
+
+**Header-Format:**
+```http
+Authorization: Bearer YOUR_API_KEY
+```
+
+**API-Key bekommen:**
+1. Melde dich im [Developer Dashboard](https://dashboard.example.com) an
+2. Erstelle eine neue Applikation
+3. Kopiere den generierten API-Key
+
+### Rate Limiting
+- **Limit:** 1000 Anfragen pro Stunde
+- **Window:** Rolling hour
+- **Headers:**
+  ```http
+  X-RateLimit-Limit: 1000
+  X-RateLimit-Remaining: 999
+  X-RateLimit-Reset: 1640995200
+  ```
+
+## 📋 Endpunkte
+
+### GET /users
+
+Benutzerliste abrufen
+
+**Endpoint:** `GET /users`  
+**Beschreibung:** Ruft eine Liste aller Benutzer ab, auf die der authentifizierte Nutzer Zugriff hat
+
+**Parameter:**
+| Parameter | Typ | Required | Beschreibung |
+|-----------|-----|----------|-------------|
+| `page` | integer | Nein | Seitennummer (default: 1) |
+| `limit` | integer | Nein | Ergebnisse pro Seite (default: 20, max: 100) |
+| `search` | string | Nein | Suchbegriff für Benutzername/Email |
+
+**Request-Beispiel:**
+```http
+GET /users?page=1&limit=20&search=john
+Authorization: Bearer abc123def456
+```
+
+**Response-Beispiel (200 OK):**
+```json
+{
+  "data": [
+    {
+      "id": "usr_123456789",
+      "email": "john@example.com",
+      "name": "John Doe",
+      "role": "admin",
+      "created_at": "2023-01-15T10:30:00Z",
+      "updated_at": "2023-01-20T14:22:00Z"
+    }
+  ],
+  "pagination": {
+    "page": 1,
+    "limit": 20,
+    "total": 45,
+    "pages": 3
+  },
+  "links": {
+    "self": "/users?page=1",
+    "next": "/users?page=2",
+    "last": "/users?page=3"
+  }
+}
+```
+
+**Fehler-Antworten:**
+- `401 Unauthorized` - API Key ungültig
+- `403 Forbidden` - Nicht genügend Berechtigungen
+- `422 Unprocessable Entity` - Parameter fehlerhaft
+
+---
+
+### POST /users
+
+Neuen Benutzer erstellen
+
+**Endpoint:** `POST /users`  
+**Beschreibung:** Erstellt einen neuen Benutzer
+
+**Request-Body:**
+```json
+{
+  "email": "jane@example.com",
+  "name": "Jane Smith",
+  "password": "securePassword123",
+  "role": "user"
+}
+```
+
+**Felder:**
+| Feld | Typ | Required | Beschreibung |
+|------|-----|----------|-------------|
+| `email` | string | Ja | Eindeutige E-Mail-Adresse |
+| `name` | string | Ja | Vollständiger Name |
+| `password` | string | Ja | Mindestens 8 Zeichen |
+| `role` | string | Nein | `admin`, `user`, `moderator` (default: `user`) |
+
+**Response-Beispiel (201 Created):**
+```json
+{
+  "data": {
+    "id": "usr_987654321",
+    "email": "jane@example.com",
+    "name": "Jane Smith",
+    "role": "user",
+    "created_at": "2023-01-20T10:30:00Z",
+    "updated_at": "2023-01-20T10:30:00Z"
+  },
+  "message": "User created successfully"
+}
+```
+
+**Fehler-Antworten:**
+- `400 Bad Request` - Validierungsfehler
+- `409 Conflict` - E-Mail bereits vorhanden
+- `422 Unprocessable Entity` - Parameter fehlerhaft
+
+---
+
+### GET /users/{id}
+
+Spezifischen Benutzer abrufen
+
+**Endpoint:** `GET /users/{id}`  
+**Beschreibung:** Ruft Details eines bestimmten Benutzers ab
+
+**Parameter:**
+| Parameter | Typ | Required | Beschreibung |
+|-----------|-----|----------|-------------|
+| `id` | string | Ja | Benutzer-ID |
+
+**Request-Beispiel:**
+```http
+GET /users/usr_123456789
+Authorization: Bearer abc123def456
+```
+
+**Response-Beispiel (200 OK):**
+```json
+{
+  "data": {
+    "id": "usr_123456789",
+    "email": "john@example.com",
+    "name": "John Doe",
+    "role": "admin",
+    "profile": {
+      "avatar": "https://example.com/avatars/john.jpg",
+      "bio": "Software Developer",
+      "location": "Berlin, Germany"
+    },
+    "created_at": "2023-01-15T10:30:00Z",
+    "updated_at": "2023-01-20T14:22:00Z"
+  }
+}
+```
+
+---
+
+### PUT /users/{id}
+
+Benutzer aktualisieren
+
+**Endpoint:** `PUT /users/{id}`  
+**Beschreibung:** Aktualisiert Benutzerinformationen
+
+**Request-Body:**
+```json
+{
+  "name": "John Updated",
+  "role": "moderator",
+  "profile": {
+    "bio": "Senior Software Developer",
+    "location": "Munich, Germany"
+  }
+}
+```
+
+---
+
+### DELETE /users/{id}
+
+Benutzer löschen
+
+**Endpoint:** `DELETE /users/{id}`  
+**Beschreibung:** Löscht einen Benutzer (soft delete)
+
+**Response-Beispiel (204 No Content):**
+```http
+HTTP/1.1 204 No Content
+```
+
+---
+
+## 🔧 Datenmodelle
+
+### User Object
+
+```typescript
+interface User {
+  id: string;                    // Eindeutige Benutzer-ID
+  email: string;                 // E-Mail-Adresse
+  name: string;                  // Vollständiger Name
+  role: 'admin' | 'user' | 'moderator';  // Benutzerrolle
+  profile?: ProfileObject;       // Optionales Profil
+  created_at: string;            // ISO 8601 Zeitstempel
+  updated_at: string;            // ISO 8601 Zeitstempel
+}
+```
+
+### Profile Object
+
+```typescript
+interface ProfileObject {
+  avatar?: string;               // URL zum Avatar-Bild
+  bio?: string;                  // Kurze Biografie
+  location?: string;             // Standort
+  website?: string;             // Webseite
+  social?: SocialLinks;         // Social Media Links
+}
+```
+
+### SocialLinks Object
+
+```typescript
+interface SocialLinks {
+  twitter?: string;
+  linkedin?: string;
+  github?: string;
+}
+```
+
+### Pagination Object
+
+```typescript
+interface Pagination {
+  page: number;                  // Aktuelle Seite
+  limit: number;                 // Ergebnisse pro Seite
+  total: number;                 // Gesamtzahl der Ergebnisse
+  pages: number;                 // Gesamtzahl der Seiten
+}
+```
+
+## 🔍 Fehlerbehandlung
+
+### Standardfehlerformat
+
+Alle Fehler-Antworten folgen diesem Format:
+
+```json
+{
+  "error": {
+    "type": "error_type",
+    "message": "Human readable error message",
+    "code": "ERROR_CODE",
+    "details": {
+      "field": "Specific error details",
+      "value": "Invalid value provided"
+    },
+    "request_id": "req_123456789",
+    "timestamp": "2023-01-20T10:30:00Z"
+  }
+}
+```
+
+### HTTP-Status Codes
+
+| Code | Bedeutung | Beschreibung |
+|------|-----------|-------------|
+| `200` | OK | Anfrage erfolgreich |
+| `201` | Created | Ressource erstellt |
+| `204` | No Content | Erfolgreich, aber kein Inhalt |
+| `400` | Bad Request | Anfrage fehlerhaft |
+| `401` | Unauthorized | Authentifizierung erforderlich |
+| `403` | Forbidden | Keine Berechtigung |
+| `404` | Not Found | Ressource nicht gefunden |
+| `409` | Conflict | Ressourcenkonflikt |
+| `422` | Unprocessable Entity | Validierungsfehler |
+| `429` | Too Many Requests | Rate Limit überschritten |
+| `500` | Internal Server Error | Serverfehler |
+
+### Häufige Fehler
+
+#### `invalid_api_key`
+```json
+{
+  "error": {
+    "type": "authentication_error",
+    "message": "Invalid API key provided",
+    "code": "INVALID_API_KEY",
+    "request_id": "req_123456789",
+    "timestamp": "2023-01-20T10:30:00Z"
+  }
+}
+```
+
+#### `validation_error`
+```json
+{
+  "error": {
+    "type": "validation_error",
+    "message": "Validation failed",
+    "code": "VALIDATION_ERROR",
+    "details": {
+      "email": "Invalid email format",
+      "password": "Password must be at least 8 characters"
+    },
+    "request_id": "req_123456789",
+    "timestamp": "2023-01-20T10:30:00Z"
+  }
+}
+```
+
+## 📊 Beispiele
+
+### Complete Request/Response Flow
+
+```bash
+# 1. Benutzer erstellen
+curl -X POST https://api.example.com/v1/users \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer your_api_key" \
+  -d '{
+    "email": "alice@example.com",
+    "name": "Alice Johnson",
+    "password": "securePassword123",
+    "role": "user"
+  }'
+
+# Response (201 Created)
+{
+  "data": {
+    "id": "usr_abc123def456",
+    "email": "alice@example.com",
+    "name": "Alice Johnson",
+    "role": "user",
+    "created_at": "2023-01-20T10:30:00Z",
+    "updated_at": "2023-01-20T10:30:00Z"
+  },
+  "message": "User created successfully"
+}
+
+# 2. Benutzer abrufen
+curl -X GET https://api.example.com/v1/users/usr_abc123def456 \
+  -H "Authorization: Bearer your_api_key"
+
+# Response (200 OK)
+{
+  "data": {
+    "id": "usr_abc123def456",
+    "email": "alice@example.com",
+    "name": "Alice Johnson",
+    "role": "user",
+    "created_at": "2023-01-20T10:30:00Z",
+    "updated_at": "2023-01-20T10:30:00Z"
+  }
+}
+
+# 3. Benutzer aktualisieren
+curl -X PUT https://api.example.com/v1/users/usr_abc123def456 \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer your_api_key" \
+  -d '{
+    "name": "Alice Updated",
+    "profile": {
+      "bio": "Product Manager",
+      "location": "Hamburg, Germany"
+    }
+  }'
+```
+
+## 🔄 SDK & Tools
+
+### Offizielle SDKs
+
+- **JavaScript/Node.js:** `npm install @example/api-sdk`
+- **Python:** `pip install example-api-sdk`
+- **Ruby:** `gem install example-api-sdk`
+- **PHP:** `composer require example/api-sdk`
+
+### JavaScript/Node.js SDK Beispiel
+
+```javascript
+import { ExampleAPI } from '@example/api-sdk';
+
+const api = new ExampleAPI({
+  apiKey: 'your_api_key',
+  baseUrl: 'https://api.example.com/v1'
+});
+
+try {
+  // Benutzer erstellen
+  const user = await api.users.create({
+    email: 'bob@example.com',
+    name: 'Bob Wilson',
+    password: 'securePassword123'
+  });
+  
+  console.log('Created user:', user);
+  
+  // Benutzerliste abrufen
+  const users = await api.users.list({ limit: 10 });
+  console.log('Users:', users);
+  
+} catch (error) {
+  console.error('API Error:', error.message);
+}
+```
+
+### Python SDK Beispiel
+
+```python
+from example_api_sdk import ExampleAPI
+
+api = ExampleAPI(
+    api_key='your_api_key',
+    base_url='https://api.example.com/v1'
+)
+
+try:
+    # Benutzer erstellen
+    user = api.users.create(
+        email='bob@example.com',
+        name='Bob Wilson',
+        password='securePassword123'
+    )
+    print(f"Created user: {user}")
+    
+    # Benutzerliste abrufen
+    users = api.users.list(limit=10)
+    print(f"Users: {users}")
+    
+except Exception as e:
+    print(f"API Error: {e}")
+```
+
+## 🔗 Verwandte Ressourcen
+
+### Intern
+- [🛠️ Setup Guide](../02-implementation/setup/api-setup.md)
+- [🔍 Monitoring Guide](../03-operations/monitoring/api-monitoring.md)
+- [📋 API Architecture](../01-architecture/api-design.md)
+
+### Extern
+- **Postman Collection:** [Download Link](https://example.com/postman-collection)
+- **OpenAPI Specification:** [Download YAML](https://example.com/openapi.yaml)
+- **API Playground:** [Interactive Demo](https://api.example.com/playground)
+
+## 📞 Support
+
+Bei Fragen oder Problemen mit der API:
+
+- **📚 Dokumentation:** [Full API Reference](https://example.com/docs)
+- **🐛 Bug Reports:** [GitHub Issues](https://github.com/example/issues)
+- **💬 Community:** [Developer Forum](https://forum.example.com)
+- **📧 Email:** api-support@example.com
+
+---
+
+## 🔄 Änderungshistorie
+
+### v1.0.0 (2023-01-20)
+- ✨ Initiale API-Version
+- 📋 Benutzer-Endpunkte implementiert
+- 🔑 API Key Authentication
+- 📊 JSON Response Format
+
+### v0.9.0 (2023-01-15)
+- Beta Version
+- 🧪 Test-Endpunkte verfügbar
+
+---
+
+**💡 Wichtiger Hinweis:** Diese API befindet sich in aktiver Entwicklung. Breaking Changes werden mit Versions-Updates kommuniziert. Abonniere unseren [Changelog](https://example.com/changelog) für Updates.

@@ -1,0 +1,149 @@
+---
+title: "ADR XXX: [Decision Title]"
+type: "architecture"
+audience: "developer"
+status: "draft|review|accepted|deprecated|superseded"
+priority: "high|medium|low"
+version: "1.0.0"
+created: "YYYY-MM-DD"
+updated: "YYYY-MM-DD"
+reviewers: ["@username1", "@username2"]
+related: ["doc-name-1.md", "doc-name-2.md"]
+tags: ["adr", "architecture", "decision", "[specific-tags]"]
+---
+
+# ADR XXX: [Decision Title]
+
+## Status
+**Current Status:** [Current Status]
+
+## Date
+**Created:** YYYY-MM-DD  
+**Accepted:** YYYY-MM-DD (if applicable)  
+**Superseded by:** ADR-YYY (if applicable)
+
+## Context
+
+### Problem Statement
+[Describe the problem or challenge that led us to consider this decision. What forces or constraints are at play?]
+
+### Background
+[Additional context about the current situation. Why is this decision necessary now?]
+
+### Requirements
+[What must the solution accomplish? List functional and non-functional requirements.]
+
+### Constraints
+[What limitations or restrictions must we work within? Technical, business, resource constraints.]
+
+### Related Decisions
+[List any previous ADRs that influence or relate to this decision.]
+
+---
+
+## Decision
+
+We have decided to **[clear statement of the decision]**.
+
+### Technical Approach
+[Describe the technical solution or architectural choice in detail.]
+
+### Implementation Strategy
+[How will this decision be implemented? Include high-level steps.]
+
+### Rationale
+[Why this approach over alternatives? Include specific benefits.]
+
+---
+
+## Consequences
+
+### Positive Impacts
+- ✅ **Benefit 1:** [Specific positive outcome]
+- ✅ **Benefit 2:** [Another positive outcome]
+- ✅ **Benefit 3:** [Strategic advantage gained]
+
+### Negative Impacts / Trade-offs
+- ⚠️ **Drawback 1:** [Specific negative consequence]
+- ⚠️ **Drawback 2:** [Another trade-off]
+- ⚠️ **Drawback 3:** [Cost or resource impact]
+
+### Mitigations
+[How we will address or minimize the negative consequences.]
+
+### Impact Assessment
+| Area | Impact | Notes |
+|-------|--------|-------|
+| **Performance** | [High|Medium|Low] | [Performance implications] |
+| **Maintainability** | [High|Medium|Low] | [Maintenance impact] |
+| **Scalability** | [High|Medium|Low] | [Scalability considerations] |
+| **Security** | [High|Medium|Low] | [Security implications] |
+| **Cost** | [High|Medium|Low] | [Cost implications] |
+
+---
+
+## Implementation Status
+
+### Progress Tracking
+- [ ] **Proposed** - Decision documented
+- [ ] **In Progress** - Implementation started
+- [ ] **Completed** - Implementation finished
+- [ ] **Verified** - Testing complete
+- [ ] **Deployed** - Live in production
+
+### Tasks
+| Task | Owner | Status | Due Date |
+|------|-------|--------|----------|
+| [Task 1] | [Assignee] | [Open|In Progress|Done] | YYYY-MM-DD |
+| [Task 2] | [Assignee] | [Open|In Progress|Done] | YYYY-MM-DD |
+| [Task 3] | [Assignee] | [Open|In Progress|Done] | YYYY-MM-DD |
+
+---
+
+## Related Documents
+
+### Referenced By
+- [📐 Architecture Overview](./architecture-overview.md)
+- [🛠️ Implementation Guide](../02-implementation/[related-guide].md)
+- [📊 Performance Analysis](../03-operations/[performance-doc].md)
+
+### References To
+- [ADR-YYY](./ADR-YYY.md) - Related architectural decision
+- [📝 API Documentation](../05-reference/[api-doc].md) - Affected endpoints
+- [🔧 Configuration Guide](../02-implementation/[config-guide].md) - Setup requirements
+
+---
+
+## Discussion
+
+### Open Questions
+- ❓ **Question 1:** [Unresolved question about this decision]
+- ❓ **Question 2:** [Another open question]
+
+### Team Comments
+- **@username1:** [Team member opinion or concern]
+- **@username2:** [Another perspective or suggestion]
+
+---
+
+## Next Steps
+
+1. **Immediate:** [What needs to happen right after acceptance]
+2. **Short-term:** [Tasks for the next 1-2 weeks]
+3. **Long-term:** [Future considerations or follow-up decisions]
+
+---
+
+## Change History
+
+### v1.0.0 (YYYY-MM-DD)
+- ✨ Initial documentation of the decision
+- 📋 Context and consequences documented
+
+### vX.Y.Z (YYYY-MM-DD)
+- 📝 Updated implementation status
+- 🔧 Added mitigation strategies
+
+---
+
+**💡 Governance Note:** This ADR should be reviewed regularly. If circumstances change significantly, consider creating a new ADR that supersedes this one.

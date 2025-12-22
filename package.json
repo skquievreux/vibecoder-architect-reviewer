@@ -7,7 +7,7 @@
     "dev:turbo": "next dev --turbo",
     "prebuild": "node scripts/update-build.js && node scripts/optimize-images.js",
     "verify": "node scripts/verify-deployment.js",
-    "build": "npx prisma generate && next build",
+    "build": "node scripts/build-version-info.js && npx prisma generate && next build",
     "refresh-data": "npx -y dotenv-cli -e .env.local -- npx tsx scripts/fetch-github-repos.ts",
     "sync:local-files": "npx -y dotenv-cli -e .env.local -- npx tsx scripts/local-files-to-db.ts ../",
     "maintain:verify": "npx -y dotenv-cli -e .env.local -- node scripts/verify-tasks.js",

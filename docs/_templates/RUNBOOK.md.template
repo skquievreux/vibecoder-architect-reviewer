@@ -1,0 +1,504 @@
+---
+title: "PLATZHALTER - Operations Runbook"
+type: "operations"
+audience: "operator"
+status: "draft"
+created: "YYYY-MM-DD"
+updated: "YYYY-MM-DD"
+version: "1.0.0"
+review_due: "YYYY-MM-DD"
+tags": ["runbook", "operations", "troubleshooting", "PLATZHALTER_SERVICE"]
+---
+
+# 🛠️ PLATZHALTER - Operations Runbook
+
+## 📋 Inhaltsverzeichnis
+- [🎯 Service-Übersicht](#-service-übersicht)
+- [📊 System-Status](#-system-status)
+- [🚨 Häufige Vorfälle](#-häufige-vorfälle)
+- [🔧 Routine-Operationen](#-routine-operationen)
+- [🔍 Monitoring & Alerting](#-monitoring--alerting)
+- [🆘 Notfall-Prozeduren](#-notfall-prozeduren)
+- [📞 Kontakt & Escalation](#-kontakt--escalation)
+
+## 🎯 Service-Übersicht
+
+**Service Name:** PLATZHALTER_SERVICE  
+**Environment:** Production | Staging | Development  
+**Owner:** TEAM_NAME  
+**Criticality:** HIGH | MEDIUM | LOW
+
+### Service-Architektur
+```
+┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
+│   Load Balancer │────│   Application   │────│    Database     │
+│   (nginx/HAProxy)│    │   (Node.js)     │    │   (PostgreSQL)  │
+└─────────────────┘    └─────────────────┘    └─────────────────┘
+         │                       │                       │
+         └───────────────────────┼───────────────────────┘
+                                 │
+                    ┌─────────────────┐
+                    │   Cache Layer   │
+                    │     (Redis)     │
+                    └─────────────────┘
+```
+
+### Key Metrics
+- **Uptime Target:** 99.9%
+- **Average Response Time:** < 200ms
+- **Error Rate:** < 0.1%
+- **Concurrent Users:** 1000+
+
+## 📊 System-Status
+
+### Health Checks
+
+**Service Health Endpoint:** `https://api.example.com/health`
+
+```bash
+# Quick Health Check
+curl -f https://api.example.com/health
+
+# Detailed Health Check
+curl -f https://api.example.com/health/detailed
+```
+
+**Expected Response (200 OK):**
+```json
+{
+  "status": "healthy",
+  "timestamp": "2023-01-20T10:30:00Z",
+  "version": "1.2.3",
+  "checks": {
+    "database": "healthy",
+    "cache": "healthy",
+    "external_apis": "healthy"
+  },
+  "metrics": {
+    "response_time_ms": 45,
+    "memory_usage": "65%",
+    "cpu_usage": "23%"
+  }
+}
+```
+
+### Dashboard Access
+- **Grafana Dashboard:** [Link zum Dashboard](https://grafana.example.com/d/service)
+- **Kibana Logs:** [Link zu Logs](https://kibana.example.com/app/discover)
+- **Prometheus Metrics:** [Link zu Metrics](https://prometheus.example.com/targets)
+
+## 🚨 Häufige Vorfälle
+
+### Vorfall 1: Service unavailable (503)
+
+**Symptom:** Load Balancer gibt 503 Service Unavailable zurück  
+**Severity:** HIGH  
+**Estimated Time:** 15-30 Minuten
+
+**Diagnose:**
+```bash
+# 1. Service Status prüfen
+systemctl status application-service
+
+# 2. Logs prüfen
+journalctl -u application-service -n 100
+
+# 3. Port-Verfügbarkeit prüfen
+netstat -tuln | grep :3000
+
+# 4. Load Balancer Status prüfen
+systemctl status nginx
+```
+
+**Lösung:**
+```bash
+# Falls Service nicht läuft
+systemctl start application-service
+
+# Falls Service nicht startet
+# Log-Prüfung und Fehler beheben
+tail -f /var/log/application/error.log
+
+# Falls Load Balancer Probleme hat
+systemctl restart nginx
+```
+
+**Verifizierung:**
+```bash
+# Nach 2 Minuten prüfen
+curl -f https://api.example.com/health
+```
+
+---
+
+### Vorfall 2: Database connection timeout
+
+**Symptom:** Datenbankverbindungen timeouten, hohe Antwortzeiten  
+**Severity:** HIGH  
+**Estimated Time:** 30-60 Minuten
+
+**Diagnose:**
+```bash
+# 1. Datenbank-Verbindung prüfen
+psql -h db.example.com -U app_user -d app_db -c "SELECT 1;"
+
+# 2. Connection Pool Status prüfen
+SELECT count(*) FROM pg_stat_activity WHERE state = 'active';
+
+# 3. Slow Queries identifizieren
+SELECT query, mean_time, calls FROM pg_stat_statements ORDER BY mean_time DESC LIMIT 10;
+
+# 4. Datenbank-Ressourcen prüfen
+SELECT datname, numbackends, xact_commit, xact_rollback, blks_read, blks_hit 
+FROM pg_stat_database WHERE datname = 'app_db';
+```
+
+**Lösung:**
+```bash
+# 1. Connection Pool neu starten
+systemctl restart pgbouncer
+
+# 2. Long-running Queries beenden
+SELECT pg_terminate_backend(pid) FROM pg_stat_activity WHERE state = 'active' AND query_start < now() - interval '5 minutes';
+
+# 3. Datenbank optimieren
+VACUUM ANALYZE;
+REINDEX DATABASE app_db;
+```
+
+**Prävention:**
+```sql
+-- Connection Limits prüfen und anpassen
+ALTER USER app_user CONNECTION LIMIT 100;
+
+-- Slow Query Monitoring einrichten
+-- siehe Monitoring Sektion
+```
+
+---
+
+### Vorfall 3: High memory usage
+
+**Symptom:** Memory Nutzung > 90%, OOM Killer tötet Prozesse  
+**Severity:** MEDIUM  
+**Estimated Time:** 20-45 Minuten
+
+**Diagnose:**
+```bash
+# 1. Memory Nutzung prüfen
+free -h
+top -o %MEM
+
+# 2. Process Details
+ps aux --sort=-%mem | head -10
+
+# 3. Memory Leaks prüfen
+cat /var/log/kern.log | grep -i "killed process"
+
+# 4. Application Memory Profile
+node --inspect app.js
+# Chrome DevTools verwenden
+```
+
+**Lösung:**
+```bash
+# 1. Service neu starten (temporär)
+systemctl restart application-service
+
+# 2. Memory Limit erhöhen (falls nötig)
+# /etc/systemd/system/application-service.service anpassen
+# MemoryLimit=2G
+
+# 3. Swap aktivieren (falls nicht vorhanden)
+fallocate -l 4G /swapfile
+chmod 600 /swapfile
+mkswap /swapfile
+swapon /swapfile
+```
+
+**Langfristige Lösung:**
+- Code Review für Memory Leaks
+- Monitoring für Memory Trends einrichten
+- Horizontal Scaling in Betracht ziehen
+
+---
+
+## 🔧 Routine-Operationen
+
+### Tägliche Checks (9:00 UTC)
+
+```bash
+#!/bin/bash
+# daily-checks.sh
+
+echo "=== Service Health ==="
+curl -s https://api.example.com/health | jq .
+
+echo "=== System Resources ==="
+echo "Memory:"
+free -h
+echo "Disk:"
+df -h
+echo "Load:"
+uptime
+
+echo "=== Recent Errors ==="
+journalctl -u application-service --since "24 hours ago" | grep -i error | tail -5
+
+echo "=== Database Status ==="
+psql -h db.example.com -U app_user -d app_db -c "SELECT count(*) FROM pg_stat_activity WHERE state = 'active';"
+```
+
+### Wöchentliche Wartung (Sonntags 2:00 UTC)
+
+```bash
+#!/bin/bash
+# weekly-maintenance.sh
+
+# 1. Log Rotation
+logrotate /etc/logrotate.d/application
+
+# 2. Database Maintenance
+psql -h db.example.com -U app_user -d app_db -c "VACUUM ANALYZE;"
+
+# 3. Cache Cleanup
+redis-cli FLUSHEXPIRED
+
+# 4. Backup Verification
+ls -la /backups/application/$(date +%Y%m%d)*
+
+# 5. System Updates
+apt update && apt list --upgradable
+```
+
+### Monatliche Aufgaben
+
+- **Security Patches:** Betriebssystem und Dependencies aktualisieren
+- **Performance Review:** Metriken analysieren und Trends identifizieren
+- **Capacity Planning:** Ressourcenbedarf für nächste 3 Monate planen
+- **Backup Testing:** Restore-Prozeduren testen
+
+## 🔍 Monitoring & Alerting
+
+### Critical Alerts (immediate)
+
+| Alert | Threshold | Escalation | Actions |
+|-------|-----------|------------|---------|
+| Service Down | Health check fails > 2min | → On-call Eng → Team Lead | Restart service, check logs |
+| Error Rate | > 1% for 5min | → On-call Eng → Team Lead | Check recent deployments |
+| Database Down | Connection timeout > 1min | → On-call Eng → DBA | Check DB cluster status |
+| High CPU | > 95% for 10min | → On-call Eng | Scale or optimize |
+
+### Warning Alerts (within 1 hour)
+
+| Alert | Threshold | Escalation | Actions |
+|-------|-----------|------------|---------|
+| High Memory | > 85% for 15min | → Team Chat | Monitor, plan restart |
+| Slow Queries | > 2s avg for 10min | → DBA | Analyze query patterns |
+| Disk Space | < 15% free | → Ops Team | Clean up or expand |
+| High Latency | > 500ms for 5min | → Dev Team | Check performance metrics |
+
+### Monitoring Setup
+
+**Prometheus Metrics:**
+```yaml
+# prometheus.yml
+scrape_configs:
+  - job_name: 'application'
+    static_configs:
+      - targets: ['app1.example.com:9090', 'app2.example.com:9090']
+    metrics_path: '/metrics'
+    scrape_interval: 30s
+
+  - job_name: 'database'
+    static_configs:
+      - targets: ['postgres-exporter.example.com:9187']
+```
+
+**Grafana Dashboard Panels:**
+- Response Time (95th percentile)
+- Request Rate (per minute)
+- Error Rate (percentage)
+- Memory/CPU Usage
+- Database Connections
+- Cache Hit Rate
+
+## 🆘 Notfall-Prozeduren
+
+### Service Ausfall (complete downtime)
+
+**Immediate Actions (First 5 minutes):**
+1. **Status bestätigen:**
+   ```bash
+   curl -I https://api.example.com
+   systemctl status application-service
+   ```
+
+2. **Quick Fix versuchen:**
+   ```bash
+   systemctl restart application-service
+   systemctl restart nginx
+   ```
+
+3. **Incident Report erstellen** in Slack Channel `#incidents`
+
+4. **Team informieren** (On-call escalation)
+
+**Diagnose (Next 15 minutes):**
+1. **Logs analysieren:**
+   ```bash
+   journalctl -u application-service -f
+   tail -f /var/log/application/error.log
+   ```
+
+2. **Infrastruktur prüfen:**
+   ```bash
+   ping app1.example.com
+   traceroute db.example.com
+   netstat -tuln | grep :3000
+   ```
+
+3. **Dependencies prüfen:**
+   ```bash
+   # Database
+   psql -h db.example.com -U app_user -d app_db -c "SELECT 1;"
+   
+   # Cache
+   redis-cli ping
+   
+   # External APIs
+   curl -I https://external-api.example.com/health
+   ```
+
+**Recovery:**
+1. **Restore aus Backup** (falls nötig)
+2. **Failover** zu Backup-System
+3. **Scale Down** um Probleme zu isolieren
+4. **Hotfix** deployen (falls bekannt)
+
+### Security Incident
+
+**Immediate Actions:**
+1. **Isolate System:**
+   ```bash
+   # Block suspicious IPs
+   iptables -A INPUT -s SUSPICIOUS_IP -j DROP
+   
+   # Disable API keys
+   # via Admin Interface
+   ```
+
+2. **Preserve Evidence:**
+   ```bash
+   # Collect logs
+   tar -czf incident-logs-$(date +%Y%m%d).tar.gz /var/log/
+   
+   # Memory dump
+   gcore -o core-dump $(pgrep application)
+   ```
+
+3. **Security Team informieren**
+
+4. **Change passwords/API keys**
+
+## 📞 Kontakt & Escalation
+
+### Team-Rollen
+
+| Rolle | Person | Kontakt | Verfügbarkeit |
+|-------|-------|---------|-------------|
+| On-call Engineer | NAME | +49 123 456789 | 24/7 |
+| Team Lead | NAME | +49 123 456788 | Business Hours |
+| DBA | NAME | +49 123 456787 | Business Hours |
+| Security | NAME | +49 123 456786 | 24/7 |
+
+### Escalation Matrix
+
+| Zeit | On-call Eng | Team Lead | Manager | CTO |
+|------|-------------|-----------|---------|-----|
+| < 30min | ✅ | | | |
+| 30-60min | ✅ | ✅ | | |
+| 1-2 Stunden | ✅ | ✅ | ✅ | |
+| > 2 Stunden | ✅ | ✅ | ✅ | ✅ |
+
+### Kommunikationskanäle
+
+- **Incident Channel:** `#incidents` (Slack)
+- **Status Page:** [status.example.com](https://status.example.com)
+- **Email Notifications:** ops-team@example.com
+- **SMS Alerts:** Critical incidents only
+
+### Post-Incident Process
+
+**Within 24 hours:**
+1. **Incident Report schreiben**
+2. **Root Cause Analysis**
+3. **Communication Review**
+
+**Within 1 week:**
+1. **Follow-up Actions implementieren**
+2. **Monitoring verbessern**
+3. **Dokumentation aktualisieren**
+
+**Incident Report Template:**
+```markdown
+# Incident Report
+
+## Overview
+- **Date:** YYYY-MM-DD HH:MM UTC
+- **Duration:** X hours Y minutes
+- **Severity:** Critical/High/Medium/Low
+- **Impact:** WAS_WURDE_BEEINTRÄCHTIGT
+
+## Timeline
+- **HH:MM:** Problem detected
+- **HH:MM:** Response initiated
+- **HH:MM:** Resolution achieved
+- **HH:MM:** Service restored
+
+## Root Cause
+ANALYSE_DER_URSACHE
+
+## Resolution
+WAS_GEMACHT_WURDE
+
+## Follow-up Actions
+- [ ] ACTION_1
+- [ ] ACTION_2
+- [ ] ACTION_3
+
+## Lessons Learned
+WAS_WIR_DARUS_GELERNT_HABEN
+```
+
+## 🔗 Verwandte Ressourcen
+
+### Interne Dokumentation
+- [📐 System Architecture](../01-architecture/system-design.md)
+- [🛠️ Deployment Guide](../03-operations/deployment/README.md)
+- [🔍 Monitoring Setup](../03-operations/monitoring/setup.md)
+
+### Externe Ressourcen
+- **Service Documentation:** [Link zu Service Docs](https://docs.example.com)
+- **Infrastructure Dashboard:** [Link zu Infrastructure](https://infra.example.com)
+- **Alerting Rules:** [Link zu Alerting Config](https://alertmanager.example.com)
+
+### Tools & Links
+- **Grafana:** [Dashboard](https://grafana.example.com)
+- **Kibana:** [Logs](https://kibana.example.com)
+- **Jira:** [Tickets](https://jira.example.com)
+- **Confluence:** [Wiki](https://confluence.example.com)
+
+---
+
+## 🔄 Änderungshistorie
+
+### v1.0.0 (2023-01-20)
+- ✨ Initial Runbook erstellt
+- 🚨 Häufige Vorfälle dokumentiert
+- 🔧 Routine-Operationen definiert
+- 📞 Kontakt-Informationen hinzugefügt
+
+---
+
+**📝 Wichtig:** Dieses Runbook muss regelmäßig reviewed und aktualisiert werden. Jeder Vorfall sollte zur Verbesserung der Prozeduren führen. Wenn du dieses Runbook in einem Notfall verwendest, dokumentiere bitte Abweichungen und Verbesserungsvorschläge.
