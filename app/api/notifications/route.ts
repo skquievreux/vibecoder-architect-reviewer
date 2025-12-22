@@ -6,7 +6,10 @@ import prisma from "@/lib/prisma";
 // GET - Fetch notifications for current user
 export async function GET(request: NextRequest) {
   try {
-    const session = await getServerSession(authOptions);
+    const session = await getServerSession(authOptions).catch(e => {
+      console.error("Error retrieving session:", e);
+      return null;
+    });
 
     if (!session?.user) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
@@ -14,7 +17,7 @@ export async function GET(request: NextRequest) {
 
     const userId = (session.user as any).id;
     if (!userId) {
-      console.warn("Session user found but no ID present");
+      console.warn("Session user found but no ID present:", session.user);
       return NextResponse.json({ notifications: [], total: 0, unreadCount: 0 }, { status: 200 });
     }
 
@@ -31,31 +34,43 @@ export async function GET(request: NextRequest) {
       where.isRead = false;
     }
 
-    const [notifications, total, unreadCount] = await Promise.all([
-      prisma.notification.findMany({
-        where,
-        orderBy: { createdAt: "desc" },
-        take: limit,
-        skip: offset,
-      }),
-      prisma.notification.count({ where }),
-      prisma.notification.count({
-        where: {
-          userId: userId,
-          isRead: false,
-        },
-      }),
-    ]);
+    try {
+      const [notifications, total, unreadCount] = await Promise.all([
+        prisma.notification.findMany({
+          where,
+          orderBy: { createdAt: "desc" },
+          take: limit,
+          skip: offset,
+        }),
+        prisma.notification.count({ where }),
+        prisma.notification.count({
+          where: {
+            userId: userId,
+            isRead: false,
+          },
+        }),
+      ]);
 
-    return NextResponse.json({
-      notifications,
-      total,
-      unreadCount,
-      limit,
-      offset,
-    });
+      return NextResponse.json({
+        notifications,
+        total,
+        unreadCount,
+        limit,
+        offset,
+      });
+    } catch (dbError: any) {
+      console.error("Database error fetching notifications:", dbError);
+      // Return structured error instead of 500 crash if possible, or 500 with clear message
+      return NextResponse.json(
+        {
+          error: "Database error",
+          message: dbError.message
+        },
+        { status: 500 }
+      );
+    }
   } catch (error: any) {
-    console.error("Error fetching notifications:", error);
+    console.error("Unexpected error in notifications API:", error);
     return NextResponse.json(
       {
         error: "Failed to fetch notifications",

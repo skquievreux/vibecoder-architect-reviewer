@@ -1,0 +1,146 @@
+{
+  "timestamp": "2025-12-21T16:03:08.859Z",
+  "summary": {
+    "total": 18,
+    "success": 2,
+    "failed": 0,
+    "skipped": 16
+  },
+  "details": {
+    "success": [
+      {
+        "name": "melody-maker",
+        "priority": 1,
+        "currentReact": "^19.2.0",
+        "currentNext": "^15.1.6",
+        "newReact": "^19.2.3",
+        "newNext": "^16.1.0",
+        "timestamp": "2025-12-21T16:02:19.831Z"
+      },
+      {
+        "name": "techeroes-quiz",
+        "priority": 1,
+        "currentReact": "^19.2.0",
+        "currentNext": null,
+        "newReact": "^19.2.3",
+        "newNext": "^16.1.0",
+        "timestamp": "2025-12-21T16:02:53.683Z"
+      }
+    ],
+    "failed": [],
+    "skipped": [
+      {
+        "name": "playlist_generator",
+        "priority": 1,
+        "currentReact": "^19.2.0",
+        "currentNext": null,
+        "reason": "No package.json"
+      },
+      {
+        "name": "visualimagecomposer",
+        "priority": 1,
+        "currentReact": "^19.2.0",
+        "currentNext": null,
+        "reason": "Directory not found"
+      },
+      {
+        "name": "youtube-landing-page",
+        "priority": 1,
+        "currentReact": "^19.2.0",
+        "currentNext": null,
+        "reason": "Directory not found"
+      },
+      {
+        "name": "Artheria-Healing-Visualizer",
+        "priority": 2,
+        "currentReact": "^19.2.0",
+        "currentNext": null,
+        "reason": "Directory not found"
+      },
+      {
+        "name": "media-project-manager",
+        "priority": 2,
+        "currentReact": "^19.2.0",
+        "currentNext": null,
+        "reason": "Directory not found"
+      },
+      {
+        "name": "visual-flyer-snap",
+        "priority": 2,
+        "currentReact": "^19.2.0",
+        "currentNext": null,
+        "reason": "Directory not found"
+      },
+      {
+        "name": "sound-bowl-echoes",
+        "priority": 2,
+        "currentReact": "^19.2.0",
+        "currentNext": null,
+        "reason": "Directory not found"
+      },
+      {
+        "name": "inspect-whisper",
+        "priority": 2,
+        "currentReact": "^19.2.0",
+        "currentNext": null,
+        "reason": "Directory not found"
+      },
+      {
+        "name": "clip-sync-collab",
+        "priority": 2,
+        "currentReact": "^19.2.0",
+        "currentNext": null,
+        "reason": "Directory not found"
+      },
+      {
+        "name": "broetchen-wochenende-bestellung",
+        "priority": 2,
+        "currentReact": "^19.2.0",
+        "currentNext": null,
+        "reason": "Directory not found"
+      },
+      {
+        "name": "bit-blast-studio",
+        "priority": 2,
+        "currentReact": "^19.2.0",
+        "currentNext": null,
+        "reason": "Directory not found"
+      },
+      {
+        "name": "birdie-flight-revamp",
+        "priority": 2,
+        "currentReact": "^19.2.0",
+        "currentNext": null,
+        "reason": "Directory not found"
+      },
+      {
+        "name": "art-vibe-gen",
+        "priority": 2,
+        "currentReact": "^19.2.0",
+        "currentNext": null,
+        "reason": "Directory not found"
+      },
+      {
+        "name": "albumpromotion",
+        "priority": 2,
+        "currentReact": "^19.2.0",
+        "currentNext": null,
+        "reason": "Directory not found"
+      },
+      {
+        "name": "agent-dialogue-manager",
+        "priority": 2,
+        "currentReact": "^19.2.0",
+        "currentNext": null,
+        "reason": "Directory not found"
+      },
+      {
+        "name": "ai-portfolio-fly-website",
+        "priority": 2,
+        "currentReact": "^19.2.0",
+        "currentNext": null,
+        "reason": "Directory not found"
+      }
+    ]
+  }
+}

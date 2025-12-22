@@ -1,3 +1,17 @@
+## [2.5.1] (2025-12-22) - Dashboard Optimization ⚡
+
+### ⚡ Performance
+- **Server Component Migration**: Refactored the main Dashboard to use **React Server Components** for initial data fetching.
+- **Zero-Round-Trip Loading**: Repositories now load instantly with the initial HTML document, eliminating the client-side API round-trip and loading spinners.
+- **Shared Data Logic**: Centralized repository fetching logic (`lib/repositories.ts`) to ensure consistency between API and Server Components.
+- **Improved UX**: Reduced layout shift and "unused preload" warnings by optimizing data delivery.
+
+### 🐛 Bug Fixes
+- **500 Error Resolution**: Fixed the intermittent 500 Internal Server Error on `/api/notifications` by implementing robust error handling and session validation.
+- **Safe Session Handling**: Added explicit checks for missing user IDs in session objects to prevent server-side crashes.
+
+---
+
 # [2.5.0](https://github.com/skquievreux/vibecoder-architect-reviewer/compare/v2.4.0...v2.5.0) (2025-12-21)
 
 
@@ -47,6 +61,7 @@
 * automated portfolio intelligence pipeline ([35b7b8e](https://github.com/skquievreux/vibecoder-architect-reviewer/commit/35b7b8effcbcd3dd183872c441d60ea129546676))
 * implement mobile optimization with SwipeableRow and ActionGroup components ([8b44cfb](https://github.com/skquievreux/vibecoder-architect-reviewer/commit/8b44cfb3024779d9d5c291a48f1dd26f43f7d4a3))
 * release version 1.12.0 with portfolio pipeline ([7bed861](https://github.com/skquievreux/vibecoder-architect-reviewer/commit/7bed8618847cca1a33abd901911e4bdfcf7a7882))
+>>>>>>> origin/main
 
 ## [1.12.0] (2025-12-21) - Automated Portfolio Intelligence 🧠
 
