@@ -1,4 +1,4 @@
-## [1.12.3] (2025-12-22) - Dashboard Optimization ⚡
+## [2.5.1] (2025-12-22) - Dashboard Optimization ⚡
 
 ### ⚡ Performance
 - **Server Component Migration**: Refactored the main Dashboard to use **React Server Components** for initial data fetching.
@@ -11,6 +11,57 @@
 - **Safe Session Handling**: Added explicit checks for missing user IDs in session objects to prevent server-side crashes.
 
 ---
+
+# [2.5.0](https://github.com/skquievreux/vibecoder-architect-reviewer/compare/v2.4.0...v2.5.0) (2025-12-21)
+
+
+### Features
+
+* Add automated security patching scripts for CVE-2025-55182 ([32927c0](https://github.com/skquievreux/vibecoder-architect-reviewer/commit/32927c055c98a3b5ee7d2eb029afd9ccf2a16009))
+* Security patching infrastructure complete ([cb529e7](https://github.com/skquievreux/vibecoder-architect-reviewer/commit/cb529e76e3c284407e2e87623c00fa3f5fd352e3))
+
+# [2.4.0](https://github.com/skquievreux/vibecoder-architect-reviewer/compare/v2.3.0...v2.4.0) (2025-12-21)
+
+
+### Features
+
+* Add Portfolio Intelligence Reports & Executive Summary ([48b0cd7](https://github.com/skquievreux/vibecoder-architect-reviewer/commit/48b0cd788d2108b1e2f7e6820a4f5f646abe1e46))
+* Enhanced Architecture Report Generation with Security Analysis ([bf99d05](https://github.com/skquievreux/vibecoder-architect-reviewer/commit/bf99d052a14b1ae6058f23fdfe0f3a774996c12a))
+
+# [2.3.0](https://github.com/skquievreux/vibecoder-architect-reviewer/compare/v2.2.0...v2.3.0) (2025-12-21)
+
+
+### Bug Fixes
+
+* Add .npmrc for Vercel build compatibility ([a419a03](https://github.com/skquievreux/vibecoder-architect-reviewer/commit/a419a03948d4377ded4d9d4abdb074a810b5ba29))
+* Resolve Git merge conflicts in screenshotgallerysystem package.json ([bb17e6e](https://github.com/skquievreux/vibecoder-architect-reviewer/commit/bb17e6e1195e5c063dbea6d6f6bb09f16acc3d66))
+
+
+### Features
+
+* Add optimized React upgrade analysis scripts ([5924e6e](https://github.com/skquievreux/vibecoder-architect-reviewer/commit/5924e6e8846b994c9b88348618a85b94c28cefab))
+
+# [2.2.0](https://github.com/skquievreux/vibecoder-architect-reviewer/compare/v2.1.0...v2.2.0) (2025-12-21)
+
+
+### Bug Fixes
+
+* add vercel.json configuration for Intel AMD build ([5a14f80](https://github.com/skquievreux/vibecoder-architect-reviewer/commit/5a14f803965e9c73fddbbe698348e1a8f78e0a80))
+* Correct syntax errors in API routes ([e39f156](https://github.com/skquievreux/vibecoder-architect-reviewer/commit/e39f156ca1eb0c16ac39f625c7124d6faa3a2957))
+* Make repositoryId optional in RepoTask model ([47457a4](https://github.com/skquievreux/vibecoder-architect-reviewer/commit/47457a41bcf35e09519abcd198601a31e84ebc67))
+* Remove deprecated Vercel runtime configuration ([86ba90c](https://github.com/skquievreux/vibecoder-architect-reviewer/commit/86ba90c0940b481f18cb870bdfc8c13415d6c34c))
+* remove problematic AI tasks routes to resolve build errors ([a4d17a0](https://github.com/skquievreux/vibecoder-architect-reviewer/commit/a4d17a057c95c28db106a87c4cc96c54a4ac6c56))
+* resolve PDF generation and task verification issues ([3a11ab0](https://github.com/skquievreux/vibecoder-architect-reviewer/commit/3a11ab0d08ad6105c94074159f18ca75f4711a05))
+* revert to Prisma 5.22.0 to resolve stability issues with providers ([4e22d8f](https://github.com/skquievreux/vibecoder-architect-reviewer/commit/4e22d8f48c3adc89313b98c4e27579e101ae7289))
+
+
+### Features
+
+* Add Favorites UI and Mobile Layout Optimizations ([cbdfe40](https://github.com/skquievreux/vibecoder-architect-reviewer/commit/cbdfe40790eb1fefaac3639107fe8472f63d0bff))
+* automated portfolio intelligence pipeline ([35b7b8e](https://github.com/skquievreux/vibecoder-architect-reviewer/commit/35b7b8effcbcd3dd183872c441d60ea129546676))
+* implement mobile optimization with SwipeableRow and ActionGroup components ([8b44cfb](https://github.com/skquievreux/vibecoder-architect-reviewer/commit/8b44cfb3024779d9d5c291a48f1dd26f43f7d4a3))
+* release version 1.12.0 with portfolio pipeline ([7bed861](https://github.com/skquievreux/vibecoder-architect-reviewer/commit/7bed8618847cca1a33abd901911e4bdfcf7a7882))
+>>>>>>> origin/main
 
 ## [1.12.0] (2025-12-21) - Automated Portfolio Intelligence 🧠
 
