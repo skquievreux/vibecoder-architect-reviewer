@@ -1,3 +1,17 @@
+## [1.12.3] (2025-12-22) - Dashboard Optimization ⚡
+
+### ⚡ Performance
+- **Server Component Migration**: Refactored the main Dashboard to use **React Server Components** for initial data fetching.
+- **Zero-Round-Trip Loading**: Repositories now load instantly with the initial HTML document, eliminating the client-side API round-trip and loading spinners.
+- **Shared Data Logic**: Centralized repository fetching logic (`lib/repositories.ts`) to ensure consistency between API and Server Components.
+- **Improved UX**: Reduced layout shift and "unused preload" warnings by optimizing data delivery.
+
+### 🐛 Bug Fixes
+- **500 Error Resolution**: Fixed the intermittent 500 Internal Server Error on `/api/notifications` by implementing robust error handling and session validation.
+- **Safe Session Handling**: Added explicit checks for missing user IDs in session objects to prevent server-side crashes.
+
+---
+
 ## [1.12.0] (2025-12-21) - Automated Portfolio Intelligence 🧠
 
 ### 🚀 Key Features

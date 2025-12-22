@@ -1,0 +1,141 @@
+{
+  "timestamp": "2025-12-21T16:23:25.002Z",
+  "summary": {
+    "total": 15,
+    "success": 14,
+    "failed": 1,
+    "skipped": 0
+  },
+  "details": {
+    "success": [
+      {
+        "name": "visualimagecomposer",
+        "url": "https://github.com/skquievreux/visualimagecomposer",
+        "isPrivate": true,
+        "react": "^19.2.0",
+        "next": "^16.0.7",
+        "newReact": "^19.2.3",
+        "newNext": "^16.1.0",
+        "timestamp": "2025-12-21T16:14:55.263Z"
+      },
+      {
+        "name": "youtube-landing-page",
+        "url": "https://github.com/skquievreux/youtube-landing-page",
+        "isPrivate": true,
+        "react": "^19.2.0",
+        "next": "15.5.7",
+        "newReact": "^19.2.3",
+        "newNext": "^16.1.0",
+        "timestamp": "2025-12-21T16:15:41.632Z"
+      },
+      {
+        "name": "Artheria-Healing-Visualizer",
+        "url": "https://github.com/skquievreux/Artheria-Healing-Visualizer",
+        "isPrivate": true,
+        "react": "^19.2.0",
+        "newReact": "^19.2.3",
+        "timestamp": "2025-12-21T16:16:25.179Z"
+      },
+      {
+        "name": "media-project-manager",
+        "url": "https://github.com/skquievreux/media-project-manager",
+        "isPrivate": false,
+        "react": "^19.2.0",
+        "newReact": "^19.2.3",
+        "timestamp": "2025-12-21T16:16:52.261Z"
+      },
+      {
+        "name": "visual-flyer-snap",
+        "url": "https://github.com/skquievreux/visual-flyer-snap",
+        "isPrivate": true,
+        "react": "^19.2.0",
+        "newReact": "^19.2.3",
+        "timestamp": "2025-12-21T16:17:23.737Z"
+      },
+      {
+        "name": "sound-bowl-echoes",
+        "url": "https://github.com/skquievreux/sound-bowl-echoes",
+        "isPrivate": true,
+        "react": "^19.2.0",
+        "newReact": "^19.2.3",
+        "timestamp": "2025-12-21T16:18:03.867Z"
+      },
+      {
+        "name": "inspect-whisper",
+        "url": "https://github.com/skquievreux/inspect-whisper",
+        "isPrivate": true,
+        "react": "^19.2.0",
+        "newReact": "^19.2.3",
+        "timestamp": "2025-12-21T16:18:40.738Z"
+      },
+      {
+        "name": "clip-sync-collab",
+        "url": "https://github.com/skquievreux/clip-sync-collab",
+        "isPrivate": true,
+        "react": "^19.2.0",
+        "newReact": "^19.2.3",
+        "timestamp": "2025-12-21T16:19:14.234Z"
+      },
+      {
+        "name": "broetchen-wochenende-bestellung",
+        "url": "https://github.com/skquievreux/broetchen-wochenende-bestellung",
+        "isPrivate": true,
+        "react": "^19.2.0",
+        "newReact": "^19.2.3",
+        "timestamp": "2025-12-21T16:19:52.077Z"
+      },
+      {
+        "name": "bit-blast-studio",
+        "url": "https://github.com/skquievreux/bit-blast-studio",
+        "isPrivate": true,
+        "react": "^19.2.0",
+        "newReact": "^19.2.3",
+        "timestamp": "2025-12-21T16:20:27.560Z"
+      },
+      {
+        "name": "birdie-flight-revamp",
+        "url": "https://github.com/skquievreux/birdie-flight-revamp",
+        "isPrivate": true,
+        "react": "^19.2.0",
+        "newReact": "^19.2.3",
+        "timestamp": "2025-12-21T16:21:03.285Z"
+      },
+      {
+        "name": "art-vibe-gen",
+        "url": "https://github.com/skquievreux/art-vibe-gen",
+        "isPrivate": true,
+        "react": "^19.2.0",
+        "newReact": "^19.2.3",
+        "timestamp": "2025-12-21T16:21:43.583Z"
+      },
+      {
+        "name": "agent-dialogue-manager",
+        "url": "https://github.com/skquievreux/agent-dialogue-manager",
+        "isPrivate": true,
+        "react": "^19.2.0",
+        "newReact": "^19.2.3",
+        "timestamp": "2025-12-21T16:22:46.362Z"
+      },
+      {
+        "name": "ai-portfolio-fly-website",
+        "url": "https://github.com/skquievreux/ai-portfolio-fly-website",
+        "isPrivate": true,
+        "react": "^19.2.0",
+        "newReact": "^19.2.3",
+        "timestamp": "2025-12-21T16:23:22.989Z"
+      }
+    ],
+    "failed": [
+      {
+        "name": "albumpromotion",
+        "url": "https://github.com/skquievreux/albumpromotion",
+        "isPrivate": true,
+        "react": "^19.2.0",
+        "next": "^15.5.0",
+        "reason": "Clone failed",
+        "error": "Command failed: git clone https://github.com/skquievreux/albumpromotion C:\\CODE\\GIT\\albumpromotion"
+      }
+    ],
+    "skipped": []
+  }
+}
