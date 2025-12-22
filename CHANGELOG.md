@@ -1,3 +1,10 @@
+# [2.6.0](https://github.com/skquievreux/vibecoder-architect-reviewer/compare/v2.5.0...v2.6.0) (2025-12-22)
+
+
+### Features
+
+* Complete security patching infrastructure ([373a601](https://github.com/skquievreux/vibecoder-architect-reviewer/commit/373a60147217d0d69fbe804d90e13d1e6e0634e5))
+
 ## [2.5.1] (2025-12-22) - Dashboard Optimization ⚡
 
 ### ⚡ Performance
