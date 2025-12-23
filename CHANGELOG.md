@@ -1,3 +1,10 @@
+## [2.11.2](https://github.com/skquievreux/vibecoder-architect-reviewer/compare/v2.11.1...v2.11.2) (2025-12-23)
+
+
+### Bug Fixes
+
+* **ci:** sanitize url and add curl logging v1.2.1 ([60f6df1](https://github.com/skquievreux/vibecoder-architect-reviewer/commit/60f6df14fe21b1157ca3afc4e820eab3d18073e9))
+
 ## [2.11.1](https://github.com/skquievreux/vibecoder-architect-reviewer/compare/v2.11.0...v2.11.1) (2025-12-23)
 
 
