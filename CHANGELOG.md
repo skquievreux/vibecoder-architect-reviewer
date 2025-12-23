@@ -1,3 +1,10 @@
+## [2.11.1](https://github.com/skquievreux/vibecoder-architect-reviewer/compare/v2.11.0...v2.11.1) (2025-12-23)
+
+
+### Bug Fixes
+
+* **ci:** add version logging v1.2.0 ([a0fc84d](https://github.com/skquievreux/vibecoder-architect-reviewer/commit/a0fc84d37cc86bdbee3814b91faf30cec77e4801))
+
 # [2.11.0](https://github.com/skquievreux/vibecoder-architect-reviewer/compare/v2.10.0...v2.11.0) (2025-12-23)
 
 
