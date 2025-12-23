@@ -1,3 +1,10 @@
+# [2.7.0](https://github.com/skquievreux/vibecoder-architect-reviewer/compare/v2.6.0...v2.7.0) (2025-12-22)
+
+
+### Features
+
+* **docs:** implement comprehensive documentation governance framework ([a4d1724](https://github.com/skquievreux/vibecoder-architect-reviewer/commit/a4d1724d9d09d9472d2fa123b56d4b033213a46b))
+
 # [2.6.0](https://github.com/skquievreux/vibecoder-architect-reviewer/compare/v2.5.0...v2.6.0) (2025-12-22)
 
 
