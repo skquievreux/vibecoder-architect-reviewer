@@ -1,3 +1,10 @@
+## [2.11.4](https://github.com/skquievreux/vibecoder-architect-reviewer/compare/v2.11.3...v2.11.4) (2025-12-23)
+
+
+### Bug Fixes
+
+* **db:** handle pre-parsed json objects in repository details ([a6f9f85](https://github.com/skquievreux/vibecoder-architect-reviewer/commit/a6f9f85b3186d3d34516b1b04ca8d5a11c5c9e42))
+
 ## [2.11.3](https://github.com/skquievreux/vibecoder-architect-reviewer/compare/v2.11.2...v2.11.3) (2025-12-23)
 
 
