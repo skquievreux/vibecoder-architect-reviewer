@@ -1,3 +1,11 @@
+## [2.11.3](https://github.com/skquievreux/vibecoder-architect-reviewer/compare/v2.11.2...v2.11.3) (2025-12-23)
+
+
+### Bug Fixes
+
+* **auth:** allow public access to /api/system routes for harvester ([8cf7381](https://github.com/skquievreux/vibecoder-architect-reviewer/commit/8cf73810376c147a2d13c3df7989aa69b031ecbd))
+* **ci:** handle 307 redirects and json errors v1.2.2 ([890d31a](https://github.com/skquievreux/vibecoder-architect-reviewer/commit/890d31a4c256878552a2a6d39a80d8d29e62ff8a))
+
 ## [2.11.2](https://github.com/skquievreux/vibecoder-architect-reviewer/compare/v2.11.1...v2.11.2) (2025-12-23)
 
 
