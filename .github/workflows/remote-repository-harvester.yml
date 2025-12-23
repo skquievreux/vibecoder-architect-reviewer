@@ -37,7 +37,7 @@ jobs:
         run: |
           # Create harvester script inline or run from file
           echo "========================================================"
-          echo "🤖 Running Harvester Logic v1.2.1 (Fix: URL Sanitize)"
+          echo "🤖 Running Harvester Logic v1.2.2 (Fix: 307 Redirects & JSON Safety)"
           echo "========================================================"
           
           if [ -z "$GH_TOKEN" ]; then
@@ -121,10 +121,23 @@ jobs:
             TIMESTAMP=$(date -u +%Y-%m-%dT%H:%M:%SZ)
             echo "$PKG_JSON" > pkg.json
             
+            # Validate package.json
+            if ! jq empty pkg.json >/dev/null 2>&1; then
+               echo "   ⚠️ Invalid or empty package.json found. Using default."
+               echo "{}" > pkg.json
+            fi
+            
             if [ "$API_SPEC" != "null" ]; then
                echo "$API_SPEC" > spec.json
-               JQ_SPEC_ARG="--slurpfile spec spec.json"
-               JQ_SPEC_VAL='($spec[0])'
+               # Validate spec.json
+               if ! jq empty spec.json >/dev/null 2>&1; then 
+                   echo "   ⚠️ Invalid JSON in API Spec. Skipping spec."
+                   JQ_SPEC_ARG=""
+                   JQ_SPEC_VAL="null"
+               else
+                   JQ_SPEC_ARG="--slurpfile spec spec.json"
+                   JQ_SPEC_VAL='($spec[0])'
+               fi
             else
                JQ_SPEC_ARG=""
                JQ_SPEC_VAL="null"
@@ -160,8 +173,8 @@ jobs:
               echo "   [DRY RUN] Would send payload size: $(wc -c < payload.json) bytes"
             else
               echo "   📤 Sending to Dashboard..."
-              # ADDED -v for verbose output to debug connection issues
-              HTTP_CODE=$(curl -s -v -o /dev/null -w "%{http_code}" -X POST "$TARGET_URL/api/system/ingest" \
+              # ADDED -L to follow redirects (handles 307/308) 
+              HTTP_CODE=$(curl -s -L -v -o /dev/null -w "%{http_code}" -X POST "$TARGET_URL/api/system/ingest" \
                 -H "Content-Type: application/json" \
                 -H "x-api-key: $DASHBOARD_API_KEY" \
                 -d @payload.json 2>curl_debug.log)
