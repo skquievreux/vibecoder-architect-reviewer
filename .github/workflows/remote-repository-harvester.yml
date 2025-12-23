@@ -43,7 +43,17 @@ jobs:
             exit 1
           fi
 
+          # Setup Config with Fallbacks
+          TARGET_URL="${DASHBOARD_URL:-https://vibecode.runitfast.xyz}"
+          
+          if [ -z "$DASHBOARD_API_KEY" ]; then
+             echo "❌ Error: DASHBOARD_API_KEY secret is missing. Please add it to GitHub Secrets."
+             echo "   Value should be: dashboard-master-2024"
+             exit 1
+          fi
+
           echo "🚀 Starting Remote Harvest..."
+          echo "🎯 Target: $TARGET_URL"
           
           # 1. Fetch list of all repositories (limit via input if needed)
           FETCH_LIMIT=""
@@ -148,7 +158,7 @@ jobs:
               echo "   [DRY RUN] Would send payload size: $(wc -c < payload.json) bytes"
             else
               echo "   📤 Sending to Dashboard..."
-              HTTP_CODE=$(curl -s -o /dev/null -w "%{http_code}" -X POST "$DASHBOARD_URL/api/system/ingest" \
+              HTTP_CODE=$(curl -s -o /dev/null -w "%{http_code}" -X POST "$TARGET_URL/api/system/ingest" \
                 -H "Content-Type: application/json" \
                 -H "x-api-key: $DASHBOARD_API_KEY" \
                 -d @payload.json)
