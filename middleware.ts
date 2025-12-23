@@ -15,6 +15,6 @@ export const config = {
      * - repo (public repo details if desired)
      * - auth (auth pages)
      */
-    "/((?!api/auth|_next/static|_next/image|favicon.ico|public|showcase|repo|auth).*)",
+    "/((?!api/auth|api/system|_next/static|_next/image|favicon.ico|public|showcase|repo|auth).*)",
   ],
 };
