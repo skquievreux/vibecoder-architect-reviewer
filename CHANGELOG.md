@@ -1,3 +1,10 @@
+# [2.12.0](https://github.com/skquievreux/vibecoder-architect-reviewer/compare/v2.11.4...v2.12.0) (2025-12-23)
+
+
+### Features
+
+* **ops:** add script to distribute ci standards to all repos ([4d82c76](https://github.com/skquievreux/vibecoder-architect-reviewer/commit/4d82c76f93cddfe9389260bfe02f99fe17670262))
+
 ## [2.11.4](https://github.com/skquievreux/vibecoder-architect-reviewer/compare/v2.11.3...v2.11.4) (2025-12-23)
 
 
