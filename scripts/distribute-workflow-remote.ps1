@@ -40,7 +40,22 @@ foreach ($src in $FILES_TO_DISTRIBUTE.Keys) {
 # 2. Fetch All Repositories
 Write-Host "📥 Fetching repository list..." -ForegroundColor Yellow
 # Using gh cli to list all repos (public & private)
-$repos = gh repo list $ORG_NAME --limit 200 --json name, defaultBranchRef --template '{{range .}}{{printf "%s|%s\n" .name .defaultBranchRef.name}}{{end}}' 
+# Using gh cli to list all repos (public & private)
+# We use explicit arguments layout to avoid PowerShell parsing issues with quotes
+$ghArgs = @(
+    "repo", "list", "$ORG_NAME", 
+    "--limit", "200", 
+    "--json", "name,defaultBranchRef", 
+    "--jq", ".[] | .name + ""|"" + .defaultBranchRef.name"
+)
+
+try {
+    $repos = & gh $ghArgs
+}
+catch {
+    Write-Error "Failed to execute gh command: $_"
+    exit 1
+} 
 
 if (-not $repos) {
     Write-Error "No repositories found or gh cli error."
@@ -71,8 +86,8 @@ foreach ($entry in $repoList) {
         # PowerShell efficient way:
         try {
             $cmd = "gh"
-            $args = @("secret", "set", $key, "--repo", "$ORG_NAME/$repoName", "--body", $val)
-            & $cmd $args 2>&1 | Out-Null
+            $secretArgs = @("secret", "set", $key, "--repo", "$ORG_NAME/$repoName", "--body", $val)
+            & $cmd $secretArgs 2>&1 | Out-Null
             # Write-Host "      + Secret $key set" -ForegroundColor Gray
         }
         catch {
