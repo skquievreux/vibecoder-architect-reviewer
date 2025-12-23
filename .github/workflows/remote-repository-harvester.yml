@@ -1,0 +1,165 @@
+name: Remote Repository Harvester (Bulk Sync)
+
+on:
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: 'Dry Run (no ingest)'
+        required: false
+        default: 'false'
+      limit:
+        description: 'Limit number of repos (0 for all)'
+        required: false
+        default: '0'
+  schedule:
+    - cron: '0 4 * * *'  # Run daily at 4 AM
+
+jobs:
+  harvest:
+    name: Harvest Remote Repositories
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Dashboard Repo
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Harvest and Sync
+        env:
+          GH_TOKEN: ${{ secrets.GH_PAT }}  # Requires a Personal Access Token with 'repo' scope
+          DASHBOARD_URL: ${{ secrets.DASHBOARD_URL }}
+          DASHBOARD_API_KEY: ${{ secrets.DASHBOARD_API_KEY }}
+          LIMIT: ${{ inputs.limit }}
+          DRY_RUN: ${{ inputs.dry_run }}
+        run: |
+          # Create harvester script inline or run from file
+          # We will use gh cli which is pre-installed on runners
+          
+          if [ -z "$GH_TOKEN" ]; then
+            echo "❌ Error: GH_PAT secret is missing. Cannot access private remote repositories."
+            exit 1
+          fi
+
+          echo "🚀 Starting Remote Harvest..."
+          
+          # 1. Fetch list of all repositories (limit via input if needed)
+          FETCH_LIMIT=""
+          if [ "$LIMIT" != "0" ] && [ "$LIMIT" != "" ]; then
+            FETCH_LIMIT="-L $LIMIT"
+          else
+            FETCH_LIMIT="-L 200" # Chunking might be needed for more
+          fi
+          
+          echo "📥 Fetching repository list..."
+          gh repo list skquievreux $FETCH_LIMIT --json name,url,description,isPrivate,defaultBranchRef --template '{{range .}}{{printf "%s|%s|%s|%s|%s\n" .name .url .description .isPrivate .defaultBranchRef.name}}{{end}}' > repos.txt
+          
+          TOTAL=$(wc -l < repos.txt)
+          echo "📋 Found $TOTAL repositories to process."
+          
+          CURRENT=0
+          
+          while IFS='|' read -r name url desc isPrivate branch; do
+            CURRENT=$((CURRENT + 1))
+            echo "---------------------------------------------------"
+            echo "[$CURRENT/$TOTAL] Processing: $name"
+            
+            # Skip if branch is missing
+            if [ "$branch" == "<nil>" ] || [ "$branch" == "" ]; then
+              branch="main"
+            fi
+            
+            # 2. Fetch package.json content via API
+            echo "   🔍 Looking for package.json..."
+            PKG_JSON="{}"
+            PKG_CONTENT=$(gh api "repos/skquievreux/$name/contents/package.json" --jq .content 2>/dev/null | base64 -d 2>/dev/null || echo "")
+            
+            if [ -n "$PKG_CONTENT" ]; then
+              echo "   ✅ Found package.json"
+              # Minify/Clean JSON
+              PKG_JSON="$PKG_CONTENT"
+            else
+               echo "   ⚠️ No package.json found"
+            fi
+            
+            # 3. Fetch API contents (openapi.json etc)
+            API_SPEC="null"
+            SPEC_FILES=("openapi.json" "swagger.json" "docs/openapi.json" "public/openapi.json")
+            
+            for spec_file in "${SPEC_FILES[@]}"; do
+              SPEC_CONTENT=$(gh api "repos/skquievreux/$name/contents/$spec_file" --jq .content 2>/dev/null | base64 -d 2>/dev/null || echo "")
+              if [ -n "$SPEC_CONTENT" ]; then
+                 echo "   ✅ Found Spec: $spec_file"
+                 # Escape for JSON embedding involves trickery in bash, better to rely on node script next time
+                 # For now, we assume standard JSON
+                 API_SPEC="$SPEC_CONTENT"
+                 break
+              fi
+            done
+            
+            # 4. Construct Payload
+            # We use jq to safely build the JSON payload to handle escaping
+            
+            TIMESTAMP=$(date -u +%Y-%m-%dT%H:%M:%SZ)
+            
+            # Create temporary files for content to let jq read them safely
+            echo "$PKG_JSON" > pkg.json
+            
+            # If API_SPEC is null/string, handle carefully
+            if [ "$API_SPEC" != "null" ]; then
+               echo "$API_SPEC" > spec.json
+               JQ_SPEC_ARG="--slurpfile spec spec.json"
+               JQ_SPEC_VAL='($spec[0])'
+            else
+               JQ_SPEC_ARG=""
+               JQ_SPEC_VAL="null"
+            fi
+
+            # Safe JSON construction
+            jq -n \
+              --arg name "$name" \
+              --arg owner "skquievreux/$name" \
+              --arg url "$url" \
+              --arg desc "$desc" \
+              --arg isPriv "$isPrivate" \
+              --arg branch "$branch" \
+              --arg ts "$TIMESTAMP" \
+              --slurpfile pkg pkg.json \
+              $JQ_SPEC_ARG \
+              '{
+                repoName: $name,
+                nameWithOwner: $owner,
+                repoUrl: $url,
+                description: $desc,
+                isPrivate: ($isPriv == "true"),
+                apiSpec: '$JQ_SPEC_VAL',
+                packageJson: ($pkg[0] // {}),
+                metadata: {
+                   syncSource: "remote-harvester",
+                   gitBranch: $branch,
+                   timestamp: $ts
+                }
+              }' > payload.json
+              
+            # 5. Send to Dashboard
+            if [ "$DRY_RUN" == "true" ]; then
+              echo "   [DRY RUN] Would send payload size: $(wc -c < payload.json) bytes"
+            else
+              echo "   📤 Sending to Dashboard..."
+              HTTP_CODE=$(curl -s -o /dev/null -w "%{http_code}" -X POST "$DASHBOARD_URL/api/system/ingest" \
+                -H "Content-Type: application/json" \
+                -H "x-api-key: $DASHBOARD_API_KEY" \
+                -d @payload.json)
+                
+              if [ "$HTTP_CODE" -eq 200 ] || [ "$HTTP_CODE" -eq 201 ]; then
+                 echo "   ✅ Success (HTTP $HTTP_CODE)"
+              else
+                 echo "   ❌ Failed (HTTP $HTTP_CODE)"
+              fi
+            fi
+            
+          done < repos.txt
+          
+          echo "🎉 Harvest Complete!"

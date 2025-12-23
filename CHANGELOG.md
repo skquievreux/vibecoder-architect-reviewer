@@ -1,3 +1,11 @@
+## [Unreleased]
+
+### Feat
+- **sync**: Added Remote Repository Harvester workflow for bulk updates of 60+ remote repos
+- **sync**: Added `pilot-sync.ps1` for verifying sync with local files
+- **sync**: Added `distribute-workflow.ps1` to rollout workflows to local repos
+- **docs**: Created Operations Guide for Repository Sync (`docs/03-operations/repository-sync-guide.md`)
+
 # [2.9.0](https://github.com/skquievreux/vibecoder-architect-reviewer/compare/v2.8.0...v2.9.0) (2025-12-23)
 
 
@@ -6,7 +14,6 @@
 * add pilot sync scripts and deployment documentation ([346adbd](https://github.com/skquievreux/vibecoder-architect-reviewer/commit/346adbdd92e6190f00f84640445511dbb040baf2))
 
 # [2.8.0](https://github.com/skquievreux/vibecoder-architect-reviewer/compare/v2.7.0...v2.8.0) (2025-12-23)
-
 
 ### Bug Fixes
 
