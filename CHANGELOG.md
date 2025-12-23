@@ -1,3 +1,10 @@
+## [2.12.1](https://github.com/skquievreux/vibecoder-architect-reviewer/compare/v2.12.0...v2.12.1) (2025-12-23)
+
+
+### Bug Fixes
+
+* **ops:** cleanup pwsh variables and robust arguments ([267b8e6](https://github.com/skquievreux/vibecoder-architect-reviewer/commit/267b8e6c01399fd1612b415c528350ebb491d6f6))
+
 # [2.12.0](https://github.com/skquievreux/vibecoder-architect-reviewer/compare/v2.11.4...v2.12.0) (2025-12-23)
 
 
