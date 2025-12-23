@@ -1,3 +1,10 @@
+# [2.10.0](https://github.com/skquievreux/vibecoder-architect-reviewer/compare/v2.9.0...v2.10.0) (2025-12-23)
+
+
+### Features
+
+* add remote repository harvester workflow for bulk sync ([36b8569](https://github.com/skquievreux/vibecoder-architect-reviewer/commit/36b8569d4fbaf38d5e8bd78aae543059822bd9ca))
+
 ## [Unreleased]
 
 ### Feat
