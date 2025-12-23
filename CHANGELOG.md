@@ -1,3 +1,10 @@
+# [2.9.0](https://github.com/skquievreux/vibecoder-architect-reviewer/compare/v2.8.0...v2.9.0) (2025-12-23)
+
+
+### Features
+
+* add pilot sync scripts and deployment documentation ([346adbd](https://github.com/skquievreux/vibecoder-architect-reviewer/commit/346adbdd92e6190f00f84640445511dbb040baf2))
+
 # [2.8.0](https://github.com/skquievreux/vibecoder-architect-reviewer/compare/v2.7.0...v2.8.0) (2025-12-23)
 
 
