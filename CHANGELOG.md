@@ -6,6 +6,21 @@
 - **sync**: Added `distribute-workflow.ps1` to rollout workflows to local repos
 - **docs**: Created Operations Guide for Repository Sync (`docs/03-operations/repository-sync-guide.md`)
 
+# [2.8.0](https://github.com/skquievreux/vibecoder-architect-reviewer/compare/v2.7.0...v2.8.0) (2025-12-23)
+
+### Bug Fixes
+
+* fallback version info for Vercel build ([66be7a1](https://github.com/skquievreux/vibecoder-architect-reviewer/commit/66be7a12fd384efd3fccba5756edf4c8e0c2e7e8))
+* remove invalid sync-vercel.yml workflow ([82cba3c](https://github.com/skquievreux/vibecoder-architect-reviewer/commit/82cba3c1fb72b6e5b2df6345b6d08aa15e979100))
+* resolve SyncDashboard TypeScript errors ([49723ff](https://github.com/skquievreux/vibecoder-architect-reviewer/commit/49723ffc4acca07c50c84698719a8734659b69d6))
+* revert build-version.js to working version ([edf06db](https://github.com/skquievreux/vibecoder-architect-reviewer/commit/edf06dbf2f620436ea615709d9fcb466fda4994d))
+* rewrite SyncDashboard with clean JSX structure ([2ac1879](https://github.com/skquievreux/vibecoder-architect-reviewer/commit/2ac18799f14ec103a1532ab63e83169c6a3175d5))
+
+
+### Features
+
+* enhanced repository sync with master key (135 private repos) ([10b6878](https://github.com/skquievreux/vibecoder-architect-reviewer/commit/10b68780b03f981fc89466cadd3baff359213f27))
+
 # [2.7.0](https://github.com/skquievreux/vibecoder-architect-reviewer/compare/v2.6.0...v2.7.0) (2025-12-22)
 
 
