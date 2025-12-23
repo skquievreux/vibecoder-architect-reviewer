@@ -36,24 +36,30 @@ jobs:
           DRY_RUN: ${{ inputs.dry_run }}
         run: |
           # Create harvester script inline or run from file
-          # We will use gh cli which is pre-installed on runners
+          echo "========================================================"
+          echo "🤖 Running Harvester Logic v1.2.0 (Fix: Fallback URL)"
+          echo "========================================================"
           
           if [ -z "$GH_TOKEN" ]; then
             echo "❌ Error: GH_PAT secret is missing. Cannot access private remote repositories."
             exit 1
+          else
+            echo "✅ GH_PAT secret found."
           fi
 
           # Setup Config with Fallbacks
           TARGET_URL="${DASHBOARD_URL:-https://vibecode.runitfast.xyz}"
+          echo "🎯 Using Target URL: $TARGET_URL"
           
           if [ -z "$DASHBOARD_API_KEY" ]; then
              echo "❌ Error: DASHBOARD_API_KEY secret is missing. Please add it to GitHub Secrets."
              echo "   Value should be: dashboard-master-2024"
              exit 1
+          else
+             echo "✅ DASHBOARD_API_KEY secret found."
           fi
 
           echo "🚀 Starting Remote Harvest..."
-          echo "🎯 Target: $TARGET_URL"
           
           # 1. Fetch list of all repositories (limit via input if needed)
           FETCH_LIMIT=""
