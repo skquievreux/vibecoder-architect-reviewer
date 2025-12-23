@@ -70,7 +70,7 @@ export async function getRepositories() {
                         return {
                             ...i,
                             detectedAt: i.detectedAt.toISOString(),
-                            details: i.details ? JSON.parse(i.details) : null
+                            details: (typeof i.details === 'string') ? JSON.parse(i.details) : i.details
                         };
                     } catch (e) {
                         return { ...i, detectedAt: i.detectedAt.toISOString(), details: null, _parseError: true };
