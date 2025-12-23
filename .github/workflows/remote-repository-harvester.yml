@@ -37,7 +37,7 @@ jobs:
         run: |
           # Create harvester script inline or run from file
           echo "========================================================"
-          echo "🤖 Running Harvester Logic v1.2.0 (Fix: Fallback URL)"
+          echo "🤖 Running Harvester Logic v1.2.1 (Fix: URL Sanitize)"
           echo "========================================================"
           
           if [ -z "$GH_TOKEN" ]; then
@@ -47,9 +47,12 @@ jobs:
             echo "✅ GH_PAT secret found."
           fi
 
-          # Setup Config with Fallbacks
-          TARGET_URL="${DASHBOARD_URL:-https://vibecode.runitfast.xyz}"
-          echo "🎯 Using Target URL: $TARGET_URL"
+          # Setup Config with Fallbacks & Sanitization
+          RAW_URL="${DASHBOARD_URL:-https://vibecode.runitfast.xyz}"
+          # Remove quotes and whitespace
+          TARGET_URL=$(echo "$RAW_URL" | tr -d '"' | xargs)
+          
+          echo "🎯 Using Target URL (Length: ${#TARGET_URL})"
           
           if [ -z "$DASHBOARD_API_KEY" ]; then
              echo "❌ Error: DASHBOARD_API_KEY secret is missing. Please add it to GitHub Secrets."
@@ -108,22 +111,16 @@ jobs:
               SPEC_CONTENT=$(gh api "repos/skquievreux/$name/contents/$spec_file" --jq .content 2>/dev/null | base64 -d 2>/dev/null || echo "")
               if [ -n "$SPEC_CONTENT" ]; then
                  echo "   ✅ Found Spec: $spec_file"
-                 # Escape for JSON embedding involves trickery in bash, better to rely on node script next time
-                 # For now, we assume standard JSON
+                 # Escape for JSON embedding
                  API_SPEC="$SPEC_CONTENT"
                  break
               fi
             done
             
             # 4. Construct Payload
-            # We use jq to safely build the JSON payload to handle escaping
-            
             TIMESTAMP=$(date -u +%Y-%m-%dT%H:%M:%SZ)
-            
-            # Create temporary files for content to let jq read them safely
             echo "$PKG_JSON" > pkg.json
             
-            # If API_SPEC is null/string, handle carefully
             if [ "$API_SPEC" != "null" ]; then
                echo "$API_SPEC" > spec.json
                JQ_SPEC_ARG="--slurpfile spec spec.json"
@@ -133,7 +130,6 @@ jobs:
                JQ_SPEC_VAL="null"
             fi
 
-            # Safe JSON construction
             jq -n \
               --arg name "$name" \
               --arg owner "skquievreux/$name" \
@@ -164,15 +160,19 @@ jobs:
               echo "   [DRY RUN] Would send payload size: $(wc -c < payload.json) bytes"
             else
               echo "   📤 Sending to Dashboard..."
-              HTTP_CODE=$(curl -s -o /dev/null -w "%{http_code}" -X POST "$TARGET_URL/api/system/ingest" \
+              # ADDED -v for verbose output to debug connection issues
+              HTTP_CODE=$(curl -s -v -o /dev/null -w "%{http_code}" -X POST "$TARGET_URL/api/system/ingest" \
                 -H "Content-Type: application/json" \
                 -H "x-api-key: $DASHBOARD_API_KEY" \
-                -d @payload.json)
-                
+                -d @payload.json 2>curl_debug.log)
+              
+              # Capture curl output to show errors if needed
               if [ "$HTTP_CODE" -eq 200 ] || [ "$HTTP_CODE" -eq 201 ]; then
-                 echo "   ✅ Success (HTTP $HTTP_CODE)"
+                 echo "   ✅ Turn successful (HTTP $HTTP_CODE)"
               else
                  echo "   ❌ Failed (HTTP $HTTP_CODE)"
+                 echo "   🔎 CURL DEBUG:"
+                 cat curl_debug.log | head -n 20
               fi
             fi
             
