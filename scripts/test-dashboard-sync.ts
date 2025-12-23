@@ -43,10 +43,14 @@ async function testDashboardSync() {
             }
         };
 
-        console.log('📤 Sending test payload to dashboard...');
+console.log('📤 Sending test payload to dashboard...');
         
-        // Test the API endpoint directly
-        const response = await fetch('http://localhost:3000/api/system/ingest', {
+        // Test API endpoint directly
+        const isProduction = process.argv.includes('--production');
+        const baseUrl = isProduction ? 'https://vibecode.runitfast.xyz' : 'http://localhost:3000';
+        console.log(`🌐 Testing against: ${baseUrl}`);
+        
+        const response = await fetch(`${baseUrl}/api/system/ingest`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
