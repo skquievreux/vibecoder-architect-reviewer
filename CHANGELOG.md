@@ -1,3 +1,15 @@
+# [2.11.0](https://github.com/skquievreux/vibecoder-architect-reviewer/compare/v2.10.0...v2.11.0) (2025-12-23)
+
+
+### Bug Fixes
+
+* **ci:** add fallback for missing DASHBOARD_URL secret in harvester ([e0c1b1f](https://github.com/skquievreux/vibecoder-architect-reviewer/commit/e0c1b1f9cb701a52868c50610d8f82b4a2aca6a6))
+
+
+### Features
+
+* enhance sync scripts with deep search and distribution logic ([f8bf194](https://github.com/skquievreux/vibecoder-architect-reviewer/commit/f8bf194b474390180839bfcb07d0960c07d8ce5f))
+
 # [2.10.0](https://github.com/skquievreux/vibecoder-architect-reviewer/compare/v2.9.0...v2.10.0) (2025-12-23)
 
 
