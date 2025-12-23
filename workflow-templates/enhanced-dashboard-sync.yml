@@ -1,0 +1,176 @@
+name: Enhanced API Documentation Sync
+on:
+  push:
+    branches: [main, master]
+  workflow_dispatch:
+  schedule:
+    - cron: '0 2 * * *'  # Daily at 2 AM UTC
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          
+      - name: Enhanced Data Extraction & Sync
+        env:
+          DASHBOARD_URL: ${{ secrets.DASHBOARD_URL }}
+          DASHBOARD_API_KEY: ${{ secrets.DASHBOARD_API_KEY }}
+        run: |
+          # Set error handling
+          set -e
+          
+          # Extract basic metadata
+          REPO_NAME="${GITHUB_REPOSITORY#*/}"
+          REPO_URL="https://github.com/${GITHUB_REPOSITORY}"
+          
+          echo "🚀 Syncing $REPO_NAME..."
+          echo "📊 URL: $REPO_URL"
+          
+          # Enhanced package.json extraction
+          NODE_VERSION=""
+          REACT_VERSION=""
+          NEXT_VERSION=""
+          FRAMEWORK="Unknown"
+          
+          if [ -f "package.json" ]; then
+            NODE_VERSION=$(node -p "try { JSON.parse(require('fs').readFileSync('package.json', 'utf8')).engines?.node || '' } catch(e) { '' }")
+            REACT_VERSION=$(node -p "try { JSON.parse(require('fs').readFileSync('package.json', 'utf8')).dependencies?.react || '' } catch(e) { '' }")
+            NEXT_VERSION=$(node -p "try { JSON.parse(require('fs').readFileSync('package.json', 'utf8')).dependencies?.next || '' } catch(e) { '' }")
+            
+            # Detect framework
+            if [ -n "$NEXT_VERSION" ]; then
+              FRAMEWORK="Next.js"
+            elif [ -n "$REACT_VERSION" ]; then
+              FRAMEWORK="React"
+            elif node -p "try { require('express') } catch(e) { }" 2>/dev/null; then
+              FRAMEWORK="Express.js"
+            fi
+          fi
+          
+          # Enhanced API specification detection
+          API_SPEC="null"
+          
+          # Check various OpenAPI/Swagger locations
+          OPENAPI_PATHS=(
+            "app/api/openapi.json"
+            "public/openapi.json"
+            "docs/openapi.json"
+            "api/openapi.json"
+            "swagger.json"
+            "openapi.yaml"
+            "openapi.yml"
+          )
+          
+          for path in "${OPENAPI_PATHS[@]}"; do
+            if [ -f "$path" ]; then
+              echo "📝 Found API spec at: $path"
+              API_SPEC=$(node -e "
+                const fs = require('fs');
+                const content = fs.readFileSync('$path', 'utf8');
+                console.log(JSON.stringify(content));
+              ")
+              break
+            fi
+          done
+          
+          # GraphQL schema detection
+          if [ "$API_SPEC" = "null" ] && [ -f "schema.graphql" ]; then
+            echo "📝 Found GraphQL schema"
+            API_SPEC=$(node -e "
+              const fs = require('fs');
+              const content = fs.readFileSync('schema.graphql', 'utf8');
+              console.log(JSON.stringify(content));
+            ")
+          fi
+          
+          # Python FastAPI /docs.json detection (if Python project)
+          if [ "$API_SPEC" = "null" ] && [ -f "requirements.txt" ] && grep -q "fastapi" requirements.txt; then
+            echo "🐍 Detected FastAPI project"
+            API_SPEC="null"  # Could try to fetch from running instance
+          fi
+          
+          # Deployment file detection
+          DEPLOYMENT_DETECTED=()
+          if [ -f "vercel.json" ]; then DEPLOYMENT_DETECTED+=("Vercel"); fi
+          if [ -f "fly.toml" ]; then DEPLOYMENT_DETECTED+=("Fly.io"); fi
+          if [ -f "Dockerfile" ]; then DEPLOYMENT_DETECTED+=("Docker"); fi
+          if [ -f "netlify.toml" ]; then DEPLOYMENT_DETECTED+=("Netlify"); fi
+          if [ -f "railway.toml" ]; then DEPLOYMENT_DETECTED+=("Railway"); fi
+          
+          echo "🏗️  Framework: $FRAMEWORK"
+          echo "📦 Node.js: $NODE_VERSION"
+          echo "⚛️  React: $REACT_VERSION"
+          echo "▲ Next.js: $NEXT_VERSION"
+          echo "🚀 Deployments: ${DEPLOYMENT_DETECTED[*]}"
+          echo "📋 API Spec: $([ "$API_SPEC" != "null" ] && echo "✅ Found" || echo "❌ Not found")"
+          
+          # Construct JSON payload
+          JSON_DATA=$(cat <<EOF
+          {
+            "repoName": "$REPO_NAME",
+            "nameWithOwner": "$GITHUB_REPOSITORY",
+            "repoUrl": "$REPO_URL",
+            "description": $(node -p "try { JSON.stringify(require('fs').readFileSync('package.json', 'utf8').description || '') } catch(e) { 'null' }" 2>/dev/null || echo "null"),
+            "isPrivate": $([ "$GITHUB_REPOSITORY" = *"/private-"* ] && echo "true" || echo "false"),
+            "apiSpec": $API_SPEC,
+            "packageJson": {
+              "engines": { "node": "$NODE_VERSION" },
+              "dependencies": {
+                "react": "$REACT_VERSION",
+                "next": "$NEXT_VERSION"
+              },
+              "framework": "$FRAMEWORK"
+            },
+            "fileStructure": $([ \${#DEPLOYMENT_DETECTED[@]} -gt 0 ] && echo "$(printf '%s\n' "${DEPLOYMENT_DETECTED[@]}" | jq -R . | jq -s .)" || echo "[]"),
+            "metadata": {
+              "framework": "$FRAMEWORK",
+              "detectedDeployments": $(printf '%s\n' "${DEPLOYMENT_DETECTED[@]}" | jq -R . | jq -s .),
+              "gitBranch": "${GITHUB_REF#refs/heads/}",
+              "gitCommit": "$GITHUB_SHA",
+              "runId": "$GITHUB_RUN_ID",
+              "timestamp": "$(date -u +%Y-%m-%dT%H:%M:%SZ)"
+            }
+          }
+          EOF
+          )
+          
+          # Enhanced HTTP request with retry logic
+          echo "📤 Sending data to dashboard..."
+          
+          for attempt in {1..3}; do
+            echo "🔄 Attempt $attempt of 3..."
+            
+            HTTP_STATUS=$(curl -s -o response.json -w "%{http_code}" \
+              -X POST "$DASHBOARD_URL/api/system/ingest" \
+              -H "Content-Type: application/json" \
+              -H "x-api-key: $DASHBOARD_API_KEY" \
+              -H "User-Agent: GitHub-Actions-Dashboard-Sync/1.0" \
+              -d "$JSON_DATA")
+            
+            if [ "$HTTP_STATUS" -eq 200 ]; then
+              echo "✅ Sync successful!"
+              echo "📊 Response: $(cat response.json)"
+              break
+            else
+              echo "❌ Attempt $attempt failed (HTTP $HTTP_STATUS)"
+              echo "📄 Response body: $(cat response.json)"
+              
+              if [ $attempt -eq 3 ]; then
+                echo "💥 All attempts failed - giving up"
+                exit 1
+              fi
+              
+              # Exponential backoff
+              SLEEP_TIME=$((attempt * 10))
+              echo "⏳ Waiting ${SLEEP_TIME}s before retry..."
+              sleep $SLEEP_TIME
+            fi
+          done
+          
+          echo "🎉 Repository sync completed successfully!"

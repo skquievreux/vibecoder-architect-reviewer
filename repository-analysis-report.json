@@ -1,0 +1,76 @@
+{
+  "summary": {
+    "total": 159,
+    "private": 135,
+    "withApiSpec": 48,
+    "withInterfaces": 14,
+    "exportDate": "2025-12-23T07:43:39.508Z"
+  },
+  "pilot": [
+    {
+      "nameWithOwner": "skquievreux/DevVault",
+      "language": "TypeScript",
+      "interfaceCount": 0,
+      "lastUpdated": "2025-12-21T13:32:12.190Z"
+    },
+    {
+      "nameWithOwner": "skquievreux/leadmagnet-quiz-mitochondrien",
+      "language": "JavaScript",
+      "interfaceCount": 0,
+      "lastUpdated": "2025-12-21T09:45:25.984Z"
+    },
+    {
+      "nameWithOwner": "skquievreux/veridex",
+      "language": "HTML",
+      "interfaceCount": 0,
+      "lastUpdated": "2025-12-21T09:45:26.984Z"
+    },
+    {
+      "nameWithOwner": "skquievreux/s3-mcp-server",
+      "language": "JavaScript",
+      "interfaceCount": 0,
+      "lastUpdated": "2025-12-21T13:32:14.331Z"
+    },
+    {
+      "nameWithOwner": "skquievreux/clip-sync-collab",
+      "language": "TypeScript",
+      "interfaceCount": 0,
+      "lastUpdated": "2025-12-21T09:45:25.320Z"
+    },
+    {
+      "nameWithOwner": "skquievreux/albumpromotion",
+      "language": "TypeScript",
+      "interfaceCount": 0,
+      "lastUpdated": "2025-12-21T09:45:25.012Z"
+    },
+    {
+      "nameWithOwner": "skquievreux/art-vibe-gen",
+      "language": "TypeScript",
+      "interfaceCount": 0,
+      "lastUpdated": "2025-12-21T09:45:25.047Z"
+    },
+    {
+      "nameWithOwner": "skquievreux/agent-dialogue-manager",
+      "language": "TypeScript",
+      "interfaceCount": 0,
+      "lastUpdated": "2025-12-21T09:45:24.902Z"
+    },
+    {
+      "nameWithOwner": "skquievreux/visual-image-composer",
+      "language": null,
+      "interfaceCount": 0,
+      "lastUpdated": "2025-12-21T09:45:27.230Z"
+    },
+    {
+      "nameWithOwner": "skquievreux/youtube-landing-page",
+      "language": "TypeScript",
+      "interfaceCount": 0,
+      "lastUpdated": "2025-12-21T09:45:27.417Z"
+    }
+  ],
+  "rollout": {
+    "totalPrivate": 135,
+    "pilotCount": 10,
+    "remainingCount": 125
+  }
+}
