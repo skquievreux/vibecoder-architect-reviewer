@@ -68,13 +68,17 @@ export async function syncGithubRepos() {
     const token = process.env.GITHUB_TOKEN;
     const owner = process.env.GITHUB_OWNER;
 
-    const baseUrl = owner
-        ? `https://api.github.com/users/${owner}/repos`
-        : `https://api.github.com/user/repos`;
+    // Use the authenticated user endpoint to ensure we get PRIVATE repositories too
+    // The /users/:owner/repos endpoint ONLY returns public repos for users.
+    const baseUrl = `https://api.github.com/user/repos`;
+
+    // We add visibility=all to be explicit, though it's default for /user/repos
+    // We add affiliation=owner,collaborator,organization_member to get everything
+    const queryParams = `per_page=100&visibility=all&affiliation=owner,collaborator,organization_member`;
 
     while (hasNextPage) {
         // ... (fetching logic remains same)
-        const url = `${baseUrl}?per_page=100&type=all&page=${page}`;
+        const url = `${baseUrl}?${queryParams}&page=${page}`;
         try {
             const res = await fetch(url, {
                 headers: {
