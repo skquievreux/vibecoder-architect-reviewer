@@ -64,6 +64,9 @@ model Deployment {
   lastDeployedAt DateTime?
   detectedAt     DateTime   @default(now())
   repository     Repository @relation(fields: [repositoryId], references: [id], onDelete: Cascade)
+  verificationStatus String?    @default("PENDING") // VERIFIED, FAILED, PENDING
+  verificationProof  String?    // URL or text evidence
+  verifiedAt         DateTime?
 }
 
 model Technology {
