@@ -1,3 +1,10 @@
+# [2.13.0](https://github.com/skquievreux/vibecoder-architect-reviewer/compare/v2.12.1...v2.13.0) (2025-12-28)
+
+
+### Features
+
+* implement comprehensive security patching automation ([43239f8](https://github.com/skquievreux/vibecoder-architect-reviewer/commit/43239f89e71bc66b63f5de3f0e24ccd6c21aa996))
+
 ## [2.12.1](https://github.com/skquievreux/vibecoder-architect-reviewer/compare/v2.12.0...v2.12.1) (2025-12-23)
 
 
