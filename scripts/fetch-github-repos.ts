@@ -184,11 +184,20 @@ export async function syncGithubRepos() {
             if (pkgJson && repoId) {
                 const techs = detectTech(pkgJson);
                 for (const t of techs) {
-                    // Update or create tech
                     const techExists = await prisma.technology.findFirst({
                         where: { repositoryId: repoId, name: t.name }
                     });
-                    if (!techExists) {
+
+                    if (techExists) {
+                        // Update version if it changed
+                        if (techExists.version !== t.version) {
+                            await prisma.technology.update({
+                                where: { id: techExists.id },
+                                data: { version: t.version, category: t.category } // Update category too just in case
+                            });
+                            console.log(`      Updated ${t.name} from ${techExists.version} to ${t.version}`);
+                        }
+                    } else {
                         await prisma.technology.create({
                             data: {
                                 repositoryId: repoId,
@@ -197,6 +206,7 @@ export async function syncGithubRepos() {
                                 category: t.category
                             }
                         });
+                        console.log(`      Added ${t.name} ${t.version}`);
                     }
                 }
             }
