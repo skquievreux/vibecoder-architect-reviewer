@@ -8,9 +8,11 @@ const getVersionInfo = () => {
     // Fallback to package.json
     const packageJson = require('../package.json');
     const version = packageJson?.version || 'unknown';
-    
+    const nextVersion = packageJson?.dependencies?.next || 'unknown';
+
     return {
       version,
+      nextVersion,
       buildTime: new Date().toISOString(),
       environment: process.env.NODE_ENV || 'production',
       gitCommit: 'dev',
@@ -22,10 +24,11 @@ const getVersionInfo = () => {
 
 const logVersionInfo = (appName = 'Vibecoder Architect Reviewer') => {
   const versionInfo = getVersionInfo();
-  
+
   console.log(`\n🏗️  Building ${appName} v${versionInfo.version}`);
   console.log(`📅 Build Time: ${versionInfo.buildTime}`);
   console.log(`📦 Node.js: ${versionInfo.nodeVersion}`);
+  console.log(`▲ Next.js: ${versionInfo.nextVersion}`);
   console.log(`🔧 Platform: ${versionInfo.platform}`);
   console.log(`⚡ Environment: ${versionInfo.environment}`);
   console.log(`🔗 Git Commit: ${versionInfo.gitCommit}`);

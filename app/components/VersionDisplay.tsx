@@ -4,8 +4,9 @@ import { useEffect, useState } from "react";
 
 type BuildInfo = {
     version: string;
+    nextVersion?: string;
     buildTime: string;
-    commitHash: string;
+    gitCommit: string;
     env: string;
 };
 
@@ -20,12 +21,13 @@ export default function VersionDisplay() {
 
                 // Professional Console Log
                 console.log(
-                    `%c Architecture Review Dashboard %c v${data.version} `,
+                    `%c Architecture Review Dashboard %c v${data.version} %c Next.js ${data.nextVersion || '?'} `,
                     "background: #3b82f6; color: white; padding: 4px; border-radius: 4px 0 0 4px; font-weight: bold;",
-                    "background: #1e293b; color: white; padding: 4px; border-radius: 0 4px 4px 0;"
+                    "background: #1e293b; color: white; padding: 4px;",
+                    "background: #000000; color: white; padding: 4px; border-radius: 0 4px 4px 0;"
                 );
                 console.log(
-                    `%c Build: ${new Date(data.buildTime).toLocaleString()} | Commit: ${data.commitHash} `,
+                    `%c Build: ${new Date(data.buildTime).toLocaleString()} | Commit: ${data.gitCommit} `,
                     "color: #64748b; font-size: 11px;"
                 );
             })
@@ -36,10 +38,18 @@ export default function VersionDisplay() {
 
     return (
         <div className="fixed bottom-2 right-2 z-50 opacity-50 hover:opacity-100 transition-opacity">
-            <a href="/help" className="bg-slate-900/80 backdrop-blur text-white text-[10px] px-2 py-1 rounded-md shadow-lg flex items-center gap-2 border border-slate-700 hover:border-violet-500 transition-colors cursor-pointer">
+            <a href="/help"
+                title={`Build: ${buildInfo.buildTime}\nEnv: ${buildInfo.env}`}
+                className="bg-slate-900/80 backdrop-blur text-white text-[10px] px-2 py-1 rounded-md shadow-lg flex items-center gap-2 border border-slate-700 hover:border-violet-500 transition-colors cursor-pointer">
                 <span className="font-bold text-blue-400">v{buildInfo.version}</span>
                 <span className="text-slate-400">|</span>
-                <span className="font-mono text-slate-300">{buildInfo.commitHash}</span>
+                {buildInfo.nextVersion && (
+                    <>
+                        <span className="text-slate-300">Next.js {buildInfo.nextVersion.replace('^', '')}</span>
+                        <span className="text-slate-400">|</span>
+                    </>
+                )}
+                <span className="font-mono text-slate-300">{buildInfo.gitCommit}</span>
             </a>
         </div>
     );
