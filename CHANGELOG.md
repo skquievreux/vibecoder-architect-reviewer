@@ -1,3 +1,10 @@
+## [2.17.1](https://github.com/skquievreux/vibecoder-architect-reviewer/compare/v2.17.0...v2.17.1) (2025-12-29)
+
+
+### Bug Fixes
+
+* resolve build errors and implement sharp image optimization ([c754735](https://github.com/skquievreux/vibecoder-architect-reviewer/commit/c754735b33b6c7ee1fbc7306f68dda91b4c056c5))
+
 # [2.17.0](https://github.com/skquievreux/vibecoder-architect-reviewer/compare/v2.16.0...v2.17.0) (2025-12-29)
 
 
