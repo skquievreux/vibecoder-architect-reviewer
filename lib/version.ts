@@ -17,8 +17,6 @@ export interface VersionInfo {
   environment: string;
   /** Git commit hash */
   gitCommit: string;
-  /** Next.js version */
-  nextVersion: string;
   /** Node.js version */
   nodeVersion: string;
   /** Platform information */
@@ -64,7 +62,6 @@ export const getVersionInfo = (): VersionInfo => {
 
   return {
     version,
-    nextVersion,
     buildTime,
     environment,
     gitCommit,
@@ -83,7 +80,6 @@ export const logVersionInfo = (appName: string = 'Vibecoder Architect Reviewer')
   console.log(`\n🏗️  Building ${appName} v${versionInfo.version}`);
   console.log(`📅 Build Time: ${versionInfo.buildTime}`);
   console.log(`📦 Node.js: ${versionInfo.nodeVersion}`);
-  console.log(`▲ Next.js: ${versionInfo.nextVersion}`);
   console.log(`🔧 Platform: ${versionInfo.platform}`);
   console.log(`⚡ Environment: ${versionInfo.environment}`);
   console.log(`🔗 Git Commit: ${versionInfo.gitCommit}`);
@@ -108,7 +104,6 @@ export const getConsoleVersionInfo = (appName: string = 'Vibecoder Architect Rev
 
   return [
     `🚀 ${appName} v${versionInfo.version}`,
-    `▲ Next.js: ${versionInfo.nextVersion}`,
     `📅 Built: ${versionInfo.buildTime}`,
     `🔗 Commit: ${versionInfo.gitCommit}`,
     `🌐 Environment: ${versionInfo.environment}`,
