@@ -19,8 +19,10 @@ export interface VersionInfo {
   gitCommit: string;
   /** Node.js version */
   nodeVersion: string;
-  /** Platform information */
+  /** platform information */
   platform: string;
+  /** Next.js version from package.json */
+  nextVersion: string;
 }
 
 /**
@@ -66,7 +68,8 @@ export const getVersionInfo = (): VersionInfo => {
     environment,
     gitCommit,
     nodeVersion,
-    platform
+    platform,
+    nextVersion
   };
 };
 
