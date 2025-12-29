@@ -1,3 +1,15 @@
+# [2.17.0](https://github.com/skquievreux/vibecoder-architect-reviewer/compare/v2.16.0...v2.17.0) (2025-12-29)
+
+
+### Bug Fixes
+
+* **api:** update route handler params to awaitable promise for Next.js 15+ ([77e2c20](https://github.com/skquievreux/vibecoder-architect-reviewer/commit/77e2c2052980a0d639aa13aab54d9ff9510a7e39))
+
+
+### Features
+
+* enhance sync scripts with deep search and distribution logic ([d26c60b](https://github.com/skquievreux/vibecoder-architect-reviewer/commit/d26c60be8a435581e631b609f1395badee1ae223))
+
 # [2.16.0](https://github.com/skquievreux/vibecoder-architect-reviewer/compare/v2.15.0...v2.16.0) (2025-12-29)
 
 
