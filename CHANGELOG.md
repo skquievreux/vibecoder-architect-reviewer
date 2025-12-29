@@ -1,3 +1,11 @@
+# [2.14.0](https://github.com/skquievreux/vibecoder-architect-reviewer/compare/v2.13.0...v2.14.0) (2025-12-29)
+
+
+### Features
+
+* **ops:** add security automation and branch protection scripts ([6738625](https://github.com/skquievreux/vibecoder-architect-reviewer/commit/6738625016228e7c9d9e95517c789cc20e077089))
+* **ui:** display Next.js version in footer and console ([57ace0c](https://github.com/skquievreux/vibecoder-architect-reviewer/commit/57ace0cb88b77f4c43f9c11aed38a6cd0744ad15))
+
 # [2.13.0](https://github.com/skquievreux/vibecoder-architect-reviewer/compare/v2.12.1...v2.13.0) (2025-12-28)
 
 
