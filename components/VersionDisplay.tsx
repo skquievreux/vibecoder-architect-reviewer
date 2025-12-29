@@ -19,7 +19,7 @@ export const VersionDisplay = () => {
   }, []);
 
   return (
-    <div 
+    <div
       className="version-info"
       style={{
         fontSize: '0.75rem',
@@ -29,7 +29,7 @@ export const VersionDisplay = () => {
         padding: '0.5rem'
       }}
     >
-      <span title={`Build: ${versionInfo.buildTime}\nCommit: ${versionInfo.gitCommit}\nPlatform: ${versionInfo.platform}`}>
+      <span title={`Next.js: ${versionInfo.nextVersion}\nBuild: ${versionInfo.buildTime}\nCommit: ${versionInfo.gitCommit}\nPlatform: ${versionInfo.platform}`}>
         {getVersionDisplay()}
       </span>
     </div>
@@ -43,7 +43,7 @@ export const FooterVersion = () => {
   const versionInfo = getVersionInfo();
 
   return (
-    <footer 
+    <footer
       className="footer-version"
       style={{
         position: 'fixed',
@@ -59,9 +59,11 @@ export const FooterVersion = () => {
         zIndex: 50,
         opacity: 0.7
       }}
-      title={`Version: ${versionInfo.version}\nBuild: ${versionInfo.buildTime}\nCommit: ${versionInfo.gitCommit}\nEnvironment: ${versionInfo.environment}`}
+      title={`Version: ${versionInfo.version}\nNext.js: ${versionInfo.nextVersion}\nBuild: ${versionInfo.buildTime}\nCommit: ${versionInfo.gitCommit}\nEnvironment: ${versionInfo.environment}`}
     >
       v{versionInfo.version}
+      <span style={{ margin: '0 5px', opacity: 0.4 }}>|</span>
+      Next.js {versionInfo.nextVersion?.replace('^', '')}
       {versionInfo.environment === 'development' && <span style={{ color: 'var(--destructive)' }}> (dev)</span>}
     </footer>
   );

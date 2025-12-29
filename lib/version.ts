@@ -17,6 +17,8 @@ export interface VersionInfo {
   environment: string;
   /** Git commit hash */
   gitCommit: string;
+  /** Next.js version */
+  nextVersion: string;
   /** Node.js version */
   nodeVersion: string;
   /** Platform information */
@@ -27,16 +29,30 @@ export interface VersionInfo {
  * Get version information from package.json
  * This is the single source of truth for version display
  */
+// lib/version.ts
 export const getVersionInfo = (): VersionInfo => {
   // Use dynamic import to avoid build-time type issues
-  const packageJson = eval('require')('../../../package.json');
+  // Note: The path implies this runs from a deep build artifact location
+  let packageJson;
+  try {
+    packageJson = eval('require')('../../../package.json');
+  } catch {
+    try {
+      // Fallback for local dev execution if path differs
+      packageJson = eval('require')('../package.json');
+    } catch {
+      packageJson = {};
+    }
+  }
+
   const version = packageJson?.version || 'unknown';
-  
+  const nextVersion = packageJson?.dependencies?.next || 'unknown';
+
   const buildTime = new Date().toISOString();
   const environment = typeof process !== 'undefined' ? (process.env.NODE_ENV || 'development') : 'development';
   const nodeVersion = typeof process !== 'undefined' ? process.version : 'unknown';
   const platform = typeof process !== 'undefined' ? process.platform : 'unknown';
-  
+
   // Simple git commit detection using eval to avoid type issues
   let gitCommit = 'dev';
   try {
@@ -48,6 +64,7 @@ export const getVersionInfo = (): VersionInfo => {
 
   return {
     version,
+    nextVersion,
     buildTime,
     environment,
     gitCommit,
@@ -62,10 +79,11 @@ export const getVersionInfo = (): VersionInfo => {
  */
 export const logVersionInfo = (appName: string = 'Vibecoder Architect Reviewer'): void => {
   const versionInfo = getVersionInfo();
-  
+
   console.log(`\n🏗️  Building ${appName} v${versionInfo.version}`);
   console.log(`📅 Build Time: ${versionInfo.buildTime}`);
   console.log(`📦 Node.js: ${versionInfo.nodeVersion}`);
+  console.log(`▲ Next.js: ${versionInfo.nextVersion}`);
   console.log(`🔧 Platform: ${versionInfo.platform}`);
   console.log(`⚡ Environment: ${versionInfo.environment}`);
   console.log(`🔗 Git Commit: ${versionInfo.gitCommit}`);
@@ -87,9 +105,10 @@ export const getVersionDisplay = (): string => {
  */
 export const getConsoleVersionInfo = (appName: string = 'Vibecoder Architect Reviewer'): string[] => {
   const versionInfo = getVersionInfo();
-  
+
   return [
     `🚀 ${appName} v${versionInfo.version}`,
+    `▲ Next.js: ${versionInfo.nextVersion}`,
     `📅 Built: ${versionInfo.buildTime}`,
     `🔗 Commit: ${versionInfo.gitCommit}`,
     `🌐 Environment: ${versionInfo.environment}`,
