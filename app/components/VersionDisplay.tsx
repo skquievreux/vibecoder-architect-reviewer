@@ -37,19 +37,20 @@ export default function VersionDisplay() {
     if (!buildInfo) return null;
 
     return (
-        <div className="fixed bottom-2 right-2 z-50 opacity-50 hover:opacity-100 transition-opacity">
+        <div className="fixed bottom-2 right-2 z-50">
             <a href="/help"
                 title={`Build: ${buildInfo.buildTime}\nEnv: ${buildInfo.env}`}
-                className="bg-slate-900/80 backdrop-blur text-white text-[10px] px-2 py-1 rounded-md shadow-lg flex items-center gap-2 border border-slate-700 hover:border-violet-500 transition-colors cursor-pointer">
-                <span className="font-bold text-blue-400">v{buildInfo.version}</span>
-                <span className="text-slate-400">|</span>
+                className="bg-slate-900 text-white text-[11px] px-3 py-1.5 rounded-full shadow-lg flex items-center gap-2 border border-violet-500/50 hover:border-violet-400 hover:bg-slate-800 transition-all cursor-pointer group hover:shadow-violet-500/20 hover:-translate-y-0.5"
+            >
+                <span className="font-bold text-violet-400 group-hover:text-violet-300">v{buildInfo.version}</span>
+                <span className="text-slate-600">|</span>
                 {buildInfo.nextVersion && (
                     <>
-                        <span className="text-slate-300">Next.js {buildInfo.nextVersion.replace('^', '')}</span>
-                        <span className="text-slate-400">|</span>
+                        <span className="text-slate-300 group-hover:text-white">Next.js {buildInfo.nextVersion.replace('^', '')}</span>
+                        <span className="text-slate-600">|</span>
                     </>
                 )}
-                <span className="font-mono text-slate-300">{buildInfo.gitCommit}</span>
+                <span className="font-mono text-slate-500 group-hover:text-slate-400">{buildInfo.gitCommit}</span>
             </a>
         </div>
     );
