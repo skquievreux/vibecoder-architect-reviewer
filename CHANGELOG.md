@@ -1,3 +1,10 @@
+# [2.16.0](https://github.com/skquievreux/vibecoder-architect-reviewer/compare/v2.15.0...v2.16.0) (2025-12-29)
+
+
+### Features
+
+* **sync:** update technology versions on sync instead of only creating new entries ([f563cf0](https://github.com/skquievreux/vibecoder-architect-reviewer/commit/f563cf06637147ad33cb81dcef05d124bdefca28))
+
 # [2.15.0](https://github.com/skquievreux/vibecoder-architect-reviewer/compare/v2.14.0...v2.15.0) (2025-12-29)
 
 
