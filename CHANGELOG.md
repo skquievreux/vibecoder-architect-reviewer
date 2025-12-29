@@ -1,3 +1,10 @@
+# [2.15.0](https://github.com/skquievreux/vibecoder-architect-reviewer/compare/v2.14.0...v2.15.0) (2025-12-29)
+
+
+### Features
+
+* **ui:** display Next.js version in floating badge ([4fd802a](https://github.com/skquievreux/vibecoder-architect-reviewer/commit/4fd802ae4c90e4ba1f96eaad0f9069b6f3f485fe))
+
 # [2.14.0](https://github.com/skquievreux/vibecoder-architect-reviewer/compare/v2.13.0...v2.14.0) (2025-12-29)
 
 
