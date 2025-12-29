@@ -25,7 +25,7 @@ tags: ["overview", "portfolio", "architecture", "ai"]
 
 ## 📋 Inhaltsverzeichnis
 
-- [📚 Documentation Guide](./DOCS.md) - Complete documentation index
+- [📚 Documentation Reference](./docs/05-reference/DOCUMENTATION.md) - Complete documentation
 - [🎯 Overview](#overview) - Project goals and capabilities
 - [✨ Features](#features) - Detailed feature list
 - [🚀 Quick Start](#quick-start) - Getting started instructions
@@ -201,7 +201,7 @@ docs/
 ```
 
 ### 🔗 Documentation Index
-For complete documentation, see: [📚 Documentation Guide](./DOCS.md)
+For complete documentation, see: [📚 Documentation Reference](./docs/05-reference/DOCUMENTATION.md)
 
 ### 📋 Governance Standards
 - **Metadata Frontmatter**: All docs include standardized YAML frontmatter
@@ -215,10 +215,11 @@ For complete documentation, see: [📚 Documentation Guide](./DOCS.md)
 
 ### Hilfe benötigt?
 
-1. **📚 Documentation**: [Complete Documentation Guide](./DOCS.md)
-2. **🔧 Troubleshooting**: [Troubleshooting Guide](./docs/03-operations/troubleshooting.md)
+1. **📚 Documentation**: [Complete Documentation Reference](./docs/05-reference/DOCUMENTATION.md)
+2. **🔧 Troubleshooting**: [Docker Troubleshooting Guide](./docs/03-operations/docker-troubleshooting-guide.md)
 3. **⚙️ Setup-Guide**: [Setup Documentation](./docs/02-implementation/setup-guide.md)
 4. **🏗️ Architecture**: [Architecture Decisions](./docs/01-architecture/)
+
 
 ### Nützliche Befehle
 
