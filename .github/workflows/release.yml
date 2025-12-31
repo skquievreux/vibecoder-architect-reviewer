@@ -30,6 +30,8 @@ jobs:
           cache: npm
 
       - name: Install Semantic Release & Plugins
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           npm install --no-save \
             semantic-release \
