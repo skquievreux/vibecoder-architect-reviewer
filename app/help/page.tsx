@@ -1,7 +1,7 @@
 "use client";
 
 import { Title, Text, Card, Tab, TabList, TabGroup, TabPanels, TabPanel, Badge } from "@tremor/react";
-import { LayoutDashboard, Layers, Sparkles, Cloud, Settings, BookOpen, HelpCircle, Activity, Database, Code, Globe, CheckCircle, AlertTriangle } from "lucide-react";
+import { LayoutDashboard, Layers, Sparkles, Cloud, Settings, BookOpen, HelpCircle, Activity, Database, Code, Globe, CheckCircle, AlertTriangle, TrendingUp } from "lucide-react";
 
 export default function HelpPage() {
     return (
@@ -24,9 +24,11 @@ export default function HelpPage() {
                         <Tab icon={Sparkles}>Architecture</Tab>
                         <Tab icon={Cloud}>Operations</Tab>
                         <Tab icon={Settings}>Settings</Tab>
+                        <Tab icon={TrendingUp}>Business</Tab>
                     </TabList>
                     <TabPanels>
                         <TabPanel>
+                            {/* Dashboard Content */}
                             <div className="mt-6 space-y-6">
                                 <Card className="glass-card">
                                     <Title className="text-white mb-4">Dashboard Overview</Title>
@@ -56,6 +58,7 @@ export default function HelpPage() {
                             </div>
                         </TabPanel>
                         <TabPanel>
+                            {/* Portfolio Content */}
                             <div className="mt-6 space-y-6">
                                 <Card className="glass-card">
                                     <Title className="text-white mb-4">Portfolio Management</Title>
@@ -122,6 +125,7 @@ export default function HelpPage() {
                             </div>
                         </TabPanel>
                         <TabPanel>
+                            {/* Architecture Content */}
                             <div className="mt-6 space-y-6">
                                 <Card className="glass-card">
                                     <Title className="text-white mb-4">Architecture Advisor</Title>
@@ -166,6 +170,7 @@ export default function HelpPage() {
                             </div>
                         </TabPanel>
                         <TabPanel>
+                            {/* Operations Content */}
                             <div className="mt-6 space-y-6">
                                 <Card className="glass-card">
                                     <Title className="text-white mb-4">Operations & Monitoring</Title>
@@ -191,6 +196,7 @@ export default function HelpPage() {
                             </div>
                         </TabPanel>
                         <TabPanel>
+                            {/* Settings Content */}
                             <div className="mt-6 space-y-6">
                                 <Card className="glass-card">
                                     <Title className="text-white mb-4">Settings & Maintenance</Title>
@@ -259,6 +265,43 @@ export default function HelpPage() {
                                 </Card>
                             </div>
                         </TabPanel>
+                        <TabPanel>
+                            {/* Business Intelligence Content */}
+                            <div className="mt-6 space-y-6">
+                                <Card className="glass-card">
+                                    <Title className="text-white mb-4">Business Intelligence</Title>
+                                    <Text className="text-slate-300 mb-6">
+                                        Connects your code to your business strategy. Monitor KPIs, personas, and campaigns.
+                                    </Text>
+
+                                    <div className="space-y-6">
+                                        <section>
+                                            <h3 className="text-lg font-bold text-violet-400 mb-3">Marketing Dashboard</h3>
+                                            <div className="bg-slate-900/50 p-4 rounded-lg border border-slate-800">
+                                                <p className="text-slate-300 text-sm mb-3">
+                                                    Visualize key performance indicators (KPIs) driven by your markdown documentation.
+                                                </p>
+                                                <ul className="list-disc list-inside text-sm text-slate-400 space-y-2">
+                                                    <li><strong>ARR Targets:</strong> Track revenue goals like Annual Recurring Revenue.</li>
+                                                    <li><strong>Campaign Budgets:</strong> Monitor spending against your quarterly budget.</li>
+                                                    <li><strong>Customer Personas:</strong> Visualize target audience segments and their lifetime value (LTV).</li>
+                                                </ul>
+                                            </div>
+                                        </section>
+
+                                        <section>
+                                            <h3 className="text-lg font-bold text-blue-400 mb-3">Integration with Obsidian Hub</h3>
+                                            <div className="bg-slate-900/50 p-4 rounded-lg border border-slate-800">
+                                                <p className="text-slate-300 text-sm">
+                                                    The data here is synchronized from your <strong>Business Intelligence Hub</strong> (Obsidian Vault).
+                                                    Manage your strategy documents (`Marketing-Strategy.md`, `Campaigns.md`) in git, and see the results here live.
+                                                </p>
+                                            </div>
+                                        </section>
+                                    </div>
+                                </Card>
+                            </div>
+                        </TabPanel>
                     </TabPanels>
                 </TabGroup>
 
@@ -278,6 +321,6 @@ export default function HelpPage() {
                     </Card>
                 </div>
             </div>
-        </main>
+        </main >
     );
 }
