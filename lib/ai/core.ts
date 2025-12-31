@@ -20,6 +20,11 @@ const PROVIDERS = {
         baseUrl: "https://openrouter.ai/api/v1",
         defaultModel: "google/gemini-2.0-flash-exp:free", // Good fallback
         envKey: "OPENROUTER_API_KEY"
+    },
+    vercel: {
+        baseUrl: "https://ai-gateway.vercel.sh/v1",
+        defaultModel: "perplexity/sonar",
+        envKey: "AI_GATEWAY_API_KEY"
     }
 };
 
