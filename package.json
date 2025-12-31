@@ -13,7 +13,6 @@
     "maintain:verify": "npx -y dotenv-cli -e .env.local -- node scripts/verify-tasks.js",
     "maintain:node": "node scripts/standardize-node.js ../",
     "maintain:audit": "npx -y dotenv-cli -e .env.local -- node scripts/audit-ecosystem.js ../",
-    "preinstall": "node -e \"console.log('>>> DEBUG CHECK: NPM_TOKEN defined:', !!process.env.NPM_TOKEN, 'Length:', process.env.NPM_TOKEN ? process.env.NPM_TOKEN.length : 0)\"",
     "start": "next start",
     "lint": "eslint",
     "enrich": "npx tsx scripts/enrich-portfolio.ts",
