@@ -32,8 +32,10 @@ export async function GET() {
     const token = fileKey || process.env.GITHUB_TOKEN;
 
     if (!token) {
+        console.error("❌ GITHUB_TOKEN missing in audit route");
         return NextResponse.json({ error: 'GITHUB_TOKEN not configured' }, { status: 500 });
     }
+    // console.log("✅ Audit Route: Token loaded (" + token.substring(0, 4) + "...)");
 
     try {
         // 1. Fetch all repos
@@ -154,6 +156,7 @@ export async function GET() {
 
         return NextResponse.json({ results: cleanResults });
     } catch (error: any) {
+        console.error("❌ GitHub Audit API Error:", error);
         return NextResponse.json({ error: error.message }, { status: 500 });
     }
 }
