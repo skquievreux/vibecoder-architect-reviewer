@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useState, useEffect } from 'react';
 import { useSession, signOut } from 'next-auth/react';
-import { LayoutDashboard, FileText, Settings, Activity, Database, Menu, X, Layers, Cloud, Sparkles, BookOpen, Code, ShieldCheck, HelpCircle, LogOut, User } from 'lucide-react';
+import { LayoutDashboard, FileText, Settings, Activity, Database, Menu, X, Layers, Cloud, Sparkles, BookOpen, Code, ShieldCheck, HelpCircle, LogOut, User, TrendingUp } from 'lucide-react';
 import { Icon } from '@quievreux/ui';
 import NotificationCenter from './NotificationCenter';
 import ThemeToggle from './ThemeToggle';
@@ -27,6 +27,12 @@ const NAVIGATION = {
             { name: 'Strategy', href: '/report/strategy', icon: Activity },
             { name: 'AI Report', href: '/report', icon: FileText },
         ]
+    },
+    business: {
+        name: 'Business',
+        href: '/business-intelligence',
+        icon: TrendingUp,
+        items: []
     },
     architecture: {
         name: 'Architecture',
@@ -79,6 +85,8 @@ export default function Navbar() {
                 setActiveContext('dashboard');
             } else if (pathname.startsWith('/portfolio') || pathname.startsWith('/report/portfolio') || pathname.startsWith('/report/strategy') || pathname === '/report') {
                 setActiveContext('portfolio');
+            } else if (pathname.startsWith('/business-intelligence')) {
+                setActiveContext('business');
             } else if (pathname.startsWith('/architect') || pathname.startsWith('/developer')) {
                 setActiveContext('architecture');
             } else if (pathname.startsWith('/providers') || pathname.startsWith('/report/providers') || pathname.startsWith('/logs')) {

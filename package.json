@@ -38,6 +38,7 @@
     "csv-parse": "^6.1.0",
     "dagre": "^0.8.5",
     "dotenv": "^17.2.3",
+    "gray-matter": "^4.0.3",
     "html2canvas": "^1.4.1",
     "jspdf": "^3.0.4",
     "lucide-react": "^0.562.0",
