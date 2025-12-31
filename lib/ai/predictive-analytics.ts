@@ -1,7 +1,6 @@
 import OpenAI from "openai";
 import prisma from "@/lib/prisma";
-
-const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
+import { getAIClient, getModel } from "@/lib/ai/core";
 
 export type PredictionType =
   | "MAINTENANCE_NEEDED"
@@ -102,8 +101,8 @@ Format your response as JSON:
   "estimatedHours": number
 }`;
 
-    const response = await openai.chat.completions.create({
-      model: "gpt-4",
+    const response = await getAIClient().chat.completions.create({
+      model: getModel(),
       messages: [
         {
           role: "system",
@@ -206,8 +205,8 @@ Response format (JSON):
   "suggestedAction": "consolidate|maintain|archive"
 }`;
 
-    const response = await openai.chat.completions.create({
-      model: "gpt-4",
+    const response = await getAIClient().chat.completions.create({
+      model: getModel(),
       messages: [
         {
           role: "system",
@@ -288,8 +287,8 @@ Response format (JSON):
   "potentialSavings": number
 }`;
 
-    const response = await openai.chat.completions.create({
-      model: "gpt-4",
+    const response = await getAIClient().chat.completions.create({
+      model: getModel(),
       messages: [
         {
           role: "system",

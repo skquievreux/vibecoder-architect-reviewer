@@ -1,7 +1,6 @@
 import OpenAI from "openai";
 import prisma from "@/lib/prisma";
-
-const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
+import { getAIClient, getModel } from "@/lib/ai/core";
 
 export interface CodeReviewResult {
   reviewId: string;
@@ -100,8 +99,8 @@ Format your response as JSON with the following structure:
   "summary": "Overall assessment"
 }`;
 
-    const response = await openai.chat.completions.create({
-      model: "gpt-4",
+    const response = await getAIClient().chat.completions.create({
+      model: getModel(),
       messages: [
         {
           role: "system",

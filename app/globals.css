@@ -1,3 +1,4 @@
+@import '@quievreux/ui/styles';
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

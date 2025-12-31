@@ -8,12 +8,15 @@ module.exports = {
         "./pages/**/*.{js,ts,jsx,tsx,mdx}",
         "./components/**/*.{js,ts,jsx,tsx,mdx}",
         "./node_modules/@tremor/**/*.{js,ts,jsx,tsx}",
+        "./node_modules/@quievreux/ui/dist/**/*.{js,mjs}",
     ],
     theme: {
         transparent: "transparent",
         current: "currentColor",
         extend: {
             colors: {
+                primary: "hsl(var(--q-color-primary))",
+                secondary: "hsl(var(--q-color-secondary))",
                 background: "var(--background)",
                 foreground: "var(--foreground)",
                 slate: {

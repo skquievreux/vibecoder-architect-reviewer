@@ -46,10 +46,18 @@ async function fetchRawFile(fullName: string, defaultBranch: string, filePath: s
 // Helper to detect technology from package.json
 function detectTech(pkgJson: any): any[] {
     const tech = [];
+    const deps = { ...(pkgJson?.dependencies || {}), ...(pkgJson?.devDependencies || {}) };
+
     if (pkgJson?.engines?.node) tech.push({ name: 'Node.js', version: pkgJson.engines.node, category: 'Runtime' });
-    if (pkgJson?.dependencies?.react) tech.push({ name: 'React', version: pkgJson.dependencies.react, category: 'Framework' });
-    if (pkgJson?.dependencies?.next) tech.push({ name: 'Next.js', version: pkgJson.dependencies.next, category: 'Framework' });
-    if (pkgJson?.dependencies?.['@nestjs/core']) tech.push({ name: 'NestJS', version: pkgJson.dependencies['@nestjs/core'], category: 'Framework' });
+    if (deps.react) tech.push({ name: 'React', version: deps.react, category: 'Framework' });
+    if (deps.next) tech.push({ name: 'Next.js', version: deps.next, category: 'Framework' });
+    if (deps['@nestjs/core']) tech.push({ name: 'NestJS', version: deps['@nestjs/core'], category: 'Framework' });
+    if (deps.typescript) tech.push({ name: 'TypeScript', version: deps.typescript, category: 'Language' });
+    if (deps.tailwindcss) tech.push({ name: 'TailwindCSS', version: deps.tailwindcss, category: 'Styling' });
+    if (deps.prisma) tech.push({ name: 'Prisma', version: deps.prisma, category: 'Database' });
+    if (deps.drizzle) tech.push({ name: 'Drizzle', version: deps.drizzle, category: 'Database' });
+    if (deps.trpc) tech.push({ name: 'tRPC', version: deps.trpc, category: 'API' });
+
     return tech;
 }
 

@@ -3,6 +3,7 @@
 import { Card, Title, Text, Badge, Grid, Select, SelectItem, MultiSelect, MultiSelectItem, Table, TableHead, TableHeaderCell, TableBody, TableRow, TableCell } from "@tremor/react";
 import { useState, useEffect } from "react";
 import { Search, Server, Database, Code, Globe, ExternalLink, AlertTriangle, RefreshCw, LayoutGrid, List, ChevronLeft, ChevronRight, ArrowUp, ArrowDown, Sparkles, Activity, Star } from "lucide-react";
+import { Icon } from "@quievreux/ui";
 import Link from "next/link";
 import FavoriteButton from "./FavoriteButton";
 import { useSession } from "next-auth/react";
@@ -335,7 +336,7 @@ export default function DashboardClient({ initialRepos }: DashboardClientProps) 
 
                 <div className="flex flex-col md:flex-row gap-4">
                     <div className="relative flex-grow">
-                        <Search className="absolute left-3 top-3 text-slate-500" size={20} />
+                        <Icon icon={Search} className="absolute left-3 top-3 text-slate-500 w-5 h-5" />
                         <input
                             type="text"
                             placeholder="Search repositories or technologies..."
@@ -373,14 +374,14 @@ export default function DashboardClient({ initialRepos }: DashboardClientProps) 
                             className={`p-2 rounded ${viewMode === 'grid' ? 'bg-slate-800 text-violet-400' : 'text-slate-500 hover:text-slate-300'}`}
                             title="Grid View"
                         >
-                            <LayoutGrid size={20} />
+                            <Icon icon={LayoutGrid} className="w-5 h-5" />
                         </button>
                         <button
                             onClick={() => setViewMode('list')}
                             className={`p-2 rounded ${viewMode === 'list' ? 'bg-slate-800 text-violet-400' : 'text-slate-500 hover:text-slate-300'}`}
                             title="List View"
                         >
-                            <List size={20} />
+                            <Icon icon={List} className="w-5 h-5" />
                         </button>
                     </div>
                 </div>
@@ -507,7 +508,7 @@ export default function DashboardClient({ initialRepos }: DashboardClientProps) 
                                         <div className="flex items-center gap-2">
                                             <span>Created: {new Date(item.repo.pushedAt || item.repo.updatedAt).toLocaleDateString()}</span>
                                             <a href={item.repo.url} target="_blank" className="flex items-center gap-1 text-violet-400 hover:text-violet-300 hover:underline">
-                                                GitHub <ExternalLink size={12} />
+                                                GitHub <Icon icon={ExternalLink} className="w-3 h-3" />
                                             </a>
                                         </div>
                                     </div>
@@ -527,7 +528,7 @@ export default function DashboardClient({ initialRepos }: DashboardClientProps) 
                                         <div className="flex items-center gap-1">
                                             Name
                                             {sortConfig.key === 'name' && (
-                                                sortConfig.direction === 'asc' ? <ArrowUp size={14} /> : <ArrowDown size={14} />
+                                                sortConfig.direction === 'asc' ? <Icon icon={ArrowUp} className="w-3.5 h-3.5" /> : <Icon icon={ArrowDown} className="w-3.5 h-3.5" />
                                             )}
                                         </div>
                                     </TableHeaderCell>
@@ -656,12 +657,12 @@ export default function DashboardClient({ initialRepos }: DashboardClientProps) 
                                                         const href = d.url.startsWith('http') ? d.url : `https://${d.url}`;
                                                         return (
                                                             <a key={d.id} href={href} target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-violet-400" title={d.provider}>
-                                                                <Globe size={16} />
+                                                                <Icon icon={Globe} className="w-4 h-4" />
                                                             </a>
                                                         );
                                                     })}
                                                     <a href={item.repo.url} target="_blank" className="text-slate-400 hover:text-white" title="GitHub">
-                                                        <ExternalLink size={16} />
+                                                        <Icon icon={ExternalLink} className="w-4 h-4" />
                                                     </a>
                                                 </div>
                                             </TableCell>
@@ -682,7 +683,7 @@ export default function DashboardClient({ initialRepos }: DashboardClientProps) 
                             onClick={() => setCurrentPage(p => p - 1)}
                             className="p-2 border border-slate-700 rounded hover:bg-slate-800 disabled:opacity-50 disabled:cursor-not-allowed text-slate-300"
                         >
-                            <ChevronLeft size={16} />
+                            <Icon icon={ChevronLeft} className="w-4 h-4" />
                         </button>
                         <div className="flex items-center px-2">
                             <span className="text-sm font-medium text-slate-300">{currentPage} / {totalPages || 1}</span>
@@ -692,7 +693,7 @@ export default function DashboardClient({ initialRepos }: DashboardClientProps) 
                             onClick={() => setCurrentPage(p => p + 1)}
                             className="p-2 border border-slate-700 rounded hover:bg-slate-800 disabled:opacity-50 disabled:cursor-not-allowed text-slate-300"
                         >
-                            <ChevronRight size={16} />
+                            <Icon icon={ChevronRight} className="w-4 h-4" />
                         </button>
                     </div>
                 </div>

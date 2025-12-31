@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import prisma from '@/lib/prisma';
-import { safeCompletion } from '@/lib/ai/core';
+import { safeCompletion, getModel } from '@/lib/ai/core';
 
 export async function POST(req: Request) {
     try {
@@ -68,7 +68,7 @@ export async function POST(req: Request) {
         }
 
         const completion = await safeCompletion({
-            model: "sonar-pro",
+            model: getModel(),
             messages: [
                 { role: "system", content: systemPrompt },
                 ...sanitizedHistory.map((msg: any) => ({ role: msg.role, content: msg.content })),

@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { safeCompletion } from '@/lib/ai/core';
+import { safeCompletion, getModel } from '@/lib/ai/core';
 import prisma from '@/lib/prisma';
 
 export async function POST() {
@@ -40,7 +40,7 @@ export async function POST() {
 
             try {
                 const completion = await safeCompletion({
-                    model: "sonar-pro",
+                    model: getModel(),
                     messages: [
                         { role: "system", content: "Du bist ein technischer Redakteur." },
                         { role: "user", content: prompt }

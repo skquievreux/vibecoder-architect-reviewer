@@ -6,43 +6,41 @@ import * as dotenv from 'dotenv';
 
 // --- Configuration ---
 // These can be tuned via ENV vars
-const RATE_LIMIT_DELAY = 2000; // 2 seconds explicit delay between requests to be safe
+const RATE_LIMIT_DELAY = 1000; // Reduced delay for OpenRouter
 const MAX_RETRIES = 3;
 
+// --- Provider Constants ---
+const PROVIDERS = {
+    perplexity: {
+        baseUrl: "https://api.perplexity.ai",
+        defaultModel: "sonar-pro",
+        envKey: "PERPLEXITY_API_KEY"
+    },
+    openrouter: {
+        baseUrl: "https://openrouter.ai/api/v1",
+        defaultModel: "google/gemini-2.0-flash-exp:free", // Good fallback
+        envKey: "OPENROUTER_API_KEY"
+    }
+};
+
 // --- Environment Loading Helper ---
-// Ensures we find keys even when running isolated scripts
-function getApiKey(): string | null {
-    // 1. Standard process.env
-    if (process.env.PERPLEXITY_API_KEY) return process.env.PERPLEXITY_API_KEY;
-    if (process.env.PERPLEXITY_API_TOKEN) return process.env.PERPLEXITY_API_TOKEN;
-    if (process.env.OPENAI_API_KEY) return process.env.OPENAI_API_KEY;
+function getEnv(key: string): string | null {
+    // 1. Process Env
+    if (process.env[key]) return process.env[key]!;
 
-    console.warn("⚠️ [AI Core] Keys missing in process.env. Attempting manual file load...");
-
-    // 2. Manual Load via dotenv
+    // 2. Manual Load via dotenv (Fallback)
     try {
         const envLocal = path.join(process.cwd(), '.env.local');
         if (fs.existsSync(envLocal)) {
-            console.log(`[AI Core] Reading ${envLocal}`);
             const envConfig = dotenv.parse(fs.readFileSync(envLocal));
-            if (envConfig.PERPLEXITY_API_KEY) return envConfig.PERPLEXITY_API_KEY;
-            if (envConfig.PERPLEXITY_API_TOKEN) return envConfig.PERPLEXITY_API_TOKEN;
-            if (envConfig.OPENAI_API_KEY) return envConfig.OPENAI_API_KEY;
-        } else {
-            console.log(`[AI Core] .env.local not found at ${envLocal}`);
+            if (envConfig[key]) return envConfig[key];
         }
-
         const env = path.join(process.cwd(), '.env');
         if (fs.existsSync(env)) {
-            console.log(`[AI Core] Reading ${env}`);
             const envConfig = dotenv.parse(fs.readFileSync(env));
-            if (envConfig.PERPLEXITY_API_KEY) return envConfig.PERPLEXITY_API_KEY;
-            if (envConfig.PERPLEXITY_API_TOKEN) return envConfig.PERPLEXITY_API_TOKEN;
-            if (envConfig.OPENAI_API_KEY) return envConfig.OPENAI_API_KEY;
+            if (envConfig[key]) return envConfig[key];
         }
-    } catch (e: any) {
-        console.error(`[AI Core] Error reading .env files manually: ${e.message}`);
-    }
+    } catch (e) { /* ignore */ }
     return null;
 }
 
@@ -52,18 +50,35 @@ let clientInstance: OpenAI | null = null;
 export function getAIClient(): OpenAI {
     if (clientInstance) return clientInstance;
 
-    const apiKey = getApiKey();
+    // Detect Provider
+    const providerName = (getEnv("AI_PROVIDER") || "perplexity").toLowerCase() as keyof typeof PROVIDERS;
+    const providerConfig = PROVIDERS[providerName] || PROVIDERS.perplexity;
+
+    const apiKey = getEnv(providerConfig.envKey);
+
     if (!apiKey) {
-        throw new Error("AI API Key missing. Please set PERPLEXITY_API_KEY in .env.local");
+        throw new Error(`AI API Key missing for provider '${providerName}'. Please set ${providerConfig.envKey} in .env.local`);
     }
 
     clientInstance = new OpenAI({
         apiKey: apiKey,
-        baseURL: "https://api.perplexity.ai", // Default to Perplexity
+        baseURL: providerConfig.baseUrl,
+        defaultHeaders: providerName === 'openrouter' ? {
+            "HTTP-Referer": "https://vibecoder.dev", // OpenRouter required headers
+            "X-Title": "VibeCoder Architect"
+        } : undefined
     });
 
-    console.log("🤖 AI Client Initialized (Perplexity)");
+    console.log(`🤖 AI Client Initialized (${providerName})`);
     return clientInstance;
+}
+
+export function getModel(): string {
+    const providerName = (getEnv("AI_PROVIDER") || "perplexity").toLowerCase() as keyof typeof PROVIDERS;
+    const envModel = getEnv("AI_MODEL");
+    if (envModel) return envModel;
+
+    return PROVIDERS[providerName]?.defaultModel || "sonar-pro";
 }
 
 // --- Rate Limiting Logic ---

@@ -5,6 +5,7 @@ import { usePathname } from 'next/navigation';
 import { useState, useEffect } from 'react';
 import { useSession, signOut } from 'next-auth/react';
 import { LayoutDashboard, FileText, Settings, Activity, Database, Menu, X, Layers, Cloud, Sparkles, BookOpen, Code, ShieldCheck, HelpCircle, LogOut, User } from 'lucide-react';
+import { Icon } from '@quievreux/ui';
 import NotificationCenter from './NotificationCenter';
 import ThemeToggle from './ThemeToggle';
 
@@ -117,7 +118,7 @@ export default function Navbar() {
                                             : 'border-transparent text-slate-400 hover:border-slate-600 hover:text-slate-200'
                                             }`}
                                     >
-                                        <item.icon className="w-4 h-4 mr-2" />
+                                        <Icon icon={item.icon} className="w-4 h-4 mr-2" />
                                         {item.name}
                                     </Link>
                                 ))}
@@ -141,10 +142,10 @@ export default function Navbar() {
                                         onClick={() => setIsUserMenuOpen(!isUserMenuOpen)}
                                         className="flex items-center space-x-2 px-3 py-2 rounded-md text-sm font-medium text-slate-400 hover:text-white hover:bg-slate-800 focus:outline-none"
                                     >
-                                        <User className="w-4 h-4" />
+                                        <Icon icon={User} className="w-4 h-4" />
                                         <span>{session.user.name || session.user.email}</span>
                                         <span className="text-xs text-violet-400 ml-1">
-{(session.user as { role?: string }).role}
+                                            {(session.user as { role?: string }).role}
                                         </span>
                                     </button>
                                     {isUserMenuOpen && (
@@ -157,7 +158,7 @@ export default function Navbar() {
                                                     onClick={() => signOut({ callbackUrl: '/auth/signin' })}
                                                     className="flex items-center w-full px-4 py-2 text-sm text-slate-300 hover:bg-slate-700"
                                                 >
-                                                    <LogOut className="w-4 h-4 mr-2" />
+                                                    <Icon icon={LogOut} className="w-4 h-4 mr-2" />
                                                     Sign out
                                                 </button>
                                             </div>
@@ -181,9 +182,9 @@ export default function Navbar() {
                                 >
                                     <span className="sr-only">Open main menu</span>
                                     {isMenuOpen ? (
-                                        <X className="block h-6 w-6" aria-hidden="true" />
+                                        <Icon icon={X} className="block h-6 w-6" aria-hidden="true" />
                                     ) : (
-                                        <Menu className="block h-6 w-6" aria-hidden="true" />
+                                        <Icon icon={Menu} className="block h-6 w-6" aria-hidden="true" />
                                     )}
                                 </button>
                             </div>
@@ -206,7 +207,7 @@ export default function Navbar() {
                                         : 'text-slate-400 hover:text-slate-200'
                                         }`}
                                 >
-                                    <subItem.icon className="w-3 h-3 mr-1.5" />
+                                    <Icon icon={subItem.icon} className="w-3 h-3 mr-1.5" />
                                     {subItem.name}
                                 </Link>
                             ))}
@@ -223,7 +224,7 @@ export default function Navbar() {
                         {status === 'authenticated' && session?.user && (
                             <div className="px-4 py-3 border-b border-slate-800">
                                 <div className="flex items-center space-x-3">
-                                    <User className="w-8 h-8 text-slate-400" />
+                                    <Icon icon={User} className="w-8 h-8 text-slate-400" />
                                     <div>
                                         <div className="text-sm font-medium text-white">
                                             {session.user.name || session.user.email}
@@ -255,7 +256,7 @@ export default function Navbar() {
                                         }`}
                                 >
                                     <div className="flex items-center">
-                                        <item.icon className="w-4 h-4 mr-2" />
+                                        <Icon icon={item.icon} className="w-4 h-4 mr-2" />
                                         {item.name}
                                     </div>
                                 </Link>
@@ -271,7 +272,7 @@ export default function Navbar() {
                                                 onClick={() => setIsMenuOpen(false)}
                                             >
                                                 <div className="flex items-center">
-                                                    <subItem.icon className="w-3 h-3 mr-2" />
+                                                    <Icon icon={subItem.icon} className="w-3 h-3 mr-2" />
                                                     {subItem.name}
                                                 </div>
                                             </Link>
@@ -291,7 +292,7 @@ export default function Navbar() {
                                 className="w-full text-left pl-3 pr-4 py-2 border-l-4 border-transparent text-base font-medium text-slate-400 hover:bg-slate-800 hover:text-slate-200"
                             >
                                 <div className="flex items-center">
-                                    <LogOut className="w-4 h-4 mr-2" />
+                                    <Icon icon={LogOut} className="w-4 h-4 mr-2" />
                                     Sign out
                                 </div>
                             </button>
@@ -302,7 +303,7 @@ export default function Navbar() {
                                 className="w-full text-left block pl-3 pr-4 py-2 border-l-4 border-transparent text-base font-medium text-slate-400 hover:bg-slate-800 hover:text-slate-200"
                             >
                                 <div className="flex items-center">
-                                    <User className="w-4 h-4 mr-2" />
+                                    <Icon icon={User} className="w-4 h-4 mr-2" />
                                     Sign in
                                 </div>
                             </Link>

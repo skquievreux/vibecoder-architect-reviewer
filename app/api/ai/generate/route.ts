@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
-import { safeCompletion } from '@/lib/ai/core';
+import { safeCompletion, getModel } from '@/lib/ai/core';
 import prisma from '@/lib/prisma';
+import { getVersionInfo } from '@/lib/version';
 
 export async function POST() {
     try {
@@ -12,6 +13,8 @@ export async function POST() {
             prisma.deployment.findMany({ include: { repository: { select: { name: true } } } }),
             prisma.architectureDecision.findMany({ where: { status: 'ACCEPTED' } })
         ]);
+
+        const dashboardInfo = getVersionInfo();
 
         // 1.5 Enhanced Analytics: ADR Compliance & Security
 
@@ -113,6 +116,13 @@ export async function POST() {
     - Interfaces: ${interfaces.length} detected
     - Deployments: ${deployments.length} active
 
+    === SYSTEM REFERENCE (Reference Version for Compliance) ===
+    - Dashboard Name: Vibecoder Architect Reviewer
+    - Dashboard App Version: ${dashboardInfo.version}
+    - Dashboard Next.js Version: ${dashboardInfo.nextVersion} (Target for all projects)
+    - Node.js Runtime: ${dashboardInfo.nodeVersion}
+    - Platform: ${dashboardInfo.platform}
+
     === ADR COMPLIANCE METRICS ===
     ADR-001 (Next.js 16 Adoption):
     - Total Next.js Projects: ${nextJsProjects.length}
@@ -162,9 +172,9 @@ export async function POST() {
     ${previousReportContent ? previousReportContent : "No previous report available."}
     `;
 
-        // 3. Call AI (Perplexity)
+        // 3. Call AI (Perplexity or OpenRouter)
         const completion = await safeCompletion({
-            model: "sonar-pro", // Perplexity Model
+            model: getModel(), // Dynamic model selection
             messages: [
                 { role: "system", content: systemPrompt },
                 { role: "user", content: userPrompt }

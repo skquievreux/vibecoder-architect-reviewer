@@ -16,6 +16,7 @@ type Report = {
 export default function ReportPage() {
     const [activeTab, setActiveTab] = useState<'report' | 'progress'>('report');
     const [healthData, setHealthData] = useState<any[]>([]);
+    const [techData, setTechData] = useState<any[]>([]);
     const [reports, setReports] = useState<Report[]>([]);
     const [currentReport, setCurrentReport] = useState<Report | null>(null);
     const [loading, setLoading] = useState(false);
@@ -24,6 +25,7 @@ export default function ReportPage() {
     useEffect(() => {
         fetchReports();
         fetchHealthData();
+        fetchTechData();
     }, []);
 
     const fetchReports = async () => {
@@ -57,6 +59,18 @@ export default function ReportPage() {
             }
         } catch (error) {
             console.error("Failed to fetch health data", error);
+        }
+    };
+
+    const fetchTechData = async () => {
+        try {
+            const res = await fetch('/api/analytics/technologies');
+            const data = await res.json();
+            if (data.stats) {
+                setTechData(data.stats);
+            }
+        } catch (error) {
+            console.error("Failed to fetch tech data", error);
         }
     };
 
@@ -348,6 +362,50 @@ export default function ReportPage() {
                                     />
                                 ) : (
                                     <Text>No data available yet.</Text>
+                                )}
+                            </div>
+                        </Card>
+                        <Card className="glass-card md:col-span-2">
+                            <Title className="text-white mb-4">Next.js Version Distribution</Title>
+                            {/* @ts-ignore */}
+                            <div className="h-72 w-full bg-slate-900/50 rounded-lg flex items-center justify-center text-slate-500 p-4">
+                                {techData.length > 0 ? (
+                                    <iframe
+                                        srcDoc={`
+                                            <html>
+                                            <head>
+                                                <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+                                            </head>
+                                            <body style="background-color: transparent; margin: 0;">
+                                                <canvas id="myChart"></canvas>
+                                                <script>
+                                                    const ctx = document.getElementById('myChart');
+                                                    const nextJs = ${JSON.stringify(techData.find(t => t.name === 'Next.js') || { versions: {} })};
+                                                    new Chart(ctx, {
+                                                        type: 'doughnut',
+                                                        data: {
+                                                            labels: Object.keys(nextJs.versions || {}),
+                                                            datasets: [{
+                                                                data: Object.values(nextJs.versions || {}),
+                                                                backgroundColor: ['#8b5cf6', '#a78bfa', '#c4b5fd', '#ddd6fe', '#6366f1']
+                                                            }]
+                                                        },
+                                                        options: {
+                                                            responsive: true,
+                                                            maintainAspectRatio: false,
+                                                            plugins: {
+                                                                legend: { labels: { color: 'white' } }
+                                                            }
+                                                        }
+                                                    });
+                                                </script>
+                                            </body>
+                                            </html>
+                                        `}
+                                        className="w-full h-full border-none"
+                                    />
+                                ) : (
+                                    <Text>Loading technology data...</Text>
                                 )}
                             </div>
                         </Card>
