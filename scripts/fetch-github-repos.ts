@@ -4,21 +4,15 @@ import * as dotenv from 'dotenv';
 import * as fs from 'fs';
 import * as path from 'path';
 
-// Load environment variables robustly
-const envLocalPath = path.join(process.cwd(), '.env.local');
-const envPath = path.join(process.cwd(), '.env');
+// Load environment variables
 
-if (fs.existsSync(envLocalPath)) {
-    const envConfig = dotenv.parse(fs.readFileSync(envLocalPath));
-    for (const k in envConfig) {
-        process.env[k] = envConfig[k];
-    }
-} else if (fs.existsSync(envPath)) {
-    const envConfig = dotenv.parse(fs.readFileSync(envPath));
-    for (const k in envConfig) {
-        process.env[k] = envConfig[k];
-    }
-}
+
+const envLocalPath = path.join(process.cwd(), '.env.local');
+// Prefer .env.local if available, otherwise .env is loaded strictly if needed, 
+// but dotenv.config() usually handles .env automatically.
+// We explicitly load .env.local to override.
+dotenv.config({ path: '.env.local', override: true });
+dotenv.config(); // Loads .env if not already set or as fallback
 
 const prisma = new PrismaClient();
 const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
