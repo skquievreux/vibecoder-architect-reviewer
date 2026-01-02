@@ -91,7 +91,7 @@
     "rollout:all": "ts-node scripts/rollout-standards.ts"
   },
   "engines": {
-    "node": ">=20.0.0",
+    "node": ">=20.9.0",
     "pnpm": ">=10.0.0"
   },
   "packageManager": "pnpm@10.0.0"
