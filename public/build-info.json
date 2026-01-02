@@ -1,7 +1,7 @@
 {
-  "version": "2.17.2",
-  "nextVersion": "^16.1.0",
-  "buildTime": "2025-12-30T14:21:44.978Z",
+  "version": "2.17.6",
+  "nextVersion": "^16.1.1",
+  "buildTime": "2026-01-02T00:14:48.102Z",
   "environment": "production",
   "gitCommit": "dev",
   "nodeVersion": "v22.14.0",
