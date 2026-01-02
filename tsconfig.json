@@ -47,7 +47,12 @@
   ],
   "exclude": [
     "node_modules",
-    "scripts"
+    "scripts",
+    "playwright.config.ts",
+    "jest.config.js",
+    "jest.setup.js",
+    "temp",
+    "analysis"
   ],
   "ts-node": {
     "compilerOptions": {
