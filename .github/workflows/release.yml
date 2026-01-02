@@ -22,20 +22,21 @@ jobs:
         with:
           fetch-depth: 0
 
+      - uses: pnpm/action-setup@v4
+
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           registry-url: 'https://npm.pkg.github.com'
-          node-version: "lts/*"
-          cache: npm
+          node-version: "20"
+          cache: pnpm
 
       - name: Install Semantic Release & Plugins
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          npm install --no-save \
-            semantic-release \
+          pnpm add -D semantic-release \
             @semantic-release/changelog \
             @semantic-release/git \
             @semantic-release/exec \
@@ -49,4 +50,4 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: npx semantic-release
+        run: pnpm exec semantic-release

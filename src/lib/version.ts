@@ -39,9 +39,15 @@ export const getVersionInfo = (): VersionInfo => {
   } catch {
     try {
       // Fallback for local dev execution if path differs
-      packageJson = eval('require')('../package.json');
+      // Adjusted for src/lib/version.ts -> ../../package.json
+      packageJson = eval('require')('../../package.json');
     } catch {
-      packageJson = {};
+      try {
+        // Original fallback
+        packageJson = eval('require')('../package.json');
+      } catch {
+        packageJson = {};
+      }
     }
   }
 

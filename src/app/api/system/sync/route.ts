@@ -12,7 +12,7 @@ export async function POST() {
         const rootDir = path.resolve(dashboardDir, '..');
         // 1. Run GitHub Fetch (In-Process)
         console.log('Starting GitHub Fetch...');
-        const { syncGithubRepos } = await import('@/scripts/fetch-github-repos');
+        const { syncGithubRepos } = await import('@/lib/github-sync');
         const syncResult = await syncGithubRepos();
         console.log('GitHub Fetch finished:', syncResult);
 

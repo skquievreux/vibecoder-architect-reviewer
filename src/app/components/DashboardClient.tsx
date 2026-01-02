@@ -440,6 +440,7 @@ export default function DashboardClient({ initialRepos }: DashboardClientProps) 
                                         {item.deployments.length > 0 && (
                                             <div className="flex flex-wrap gap-2">
                                                 {item.deployments.map(d => {
+                                                    if (!d.url) return null;
                                                     const href = d.url.startsWith('http') ? d.url : `https://${d.url}`;
                                                     return (
                                                         <a key={d.id} href={href} target="_blank" rel="noopener noreferrer" className="no-underline">
@@ -654,6 +655,7 @@ export default function DashboardClient({ initialRepos }: DashboardClientProps) 
                                             <TableCell>
                                                 <div className="flex gap-2">
                                                     {item.deployments.map(d => {
+                                                        if (!d.url) return null;
                                                         const href = d.url.startsWith('http') ? d.url : `https://${d.url}`;
                                                         return (
                                                             <a key={d.id} href={href} target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-violet-400" title={d.provider}>
