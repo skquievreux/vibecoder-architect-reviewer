@@ -1,5 +1,5 @@
 ---
-title: "ADR 014: Centralized UI Design System (@quievreux/ui)"
+title: "ADR 014: Centralized UI Design System (@squievreux/ui)"
 type: "architecture"
 audience: "developer"
 status: "accepted"
@@ -11,7 +11,7 @@ reviewers: ["@quievreux"]
 tags: ["ui", "design-system", "npm", "github-packages"]
 ---
 
-# ADR 014: Centralized UI Design System (@quievreux/ui)
+# ADR 014: Centralized UI Design System (@squievreux/ui)
 
 ## Status
 Accepted
@@ -26,7 +26,7 @@ Across the ecosystem of Quievreux applications, UI consistency has been challeng
 - **Maintenance:** Updates to the design language require manual pull requests in multiple repositories.
 
 ## Decision
-We decided to extract the core UI elements into a centralized, private NPM package: **`@quievreux/ui`**.
+We decided to extract the core UI elements into a centralized, private NPM package: **`@squievreux/ui`**.
 
 ### Key Components
 1.  **Registry:** Hosted on **GitHub Packages** (allowing private access scoped to `@quievreux`).
