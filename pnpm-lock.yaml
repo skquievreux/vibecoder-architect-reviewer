@@ -20,7 +20,7 @@ importers:
       '@dnd-kit/utilities':
         specifier: ^3.2.2
         version: 3.2.2(react@19.2.3)
-      '@quievreux/ui':
+      '@squievreux/ui':
         specifier: ^0.1.1
         version: 0.1.2(lucide-react@0.562.0(react@19.2.3))(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
       '@sparticuz/chromium':
@@ -872,8 +872,8 @@ packages:
     engines: {node: '>=18'}
     hasBin: true
 
-  '@quievreux/ui@0.1.2':
-    resolution: {integrity: sha512-GtOk5Y+S2aa6NRLpzNFyVMh5fCrs774VILOkJ+LrP3F8gyrplVZC+kNpupD93p5wKw28Ee1uOozZTq1bdYFkMg==, tarball: https://npm.pkg.github.com/download/@quievreux/ui/0.1.2/63a18176ed3893bbce0c750d88ffac2a7843bd75}
+  '@squievreux/ui@0.1.2':
+    resolution: {integrity: sha512-GtOk5Y+S2aa6NRLpzNFyVMh5fCrs774VILOkJ+LrP3F8gyrplVZC+kNpupD93p5wKw28Ee1uOozZTq1bdYFkMg==, tarball: https://npm.pkg.github.com/download/@squievreux/ui/0.1.2/63a18176ed3893bbce0c750d88ffac2a7843bd75}
     peerDependencies:
       lucide-react: '>=0.400.0'
       react: '>=18.0.0'
@@ -6352,7 +6352,7 @@ snapshots:
       - react-native-b4a
       - supports-color
 
-  '@quievreux/ui@0.1.2(lucide-react@0.562.0(react@19.2.3))(react-dom@19.2.3(react@19.2.3))(react@19.2.3)':
+  '@squievreux/ui@0.1.2(lucide-react@0.562.0(react@19.2.3))(react-dom@19.2.3(react@19.2.3))(react@19.2.3)':
     dependencies:
       lucide-react: 0.562.0(react@19.2.3)
       react: 19.2.3
