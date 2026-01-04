@@ -6,8 +6,9 @@ const GITHUB_TOKEN_VAR = 'GITHUB_TOKEN';
 const PACKAGE_NAME = '@squievreux/ui';
 const NOM_REGISTRY = 'https://npm.pkg.github.com';
 const NPMRC_CONTENT = `legacy-peer-deps=true
-@quievreux:registry=${NOM_REGISTRY}
-//npm.pkg.github.com/:_authToken=\${${GITHUB_TOKEN_VAR}}
+shamefully-hoist=true
+strict-peer-dependencies=false
+auto-install-peers=true
 `;
 
 const TARGET_DIR = process.argv[2] ? path.resolve(process.argv[2]) : path.resolve('../');
