@@ -5,7 +5,7 @@ import { usePathname } from 'next/navigation';
 import { useState, useEffect } from 'react';
 import { useSession, signOut } from 'next-auth/react';
 import { LayoutDashboard, FileText, Settings, Activity, Database, Menu, X, Layers, Cloud, Sparkles, BookOpen, Code, ShieldCheck, HelpCircle, LogOut, User, TrendingUp } from 'lucide-react';
-import { Icon } from '@quievreux/ui';
+import { Icon } from '@squievreux/ui';
 import NotificationCenter from './NotificationCenter';
 import ThemeToggle from './ThemeToggle';
 

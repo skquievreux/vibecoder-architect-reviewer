@@ -9,7 +9,7 @@ module.exports = {
         "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
         "./src/lib/**/*.{js,ts,jsx,tsx,mdx}",
         "./node_modules/@tremor/**/*.{js,ts,jsx,tsx}",
-        "./node_modules/@quievreux/ui/dist/**/*.{js,mjs}",
+        "./node_modules/@squievreux/ui/dist/**/*.{js,mjs}",
     ],
     theme: {
         transparent: "transparent",

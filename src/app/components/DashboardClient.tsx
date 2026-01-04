@@ -3,7 +3,7 @@
 import { Card, Title, Text, Badge, Grid, Select, SelectItem, MultiSelect, MultiSelectItem, Table, TableHead, TableHeaderCell, TableBody, TableRow, TableCell } from "@tremor/react";
 import { useState, useEffect } from "react";
 import { Search, Server, Database, Code, Globe, ExternalLink, AlertTriangle, RefreshCw, LayoutGrid, List, ChevronLeft, ChevronRight, ArrowUp, ArrowDown, Sparkles, Activity, Star } from "lucide-react";
-import { Icon } from "@quievreux/ui";
+import { Icon } from "@squievreux/ui";
 import Link from "next/link";
 import FavoriteButton from "./FavoriteButton";
 import { useSession } from "next-auth/react";
