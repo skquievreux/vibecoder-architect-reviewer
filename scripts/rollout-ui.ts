@@ -3,7 +3,7 @@ import * as path from 'path';
 import { execSync } from 'child_process';
 
 const GITHUB_TOKEN_VAR = 'GITHUB_TOKEN';
-const PACKAGE_NAME = '@quievreux/ui';
+const PACKAGE_NAME = '@squievreux/ui';
 const NOM_REGISTRY = 'https://npm.pkg.github.com';
 const NPMRC_CONTENT = `legacy-peer-deps=true
 @quievreux:registry=${NOM_REGISTRY}
@@ -113,7 +113,7 @@ repos.forEach(repo => {
             if (!content.includes('@quievreux/ui/dist')) {
                 // Ensure content array exists
                 if (content.includes('content: [')) {
-                    content = content.replace(/content:\s*\[/, 'content: [\n        "./node_modules/@quievreux/ui/dist/**/*.{js,mjs}",');
+                    content = content.replace(/content:\s*\[/, 'content: [\n        "./node_modules/@squievreux/ui/dist/**/*.{js,mjs}",');
                     modified = true;
                 }
             }
@@ -143,7 +143,7 @@ repos.forEach(repo => {
             let content = fs.readFileSync(cssPath, 'utf8');
             if (!content.includes('@quievreux/ui/styles')) {
                 // Prepend to top
-                content = `@import '@quievreux/ui/styles';\n` + content;
+                content = `@import '@squievreux/ui/styles';\n` + content;
                 fs.writeFileSync(cssPath, content);
                 console.log(`   - Updated CSS globals`);
             }
