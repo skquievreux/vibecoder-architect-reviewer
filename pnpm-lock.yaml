@@ -21,8 +21,8 @@ importers:
         specifier: ^3.2.2
         version: 3.2.2(react@19.2.3)
       '@sparticuz/chromium':
-        specifier: ^143.0.0
-        version: 143.0.0
+        specifier: ^143.0.4
+        version: 143.0.4
       '@squievreux/ui':
         specifier: ^0.1.1
         version: 0.1.1(lucide-react@0.562.0(react@19.2.3))(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
@@ -1153,8 +1153,8 @@ packages:
   '@sinonjs/fake-timers@10.3.0':
     resolution: {integrity: sha512-V4BG07kuYSUkTCSBHG8G8TNhM+F19jXFWnQtzj+we8DrkpSBCee9Z3Ms8yiGer/dlmhe35/Xdgyo3/0rQKg7YA==}
 
-  '@sparticuz/chromium@143.0.0':
-    resolution: {integrity: sha512-/vvplFwu1yDNt/Q1uwXQUwxmfZutU9K+WtzSYwptLWV8IeSdSF6vwW9hW11fZA8Gl9+2mytAGUe6/otgd2VeXA==}
+  '@sparticuz/chromium@143.0.4':
+    resolution: {integrity: sha512-/6I7uQTRhRDD2/gGPQ1Gkf+Dqk0RYDACPJDZfSzz0OWk4JmUTonNHPXbrn6UIklOHlnDLf8xAAzkOZKB/cJpLA==}
     engines: {node: '>=20.11.0'}
 
   '@squievreux/ui@0.1.1':
@@ -6642,7 +6642,7 @@ snapshots:
     dependencies:
       '@sinonjs/commons': 3.0.1
 
-  '@sparticuz/chromium@143.0.0':
+  '@sparticuz/chromium@143.0.4':
     dependencies:
       follow-redirects: 1.15.11
       tar-fs: 3.1.1

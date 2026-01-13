@@ -27,7 +27,7 @@
     "@dnd-kit/sortable": "^10.0.0",
     "@dnd-kit/utilities": "^3.2.2",
     "@squievreux/ui": "^0.1.1",
-    "@sparticuz/chromium": "^143.0.0",
+    "@sparticuz/chromium": "^143.0.4",
     "@supabase/supabase-js": "^2.49.4",
     "@tremor/react": "^3.18.7",
     "@types/bcryptjs": "^2.4.6",
