@@ -129,3 +129,5 @@ package-lock.json.bak
 
 # Business Intelligence Hub (separate repository)
 business-intelligence-hub/
+
+.vercel
