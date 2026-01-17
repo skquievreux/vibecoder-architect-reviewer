@@ -1,0 +1,12 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: vibecoder-architect-reviewer
+  description: |
+    Github Review of all deployed vibe coded apps
+  annotations:
+    github.com/project-slug: skquievreux/vibecoder-architect-reviewer
+spec:
+  type: service
+  lifecycle: experimental
+  owner: guests
