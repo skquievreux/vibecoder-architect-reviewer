@@ -6,16 +6,97 @@ nav:
   - Home: index.md
   - Architecture:
     - Overview: 01-architecture/index.md
+    - 008 Centralized Ai Rate Limiting: docs/01-architecture/008-centralized-ai-rate-limiting.md
+    - 009 Local Database Strategy: docs/01-architecture/009-local-database-strategy.md
+    - 010 Github Actions Governance: docs/01-architecture/010-github-actions-governance.md
+    - 011 Organization Workflow Templates: docs/01-architecture/011-organization-workflow-templates.md
+    - 012 Migrate To Postgres: docs/01-architecture/012-migrate-to-postgres.md
+    - 013 Database Connection Management: docs/01-architecture/013-database-connection-management.md
+    - 014 Centralized Ui Design System: docs/01-architecture/014-centralized-ui-design-system.md
+    - 015 Automated Ecosystem Rollout: docs/01-architecture/015-automated-ecosystem-rollout.md
+    - 016 Business Intelligence Ui Integration: docs/01-architecture/016-business-intelligence-ui-integration.md
+    - Adr_011_Complete_Plan: docs/01-architecture/ADR_011_COMPLETE_PLAN.md
+    - Agents: docs/01-architecture/AGENTS.md
+    - Architecture Report Improved: docs/01-architecture/architecture-report-improved.md
+    - Architecture: docs/01-architecture/architecture.md
+    - Concept Audio First Ux: docs/01-architecture/concept-audio-first-ux.md
+    - Concept New Profile Workflow: docs/01-architecture/concept-new-profile-workflow.md
+    - Concept Share First Impression: docs/01-architecture/concept-share-first-impression.md
+    - Development_Issues_Assessment: docs/01-architecture/DEVELOPMENT_ISSUES_ASSESSMENT.md
+    - Rate Limit: docs/01-architecture/rate-limit.md
+    - Versioning Policy: docs/01-architecture/versioning-policy.md
     - Decisions: 01-architecture/decisions/
   - Implementation:
     - Overview: 02-implementation/index.md
+    - Api Documentation Rollout: docs/02-implementation/api-documentation-rollout.md
+    - App_Gestartet: docs/02-implementation/APP_GESTARTET.md
+    - Bulk_Deploy_Workflows: docs/02-implementation/BULK_DEPLOY_WORKFLOWS.md
+    - Deploy_To_All_Repos: docs/02-implementation/DEPLOY_TO_ALL_REPOS.md
+    - Development Workflow: docs/02-implementation/development-workflow.md
+    - Ecosystem Bootstrap Plan: docs/02-implementation/ecosystem-bootstrap-plan.md
+    - Fly_Postgres_Setup: docs/02-implementation/FLY_POSTGRES_SETUP.md
+    - Implementation_Report_Adr011: docs/02-implementation/IMPLEMENTATION_REPORT_ADR011.md
+    - Integration Guide: docs/02-implementation/integration-guide.md
+    - Organization_Workflows_Setup: docs/02-implementation/ORGANIZATION_WORKFLOWS_SETUP.md
+    - Phase_1_2_Implementation: docs/02-implementation/PHASE_1_2_IMPLEMENTATION.md
+    - Phase_3_Enhancements: docs/02-implementation/PHASE_3_ENHANCEMENTS.md
+    - Production_Checklist: docs/02-implementation/PRODUCTION_CHECKLIST.md
+    - Pull_Request_Ready: docs/02-implementation/PULL_REQUEST_READY.md
+    - Setup Auth: docs/02-implementation/setup-auth.md
+    - Setup Guide: docs/02-implementation/setup-guide.md
+    - Setup_Complete: docs/02-implementation/SETUP_COMPLETE.md
+    - Wave Guide Rollout Plan: docs/02-implementation/wave-guide-rollout-plan.md
+    - Workflow Guide: docs/02-implementation/workflow-guide.md
+    - Workflow_Templates_Organization_Guide: docs/02-implementation/WORKFLOW_TEMPLATES_ORGANIZATION_GUIDE.md
+    - Workflow_Templates_Verification: docs/02-implementation/WORKFLOW_TEMPLATES_VERIFICATION.md
   - Operations:
     - Overview: 03-operations/index.md
+    - Analysis_Vercel_Build_Issues: docs/03-operations/ANALYSIS_VERCEL_BUILD_ISSUES.md
+    - Build_Fixes_Summary: docs/03-operations/BUILD_FIXES_SUMMARY.md
+    - Deployment_Status: docs/03-operations/DEPLOYMENT_STATUS.md
+    - Dev Server Fix: docs/03-operations/dev-server-fix.md
+    - Docker Troubleshooting Guide: docs/03-operations/docker-troubleshooting-guide.md
+    - Pdf_Fix_Status: docs/03-operations/PDF_FIX_STATUS.md
+    - Pilot_Setup_Status: docs/03-operations/PILOT_SETUP_STATUS.md
+    - Production_Ready: docs/03-operations/PRODUCTION_READY.md
+    - Production_Ready_Branch: docs/03-operations/PRODUCTION_READY_BRANCH.md
+    - Release_V0.11.1: docs/03-operations/RELEASE_v0.11.1.md
+    - Release_V2.1.0: docs/03-operations/RELEASE_v2.1.0.md
+    - Repository Sync Guide: docs/03-operations/repository-sync-guide.md
+    - Resolution_Complete: docs/03-operations/RESOLUTION_COMPLETE.md
+    - Screenshotgallerysystem Package Json Fix: docs/03-operations/screenshotgallerysystem-package-json-fix.md
   - Business:
     - Overview: 04-business/index.md
+    - Acid Monk Strategy: docs/04-business/acid-monk-strategy.md
+    - Campaigns: docs/04-business/Campaigns.md
+    - Concept Sponsors And Analytics: docs/04-business/concept-sponsors-and-analytics.md
+    - Customer Personas: docs/04-business/Customer-Personas.md
+    - Documentation_Sprint_Summary: docs/04-business/DOCUMENTATION_SPRINT_SUMMARY.md
+    - Executive_Summary: docs/04-business/EXECUTIVE_SUMMARY.md
+    - Extend_Providers: docs/04-business/EXTEND_PROVIDERS.md
+    - Marketing Strategy: docs/04-business/Marketing-Strategy.md
+    - Metrics: docs/04-business/metrics.md
+    - Mobile_Optimization: docs/04-business/MOBILE_OPTIMIZATION.md
+    - Portfolio_Pipeline: docs/04-business/PORTFOLIO_PIPELINE.md
+    - Pull_Request_Content: docs/04-business/PULL_REQUEST_CONTENT.md
+    - Reliability_And_Scale: docs/04-business/RELIABILITY_AND_SCALE.md
     - History: 04-business/history/
   - Reference:
     - Overview: 05-reference/index.md
+    - Api_Performance_Analysis: docs/05-reference/API_PERFORMANCE_ANALYSIS.md
+    - Architecture_Report_Improved: docs/05-reference/ARCHITECTURE_REPORT_IMPROVED.md
+    - Deployment_Sync_Analysis: docs/05-reference/DEPLOYMENT_SYNC_ANALYSIS.md
+    - Docs_Index: docs/05-reference/DOCS_INDEX.md
+    - Documentation: docs/05-reference/DOCUMENTATION.md
+    - Documentation_Rules: docs/05-reference/DOCUMENTATION_RULES.md
+    - Executive_Summary: docs/05-reference/EXECUTIVE_SUMMARY.md
+    - Final_Portfolio_Package: docs/05-reference/FINAL_PORTFOLIO_PACKAGE.md
+    - Optimization_Implementation: docs/05-reference/OPTIMIZATION_IMPLEMENTATION.md
+    - Pdf_Fix_Analysis: docs/05-reference/PDF_FIX_ANALYSIS.md
+    - Portfolio_Optimization_Plan: docs/05-reference/PORTFOLIO_OPTIMIZATION_PLAN.md
+    - Portfolio_Summary: docs/05-reference/PORTFOLIO_SUMMARY.md
+    - Security_Patching_Execution_Plan: docs/05-reference/SECURITY_PATCHING_EXECUTION_PLAN.md
+    - Security_Patching_Plan: docs/05-reference/SECURITY_PATCHING_PLAN.md
 
 plugins:
   - techdocs-core
