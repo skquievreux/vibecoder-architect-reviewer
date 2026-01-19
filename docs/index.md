@@ -1,9 +1,3 @@
-# vibecoder-architect-reviewer
+# Documentation
 
-Github Review of all deployed vibe coded apps
-
-## Overview
-This documentation was automatically scaffolded by Backstage.
-
-## Getting Started
-Add your documentation here.
+Welcome to the documentation for vibecoder-architect-reviewer.
