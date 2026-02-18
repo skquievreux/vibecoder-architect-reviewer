@@ -15,6 +15,7 @@ export default async function ShowcasePage() {
             name: true,
             description: true,
             url: true,
+            previewImageUrl: true,
             technologies: {
                 select: { name: true }
             },

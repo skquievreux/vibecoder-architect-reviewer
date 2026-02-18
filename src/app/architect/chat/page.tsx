@@ -81,7 +81,7 @@ export default function ArchitectChatPage() {
                     <Sparkles className="text-violet-500" /> AI Architect Advisor
                 </Title>
                 <Text className="text-slate-400">
-                    Define new projects compliant with our "Golden Paths" and portfolio standards.
+                    Define new projects compliant with our &quot;Golden Paths&quot; and portfolio standards.
                 </Text>
             </div>
 

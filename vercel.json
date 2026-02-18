@@ -1,3 +1,5 @@
 {
-  "installCommand": "echo 'Configuring NPM Token...' && npm config set //npm.pkg.github.com/:_authToken=${NPM_TOKEN} && npm install"
+  "buildCommand": "pnpm build",
+  "installCommand": "pnpm install --frozen-lockfile",
+  "framework": "nextjs"
 }

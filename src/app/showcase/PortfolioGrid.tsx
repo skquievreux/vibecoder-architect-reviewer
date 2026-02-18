@@ -10,6 +10,7 @@ type Project = {
     description: string;
     url: string | null;
     technologies: string[];
+    previewImageUrl?: string | null;
     businessCanvas: {
         valueProposition: string[];
         customerSegments: { name: string }[];
@@ -48,8 +49,30 @@ export default function PortfolioGrid({ projects }: { projects: Project[] }) {
                         key={project.id}
                         className="group relative bg-slate-900/40 border border-slate-800 rounded-2xl overflow-hidden hover:border-purple-500/50 transition-all duration-300 hover:shadow-2xl hover:shadow-purple-900/20 flex flex-col"
                     >
-                        {/* Catchy Header Gradient */}
-                        <div className="h-2 w-full bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 opacity-70 group-hover:opacity-100 transition-opacity" />
+                        {/* Card Media (Screenshot or Gradient) */}
+                        <div className="relative h-48 w-full overflow-hidden bg-slate-900 flex items-center justify-center">
+                            {project.previewImageUrl ? (
+                                <img
+                                    src={project.previewImageUrl}
+                                    alt={project.name}
+                                    className="w-full h-full object-cover object-top group-hover:scale-110 transition-transform duration-500"
+                                />
+                            ) : (
+                                <div className="absolute inset-0 bg-gradient-to-br from-purple-900/40 via-slate-900 to-blue-900/40 opacity-50" />
+                            )}
+
+                            {/* Overlay Gradient for readability */}
+                            <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent opacity-80" />
+
+                            {/* Tech Badges on image */}
+                            <div className="absolute bottom-3 left-4 flex flex-wrap gap-1.5">
+                                {project.technologies.slice(0, 2).map(t => (
+                                    <span key={t} className="px-1.5 py-0.5 text-[9px] uppercase font-bold tracking-wider rounded bg-purple-500/20 text-purple-200 border border-purple-500/30 backdrop-blur-md">
+                                        {t}
+                                    </span>
+                                ))}
+                            </div>
+                        </div>
 
                         <div className="p-6 flex-1 flex flex-col">
                             <div className="flex justify-between items-start mb-4">
@@ -83,7 +106,7 @@ export default function PortfolioGrid({ projects }: { projects: Project[] }) {
 
                             <div className="mt-auto">
                                 <div className="flex flex-wrap gap-2 mb-4">
-                                    {project.technologies.slice(0, 4).map(t => (
+                                    {project.technologies.slice(2, 6).map(t => (
                                         <span key={t} className="px-2 py-1 text-[10px] uppercase font-bold tracking-wider rounded bg-slate-800 text-slate-400 border border-slate-700">
                                             {t}
                                         </span>

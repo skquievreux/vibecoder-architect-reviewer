@@ -1,27 +1,31 @@
 const { PrismaClient } = require('@prisma/client');
-
-const prisma = new PrismaClient();
+const path = require('path');
+require('dotenv').config({ path: path.join(process.cwd(), '.env.local') });
 
 async function main() {
-    console.log('Testing Prisma Connection...');
+    console.log('Connecting to database...');
+    console.log('Using URL:', process.env.DATABASE_URL);
+    const prisma = new PrismaClient();
     try {
-        // Check if aIReport exists on prisma instance
-        if (!prisma.aIReport) {
-            console.error('❌ prisma.aIReport is UNDEFINED. Available models:', Object.keys(prisma).filter(k => !k.startsWith('_')));
-            // Try other casing possibilities
-            if (prisma.aiReport) console.log('Found prisma.aiReport instead');
-            if (prisma.AIReport) console.log('Found prisma.AIReport instead');
-            return;
+        await prisma.$connect();
+        console.log('Connected successfully!');
+        const userCount = await prisma.user.count();
+        console.log('Number of users:', userCount);
+        const repoCount = await prisma.repository.count();
+        console.log('Number of repositories:', repoCount);
+
+        const admin = await prisma.user.findUnique({
+            where: { email: 'admin@example.com' }
+        });
+
+        if (admin) {
+            console.log('Admin user found. Role:', admin.role);
+            console.log('Admin password hash exists:', !!admin.password);
+        } else {
+            console.log('Admin user NOT found!');
         }
-
-        const count = await prisma.aIReport.count();
-        console.log(`✅ Connection successful. Found ${count} reports.`);
-
-        const reports = await prisma.aIReport.findMany({ take: 1 });
-        console.log('Sample report:', reports[0]);
-
     } catch (e) {
-        console.error('❌ Database Error:', e);
+        console.error('Connection failed:', e);
     } finally {
         await prisma.$disconnect();
     }

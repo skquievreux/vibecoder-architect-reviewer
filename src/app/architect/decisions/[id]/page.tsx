@@ -138,7 +138,7 @@ export default function DecisionDetailPage() {
                     </Card>
 
                     <Card className="bg-slate-900 border-slate-800">
-                        <Title className="text-violet-400 mb-4">Context (The "Why")</Title>
+                        <Title className="text-violet-400 mb-4">Context (The &quot;Why&quot;)</Title>
                         <textarea
                             rows={6}
                             placeholder="Describe the context and problem statement..."
@@ -149,7 +149,7 @@ export default function DecisionDetailPage() {
                     </Card>
 
                     <Card className="bg-slate-900 border-slate-800">
-                        <Title className="text-emerald-400 mb-4">Decision (The "What")</Title>
+                        <Title className="text-emerald-400 mb-4">Decision (The &quot;What&quot;)</Title>
                         <textarea
                             rows={6}
                             placeholder="Describe the decision made..."
@@ -160,7 +160,7 @@ export default function DecisionDetailPage() {
                     </Card>
 
                     <Card className="bg-slate-900 border-slate-800">
-                        <Title className="text-blue-400 mb-4">Consequences (The "Result")</Title>
+                        <Title className="text-blue-400 mb-4">Consequences (The &quot;Result&quot;)</Title>
                         <textarea
                             rows={6}
                             placeholder="Describe the positive and negative consequences..."

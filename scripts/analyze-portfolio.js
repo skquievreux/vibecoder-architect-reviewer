@@ -1,78 +1,33 @@
-const { PrismaClient } = require('@prisma/client');
-const prisma = new PrismaClient();
 
-async function main() {
-    console.log("🔍 Analyzing Portfolio Capabilities...");
+const fs = require('fs');
 
-    // 1. Get all unique technologies and their counts
-    const technologies = await prisma.technology.groupBy({
-        by: ['name', 'category'],
-        _count: {
-            name: true
-        },
-        orderBy: {
-            _count: {
-                name: 'desc'
-            }
-        }
+try {
+    const data = JSON.parse(fs.readFileSync('portfolio.json', 'utf8'));
+    const portfolio = data.portfolio;
+
+    let foundIssue = false;
+
+    Object.values(portfolio).forEach(category => {
+        Object.values(category).forEach(repos => {
+            repos.forEach(repo => {
+                if (repo.canvas && repo.canvas.valueProposition) {
+                    try {
+                        const vp = JSON.parse(repo.canvas.valueProposition);
+                        if (Array.isArray(vp) && vp.length > 0 && typeof vp[0] === 'object') {
+                            console.log(`FOUND ISSUE in Repo: ${repo.repoName}`);
+                            console.log(`Value Prop:`, JSON.stringify(vp, null, 2));
+                            foundIssue = true;
+                        }
+                    } catch (e) { }
+                }
+            });
+        });
     });
 
-    console.log("\n--- Technologies Found ---");
-    console.table(technologies.map(t => ({
-        Name: t.name,
-        Category: t.category || 'Uncategorized',
-        Count: t._count.name
-    })));
-
-    // 2. Get all interfaces
-    const interfaces = await prisma.interface.findMany({
-        include: {
-            repository: {
-                select: { name: true }
-            }
-        }
-    });
-
-    console.log("\n--- Interfaces Found ---");
-    // Group by type
-    const interfaceSummary = {};
-    interfaces.forEach(i => {
-        const key = `${i.type} (${i.direction || 'unknown'})`;
-        if (!interfaceSummary[key]) interfaceSummary[key] = [];
-        interfaceSummary[key].push(i.repository.name);
-    });
-
-    console.table(Object.entries(interfaceSummary).map(([type, repos]) => ({
-        Type: type,
-        Count: repos.length,
-        Examples: repos.slice(0, 3).join(', ')
-    })));
-
-    // 3. Search for specific "Capabilities" based on keywords
-    const keywords = {
-        'Image Generation': ['openai', 'dall-e', 'stable-diffusion', 'midjourney', 'image', 'canvas'],
-        'Sound/Audio': ['tone', 'audio', 'sound', 'music', 'spotify', 'mp3'],
-        'Web Development': ['react', 'next', 'vue', 'html', 'css', 'tailwind'],
-        'Database': ['prisma', 'sql', 'postgres', 'mongo', 'supabase']
-    };
-
-    console.log("\n--- Potential Capabilities Mapping ---");
-    for (const [capability, terms] of Object.entries(keywords)) {
-        const matches = technologies.filter(t =>
-            terms.some(term => t.name.toLowerCase().includes(term))
-        );
-        if (matches.length > 0) {
-            console.log(`\n${capability}:`);
-            matches.forEach(m => console.log(`  - ${m.name} (${m._count.name} repos)`));
-        }
+    if (!foundIssue) {
+        console.log("No issues found in API response.");
     }
-}
 
-main()
-    .catch(e => {
-        console.error(e);
-        process.exit(1);
-    })
-    .finally(async () => {
-        await prisma.$disconnect();
-    });
+} catch (e) {
+    console.error(e);
+}
