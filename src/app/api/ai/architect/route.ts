@@ -62,7 +62,7 @@ export async function POST(req: Request) {
 
         // Sanitize history: Perplexity requires User message after System.
         // Remove leading Assistant messages.
-        let sanitizedHistory = history;
+        const sanitizedHistory = history;
         while (sanitizedHistory.length > 0 && sanitizedHistory[0].role === 'assistant') {
             sanitizedHistory.shift();
         }

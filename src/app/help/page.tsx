@@ -75,7 +75,7 @@ export default function HelpPage() {
                                                 </p>
                                                 <ul className="list-disc list-inside text-sm text-slate-400 space-y-2">
                                                     <li><strong>Revenue Opportunities:</strong> Identifies projects with high monetization potential (e.g., SaaS, APIs) and estimates ARR.</li>
-                                                    <li><strong>Consolidation Clusters:</strong> Groups similar projects (e.g., multiple "Todo Apps" or "Chatbots") to suggest merging them for cost savings.</li>
+                                                    <li><strong>Consolidation Clusters:</strong> Groups similar projects (e.g., multiple &quot;Todo Apps&quot; or &quot;Chatbots&quot;) to suggest merging them for cost savings.</li>
                                                 </ul>
                                             </div>
                                         </section>
@@ -161,7 +161,7 @@ export default function HelpPage() {
                                             <h3 className="text-lg font-bold text-violet-400 mb-3">AI Advisor Chat</h3>
                                             <div className="bg-slate-900/50 p-4 rounded-lg border border-slate-800">
                                                 <p className="text-slate-300 text-sm">
-                                                    Ask questions like <em>"How can I reduce latency in the API?"</em> or <em>"Suggest a tech stack for a new video app"</em>. The AI analyzes your existing portfolio to give context-aware answers.
+                                                    Ask questions like <em>&quot;How can I reduce latency in the API?&quot;</em> or <em>&quot;Suggest a tech stack for a new video app&quot;</em>. The AI analyzes your existing portfolio to give context-aware answers.
                                                 </p>
                                             </div>
                                         </section>
@@ -232,7 +232,7 @@ export default function HelpPage() {
                                                         <strong className="text-slate-200">Upgrade React</strong>
                                                     </div>
                                                     <p className="text-xs text-slate-400">
-                                                        Systematically upgrades projects to React <strong>19.2</strong>, starting with "Tier 2" (safe) repositories.
+                                                        Systematically upgrades projects to React <strong>19.2</strong>, starting with &quot;Tier 2&quot; (safe) repositories.
                                                     </p>
                                                 </div>
                                                 <div className="p-4 rounded bg-slate-900/50 border border-slate-800 hover:border-violet-500/50 transition-colors">
@@ -251,7 +251,7 @@ export default function HelpPage() {
                                             <h3 className="text-lg font-bold text-slate-200 mb-3">Ecosystem Audit</h3>
                                             <div className="bg-slate-900/50 p-4 rounded-lg border border-slate-800">
                                                 <p className="text-slate-300 text-sm mb-2">
-                                                    The <strong>"View Live Status"</strong> button generates a real-time report of all repositories, checking for:
+                                                    The <strong>&quot;View Live Status&quot;</strong> button generates a real-time report of all repositories, checking for:
                                                 </p>
                                                 <ul className="list-disc list-inside text-sm text-slate-400 grid grid-cols-1 sm:grid-cols-2 gap-2">
                                                     <li>Node.js Version Compliance</li>

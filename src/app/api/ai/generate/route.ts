@@ -213,7 +213,7 @@ export async function POST() {
             // In a real scenario, we'd query RepoHealth.
 
             let outdatedCount = 0;
-            let vulnerabilitiesCount = 0;
+            const vulnerabilitiesCount = 0;
             let totalHealthScore = 0;
 
             // Simple heuristic if RepoHealth is empty: check for old updates
