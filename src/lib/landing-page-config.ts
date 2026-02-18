@@ -131,4 +131,42 @@ export const landingPages: Record<string, LandingPageContent> = {
             "AI-generierte Projekt-Beschreibungen (SEO-optimiert)",
         ],
     },
+
+    home: {
+        slug: "home",
+        badge: "Böschi & Friends",
+        headline: "Unlock Your Song - Erzähl deine Story, wir machen Musik daraus.",
+        subheadline:
+            "Mit unserem Song-&-Cover-Agenten bekommst du in Minuten deinen eigenen Song und ein individuelles Cover. Einfach deine Wünsche erzählen!",
+        ctaText: "Jetzt Song erstellen →",
+        ctaHref: "/auth/signin",
+        heroStat: { value: "100%", label: "Dein eigener Song" },
+        painPoints: [
+            {
+                icon: "🎵",
+                title: "Keine musikalische Erfahrung?",
+                description:
+                    "Kein Problem. Du brauchst kein Instrument und keine Band. Deine Idee reicht.",
+            },
+            {
+                icon: "⏱️",
+                title: "Stundenlanges Komponieren?",
+                description:
+                    "Vergiss monatelange Studio-Sessions. Wir liefern Ergebnisse in Minuten.",
+            },
+            {
+                icon: "🎨",
+                title: "Fehlendes Cover-Art?",
+                description:
+                    "Ein Song braucht ein Gesicht. Wir generieren das passende Artwork gleich mit.",
+            },
+        ],
+        solutionTitle: "Dein Song in wenigen Schritten.",
+        solutionFeatures: [
+            "Erzähl uns deine Geschichte oder Idee",
+            "Wähle Genre und Stimmung",
+            "Erhalte deinen fertigen Song inkl. Lyrics",
+            "Download & Share mit deinen Freunden",
+        ],
+    },
 };

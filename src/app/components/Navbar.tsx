@@ -13,7 +13,7 @@ import ThemeToggle from './ThemeToggle';
 const NAVIGATION = {
     dashboard: {
         name: 'Dashboard',
-        href: '/',
+        href: '/dashboard',
         icon: LayoutDashboard,
         items: [] // No sub-items for dashboard root
     },
@@ -81,7 +81,7 @@ export default function Navbar() {
     // Determine active context based on pathname
     useEffect(() => {
         const updateActiveContext = () => {
-            if (pathname === '/') {
+            if (pathname === '/dashboard') {
                 setActiveContext('dashboard');
             } else if (pathname.startsWith('/portfolio') || pathname.startsWith('/report/portfolio') || pathname.startsWith('/report/strategy') || pathname === '/report') {
                 setActiveContext('portfolio');
@@ -110,26 +110,28 @@ export default function Navbar() {
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="flex justify-between h-16">
                         <div className="flex">
-                            <div className="flex-shrink-0 flex items-center mr-8">
+                            <Link href="/" className="flex-shrink-0 flex items-center mr-8 hover:opacity-80 transition-opacity">
                                 <span className="font-bold text-xl text-gradient-electric">
                                     VibeCoder
                                 </span>
-                            </div>
+                            </Link>
                             <div className="hidden sm:flex sm:space-x-8">
-                                {Object.entries(NAVIGATION).map(([key, item]) => (
-                                    <Link
-                                        key={key}
-                                        href={item.href}
-                                        onClick={() => setActiveContext(key)}
-                                        className={`inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium transition-colors ${isContextActive(key)
-                                            ? 'border-violet-500 text-violet-400'
-                                            : 'border-transparent text-slate-400 hover:border-slate-600 hover:text-slate-200'
-                                            }`}
-                                    >
-                                        <Icon icon={item.icon} className="w-4 h-4 mr-2" />
-                                        {item.name}
-                                    </Link>
-                                ))}
+                                {Object.entries(NAVIGATION)
+                                    .filter(([key]) => status === 'authenticated' || ['help'].includes(key))
+                                    .map(([key, item]) => (
+                                        <Link
+                                            key={key}
+                                            href={item.href}
+                                            onClick={() => setActiveContext(key)}
+                                            className={`inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium transition-colors ${isContextActive(key)
+                                                ? 'border-violet-500 text-violet-400'
+                                                : 'border-transparent text-slate-400 hover:border-slate-600 hover:text-slate-200'
+                                                }`}
+                                        >
+                                            <Icon icon={item.icon} className="w-4 h-4 mr-2" />
+                                            {item.name}
+                                        </Link>
+                                    ))}
                             </div>
                         </div>
 
@@ -163,7 +165,7 @@ export default function Navbar() {
                                                     {session.user.email}
                                                 </div>
                                                 <button
-                                                    onClick={() => signOut({ callbackUrl: '/auth/signin' })}
+                                                    onClick={() => signOut({ callbackUrl: '/' })}
                                                     className="flex items-center w-full px-4 py-2 text-sm text-slate-300 hover:bg-slate-700"
                                                 >
                                                     <Icon icon={LogOut} className="w-4 h-4 mr-2" />
