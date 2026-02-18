@@ -38,9 +38,10 @@ type Repository = {
         name: string;
         description: string | null;
         isPrivate: boolean;
-        updatedAt: string | Date; // Server sends string
-        pushedAt: string | Date | null; // Server sends string or null
+        updatedAt: string | Date;
+        pushedAt: string | Date | null;
         url: string;
+        previewImageUrl?: string | null;
     };
     technologies: Technology[];
     deployments: Deployment[];
@@ -397,120 +398,138 @@ export default function DashboardClient({ initialRepos }: DashboardClientProps) 
                             });
 
                             return (
-                                <Card key={item.repo.name} className={`glass-card flex flex-col h-full ${isRepoOutdated ? 'border-amber-500/30 bg-amber-900/10' : ''}`}>
-                                    <div className="flex flex-col sm:flex-row justify-between items-start gap-2 mb-4">
-                                        <div className="min-w-0 flex-1 pr-2 w-full">
-                                            <div className="flex items-center gap-2 max-w-full">
-                                                <Link href={`/repo/${item.repo.name}`} className="hover:underline min-w-0 block truncate">
-                                                    <Title className="truncate text-slate-200" title={item.repo.name}>{item.repo.name}</Title>
-                                                </Link>
-                                                {isRepoOutdated && <Badge color="amber" size="xs" className="shrink-0">Stale</Badge>}
-                                            </div>
-                                            <Text className="truncate text-xs text-slate-400 block w-full">{item.repo.description || "No description"}</Text>
-                                        </div>
-                                        <div className="flex items-center gap-2 shrink-0 self-end sm:self-start mt-2 sm:mt-0">
-                                            <FavoriteButton
-                                                repositoryId={item.repo.id}
-                                                isFavorite={favorites.includes(item.repo.id)}
-                                                onToggle={(newState) => {
-                                                    if (newState) {
-                                                        setFavorites(prev => [...prev, item.repo.id]);
-                                                    } else {
-                                                        setFavorites(prev => prev.filter(id => id !== item.repo.id));
-                                                    }
-                                                }}
+                                <Card key={item.repo.name} className={`glass-card flex flex-col h-full p-0 overflow-hidden transition-all hover:ring-2 hover:ring-violet-500/50 ${isRepoOutdated ? 'border-amber-500/30 bg-amber-900/10' : ''}`}>
+                                    {/* Card Image */}
+                                    <Link href={`/repo/${item.repo.name}`} className="block h-32 w-full overflow-hidden relative group">
+                                        {item.repo.previewImageUrl ? (
+                                            <img
+                                                src={item.repo.previewImageUrl}
+                                                alt={item.repo.name}
+                                                className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-110"
                                             />
-                                            <Badge color={item.repo.isPrivate ? "slate" : "violet"}>
-                                                {item.repo.isPrivate ? "Private" : "Public"}
-                                            </Badge>
-                                        </div>
-                                    </div>
-
-                                    <div className="space-y-4 flex-grow">
-                                        <div className="flex items-center gap-2 text-xs">
-                                            <div className={`w-3 h-3 rounded-full shadow-[0_0_8px] ${new Date(item.repo.updatedAt) > new Date(Date.now() - 30 * 24 * 60 * 60 * 1000) ? 'bg-emerald-500 shadow-emerald-500/50' :
-                                                new Date(item.repo.updatedAt) > new Date(Date.now() - 180 * 24 * 60 * 60 * 1000) ? 'bg-amber-500 shadow-amber-500/50' :
-                                                    'bg-rose-500 shadow-rose-500/50'
-                                                }`} />
-                                            <span className="text-slate-400">
-                                                Last updated: {new Date(item.repo.updatedAt).toLocaleDateString()}
-                                            </span>
-                                        </div>
-
-                                        {item.deployments.length > 0 && (
-                                            <div className="flex flex-wrap gap-2">
-                                                {item.deployments.map(d => {
-                                                    if (!d.url) return null;
-                                                    const href = d.url.startsWith('http') ? d.url : `https://${d.url}`;
-                                                    return (
-                                                        <a key={d.id} href={href} target="_blank" rel="noopener noreferrer" className="no-underline">
-                                                            <Badge color={getProviderColor(d.provider)} icon={Globe}>
-                                                                {d.provider}
-                                                            </Badge>
-                                                        </a>
-                                                    );
-                                                })}
-                                            </div >
+                                        ) : (
+                                            <div className="w-full h-full bg-gradient-to-br from-slate-900 to-slate-950 flex items-center justify-center">
+                                                <Code className="w-8 h-8 text-slate-800" />
+                                            </div>
                                         )}
+                                        <div className="absolute inset-0 bg-slate-950/20 group-hover:bg-transparent transition-colors" />
+                                    </Link>
 
-                                        {
-                                            item.interfaces.length > 0 && (
-                                                <div>
-                                                    <Text className="font-medium text-xs mb-1 text-slate-500">Interfaces:</Text>
-                                                    <div className="flex flex-wrap gap-1">
-                                                        {item.interfaces.map((iface, idx) => (
-                                                            <Badge key={idx} color="neutral" size="xs" icon={ExternalLink}>
-                                                                {iface.details?.service || iface.type}
-                                                            </Badge>
-                                                        ))}
-                                                    </div>
+                                    <div className="p-5 flex flex-col flex-grow">
+                                        <div className="flex flex-col sm:flex-row justify-between items-start gap-2 mb-4">
+                                            <div className="min-w-0 flex-1 pr-2 w-full">
+                                                <div className="flex items-center gap-2 max-w-full">
+                                                    <Link href={`/repo/${item.repo.name}`} className="hover:underline min-w-0 block truncate">
+                                                        <Title className="truncate text-slate-200" title={item.repo.name}>{item.repo.name}</Title>
+                                                    </Link>
+                                                    {isRepoOutdated && <Badge color="amber" size="xs" className="shrink-0">Stale</Badge>}
                                                 </div>
-                                            )
-                                        }
+                                                <Text className="truncate text-xs text-slate-400 block w-full">{item.repo.description || "No description"}</Text>
+                                            </div>
+                                            <div className="flex items-center gap-2 shrink-0 self-end sm:self-start mt-2 sm:mt-0">
+                                                <FavoriteButton
+                                                    repositoryId={item.repo.id}
+                                                    isFavorite={favorites.includes(item.repo.id)}
+                                                    onToggle={(newState) => {
+                                                        if (newState) {
+                                                            setFavorites(prev => [...prev, item.repo.id]);
+                                                        } else {
+                                                            setFavorites(prev => prev.filter(id => id !== item.repo.id));
+                                                        }
+                                                    }}
+                                                />
+                                                <Badge color={item.repo.isPrivate ? "slate" : "violet"}>
+                                                    {item.repo.isPrivate ? "Private" : "Public"}
+                                                </Badge>
+                                            </div>
+                                        </div>
 
-                                        <div>
-                                            <Text className="font-medium text-xs mb-1 text-slate-500">Technologies:</Text>
-                                            <div className="flex flex-wrap gap-1">
-                                                {visibleTechnologies.slice(0, 5).map(t => (
-                                                    <span
-                                                        key={t.id}
-                                                        onClick={() => setSearchTerm(t.name)}
-                                                        className={`px-2 py-0.5 text-[10px] rounded-full border cursor-pointer transition-colors hover:opacity-80 ${getTechClass(t.name)}`}
-                                                    >
-                                                        {t.name}
-                                                    </span>
-                                                ))}
-                                                {visibleTechnologies.length > 5 && (
-                                                    <span className="text-xs text-slate-500">+{visibleTechnologies.length - 5}</span>
+                                        <div className="space-y-4 flex-grow">
+                                            <div className="flex items-center gap-2 text-xs">
+                                                <div className={`w-3 h-3 rounded-full shadow-[0_0_8px] ${new Date(item.repo.updatedAt) > new Date(Date.now() - 30 * 24 * 60 * 60 * 1000) ? 'bg-emerald-500 shadow-emerald-500/50' :
+                                                    new Date(item.repo.updatedAt) > new Date(Date.now() - 180 * 24 * 60 * 60 * 1000) ? 'bg-amber-500 shadow-amber-500/50' :
+                                                        'bg-rose-500 shadow-rose-500/50'
+                                                    }`} />
+                                                <span className="text-slate-400">
+                                                    Last updated: {new Date(item.repo.updatedAt).toLocaleDateString()}
+                                                </span>
+                                            </div>
+
+                                            {item.deployments.length > 0 && (
+                                                <div className="flex flex-wrap gap-2">
+                                                    {item.deployments.map(d => {
+                                                        if (!d.url) return null;
+                                                        const href = d.url.startsWith('http') ? d.url : `https://${d.url}`;
+                                                        return (
+                                                            <a key={d.id} href={href} target="_blank" rel="noopener noreferrer" className="no-underline">
+                                                                <Badge color={getProviderColor(d.provider)} icon={Globe}>
+                                                                    {d.provider}
+                                                                </Badge>
+                                                            </a>
+                                                        );
+                                                    })}
+                                                </div >
+                                            )}
+
+                                            {
+                                                item.interfaces.length > 0 && (
+                                                    <div>
+                                                        <Text className="font-medium text-xs mb-1 text-slate-500">Interfaces:</Text>
+                                                        <div className="flex flex-wrap gap-1">
+                                                            {item.interfaces.map((iface, idx) => (
+                                                                <Badge key={idx} color="neutral" size="xs" icon={ExternalLink}>
+                                                                    {iface.details?.service || iface.type}
+                                                                </Badge>
+                                                            ))}
+                                                        </div>
+                                                    </div>
+                                                )
+                                            }
+
+                                            <div>
+                                                <Text className="font-medium text-xs mb-1 text-slate-500">Technologies:</Text>
+                                                <div className="flex flex-wrap gap-1">
+                                                    {visibleTechnologies.slice(0, 5).map(t => (
+                                                        <span
+                                                            key={t.id}
+                                                            onClick={() => setSearchTerm(t.name)}
+                                                            className={`px-2 py-0.5 text-[10px] rounded-full border cursor-pointer transition-colors hover:opacity-80 ${getTechClass(t.name)}`}
+                                                        >
+                                                            {t.name}
+                                                        </span>
+                                                    ))}
+                                                    {visibleTechnologies.length > 5 && (
+                                                        <span className="text-xs text-slate-500">+{visibleTechnologies.length - 5}</span>
+                                                    )}
+                                                </div>
+                                            </div>
+                                        </div >
+
+                                        <div className="mt-4 pt-4 border-t border-slate-800 flex justify-between items-center text-xs text-slate-500">
+                                            <div className="flex gap-2">
+                                                {/* Task Indicators */}
+                                                {item.tasks && item.tasks.filter(t => t.priority === 'HIGH').length > 0 && (
+                                                    <Badge size="xs" color="rose" icon={AlertTriangle}>
+                                                        {item.tasks.filter(t => t.priority === 'HIGH').length} Critical
+                                                    </Badge>
+                                                )}
+                                                {item.tasks && item.tasks.filter(t => t.priority === 'MEDIUM').length > 0 && (
+                                                    <Badge size="xs" color="amber">
+                                                        {item.tasks.filter(t => t.priority === 'MEDIUM').length} Medium
+                                                    </Badge>
+                                                )}
+                                                {item.tasks && item.tasks.filter(t => t.priority === 'LOW').length > 0 && (
+                                                    <Badge size="xs" color="blue">
+                                                        {item.tasks.filter(t => t.priority === 'LOW').length} Low
+                                                    </Badge>
                                                 )}
                                             </div>
-                                        </div>
-                                    </div >
-
-                                    <div className="mt-4 pt-4 border-t border-slate-800 flex justify-between items-center text-xs text-slate-500">
-                                        <div className="flex gap-2">
-                                            {/* Task Indicators */}
-                                            {item.tasks && item.tasks.filter(t => t.priority === 'HIGH').length > 0 && (
-                                                <Badge size="xs" color="rose" icon={AlertTriangle}>
-                                                    {item.tasks.filter(t => t.priority === 'HIGH').length} Critical
-                                                </Badge>
-                                            )}
-                                            {item.tasks && item.tasks.filter(t => t.priority === 'MEDIUM').length > 0 && (
-                                                <Badge size="xs" color="amber">
-                                                    {item.tasks.filter(t => t.priority === 'MEDIUM').length} Medium
-                                                </Badge>
-                                            )}
-                                            {item.tasks && item.tasks.filter(t => t.priority === 'LOW').length > 0 && (
-                                                <Badge size="xs" color="blue">
-                                                    {item.tasks.filter(t => t.priority === 'LOW').length} Low
-                                                </Badge>
-                                            )}
-                                        </div>
-                                        <div className="flex items-center gap-2">
-                                            <span>Created: {new Date(item.repo.pushedAt || item.repo.updatedAt).toLocaleDateString()}</span>
-                                            <a href={item.repo.url} target="_blank" className="flex items-center gap-1 text-violet-400 hover:text-violet-300 hover:underline">
-                                                GitHub <Icon icon={ExternalLink} className="w-3 h-3" />
-                                            </a>
+                                            <div className="flex items-center gap-2">
+                                                <span>Created: {new Date(item.repo.pushedAt || item.repo.updatedAt).toLocaleDateString()}</span>
+                                                <a href={item.repo.url} target="_blank" className="flex items-center gap-1 text-violet-400 hover:text-violet-300 hover:underline">
+                                                    GitHub <Icon icon={ExternalLink} className="w-3 h-3" />
+                                                </a>
+                                            </div>
                                         </div>
                                     </div>
                                 </Card >

@@ -58,6 +58,7 @@ type Repository = {
         createdAt: string;
         languages: { size: number; node: { name: string } }[];
         customUrl?: string | null;
+        previewImageUrl?: string | null;
     };
     technologies: Technology[];
     interfaces: Interface[];
@@ -461,6 +462,23 @@ export default function RepoDetail() {
                         ].filter(Boolean) as ReactNode[]}
                     />
                 </div>
+
+                {/* Preview Image */}
+                {repo.previewImageUrl && (
+                    <div className="relative h-64 md:h-[400px] w-full rounded-3xl overflow-hidden border border-slate-800/50 shadow-2xl group">
+                        <img
+                            src={repo.previewImageUrl}
+                            alt={repo.name}
+                            className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent" />
+                        <div className="absolute bottom-6 left-8">
+                            <Badge color="violet" className="bg-violet-600/20 text-violet-200 border-violet-500/30 backdrop-blur-md">
+                                Live Preview
+                            </Badge>
+                        </div>
+                    </div>
+                )}
 
                 {/* URL Information Section */}
                 <div className="glass-card border-l-4 border-l-violet-500">

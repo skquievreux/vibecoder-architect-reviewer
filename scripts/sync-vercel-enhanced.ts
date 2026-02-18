@@ -113,8 +113,21 @@ async function createOrUpdateDeployment(repoId: string, project: VercelProject) 
     const productionTarget = project.targets?.production;
 
     if (!productionTarget) {
-        console.log(`   ⚠️  No production target for project ${project.name}`);
-        return null;
+        // Fallback: check if there is a latest deployment anyway
+        const latestDepRes = await fetchWithAuth(`https://api.vercel.com/v6/deployments?projectId=${project.id}&limit=1`);
+        const latestDep = latestDepRes.deployments?.[0];
+
+        if (!latestDep) {
+            console.log(`   ⚠️  No production or latest deployment for project ${project.name}`);
+            return null;
+        }
+
+        // Use latest deployment if production is missing
+        const deploymentUrl = `https://${latestDep.url}`;
+        const screenshotUrl = `https://vercel.com/api/screenshot?dark=0&deploymentId=${latestDep.uid}&teamId=skquievreuxs-projects&withStatus=1`;
+
+        await updateDeploymentRecord(repoId, latestDep.uid, deploymentUrl, latestDep.readyState, new Date(latestDep.createdAt), screenshotUrl);
+        return deploymentUrl;
     }
 
     // Determine best URL
@@ -132,7 +145,31 @@ async function createOrUpdateDeployment(repoId: string, project: VercelProject) 
         deploymentUrl = `https://${deploymentUrl}`;
     }
 
-    // Update or create deployment
+    // Find the deployment ID for the screenshot URL
+    // The productionTarget doesn't always have the UID directly in the v9 response,
+    // so we might need to fetch the deployment list or use the one we have if it's there.
+    // Based on my inspect-vercel-deployment trace, the production deployment is in 'targets.production'.
+    // However, the UID is what we need.
+
+    const depList = await fetchWithAuth(`https://api.vercel.com/v6/deployments?projectId=${project.id}&limit=1`);
+    const latestDep = depList.deployments?.[0];
+    const deploymentId = latestDep?.uid || ""; // Fallback to unknown if missing
+
+    const screenshotUrl = deploymentId ? `https://vercel.com/api/screenshot?dark=0&deploymentId=${deploymentId}&teamId=skquievreuxs-projects&withStatus=1` : null;
+
+    await updateDeploymentRecord(
+        repoId,
+        deploymentId,
+        deploymentUrl,
+        productionTarget.readyState || 'READY',
+        new Date(productionTarget.createdAt || Date.now()),
+        screenshotUrl
+    );
+
+    return deploymentUrl;
+}
+
+async function updateDeploymentRecord(repoId: string, deploymentId: string, url: string, status: string, lastDeployedAt: Date, screenshotUrl: string | null) {
     const existingDeployment = await prisma.deployment.findFirst({
         where: { repositoryId: repoId, provider: 'vercel' }
     });
@@ -141,26 +178,33 @@ async function createOrUpdateDeployment(repoId: string, project: VercelProject) 
         await prisma.deployment.update({
             where: { id: existingDeployment.id },
             data: {
-                url: deploymentUrl,
-                status: productionTarget.readyState || 'READY',
-                lastDeployedAt: new Date(productionTarget.createdAt || Date.now())
+                url: url,
+                status: status,
+                lastDeployedAt: lastDeployedAt
             }
         });
-        console.log(`   ✅ Updated deployment: ${deploymentUrl}`);
+        console.log(`   ✅ Updated deployment: ${url}`);
     } else {
         await prisma.deployment.create({
             data: {
                 repositoryId: repoId,
                 provider: 'vercel',
-                url: deploymentUrl,
-                status: productionTarget.readyState || 'READY',
-                lastDeployedAt: new Date(productionTarget.createdAt || Date.now())
+                url: url,
+                status: status,
+                lastDeployedAt: lastDeployedAt
             }
         });
-        console.log(`   ✅ Created deployment: ${deploymentUrl}`);
+        console.log(`   ✅ Created deployment: ${url}`);
     }
 
-    return deploymentUrl;
+    // Always update repository preview image if we have a screenshot URL
+    if (screenshotUrl) {
+        await prisma.repository.update({
+            where: { id: repoId },
+            data: { previewImageUrl: screenshotUrl }
+        });
+        console.log(`   🖼️  Linked screenshot: ${screenshotUrl}`);
+    }
 }
 
 async function updateCustomDomains(repoId: string, projectId: string, repoName: string) {

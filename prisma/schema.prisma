@@ -43,6 +43,7 @@ model Repository {
   homepageUrl         String?
   customUrl           String?
   apiSpec             String?
+  previewImageUrl     String?
   businessCanvas      BusinessCanvas?
   capabilities        Capability[]
   deployments         Deployment[]

@@ -1,6 +1,6 @@
 {
   "name": "dashboard",
-  "version": "2.17.7",
+  "version": "2.17.8",
   "private": true,
   "scripts": {
     "dev": "next dev --webpack",
@@ -19,7 +19,8 @@
     "sync-repos": "pnpm dlx tsx src/lib/github-sync.ts",
     "seed:providers": "pnpm dlx dotenv-cli -e .env.local -- node scripts/seed-providers.js",
     "link:providers": "pnpm dlx dotenv-cli -e .env.local -- pnpm dlx tsx scripts/link-providers.ts",
-    "portfolio:refresh": "pnpm dlx dotenv-cli -e .env.local -- pnpm dlx tsx scripts/intelligence/pipeline.ts"
+    "portfolio:refresh": "pnpm dlx dotenv-cli -e .env.local -- pnpm dlx tsx scripts/intelligence/pipeline.ts",
+    "sync:vercel-og": "pnpm dlx dotenv-cli -e .env.local -- pnpm dlx tsx scripts/sync-vercel-og.ts"
   },
   "dependencies": {
     "@auth/prisma-adapter": "^2.11.1",
