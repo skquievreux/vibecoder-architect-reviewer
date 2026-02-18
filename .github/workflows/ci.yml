@@ -24,6 +24,12 @@ jobs:
           cache: 'pnpm'
           registry-url: 'https://npm.pkg.github.com'
 
+      - name: Check Lockfile Sync
+        run: pnpm run lockfile:check
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Install Dependencies
         run: pnpm install --frozen-lockfile
         env:
