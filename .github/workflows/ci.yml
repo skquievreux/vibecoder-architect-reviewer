@@ -22,7 +22,6 @@ jobs:
         with:
           node-version: '20'
           cache: 'pnpm'
-          registry-url: 'https://npm.pkg.github.com'
 
       - name: Check Lockfile Sync
         run: pnpm run lockfile:check
