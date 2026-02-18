@@ -18,6 +18,17 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     return {
         title: `${content.headline} | VibeCoder`,
         description: content.subheadline,
+        openGraph: {
+            title: content.headline,
+            description: content.subheadline,
+            type: "website",
+            // url would ideally be dynamic based on slug, but next.js handles canonicals often
+        },
+        twitter: {
+            card: "summary_large_image",
+            title: content.headline,
+            description: content.subheadline,
+        },
     };
 }
 
