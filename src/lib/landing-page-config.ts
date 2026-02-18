@@ -134,39 +134,39 @@ export const landingPages: Record<string, LandingPageContent> = {
 
     home: {
         slug: "home",
-        badge: "Böschi & Friends",
-        headline: "Unlock Your Song - Erzähl deine Story, wir machen Musik daraus.",
+        badge: "VibeCoder Architect Reviewer",
+        headline: "VibeCoder Architect: Governance & Portfolio Intelligence.",
         subheadline:
-            "Mit unserem Song-&-Cover-Agenten bekommst du in Minuten deinen eigenen Song und ein individuelles Cover. Einfach deine Wünsche erzählen!",
-        ctaText: "Jetzt Song erstellen →",
+            "Analysiere dein gesamtes Software-Portfolio in Sekunden. Automatische Architektur-Reviews, ADRs und Kosten-Tracking für moderne Entwickler-Teams.",
+        ctaText: "Jetzt starten →",
         ctaHref: "/auth/signin",
-        heroStat: { value: "100%", label: "Dein eigener Song" },
+        heroStat: { value: "60+", label: "Unterstützte Projekte" },
         painPoints: [
             {
-                icon: "🎵",
-                title: "Keine musikalische Erfahrung?",
+                icon: "🏗️",
+                title: "Fehlende Architektur-Übersicht",
                 description:
-                    "Kein Problem. Du brauchst kein Instrument und keine Band. Deine Idee reicht.",
+                    "Welche Tech-Stacks nutzen deine 60+ Repos wirklich? Vibecoder analysiert sie alle automatisch.",
             },
             {
-                icon: "⏱️",
-                title: "Stundenlanges Komponieren?",
+                icon: "💰",
+                title: "Kosten-Transparenz",
                 description:
-                    "Vergiss monatelange Studio-Sessions. Wir liefern Ergebnisse in Minuten.",
+                    "Kein Überblick über Vercel, Supabase und AWS Rechnungen? Wir ordnen Kosten direkt den Projekten zu.",
             },
             {
-                icon: "🎨",
-                title: "Fehlendes Cover-Art?",
+                icon: "📋",
+                title: "Keine Standardisierung",
                 description:
-                    "Ein Song braucht ein Gesicht. Wir generieren das passende Artwork gleich mit.",
+                    "ADRs und Dokumentation fehlen oft. Unser AI-Reviewer erstellt sie für dich on-the-fly.",
             },
         ],
-        solutionTitle: "Dein Song in wenigen Schritten.",
+        solutionTitle: "Vollständige Kontrolle über deinen Code.",
         solutionFeatures: [
-            "Erzähl uns deine Geschichte oder Idee",
-            "Wähle Genre und Stimmung",
-            "Erhalte deinen fertigen Song inkl. Lyrics",
-            "Download & Share mit deinen Freunden",
+            "Automatisierte Tech-Stack Analyse",
+            "Zentrales Dashboard für alle Projekte",
+            "KI-gestützte Architektur-Reviews",
+            "Kosten- & Deployment-Monitoring",
         ],
     },
 };
