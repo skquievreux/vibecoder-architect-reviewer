@@ -26,7 +26,7 @@ export default function PainPointsSection({
             </motion.div>
 
             <div className="grid md:grid-cols-3 gap-6">
-                {content.painPoints.map((point, i) => (
+                {content?.painPoints?.map((point, i) => (
                     <motion.div
                         key={point.title}
                         initial={{ opacity: 0, y: 24 }}

@@ -25,10 +25,10 @@ export default function CTASection({
                     Verbinde dein GitHub und analysiere dein Portfolio in unter 60 Sekunden.
                 </p>
                 <a
-                    href={content.ctaHref}
+                    href={content?.ctaHref || "/"}
                     className="inline-block px-10 py-4 rounded-xl bg-violet-600 hover:bg-violet-500 text-white font-bold text-lg transition-all duration-200 shadow-lg shadow-violet-600/30 hover:shadow-violet-500/40 hover:-translate-y-0.5"
                 >
-                    {content.ctaText}
+                    {content?.ctaText || "Get Started"}
                 </a>
             </motion.div>
         </section>

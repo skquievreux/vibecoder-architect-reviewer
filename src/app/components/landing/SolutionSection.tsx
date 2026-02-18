@@ -28,7 +28,7 @@ export default function SolutionSection({
                 </motion.div>
 
                 <div className="grid sm:grid-cols-2 gap-4">
-                    {content.solutionFeatures.map((feature, i) => (
+                    {content?.solutionFeatures?.map((feature, i) => (
                         <motion.div
                             key={feature}
                             initial={{ opacity: 0, x: -16 }}
